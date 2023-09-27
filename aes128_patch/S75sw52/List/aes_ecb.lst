@@ -1,0 +1,137 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    05/Dec/2019  22:37:10 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\aes\aes_ecb.c                      #
+#    Command line    =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\aes\aes_ecb.c -lC                  #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\S75sw52\List\ -o                   #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\S75sw52\Obj\ -z9 --cpu_mode thumb  #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork -e --enable_multibytes --fpu None        #
+#                       --dlib_config E:\Users\alfinant7\Documents\Siemens\I #
+#                       AR\ARM\LIB\dl5tptinl8n.h -I                          #
+#                       E:\Users\alfinant7\Documents\Siemens\IAR\ARM\INC\    #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\S75sw52\List\aes_ecb.lst           #
+#    Object file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\aes128_path\vkp\S75sw52\Obj\aes_ecb.r79            #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\aes128_path\vkp\aes\aes_ecb.c
+      1          /* crypto/aes/aes_ecb.c -*- mode:C; c-file-style: "eay" -*- */
+      2          /* ====================================================================
+      3           * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
+      4           *
+      5           * Redistribution and use in source and binary forms, with or without
+      6           * modification, are permitted provided that the following conditions
+      7           * are met:
+      8           *
+      9           * 1. Redistributions of source code must retain the above copyright
+     10           *    notice, this list of conditions and the following disclaimer. 
+     11           *
+     12           * 2. Redistributions in binary form must reproduce the above copyright
+     13           *    notice, this list of conditions and the following disclaimer in
+     14           *    the documentation and/or other materials provided with the
+     15           *    distribution.
+     16           *
+     17           * 3. All advertising materials mentioning features or use of this
+     18           *    software must display the following acknowledgment:
+     19           *    "This product includes software developed by the OpenSSL Project
+     20           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     21           *
+     22           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     23           *    endorse or promote products derived from this software without
+     24           *    prior written permission. For written permission, please contact
+     25           *    openssl-core@openssl.org.
+     26           *
+     27           * 5. Products derived from this software may not be called "OpenSSL"
+     28           *    nor may "OpenSSL" appear in their names without prior written
+     29           *    permission of the OpenSSL Project.
+     30           *
+     31           * 6. Redistributions of any form whatsoever must retain the following
+     32           *    acknowledgment:
+     33           *    "This product includes software developed by the OpenSSL Project
+     34           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     35           *
+     36           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     37           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     38           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     39           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     40           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     41           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     42           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     43           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     44           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     45           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     46           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     47           * OF THE POSSIBILITY OF SUCH DAMAGE.
+     48           * ====================================================================
+     49           *
+     50           */
+     51          
+     52          #ifndef AES_DEBUG
+     53          # ifndef NDEBUG
+     54          #  define NDEBUG
+     55          # endif
+     56          #endif
+     57          #include <assert.h>
+     58          
+     59          #include <openssl/aes.h>
+     60          #include "aes_locl.h"
+     61          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     62          void AES_ecb_encrypt(const unsigned char *in, unsigned char *out,
+     63          		     const AES_KEY *key, const int enc) {
+   \                     AES_ecb_encrypt:
+   \   00000000   00B5               PUSH     {LR}
+     64          
+     65                  assert(in && out && key);
+     66          	assert((AES_ENCRYPT == enc)||(AES_DECRYPT == enc));
+     67          
+     68          	if (AES_ENCRYPT == enc)
+   \   00000002   012B               CMP      R3,#+1
+   \   00000004   02D1               BNE      ??AES_ecb_encrypt_0
+     69          		AES_encrypt(in, out, key);
+   \   00000006   ........           _BLF     AES_encrypt,??AES_encrypt??rT
+   \   0000000A   00BD               POP      {PC}
+     70          	else
+     71          		AES_decrypt(in, out, key);
+   \                     ??AES_ecb_encrypt_0:
+   \   0000000C   ........           _BLF     AES_decrypt,??AES_decrypt??rT
+     72          }
+   \   00000010   00BD               POP      {PC}             ;; return
+     73          
+
+   Maximum stack usage in bytes:
+
+     Function        CSTACK
+     --------        ------
+     AES_ecb_encrypt     4
+
+
+   Segment part sizes:
+
+     Function/Label  Bytes
+     --------------  -----
+     AES_ecb_encrypt   18
+      Others           24
+
+ 
+ 42 bytes in segment CODE
+ 
+ 18 bytes of CODE memory (+ 24 bytes shared)
+
+Errors: none
+Warnings: none

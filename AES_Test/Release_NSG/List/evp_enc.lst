@@ -1,0 +1,627 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    02/Feb/2023  22:11:46 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\evp\evp_enc.c                                 #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\evp\evp_enc.c -D NEWSGOLD -lCN                #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\ -la D:\Users\alfinant\Documents\S #
+#                       iemens\Dev\IAR\AES_Test\Release_NSG\List\ -o         #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\ -z9 --cpu_mode arm --endian        #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\evp_enc.lst                        #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\evp_enc.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\crypto\evp\evp_enc.c
+      1          /* crypto/evp/evp_enc.c */
+      2          /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+      3           * All rights reserved.
+      4           *
+      5           * This package is an SSL implementation written
+      6           * by Eric Young (eay@cryptsoft.com).
+      7           * The implementation was written so as to conform with Netscapes SSL.
+      8           * 
+      9           * This library is free for commercial and non-commercial use as long as
+     10           * the following conditions are aheared to.  The following conditions
+     11           * apply to all code found in this distribution, be it the RC4, RSA,
+     12           * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+     13           * included with this distribution is covered by the same copyright terms
+     14           * except that the holder is Tim Hudson (tjh@cryptsoft.com).
+     15           * 
+     16           * Copyright remains Eric Young's, and as such any Copyright notices in
+     17           * the code are not to be removed.
+     18           * If this package is used in a product, Eric Young should be given attribution
+     19           * as the author of the parts of the library used.
+     20           * This can be in the form of a textual message at program startup or
+     21           * in documentation (online or textual) provided with the package.
+     22           * 
+     23           * Redistribution and use in source and binary forms, with or without
+     24           * modification, are permitted provided that the following conditions
+     25           * are met:
+     26           * 1. Redistributions of source code must retain the copyright
+     27           *    notice, this list of conditions and the following disclaimer.
+     28           * 2. Redistributions in binary form must reproduce the above copyright
+     29           *    notice, this list of conditions and the following disclaimer in the
+     30           *    documentation and/or other materials provided with the distribution.
+     31           * 3. All advertising materials mentioning features or use of this software
+     32           *    must display the following acknowledgement:
+     33           *    "This product includes cryptographic software written by
+     34           *     Eric Young (eay@cryptsoft.com)"
+     35           *    The word 'cryptographic' can be left out if the rouines from the library
+     36           *    being used are not cryptographic related :-).
+     37           * 4. If you include any Windows specific code (or a derivative thereof) from 
+     38           *    the apps directory (application code) you must include an acknowledgement:
+     39           *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+     40           * 
+     41           * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+     42           * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     43           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+     44           * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+     45           * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+     46           * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+     47           * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     48           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+     49           * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+     50           * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+     51           * SUCH DAMAGE.
+     52           * 
+     53           * The licence and distribution terms for any publically available version or
+     54           * derivative of this code cannot be changed.  i.e. this code cannot simply be
+     55           * copied and put under another distribution licence
+     56           * [including the GNU Public Licence.]
+     57           */
+     58          
+     59          #include <siemens/swilib.h>
+     60          #include <stdio.h>
+     61          #include <openssl/cryptlib.h>
+     62          #include <openssl/evp.h>
+     63          #include <openssl/err.h>
+     64          #ifndef OPENSSL_NO_ENGINE
+     65          #include <openssl/engine.h>
+     66          #endif
+     67          #include "evp_locl.h"
+     68          
+     69          const char *EVP_version="EVP" OPENSSL_VERSION_PTEXT;
+     70          
+     71          void EVP_CIPHER_CTX_init(EVP_CIPHER_CTX *ctx)
+     72          	{
+     73          	memset(ctx,0,sizeof(EVP_CIPHER_CTX));
+     74          	/* ctx->cipher=NULL; */
+     75          	}
+     76          
+     77          
+     78          int EVP_CipherInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *cipher,
+     79          	     const unsigned char *key, const unsigned char *iv, int enc)
+     80          	{
+     81          	if (cipher)
+     82          		EVP_CIPHER_CTX_init(ctx);
+     83          	return EVP_CipherInit_ex(ctx,cipher,NULL,key,iv,enc);
+     84          	}
+     85          
+     86          #ifdef OPENSSL_FIPS
+     87          
+     88          /* The purpose of these is to trap programs that attempt to use non FIPS
+     89           * algorithms in FIPS mode and ignore the errors.
+     90           */
+     91          
+     92          int bad_init(EVP_CIPHER_CTX *ctx, const unsigned char *key,
+     93          	    const unsigned char *iv, int enc)
+     94          	{ FIPS_ERROR_IGNORED("Cipher init"); return 0;}
+     95          
+     96          int bad_do_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
+     97          		 const unsigned char *in, unsigned int inl)
+     98          	{ FIPS_ERROR_IGNORED("Cipher update"); return 0;}
+     99          
+    100          /* NB: no cleanup because it is allowed after failed init */
+    101          
+    102          int bad_set_asn1(EVP_CIPHER_CTX *ctx, ASN1_TYPE *typ)
+    103          	{ FIPS_ERROR_IGNORED("Cipher set_asn1"); return 0;}
+    104          int bad_get_asn1(EVP_CIPHER_CTX *ctx, ASN1_TYPE *typ)
+    105          	{ FIPS_ERROR_IGNORED("Cipher get_asn1"); return 0;}
+    106          int bad_ctrl(EVP_CIPHER_CTX *ctx, int type, int arg, void *ptr)
+    107          	{ FIPS_ERROR_IGNORED("Cipher ctrl"); return 0;}
+    108          
+    109          static const EVP_CIPHER bad_cipher =
+    110          	{
+    111          	0,
+    112          	0,
+    113          	0,
+    114          	0,
+    115          	0,
+    116          	bad_init,
+    117          	bad_do_cipher,
+    118          	NULL,
+    119          	0,
+    120          	bad_set_asn1,
+    121          	bad_get_asn1,
+    122          	bad_ctrl,
+    123          	NULL
+    124          	};
+    125          
+    126          #endif
+    127          
+    128          int EVP_CipherInit_ex(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *cipher, ENGINE *impl,
+    129          	     const unsigned char *key, const unsigned char *iv, int enc)
+    130          	{
+    131          	if (enc == -1)
+    132          		enc = ctx->encrypt;
+    133          	else
+    134          		{
+    135          		if (enc)
+    136          			enc = 1;
+    137          		ctx->encrypt = enc;
+    138          		}
+    139          #ifndef OPENSSL_NO_ENGINE
+    140          	/* Whether it's nice or not, "Inits" can be used on "Final"'d contexts
+    141          	 * so this context may already have an ENGINE! Try to avoid releasing
+    142          	 * the previous handle, re-querying for an ENGINE, and having a
+    143          	 * reinitialisation, when it may all be unecessary. */
+    144          	if (ctx->engine && ctx->cipher && (!cipher ||
+    145          			(cipher && (cipher->nid == ctx->cipher->nid))))
+    146          		goto skip_to_init;
+    147          #endif
+    148          	if (cipher)
+    149          		{
+    150          		/* Ensure a context left lying around from last time is cleared
+    151          		 * (the previous check attempted to avoid this if the same
+    152          		 * ENGINE and EVP_CIPHER could be used). */
+    153          		EVP_CIPHER_CTX_cleanup(ctx);
+    154          
+    155          		/* Restore encrypt field: it is zeroed by cleanup */
+    156          		ctx->encrypt = enc;
+    157          #ifndef OPENSSL_NO_ENGINE
+    158          		if(impl)
+    159          			{
+    160          			if (!ENGINE_init(impl))
+    161          				{
+    162          				EVPerr(EVP_F_EVP_CIPHERINIT, EVP_R_INITIALIZATION_ERROR);
+    163          				return 0;
+    164          				}
+    165          			}
+    166          		else
+    167          			/* Ask if an ENGINE is reserved for this job */
+    168          			impl = ENGINE_get_cipher_engine(cipher->nid);
+    169          		if(impl)
+    170          			{
+    171          			/* There's an ENGINE for this job ... (apparently) */
+    172          			const EVP_CIPHER *c = ENGINE_get_cipher(impl, cipher->nid);
+    173          			if(!c)
+    174          				{
+    175          				/* One positive side-effect of US's export
+    176          				 * control history, is that we should at least
+    177          				 * be able to avoid using US mispellings of
+    178          				 * "initialisation"? */
+    179          				EVPerr(EVP_F_EVP_CIPHERINIT, EVP_R_INITIALIZATION_ERROR);
+    180          				return 0;
+    181          				}
+    182          			/* We'll use the ENGINE's private cipher definition */
+    183          			cipher = c;
+    184          			/* Store the ENGINE functional reference so we know
+    185          			 * 'cipher' came from an ENGINE and we need to release
+    186          			 * it when done. */
+    187          			ctx->engine = impl;
+    188          			}
+    189          		else
+    190          			ctx->engine = NULL;
+    191          #endif
+    192          		ctx->cipher=cipher;
+    193          		if (ctx->cipher->ctx_size)
+    194          			{
+    195          			ctx->cipher_data=(void*)malloc(ctx->cipher->ctx_size);
+    196          			if (!ctx->cipher_data)
+    197          				{
+    198          				EVPerr(EVP_F_EVP_CIPHERINIT, ERR_R_MALLOC_FAILURE);
+    199          				return 0;
+    200          				}
+    201          			}
+    202          		else
+    203          			{
+    204          			ctx->cipher_data = NULL;
+    205          			}
+    206          		ctx->key_len = cipher->key_len;
+    207          		ctx->flags = 0;
+    208          		if(ctx->cipher->flags & EVP_CIPH_CTRL_INIT)
+    209          			{
+    210          			if(!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_INIT, 0, NULL))
+    211          				{
+    212          				EVPerr(EVP_F_EVP_CIPHERINIT, EVP_R_INITIALIZATION_ERROR);
+    213          				return 0;
+    214          				}
+    215          			}
+    216          		}
+    217          	else if(!ctx->cipher)
+    218          		{
+    219          		EVPerr(EVP_F_EVP_CIPHERINIT, EVP_R_NO_CIPHER_SET);
+    220          		return 0;
+    221          		}
+    222          #ifndef OPENSSL_NO_ENGINE
+    223          skip_to_init:
+    224          #endif
+    225          	/* we assume block size is a power of 2 in *cryptUpdate */
+    226          	OPENSSL_assert(ctx->cipher->block_size == 1
+    227          	    || ctx->cipher->block_size == 8
+    228          	    || ctx->cipher->block_size == 16);
+    229          
+    230          	if(!(EVP_CIPHER_CTX_flags(ctx) & EVP_CIPH_CUSTOM_IV)) {
+    231          		switch(EVP_CIPHER_CTX_mode(ctx)) {
+    232          
+    233          			case EVP_CIPH_STREAM_CIPHER:
+    234          			case EVP_CIPH_ECB_MODE:
+    235          			break;
+    236          
+    237          			case EVP_CIPH_CFB_MODE:
+    238          			case EVP_CIPH_OFB_MODE:
+    239          
+    240          			ctx->num = 0;
+    241          
+    242          			case EVP_CIPH_CBC_MODE:
+    243          
+    244          			OPENSSL_assert(EVP_CIPHER_CTX_iv_length(ctx) <= sizeof ctx->iv);
+    245          			if(iv) memcpy(ctx->oiv, iv, EVP_CIPHER_CTX_iv_length(ctx));
+    246          			memcpy(ctx->iv, ctx->oiv, EVP_CIPHER_CTX_iv_length(ctx));
+    247          			break;
+    248          
+    249          			default:
+    250          			return 0;
+    251          			break;
+    252          		}
+    253          	}
+    254          
+    255          #ifdef OPENSSL_FIPS
+    256          	/* After 'key' is set no further parameters changes are permissible.
+    257          	 * So only check for non FIPS enabling at this point.
+    258          	 */
+    259          	if (key && FIPS_mode())
+    260          		{
+    261          		if (!(ctx->cipher->flags & EVP_CIPH_FLAG_FIPS)
+    262          			& !(ctx->flags & EVP_CIPH_FLAG_NON_FIPS_ALLOW))
+    263          			{
+    264          			EVPerr(EVP_F_EVP_CIPHERINIT, EVP_R_DISABLED_FOR_FIPS);
+    265          			ERR_add_error_data(2, "cipher=",
+    266          						EVP_CIPHER_name(ctx->cipher));
+    267          			ctx->cipher = &bad_cipher;
+    268          			return 0;
+    269          			}
+    270          		}
+    271          #endif
+    272          
+    273          	if(key || (ctx->cipher->flags & EVP_CIPH_ALWAYS_CALL_INIT)) {
+    274          		if(!ctx->cipher->init(ctx,key,iv,enc)) return 0;
+    275          	}
+    276          	ctx->buf_len=0;
+    277          	ctx->final_used=0;
+    278          	ctx->block_mask=ctx->cipher->block_size-1;
+    279          	return 1;
+    280          	}
+    281          
+    282          int EVP_CipherUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl,
+    283          	     const unsigned char *in, int inl)
+    284          	{
+    285          	if (ctx->encrypt)
+    286          		return EVP_EncryptUpdate(ctx,out,outl,in,inl);
+    287          	else	return EVP_DecryptUpdate(ctx,out,outl,in,inl);
+    288          	}
+    289          
+    290          int EVP_CipherFinal_ex(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    291          	{
+    292          	if (ctx->encrypt)
+    293          		return EVP_EncryptFinal_ex(ctx,out,outl);
+    294          	else	return EVP_DecryptFinal_ex(ctx,out,outl);
+    295          	}
+    296          
+    297          int EVP_CipherFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    298          	{
+    299          	if (ctx->encrypt)
+    300          		return EVP_EncryptFinal(ctx,out,outl);
+    301          	else	return EVP_DecryptFinal(ctx,out,outl);
+    302          	}
+    303          
+    304          int EVP_EncryptInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *cipher,
+    305          	     const unsigned char *key, const unsigned char *iv)
+    306          	{
+    307          	return EVP_CipherInit(ctx, cipher, key, iv, 1);
+    308          	}
+    309          
+    310          int EVP_EncryptInit_ex(EVP_CIPHER_CTX *ctx,const EVP_CIPHER *cipher, ENGINE *impl,
+    311          		const unsigned char *key, const unsigned char *iv)
+    312          	{
+    313          	return EVP_CipherInit_ex(ctx, cipher, impl, key, iv, 1);
+    314          	}
+    315          
+    316          int EVP_DecryptInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *cipher,
+    317          	     const unsigned char *key, const unsigned char *iv)
+    318          	{
+    319          	return EVP_CipherInit(ctx, cipher, key, iv, 0);
+    320          	}
+    321          
+    322          int EVP_DecryptInit_ex(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *cipher, ENGINE *impl,
+    323          	     const unsigned char *key, const unsigned char *iv)
+    324          	{
+    325          	return EVP_CipherInit_ex(ctx, cipher, impl, key, iv, 0);
+    326          	}
+    327          
+    328          int EVP_EncryptUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl,
+    329          	     const unsigned char *in, int inl)
+    330          	{
+    331          	int i,j,bl;
+    332          
+    333          	assert(inl > 0);
+    334          	if(ctx->buf_len == 0 && (inl&(ctx->block_mask)) == 0)
+    335          		{
+    336          		if(ctx->cipher->do_cipher(ctx,out,in,inl))
+    337          			{
+    338          			*outl=inl;
+    339          			return 1;
+    340          			}
+    341          		else
+    342          			{
+    343          			*outl=0;
+    344          			return 0;
+    345          			}
+    346          		}
+    347          	i=ctx->buf_len;
+    348          	bl=ctx->cipher->block_size;
+    349          	OPENSSL_assert(bl <= sizeof ctx->buf);
+    350          	if (i != 0)
+    351          		{
+    352          		if (i+inl < bl)
+    353          			{
+    354          			memcpy(&(ctx->buf[i]),in,inl);
+    355          			ctx->buf_len+=inl;
+    356          			*outl=0;
+    357          			return 1;
+    358          			}
+    359          		else
+    360          			{
+    361          			j=bl-i;
+    362          			memcpy(&(ctx->buf[i]),in,j);
+    363          			if(!ctx->cipher->do_cipher(ctx,out,ctx->buf,bl)) return 0;
+    364          			inl-=j;
+    365          			in+=j;
+    366          			out+=bl;
+    367          			*outl=bl;
+    368          			}
+    369          		}
+    370          	else
+    371          		*outl = 0;
+    372          	i=inl&(bl-1);
+    373          	inl-=i;
+    374          	if (inl > 0)
+    375          		{
+    376          		if(!ctx->cipher->do_cipher(ctx,out,in,inl)) return 0;
+    377          		*outl+=inl;
+    378          		}
+    379          
+    380          	if (i != 0)
+    381          		memcpy(ctx->buf,&(in[inl]),i);
+    382          	ctx->buf_len=i;
+    383          	return 1;
+    384          	}
+    385          
+    386          int EVP_EncryptFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    387          	{
+    388          	int ret;
+    389          	ret = EVP_EncryptFinal_ex(ctx, out, outl);
+    390          	return ret;
+    391          	}
+    392          
+    393          int EVP_EncryptFinal_ex(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    394          	{
+    395          	int i,n,b,bl,ret;
+    396          
+    397          	b=ctx->cipher->block_size;
+    398          	assert(b <= sizeof ctx->buf);
+    399          	if (b == 1)
+    400          		{
+    401          		*outl=0;
+    402          		return 1;
+    403          		}
+    404          	bl=ctx->buf_len;
+    405          	if (ctx->flags & EVP_CIPH_NO_PADDING)
+    406          		{
+    407          		if(bl)
+    408          			{
+    409          			EVPerr(EVP_F_EVP_ENCRYPTFINAL,EVP_R_DATA_NOT_MULTIPLE_OF_BLOCK_LENGTH);
+    410          			return 0;
+    411          			}
+    412          		*outl = 0;
+    413          		return 1;
+    414          		}
+    415          
+    416          	n=b-bl;
+    417          	for (i=bl; i<b; i++)
+    418          		ctx->buf[i]=n;
+    419          	ret=ctx->cipher->do_cipher(ctx,out,ctx->buf,b);
+    420          
+    421          
+    422          	if(ret)
+    423          		*outl=b;
+    424          
+    425          	return ret;
+    426          	}
+    427          
+    428          int EVP_DecryptUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl,
+    429          	     const unsigned char *in, int inl)
+    430          	{
+    431          	int b, fix_len;
+    432          
+    433          	if (inl == 0)
+    434          		{
+    435          		*outl=0;
+    436          		return 1;
+    437          		}
+    438          
+    439          	if (ctx->flags & EVP_CIPH_NO_PADDING)
+    440          		return EVP_EncryptUpdate(ctx, out, outl, in, inl);
+    441          
+    442          	b=ctx->cipher->block_size;
+    443          	assert(b <= sizeof ctx->final);
+    444          
+    445          	if(ctx->final_used)
+    446          		{
+    447          		memcpy(out,ctx->final,b);
+    448          		out+=b;
+    449          		fix_len = 1;
+    450          		}
+    451          	else
+    452          		fix_len = 0;
+    453          
+    454          
+    455          	if(!EVP_EncryptUpdate(ctx,out,outl,in,inl))
+    456          		return 0;
+    457          
+    458          	/* if we have 'decrypted' a multiple of block size, make sure
+    459          	 * we have a copy of this last block */
+    460          	if (b > 1 && !ctx->buf_len)
+    461          		{
+    462          		*outl-=b;
+    463          		ctx->final_used=1;
+    464          		memcpy(ctx->final,&out[*outl],b);
+    465          		}
+    466          	else
+    467          		ctx->final_used = 0;
+    468          
+    469          	if (fix_len)
+    470          		*outl += b;
+    471          		
+    472          	return 1;
+    473          	}
+    474          
+    475          int EVP_DecryptFinal(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    476          	{
+    477          	int ret;
+    478          	ret = EVP_DecryptFinal_ex(ctx, out, outl);
+    479          	return ret;
+    480          	}
+    481          
+    482          int EVP_DecryptFinal_ex(EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)
+    483          	{
+    484          	int i,b;
+    485          	int n;
+    486          
+    487          	*outl=0;
+    488          	b=ctx->cipher->block_size;
+    489          	if (ctx->flags & EVP_CIPH_NO_PADDING)
+    490          		{
+    491          		if(ctx->buf_len)
+    492          			{
+    493          			EVPerr(EVP_F_EVP_DECRYPTFINAL,EVP_R_DATA_NOT_MULTIPLE_OF_BLOCK_LENGTH);
+    494          			return 0;
+    495          			}
+    496          		*outl = 0;
+    497          		return 1;
+    498          		}
+    499          	if (b > 1)
+    500          		{
+    501          		if (ctx->buf_len || !ctx->final_used)
+    502          			{
+    503          			EVPerr(EVP_F_EVP_DECRYPTFINAL,EVP_R_WRONG_FINAL_BLOCK_LENGTH);
+    504          			return(0);
+    505          			}
+    506          		OPENSSL_assert(b <= sizeof ctx->final);
+    507          		n=ctx->final[b-1];
+    508          		if (n > b)
+    509          			{
+    510          			EVPerr(EVP_F_EVP_DECRYPTFINAL,EVP_R_BAD_DECRYPT);
+    511          			return(0);
+    512          			}
+    513          		for (i=0; i<n; i++)
+    514          			{
+    515          			if (ctx->final[--b] != n)
+    516          				{
+    517          				EVPerr(EVP_F_EVP_DECRYPTFINAL,EVP_R_BAD_DECRYPT);
+    518          				return(0);
+    519          				}
+    520          			}
+    521          		n=ctx->cipher->block_size-n;
+    522          		for (i=0; i<n; i++)
+    523          			out[i]=ctx->final[i];
+    524          		*outl=n;
+    525          		}
+    526          	else
+    527          		*outl=0;
+    528          	return(1);
+    529          	}
+    530          
+    531          int EVP_CIPHER_CTX_cleanup(EVP_CIPHER_CTX *c)
+    532          	{
+    533          	if (c->cipher != NULL)
+    534          		{
+    535          		if(c->cipher->cleanup && !c->cipher->cleanup(c))
+    536          			return 0;
+    537          		/* Cleanse cipher context data */
+    538          		if (c->cipher_data)
+    539          			OPENSSL_cleanse(c->cipher_data, c->cipher->ctx_size);
+    540          		}
+    541          	if (c->cipher_data)
+    542          		OPENSSL_free(c->cipher_data);
+    543          #ifndef OPENSSL_NO_ENGINE
+    544          	if (c->engine)
+    545          		/* The EVP_CIPHER we used belongs to an ENGINE, release the
+    546          		 * functional reference we held for this reason. */
+    547          		ENGINE_finish(c->engine);
+    548          #endif
+    549          	memset(c,0,sizeof(EVP_CIPHER_CTX));
+    550          	return 1;
+    551          	}
+    552          
+    553          int EVP_CIPHER_CTX_set_key_length(EVP_CIPHER_CTX *c, int keylen)
+    554          	{
+    555          	if(c->cipher->flags & EVP_CIPH_CUSTOM_KEY_LENGTH) 
+    556          		return EVP_CIPHER_CTX_ctrl(c, EVP_CTRL_SET_KEY_LENGTH, keylen, NULL);
+    557          	if(c->key_len == keylen) return 1;
+    558          	if((keylen > 0) && (c->cipher->flags & EVP_CIPH_VARIABLE_LENGTH))
+    559          		{
+    560          		c->key_len = keylen;
+    561          		return 1;
+    562          		}
+    563          	EVPerr(EVP_F_EVP_CIPHER_CTX_SET_KEY_LENGTH,EVP_R_INVALID_KEY_LENGTH);
+    564          	return 0;
+    565          	}
+    566          
+    567          int EVP_CIPHER_CTX_set_padding(EVP_CIPHER_CTX *ctx, int pad)
+    568          	{
+    569          	if (pad) ctx->flags &= ~EVP_CIPH_NO_PADDING;
+    570          	else ctx->flags |= EVP_CIPH_NO_PADDING;
+    571          	return 1;
+    572          	}
+    573          
+    574          int EVP_CIPHER_CTX_ctrl(EVP_CIPHER_CTX *ctx, int type, int arg, void *ptr)
+    575          {
+    576          	int ret;
+    577          	if(!ctx->cipher) {
+    578          		EVPerr(EVP_F_EVP_CIPHER_CTX_CTRL, EVP_R_NO_CIPHER_SET);
+    579          		return 0;
+    580          	}
+    581          
+    582          	if(!ctx->cipher->ctrl) {
+    583          		EVPerr(EVP_F_EVP_CIPHER_CTX_CTRL, EVP_R_CTRL_NOT_IMPLEMENTED);
+    584          		return 0;
+    585          	}
+    586          
+    587          	ret = ctx->cipher->ctrl(ctx, type, arg, ptr);
+    588          	if(ret == -1) {
+    589          		EVPerr(EVP_F_EVP_CIPHER_CTX_CTRL, EVP_R_CTRL_OPERATION_NOT_IMPLEMENTED);
+    590          		return 0;
+    591          	}
+    592          	return ret;
+    593          }
+
+Errors: 5
+Warnings: 25

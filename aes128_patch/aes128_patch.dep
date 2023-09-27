@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3444407866</fileChecksum>
+  <configuration>
+    <name>S75sw52</name>
+    <outputs>
+      <file>$PROJ_DIR$\aes\aes_misc.c</file>
+      <file>$PROJ_DIR$\aes\aes_ofb.c</file>
+      <file>$PROJ_DIR$\cryptlib.c</file>
+      <file>$PROJ_DIR$\e_aes.c</file>
+      <file>$PROJ_DIR$\aes\aes_cbc.c</file>
+      <file>$PROJ_DIR$\aes\aes_core.c</file>
+      <file>$PROJ_DIR$\aes\aes_cfb.c</file>
+      <file>$PROJ_DIR$\aes\aes_ctr.c</file>
+      <file>$PROJ_DIR$\aes\aes_ecb.c</file>
+      <file>$PROJ_DIR$\S75sw52\List\e_aes.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\sha.h</file>
+      <file>$PROJ_DIR$\defs.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl23.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\lhash.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dh.h</file>
+      <file>$TOOLKIT_DIR$\INC\assert.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\err.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\blowfish.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\fips.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\stddef.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\obj_mac.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem.h</file>
+      <file>$TOOLKIT_DIR$\INC\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bio.h</file>
+      <file>$PROJ_DIR$\aes\aes.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rsa.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\main.r79</file>
+      <file>$PROJ_DIR$\aes\aes_locl.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\crypto.h</file>
+      <file>$PROJ_DIR$\S75sw52\Exe\aes128.elf</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslv.h</file>
+      <file>$PROJ_DIR$\S75sw52\List\patch.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc4.h</file>
+      <file>$PROJ_DIR$\S75sw52\List\aes_cbc.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\evp.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\tls1.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md2.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tptinl8n.r79</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\aes128_patch.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\aes.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\ssl_ciph.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\des.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md4.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\patch.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509_vfy.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tptinl8n.h</file>
+      <file>$PROJ_DIR$\S75sw52\List\ssl_ciph.lst</file>
+      <file>$PROJ_DIR$\S75sw52\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\S75sw52\List\aes_core.lst</file>
+      <file>$TOOLKIT_DIR$\INC\errno.h</file>
+      <file>$TOOLKIT_DIR$\INC\string.h</file>
+      <file>$PROJ_DIR$\ssl_locl.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\aes_core.pbi</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\aes_core.r79</file>
+      <file>$PROJ_DIR$\S75sw52\List\evp_enc.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl.h</file>
+      <file>$PROJ_DIR$\S75sw52.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\objects.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\cryptlib.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ripemd.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\aes_cbc.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc2.h</file>
+      <file>$PROJ_DIR$\patch.asm</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\err.c</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\cast.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl2.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\e_aes.r79</file>
+      <file>$PROJ_DIR$\evp_enc.c</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\e_os2.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdio.h</file>
+      <file>$PROJ_DIR$\ssl_ciph.c</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\symhacks.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\asn1.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdlib.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\S75sw52\List\cryptlib.lst</file>
+      <file>$PROJ_DIR$\evp_locl.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\stack.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\evp_enc.r79</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\ssl_ciph.pbi</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\e_aes.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\time.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\aes_cbc.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\mdc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\safestack.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem2.h</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\cryptlib.pbi</file>
+      <file>$PROJ_DIR$\S75sw52\Obj\evp_enc.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pkcs7.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl3.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ossl_typ.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\buffer.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\cryptlib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65 84</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 95</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\e_aes.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 74 9</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 89</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38 21 102 77 80 27 78 99 49 51 14 70 54 26 82 32 86 93 34 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 18 15 56 85 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38 21 102 77 80 27 78 99 49 14 70 54 26 82 32 86 93 34 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 18 15 56 85 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\aes\aes_cbc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 91 37</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62 93 86 32 82 99 49 51 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 12 28 31 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 93 86 32 82 99 49 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 12 28 31 57</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\aes\aes_core.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 60 55</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17 99 49 51 14 70 54 43 77 21 22 26 20 31 78 82 57</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17 99 49 14 70 54 43 77 21 22 26 20 31 78 82 57</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\S75sw52\Exe\aes128.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 63 91 60 65 74 87 30 47 44 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\S75sw52\Obj\aes128_patch.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 67 59 95 89 96 76 88</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\patch.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 47 35</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\evp_enc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 87 61</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62 93 86 32 82 99 49 51 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 18 56 12 85</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 93 86 32 82 99 49 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 18 56 12 85</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ssl_ciph.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 44 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 88</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62 93 86 32 82 99 49 51 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 58 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 93 86 32 82 99 49 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 58 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 30 53</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62 93 86 32 82 99 49 51 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 58 12</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62 93 86 32 82 99 49 14 70 54 26 34 80 77 21 15 103 27 78 25 38 102 40 46 48 11 66 45 36 68 10 19 72 92 43 22 29 24 98 16 64 23 81 90 97 50 100 94 73 101 39 13 58 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

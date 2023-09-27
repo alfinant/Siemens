@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>1655581064</fileChecksum>
+  <configuration>
+    <name>Release_ELKA</name>
+    <outputs>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2c.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\connector.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\reg8876.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\i2c.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\clkman.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\tbsys.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2c.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\reg8876.h</file>
+      <file>$PROJ_DIR$\..\ARM\INC\siemens\tbase_work\tbsys.asm</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\connector.h</file>
+      <file>$PROJ_DIR$\i2c.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\i2c.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$PROJ_DIR$\..\..\INC\siemens\tbase_work\tbsys.asm</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.s79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\test.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\test.map</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\nu_swilib.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\test.elf</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 49 57</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 25 45 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21 50 55 17 51 10 27 11 26 13 41 6 32 36 22 18 15 48 54 53 39 47</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40 1 12 5 33 35 31 9 20 2 42 19 56 29 15 48 54 16 53 39 47 23 38 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\ARM\INC\siemens\tbase_work\tbsys.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 24</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21 50 55 17 51 10 27 11 26 13 41 6 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\INC\siemens\tbase_work\tbsys.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 24</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Obj\test.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 28 0</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\test.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 44 34 25 24 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_ofb.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\crypto.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\evp_enc.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\e_aes.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\tls1.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\e_aes.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc4.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\evp_enc.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\evp_enc.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\List\e_aes.lst</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\evp\evp_enc.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_ofb.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_ctr.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\evp\e_aes.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_cbc.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_ecb.c</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_core.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_locl.h</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_cfb.c</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\aes\aes_misc.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$TOOLKIT_DIR$\INC\stddef.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ripemd.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md4.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\cast.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ofb.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc5.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_cbc.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_cfb.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\objects.h</file>
+      <file>$TOOLKIT_DIR$\INC\assert.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_misc.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\des.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\openssl\crypto\evp\evp_locl.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\safestack.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\evp.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rand.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\undifined_functions.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ecb.r79</file>
+      <file>$TOOLKIT_DIR$\INC\string.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\cryptlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\machine\endian.h</file>
+      <file>$TOOLKIT_DIR$\INC\sys\types.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\e_os.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\e_os2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\buffer.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pkcs7.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\fips.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\lhash.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ofb.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\sha.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_cbc.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_misc.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_core.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\aes.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\obj_mac.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_cbc.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_cbc.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl3.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_cfb.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_core.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\symhacks.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\AES_test.elf</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_ofb.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl2.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_core.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ecb.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_misc.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\asn1.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_ctr.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl23.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_ecb.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\engine.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\mdc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ui.h</file>
+      <file>$TOOLKIT_DIR$\INC\time.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdio.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_cfb.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dh.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\stack.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_core.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ctr.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\err.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_misc.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\aes_ctr.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\e_aes.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\blowfish.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\AES_test.pbd</file>
+      <file>$PROJ_DIR$\Release_NSG\List\AES_test.map</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509_vfy.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ossl_typ.h</file>
+      <file>$TOOLKIT_DIR$\INC\errno.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bio.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\aes_ecb.lst</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslv.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md2.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 89 119</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\evp\evp_enc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 2 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31 12 25 21 103 35 53 26 37 30 34 57 29 27 32 28 61 40 58 108 1 74 126 88 70 55 75 71 124 104 42 59 121 127 39 60 77 38 52 6 107 45 117 41 100 81 123 56 69 106 48 82 95 51 120 72 101 91 85 4 97 62 65 64 68 67 66 112 122 99 102 54</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_ofb.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 76 90 0</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 81 70 55 27 57 22 104 74 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_ctr.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 111</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 114 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 81 70 55 27 57 22 104 74 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\evp\e_aes.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 115</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 3 5 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 59 55 121 70 88 124 104 35 53 26 37 30 34 57 74 1 108 58 126 127 39 60 77 38 52 6 107 45 117 41 100 81 27 123 56 69 106 48 82 95 103 112 75 122 64 54</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_cbc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 78</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 83 84 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 31 12 25 21 103 57 29 27 32 28 61 40 58 108 1 74 126 88 70 55 75 71 124 104 42 59 121 127 39 60 77 38 52 6 107 45 117 41 100 81 123 56 69 106 48 82 95 51 120 72 101 91 85 4 97 62 22 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_ecb.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 93</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 98 125</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 81 70 55 27 57 22 104 74 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 110</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 43 116</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31 12 25 21 103 35 53 37 30 34 57 29 27 32 28 61 40 58 108 1 74 126 88 70 55 75 71 124 104 42 59 121 127 39 60 77 38 52 6 107 45 117 41 100 81 123 56 69 106 48 82 95 51 120 72 101 91 85 4 97 62</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31 12 25 21 103 35 53 26 37 30 34 57 29 27 32 28 61 40 58 108 1 74 126 88 70 55 75 71 124 104 42 59 121 127 39 60 77 38 52 6 107 45 117 41 100 81 123 56 69 106 48 82 95 51 120 72 101 91 85 4 97 62</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_core.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 80</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 92 87 109</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 74 57 81 70 55 27 73 22 104 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_cfb.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 86</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 105 47</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 35 53 26 37 30 34 31 12 25 21 103 57 29 27 32 28 61 40 58 108 1 74 126 88 70 55 75 71 124 104 42 59 121 127 39 60 77 38 52 6 107 45 117 41 100 81 123 56 69 106 48 82 95 51 120 72 101 91 85 4 97 62 22 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\openssl\crypto\aes\aes_misc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 113</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 79 50 94</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 126 81 70 55 27 35 53 26 37 30 34 57 22 104 74 64</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\AES_test.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 119</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 33 83 105 92 114 63 79 76 110 43 36</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\AES_test.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 78 86 80 111 93 113 44 115 8 9</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$PROJ_DIR$\Release_SGOLD\List\test.map</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\i2c.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\i2c.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\i2c.s79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.s79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\i2c.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\test.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\tbsys.r79</file>
+      <file>$PROJ_DIR$\..\inc\reg8875.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\test.pbd</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\i2c.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\..\ARM\INC\siemens\tbase_work\tbsys.asm</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\..\inc\connector.h</file>
+      <file>$PROJ_DIR$\i2c.c</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 9 0</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\test.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 0</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 33 4 7 5 10 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\test.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 2 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5 6 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 36 41 22 37 17 26 18 25 19 32 16 28 29 24 11 20 35 40 39 31 34</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23 36 41 22 37 17 26 18 25 19 32 16 28 29 24 11 20 35 40 21 39 31 34</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\ARM\INC\siemens\tbase_work\tbsys.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7 3 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 36 41 22 37 17 26 18 25 19 32 16 24</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23 36 41 22 37 17 26 18 25 19 32 16 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

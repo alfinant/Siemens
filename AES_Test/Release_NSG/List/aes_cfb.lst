@@ -1,0 +1,261 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    02/Feb/2023  22:11:46 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\aes\aes_cfb.c                                 #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\aes\aes_cfb.c -D NEWSGOLD -lCN                #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\ -la D:\Users\alfinant\Documents\S #
+#                       iemens\Dev\IAR\AES_Test\Release_NSG\List\ -o         #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\ -z9 --cpu_mode arm --endian        #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\aes_cfb.lst                        #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\aes_cfb.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\crypto\aes\aes_cfb.c
+      1          /* crypto/aes/aes_cfb.c -*- mode:C; c-file-style: "eay" -*- */
+      2          /* ====================================================================
+      3           * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
+      4           *
+      5           * Redistribution and use in source and binary forms, with or without
+      6           * modification, are permitted provided that the following conditions
+      7           * are met:
+      8           *
+      9           * 1. Redistributions of source code must retain the above copyright
+     10           *    notice, this list of conditions and the following disclaimer. 
+     11           *
+     12           * 2. Redistributions in binary form must reproduce the above copyright
+     13           *    notice, this list of conditions and the following disclaimer in
+     14           *    the documentation and/or other materials provided with the
+     15           *    distribution.
+     16           *
+     17           * 3. All advertising materials mentioning features or use of this
+     18           *    software must display the following acknowledgment:
+     19           *    "This product includes software developed by the OpenSSL Project
+     20           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     21           *
+     22           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     23           *    endorse or promote products derived from this software without
+     24           *    prior written permission. For written permission, please contact
+     25           *    openssl-core@openssl.org.
+     26           *
+     27           * 5. Products derived from this software may not be called "OpenSSL"
+     28           *    nor may "OpenSSL" appear in their names without prior written
+     29           *    permission of the OpenSSL Project.
+     30           *
+     31           * 6. Redistributions of any form whatsoever must retain the following
+     32           *    acknowledgment:
+     33           *    "This product includes software developed by the OpenSSL Project
+     34           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     35           *
+     36           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     37           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     38           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     39           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     40           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     41           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     42           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     43           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     44           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     45           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     46           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     47           * OF THE POSSIBILITY OF SUCH DAMAGE.
+     48           * ====================================================================
+     49           *
+     50           */
+     51          /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+     52           * All rights reserved.
+     53           *
+     54           * This package is an SSL implementation written
+     55           * by Eric Young (eay@cryptsoft.com).
+     56           * The implementation was written so as to conform with Netscapes SSL.
+     57           * 
+     58           * This library is free for commercial and non-commercial use as long as
+     59           * the following conditions are aheared to.  The following conditions
+     60           * apply to all code found in this distribution, be it the RC4, RSA,
+     61           * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+     62           * included with this distribution is covered by the same copyright terms
+     63           * except that the holder is Tim Hudson (tjh@cryptsoft.com).
+     64           * 
+     65           * Copyright remains Eric Young's, and as such any Copyright notices in
+     66           * the code are not to be removed.
+     67           * If this package is used in a product, Eric Young should be given attribution
+     68           * as the author of the parts of the library used.
+     69           * This can be in the form of a textual message at program startup or
+     70           * in documentation (online or textual) provided with the package.
+     71           * 
+     72           * Redistribution and use in source and binary forms, with or without
+     73           * modification, are permitted provided that the following conditions
+     74           * are met:
+     75           * 1. Redistributions of source code must retain the copyright
+     76           *    notice, this list of conditions and the following disclaimer.
+     77           * 2. Redistributions in binary form must reproduce the above copyright
+     78           *    notice, this list of conditions and the following disclaimer in the
+     79           *    documentation and/or other materials provided with the distribution.
+     80           * 3. All advertising materials mentioning features or use of this software
+     81           *    must display the following acknowledgement:
+     82           *    "This product includes cryptographic software written by
+     83           *     Eric Young (eay@cryptsoft.com)"
+     84           *    The word 'cryptographic' can be left out if the rouines from the library
+     85           *    being used are not cryptographic related :-).
+     86           * 4. If you include any Windows specific code (or a derivative thereof) from 
+     87           *    the apps directory (application code) you must include an acknowledgement:
+     88           *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+     89           * 
+     90           * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+     91           * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     92           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+     93           * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+     94           * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+     95           * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+     96           * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     97           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+     98           * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+     99           * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    100           * SUCH DAMAGE.
+    101           * 
+    102           * The licence and distribution terms for any publically available version or
+    103           * derivative of this code cannot be changed.  i.e. this code cannot simply be
+    104           * copied and put under another distribution licence
+    105           * [including the GNU Public Licence.]
+    106           */
+    107          
+    108          #ifndef AES_DEBUG
+    109          # ifndef NDEBUG
+    110          #  define NDEBUG
+    111          # endif
+    112          #endif
+    113          #include <assert.h>
+    114          
+    115          #include <siemens/swilib.h>
+    116          
+    117          #include <openssl/aes.h>
+    118          #include "aes_locl.h"
+    119          //#include <openssl/e_os.h>
+    120          
+    121          /* The input and output encrypted as though 128bit cfb mode is being
+    122           * used.  The extra state information to record how much of the
+    123           * 128bit block we have used is contained in *num;
+    124           */
+    125          
+    126          void AES_cfb128_encrypt(const unsigned char *in, unsigned char *out,
+    127          	const unsigned long length, const AES_KEY *key,
+    128          	unsigned char *ivec, int *num, const int enc) {
+    129          
+    130          	unsigned int n;
+    131          	unsigned long l = length;
+    132          	unsigned char c;
+    133          
+    134          	assert(in && out && key && ivec && num);
+    135          
+    136          	n = *num;
+    137          
+    138          	if (enc) {
+    139          		while (l--) {
+    140          			if (n == 0) {
+    141          				AES_encrypt(ivec, ivec, key);
+    142          			}
+    143          			ivec[n] = *(out++) = *(in++) ^ ivec[n];
+    144          			n = (n+1) % AES_BLOCK_SIZE;
+    145          		}
+    146          	} else {
+    147          		while (l--) {
+    148          			if (n == 0) {
+    149          				AES_encrypt(ivec, ivec, key);
+    150          			}
+    151          			c = *(in);
+    152          			*(out++) = *(in++) ^ ivec[n];
+    153          			ivec[n] = c;
+    154          			n = (n+1) % AES_BLOCK_SIZE;
+    155          		}
+    156          	}
+    157          
+    158          	*num=n;
+    159          }
+    160          
+    161          /* This expects a single block of size nbits for both in and out. Note that
+    162             it corrupts any extra bits in the last byte of out */
+    163          void AES_cfbr_encrypt_block(const unsigned char *in,unsigned char *out,
+    164          			    const int nbits,const AES_KEY *key,
+    165          			    unsigned char *ivec,const int enc)
+    166              {
+    167              int n,rem,num;
+    168              unsigned char ovec[AES_BLOCK_SIZE*2];
+    169          
+    170              if (nbits<=0 || nbits>128) return;
+    171          
+    172          	/* fill in the first half of the new IV with the current IV */
+    173          	memcpy(ovec,ivec,AES_BLOCK_SIZE);
+    174          	/* construct the new IV */
+    175          	AES_encrypt(ivec,ivec,key);
+    176          	num = (nbits+7)/8;
+    177          	if (enc)	/* encrypt the input */
+    178          	    for(n=0 ; n < num ; ++n)
+    179          		out[n] = (ovec[AES_BLOCK_SIZE+n] = in[n] ^ ivec[n]);
+    180          	else		/* decrypt the input */
+    181          	    for(n=0 ; n < num ; ++n)
+    182          		out[n] = (ovec[AES_BLOCK_SIZE+n] = in[n]) ^ ivec[n];
+    183          	/* shift ovec left... */
+    184          	rem = nbits%8;
+    185          	num = nbits/8;
+    186          	if(rem==0)
+    187          	    memcpy(ivec,ovec+num,AES_BLOCK_SIZE);
+    188          	else
+    189          	    for(n=0 ; n < AES_BLOCK_SIZE ; ++n)
+    190          		ivec[n] = ovec[n+num]<<rem | ovec[n+num+1]>>(8-rem);
+    191          
+    192              /* it is not necessary to cleanse ovec, since the IV is not secret */
+    193              }
+    194          
+    195          /* N.B. This expects the input to be packed, MS bit first */
+    196          void AES_cfb1_encrypt(const unsigned char *in, unsigned char *out,
+    197          		      const unsigned long length, const AES_KEY *key,
+    198          		      unsigned char *ivec, int *num, const int enc)
+    199              {
+    200              unsigned int n;
+    201              unsigned char c[1],d[1];
+    202          
+    203              assert(in && out && key && ivec && num);
+    204              assert(*num == 0);
+    205          
+    206              memset(out,0,(length+7)/8);
+    207              for(n=0 ; n < length ; ++n)
+    208          	{
+    209          	c[0]=(in[n/8]&(1 << (7-n%8))) ? 0x80 : 0;
+    210          	AES_cfbr_encrypt_block(c,d,1,key,ivec,enc);
+    211          	out[n/8]=(out[n/8]&~(1 << (7-n%8)))|((d[0]&0x80) >> (n%8));
+    212          	}
+    213              }
+    214          
+    215          void AES_cfb8_encrypt(const unsigned char *in, unsigned char *out,
+    216          		      const unsigned long length, const AES_KEY *key,
+    217          		      unsigned char *ivec, int *num, const int enc)
+    218              {
+    219              unsigned int n;
+    220          
+    221              assert(in && out && key && ivec && num);
+    222              assert(*num == 0);
+    223          
+    224              for(n=0 ; n < length ; ++n)
+    225          	AES_cfbr_encrypt_block(&in[n],&out[n],8,key,ivec,enc);
+    226              }
+    227          
+
+Errors: 3
+Warnings: 4

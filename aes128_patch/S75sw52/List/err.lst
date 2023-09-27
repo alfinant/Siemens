@@ -1,0 +1,57 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    25/Aug/2021  21:27:42 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\err.c                                           #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\err.c -D NEWSGOLD -D S75v52 -lC                 #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75sw52\List\ -o D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\aes128_patch\S75sw52\Obj\ -z9          #
+#                       --cpu_mode thumb --endian little --cpu ARM926EJ-S    #
+#                       --stack_align 4 --interwork -e --enable_multibytes   #
+#                       --fpu None --dlib_config D:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tptinl8n.h -I                #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75sw52\List\err.lst                            #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75sw52\Obj\err.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+
+   \                                 In segment CODE, align 4, keep-with-next
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_patch\err.c
+      1          void ERR_put_error(int lib, int func, int reason, const char *file, int line) {}
+   \                     ERR_put_error:
+   \   00000000   7047               BX       LR               ;; return
+
+   Maximum stack usage in bytes:
+
+     Function      CSTACK
+     --------      ------
+     ERR_put_error     0
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     ERR_put_error     2
+      Others           8
+
+ 
+ 10 bytes in segment CODE
+ 
+ 2 bytes of CODE memory (+ 8 bytes shared)
+
+Errors: none
+Warnings: none

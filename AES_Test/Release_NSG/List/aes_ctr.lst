@@ -1,0 +1,173 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    02/Feb/2023  22:11:46 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\aes\aes_ctr.c                                 #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\ #
+#                       crypto\aes\aes_ctr.c -D NEWSGOLD -lCN                #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\ -la D:\Users\alfinant\Documents\S #
+#                       iemens\Dev\IAR\AES_Test\Release_NSG\List\ -o         #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\ -z9 --cpu_mode arm --endian        #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\List\aes_ctr.lst                        #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\AES_Test #
+#                       \Release_NSG\Obj\aes_ctr.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\openssl\crypto\aes\aes_ctr.c
+      1          /* crypto/aes/aes_ctr.c -*- mode:C; c-file-style: "eay" -*- */
+      2          /* ====================================================================
+      3           * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
+      4           *
+      5           * Redistribution and use in source and binary forms, with or without
+      6           * modification, are permitted provided that the following conditions
+      7           * are met:
+      8           *
+      9           * 1. Redistributions of source code must retain the above copyright
+     10           *    notice, this list of conditions and the following disclaimer. 
+     11           *
+     12           * 2. Redistributions in binary form must reproduce the above copyright
+     13           *    notice, this list of conditions and the following disclaimer in
+     14           *    the documentation and/or other materials provided with the
+     15           *    distribution.
+     16           *
+     17           * 3. All advertising materials mentioning features or use of this
+     18           *    software must display the following acknowledgment:
+     19           *    "This product includes software developed by the OpenSSL Project
+     20           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     21           *
+     22           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     23           *    endorse or promote products derived from this software without
+     24           *    prior written permission. For written permission, please contact
+     25           *    openssl-core@openssl.org.
+     26           *
+     27           * 5. Products derived from this software may not be called "OpenSSL"
+     28           *    nor may "OpenSSL" appear in their names without prior written
+     29           *    permission of the OpenSSL Project.
+     30           *
+     31           * 6. Redistributions of any form whatsoever must retain the following
+     32           *    acknowledgment:
+     33           *    "This product includes software developed by the OpenSSL Project
+     34           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     35           *
+     36           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     37           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     38           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     39           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     40           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     41           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     42           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     43           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     44           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     45           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     46           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     47           * OF THE POSSIBILITY OF SUCH DAMAGE.
+     48           * ====================================================================
+     49           *
+     50           */
+     51          
+     52          #ifndef AES_DEBUG
+     53          # ifndef NDEBUG
+     54          #  define NDEBUG
+     55          # endif
+     56          #endif
+     57          #include <assert.h>
+     58          
+     59          #include <openssl/aes.h>
+     60          #include "aes_locl.h"
+     61          
+     62          /* NOTE: the IV/counter CTR mode is big-endian.  The rest of the AES code
+     63           * is endian-neutral. */
+     64          
+     65          /* increment counter (128-bit int) by 1 */
+     66          static void AES_ctr128_inc(unsigned char *counter) {
+     67          	unsigned long c;
+     68          
+     69          	/* Grab bottom dword of counter and increment */
+     70          	c = GETU32(counter + 12);
+     71          	c++;	c &= 0xFFFFFFFF;
+     72          	PUTU32(counter + 12, c);
+     73          
+     74          	/* if no overflow, we're done */
+     75          	if (c)
+     76          		return;
+     77          
+     78          	/* Grab 1st dword of counter and increment */
+     79          	c = GETU32(counter +  8);
+     80          	c++;	c &= 0xFFFFFFFF;
+     81          	PUTU32(counter +  8, c);
+     82          
+     83          	/* if no overflow, we're done */
+     84          	if (c)
+     85          		return;
+     86          
+     87          	/* Grab 2nd dword of counter and increment */
+     88          	c = GETU32(counter +  4);
+     89          	c++;	c &= 0xFFFFFFFF;
+     90          	PUTU32(counter +  4, c);
+     91          
+     92          	/* if no overflow, we're done */
+     93          	if (c)
+     94          		return;
+     95          
+     96          	/* Grab top dword of counter and increment */
+     97          	c = GETU32(counter +  0);
+     98          	c++;	c &= 0xFFFFFFFF;
+     99          	PUTU32(counter +  0, c);
+    100          }
+    101          
+    102          /* The input encrypted as though 128bit counter mode is being
+    103           * used.  The extra state information to record how much of the
+    104           * 128bit block we have used is contained in *num, and the
+    105           * encrypted counter is kept in ecount_buf.  Both *num and
+    106           * ecount_buf must be initialised with zeros before the first
+    107           * call to AES_ctr128_encrypt().
+    108           *
+    109           * This algorithm assumes that the counter is in the x lower bits
+    110           * of the IV (ivec), and that the application has full control over
+    111           * overflow and the rest of the IV.  This implementation takes NO
+    112           * responsability for checking that the counter doesn't overflow
+    113           * into the rest of the IV when incremented.
+    114           */
+    115          void AES_ctr128_encrypt(const unsigned char *in, unsigned char *out,
+    116          	const unsigned long length, const AES_KEY *key,
+    117          	unsigned char ivec[AES_BLOCK_SIZE],
+    118          	unsigned char ecount_buf[AES_BLOCK_SIZE],
+    119          	unsigned int *num) {
+    120          
+    121          	unsigned int n;
+    122          	unsigned long l=length;
+    123          
+    124          	assert(in && out && key && counter && num);
+    125          	assert(*num < AES_BLOCK_SIZE);
+    126          
+    127          	n = *num;
+    128          
+    129          	while (l--) {
+    130          		if (n == 0) {
+    131          			AES_encrypt(ivec, ecount_buf, key);
+    132           			AES_ctr128_inc(ivec);
+    133          		}
+    134          		*(out++) = *(in++) ^ ecount_buf[n];
+    135          		n = (n+1) % AES_BLOCK_SIZE;
+    136          	}
+    137          
+    138          	*num=n;
+    139          }
+
+Errors: 1
+Warnings: none

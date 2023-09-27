@@ -1,0 +1,254 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  09/Nov/2019  10:04:15                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\List\test.map           #
+#           Output file 1 =  E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Exe\test.elf            #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_cbc.r79         #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_cfb.r79         #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_core.r79        #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_ctr.r79         #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_ecb.r79         #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_misc.r79        #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\aes_ofb.r79         #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\func.r79            #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Obj\main.r79            #
+#                            -o                                                #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\Exe\test.elf            #
+#                            -Felf -l                                          #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\Release_NSG\List\test.map           #
+#                            -xm -f                                            #
+#                            E:\Users\alfinant7\Documents\Siemens\alfinant\src #
+#                            _iar\AES_Test\test.xcl                            #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            E:\Users\alfinant7\Documents\Siemens\IAR\ARM\LIB\ #
+#                            dl5tpainl8n.r79                                   #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000F8C  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4            = USED
+  __cpu_mode             = __pcs__interwork
+  __data_model           = absolute
+  __dlib_file_descriptor = 0
+  __endian               = little
+  __rt_version           = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_cbc.r79
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_cfb.r79
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_core.r79
+  PROGRAM MODULE, NAME : aes_core
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_C
+  Relative segment, address: CODE_AREA 00001030 - 00001C57 (0xc28 bytes), align: 2
+  Segment part 2.             Intra module refs:   AES_set_decrypt_key
+                                                   Segment part 12
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001C58 - 00002057 (0x400 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 13
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00002058 - 00002D57 (0xd00 bytes), align: 2
+  Segment part 4.             Intra module refs:   Segment part 17
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00002D58 - 00003157 (0x400 bytes), align: 2
+  Segment part 5.             Intra module refs:   Segment part 18
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000447 (0x448 bytes), align: 2
+  Segment part 7.             Intra module refs:   AES_set_decrypt_key
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AES_set_encrypt_key     00000000        main (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000448 - 000006DF (0x298 bytes), align: 2
+  Segment part 9.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AES_set_decrypt_key     00000448        main (main)
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000006E0 - 00000B27 (0x448 bytes), align: 2
+  Segment part 11.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AES_encrypt             000006E0        main (main)
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000B28 - 00000B2B (0x4 bytes), align: 2
+  Segment part 12.            Intra module refs:   AES_encrypt
+                                                   AES_set_encrypt_key
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000B2C - 00000B2F (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   AES_encrypt
+                                                   AES_set_encrypt_key
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000B30 - 00000F53 (0x424 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           AES_decrypt             00000B30        main (main)
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000F54 - 00000F7F (0x2c bytes), align: 2
+  Segment part 16.            Intra module refs:   AES_decrypt
+                                                   AES_encrypt
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000F80 - 00000F83 (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   AES_decrypt
+                                                   AES_set_decrypt_key
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000F84 - 00000F87 (0x4 bytes), align: 2
+  Segment part 18.            Intra module refs:   AES_decrypt
+                                                   AES_set_decrypt_key
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_ctr.r79
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_ecb.r79
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_misc.r79
+  PROGRAM MODULE, NAME : aes_misc
+
+  SEGMENTS IN THE MODULE
+  ======================
+INITTAB
+  Relative segment, address: CODE_AREA 00003190 - 0000319B (0xc bytes), align: 2
+  Segment part 9. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00003190 
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\aes_ofb.r79
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000F88 - 00000F8B (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000F88 
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\AES_Test\Release_NSG\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000F8C - 0000102F (0xa4 bytes), align: 2
+  Segment part 4.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000F8C        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 0000029C )
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00003158 - 0000318F (0x38 bytes), align: 2
+  Segment part 2.             Intra module refs:   main
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 12 700 bytes of CODE memory
+
+Errors: none
+Warnings: none
+
