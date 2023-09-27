@@ -1,0 +1,133 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (Target 1), 0x0002 // Tools: '166/167'
+
+Group (Source Group 1)
+
+File 1,2,<.\l55b4.asm><l55b4.asm> 0x0 
+
+
+Options 1,0,0  // Target 'Target 1'
+ Device (ST10R262/272)
+ Vendor (ST Microelectronics)
+ Cpu (IRAM (0xF600 - 0xF9FF) ICAN(0xE800-0xEFFF) CLOCK(50000000) MOD167)
+ FlashUt ()
+ StupF ()
+ FlashDR ()
+ DevID ()
+ Rgf (REG272.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg ()
+ OrgReg ()
+ TgStat=16
+ OutDir (.\)
+ OutName (bl55b4)
+ GenApp=1
+ GenLib=0
+ GenHex=1
+ Debug=1
+ Browse=1
+ LstDir (.\)
+ HexSel=1
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 1 <l55hex.bat>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ SVCSID <>
+ Model=1
+ RTOS=0
+ nHold=6
+ iHold=65535
+ sHold=65535
+ bHold=65535
+ MOD167=1
+ MODV2=0
+ UseOnChipRom=0
+ UseOnchipXCAN=1
+ UseOnchipXRAM2=0
+ NearRam=1
+ NearRom=1
+ ExtMem 0 0,0,0
+ ExtMem 1 0,0,0
+ ExtMem 2 0,0,0
+ ExtMem 3 0,0,0
+ ExtMem 4 0,0,0
+ ExtMem 5 0,0,0
+ Optimize=6
+ SpeedSize=1
+ RegColor=0
+ Static=0
+ WarningLev=2
+ Alias=1
+ Order=0
+ UnsignedChar=0
+ NoDppSave=1
+ Float64=0
+ SaveUsr=0
+ Reorder=0
+ cMisc (MOD167)
+ Define ()
+ Undefine ()
+ INCC6 ()
+ EC166 { 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ ECMISC ()
+ ECDEFINE ()
+ ECUNDEF ()
+ ECINC ()
+ MPL=1
+ CASE=0
+ aMisc (MOD167)
+ aSet ()
+ aReset ()
+ INCA6 ()
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ useLinkFile=0
+ LnkFile ()
+ LinkOnly=0
+ UseTargSet=1
+ DppUse=0
+ nDataSel=0
+ nConstSel=1
+ NearDataStr ()
+ NearConstStr ()
+ CinitTab ()
+ IntVectAddr ()
+ lWarnLev=2
+ lDisWarn ()
+ lAssign ()
+ lRegbank ()
+ lReserve ()
+ lMisc ()
+ lClasses ()
+ lSect ()
+  OPTDL (S166.DLL)(-cEXTMAC)(D167.DLL)(-p262R)(S166.DLL)(-cEXTMAC)(T167.DLL)(-p262R)
+  OPTDBG 44029,-1,()()()()()()()()()() (MONITOR\MON166.DLL)()()()
+ FLASH1 { 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ FLASH2 ()
+ FLASH3 ("" ())
+ FLASH4 ()
+EndOpt
+

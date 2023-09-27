@@ -1,0 +1,51 @@
+td, p, li, center, body  {font-family: Verdana,Arial,sans-serif; font-size: 9pt;}
+h1        {font-family: Verdana,Arial,sans-serif; font-size: 13pt; font-weight: normal; margin-bottom: 4px;}
+h2        {font-family: Verdana,Arial,sans-serif; font-size: 13pt; font-weight: normal; margin-top: 0px; margin-bottom: 0px;}
+strong    {font-family: Verdana,Arial,sans-serif; font-weight: bold;}
+
+small     {font-family: Verdana,Arial,sans-serif; font-size: 7pt;}
+
+.small1   {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 7pt; font-weight: bold;}
+.small2   {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 8pt; font-weight: bold;}
+.small3   {color: #BBBBBB; font-family: Verdana,Arial,sans-serif; font-size: 8pt; font-weight: bold;}
+.small4   {color: #333333; font-family: Verdana,Arial,sans-serif; font-size: 8pt;}
+
+.grey     {color: #555555;}
+.hid {visibility: hidden; margin-top: 0px; margin-bottom: 0px;}
+input     {font-size: 10pt;}
+a         {color: #426CA6; text-decoration: underline;}
+a:hover   {color: #AF2B11; text-decoration: underline;}
+
+a.lmenu         {color: #777777; text-decoration: none; font-weight: bold;}
+a.lmenu:hover   {color: #FFFFFF; text-decoration: none; font-weight: bold; background-color: #702F22;}
+
+a.lmenu2        {color: #702F22; text-decoration: none; font-weight: bold;}
+a.lmenu2:hover  {color: #FFFFFF; text-decoration: none; font-weight: bold; background-color: #702F22;}
+
+a.lmenu3        {color: #702F22; text-decoration: none; font-weight: bold;}
+a.lmenu3:hover  {color: #702F22; text-decoration: none; font-weight: bold; text-decoration: underline;}
+
+a.bmenu         {color: #333333; text-decoration: none;}
+a.bmenu:hover   {color: #AF2B11; text-decoration: none;}
+
+a.small   {color: #FFFFFF; text-decoration: none;}
+a.small:hover {color: #000000; text-decoration: none;}
+
+a.small99   {color: #9DA5A6; text-decoration: none;}
+a.small99:hover {color: #000000; text-decoration: none;}
+
+a.small5  	{color: #333333; font-family: Verdana,Arial,sans-serif; font-size: 8pt; text-decoration: none;}
+a.small5:hover  {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 8pt; text-decoration: none; background-color: #702F22;}
+
+.cctop {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 7pt;}
+a.cctop {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 7pt; text-decoration: underline;}
+a.cctop:visited {color: #FFFFFF; font-family: Verdana,Arial,sans-serif; font-size: 7pt; text-decoration: underline;}
+a.cctop:hover {color: #000000; font-family: Verdana,Arial,sans-serif; font-size: 7pt; text-decoration: underline;}
+
+a.mport {color: #000066; font-size: 8pt; text-decoration: none;}
+a.mport:visited {color: #000066; font-size: 8pt; text-decoration: none;}
+a.mport:hover {color: #AF2B11; font-size: 8pt; text-decoration: none;}
+
+a.red         {color: #AF2B11; text-decoration: underline;}
+a.red:visited {color: #AF2B11; text-decoration: underline;}
+a.red:hover   {color: #AF2B11; text-decoration: underline;}

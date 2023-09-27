@@ -1,0 +1,2174 @@
+<html>
+<head>
+<META HTTP-EQUIV='Content-type' CONTENT='text/html; charset=windows-1251'>
+<link rel='stylesheet' href='/tforum.css'>
+<style><!--
+a:link {color: #35766C; text-decoration: none;}
+a:visited {color: #666666; text-decoration: none;}
+a:active {color: #AF2B11; text-decoration:none;}
+a:hover   {color: #AF2B11; text-decoration: none;}
+-->
+</style>
+<style><!--
+.quote {
+font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #000000; line-height: 125%;
+background-color: #FFFFFF; border: #669933; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+-->
+</style>
+<title>Пишем EXE-патчи, или патч без перепрошивки</title><SCRIPT language='JavaScript' src='/bv.js'></SCRIPT><script language='JavaScript' type='text/javascript'>            function selectAll(elementId) {                var element = document.getElementById(elementId);                if ( document.selection ) {                    var range = document.body.createTextRange();                    range.moveToElementText(element);                    range.select();                }                if ( window.getSelection ) {                    var range = document.createRange();                    range.selectNodeContents(element);                    var blockSelection = window.getSelection();                    blockSelection.removeAllRanges();                    blockSelection.addRange(range);                }            }            function resizeLayer(layerId, newHeight) {                var myLayer = document.getElementById(layerId);                myLayer.style.height = newHeight + 'px';            }            function codeDivStart(msgID) {		msgID=10001;                var randomId = Math.floor(Math.random() * msgID);                var imgSrc = 'images/';                document.write('<div class="codetitle"><TABLE BORDER=0 cellpadding=0><tr><td width=100%><b>Код:</b>&nbsp;<img src="' + imgSrc + 'minCode.gif" width="16" height="14" title="Минимизировать" alt="Минимизировать" onclick="resizeLayer(' + randomId + ', 90)" onmouseover="this.style.cursor = \'pointer\'" /><img src="' + imgSrc + 'midCode.gif" width="16" height="14" title="Оптимальный размер" alt="Оптимальный размер" onclick="resizeLayer(' + randomId + ', 250)" onmouseover="this.style.cursor = \'pointer\'" /><img src="' + imgSrc + 'maxCode.gif" width="16" height="14" title="Максимизировать" alt="Максимизировать" onclick="resizeLayer(' + randomId + ', 500)" onmouseover="this.style.cursor = \'pointer\'" /></td><td><img src="' + imgSrc + 'minCode.gif" width="16" height="14" title="Минимизировать" alt="Минимизировать" onclick="resizeLayer(' + randomId + ', 90)" onmouseover="this.style.cursor = \'pointer\'" /><img src="' + imgSrc + 'midCode.gif" width="16" height="14" title="Оптимальный размер" alt="Оптимальный размер" onclick="resizeLayer(' + randomId + ', 250)" onmouseover="this.style.cursor = \'pointer\'" /><img src="' + imgSrc + 'maxCode.gif" width="16" height="14" title="Максимизировать" alt="Максимизировать" onclick="resizeLayer(' + randomId + ', 500)" onmouseover="this.style.cursor = \'pointer\'" /></td></tr></table></div><div class="codediv" id="' + randomId + '">');            } </script></head><body bgcolor='#FFFFFF' text='#000000' link='#35766C' vlink='#666666' alink='#AF2B11' leftmargin=0 topmargin=0 marginwidth=0 marginheight=0><table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr>
+</table>
+<table width=100% cellpadding=0 cellspacing=0 border=0><tr>
+<td valign=bottom><a href="http://www.siemens-club.org/"><img src="/images/logo.gif" width=252 height=60 border=0 alt="Siemens - клуб"></a><br><img src="/images/div3.gif" width=300 height=1 alt=""><br>
+&nbsp;<a href="http://forum.siemens-club.org/">SC-форум</a> : <a href="http://forum.siemens-club.org/viewboard.php?BoardID=37">Технический шпионаж. Сименс изнутри. </a> : Пишем EXE-патчи, или патч без перепрошивки
+</td>
+<td>
+<script type='text/javascript'><!--
+google_ad_client = 'pub-5782312129702219';
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = '468x60_as';
+google_ad_type = 'text';
+google_ad_channel ='';
+google_color_link = '35766C';
+google_color_text = '666666';
+google_color_url = '000000';
+google_color_border = '669933';
+google_color_bg = 'EBF0DE';
+//--></script>
+<script type='text/javascript'
+ src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
+</script>
+</td>
+</tr>
+</table>
+<table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#666666"><td align=left valign=top><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+                <table width=100% border=0 cellspacing=0 cellpadding=4>
+                        <tr valign=top> 
+<!--                        <td align=left width=180 nowrap bgcolor=#D6DEBC><b><font color=#000000>Автор</font></b></td> -->
+                <td align=left width=100% bgcolor=#D6DEBC><b><font color=#000000>Сообщение</font></b></td>
+                        </tr>
+                </table></td></tr>
+        </table>
+
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=404957></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;30.12.2005 в 15:38 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#404957'>Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <b>Здесь обсуждается формат и работа перемещаемого патча типа EXE.</b><br>
+<br>
+Обсуждение другого типа перемещаемого патча - DIS - обсуждается здесь:<br>
+<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=60472">Патч-файлы (dis+cfg+txt). Обсуждаем концепцию и методику работы</a><br>
+<br>
+С появлением Мастер-патча и Мастер-мидлета патчи стали более "унифицированными", но всё равно, привязанными к конкретной модели,  да и процедура установки нового патча включает перепрошивку аппарата, т.е. соединение с компьютером, кабель, ВКлай и немного понимания того, что ты делаешь.<br>
+ Чтобы достичь максимальной степени универсальности (один патч под все модели) и простоты установки, я разработал другой формат патчей - формат ЕХЕ программы, т.е. патч, который способен загружаться в раму по любому адресу, и там работать.<br>
+ Естессно, сама собой прога грузиться не будет, для этой цели я придумал патч EXE Loader, который шьётся во флеш, и вызывается из того места, где необходимо запускать патчи. Таких мест может быть несколько, в завис. от того, к какому событию "привязывается" патч.<br>
+Сам лоадер разбит на две части: Core и Dispatcher. Первая распологается  в единственном экземпляре по адр. Lib+2E00, вторая может иметь неограниченое число копий, привязанных к конкретному месту в прошивке и находится где угодно. Схему работы такого патча я попытался изобразить на рисунке ниже.<br>
+<img border=0 src="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=10409"><br>
+<br>
+<b>Что нужно для работы патча:</b><br>
+1) <a href="http://avkiev.kiev.ua/Siemens/Patches/s65/master5.vkp">Мастер патч</a> avkiev'a v5<br>
+2) <a href="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=9267">Патч-корректор</a> к мастер патчу<br>
+3) <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=56798">Библиотека функций</a> для конкретной модели<br>
+4) Если патч собирается использовать собственную графику, то нужен патч <a href="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=9267">PITManager</a>.<br>
+<br>
+Далее предполагается, что МП и БФ установлены, патч-корректор и PITManager применён.<br>
+ЕХЕ патч поставляется в виде архива, включающего исполняемый файл (.EXE), файл настроек (.CFG) и описание патча (.TXT). Из .CFG (путём несложных переименований) мастер мидлет формирует соотв. РТС файл. В принципе, можно иметь готовый РТС файл, только поменять настройки в нём не удасться.<br>
+Тут есть одна тонкость: т.к. мидлет не использует никаких других конфигов, кроме configs.txt, то екзешный файл конфига нужно СКОПИРОВАТЬ и ПЕРЕИМЕНОВАТЬ в configs.txt, затирая тот, что был.<br>
+Кстати, в мидлете версии 0.91 есть баг: в строке пути (параметр selectfile) мидлет ставит прямые слеши, а надо - обратные. Так что, юзайте версию 0.95!<br>
+Структура конфига:<br>
+0й байт устанавливается мидлетом автоматически;<br>
+1й байт определяет порядок запуска программы: 'B' - до (before) процедуры прошивки, 'A' (after) - после;<br>
+2й  и 3й байты зарезервированы;<br>
+4й байт и далее - область данных, указатель на которую будет передаваться программе (DATABLOCK);<br>
+...<br>
+последняя запись - строка пути к ЕХЕ файлу, она должна находиться не ранее 0х10 от начала РТС и выровнена по 4м байтам. Строка занимает до 0х20 байт (с нулём). Сразу за ней 4 байта служебные, а после начинается область свободной памяти, указатель на которую тоже передаётся программе (FREERAM).<br>
+<br>
+  <b>Как происходит установка такого патча:</b><br>
+1) В 0:\Misc\Patches бросается MyPatch.exe, а в папку 0:\Misc\Patches\ptc - соответств. файл конфига, напр., MyPatch.cfg, где описыв. все данные для патча. TXT описание никуда не пишите, это дока;<br>
+2) Мастер мидлетом в конфигурации требуемого диспатчера добавляется ID этого патча, записанным "задом наперёд", т.е. патч с ID 11223344 запишется как 44332211;<br>
+3) MyPatch.cfg переименовывается в CONFIGS.TXT и записывается в 0:\Misc\Patches\ptc, затирая оригинальный;<br>
+4) Мидлетом формируем соотв. MyPatch.ptc файл, настраивая все необходимые параметры;<br>
+5) Делаем рефреш конфигов;<br>
+6) Патч работает в выбранном профиле.<br>
+<br>
+Методику написания таких патчей смотри <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#434962">здесь</a>.<br>
+Есть "шаблон" ехе-патча, который я приаттачил.<br>
+Также приаттачил первый вариант графического ехе патча - Katrina.exe, графика там приличная (отсюда и размер:)). <br>
+Исходники  патчей лежат <a href=http://forum.siemens-club.org/viewtopic.php?TopicID=57987>здесь</a>.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=404966></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;30.12.2005 в 16:45 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#404966'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        эм.. только один вопрос: патч это изменение кода прошивки... тут кто будет вставлять те самые вызовы в нужные места в прошивке?<br>
+<br>
+а бинарники давно уже на ослике запускаються...<br>
+если писать используя Библиотеку и перемещаемый код, томожно начать писать <b>софт</b> для всей линейки...<br>
+что ж до патчей... можно конечно... в принципе тот же слик патчиться включенный... мидлет патчит буткор... но вот...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=404967></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ThE TrIFoN</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;30.12.2005 в 16:49 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#404967'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        а я для cx75  делал чтото подобное, он по команде выполял файл с диска.<br>
+только не смог это всё прикрутить к кард експлореру и потому забил
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405007></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;30.12.2005 в 22:17 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405007'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        2 <b>KonstanT:</b><br>
+А врезку как делать?<br>
+Изменить же фф напрямую нельзя вроде...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405015></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>jar1</b><small>&nbsp;(Маститый телефонист)</small>&nbsp;&nbsp;&nbsp;31.12.2005 в 00:20 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405015'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>А врезку как делать?</td></tr></table>
+Я так понял, что предполагается, что все врезки (от разных патчей) будут вызывать EXE-Loader, а он сам должен решать, какой патч вызывать (или, если таких патчей нет, ничего не делать).<br>
+<br>
+То есть, наверное, нужен ещё механизм назначения соответствия между врезками (так сказать, "событиями") и вызываемыми патчами.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405019></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;31.12.2005 в 06:03 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405019'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <b>KonstanT</b> патч грузиться каждый раз как требуеться(вызываеться)? как быть с патчами которые вызываються очень часто?<br>
+или один раз при включении? как быть с выделением огромного кол-ва рамы?<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>jar1 пишет:</b>что все врезки (от разных патчей)</td></tr></table>это может оказаться слишком дофига...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405026></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;31.12.2005 в 08:05 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405026'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>врезки (от разных патчей) будут вызывать EXE-Loader</td></tr></table>
+Каким образом сам лоадер будет вызываться?<br>
+Пример, нужен патч блеклист.<br>
+Как без перепрошивки сделать его везку???
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405352></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;03.01.2006 в 13:48 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405352'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><br>
+а бинарники давно уже на ослике запускаються...<br>
+если писать используя Библиотеку и перемещаемый код, томожно начать писать <b>софт</b> для всей линейки...<br>
+</td></tr></table>
+<br>
+Давно хотел спросить. Ну и кто займется изготовлением под ARM-линейку патчика по мотивам "Binary File Access" и "File Type Association", как на Осле? Сам хотел, но к сожалению у меня нет телефона, который я мог бы мучать на этот предмет.<br>
+<br>
+Могу дать пару идей и пожеланий:<br>
+<br>
+1. Память для exe-шника грызть естественно, при помощи malloc.<br>
+2. Соответственно, надо, чтобы формат был перемещаемый - следовательно ELF будет самый раз.<br>
+3. Естественно, все должно быть compatible с сишным компилятором, иначе все теряет смысл - на асме максимум "Hello world" написать можно.<br>
+4. Раз ELF - значит и динамическая линковка библиотек, а точнее - при загрузке автоматическая правка адресов процедур в прошивке. То-есть можно попробовать более-менее независимую от тела систему сделать.<br>
+5. Могу еще чего придумать, то в мыло или в асю.<br>
+<br>
+Вообщем, если кто займется - буду рад.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405363></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Slava_D</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;03.01.2006 в 15:04 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405363'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Хех... Не кажется ли, что немного это сложновато для этой трубы? Не умрёт от быстродействия?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405367></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;03.01.2006 в 15:51 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405367'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Как без перепрошивки сделать его везку???</td></tr></table>
+Я тоже не понимаю - как перевести следующий патч на новые рельсы ? Как врезаться ?<br>
+;S65v58 - Скорость мигания курсора<br>
+09298C0: 2C01 8003
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405615></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 03:27 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405615'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        2 <b>avkiev:</b> я все же думаю что не патчи а именно софт... хотя и в каком то случае он можеть вешаться на определенные события и выглядеть как патч (см. слик)<br>
+о иметь все врезки в мастер патче, имхо, перебор... да и все одно придеться с каждым новым патчем мастер патч перешивать...<br>
+<br>
+2 <b>Slava_D:</b> Слав, ты о чем?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405641></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Slava_D</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 08:05 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405641'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b> 2 <b>Slava_D:</b> Слав, ты о чем?</td></tr></table>
+Да о том, что подгружаемый для различных вариантов различный код - не слишком ли "напряжет" х65-ю модель? <br>
+Представь ситуацию (пусть даже и немного бредовую) : ты фоткаеш или снимаеш видео. Рамы и так мало = нельзя снимать всё подряд. И тут происходит следующее : событие - загрузка лоадера - поиск нужного куска кода - загрузка и выполнение кода. Не помрёть ли? Трубка-то?<br>
+Другое дело - мастер-патч с изменяемой конфигурацией.<br>
+<br>
+Всё это, конечно, моё ИМХО.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405655></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 09:14 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405655'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Slava_D пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b> 2 <b>Slava_D:</b> Слав, ты о чем?</td></tr></table>
+Да о том, что подгружаемый для различных вариантов различный код - не слишком ли "напряжет" х65-ю модель? <br>
+Представь ситуацию (пусть даже и немного бредовую) : ты фоткаеш или снимаеш видео. Рамы и так мало = нельзя снимать всё подряд. И тут происходит следующее : событие - загрузка лоадера - поиск нужного куска кода - загрузка и выполнение кода. Не помрёть ли? Трубка-то?<br>
+Другое дело - мастер-патч с изменяемой конфигурацией.<br>
+<br>
+Всё это, конечно, моё ИМХО.</td></tr></table>
+<br>
+Да нет, ребята, надо делать именно загрузку бинарников, как на Осле. Кроме того, не помрет, осел же не помирает! Правда, придется делать усложненный вариант, с релокейшном делать, но проблем никаких. Про ELF я наверное перебрал, надо чего-то попроще, например линковать дважды на разные адреса и написать прогу, которая по двум файлам создаст битовую таблицу изменяемых адресов. Вообщем, более-менее все продумал, может переместимся в "Технический шпионаж", там продолжим?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405681></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 11:09 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405681'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b>эм.. только один вопрос: патч это изменение кода прошивки... тут кто будет вставлять те самые вызовы в нужные места в прошивке?</td></tr></table>Конечно, загрузчики врезать придётся. <br>
+Мне самой удобной представляется реализация, когда во флеше, в определённых "контрольных точках" врезаны копии EXE Loader'ов (напр., обновление экрана, сетевой инфы, таймеры, и т.п.), а к каждому лоадеру привязываются свои патчи. Я даже в своей стистеме нумерации зарезервировал номера 1 - 0x0F только для лоадеров. В этом случае установка новых/замена/апдейт/деинсталляция патчей происходит "на лету", даже без отключения тела.<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>jar1 пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>А врезку как делать?</td></tr></table>
+Я так понял, что предполагается, что все врезки (от разных патчей) будут вызывать EXE-Loader, а он сам должен решать, какой патч вызывать (или, если таких патчей нет, ничего не делать).<br>
+<br>
+То есть, наверное, нужен ещё механизм назначения соответствия между врезками (так сказать, "событиями") и вызываемыми патчами.</td></tr></table>Почти правильно: каждая врезка, повешенная на определённое событие (напр. обновл. экр.), будет вызывать <b>свою копию </b>лоадера со <b>своим списком </b>патчей.<br>
+Я не сказал, что одному лоадеру можно "приписать" неограниченное (в разумных пределах :)) число патчей.<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><b>KonstanT</b> патч грузиться каждый раз как требуеться(вызываеться)? как быть с патчами которые вызываються очень часто?<br>
+или один раз при включении?</td></tr></table>Лоадер на включение.<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><b>KonstanT</b> как быть с выделением огромного кол-ва рамы?</td></tr></table>В данной реализации объём рамы определяется конфигом. В принципе, можно переработать формат ЕХЕ, и внести в него параметр MINMEM, по которому лоадер сможет динамически выделять память. Хотя, настоящий вариант мне нравится больше, память выделяется один раз, а не дёргается malloc каждый раз...<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>jar1 пишет:</b>что все врезки (от разных патчей)</td></tr></table>это может оказаться слишком дофига...</td></tr></table>Ну, так уж и слишком :)?<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+Как без перепрошивки сделать его везку???</td></tr></table>Ниак.<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Как без перепрошивки сделать его везку???</td></tr></table>
+Я тоже не понимаю - как перевести следующий патч на новые рельсы ? Как врезаться ?<br>
+;S65v58 - Скорость мигания курсора<br>
+09298C0: 2C01 8003</td></tr></table>Была как-то мысль создать тему о патчах и патчерах, но руки не доходят... когда-нибудь сделаю. То, о чём ты пишешь, в моей классификации патчей является патч-фиксом (patch-fix), такие патчи <b>не добавляют функциональности </b>аппарата, и не требуют никакой другой реализации, кроме той, какая есть.<br>
+Формат ЕХЕ патчей предполагается для т.н. "патч-аддонов" (patch-addon), которые <b>увеличивают функциональность </b>телефона. Их правомерно назвать софтом.<br>
+<br>
+P.S. Ну как, доработаешь МП?<br>
+<br>
+P.S.2. Кстати, программа в ЕХЕ формате способна к модификации своего (не обязательно ;)) кода! Фантастика, конечно, а почему бы и нет?8-)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405728></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 14:29 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405728'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>То, о чём ты пишешь, в моей классификации патчей является патч-фиксом (patch-fix), такие патчи <b>не добавляют функциональности </b>аппарата, и не требуют никакой другой реализации, кроме той, какая есть.<br>
+Формат ЕХЕ патчей предполагается для т.н. "патч-аддонов" (patch-addon), которые <b>увеличивают функциональность </b>телефона. Их правомерно назвать софтом.<br>
+<br>
+P.S. Ну как, доработаешь МП?</td></tr></table>
+Не, не доработаю.<br>
+Во-первых, я взял S75, с S65 надеюсь расстаться в ближайшем будущем.<br>
+<br>
+А во-вторых (и это самое главное) - я не совсем понимаю эту идею.<br>
+Если нам нужно выводить инфу на главный экран - мы врезаемся в DrawMainscreen. Если нужно патчить будильник - врезаемся туда. Нужен СМС-транслит - ковыряемся там.<br>
+Как EXE-патчи будут вызываться - ума не приложу. Искать и портировать сотни контрольных точек ? Кто это будет делать ?<br>
+<b>В чем преимущества этого метода по сравнению с теперешней ситуацией ?</b>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405746></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 15:35 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405746'>Не всё так плохо...</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b><br>
+Не, не доработаю.<br>
+Во-первых, я взял S75, с S65 надеюсь расстаться в ближайшем будущем.<br>
+<br>
+А во-вторых (и это самое главное) - я не совсем понимаю эту идею.<br>
+Если нам нужно выводить инфу на главный экран - мы врезаемся в DrawMainscreen. Если нужно патчить будильник - врезаемся туда. Нужен СМС-транслит - ковыряемся там.<br>
+Как EXE-патчи будут вызываться - ума не приложу. Искать и портировать сотни контрольных точек ? Кто это будет делать ?<br>
+<b>В чем преимущества этого метода по сравнению с теперешней ситуацией ?</b></td></tr></table>Нэт, так нэт, буду сам дорабатывать, тока вот копирайтом делится придётся :).<br>
+А отличается технология от МП тем же, чем МП отличается от обычного патча - универсальностью. И на 75ю линейку она тоже применима. Вся сложность - нахождение точек, откуда запускать программы, не такая уж большая проблема. А только на DrawMainscreen можно столько навешать.... А поставь загрузчик на обработку СМС - и делай с СМСками, что хочешь! <br>
+ИМХО, преимущества очевидны!<br>
+...сотни контрольных точек... :D 5 - 10h на основные события хватит!
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405769></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;05.01.2006 в 18:01 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405769'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Могу посоветовать одну вещь: все-таки надо писать прямиком в фф.<br>
+<b>chaos</b> в дебаггере это реализовал, осталось только понять как - и дело в шляпе...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=405982></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;06.01.2006 в 14:21 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#405982'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>В чем преимущества этого метода по сравнению с теперешней ситуацией ?</td></tr></table>в том что патч лежит на MMC... ни шнуры ни вклай... ничего не надо... ткнул и закрутилось ;)<br>
+однажды поставив загрузчик новые патчи хоть по вапу можно заливать...<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><b>chaos</b> в дебаггере это реализовал, осталось только понять как - и дело в шляпе...</td></tr></table>а чего понимать? спросить никак? да и собственно теже буты вклая и фреи занимаютьмя ничем инынм как шьют тело...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=406833></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>mnemo</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;10.01.2006 в 11:12 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#406833'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        В дебаггере Chaos (ИМХО) во флеш врезок не делает (кроме самого патча отладчика), а юзает для этого отладочные регистры ARM. Там много возможностей предусмотренно.<br>
+Поправка. Он же открытым текстом пишет РЕМАППИНГ. То есть - MMU и виртуальная память, подмена страниц из ПЗУ в ОЗУ.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=406850></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;10.01.2006 в 12:00 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#406850'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>mnemo пишет: </b>В дебаггере Chaos (ИМХО) во флеш врезок не делает (кроме самого патча отладчика), а юзает для этого отладочные регистры ARM. Там много возможностей предусмотренно.<br>
+Поправка. Он же открытым текстом пишет РЕМАППИНГ. То есть - MMU и виртуальная память, подмена страниц из ПЗУ в ОЗУ.</td></tr></table>
+<br>
+Опа! А там точно ARM с неоткастрированным MMU? Если да, так тогда вообще все упрощается, не надо EXE-шники перемещаемыми делать!!!! То-есть делается так:<br>
+<br>
+1. Резервируется память при помощи malloc сколько нужно под EXE с учетом возможного пробела до начала страницы.<br>
+2. Мапятся страницы с фикс. адреса в этот буфер<br>
+3. Туда грузится EXE-шник и запускается.<br>
+4. При выходе - освобождене.<br>
+5. Например, в начало буфера устанавливаются переходы на функции - и телемаркет.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=407345></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>mnemo</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;11.01.2006 в 19:19 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#407345'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Запустите armdebugger view->CP15 регистры. Вот вам и ответ. <br>
+Все на месте. Translation Table base тоже есть.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=407510></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;12.01.2006 в 06:41 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#407510'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>mnemo пишет: </b>Запустите armdebugger view->CP15 регистры. Вот вам и ответ. <br>
+Все на месте. Translation Table base тоже есть.</td></tr></table>
+<br>
+Тебе легко говорить :) У меня ARM'овского сименса нет, запустить нечего, поэтому я чисто теоретически рассуждаю ;)<br>
+<br>
+Хотя, опять же подумав, кажется, что с релокейшеном будет более спокойно, кроме того, можно запустить не один екзешник.<br>
+<br>
+Кстати, поглядел я в фуллфлеш от С65, не могу сказать, что прямо отличается от Осла - например, то же создание диалога имеет такие же входные параметры, т.е. структура, описывающая диалог, выглядит как на Осле<br>
+<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script><br>
+struct DIALOG_WSK<br>
+{<br>
+ void huge *onKeyPress;<br>
+ void huge *onCreate;<br>
+ void huge *onClose;<br>
+ unsigned int datasize; //Min 0x2C<br>
+ unsigned int tablesize;<br>
+ const unsigned int far *table;<br>
+};<br>
+</div></div><br>
+<br>
+Правда, datasize в минимуме другой, но то не суть.<br>
+<br>
+Структура менюшки - почти такая, только заголовок (тот, в котором название менюшки в верху экрана и иконка) прямо к телу описания меню пристегнут.<br>
+<br>
+Единственное, пока не понял с тамошними процессами, как-то оно близко по идее, но не так - все описания процессов в двух-связаном списке, типы разные (там, "ksat" или другие), и еще не понял, где собственно, указатель на обработчик событий процесса. Это я хотел аналог Ослового pid_MMI найти, посмотреть, на сколько сильно отличается.<br>
+<br>
+Вообщем, тяжело копаться в сухую (без тела), надо взять себе чего-нибудь "вторые грабки" :)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=408552></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Hotaby4</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;15.01.2006 в 17:48 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#408552'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Интересно,писать во флеш с телефона нельзя,а дистанционная синхронизация умудряется прошивку сменить...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=408582></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.01.2006 в 20:29 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#408582'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        2 <b>Hotaby4:</b><br>
+Кто сазал, что нельзя?<br>
+А файлы на флекс как пишутся? ;)<br>
+Усе можно, надо только знать как...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=408619></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;16.01.2006 в 04:17 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#408619'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        аха... собственно тот же слик шьеться в включенном состоянии...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410401></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>mnemo</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;23.01.2006 в 18:00 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#410401'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Единственное, пока не понял с тамошними процессами, как-то оно близко по идее, но не так - все описания процессов в двух-связаном списке, типы разные (там, "ksat" или другие), и еще не понял, где собственно, указатель на обработчик событий процесса. Это я хотел аналог Ослового pid_MMI найти, посмотреть, на сколько сильно отличается.<br>
+</td></tr></table>
+<br>
+Отвечаю тольо теперь, если еще надо :)<br>
+Раньше нечего было ответить. Вообще то - нам в ветку по ARM наверно?<br>
+Ну так вот, там есть ссылка на SDK. Афигенная весчь! Ибо там есть дока на ядро прошивы и .h файлы структур! Но весит 40 метров :~( <br>
+Но я по диалапу взял :D<br>
+Очень советую.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410476></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 06:33 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#410476'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>mnemo пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Единственное, пока не понял с тамошними процессами, как-то оно близко по идее, но не так - все описания процессов в двух-связаном списке, типы разные (там, "ksat" или другие), и еще не понял, где собственно, указатель на обработчик событий процесса. Это я хотел аналог Ослового pid_MMI найти, посмотреть, на сколько сильно отличается.<br>
+</td></tr></table>
+<br>
+Отвечаю тольо теперь, если еще надо :)<br>
+Раньше нечего было ответить. Вообще то - нам в ветку по ARM наверно?<br>
+Ну так вот, там есть ссылка на SDK. Афигенная весчь! Ибо там есть дока на ядро прошивы и .h файлы структур! Но весит 40 метров :~( <br>
+Но я по диалапу взял :D<br>
+Очень советую.</td></tr></table>
+<br>
+Отлично. Только я не пойму одного. Кто сказал, что там Nucleus? Да, есть там текстовая строка про Nucleus Integrator - но это не имеет никакого отношения к самой ОС. Кроме того, я там кроме перекомпилированного GBS нифига не встретил. А GBS к Nucleus не имеет никакого отношения ;)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410477></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 06:35 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#410477'>Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Кто сказал, что там Nucleus?</td></tr></table>давно поговаривают :) листни ветку про армы с конца )
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410481></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>mnemo</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 07:17 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#410481'>Re: Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Кто сказал, что там Nucleus?</td></tr></table>давно поговаривают :) листни ветку про армы с конца )</td></tr></table>
+Как бы это поточнее выразится :)<br>
+Короче, вот вам скриншотик.<br>
+Я счас авторозборщик клепаю 8-)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410509></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 09:33 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=0#410509'>Re: Re: Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>mnemo пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b><br><small><font color=#999999>вырезан оверквотинг</font></small>давно поговаривают :) листни ветку про армы с конца )</td></tr></table>
+Как бы это поточнее выразится :)<br>
+Короче, вот вам скриншотик.<br>
+Я счас авторозборщик клепаю 8-)</td></tr></table>
+<br>
+Символические имена - еще не факт (тем более, ты их сам прилепил). Найди хоть одну функцию, описаную в референсе от Nucleus (например, работа с памятью), чтобы это точно была она.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410548></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>LazyC0DEr</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 11:36 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#410548'>Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b><br>
+Отлично. Только я не пойму одного. Кто сказал, что там Nucleus?</td></tr></table>
+Я сказал. И буду на этом настаивать ;-)<br>
+<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Найди хоть одну функцию, описаную в референсе от Nucleus (например, работа с памятью), чтобы это точно была она.</td></tr></table>
+<br>
+Пажалиста, получите и распишитесь. S65v32<br>
+cравнивай с теми, что в SDK. <br>
+<br>
+<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script><br>
+ROM:A082A39C DMCE_Create_Memory_Pool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; CODE XREF: sub_A0820580+94p<br>
+ROM:A082A39C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; sub_A0820580+368p<br>
+ROM:A082A39C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; sub_A08218A0+118p<br>
+ROM:A082A39C<br>
+ROM:A082A39C arg_0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp;0<br>
+ROM:A082A39C arg_4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp;4<br>
+ROM:A082A39C<br>
+ROM:A082A39C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STMFD&nbsp;&nbsp; SP!, {R1-R7,LR}<br>
+ROM:A082A3A0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; LR, R3<br>
+ROM:A082A3A4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R12, R2<br>
+ROM:A082A3A8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R2, [SP,#0x20+arg_0]<br>
+ROM:A082A3AC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R0, #0<br>
+ROM:A082A3B0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R3, [SP,#0x20+arg_4]<br>
+ROM:A082A3B4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDRNE&nbsp;&nbsp; R6, [R0,#0x14]<br>
+ROM:A082A3B8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDRNE&nbsp;&nbsp; R7, =0x44594E41<br>
+ROM:A082A3BC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADD&nbsp;&nbsp;&nbsp;&nbsp; R5, LR, #3<br>
+ROM:A082A3C0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADD&nbsp;&nbsp;&nbsp;&nbsp; R4, R2, #3<br>
+ROM:A082A3C4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R4, R4,LSR#2<br>
+ROM:A082A3C8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R5, R5,LSR#2<br>
+ROM:A082A3CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R6, R7<br>
+ROM:A082A3D0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLEQ&nbsp;&nbsp;R0, 0xFFFFFFF0<br>
+ROM:A082A3D4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R5, R5,LSL#2<br>
+ROM:A082A3D8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R4, R4,LSL#2<br>
+ROM:A082A3DC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A404<br>
+ROM:A082A3E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R12, #0<br>
+ROM:A082A3E4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLEQ&nbsp;&nbsp;R0, 0xFFFFFFF5<br>
+ROM:A082A3E8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A404<br>
+ROM:A082A3EC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R4, #0<br>
+ROM:A082A3F0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A400<br>
+ROM:A082A3F4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ADD&nbsp;&nbsp;&nbsp;&nbsp; R4, R4, #0x20<br>
+ROM:A082A3F8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R4, R5<br>
+ROM:A082A3FC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BLS&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A408<br>
+ROM:A082A400<br>
+ROM:A082A400 loc_A082A400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: DMCE_Create_Memory_Pool+54j<br>
+ROM:A082A400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MVN&nbsp;&nbsp;&nbsp;&nbsp; R0, #0x15<br>
+ROM:A082A404<br>
+ROM:A082A404 loc_A082A404&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: DMCE_Create_Memory_Pool+40j<br>
+ROM:A082A404&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; DMCE_Create_Memory_Pool+4Cj<br>
+ROM:A082A404&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; DMCE_Create_Memory_Pool+78j<br>
+ROM:A082A404&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; DMCE_Create_Memory_Pool+8Cj<br>
+ROM:A082A404&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDMFD&nbsp;&nbsp; SP!, {R1-R7,PC}<br>
+ROM:A082A408 ; ---------------------------------------------------------------------------<br>
+ROM:A082A408<br>
+ROM:A082A408 loc_A082A408&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: DMCE_Create_Memory_Pool+60j<br>
+ROM:A082A408&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R3, #6<br>
+ROM:A082A40C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R3, #0xB<br>
+ROM:A082A410&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLNE&nbsp;&nbsp;R0, 0xFFFFFFE8<br>
+ROM:A082A414&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BNE&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A404<br>
+ROM:A082A418&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STMEA&nbsp;&nbsp; SP, {R2,R3}<br>
+ROM:A082A41C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R3, LR<br>
+ROM:A082A420&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R2, R12<br>
+ROM:A082A424&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DMC_Create_Memory_Pool<br>
+ROM:A082A428&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loc_A082A404<br>
+ROM:A082A428 ; End of function DMCE_Create_Memory_Pool<br>
+</div></div><br>
+<br>
+<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script><br>
+ROM:A082F678 EVCE_Create_Event_Group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; CODE XREF: sub_A164B3C8+CCp<br>
+ROM:A082F678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; sub_A1676BA8+48p<br>
+ROM:A082F678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R0, #0<br>
+ROM:A082F67C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDRNE&nbsp;&nbsp; R2, [R0,#0xC]<br>
+ROM:A082F680&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDRNE&nbsp;&nbsp; R3, aTnve&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; "TNVE"<br>
+ROM:A082F684&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R2, R3<br>
+ROM:A082F688&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLEQ&nbsp;&nbsp;R0, 0xFFFFFFF8<br>
+ROM:A082F68C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BNE&nbsp;&nbsp;&nbsp;&nbsp; loc_A0832958<br>
+ROM:A082F690&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LR<br>
+ROM:A082F690 ; End of function EVCE_Create_Event_Group<br>
+ROM:A082F690<br>
+ROM:A082F694 ; [00000020 BYTES: COLLAPSED FUNCTION EVCE_Delete_Event_Group. PRESS KEYPAD "+" TO EXPAND]<br>
+ROM:A082F6B4 ; ---------------------------------------------------------------------------<br>
+ROM:A082F6B4 ; START OF FUNCTION CHUNK FOR sub_A164B61C<br>
+ROM:A082F6B4<br>
+ROM:A082F6B4 EVCE_Set_Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; CODE XREF: sub_A164B61C+1Cj<br>
+ROM:A082F6B4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R0, #0<br>
+ROM:A082F6B8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F6CC<br>
+ROM:A082F6BC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R3, [R0,#0xC]<br>
+ROM:A082F6C0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R12, aTnve&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; "TNVE"<br>
+ROM:A082F6C4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R3, R12<br>
+ROM:A082F6C8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F6D4<br>
+ROM:A082F6CC<br>
+ROM:A082F6CC loc_A082F6CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: sub_A164B61C-E1BF64j<br>
+ROM:A082F6CC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVL&nbsp;&nbsp;&nbsp;&nbsp;R0, 0xFFFFFFF8<br>
+ROM:A082F6D0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LR<br>
+ROM:A082F6D4 ; ---------------------------------------------------------------------------<br>
+ROM:A082F6D4<br>
+ROM:A082F6D4 loc_A082F6D4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: sub_A164B61C-E1BF54j<br>
+ROM:A082F6D4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R2, #2<br>
+ROM:A082F6D8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R2, #0<br>
+ROM:A082F6DC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A0832AC0<br>
+ROM:A082F6E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLNE&nbsp;&nbsp;R0, 0xFFFFFFF3<br>
+ROM:A082F6E4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LR<br>
+ROM:A082F6E4 ; END OF FUNCTION CHUNK FOR sub_A164B61C<br>
+ROM:A082F6E8<br>
+ROM:A082F6E8 ; --------------- S U B R O U T I N E ---------------------------------------<br>
+ROM:A082F6E8<br>
+ROM:A082F6E8 ; Attributes: library function<br>
+ROM:A082F6E8<br>
+ROM:A082F6E8 EVCE_Retrieve_Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: sub_A164B660+54p<br>
+ROM:A082F6E8<br>
+ROM:A082F6E8 var_20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= -0x20<br>
+ROM:A082F6E8 arg_0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp;0<br>
+ROM:A082F6E8<br>
+ROM:A082F6E8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STMFD&nbsp;&nbsp; SP!, {R2-R8,LR}<br>
+ROM:A082F6EC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R5, [SP,#0x20+arg_0]<br>
+ROM:A082F6F0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R8, R1<br>
+ROM:A082F6F4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R7, R3<br>
+ROM:A082F6F8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVS&nbsp;&nbsp;&nbsp;&nbsp;R6, R0<br>
+ROM:A082F6FC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R4, R2<br>
+ROM:A082F700&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F714<br>
+ROM:A082F704&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R0, [R0,#0xC]<br>
+ROM:A082F708&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDR&nbsp;&nbsp;&nbsp;&nbsp; R1, aTnve&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; "TNVE"<br>
+ROM:A082F70C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R0, R1<br>
+ROM:A082F710&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F71C<br>
+ROM:A082F714<br>
+ROM:A082F714 loc_A082F714&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: EVCE_Retrieve_Events+18j<br>
+ROM:A082F714&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MVN&nbsp;&nbsp;&nbsp;&nbsp; R0, #7<br>
+ROM:A082F718<br>
+ROM:A082F718 loc_A082F718&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: EVCE_Retrieve_Events+48j<br>
+ROM:A082F718&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; EVCE_Retrieve_Events+60j<br>
+ROM:A082F718&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; EVCE_Retrieve_Events+6Cj<br>
+ROM:A082F718&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; EVCE_Retrieve_Events+88j<br>
+ROM:A082F718&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LDMFD&nbsp;&nbsp; SP!, {R2-R8,PC}<br>
+ROM:A082F71C ; ---------------------------------------------------------------------------<br>
+ROM:A082F71C<br>
+ROM:A082F71C loc_A082F71C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: EVCE_Retrieve_Events+28j<br>
+ROM:A082F71C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R4, #2<br>
+ROM:A082F720&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R4, #3<br>
+ROM:A082F724&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R4, #0<br>
+ROM:A082F728&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMPNE&nbsp;&nbsp; R4, #1<br>
+ROM:A082F72C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLNE&nbsp;&nbsp;R0, 0xFFFFFFF3<br>
+ROM:A082F730&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BNE&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F718<br>
+ROM:A082F734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R5, #0<br>
+ROM:A082F738&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F74C<br>
+ROM:A082F73C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub_A082ADA8<br>
+ROM:A082F740&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R0, #0<br>
+ROM:A082F744&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLNE&nbsp;&nbsp;R0, 0xFFFFFFE8<br>
+ROM:A082F748&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BNE&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F718<br>
+ROM:A082F74C<br>
+ROM:A082F74C loc_A082F74C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; CODE XREF: EVCE_Retrieve_Events+50j<br>
+ROM:A082F74C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CMP&nbsp;&nbsp;&nbsp;&nbsp; R7, #0<br>
+ROM:A082F750&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOVLEQ&nbsp;&nbsp;R0, 0xFFFFFFF1<br>
+ROM:A082F754&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BEQ&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F718<br>
+ROM:A082F758&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R3, R7<br>
+ROM:A082F75C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R2, R4<br>
+ROM:A082F760&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R1, R8<br>
+ROM:A082F764&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MOV&nbsp;&nbsp;&nbsp;&nbsp; R0, R6<br>
+ROM:A082F768&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STR&nbsp;&nbsp;&nbsp;&nbsp; R5, [SP,#0x20+var_20]<br>
+ROM:A082F76C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub_A0832C18<br>
+ROM:A082F770&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loc_A082F718<br>
+ROM:A082F770 ; End of function EVCE_Retrieve_Events<br>
+ROM:A082F770<br>
+ROM:A082F770 ; ---------------------------------------------------------------------------<br>
+ROM:A082F774 aTnve&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DCB "TNVE"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; DATA XREF: EVCE_Create_Event_Group+8r<br>
+ROM:A082F774&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; EVCE_Delete_Event_Group+Cr<br>
+ROM:A082F774&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; sub_A164B61C-E1BF5Cr<br>
+ROM:A082F774&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ; EVCE_Retrieve_Events+20r<br>
+</div></div>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410562></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 12:48 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#410562'>Re: Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>LazyC0DEr пишет:<br>
+Я сказал. И буду на этом настаивать ;-)<br>
+</td></tr></table>
+<br>
+Признал. Согласен.<br>
+<br>
+Для улучшения видимости рекомендую пользоваться кнопочкой "Y" и вставлять туда соотв. текст, например <br>
+int __cdecl NU_Create_Semaphore(void *semaphore,char *name,unsigned int initial_count,int suspend_type);
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=410649></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ThE TrIFoN</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;24.01.2006 в 19:21 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#410649'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Rst7<br>
+Nucleus там, стопудово (см ArmDebugger, он даст тебе около десятка ф-й нуклеуса). и avkiev выкладывал sig нуклеуса, тоже находилось много чего.<br>
+<br>
+кстати по теме ничего нет?<br>
+Надо обрабтку файлов в карт експлорере раскопать и будет шоколадно.<br>
+я кой чего нарыл но совсем мало.<br>
+Я думаю встроиться в рисовалку окна Атрибуты, там проверять расширение, и если оно то грузить в раму и выполнять.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=411355></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>mnemo</b><small>&nbsp;(Начинающий телефонист)</small>&nbsp;&nbsp;&nbsp;28.01.2006 в 06:32 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#411355'>Re: Re: Re: Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>Rst7 пишет: Символические имена - еще не факт (тем более, ты их сам прилепил). Найди хоть одну функцию, описаную в референсе от Nucleus <br>
+(например, работа с памятью), чтобы это точно была она.</td></tr></table>
+Давно сюда не заглядывал, прошу прощения. Вот тут вот пример функции от меня, для интересующихся:<br>
+<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=55280&page=9#411269" target=_blank>Программирование под ARM</a><br>
+Здесь вот пример.<br>
+А имена я не "леплю". Я пишу скрипт, от берет .h файл нуклеус, создает енумы, потом ищет их в коде программы - автоматом. А я на это любуюсь. И вижу - похоже ведь :)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=417933></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;05.03.2006 в 09:52 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#417933'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        2 <b>KonstanT:</b><br>
+Интересно...<br>
+Расскажи плз поподробнее спецификацию лоадера (откуда читает, куда пишет...).<br>
+Скоро, похоже, патчи без перепрошивки станут обычным явлением! ;)<br>
+<br>
+А вот ПИТ зачем? Ужо ж сделано (см. <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=56798&page=7#417969" target=_blank>тут</a>), РАМ ПИТ есть, картинки из файлов читает, показывает...<br>
+<br>
+Но вот идея с системниками хороша, главное грамотно реализовать.<br>
+В общем, напиши плз спецификацию, надо будет обсудить (и подключить avkiev'а и других патчеров).
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=418292></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;07.03.2006 в 10:00 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#418292'>Спецификация на лоадер.</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>2 <b>KonstanT:</b><br>
+Интересно...<br>
+Расскажи плз поподробнее спецификацию лоадера (откуда читает, куда пишет...).<br>
+Скоро, похоже, патчи без перепрошивки станут обычным явлением! ;)</td></tr></table>
+Спецификацию я излагал в постах выше, но, наверное, нечётко. Попробую описать ещё раз:<br>
+Лоадер - это патч под МП от avkiev'a, который, будучи встроен (врезан) в какую-либо часть прошивки, при передаче ему управления, пытается загрузить в раму и выполнить любой исполняемый код (юзерскую программу), ссылка на которую присутствует в его конфиге, и оформленный в виде .ехе файла, т.е. перемещаемый. <br>
+Есть много общего в идее лоадера и твоей идее "диспетчерских врезок", в настоящем варианте моего патча по каждому месту врезки вызывается свой лоадер, но в ближайшем будущем я переделаю тоже в концепцию "лоадер-один, врезок-много".<br>
+В конфиге лоадера записываются ID патчей, которые нужно запускать (longword), ID=0 считается концом списка. Лоадер загружает и запускает их все, по очереди. Считав ИД из конфига, лоадер даёт запрос МП на загрузку соотв. РТС файла, и, если МП успешно его находит (только после корректировки), то лоадер ищет в загруженом РТС строку '0:\M', которую он считает началом строки пути к ехе файлу. Важно, чтобы эта строка находилась по смещению от начала РТС, не ранее 0х10 и кратному 4 и была последней записью в РТС файле. Найдя такую строку (длиной до 20h), лоадер пытается загрузить в память указанный ехе-шник, и, загрузив, проверяет заголовок: если там не 'SCEP', то он его не запускает. Если же там то, что надо, то он производит привязку ехе-шника к тому месту в раме, куда он попал (устанавливает поля DATAADDR - указатель на данные- 4й байт от начала РТС, и FREERAM - указатель на свободную память - 24h байт от начала строки пути, а также настраивает все релокейшн) и передаёт ему управление.<br>
+Вот, собственно, и вся спецификация. Все неприятности вроде рефрешера, он переживает, просто выделяя новую память.<br>
+ Да, на случай глючной ехе-шки, вырубающей аппарат, есть защита, заключающаяся в том, что при включении аппарата запускается функция OnStartup, выставляющая 6й профиль, в котором все патчи обычно отключены. Есть возможность убрать из конфига лоадера ссылку на этот патч, либо перенастроить конфиг ехе-шки.<br>
+Минус (недоработка): в настоящее время заключается в том, что мастер мидлет от хаоса работает только с файлом configs.txt, который успешно перезаписывается МП при каждом запуске телефона. Таким образом, чтобы создавать РТС файл для ехе-патча, нужно отдельно хранить его конфиг в виде ХХХХХХХХ.TXT и перед запуском мидлета копировать его в CONFIGS.TXT.<br>
+Надо попросить Диму сделать обработку как минимум двух файлов: BOOTCFG.TXT u CONFIGS.TXT, ну, я писал об этом выше...<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+А вот ПИТ зачем? Ужо ж сделано (см. <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=56798&page=7#417969" target=_blank>тут</a>), РАМ ПИТ есть, картинки из файлов читает, показывает...</td></tr></table>Да, действительно. Я как-то пропустил это. Наверное потому, что я юзаю МП от avkiev'a, а у тебя патч к картинкам встроен в МП... Дай спецификацию, как работает твой RAMPIT, какие номера картинок устанавливает...<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible когда-то писал: </b><br>
+1. Поддержка графических патчей в виде файлов. Чтобы поменять графику в телефоне, теперь не надо портировать графические патчи, вносить изменения в фф, достаточно просто скачать на телефон файл формата gpf (можно прямо с телефона через браузер).</td></tr></table>
+Очень много общего с тем, что я делаю!<br>
+Хотя граф. патчи я не оформляю отдельными файлами, но формат приблизительно тот же: header, состоящий из первых 4х байт: Width, Height, Color, Zero, и следующими за ними байтами картинки из SPC. а на какую картинку его ставить, решает ехе-шка.<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+Но вот идея с системниками хороша, главное грамотно реализовать.<br>
+В общем, напиши плз спецификацию, надо будет обсудить (и подключить avkiev'а и других патчеров).</td></tr></table>Не очень-то они и подключаются, всё приходится делать самому..<br>
+<small><font color=#999999>Ещё сложная ситуация с работой и несчастье в семье время забрали... Ходил месяца полтора с готовым патчем на бумаге, не было времени или возможности сесть откомпилировать...</font></small>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430101></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;12.05.2006 в 15:40 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430101'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Вот, наваял на досуге:<br>
+<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=60472" target=_blank>Патч-файлы (dis+cfg+txt). Обсуждаем концепцию и методику работы</a>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430533></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 09:21 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430533'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>А если будут другие диспатчеры, например, на включение, или обсл. батареи, они будут обрабатывать каталоги Dis1, Dis2...? Так можно запутаться.</td></tr></table>
+Если будут написаны новые диспатчеры, то я себе это вижу так:<br>
+\Dis\MainScreen<br>
+\Dis\Battery<br>
+...<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Конфиг сенция в теле патча - опасная штука. Например, чел юзает TextEdit для редактирования конфига (как я), и сохраняет всё в выбранной кодировке. Ты можешь гарантировать, что при этом код останется нетронутым? Мне кажется более привлекательной идея сохранения конфигов в отдельных ТХТ файлах, как это сделано в EXELoader'e.<br>
+</td></tr></table>Может, ты и прав... Подумать надо...<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Потом - насчёт глючных патчей: манипуляции с извлечением/засовыванием симки малопривлекательны. В том же EXELoader'e это решено красивее - при включении телефона выставляется профиль 6, в котором патчи обычно отключены, есть возможность отменить патч.</td></tr></table>
+Большинство патчей все таки нормальные. Так что проще один раз вытащить симку на кривом патче, чем каждый раз дергать профили. Имхо.<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Я так и не понял структуру dis файла.</td></tr></table>
+Дис-патч - это просто бинарник. То, что Вклай пишет в телефон.<br>
+Поскольку он живет в Раме, то не должен иметь относительных линков на область A0000000-A3FFFFFF.<br>
+<br>
+Другое дело - что такое Диспатчер.<br>
+Вот исходник Диспатчера Главного экрана:<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>org&nbsp;&nbsp;&nbsp;&nbsp; Disp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;push&nbsp;&nbsp;&nbsp;&nbsp;{r6-r7,LR}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mov&nbsp;&nbsp;&nbsp;&nbsp; r6, #1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RunDispatcher<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CallReg 7, aSub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pop&nbsp;&nbsp;&nbsp;&nbsp; {r6-r7,PC}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align4<br>
+aSub:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0xA029A391<br>
+</div></div><br>
+Все, что он делает - это запускает процедуру RunDispatcher с параметром "1".<br>
+Патч "Цифровые часы" имеет ID=0x0100AB02.<br>
+Старший байт (01) определяет его принадлежность к 01-му Диспатчеру (Диспатчеру Главного экрана).<br>
+Таким образом, старший байт айди у дис-патчей должен быть отличен от нуля.<br>
+Кроме того, придумал еще такую штуку:<br>
+Если патч управляется Диспатчером, то OnStartup (3-е слово) указывает не на стартап-процедуру, которую надо вызвать при старте тела, а просто на вызов самого патча.<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Кстати, твой МП v8 может выделять буфер для патчей, которые не нашёл сканер, но РТС которых существует?</td></tr></table>
+Это я не совсем понял, опиши подробнее
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430549></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avb2107</b><small>&nbsp;(Маститый телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 10:26 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430549'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>Так что проще один раз вытащить симку на кривом патче, чем каждый раз дергать профили. Имхо.</td></tr></table>
+<br>
+Поддерживаю. Тем более, что как мне кажется, должен сработать вариант:включить телефон, ПИН-код не вводить и попробовать удалить кривой патч...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430560></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 10:41 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430560'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br>Старший байт (01) определяет его принадлежность к 01-му Диспатчеру (Диспатчеру Главного экрана).</td></tr></table>
+Не совсем, давайте все же по стандарту, там первые 4 бита определяют тип адресации (0 или 1), а вторые 4 - тип диспетчера.<br>
+Я, наверное, возьму еще 0xF для МП-плагинов.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430569></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 11:44 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430569'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Не совсем, давайте все же по стандарту</td></tr></table>
+А покажи стандарт, где-то он потерялся...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430589></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 14:27 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430589'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avb2107 пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>Так что проще один раз вытащить симку на кривом патче, чем каждый раз дергать профили. Имхо.</td></tr></table>
+<br>
+Поддерживаю. Тем более, что как мне кажется, должен сработать вариант:включить телефон, ПИН-код не вводить и попробовать удалить кривой патч...</td></tr></table>Нет операции проще, чем смена профиля (наверное, только выключение аппарата), тем более, что делается это один раз. Конечно, конечный юзер будет получать отшлифованные патчи, и ему не придётся дёргать симку, а вот прикинь, сколько таких операций будет делать патчер, пока доведёт до ума патч, и сравни с ресурсом сим карты/разъёма/аккума/крышки... аппарта жалко! Я остаюсь при своём мнении...<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Кстати, твой МП v8 может выделять буфер для патчей, которые не нашёл сканер, но РТС которых существует?</td></tr></table>
+Это я не совсем понял, опиши подробнее</td></tr></table>Да это я о перспективе написания EXELoader'a на 75ю серию: ему необходимо, чтобы мастер патч при запросе PatchID, отсутствующего в таблице патчей, т.е. необнаруженый сканером (ЕХЕ патчи не имеют magic'a, но имеют файл конфига XXXXXXXX.TXT), не вылетал с ошибкой, а пытался проверить каталог Patches/ptc на наличие соотв. РТС файла, и, если он существует, то дополнять таблицу патчей этим патчем и выделять ему буфер. Твой МП 5й версии я подправил так, что он это делает, хотелось бы иметь такую фичу изначально, чтобы потом не патчить патч...8-)<br>
+<br>
+Да, а если dis патч имеет свои ресурсы (таблицы, картинки и т.п), как ему получить их абсолютный адрес?<br>
+<br>
+<br>
+<b>2 all</b><br>
+Договоритесь, наконец, о стандартах, горяччие финнсккие паарни!
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430600></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>1nvisible</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;15.05.2006 в 16:42 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430600'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Вот ссылка на стандарт:<br>
+<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=58596&page=0#407643" target=_blank><b>стандарт</b></a><br>
+Предлагаю придерживаться его, иначе могут возникать проблемы.<br>
+<br>
+По поводу отрубления патчей.<br>
+Все же проще сделать загрузку из буфера нажатых клавиш и проверять, не нажата ли, скажем, цифра 0. Очень просто реализовать, пользователю тоже делать почти ниче не надо.<br>
+<br>
+По поводу dis патчей и конфигов.<br>
+Тоже поддерживаю txt-формат.<br>
+<br>
+Проблема дис-файлов - неумение работать с относительными адресами. Решение: написать функцию вызова библиотечной функции по заданному в r7 ид.<br>
+Но отсюда еще проблема: как вызывать эту функцию из дис-файлов.<br>
+<br>
+По поводу EXE Loader'а.<br>
+Сделать-то просто, тока че-то я никак не понимаю до конца как будут выглядеть сами патчи.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430680></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 05:43 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430680'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Проблема дис-файлов - неумение работать с относительными адресами. Решение: написать функцию вызова библиотечной функции по заданному в r7 ид.</td></tr></table>Правильно! А я давно говорил, что всю библиотеку функций нужно сделать через SWI. Найти какое-нибудь неиспользуемое прерывание, и повесить.<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+Но отсюда еще проблема: как вызывать эту функцию из дис-файлов.</td></tr></table>
+MOV   R7, #FNum<br>
+SWI   FLInt<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+По поводу EXE Loader'а.<br>
+Сделать-то просто, тока че-то я никак не понимаю до конца как будут выглядеть сами патчи.</td></tr></table>Приблизительно <a href="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=9264">так</a>. <a href="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=9271">Вот</a> исходник.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430690></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 06:07 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430690'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Нет операции проще, чем смена профиля (наверное, только выключение аппарата), тем более, что делается это один раз. Конечно, конечный юзер будет получать отшлифованные патчи, и ему не придётся дёргать симку, а вот прикинь, сколько таких операций будет делать патчер, пока доведёт до ума патч, и сравни с ресурсом сим карты/разъёма/аккума/крышки... аппарта жалко! Я остаюсь при своём мнении...</td></tr></table>А я и говорил про конечного юзера.<br>
+Как девелопер девелопит свои патчи - его личное дело
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430691></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 06:12 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430691'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Да это я о перспективе написания EXELoader'a на 75ю серию: ему необходимо, чтобы мастер патч при запросе PatchID, отсутствующего в таблице патчей, т.е. необнаруженый сканером (ЕХЕ патчи не имеют magic'a, но имеют файл конфига XXXXXXXX.TXT), не вылетал с ошибкой, а пытался проверить каталог Patches/ptc на наличие соотв. РТС файла, и, если он существует, то дополнять таблицу патчей этим патчем и выделять ему буфер</td></tr></table>
+Получается, что такие патчи нельзя настроить мидлетом ? Это плохо...<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Да, а если dis патч имеет свои ресурсы (таблицы, картинки и т.п), как ему получить их абсолютный адрес?</td></tr></table>Никак.<br>
+Вернее - через Библиотеку (Pic_Big0, Pic_Profiles...)<br>
+Ну, или надо писать спецификации на файл ресурсов...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430692></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 06:17 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430692'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Вот ссылка на стандарт:<br>
+<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=58596&page=0#407643" target=_blank><b>стандарт</b></a><br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>Типы патчей<br>
+0x - системный, адресация с 1 байта (avkiev). Буфер - в R6.<br>
+1x - системный, адресация с 4 байта (1nvisible). Буфер - в R0/R6, рама - в R1.</div></div><br>
+Предлагаю придерживаться его, иначе могут возникать проблемы.</td></tr></table>
+Зачем под тип патча отдавать целый нибл ? Ему и бита хватит.<br>
+Впрочем, 16-й диспатчер будет написан еще не скоро...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430695></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 06:21 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430695'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>MOV   R7, #FNum<br>
+SWI   FLInt</td></tr></table>Так сделай патч, он будет очень полезен
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430704></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 07:30 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430704'>Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Да это я о перспективе написания EXELoader'a на 75ю серию: ему необходимо, чтобы мастер патч при запросе PatchID, отсутствующего в таблице патчей, т.е. необнаруженый сканером (ЕХЕ патчи не имеют magic'a, но имеют файл конфига XXXXXXXX.TXT), не вылетал с ошибкой, а пытался проверить каталог Patches/ptc на наличие соотв. РТС файла, и, если он существует, то дополнять таблицу патчей этим патчем и выделять ему буфер</td></tr></table>
+Получается, что такие патчи нельзя настроить мидлетом ? Это плохо...</td></tr></table>
+Сделаю, пожалуй, так:<br>
+перемещаемый патч - это рар-архив из трех фалов:<br>
+htm - Текстовое описание патча. Этот файл никем не обрабатывается, просто для информации<br>
+dis - бинарный код патча<br>
+txt - текстовая конфиг-секция<br>
+<br>
+Мастер-патч после заполнения файла configs.txt дописывает к нему содержимое всех файлов Dis\*.txt<br>
+Для установки дис-патча необходимо просто скопировать все три файла в каталог \Dis<br>
+ЗЫ. Эх, не хотел я многофайловости, но, видать, придется...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=430778></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;16.05.2006 в 15:53 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#430778'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b>Проблема дис-файлов - неумение работать с относительными адресами. Решение: написать функцию вызова библиотечной функции по заданному в r7 ид.</td></tr></table>Правильно! А я давно говорил, что всю библиотеку функций нужно сделать через SWI. Найти какое-нибудь неиспользуемое прерывание, и повесить.<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>1nvisible пишет: </b><br>
+Но отсюда еще проблема: как вызывать эту функцию из дис-файлов.</td></tr></table>
+MOV   R7, #FNum<br>
+SWI   FLInt</td></tr></table>
+Да, мысль, конечно, красивая. Мощная.<br>
+Но есть несколько но:<br>
+1. Номера обрабатываемых прерываний жестко лежат в буткоре. Мы же не умеем (и не хотим) патчить буткору, не так ли ?<br>
+2. В принципе, можно врезаться, в одно из используемых прерываний. К примеру, я успешно перехватываю SWI3. Но как отличить "наше" прерывание от немецкого ? Задание всяких меджиков в регистрах мне не кажется хорошей идей.<br>
+3. Стоит ли овчинка выделки ? Не проще ли в АПИ положить функцию RunLibFunByNumber и ее адрес жестко прописывать в каждом перемещаемом патче ?<br>
+<br>
+Вобщем, я могу написать SWI-патч, но я не могу написать его красивым...<br>
+Есть идеи ?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431033></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;17.05.2006 в 16:14 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431033'>Re: Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>Сделаю, пожалуй, так:<br>
+перемещаемый патч - это рар-архив из трех фалов:<br>
+htm - Текстовое описание патча. Этот файл никем не обрабатывается, просто для информации<br>
+dis - бинарный код патча<br>
+txt - текстовая конфиг-секция<br>
+<br>
+Мастер-патч после заполнения файла configs.txt дописывает к нему содержимое всех файлов Dis\*.cfg<br>
+Для установки дис-патча необходимо просто скопировать все три файла в каталог \Dis</td></tr></table>"...а вот  это попробуйте!":) Это интересно, и, если смотреть глобальнее, то можно сделать каталог Patches\CFG, куда кидать конфиги (.txt или .cfg), которые дописывались бы к конфигу. Так и екзешные конфиги подключить по-человечески можно будет! Обеими руками ЗА!<br>
+<br>
+Насчёт прерываний, скажу честно, я в их реализации на телефоне не очень разбираюсь. Если бы удалось посадить библиотеку на какое-нибудь неиспользуемое в х65, х75, ... прерывание, это было бы очень удобно. В ДОСе когда-то вирусы любили цеплятся на прерывание, создавая несуществующую функцию этого прерывания. Возможно ли такое в телефоне?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431084></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Kibab</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;18.05.2006 в 04:28 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431084'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <small><font color=#999999>на всякий случай продублирую мысль тут</font></small><br>
+Насчёт безопасного режима: а может проверять при включении тела наличие, скажем, какого-то файла? Если его нет - создать и продолжить загрузку, а при выключении (путём врезки в SwitchOffPhone(), например) этот файл удалять; если же выключение было аварийным, по (S)Exit, SwitchOffPhone() не вызывается, и файл остаётся лежать. И если он обнаружен - грузить 6й профиль и не грузить никакие патчи...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431622></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;21.05.2006 в 06:41 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431622'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>Зачем под тип патча отдавать целый нибл ? Ему и бита хватит.<br>
+Впрочем, 16-й диспатчер будет написан еще не скоро...</td></tr></table><a href ="http://forum.siemens-club.org/viewtopic.php?TopicID=58596&page=0#431620" target=_blank>Вот</a>, предложил тип перемещаемого патча.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431631></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;21.05.2006 в 08:30 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431631'>Объединение EXE и DIS патчей - мысли</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Вот я подумал, почему бы и не объединить два подхода обработки перемещаемых патчей в одну концепцию?<br>
+<br>
+<i><b>Что сейчас есть:</b></i><br>
+ <br>
+dis обрабатывается диспатчером, встроенным в МП;<br>
+exe обрабатывается EXELoader'ом, оформленным отд.патчем.<br>
+<br>
+<b>Запуск dis файла происходит по схеме:</b><br>
+MainScreenProc------>MSDispatcher(3E00)----->RunDispatcher(МП: D40)--->*.dis<br>
+<br>
+<b>Запуск exe файла происходит по схеме</b> (подробно - в начале топика):<br>
+MainScreenProc----->MSInvoker----->EXELoader(2E00)----->*.exe<br>
+<br>
+Как видно, схемы очень похожи.<br>
+Мне представляется возможным повесить обработку обоих типов файлов на одно событие.<br>
+<br>
+Схема будет выглядеть примерно так:<br>
+<br>
+MainScreenProc----->MSInvoker(3E00)------>MSDispatcher----->...<br>
+__________________________\-------->EXELoader-------->...<br>
+<br>
+Здесь вместо MSDisp. будет вызываться MSInvoker, у которого вместо адреса фирмварной процедуры будет указан адрес MSDisp. <br>
+Таким образом, сначала будут обрабатываться EXE патчи с параметром 'B' (before), затем dis патчи, затем сама фирмварная процедура, и напоследок - EXE патчи с параметром 'A' (after).<br>
+По-моему, всё органично и никто не ущемлён.<br>
+Что думаете?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431650></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;21.05.2006 в 10:22 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431650'>Re: Объединение EXE и DIS патчей - мысли</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b><i><b>Что сейчас есть:</b></i><br>
+dis обрабатывается диспатчером, встроенным в МП;<br>
+exe обрабатывается EXELoader'ом, оформленным отд.патчем.</td></tr></table>
+Не знаю как на 65, а на S75 реализован второй поход:<br>
+В Мастер ничего не встроено (ибо встраивать Диспатчеры в Мастер - это не правильно, их может быть не один десяток).<br>
+В Мастере живет отдельная автономная процедура (RunDispatcher), которая вызывает все патчи, у которых старший байт ИД равен входному параметру.<br>
+Линк на эту процедуру живет в Библиотеке.<br>
+<br>
+В процедуру обработки главного экрана врезается ДиспатчерГлавногоЭкрана, который просто выполняет затертые врезкой действия и вызывает RunDispatcher с параметром "1", вызывая тем самым все патчи, у которых старший байт ИД равен 1.<br>
+<br>
+При таком подходе остается нереализованной концепция Before/After, но на данный момент я не вижу в ней смысла...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431727></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;21.05.2006 в 17:02 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431727'>Re: Re: Объединение EXE и DIS патчей - мысли</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>...В Мастер ничего не встроено (ибо встраивать Диспатчеры в Мастер - это не правильно, их может быть не один десяток).<br>
+В Мастере живет отдельная автономная процедура (RunDispatcher), которая вызывает все патчи, у которых старший байт ИД равен входному параметру.<br>
+Линк на эту процедуру живет в Библиотеке.<br>
+<br>
+В процедуру обработки главного экрана врезается ДиспатчерГлавногоЭкрана, который просто выполняет затертые врезкой действия и вызывает RunDispatcher с параметром "1", вызывая тем самым все патчи, у которых старший байт ИД равен 1....</td></tr></table>Ну, я так и описал, вроде...<br>
+Я так представляю, что код MSInvoker'a<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>; -------- Invoker Subroutine -----------------------<br>
+; ! Do not modify any push/pop command !<br>
+org	Invoker<br>
+			push	{R0,LR}<br>
+			LoadReg 0, LocConfig+4		; R0=MSInvokerID<br>
+			LoadReg	7, aBufferizator<br>
+			blx		R7<br>
+			bne&nbsp;&nbsp;&nbsp;&nbsp; RunPatch<br>
+			pop		{R0}<br>
+			LoadReg	7, aMSDispatcher<br>
+			blx		R7<br>
+			pop		{PC}<br>
+;--------------------------------------------<br>
+RunPatch:	push	{R0}			; ^MSInvoker PTC<br>
+			push	{R1-R6}			; storing Old registers values<br>
+			mov		R3,	#'B'		; 'B' - run patch before invoke of original sub.<br>
+			LoadReg	7, LoadExePatch		<br>
+			blx		R7				; run EXELoader with run mode 'B' (before)<br>
+			pop		{R1-R6}			; restore {modified} R1-R6 values<br>
+			ldr		R0,	[SP, #4]	; restore {modified} R0 value<br>
+			LoadReg	7, aMSDispatcher<br>
+			blx		R7				; call original firmware subroutine<br>
+			str		R0,	[SP, #4]	; storing new R0 value<br>
+			ldr		R0,	[SP]		; reload ^EXELoader PTC<br>
+			push	{R1-R6}<br>
+			mov		R3,	#'A'		; 'A' - run patch after invoke of original sub.<br>
+			LoadReg	7, LoadExePatch		<br>
+			blx		R7				; run EXELoader with run mode 'A' (after)<br>
+			pop		{R1-R7}<br>
+			pop		{R0, PC}<br>
+	Align4<br>
+LoadExePatch	dd	aLoadExePatch + q1<br>
+aMSDispatcher	dd	MSDispatcher + q1<br>
+aBufferizator	dd	Bufferizator + q1<br>
+Align16<br>
+LocConfig:		dd	0xB1C2D3E4, LocalPatchID, 0, 0		; Config for Master midlet<br>
+				db	'{patch=`MSloader` ver=1.0 id=80C00120 cp=`KonstanT`}'<br>
+				db	'{0x04 h `ID_0` ml=4 v=1011C000}'<br>
+				db	'{0x08 h `ID_1` ml=4 v=00000000}'<br>
+				db	'{0x0C h `ID_2` ml=4 v=00000000}'<br>
+				db	'{0x10 h `ID_3` ml=4 v=00000000}'<br>
+				db	'{0x14 h `ID_4` ml=4 v=00000000}'<br>
+				db	'{0x18 h `ID_5` ml=4 v=00000000}'<br>
+				db	'{0x1C h `ID_6` ml=4 v=00000000}'<br>
+				db	'{0x20 h `ID_7` ml=4 v=00000000}'<br>
+				db	0<br>
+<br>
+;******************** End of INVOKER ************************************<br>
+</div></div>вызывается там, где сейчас вызывается MSDispatcher.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431801></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;22.05.2006 в 08:13 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431801'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>2. В принципе, можно врезаться, в одно из используемых прерываний. К примеру, я успешно перехватываю SWI3. Но как отличить "наше" прерывание от немецкого ? Задание всяких меджиков в регистрах мне не кажется хорошей идей.</td></tr></table>
+Вобщем, написал я SWI-хукер.<br>
+Проблему выше решил очень просто: если прерывание вызывается из области Библиотеки или из рамы - то оно наше, если нет - чужое.<br>
+Теперь Библиотечные функции я вызываю так:<br>
+<b>CallLib GetDateTime</b><br>
+макрос CallLib описан так:<br>
+<b>CallLib     macro   addr<br>
+            mov     r7, #(addr-Lib)/8<br>
+            SWI 3<br>
+endm</b><br>
+<br>
+Встроил хукер в Мастер9 для S75.<br>
+Кому интересно - исходники Мастера у меня в подписи.<br>
+<br>
+Костя, спасибо за наводку !
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431812></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Rst7</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;22.05.2006 в 08:41 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431812'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b><br>
+Вобщем, написал я SWI-хукер.<br>
+Проблему выше решил очень просто: если прерывание вызывается из области Библиотеки или из рамы - то оно наше, если нет - чужое.<br>
+Теперь Библиотечные функции я вызываю так:<br>
+<b>CallLib GetDateTime</b><br>
+макрос CallLib описан так:<br>
+<b>CallLib     macro   addr<br>
+            mov     r7, #(addr-Lib)/8<br>
+            SWI 3<br>
+endm</b><br>
+<br>
+Встроил хукер в Мастер9 для S75.<br>
+Кому интересно - исходники Мастера у меня в подписи.<br>
+<br>
+Костя, спасибо за наводку !</td></tr></table>
+<br>
+Опять незачОт! Нафига портить регистр? Слабо<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script><br>
+SWI 3<br>
+DD/DW func_number<br>
+</div></div>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431814></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;22.05.2006 в 08:43 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431814'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>Опять незачОт! Нафига портить регистр? Слабо<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script><br>
+SWI 3<br>
+DD/DW func_number<br>
+</div></div></td></tr></table>
+Регистр R7 все равно портится, так заложено в Библиотеке.<br>
+А куда будет происходить возврат из прерывания в твоем варианте ?
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431815></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;22.05.2006 в 08:44 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=1#431815'>Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Rst7 пишет: </b>SWI 3<br>
+DD/DW func_number</td></tr></table>таки long видимо... хотя опять откуда из арма или из тумбы?..
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=431816></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;22.05.2006 в 08:45 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#431816'>Re: Re: Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>Регистр R7 все равно портится, так заложено в Библиотеке.<br>
+А куда будет происходить возврат из прерывания в твоем варианте ?</td></tr></table>туда на сколько подправишь lr...<br>
+а библиотеку пора пересобирать под АРМ чтобы не портить регистры...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=433650></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;01.06.2006 в 06:46 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#433650'>Унификация....</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Переделал патчи EXELoader и PIT_Manager с целью их унификации. Теперь их неизменяемые части (CORE) применимы ко всем моделям и прошивкам (для New S-Gold есть нюанс, связанный с положением МП и БФ), а также добавил PIT_Manager в библиотеку (f197).<br>
+Новые патчи в заголовке.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=434566></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;06.06.2006 в 15:09 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#434566'>GraphInfo v6</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Наконец, нашёл время и добил GraphInfo v6 - графический ехе-патч, аналог патча <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=47849&page=3#393777">ExtraInfo v5</a>. По-идее, должен работать на всех х65, х75 моделях.<br>
+Патч имеет свои картинки, сам прорисовывает фон, для запуска его ID (80C01260) указывается в списке NS-dispatcher'a.<br>
+Вот Скриншот:<img border=0 src="http://forum.siemens-club.org/attachs.php?action=getfile&attachID=10437">
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=434962></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;08.06.2006 в 20:51 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#434962'>Метода написания ЕХЕ патчей</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        Так как формат патча утрясся, есть работоспособные образцы, то могу рассказать об общих подходах к написанию такого типа патчей.<br>
+<br>
+Есть несколько правил:<br>
+<u><b>1.</b> Все ссылки на внешние (не входящие в патч) ресурсы, как то: данные, подпрограммы, и т.п., оформляются по абсолютному адресу.</u> В целях совместимости доступ к этим ресурсам идёт через обращение к библиотеке функций.<br>
+Например, чтобы из патча вызвать функцию GetProfile (f02), нужно вызвать<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>CallReg 7, aGetProfile<br>
+... и далее, в области констант, сохранить этот адрес:<br>
+Align4<br>
+aGetProfile&nbsp;&nbsp;dd&nbsp;&nbsp;GetProfile + 1<br>
+...</div></div><br>
+<u><b>2.</b> Все адреса внутренних процедур, данных, к которым необходимо получить доступ по абсолютному адресу, заносятся в Relocation Tables.</u> Таблиц этих в патче может быть сколько угодно, может не быть вообще. В таблице указывается смещение отн. начала файла (не патча!). Выглядит это так:<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>...<br>
+MySuperProc&nbsp;&nbsp;&nbsp;&nbsp;equ $<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;PC, LR<br>
+...<br>
+MySecretData&nbsp;&nbsp; equ $<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dw 0, 1, 2, 3, 4<br>
+...<br>
+;---------------------- RELOTABLE_0 ----------------------------------<br>
+RELOTBL0	equ	$<br>
+...<br>
+aMySuperProc	dd	MySuperProc + 1<br>
+aMySecretData&nbsp;&nbsp; dd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySecretData<br>
+...<br>
+ENDRELO0	equ	$<br>
+;---------------------- END RELOTABLE_0 ------------------------------</div></div>При таком описании из тела патча к этим объектам можно будет обращаться с пом. макросов CallReg и LoadReg.<br>
+Следите, чтобы в заголовке патча было указано правильное количество релокационных таблиц (в примере - две):<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>RELOTBLINKS	EQU	$<br>
+;-------------------- There set a RELOCATION TABLES number -----------------------<br>
+RELOTBL0CNT	dw	(ENDRELO0-RELOTBL0)>>2			;A number of elements in RELOTABLE_0<br>
+RELOTBL0OFF	dw	RELOTBL0>>2						;Offset of RELOTABLE_0 from the beginning in dd<br>
+RELOTBL1CNT	dw	(ENDRELO1-RELOTBL1)>>2			;A number of elements in RELOTABLE_1<br>
+RELOTBL1OFF	dw	RELOTBL1>>2						;Offset of RELOTABLE_1 from the beginning in dd<br>
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; as above...<br>
+;-----------------------------------------------------------------------------------<br>
+ENDRELTBLINKS	EQU	$<br>
+</div></div>Остальные поля заголовка рассчитываются автоматически, но, если Ваш патч стартует в АРМе, то уберите "+1" в поле ENTRYPOINT.<br>
+Патч обязательно должен иметь поле INFОBLOCK, по нему он узнает об адресах блока данных и свободной памяти, выделенные загрузчиком. Используйте пример блока без изменений:<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>Align4<br>
+;---------------------- INFOBLOCK (adjusted by Align4!) --------------<br>
+INFOBLOCK	EQU	$<br>
+FREERAM		dd	0						; Filled by	EXELoader, leave zero<br>
+DATABLOCK	dd	0						; Filled by	EXELoader, leave zero<br>
+MSGXCHGER	dd	0						; Filled by EXELoader, leave zero (not yet)<br>
+RESERVED	dd	0						; Advanced future, leave zero<br>
+;---------------------- END of INFOBLOCK -------------------------------<br>
+</div></div><br>
+Вот, собственно, и все правила. Как в теле патча Вы будете располагать эти участки - как понравится, главное, чтобы хеадер был в заголовке, а данные - после команд, их читающих :)...<br>
+<br>
+Дальше начинаются нюансы, выявляемые опытным путём. Из обнаруженного:<br>
+1.) Если нужно использовать адрес внутреннего объекта (кроме переходов), используйте конструкцию EQU $ вместо меток, иначе линкёр создаст неправильные значения (+1);<br>
+2.) Все внутренние ресурсы, а тем более, адреса, выравнивайте по Align4 - съэкономите тучу времени!<br>
+3.) Следите, чтобы макросы типа LoadReg, CallReg и т.п. находились в пределах досягаемости их данных (1020 байт), компилятор ошибки не выдаст, а программа после добавления какой-нибудь безобидной инструкции перестанет работать!<br>
+4.) Линкёр создаёт файл с 16-ю нулями в конце, которые можно безболезненно забить.<br>
+<br>
+Из инструментов понадобится программка hex2bin.exe, которая подключается в свойствах проэкта - Output - Run User Program "..\hex2bin -eEXE %H"<br>
+На всяк случай, я её приаттачу вместе с исходником патча "Katrina".<br>
+Если в патч нужно встроить картинки, я написал небольшую прогу, конвертирующую vkp-файлы с картинкой (made by SPC3) в inc-файлы, но, это не рамках этой темы.<br>
+Удачи!
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=435011></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;09.06.2006 в 06:45 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#435011'>Re: Метода написания ЕХЕ патчей</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b><u><b>1.</b> Все ссылки на внешние (не входящие в патч) ресурсы, как то: данные, подпрограммы, и т.п., оформляются по абсолютному адресу.</u> В целях совместимости доступ к этим ресурсам идёт через обращение к библиотеке функций.<br>
+Например, чтобы из патча вызвать функцию GetProfile (f02), нужно вызвать<br>
+<div align="left"><script type="text/javascript">codeDivStart(66671)</script>CallReg 7, aGetProfile<br>
+... и далее, в области констант, сохранить этот адрес:<br>
+Align4<br>
+aGetProfile&nbsp;&nbsp;dd&nbsp;&nbsp;GetProfile + 1<br>
+...</div></div></td></tr></table>
+А еще лучше - так: SWI 182 ;)<br>
+<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>1.) Если нужно использовать адрес внутреннего объекта (кроме переходов), используйте конструкцию EQU $ вместо меток, иначе линкёр создаст неправильные значения (+1);</td></tr></table>
+Я с такой проблемой не сталкивался<br>
+<br>
+Насчет таблиц - не юзаю, ничего не могу сказать
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=435015></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>ВоВа</b><small>&nbsp;(Телефонист-Надсмотрщик)</small>&nbsp;&nbsp;&nbsp;09.06.2006 в 06:52 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#435015'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        1. есно нужно пользовать swi<br>
+2. не пойму я зачем такие трудности... есть промышленный стандарт elf, и никаких головных болей, все линкер делает самостоятельно...
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=435151></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Kibab</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;10.06.2006 в 03:02 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#435151'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <b>KonstanT</b>, bin2vkp для генерации dis-патчей использовать можно?<br>
+(суть - хочу не из vkp данные в BIN конвертить, а сразу получать dis...)
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=435360></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>KonstanT</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;11.06.2006 в 19:58 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#435360'>Re: Re: Метода написания ЕХЕ патчей</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>А еще лучше - так: SWI 182 ;)<br>
+</td></tr></table> таки так - swi, только не у каждого есть :(<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет:</b><table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>1.) Если нужно использовать адрес внутреннего объекта (кроме переходов), используйте конструкцию EQU $ вместо меток, иначе линкёр создаст неправильные значения (+1);</td></tr></table>
+Я с такой проблемой не сталкивался</td></tr></table>
+Было такое - не мог врубиться, в чём дело - в lst адреса в порядке, посмотрел исполняемый код - адреса на 1 больше..<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>ВоВа пишет: </b>1. ... есть промышленный стандарт elf, и никаких головных болей, все линкер делает самостоятельно...</td></tr></table> Оказывается, <a href="http://forum.siemens-club.org/images/logo.gif">сименс клуб</a> работает по промышленным стандартам... не знал, писал, как умел...<br>
+Я не против каких-либо стандартов, наоборот, я за то, чтобы каждый мог реализоваться, не ущемляя других..<br>
+<table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Kibab пишет: </b><b>KonstanT</b>, bin2vkp для генерации dis-патчей использовать можно?<br>
+(суть - хочу не из vkp данные в BIN конвертить, а сразу получать dis...)</td></tr></table>Ну, суть вопроса я понял... Я думаю, можно.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=435363></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Kibab</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;11.06.2006 в 20:15 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#435363'>Re: Re: Re: Метода написания ЕХЕ патчей</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>KonstanT пишет: </b>Ну, суть вопроса я понял... Я думаю, можно.</td></tr></table>
+Результат тестирования:<br>
+1. hex2bin добросовестно переписывает в bin злополучные 16 нулей, которые из-под Кейла вылезают<br>
+2. Пустое место, возникающее из-за выравнивания на 16, забивает 0xFF, я у себя забивал 0x00, это, очевидно, не принципиально.<br>
+3. В остальном генерация bin идёт великолепно!<br>
+<br>
+<b>avkiev</b>, ;) <br>
+<small><font color=#999999>(это к разговору о том, как мы с тобой делаем dis-файлы :D)</font></small>
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=440652></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;17.07.2006 в 10:15 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#440652'>Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        При написании дис-патчей желательно придерживаться таких правил:<br>
+1. Патчу нет необходимости забодиться о сохранении регистров, за него это делает процедура RunDispatcher<br>
+2. Желательно по окончании работы возвращать в регистре R0 значение 0 - признак успешного завершения. Сейчас это не нужно, но может пригодиться в будущем.<br>
+<br>
+То есть надо писать не так:<br>
+push (r0-r7,LR}<br>
+...<br>
+pop {r0-r7,PC}<br>
+<br>
+а так:<br>
+push {LR}<br>
+...<br>
+mov r0, #0<br>
+pop {PC}
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=440655></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>Aru55</b><small>&nbsp;(Телефонист)</small>&nbsp;&nbsp;&nbsp;17.07.2006 в 10:29 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#440655'>Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>avkiev пишет: </b>При написании дис-патчей желательно придерживаться таких правил:<br>
+1. Патчу нет необходимости забодиться о сохранении регистров, за него это делает процедура RunDispatcher<br>
+2. Желательно по окончании работы возвращать в регистре R0 значение 0 - признак успешного завершения. Сейчас это не нужно, но может пригодиться в будущем.<br>
+<br>
+То есть надо писать не так:<br>
+push (r0-r7,LR}<br>
+...<br>
+pop {r0-r7,PC}<br>
+<br>
+а так:<br>
+push {LR}<br>
+...<br>
+mov r0, #0<br>
+pop {PC}</td></tr></table>
+<br>
+Не совсем согласен с первым пунктом, всё таки лучше делать по стандарту, не трогать регистры r4-r7.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+ <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<a name=440656></a>     <!--DO NOT REMOVE the MsgID Entity!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0 bgcolor=#669933><tr><td>
+<table width=100% border=0 cellspacing=1 cellpadding=4>
+                
+    <tr valign=top align=left> 
+    <td width=100% valign=top bgcolor=#FFFFFF>
+        <b>avkiev</b><small>&nbsp;(Признанный телефонист)</small>&nbsp;&nbsp;&nbsp;17.07.2006 в 10:36 
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table>
+    <!--%MsgWrnIcon%--><!--%MsgIcon%-->
+    <b><a style='color:black;' href='http://forum.siemens-club.org/viewtopic.php?TopicID=58445&page=2#440656'>Re: Re: Re: Пишем EXE-патчи, или патч без перепрошивки</a></b><br><img src="/images/r.gif" width=1 height=4 alt=""><br>
+    <table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#737373"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr></table><p>
+        <table width='90%' cellspacing=1 cellpadding=3 border=0 align='center'><tr><td class='quote'><b>цитата:</b><br><b>Aru55 пишет: </b>всё таки лучше делать по стандарту, не трогать регистры r4-r7.</td></tr></table>
+Ну, пожалуй, соглашусь. Стандарт - дело нужное.<br>
+Но уж R0-R3 сохранять нет никакой необходимости.
+    </td>
+    </tr>
+</table></td></tr></table>
+            
+<!--%LoopEnd%--> <!--DO NOT REMOVE THE LOOP ENTITIES!!!!!-->
+<table width=100% border=0 cellspacing=0 cellpadding=0>
+        <tr>
+        <td valign=top align=left>&nbsp;<a href="http://forum.siemens-club.org/">SC-форум</a> : <a href="http://forum.siemens-club.org/viewboard.php?BoardID=37">Технический шпионаж. Сименс изнутри. </a> : Пишем EXE-патчи, или патч без перепрошивки</td>
+        </tr>
+<tr>
+<td align=left valign=top>
+Навигация: <select name=ForumJump onchange="if (this.options[this.selectedIndex].value == 0) window.open('http://forum.siemens-club.org','_top'); else {if (this.options[this.selectedIndex].value > 0) window.open('http://forum.siemens-club.org/viewboard.php?BoardID='+this.options[this.selectedIndex].value,'_top'); else {if (this.options[this.selectedIndex].value == -100) window.open('http://forum.siemens-club.org/viewbookmark.php','_top');}} "><option value=0>Начало</option><optgroup class='optiongroup' label="Мобильные телефоны"><option class='option' value=23>&nbsp;&nbsp;&nbsp;&nbsp;Старые модели Siemens </option><option class='option' value=20>&nbsp;&nbsp;&nbsp;&nbsp;Siemens Axx</option><option class='option' value=31>&nbsp;&nbsp;&nbsp;&nbsp;Siemens STxx</option><option class='option' value=7>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x25</option><option class='option' value=8>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x35</option><option class='option' value=25>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x40</option><option class='option' value=9>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x45</option><option class='option' value=17>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x50</option><option class='option' value=22>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x55 </option><option class='option' value=28>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x60</option><option class='option' value=29>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x65</option><option class='option' value=34>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x75</option><option class='option' value=38>&nbsp;&nbsp;&nbsp;&nbsp;BenQ-Siemens</option><option class='option' value=40>&nbsp;&nbsp;&nbsp;&nbsp;Siemens x75 на платформе NewSGold</option></optgroup><optgroup class='optiongroup' label="Модные телефоны-аксессуары"><option class='option' value=27>&nbsp;&nbsp;&nbsp;&nbsp;Xelibri X</option></optgroup><optgroup class='optiongroup' label="Смартфоны"><option class='option' value=26>&nbsp;&nbsp;&nbsp;&nbsp;Siemens SX</option></optgroup><optgroup class='optiongroup' label="Околотелефонные вопросы"><option class='option' value=1>&nbsp;&nbsp;&nbsp;&nbsp;Общие вопросы</option><option class='option' value=35>&nbsp;&nbsp;&nbsp;&nbsp;Программы</option><option class='option' value=36>&nbsp;&nbsp;&nbsp;&nbsp;Мидлеты (java-программы)</option><option class='option' value=11>&nbsp;&nbsp;&nbsp;&nbsp;Music, Logo & Java</option><option class='option' value=12>&nbsp;&nbsp;&nbsp;&nbsp;Аксессуары и запчасти</option><option class='option' value=21>&nbsp;&nbsp;&nbsp;&nbsp;Hard'n'Soft</option><option class='option' value=37 selected>&nbsp;&nbsp;&nbsp;&nbsp;Технический шпионаж. Сименс изнутри. </option><option class='option' value=33>&nbsp;&nbsp;&nbsp;&nbsp;Моббинг</option><option class='option' value=32>&nbsp;&nbsp;&nbsp;&nbsp;Сравнение мобильных телефонов</option></optgroup><optgroup class='optiongroup' label="Siemens-клуб"><option class='option' value=2>&nbsp;&nbsp;&nbsp;&nbsp;siemens-club.org</option><option class='option' value=13>&nbsp;&nbsp;&nbsp;&nbsp;Мобильный юмор. :)</option><option class='option' value=16>&nbsp;&nbsp;&nbsp;&nbsp;Оффтопик</option><option class='option' value=30>&nbsp;&nbsp;&nbsp;&nbsp;Обсуждение новостей.</option><option class='option' value=39>&nbsp;&nbsp;&nbsp;&nbsp;Корзина</option></optgroup><optgroup class='optiongroup' label="Барахолка"><option class='option' value=3>&nbsp;&nbsp;&nbsp;&nbsp;Купля/продажа</option><option class='option' value=14>&nbsp;&nbsp;&nbsp;&nbsp;Черный список.</option></optgroup><optgroup class='optiongroup' label="Операторы и Стандарты"><option class='option' value=4>&nbsp;&nbsp;&nbsp;&nbsp;ОпСоСы</option><option class='option' value=19>&nbsp;&nbsp;&nbsp;&nbsp;GPRS, WAP etc.</option></optgroup><optgroup class='optiongroup' label="DECT-телефоны"><option class='option' value=6>&nbsp;&nbsp;&nbsp;&nbsp;DECT</option></optgroup><optgroup class='optiongroup' label="Гостевая книга"><option class='option' value=5>&nbsp;&nbsp;&nbsp;&nbsp;Книга жалоб и предложений</option></optgroup><optgroup class='optiongroup' label="Личный кабинет"><option class='option' value=-100>&nbsp;&nbsp;&nbsp;&nbsp;Закладки</option></optgroup></select>&nbsp;<a href="http://forum.siemens-club.org/viewtopic.php?TopicID=58445">Полная версия темы</a>
+</td>
+</tr>
+</table><table border=0 width=100%><tr align=center><td width=100%>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5782312129702219";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_text = "666666";
+google_color_link = "35766C";
+google_color_url = "000000";
+google_color_border = "669933";
+google_color_bg = "EBF0DE";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</td></tr></table><div align=center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5782312129702219";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as_rimg";
+google_cpa_choice = "CAAQ6PiT_AEaCKOMYdl4y0bCKLzv9IMB";
+google_alternate_ad_url = "http://forum.siemens-club.org/google_adsense_script.php";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div align=right><br><form action=http://forum.siemens-club.org/member.php method=post>
+<input type=hidden name=Action value=Logout>
+<input type=hidden name=url value=http://forum.siemens-club.org/>
+<input type=submit name=Submit value=Logout>
+</form>
+</div><table width=100% cellpadding=0 cellspacing=0 border=0><tr bgcolor="#669933"><td colspan=2 align=left nowrap valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr><tr bgcolor="#D6DEBC"><td width=100%><img src="/images/r.gif" width=1 height=10 alt=""></td><td align=right width=283 valign=top rowspan=3 nowrap bgcolor="#D6DEBC"><nobr>
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<a href="http://www.liveinternet.ru/click" '+
+'target=_blank><img src="http://counter.yadro.ru/hit?t21.2;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';'+Math.random()+
+'" title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодн\я" '+
+'border=0 width=88 height=31></a>')//--></script><!--/LiveInternet-->
+<!--begin of Top100 logo-->
+<a href="http://top100.rambler.ru/top100/">
+<img src="http://top100-images.rambler.ru/top100/banner-88x31-rambler-gray2.gif" alt="Rambler's Top100" width=88 height=31 border=0></a>
+<!--end of Top100 logo --><!--Rating@Mail.ru COUNTEr--><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<a href="http://top.mail.ru/jump?from=961624"'+
+' target=_top><img src="http://dc.ca.be.a0.top.list.ru/counter'+
+'?id=961624;t=51;js='+js+a+';rand='+Math.random()+
+'" alt="Рейтинг@Mail.ru"'+' border=0 height=31 width=88/><\/a>')
+if(11<js)d.write('<'+'!-- ')//--></script><noscript><a
+target=_top href="http://top.mail.ru/jump?from=961624"><img
+src="http://dc.ca.be.a0.top.list.ru/counter?js=na;id=961624;t=51"
+border=0 height=31 width=88
+alt="Новый Сименс Клуб"/></a></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--></script><!--/COUNTER--></a>
+<!-- AWLA -->
+<script language="javascript">
+sg_js="1.0";
+sg_r=""+Math.random()+"&r="+escape(document.referrer)+"&pg="+escape(window.location.href);
+document.cookie="sg=1; path=/";
+sg_r+="&c="+(document.cookie?"1":"0");
+if (self!=top) {fr=1;} else {fr=0;}
+sg_r+="&fr="+fr;
+mt=(new Date()).getTimezoneOffset();
+sg_r+="&mt="+mt;
+</script>
+<script language="javascript1.1">
+sg_js="1.1";
+sg_r+="&j="+(navigator.javaEnabled()?"1":"0")
+</script>
+<script language="javascript1.2">
+sg_js="1.2";
+sg_r+="&wh="+screen.width+'x'+screen.height+"&px="+
+(((navigator.appName.substring(0,3)=="Mic"))?
+screen.colorDepth:screen.pixelDepth)
+</script>
+<script language="javascript1.3">sg_js="1.3"</script>
+<script language="javascript">
+sg_r+="&jv="+sg_js+"&js=1";
+document.write("<a href='http://www.siemens-club.org'><img "+" src='http://www.siemens-club.org/statdir/stat.php?"+sg_r+"&' border=0 width=1 height=1></a>")
+</script>
+<noscript>
+<a href="http://www.siemens-club.org">
+<img src="http://www.siemens-club.org/statdir/stat.php?nojs=1" border=0></a>
+</noscript>
+<!-- /AWLA --></nobr><br></td></tr><tr bgcolor="#669933"><td align=left valign=top style="background: url(/images/bg1.gif) repeat-x;"><img src="/images/r.gif" width=1 height=1 alt=""><br></td></tr><tr>
+<td align=left valign=top><img src="/images/r.gif" width=17 height=1 alt=""><span style="font-size: 8pt;">разработка: <a href="mailto:BigVovch@siemens-club.org">BigVovch</a>. <a href="http://forum.siemens-club.org/viewtopic.php?TopicID=39391">Администрация Клуба</a></span></td>
+</tr></table>
+<center></center><a href="http://top100.rambler.ru/top100/"><img src="http://counter.rambler.ru/top100.cnt?779115" alt="Настоящий Сименс Клуб" width=1 height=1 border=0></a></body>
+</html>
+ <!-- AdMedia Pop-under, Rich-media code START -->
+ <script language=javascript><!--
+ var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+ document.write('<sc' + 'ript language="JavaScript" src="http://ad.adriver.ru/cgi-bin/erle.cgi?sid=71783&target=top&bt=16&rnd=' + RndNum4NoCash + '"><\/sc' + 'ript>');
+ //--></script>
+ <!-- AdMedia Pop-under, Rich-media code END -->
+ 

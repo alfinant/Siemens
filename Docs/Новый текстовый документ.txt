@@ -1,0 +1,19 @@
+/*
+BFC_L2_GetDisplayType
+BFC_L2_RedirectDisplay - aenieae ia?anoaao iaiiaeyouny
+BFC_L2_RestoreDisplay - ainnoaiiaeeaaao iaiiaeaiea
+BFC_L2_ForceDisplayUpdate
+BFC_L2_SwitchOffDisplay
+
+BFC_L2_GetDisplayCount
+BFC_L2_GetDisplayInformation
+BFC_L2_GetDisplayBufferInfo
+BFC_L2_GenerateDisplayPattern
+
+
+BFC_L2_GetDisplayData
+BFC_L2_DisplayUpdateNotification
+BFC_L2_SetDisplayContrast
+
+BFC_L2_SetPartialDisplayMode
+*/
