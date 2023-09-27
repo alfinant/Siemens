@@ -1,0 +1,372 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    21/Sep/2014  21:59:26 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\main.c                               #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\main.c -D NEWSGOLD -D ELKA -lCN      #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\List\ -o                #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\Obj\ -s9 --cpu_mode     #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None --dlib_config            #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\List\main.lst           #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\Obj\main.r79            #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\I2C\main.c
+      1          #include <siemens/swilib.h>
+      2          #include <siemens/nu_swilib.h>
+      3          #include <siemens/reg8876.h>
+      4          #include "i2clib.h"
+      5          #include <siemens/i2c.h>
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void callback(void *, int)
+   \                     callback:
+   \   00000000   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cw_pmu(I2C_RAM *, short, char, void (*)(void *, int))
+   \                     i2cw_pmu:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   31C0A0E3           MOV      R12,#+49
+   \   00000008   00C0C0E5           STRB     R12,[R0, #+0]
+   \   0000000C   00C0A0E3           MOV      R12,#+0
+   \   00000010   01C0C0E5           STRB     R12,[R0, #+1]
+   \   00000014   02C0C0E5           STRB     R12,[R0, #+2]
+   \   00000018   03C0C0E5           STRB     R12,[R0, #+3]
+   \   0000001C   B410C0E1           STRH     R1,[R0, #+4]
+   \   00000020   B6C0C0E1           STRH     R12,[R0, #+6]
+   \   00000024   141080E2           ADD      R1,R0,#+20
+   \   00000028   0C1080E5           STR      R1,[R0, #+12]
+   \   0000002C   083080E5           STR      R3,[R0, #+8]
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   101080E5           STR      R1,[R0, #+16]
+   \   00000038   1420C0E5           STRB     R2,[R0, #+20]
+   \   0000003C   EC0200EF           SWI      +748
+   \   00000040   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cr_pmu(I2C_RAM *, short, void (*)(void *, int))
+   \                     i2cr_pmu:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   3130A0E3           MOV      R3,#+49
+   \   00000008   0030C0E5           STRB     R3,[R0, #+0]
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0130C0E5           STRB     R3,[R0, #+1]
+   \   00000014   0230C0E5           STRB     R3,[R0, #+2]
+   \   00000018   0330C0E5           STRB     R3,[R0, #+3]
+   \   0000001C   B410C0E1           STRH     R1,[R0, #+4]
+   \   00000020   B630C0E1           STRH     R3,[R0, #+6]
+   \   00000024   141080E2           ADD      R1,R0,#+20
+   \   00000028   0C1080E5           STR      R1,[R0, #+12]
+   \   0000002C   082080E5           STR      R2,[R0, #+8]
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   101080E5           STR      R1,[R0, #+16]
+   \   00000038   ED0200EF           SWI      +749
+   \   0000003C   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cw_cam(I2C_RAM *, short, char, void (*)(void *, int))
+   \                     i2cw_cam:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   B0C0A0E3           MOV      R12,#+176
+   \   00000008   00C0C0E5           STRB     R12,[R0, #+0]
+   \   0000000C   00C0A0E3           MOV      R12,#+0
+   \   00000010   01C0C0E5           STRB     R12,[R0, #+1]
+   \   00000014   02C0C0E5           STRB     R12,[R0, #+2]
+   \   00000018   03C0C0E5           STRB     R12,[R0, #+3]
+   \   0000001C   B410C0E1           STRH     R1,[R0, #+4]
+   \   00000020   B6C0C0E1           STRH     R12,[R0, #+6]
+   \   00000024   141080E2           ADD      R1,R0,#+20
+   \   00000028   0C1080E5           STR      R1,[R0, #+12]
+   \   0000002C   083080E5           STR      R3,[R0, #+8]
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   101080E5           STR      R1,[R0, #+16]
+   \   00000038   1420C0E5           STRB     R2,[R0, #+20]
+   \   0000003C   EC0200EF           SWI      +748
+   \   00000040   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cr_cam(I2C_RAM *, short, void (*)(void *, int))
+   \                     i2cr_cam:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   B030A0E3           MOV      R3,#+176
+   \   00000008   0030C0E5           STRB     R3,[R0, #+0]
+   \   0000000C   0430A0E3           MOV      R3,#+4
+   \   00000010   0130C0E5           STRB     R3,[R0, #+1]
+   \   00000014   0030A0E3           MOV      R3,#+0
+   \   00000018   0230C0E5           STRB     R3,[R0, #+2]
+   \   0000001C   0330C0E5           STRB     R3,[R0, #+3]
+   \   00000020   B410C0E1           STRH     R1,[R0, #+4]
+   \   00000024   B630C0E1           STRH     R3,[R0, #+6]
+   \   00000028   141080E2           ADD      R1,R0,#+20
+   \   0000002C   0C1080E5           STR      R1,[R0, #+12]
+   \   00000030   082080E5           STR      R2,[R0, #+8]
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   101080E5           STR      R1,[R0, #+16]
+   \   0000003C   ED0200EF           SWI      +749
+   \   00000040   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cw_string(char, char *)
+   \                     i2cw_string:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   18D04DE2           SUB      SP,SP,#+24
+   \   00000008   0000CDE5           STRB     R0,[SP, #+0]
+   \   0000000C   0220A0E3           MOV      R2,#+2
+   \   00000010   0120CDE5           STRB     R2,[SP, #+1]
+   \   00000014   0000A0E3           MOV      R0,#+0
+   \   00000018   B200CDE1           STRH     R0,[SP, #+2]
+   \   0000001C   04008DE5           STR      R0,[SP, #+4]
+   \   00000020   0C108DE5           STR      R1,[SP, #+12]
+   \   00000024   08008DE5           STR      R0,[SP, #+8]
+   \   00000028   0100A0E1           MOV      R0,R1
+   \   0000002C   1B0000EF           SWI      +27
+   \   00000030   10008DE5           STR      R0,[SP, #+16]
+   \   00000034   0D00A0E1           MOV      R0,SP
+   \   00000038   EC0200EF           SWI      +748
+   \   0000003C   18D08DE2           ADD      SP,SP,#+24
+   \   00000040   0080BDE8           POP      {PC}             ;; return
+      6          
+      7          #define    ClkSetLevel            ((int(*)(unsigned client,int level)) 0xA04D0728)
+      8          //#define    i2cr_pmu               ((int(*)(int addr, short reg, char *data)) 0xA04F4220)
+      9          
+     10          extern void kill_data(void *p, void (*func_p)(void *));
+     11          #pragma segment="ELFBEGIN"
+     12          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     13          void ElfKiller(void)
+     14          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+     15            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+     16          }
+     17          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     18          void WriteFile(void *addr,int  max)
+     19          { 
+   \                     WriteFile:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     20           int f;
+     21           
+     22           if((f=fopen("0:\\cam.bin", A_ReadWrite + A_TXT + A_Create, P_READ + P_WRITE, 0))!=-1);
+   \   00000008   38009FE5           LDR      R0,??WriteFile_0  ;; `?<Constant "0:\\\\cam.bin">`
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0030A0E3           MOV      R3,#+0
+   \   00000014   602FA0E3           MOV      R2,#+384
+   \   00000018   0210A0E3           MOV      R1,#+2
+   \   0000001C   411C81E3           ORR      R1,R1,#0x4100
+   \   00000020   0A0000EF           SWI      +10
+   \   00000024   0060A0E1           MOV      R6,R0
+     23             {
+     24               fwrite(f, addr , max, 0);
+   \   00000028   0030A0E3           MOV      R3,#+0
+   \   0000002C   0520A0E1           MOV      R2,R5
+   \   00000030   0410A0E1           MOV      R1,R4
+   \   00000034   0C0000EF           SWI      +12
+     25               fclose(f,0);
+   \   00000038   0010A0E3           MOV      R1,#+0
+   \   0000003C   0600A0E1           MOV      R0,R6
+   \   00000040   0D0000EF           SWI      +13
+     26             }
+     27          }
+   \   00000044   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??WriteFile_0:
+   \   00000048   ........           DC32     `?<Constant "0:\\\\cam.bin">`
+     28          
+     29          
+     30          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     31          int main(char *exename, char *fname)
+     32          { 
+   \                     main:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     33            char s[32];
+     34            
+     35             int err=i2cw_string(0x80, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+   \   00000004   7C409FE5           LDR      R4,??main_0      ;; `?<Constant "AAAAAAAAAAAAAAAAAAAAA...">`
+   \   00000008   20D04DE2           SUB      SP,SP,#+32
+   \   0000000C   0410A0E1           MOV      R1,R4
+   \   00000010   8000A0E3           MOV      R0,#+128
+   \   00000014   ........           BL       i2cw_string
+   \   00000018   0050A0E1           MOV      R5,R0
+     36             NU_Sleep(6);
+   \   0000001C   0600A0E3           MOV      R0,#+6
+   \   00000020   070300EF           SWI      +775
+     37             i2cw_string(0x80, "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+   \   00000024   241084E2           ADD      R1,R4,#+36
+   \   00000028   8000A0E3           MOV      R0,#+128
+   \   0000002C   ........           BL       i2cw_string
+     38             NU_Sleep(6);
+   \   00000030   0600A0E3           MOV      R0,#+6
+   \   00000034   070300EF           SWI      +775
+     39             i2cw_string(0x80, "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
+   \   00000038   481084E2           ADD      R1,R4,#+72
+   \   0000003C   8000A0E3           MOV      R0,#+128
+   \   00000040   ........           BL       i2cw_string
+     40             NU_Sleep(6);
+   \   00000044   0600A0E3           MOV      R0,#+6
+   \   00000048   070300EF           SWI      +775
+     41             i2cw_string(0x80, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+   \   0000004C   6C1084E2           ADD      R1,R4,#+108
+   \   00000050   8000A0E3           MOV      R0,#+128
+   \   00000054   ........           BL       i2cw_string
+     42             sprintf(s, "err=0x%x", err);
+   \   00000058   0520A0E1           MOV      R2,R5
+   \   0000005C   901084E2           ADD      R1,R4,#+144
+   \   00000060   0D00A0E1           MOV      R0,SP
+   \   00000064   160000EF           SWI      +22
+     43             ShowMSG(1, (int)s);
+   \   00000068   0D10A0E1           MOV      R1,SP
+   \   0000006C   0100A0E3           MOV      R0,#+1
+   \   00000070   480100EF           SWI      +328
+     44           
+     45          /*  
+     46          int c=32;
+     47          while(c--) { i2c_write_arduino(0x80, 'A'); NU_Sleep(1);}
+     48          
+     49          */
+     50           // int err=i2cw_pmu(&i2cram, I2C_REG_KEYPADLIGHT, 0, 0);
+     51            
+     52           // int err = i2c_write_pmu(I2C_REG_KEYPADLIGHT, 0);
+     53           // int err = i2c_write_cam(0x2B, 0x40);
+     54            
+     55                 
+     56              //int err=i2c_write_pmu(I2C_REG_POWER, 0x28);
+     57             // int err = i2c_write_arduino(4, 'A');
+     58          
+     59          
+     60            
+     61           /* 
+     62             int err=i2c_read_pmu(I2C_REG_POWER, &data);
+     63             if(!err)
+     64             {
+     65               sprintf(s, "0x%x", data);
+     66               ShowMSG(1, (int)s);
+     67             }
+     68             else ShowMSG(1, (int)"i2c error");
+     69          */
+     70              
+     71              SUBPROC((void *)ElfKiller);
+   \   00000074   10009FE5           LDR      R0,??main_0+0x4  ;; ElfKiller
+   \   00000078   710100EF           SWI      +369
+     72              return 0;
+   \   0000007C   0000A0E3           MOV      R0,#+0
+   \   00000080   20D08DE2           ADD      SP,SP,#+32
+   \   00000084   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??main_0:
+   \   00000088   ........           DC32     `?<Constant "AAAAAAAAAAAAAAAAAAAAA...">`
+   \   0000008C   ........           DC32     ElfKiller
+     73          }
+
+   \                                 In segment ELFBEGIN, align 1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "0:\\\\cam.bin">`:
+   \   00000000   303A5C63616D       DC8 "0:\\cam.bin"
+   \              2E62696E00  
+   \   0000000B   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "AAAAAAAAAAAAAAAAAAAAA...">`:
+   \   00000000   414141414141       DC8 "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+   \              414141414141
+   \              414141414141
+   \              414141414141
+   \              414141414141
+   \              414100      
+   \   00000021   000000             DC8 0, 0, 0
+   \   00000024   424242424242       DC8 "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+   \              424242424242
+   \              424242424242
+   \              424242424242
+   \              424242424242
+   \              424200      
+   \   00000045   000000             DC8 0, 0, 0
+   \   00000048   434343434343       DC8 "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+   \              434343434343
+   \              434343434343
+   \              434343434343
+   \              434343434343
+   \              434300      
+   \   00000069   000000             DC8 0, 0, 0
+   \   0000006C   444444444444       DC8 "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+   \              444444444444
+   \              444444444444
+   \              444444444444
+   \              444444444444
+   \              444400      
+   \   0000008D   000000             DC8 0, 0, 0
+   \   00000090   6572723D3078       DC8 "err=0x%x"
+   \              257800      
+   \   00000099   000000             DC8 0, 0, 0
+     74          
+
+   Maximum stack usage in bytes:
+
+     Function    CSTACK
+     --------    ------
+     ElfKiller       4
+     WriteFile      16
+     callback        0
+     i2cr_cam        4
+     i2cr_pmu        4
+     i2cw_cam        4
+     i2cw_pmu        4
+     i2cw_string    28
+     main           44
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     callback                          4
+     i2cw_pmu                         68
+     i2cr_pmu                         64
+     i2cw_cam                         68
+     i2cr_cam                         68
+     i2cw_string                      68
+     ElfKiller                        28
+     WriteFile                        76
+     main                            144
+     ?<Constant "0:\\cam.bin">        12
+     ?<Constant "AAAAAAAAAAAAAAAAAAAAA...">
+                                     156
+      Others                          48
+
+ 
+ 636 bytes in segment CODE
+ 168 bytes in segment DATA_C
+ 
+ 588 bytes of CODE  memory (+ 48 bytes shared)
+ 168 bytes of CONST memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,251 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   16/Feb/2023  22:41:14 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\buffer.c                                          /
+//    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\buffer.c -D NEWSGOLD -D ELKA -D DEBUG -lCN        /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -la                            /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -o D:\Users\alfinant\Documents /
+//                       \Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\Obj\ -z9     /
+//                       --cpu_mode arm --endian little --cpu ARM926EJ-S     /
+//                       --stack_align 4 --interwork --diag_suppress Pe301   /
+//                       -e --fpu None --dlib_config                         /
+//                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I D:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\buffer.s79                      /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME buffer
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??free_buffers??rT
+        MULTWEAK ??free_recv_buf??rT
+        MULTWEAK ??free_send_buf??rT
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC free_buffers
+        FUNCTION free_buffers,0201H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC free_recv_buf
+        FUNCTION free_recv_buf,0201H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC free_send_buf
+        FUNCTION free_send_buf,0201H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC recv_buf
+        PUBLIC recv_buf_len
+        PUBLIC send_buf
+        PUBLIC send_buf_len
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+free_buffers        SYMBOL "free_buffers"
+??free_buffers??rT  SYMBOL "??rT", free_buffers
+free_recv_buf       SYMBOL "free_recv_buf"
+??free_recv_buf??rT SYMBOL "??rT", free_recv_buf
+free_send_buf       SYMBOL "free_send_buf"
+??free_send_buf??rT SYMBOL "??rT", free_send_buf
+
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+send_buf:
+        DS8 4
+send_buf_len:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+recv_buf:
+        DS8 4
+recv_buf_len:
+        DS8 4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??free_recv_buf??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE free_recv_buf
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function free_recv_buf
+        ARM
+free_recv_buf:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R4,??free_recv_buf_0  ;; recv_buf
+        B        ?Subroutine3
+        DATA
+??free_recv_buf_0:
+        DC32     recv_buf
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??free_send_buf??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE free_send_buf
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function free_send_buf
+        ARM
+free_send_buf:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R4,??Subroutine3_0  ;; send_buf
+        CFI EndBlock cfiBlock3
+        REQUIRE ?Subroutine3
+        ;; // Fall through to label ?Subroutine3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+12
+        CFI R4 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine3:
+        MOV      R5,#+0
+        LDR      R0,[R4, #+0]
+        STR      R5,[R4, #+4]
+        CMP      R0,#+0
+        BEQ      ??Subroutine3_1
+        SWI      +21
+??Subroutine3_1:
+        STR      R5,[R4, #+0]
+        POP      {R4,R5,PC}       ;; return
+        DATA
+??Subroutine3_0:
+        DC32     send_buf
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??free_buffers??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock5
+        REQUIRE free_buffers
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI Function free_buffers
+        ARM
+free_buffers:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        BL       free_recv_buf
+        POP      {LR}             ;; Pop
+        CFI ?RET R14
+        CFI CFA R13+0
+        B        free_send_buf    ;; tailcall
+        CFI EndBlock cfiBlock6
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+// 88 bytes in segment CODE
+// 16 bytes in segment DATA_Z
+// 12 bytes in segment INITTAB
+// 
+// 76 bytes of CODE memory (+ 24 bytes shared)
+// 16 bytes of DATA memory
+//
+//Errors: none
+//Warnings: none

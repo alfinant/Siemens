@@ -1,0 +1,284 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   18/Dec/2015  01:32:03 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\i /
+//                       2c.c                                                /
+//    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\i /
+//                       2c.c -D SGOLD -D LUMBERG -lCN                       /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\Test\R /
+//                       elease_SGOLD\List\ -la E:\Users\alfinant\Documents\ /
+//                       Siemens\alfinant\Test\Release_SGOLD\List\ -o        /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\Test\R /
+//                       elease_SGOLD\Obj\ -z9 --cpu_mode arm --endian       /
+//                       little --cpu ARM926EJ-S --stack_align 4             /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I E:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\R /
+//                       elease_SGOLD\List\i2c.s79                           /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME i2c
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??i2cr_pmu??rT
+        MULTWEAK ??i2cw_pmu??rT
+        MULTWEAK ??i2cw_string??rT
+        PUBLIC i2cr_pmu
+        FUNCTION i2cr_pmu,0203H
+        LOCFRAME CSTACK, 40, STACK
+        PUBLIC i2cw_pmu
+        FUNCTION i2cw_pmu,0203H
+        LOCFRAME CSTACK, 40, STACK
+        PUBLIC i2cw_string
+        FUNCTION i2cw_string,0203H
+        LOCFRAME CSTACK, 32, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+i2cr_pmu            SYMBOL "i2cr_pmu"
+??i2cr_pmu??rT      SYMBOL "??rT", i2cr_pmu
+i2cw_pmu            SYMBOL "i2cw_pmu"
+??i2cw_pmu??rT      SYMBOL "??rT", i2cw_pmu
+i2cw_string         SYMBOL "i2cw_string"
+??i2cw_string??rT   SYMBOL "??rT", i2cw_string
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cw_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE i2cw_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function i2cw_pmu
+        ARM
+i2cw_pmu:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        SUB      SP,SP,#+20
+        CFI CFA R13+40
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R7,R3
+        MOV      R1,#+20
+        MOV      R0,SP
+        SWI      +285
+        MOV      R1,#+49
+        STRB     R1,[SP, #+0]
+        MOV      R0,#+0
+        STRB     R0,[SP, #+1]
+        STRB     R0,[SP, #+5]
+        STRB     R0,[SP, #+4]
+        STRH     R4,[SP, #+2]
+        STRH     R7,[SP, #+6]
+        STR      R5,[SP, #+12]
+        STR      R6,[SP, #+8]
+        MOV      R1,#+1
+        STR      R1,[SP, #+16]
+        MOV      R0,SP
+        SWI      +748
+        B        ?Subroutine3
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cr_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE i2cr_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function i2cr_pmu
+        ARM
+i2cr_pmu:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        SUB      SP,SP,#+20
+        CFI CFA R13+40
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R7,R3
+        MOV      R1,#+20
+        MOV      R0,SP
+        SWI      +285
+        MOV      R1,#+49
+        STRB     R1,[SP, #+0]
+        MOV      R0,#+0
+        STRB     R0,[SP, #+1]
+        STRB     R0,[SP, #+5]
+        STRB     R0,[SP, #+4]
+        STRH     R4,[SP, #+2]
+        STRH     R7,[SP, #+6]
+        STR      R5,[SP, #+12]
+        STR      R6,[SP, #+8]
+        MOV      R1,#+1
+        STR      R1,[SP, #+16]
+        MOV      R0,SP
+        SWI      +749
+        CFI EndBlock cfiBlock3
+        REQUIRE ?Subroutine3
+        ;; // Fall through to label ?Subroutine3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+40
+        CFI R4 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine3:
+        ADD      SP,SP,#+20
+        CFI CFA R13+20
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cw_string??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock5
+        REQUIRE i2cw_string
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI Function i2cw_string
+        ARM
+i2cw_string:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        SUB      SP,SP,#+20
+        CFI CFA R13+32
+        MOV      R4,R1
+        MOV      R5,R0
+        MOV      R1,#+20
+        MOV      R0,SP
+        SWI      +285
+        STRB     R5,[SP, #+0]
+        MOV      R1,#+2
+        STRB     R1,[SP, #+1]
+        MOV      R0,#+0
+        STRB     R0,[SP, #+5]
+        STRB     R0,[SP, #+4]
+        STRH     R0,[SP, #+2]
+        STRH     R0,[SP, #+6]
+        STR      R4,[SP, #+12]
+        STR      R0,[SP, #+8]
+        MOV      R0,R4
+        SWI      +27
+        STR      R0,[SP, #+16]
+        MOV      R0,SP
+        SWI      +748
+        ADD      SP,SP,#+20
+        CFI CFA R13+12
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock6
+
+        END
+// 
+// 304 bytes in segment CODE
+// 
+// 292 bytes of CODE memory (+ 12 bytes shared)
+//
+//Errors: none
+//Warnings: none

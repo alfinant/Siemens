@@ -1,0 +1,152 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  25/Dec/2013  17:34:15                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\List\CapCom.map            #
+#           Output file 1 =  C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\Exe\CapCom.elf             #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\Obj\func.r79               #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\Obj\i2clib.r79             #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\Obj\main.r79               #
+#                            -o                                                #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\Exe\CapCom.elf             #
+#                            -Felf -l                                          #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\Release_NSG\List\CapCom.map            #
+#                            -xm -f                                            #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\Seria #
+#                            Lib\CapCom\CapCom.xcl                             #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            C:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\d #
+#                            l5tpainl8n.r79                                    #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000020  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfinant\Documents\Siemens\IAR\ARM\SeriaLib\CapCom\Release_NSG\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000        ElfKiller (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000000        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfinant\Documents\Siemens\IAR\ARM\SeriaLib\CapCom\Release_NSG\Obj\i2clib.r79
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfinant\Documents\Siemens\IAR\ARM\SeriaLib\CapCom\Release_NSG\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000004 - 0000001F (0x1c bytes), align: 2
+  Segment part 6.             Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000004 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000020 - 00000047 (0x28 bytes), align: 2
+  Segment part 14.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000020        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00000058 - 00000063 (0xc bytes), align: 2
+  Segment part 18. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00000058 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000048 - 00000057 (0x10 bytes), align: 2
+  Segment part 2.             Intra module refs:   main
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5tpainl8n.r79
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 100 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

@@ -1,0 +1,237 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    17/Dec/2015  20:01:41 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\i2 #
+#                       c.c                                                  #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\i2 #
+#                       c.c -D NEWSGOLD -lCN E:\Users\alfinant\Documents\Sie #
+#                       mens\alfinant\Test\Release_NSG\List\ -la             #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_NSG\List\ -o E:\Users\alfinant\Documents\Sieme #
+#                       ns\alfinant\Test\Release_NSG\Obj\ -z9 --cpu_mode     #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None --dlib_config            #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I E:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_NSG\List\i2c.lst                               #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_NSG\Obj\i2c.r79                                #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\Test\i2c.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/i2c.h"
+      3          
+      4          /*
+      5          void callback(void *i2c_msg, int err)
+      6          {
+      7            if(!err)
+      8          }
+      9          */
+     10          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     11          int i2cw_pmu(short reg, char *val, void (*callback)(void *i2c_msg, int err), short cdata )
+     12          { 
+   \                     i2cw_pmu:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   14D04DE2           SUB      SP,SP,#+20
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0260A0E1           MOV      R6,R2
+   \   00000014   0370A0E1           MOV      R7,R3
+     13            I2C_MSG msg;
+     14            zeromem(&msg, sizeof(I2C_MSG));
+   \   00000018   1410A0E3           MOV      R1,#+20
+   \   0000001C   0D00A0E1           MOV      R0,SP
+   \   00000020   1D0100EF           SWI      +285
+     15            msg.addr = 0x31;
+   \   00000024   3110A0E3           MOV      R1,#+49
+   \   00000028   0010CDE5           STRB     R1,[SP, #+0]
+     16            msg.mode = 0;
+   \   0000002C   0000A0E3           MOV      R0,#+0
+   \   00000030   0100CDE5           STRB     R0,[SP, #+1]
+     17            msg.tf = 0;
+   \   00000034   0200CDE5           STRB     R0,[SP, #+2]
+     18            msg.unk = 0;
+   \   00000038   0300CDE5           STRB     R0,[SP, #+3]
+     19            msg.nRegister = reg;
+   \   0000003C   B440CDE1           STRH     R4,[SP, #+4]
+     20            msg.cdata = cdata;
+   \   00000040   B670CDE1           STRH     R7,[SP, #+6]
+     21            msg.data = val;
+   \   00000044   0C508DE5           STR      R5,[SP, #+12]
+     22            msg.callback = callback;
+   \   00000048   08608DE5           STR      R6,[SP, #+8]
+     23            msg.size = 1;
+   \   0000004C   0110A0E3           MOV      R1,#+1
+   \   00000050   10108DE5           STR      R1,[SP, #+16]
+     24            return i2c_transfer(&msg);
+   \   00000054   0D00A0E1           MOV      R0,SP
+   \   00000058   EC0200EF           SWI      +748
+   \   0000005C   ........           B        ?Subroutine3
+     25          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine3:
+   \   00000000   14D08DE2           ADD      SP,SP,#+20
+   \   00000004   F080BDE8           POP      {R4-R7,PC}       ;; return
+     26          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     27          int i2cr_pmu(short reg, char *val, void (*callback)(void *i2c_msg, int err), short cdata)
+     28          {
+   \                     i2cr_pmu:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   14D04DE2           SUB      SP,SP,#+20
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0260A0E1           MOV      R6,R2
+   \   00000014   0370A0E1           MOV      R7,R3
+     29            I2C_MSG msg;
+     30            zeromem(&msg, sizeof(I2C_MSG));
+   \   00000018   1410A0E3           MOV      R1,#+20
+   \   0000001C   0D00A0E1           MOV      R0,SP
+   \   00000020   1D0100EF           SWI      +285
+     31            msg.addr = 0x31;
+   \   00000024   3110A0E3           MOV      R1,#+49
+   \   00000028   0010CDE5           STRB     R1,[SP, #+0]
+     32            msg.mode = 0;
+   \   0000002C   0000A0E3           MOV      R0,#+0
+   \   00000030   0100CDE5           STRB     R0,[SP, #+1]
+     33            msg.tf = 0;
+   \   00000034   0200CDE5           STRB     R0,[SP, #+2]
+     34            msg.unk = 0;
+   \   00000038   0300CDE5           STRB     R0,[SP, #+3]
+     35            msg.nRegister = reg;
+   \   0000003C   B440CDE1           STRH     R4,[SP, #+4]
+     36            msg.cdata = cdata;
+   \   00000040   B670CDE1           STRH     R7,[SP, #+6]
+     37            msg.data = val;
+   \   00000044   0C508DE5           STR      R5,[SP, #+12]
+     38            msg.callback = callback;
+   \   00000048   08608DE5           STR      R6,[SP, #+8]
+     39            msg.size = 1;
+   \   0000004C   0110A0E3           MOV      R1,#+1
+   \   00000050   10108DE5           STR      R1,[SP, #+16]
+     40            return i2c_receive(&msg);
+   \   00000054   0D00A0E1           MOV      R0,SP
+   \   00000058   ED0200EF           SWI      +749
+   \   0000005C                      REQUIRE ?Subroutine3
+   \   0000005C                      ;; // Fall through to label ?Subroutine3
+     41          }
+     42          
+     43          #ifdef ELKA
+     44          int i2cw_cam(short reg, char *val, void (*callback)(void *i2c_msg, int err) )
+     45          {
+     46            I2C_MSG msg;
+     47            zeromem(&msg, sizeof(I2C_MSG));
+     48            msg.addr = 0xB0;
+     49            msg.mode = 0;
+     50            msg.tf = 0;
+     51            msg.unk = 0;
+     52            msg.nRegister = reg;
+     53            msg.cdata = 0;
+     54            msg.data = val;
+     55            msg.callback = callback;
+     56            msg.size = 1;
+     57            return i2c_transfer(&msg);
+     58          }
+     59          
+     60          int i2cr_cam(short reg, char *val, void (*callback)(void *i2c_msg, int err))
+     61          {
+     62            I2C_MSG msg;
+     63            zeromem(&msg, sizeof(I2C_MSG));  
+     64            msg.addr = 0xB0;
+     65            msg.mode = 4;
+     66            msg.tf = 0;
+     67            msg.unk = 0;
+     68            msg.nRegister = reg;
+     69            msg.cdata = 0;
+     70            msg.data = val;
+     71            msg.callback = callback;
+     72            msg.size = 1;
+     73            return i2c_receive(&msg);
+     74          }
+     75          #endif
+     76          
+     77          //для внешних устройтв
+
+   \                                 In segment CODE, align 4, keep-with-next
+     78          int i2cw_string(char addr, char * str)
+     79          {  
+   \                     i2cw_string:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   14D04DE2           SUB      SP,SP,#+20
+   \   00000008   0140A0E1           MOV      R4,R1
+   \   0000000C   0050A0E1           MOV      R5,R0
+     80            I2C_MSG msg;
+     81            zeromem(&msg, sizeof(I2C_MSG));
+   \   00000010   1410A0E3           MOV      R1,#+20
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   1D0100EF           SWI      +285
+     82            msg.addr = addr;
+   \   0000001C   0050CDE5           STRB     R5,[SP, #+0]
+     83            msg.mode = 2;
+   \   00000020   0210A0E3           MOV      R1,#+2
+   \   00000024   0110CDE5           STRB     R1,[SP, #+1]
+     84            msg.tf = 0;
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   0200CDE5           STRB     R0,[SP, #+2]
+     85            msg.unk = 0;
+   \   00000030   0300CDE5           STRB     R0,[SP, #+3]
+     86            msg.nRegister = 0;
+   \   00000034   B400CDE1           STRH     R0,[SP, #+4]
+     87            msg.cdata = 0;
+   \   00000038   B600CDE1           STRH     R0,[SP, #+6]
+     88            msg.data = str;
+   \   0000003C   0C408DE5           STR      R4,[SP, #+12]
+     89            msg.callback = 0; //callback;
+   \   00000040   08008DE5           STR      R0,[SP, #+8]
+     90            msg.size =strlen(str);
+   \   00000044   0400A0E1           MOV      R0,R4
+   \   00000048   1B0000EF           SWI      +27
+   \   0000004C   10008DE5           STR      R0,[SP, #+16]
+     91            return i2c_transfer(&msg);
+   \   00000050   0D00A0E1           MOV      R0,SP
+   \   00000054   EC0200EF           SWI      +748
+   \   00000058   14D08DE2           ADD      SP,SP,#+20
+   \   0000005C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     92          }
+     93          
+
+   Maximum stack usage in bytes:
+
+     Function    CSTACK
+     --------    ------
+     i2cr_pmu       40
+     i2cw_pmu       40
+     i2cw_string    32
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     i2cw_pmu         96
+     ?Subroutine3      8
+     i2cr_pmu         92
+     i2cw_string      96
+      Others          12
+
+ 
+ 304 bytes in segment CODE
+ 
+ 292 bytes of CODE memory (+ 12 bytes shared)
+
+Errors: none
+Warnings: none

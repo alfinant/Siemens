@@ -1,0 +1,300 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    26/Apr/2018  15:02:22 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\ma #
+#                       in.c                                                 #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\ma #
+#                       in.c -D SGOLD -lCN E:\Users\alfinant\Documents\Sieme #
+#                       ns\alfinant\Meas\Release_SGOLD\List\ -la             #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\ -o E:\Users\alfinant\Documents\Sie #
+#                       mens\alfinant\Meas\Release_SGOLD\Obj\ -z9            #
+#                       --cpu_mode arm --endian little --cpu ARM926EJ-S      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config E:\Users\alfinant\Documents\Siemens\IA #
+#                       R\ARM\LIB\dl5tpainl8n.h -I                           #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\main.lst                            #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\Obj\main.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\Meas\main.c
+      1          /******************************************************************************/
+      2          /*     Пример для работы с Measurement Interface для измерения напряжения     */
+      3          /*                                                                            */
+      4          /* Макс. значение регистра MEAS.DATA может быть 0 или 4095(0xFFF)             */
+      5          /* зависит от полярности подключения.                                         */
+      6          /* MEAS.DATA == 2048(0x800) - это нулевое значение.                           */
+      7          /* Получается что при измерениии имеем разрешение 4095-2048=2047(0x7FF).      */
+      8          /* Опорное напряжение ~2000 mV.                                               */
+      9          /* Резисторный делитель: R2=2K, R1=6.8K+6.8K=13.6K                            */
+     10          /* Рассчитан на макс напряжение источника == ~15.2V                           */  
+     11          /*  +                                                                         */             
+     12          /*    |                                                                       */
+     13          /*   | |                                                                      */
+     14          /*   | | R1                                                                   */
+     15          /*    |                                                                       */
+     16          /*    ------------- M2                                                        */
+     17          /*    |                                                                       */
+     18          /*   | |                                                                      */ 
+     19          /*   | | R2                                                                   */
+     20          /*    |                                                                       */
+     21          /*  - ------------- GND                                                       */
+     22          /******************************************************************************/
+     23          
+     24          //#define CX75v25
+     25          //#define CX72v22
+     26          
+     27          #include "../inc/swilib.h"
+     28          #include "meas.h"
+     29          
+     30          extern int adata;
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     31          int VREF=1960;//Измеренное опорное напряжение 
+   \                     VREF:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for VREF>`
+     32          int VMAX=15220; 
+   \                     VMAX:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for VMAX>`
+     33          int AOffset=-2; //коррекция на нуль
+     34          int voltage=0;
+   \                     voltage:
+   \   00000008                      DS8 4
+   \   0000000C                      REQUIRE `?<Initializer for voltage>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     AOffset:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for AOffset>`
+     35          
+     36          
+     37          extern void kill_data(void *p, void (*func_p)(void *));
+
+   \                                 In segment CODE, align 4, keep-with-next
+     38          void ElfKiller(void)
+     39          { 
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+     40            extern void *ELF_BEGIN;
+     41            kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; ELF_BEGIN
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     ELF_BEGIN
+     42          }
+     43          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     44          void ShowRes()
+     45          {
+     46            char s[128];
+     47            
+     48            sprintf(s, "Analog Data: 0x%X\n"
+     49                       "Voltage: %dmV"
+     50                         ,adata, voltage);
+   \                     ShowRes:
+   \   00000000   30009FE5           LDR      R0,??ShowRes_0   ;; VREF + 8
+   \   00000004   30109FE5           LDR      R1,??ShowRes_0+0x4  ;; `?<Constant "Analog Data: 0x%X\\nVol...">`
+   \   00000008   00402DE9           PUSH     {LR}
+   \   0000000C   80D04DE2           SUB      SP,SP,#+128
+   \   00000010   003090E5           LDR      R3,[R0, #+0]
+   \   00000014   ........           LDR      R0,??DataTable1  ;; adata
+   \   00000018   002090E5           LDR      R2,[R0, #+0]
+   \   0000001C   0D00A0E1           MOV      R0,SP
+   \   00000020   160000EF           SWI      +22
+     51            ShowMSG(1, (int)s );   
+   \   00000024   0D10A0E1           MOV      R1,SP
+   \   00000028   0100A0E3           MOV      R0,#+1
+   \   0000002C   480100EF           SWI      +328
+     52          }
+   \   00000030   80D08DE2           ADD      SP,SP,#+128
+   \   00000034   0080BDE8           POP      {PC}             ;; return
+   \                     ??ShowRes_0:
+   \   00000038   ........           DC32     VREF + 8
+   \   0000003C   ........           DC32     `?<Constant "Analog Data: 0x%X\\nVol...">`
+     53          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     54          void meas_callback()
+     55          {
+     56            int v0 = divide(2047, VREF * (adata-2048));//напряжение на входе M2
+   \                     meas_callback:
+   \   00000000   ........           LDR      R1,??DataTable1  ;; adata
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   001091E5           LDR      R1,[R1, #+0]
+   \   0000000C   64409FE5           LDR      R4,??meas_callback_0  ;; VREF
+   \   00000010   FF20E0E3           MVN      R2,#+255
+   \   00000014   000094E5           LDR      R0,[R4, #+0]
+   \   00000018   702EC2E3           BIC      R2,R2,#0x700
+   \   0000001C   012082E0           ADD      R2,R2,R1
+   \   00000020   920001E0           MUL      R1,R2,R0
+   \   00000024   FF00A0E3           MOV      R0,#+255
+   \   00000028   700E80E3           ORR      R0,R0,#0x700
+   \   0000002C   BC0000EF           SWI      +188
+   \   00000030   0050A0E1           MOV      R5,R0
+     57            int mux = divide(VREF, VMAX * 1000);//множитель для резисторного делителя
+   \   00000034   040094E5           LDR      R0,[R4, #+4]
+   \   00000038   FA2FA0E3           MOV      R2,#+1000
+   \   0000003C   920001E0           MUL      R1,R2,R0
+   \   00000040   000094E5           LDR      R0,[R4, #+0]
+   \   00000044   BC0000EF           SWI      +188
+     58            voltage = divide(1000, v0 * mux);
+   \   00000048   900501E0           MUL      R1,R0,R5
+   \   0000004C   FA0FA0E3           MOV      R0,#+1000
+   \   00000050   BC0000EF           SWI      +188
+     59            
+     60            if (voltage < 0)
+   \   00000054   000050E3           CMP      R0,#+0
+     61              voltage=0;
+   \   00000058   0000A043           MOVMI    R0,#+0
+   \   0000005C   080084E5           STR      R0,[R4, #+8]
+     62            
+     63            SUBPROC((void*)ShowRes);
+   \   00000060   14009FE5           LDR      R0,??meas_callback_0+0x4  ;; ShowRes
+   \   00000064   710100EF           SWI      +369
+     64            //выходим
+     65            MEAS_Delete();
+   \   00000068   ........           _BLF     MEAS_Delete,??MEAS_Delete??rA
+     66            SUBPROC((void *)ElfKiller);
+   \   0000006C   ........           LDR      R0,??DataTable3  ;; ElfKiller
+   \   00000070   710100EF           SWI      +369
+     67          }
+   \   00000074   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??meas_callback_0:
+   \   00000078   ........           DC32     VREF
+   \   0000007C   ........           DC32     ShowRes
+     68          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     69          int main(void)
+     70          { 
+     71            if (MEAS_Init(meas_callback))
+   \                     main:
+   \   00000000   30009FE5           LDR      R0,??main_0      ;; meas_callback
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   ........           _BLF     MEAS_Init,??MEAS_Init??rA
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   0100000A           BEQ      ??main_1
+     72            {
+     73              MEAS_Start();
+   \   00000014   ........           _BLF     MEAS_Start,??MEAS_Start??rA
+   \   00000018   040000EA           B        ??main_2
+     74            }
+     75            else
+     76            {
+     77              ShowMSG(1,(int)"Sorry, HISR not created:(" );
+   \                     ??main_1:
+   \   0000001C   18109FE5           LDR      R1,??main_0+0x4  ;; `?<Constant "Sorry, HISR not creat...">`
+   \   00000020   0100A0E3           MOV      R0,#+1
+   \   00000024   480100EF           SWI      +328
+     78              SUBPROC((void *)ElfKiller);
+   \   00000028   ........           LDR      R0,??DataTable3  ;; ElfKiller
+   \   0000002C   710100EF           SWI      +369
+     79            }
+     80            return 0;
+   \                     ??main_2:
+   \   00000030   0000A0E3           MOV      R0,#+0
+   \   00000034   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_0:
+   \   00000038   ........           DC32     meas_callback
+   \   0000003C   ........           DC32     `?<Constant "Sorry, HISR not creat...">`
+     81          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     adata
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     ElfKiller
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for VREF>`:
+   \   00000000   A8070000           DC32 1960
+   \                     `?<Initializer for VMAX>`:
+   \   00000004   743B0000           DC32 15220
+   \                     `?<Initializer for voltage>`:
+   \   00000008   00000000           DC32 0
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for AOffset>`:
+   \   00000000   FEFFFFFF           DC32 -2
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Analog Data: 0x%X\\nVol...">`:
+   \   00000000   416E616C6F67       DC8 "Analog Data: 0x%X\012Voltage: %dmV"
+   \              20446174613A
+   \              20307825580A
+   \              566F6C746167
+   \              653A2025646D
+   \              5600        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Sorry, HISR not creat...">`:
+   \   00000000   536F7272792C       DC8 "Sorry, HISR not created:("
+   \              204849535220
+   \              6E6F74206372
+   \              65617465643A
+   \              2800        
+   \   0000001A   0000               DC8 0, 0
+     82          
+
+   Maximum stack usage in bytes:
+
+     Function      CSTACK
+     --------      ------
+     ElfKiller         4
+     ShowRes         132
+     main              4
+     meas_callback    12
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     VREF                             12
+     AOffset                           4
+     ElfKiller                        28
+     ShowRes                          64
+     meas_callback                   128
+     main                             64
+     ??DataTable1                      4
+     ??DataTable3                      4
+     ?<Initializer for VREF>          12
+     ?<Initializer for AOffset>        4
+     ?<Constant "Analog Data: 0x%X\nVol...">
+                                      32
+     ?<Constant "Sorry, HISR not creat...">
+                                      28
+      Others                          76
+
+ 
+ 356 bytes in segment CODE
+  60 bytes in segment DATA_C
+  16 bytes in segment DATA_I
+  16 bytes in segment DATA_ID
+  12 bytes in segment INITTAB
+ 
+ 292 bytes of CODE  memory (+ 76 bytes shared)
+  76 bytes of CONST memory
+  16 bytes of DATA  memory
+
+Errors: none
+Warnings: 4

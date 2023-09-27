@@ -1,0 +1,208 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  29/Dec/2016  15:43:34                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\List\RF-partOff_NSG.map        #
+#           Output file 1 =  E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\Exe\RF-partOff_NSG.elf         #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\Obj\func.r79                   #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\Obj\main.r79                   #
+#                            -o                                                #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\Exe\RF-partOff_NSG.elf         #
+#                            -Felf -l                                          #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\Release_NSG\List\RF-partOff_NSG.map        #
+#                            -xm -f                                            #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\RF-p #
+#                            artOff\test.xcl                                   #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\d #
+#                            l5tpainl8n.r79                                    #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000088  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\RF-partOff\Release_NSG\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000        ElfKiller (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000000        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\RF-partOff\Release_NSG\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 00000178 - 0000017B (0x4 bytes), align: 2
+  Segment part 6.             Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maincsm_id              00000178 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000004 - 00000017 (0x14 bytes), align: 2
+  Segment part 9.             Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RFpart_activate         00000004 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000018 - 00000027 (0x10 bytes), align: 2
+  Segment part 11.            Intra module refs:   maincsm_oncreate
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RFpart_deactivate       00000018 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000028 - 0000002F (0x8 bytes), align: 2
+  Segment part 12.            Intra module refs:   RFpart_activate
+                                                   RFpart_deactivate
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000030 - 00000037 (0x8 bytes), align: 2
+  Segment part 14.            Intra module refs:   Segment part 4
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maincsm_onmessage       00000030 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000038 - 00000053 (0x1c bytes), align: 2
+  Segment part 16.            Intra module refs:   Segment part 4
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_oncreate        00000038 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000054 - 0000006F (0x1c bytes), align: 2
+  Segment part 18.            Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000054 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000070 - 00000087 (0x18 bytes), align: 2
+  Segment part 20.            Intra module refs:   Segment part 4
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_onclose         00000070 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 0000017C - 00000293 (0x118 bytes), align: 2
+  Segment part 7.             Intra module refs:   Segment part 4
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000108 - 0000011F (0x18 bytes), align: 2
+  Segment part 3.             Intra module refs:   maincsm_oncreate
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000120 - 00000167 (0x48 bytes), align: 2
+  Segment part 4.             Intra module refs:   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000168 - 0000016B (0x4 bytes), align: 2
+  Segment part 5.             Intra module refs:   Segment part 4
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           minus11                 00000168 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000088 - 00000107 (0x80 bytes), align: 2
+  Segment part 22.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000088        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000038 )
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 0000016C - 00000177 (0xc bytes), align: 2
+  Segment part 24. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        0000016C 
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 660 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

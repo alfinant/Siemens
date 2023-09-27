@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>i2c_sw/Release_NSG</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>156</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1395</ColumnWidth1><ColumnWidth2>372</ColumnWidth2><ColumnWidth3>93</ColumnWidth3></Build></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-15900-9293</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>i2c_sw</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-21421-9394</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\inc\reg8876.h</Filename><XPos>0</XPos><YPos>210</YPos><SelStart>7108</SelStart><SelEnd>7108</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw\I2C_SW.C</Filename><XPos>0</XPos><YPos>354</YPos><SelStart>6797</SelStart><SelEnd>6797</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>254</SelStart><SelEnd>254</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\inc\clkman.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>2403</SelStart><SelEnd>2403</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\inc\interrupt.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>272</SelStart><SelEnd>272</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw\I2C_SW.H</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>957</SelStart><SelEnd>957</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-02052398><key>iaridepm.enu1</key></Toolbar-02052398></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>952</Bottom><Right>230</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>120833</sizeVertCX><sizeVertCY>956871</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>952</Bottom><Right>556</Right><x>-2</x><y>-2</y><xscreen>1926</xscreen><yscreen>200</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>200602</sizeHorzCY><sizeVertCX>290625</sizeVertCX><sizeVertCY>956871</sizeVertCY></Rect></Wnd3></Sizes></Row0></Right><Bottom><Row0><Sizes/></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

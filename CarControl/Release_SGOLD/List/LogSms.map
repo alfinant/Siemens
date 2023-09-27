@@ -1,0 +1,324 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  11/Sep/2014  11:14:54                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\List\LogSms.map         #
+#           Output file 1 =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Exe\LogSms.elf          #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Obj\conf_loader.r79     #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Obj\config.r79          #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Obj\func.r79            #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Obj\main.r79            #
+#                            -o                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\Exe\LogSms.elf          #
+#                            -Felf -l                                          #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\Release_SGOLD\List\LogSms.map         #
+#                            -xmsno -f                                         #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\LogSms\test.xcl                              #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra -s main    #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 0000014C  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\LogSms\Release_SGOLD\Obj\conf_loader.r79
+  PROGRAM MODULE, NAME : conf_loader
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 000000F3 (0xf4 bytes), align: 2
+  Segment part 4.             Intra module refs:   InitConfig
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LoadConfigData          00000000 
+               stack 1 = 00000000 ( 00000024 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000F4 - 0000011B (0x28 bytes), align: 2
+  Segment part 6.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           InitConfig              000000F4        main (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000188 - 000001B7 (0x30 bytes), align: 2
+  Segment part 2.             Intra module refs:   InitConfig
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\LogSms\Release_SGOLD\Obj\config.r79
+  PROGRAM MODULE, NAME : config
+
+  SEGMENTS IN THE MODULE
+  ======================
+CONFIG_C
+  Relative segment, address: CODE_AREA 000001D8 - 00000203 (0x2c bytes), align: 2
+  Segment part 2. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr0                 000001D8        LoadConfigData (conf_loader)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00000204 - 00000283 (0x80 bytes), align: 2
+  Segment part 3. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           NUMBER                  00000204 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00000284 - 000002AF (0x2c bytes), align: 2
+  Segment part 4. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr1                 00000284 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000002B0 - 0000032F (0x80 bytes), align: 2
+  Segment part 5. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           KEYWORD                 000002B0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00000330 - 0000035B (0x2c bytes), align: 2
+  Segment part 6. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2                 00000330 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000035C - 000003DB (0x80 bytes), align: 2
+  Segment part 7. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LOGFILE                 0000035C 
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\LogSms\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000011C - 00000123 (0x8 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               0000011C 
+           seqkill                 00000120 
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\LogSms\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 000001D0 - 000001D7 (0x8 bytes), align: 2
+  Segment part 5.             Intra module refs:   main
+                                                   my_sms_rlt_sm
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           gproc                   000001D0 
+           old_sms_rlt_sm          000001D4 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000124 - 0000014B (0x28 bytes), align: 2
+  Segment part 11.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           my_sms_rlt_sm           00000124 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000014C - 00000187 (0x3c bytes), align: 2
+  Segment part 13.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    0000014C        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 000001B8 - 000001C3 (0xc bytes), align: 2
+  Segment part 15. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        000001B8 
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 000001C4 - 000001CF (0xc bytes), align: 2
+  Segment part 17. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        000001C4 
+
+
+
+
+                ****************************************
+                *                                      *
+                *            MODULE SUMMARY            *
+                *                                      *
+                ****************************************
+
+Module        CODE
+------        ----
+             (Rel)
+conf_loader    332
+config         516
+func             8
+main           132
+------         ---
+Total:         988
+
+
+                ****************************************
+                *                                      *
+                *              CALL GRAPH              *
+                *                                      *
+                ****************************************
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  my_sms_rlt_sm
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000004
+  01  LoadConfigData
+      | Stack used (prev) :  00000004
+      | + function block  :  00000024
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000028
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000028
+  01  InitConfig
+      | Stack used (prev) :  00000028
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000030
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000030
+  01  main
+      | Stack used (prev) :  00000030
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000038
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+DATA_ID              CODE_AREA           00000000                     dse    0
+START                CODE_AREA           00000000                     dse    0
+ELFBEGIN             CODE_AREA           00000000                     rel    0
+CODE                 CODE_AREA      00000000 - 00000187         188   rel    2
+DATA_C               CODE_AREA      00000188 - 000001B7          30   rel    2
+INITTAB              CODE_AREA      000001B8 - 000001CF          18   rel    2
+DATA_Z               CODE_AREA      000001D0 - 000001D7           8   rel    2
+DATA_N               CODE_AREA           000001D8                     dse    0
+CONFIG_C             CODE_AREA      000001D8 - 000003DB         204   rel    2
+DATA_I               DATA_AREA           00000000                     dse    0
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 988 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

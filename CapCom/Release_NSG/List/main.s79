@@ -1,0 +1,694 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   24/Nov/2014  18:04:32 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  arm                                                 /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\ma /
+//                       in.c                                                /
+//    Command line    =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\ma /
+//                       in.c -D NEWSGOLD -D E71v45 -lCN                     /
+//                       C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Re /
+//                       lease_NSG\List\ -la C:\Users\Инсаф\Documents\Siemen /
+//                       s\alfinant\CapCom\Release_NSG\List\ -o              /
+//                       C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Re /
+//                       lease_NSG\Obj\ -z9 --cpu_mode arm --endian little   /
+//                       --cpu ARM926EJ-S --stack_align 4 -e --fpu None      /
+//                       --dlib_config C:\Users\Инсаф\Documents\Siemens\IAR\ /
+//                       ARM\LIB\dl5tpannl8n.h -I                            /
+//                       C:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\       /
+//                       --inline_threshold=2                                /
+//    List file       =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Re /
+//                       lease_NSG\List\main.s79                             /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__arm"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?DATA_ID`
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable3 EQU 0
+        MULTWEAK ??i2cw_pmu??rA
+        MULTWEAK ??kill_data??rA
+        PUBWEAK ?init?tab?DATA_I
+        PUBWEAK CCU0
+        PUBWEAK CCU1
+        PUBLIC Dutycycle
+        PUBLIC ElfKiller
+        FUNCTION ElfKiller,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC Frequency
+        PUBWEAK GPIO
+        PUBLIC Prescaler
+        PUBLIC ccu1_t0
+        PUBLIC dat_40
+        PUBLIC dat_42
+        PUBLIC disable_interrupts
+        FUNCTION disable_interrupts,080203H
+        PUBLIC enable_interrupts
+        FUNCTION enable_interrupts,080203H
+        PUBLIC main
+        FUNCTION main,0a03H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC pwm_test_sound
+        FUNCTION pwm_test_sound,0201H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC test_100kHz
+        FUNCTION test_100kHz,0201H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC test_1Gz
+        FUNCTION test_1Gz,0201H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC test_pin
+        FUNCTION test_pin,0201H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC test_pin_cts
+        FUNCTION test_pin_cts,0201H
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+i2cw_pmu            SYMBOL "i2cw_pmu"
+kill_data           SYMBOL "kill_data"
+??i2cw_pmu??rA      SYMBOL "??rA", i2cw_pmu
+??kill_data??rA     SYMBOL "??rA", kill_data
+
+        EXTERN ELF_BEGIN
+        EXTERN i2cw_pmu
+        FUNCTION i2cw_pmu,0202H
+        EXTERN int_ccu1_t0_handler
+        FUNCTION int_ccu1_t0_handler,0602H
+        EXTERN kill_data
+        FUNCTION kill_data,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function disable_interrupts
+        ARM
+// __??Code32?? __code __arm __atpcs int disable_interrupts(void)
+disable_interrupts:
+        MRS      R0,CPSR
+        AND      R1,R0,#0x1F
+        CMP      R1,#+16
+        BNE      ??disable_interrupts_0
+        SWI 4            
+??disable_interrupts_0:
+        ORRS     R1,R0,#0xC0
+        MSR      CPSR,R1
+        AND      R0,R0,#0xC0
+        MOV      PC,LR            ;; return
+        CFI EndBlock cfiBlock0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function enable_interrupts
+        ARM
+// __??Code32?? __code __arm __atpcs void enable_interrupts(int)
+enable_interrupts:
+        MRS      R1,CPSR
+        AND      R2,R1,#0x1F
+        CMP      R2,#+16
+        BNE      ??enable_interrupts_0
+        SWI 4            
+??enable_interrupts_0:
+        BIC      R1,R1,#0xC0
+        ORRS     R0,R0,R1
+        MSR      CPSR,R0
+        MOV      PC,LR            ;; return
+        CFI EndBlock cfiBlock1
+
+        ASEGN DATA_AN:DATA:NOROOT,0f4300000H
+// GPIO_TypeDef __data GPIO
+GPIO:
+        DS8 488
+
+        ASEGN DATA_AN:DATA:NOROOT,0f4000000H
+// CAPCOM_TypeDef __data CCU0
+CCU0:
+        DS8 256
+
+        ASEGN DATA_AN:DATA:NOROOT,0f4100000H
+// CAPCOM_TypeDef __data CCU1
+CCU1:
+        DS8 256
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+ccu1_t0:
+        DS8 8
+        REQUIRE `?<Initializer for ccu1_t0>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+Prescaler:
+        DS8 4
+        REQUIRE `?<Initializer for Prescaler>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+Frequency:
+        DS8 4
+        REQUIRE `?<Initializer for Frequency>`
+Dutycycle:
+        DS8 4
+        REQUIRE `?<Initializer for Dutycycle>`
+dat_40:
+        DS8 1
+        REQUIRE `?<Initializer for dat_40>`
+dat_42:
+        DS8 1
+        REQUIRE `?<Initializer for dat_42>`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function ElfKiller
+        ARM
+ElfKiller:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        SWI      +32789
+        MOV      R1,R0
+        LDR      R0,??ElfKiller_0  ;; ELF_BEGIN
+        POP      {LR}             ;; Pop
+        CFI ?RET R14
+        CFI CFA R13+0
+        _BF      kill_data,??kill_data??rA  ;; tailcall
+        DATA
+??ElfKiller_0:
+        DC32     ELF_BEGIN
+        CFI EndBlock cfiBlock2
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function pwm_test_sound
+        ARM
+pwm_test_sound:
+        PUSH     {R0,R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+20
+        LDR      R5,??DataTable2  ;; Frequency
+        MOV      R0,#+260
+        SUB      R0,R0,#+198180864
+        MOV      R1,#+48
+        STR      R1,[R0, #+0]
+        BL       disable_interrupts
+        LDR      R1,??DataTable4  ;; 0x18cba80
+        MOV      R4,R0
+        LDR      R0,[R5, #+0]
+        MOV      R6,#-268435456
+        LSL      R0,R0,#+10
+        SWI      +188
+        LSL      R0,R0,#+10
+        ORR      R6,R6,#0x4100000
+        MOV      R1,#+256
+        STR      R1,[R6, #+0]
+        RSB      R1,R0,#+65536
+        STR      R1,[R6, #+68]
+        STR      R1,[R6, #+64]
+        LDR      R1,[R5, #+4]
+        MUL      R1,R0,R1
+        MOV      R0,#+10
+        MUL      R1,R0,R1
+        MOV      R0,#+1000
+        SWI      +188
+        RSB      R0,R0,#+65536
+        STR      R0,[R6, #+100]
+        LDR      R1,[R6, #+48]
+        MVN      R0,#+32
+        AND      R1,R0,R1
+        STR      R1,[R6, #+48]
+        LDR      R1,[R6, #+44]
+        AND      R0,R0,R1
+        STR      R0,[R6, #+44]
+        LDR      R0,[R6, #+24]
+        ORR      R0,R0,#0x70
+        STR      R0,[R6, #+24]
+        LDR      R0,[R6, #+24]
+        BIC      R0,R0,#0x80
+        STR      R0,[R6, #+24]
+        LDR      R0,[R6, #+40]
+        BIC      R0,R0,#0x2
+        STR      R0,[R6, #+40]
+        LDR      R0,[R6, #+40]
+        ORR      R0,R0,#0x4
+        STR      R0,[R6, #+40]
+        LDR      R1,[R6, #+40]
+        MVN      R0,#+8
+        AND      R1,R0,R1
+        STR      R1,[R6, #+40]
+        LDR      R2,[R6, #+252]
+        MVN      R1,#+4096
+        AND      R2,R1,R2
+        STR      R2,[R6, #+252]
+        LDR      R2,[R6, #+224]
+        AND      R1,R1,R2
+        STR      R1,[R6, #+224]
+        LDR      R1,[R6, #+16]
+        BIC      R1,R1,#0x7
+        STR      R1,[R6, #+16]
+        LDR      R1,[R6, #+16]
+        AND      R0,R0,R1
+        STR      R0,[R6, #+16]
+        LDR      R0,[R6, #+16]
+        ORR      R0,R0,#0x40
+        STR      R0,[R6, #+16]
+        MOV      R0,R4
+        BL       enable_interrupts
+        MOV      R3,#+0
+        MOV      R2,#+0
+        ADD      R1,R5,#+9
+        MOV      R0,#+66
+        _BLF     i2cw_pmu,??i2cw_pmu??rA
+        MOV      R3,#+0
+        MOV      R2,R3
+        ADD      R1,R5,#+8
+        MOV      R0,#+64
+        _BLF     i2cw_pmu,??i2cw_pmu??rA
+        POP      {R0,R4-R6,PC}    ;; return
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function test_pin
+        ARM
+test_pin:
+        PUSH     {R0,R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+20
+        LDR      R6,??DataTable2  ;; Frequency
+        MOV      R0,#+92
+        SUB      R0,R0,#+198180864
+        MOV      R1,#+48
+        STR      R1,[R0, #+0]
+        BL       disable_interrupts
+        LDR      R1,??DataTable4  ;; 0x18cba80
+        MOV      R4,R0
+        LDR      R0,[R6, #+0]
+        MOV      R5,#-268435456
+        LSL      R0,R0,#+10
+        SWI      +188
+        LSL      R0,R0,#+10
+        ORR      R5,R5,#0x4100000
+        MOV      R1,#+256
+        STR      R1,[R5, #+0]
+        RSB      R1,R0,#+65536
+        STR      R1,[R5, #+68]
+        STR      R1,[R5, #+64]
+        LDR      R1,[R6, #+4]
+        MUL      R1,R0,R1
+        MOV      R0,#+10
+        MUL      R1,R0,R1
+        MOV      R0,#+1000
+        SWI      +188
+        RSB      R0,R0,#+65536
+        STR      R0,[R5, #+104]
+        LDR      R1,[R5, #+48]
+        MVN      R0,#+64
+        AND      R1,R0,R1
+        STR      R1,[R5, #+48]
+        LDR      R1,[R5, #+44]
+        AND      R0,R0,R1
+        STR      R0,[R5, #+44]
+        LDR      R0,[R5, #+24]
+        ORR      R0,R0,#0x700
+        STR      R0,[R5, #+24]
+        LDR      R0,[R5, #+24]
+        BIC      R0,R0,#0x800
+        STR      R0,[R5, #+24]
+        LDR      R0,[R5, #+40]
+        BIC      R0,R0,#0x2
+        STR      R0,[R5, #+40]
+        LDR      R0,[R5, #+40]
+        ORR      R0,R0,#0x4
+        STR      R0,[R5, #+40]
+        LDR      R1,[R5, #+40]
+        MVN      R0,#+8
+        AND      R1,R0,R1
+        STR      R1,[R5, #+40]
+        LDR      R2,[R5, #+252]
+        MVN      R1,#+4096
+        AND      R2,R1,R2
+        STR      R2,[R5, #+252]
+        LDR      R2,[R5, #+220]
+        AND      R1,R1,R2
+        STR      R1,[R5, #+220]
+        LDR      R1,[R5, #+16]
+        BIC      R1,R1,#0x7
+        STR      R1,[R5, #+16]
+        LDR      R1,[R5, #+16]
+        AND      R0,R0,R1
+        STR      R0,[R5, #+16]
+        LDR      R0,[R5, #+16]
+        ORR      R0,R0,#0x40
+        STR      R0,[R5, #+16]
+        MOV      R0,R4
+        BL       enable_interrupts
+        POP      {R0,R4-R6,PC}    ;; return
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable2:
+        DC32     Frequency
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function test_100kHz
+        ARM
+test_100kHz:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R0,#+92
+        SUB      R0,R0,#+198180864
+        MOV      R1,#+48
+        ORR      R1,R1,#0x1000
+        STR      R1,[R0, #+0]
+        BL       disable_interrupts
+        MOV      R1,#-268435456
+        ORR      R1,R1,#0x4100000
+        MOV      R2,#+256
+        STR      R2,[R1, #+0]
+        MOV      R2,#+65280
+        STR      R2,[R1, #+68]
+        STR      R2,[R1, #+64]
+        ORR      R2,R2,#0x80
+        STR      R2,[R1, #+104]
+        LDR      R3,[R1, #+48]
+        MVN      R2,#+64
+        AND      R3,R2,R3
+        STR      R3,[R1, #+48]
+        LDR      R3,[R1, #+44]
+        AND      R2,R2,R3
+        STR      R2,[R1, #+44]
+        LDR      R2,[R1, #+24]
+        ORR      R2,R2,#0x700
+        STR      R2,[R1, #+24]
+        LDR      R2,[R1, #+24]
+        BIC      R2,R2,#0x800
+        STR      R2,[R1, #+24]
+        LDR      R2,[R1, #+40]
+        BIC      R2,R2,#0x2
+        STR      R2,[R1, #+40]
+        LDR      R2,[R1, #+40]
+        ORR      R2,R2,#0x4
+        STR      R2,[R1, #+40]
+        LDR      R3,[R1, #+40]
+        MVN      R2,#+8
+        AND      R3,R2,R3
+        STR      R3,[R1, #+40]
+        LDR      R12,[R1, #+252]
+        MVN      R3,#+4096
+        AND      R12,R3,R12
+        STR      R12,[R1, #+252]
+        LDR      R12,[R1, #+220]
+        AND      R3,R3,R12
+        STR      R3,[R1, #+220]
+        LDR      R3,[R1, #+16]
+        BIC      R3,R3,#0x7
+        STR      R3,[R1, #+16]
+        LDR      R3,[R1, #+16]
+        AND      R2,R2,R3
+        STR      R2,[R1, #+16]
+        LDR      R2,[R1, #+16]
+        ORR      R2,R2,#0x40
+        STR      R2,[R1, #+16]
+        BL       enable_interrupts
+        POP      {PC}             ;; return
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function test_1Gz
+        ARM
+test_1Gz:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R0,#+92
+        SUB      R0,R0,#+198180864
+        MOV      R1,#+48
+        STR      R1,[R0, #+0]
+        LDR      R0,??test_1Gz_0  ;; Prescaler
+        LDR      R1,??DataTable4  ;; 0x18cba80
+        LDR      R0,[R0, #+0]
+        SWI      +188
+        BL       disable_interrupts
+        MOV      R0,#-201326592
+        MOV      R1,#+256
+        STR      R1,[R0, #+0]
+        MOV      R1,#+15360
+        STR      R1,[R0, #+64]
+        STR      R1,[R0, #+68]
+        MOV      R1,#+40448
+        STR      R1,[R0, #+88]
+        LDR      R2,[R0, #+48]
+        MVN      R1,#+4
+        AND      R2,R1,R2
+        STR      R2,[R0, #+48]
+        LDR      R2,[R0, #+44]
+        AND      R1,R1,R2
+        STR      R1,[R0, #+44]
+        LDR      R1,[R0, #+20]
+        ORR      R1,R1,#0x700
+        STR      R1,[R0, #+20]
+        LDR      R1,[R0, #+20]
+        BIC      R1,R1,#0x800
+        STR      R1,[R0, #+20]
+        LDR      R1,[R0, #+40]
+        ORR      R1,R1,#0x4
+        STR      R1,[R0, #+40]
+        LDR      R2,[R0, #+252]
+        MVN      R1,#+4096
+        AND      R2,R1,R2
+        STR      R2,[R0, #+252]
+        LDR      R2,[R0, #+236]
+        AND      R1,R1,R2
+        STR      R1,[R0, #+236]
+        LDR      R1,[R0, #+16]
+        ORR      R1,R1,#0x6
+        STR      R1,[R0, #+16]
+        LDR      R1,[R0, #+16]
+        BIC      R1,R1,#0x8
+        STR      R1,[R0, #+16]
+        LDR      R1,[R0, #+16]
+        ORR      R1,R1,#0x40
+        STR      R1,[R0, #+16]
+        POP      {PC}             ;; return
+        DATA
+??test_1Gz_0:
+        DC32     Prescaler
+        CFI EndBlock cfiBlock6
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable4:
+        DC32     0x18cba80
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function test_pin_cts
+        ARM
+test_pin_cts:
+        MOV      R0,#+92
+        SUB      R0,R0,#+198180864
+        MOV      R1,#+48
+        ORR      R1,R1,#0x1000
+        STR      R1,[R0, #+0]
+        MOV      R0,#-201326592
+        MOV      R1,#+256
+        STR      R1,[R0, #+0]
+        MOV      R1,#+65280
+        STR      R1,[R0, #+68]
+        STR      R1,[R0, #+64]
+        ORR      R1,R1,#0x80
+        STR      R1,[R0, #+104]
+        LDR      R2,[R0, #+48]
+        MVN      R1,#+64
+        AND      R2,R1,R2
+        STR      R2,[R0, #+48]
+        LDR      R2,[R0, #+44]
+        AND      R1,R1,R2
+        STR      R1,[R0, #+44]
+        LDR      R1,[R0, #+24]
+        ORR      R1,R1,#0x700
+        STR      R1,[R0, #+24]
+        LDR      R1,[R0, #+24]
+        BIC      R1,R1,#0x800
+        STR      R1,[R0, #+24]
+        LDR      R1,[R0, #+40]
+        BIC      R1,R1,#0x2
+        STR      R1,[R0, #+40]
+        LDR      R1,[R0, #+40]
+        ORR      R1,R1,#0x4
+        STR      R1,[R0, #+40]
+        LDR      R2,[R0, #+40]
+        MVN      R1,#+8
+        AND      R2,R1,R2
+        STR      R2,[R0, #+40]
+        LDR      R3,[R0, #+252]
+        MVN      R2,#+4096
+        AND      R3,R2,R3
+        STR      R3,[R0, #+252]
+        LDR      R3,[R0, #+220]
+        AND      R2,R2,R3
+        STR      R2,[R0, #+220]
+        LDR      R2,[R0, #+16]
+        BIC      R2,R2,#0x7
+        STR      R2,[R0, #+16]
+        LDR      R2,[R0, #+16]
+        AND      R1,R1,R2
+        STR      R1,[R0, #+16]
+        LDR      R1,[R0, #+16]
+        ORR      R1,R1,#0x40
+        STR      R1,[R0, #+16]
+        MOV      PC,LR            ;; return
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function main
+        ARM
+main:
+        LDR      R1,??main_0      ;; `?<Constant "ELF Started!">`
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R0,#+1
+        SWI      +328
+        LDR      R1,??main_0+0x4  ;; 0xffffffffa04d07e0
+        MOV      R0,#+33554432
+        BLX      R1
+        BL       test_pin_cts
+        LDR      R0,??main_0+0x8  ;; ElfKiller
+        SWI      +369
+        MOV      R0,#+0
+        POP      {PC}             ;; return
+        DATA
+??main_0:
+        DC32     `?<Constant "ELF Started!">`
+        DC32     0xffffffffa04d07e0
+        DC32     ElfKiller
+        CFI EndBlock cfiBlock8
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??kill_data??rA:
+        LDR      R12,??Subroutine0_0  ;; kill_data
+        MOV      PC,R12
+        DATA
+??Subroutine0_0:
+        DC32     kill_data
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??i2cw_pmu??rA:
+        LDR      R12,??Subroutine1_0  ;; i2cw_pmu
+        MOV      PC,R12
+        DATA
+??Subroutine1_0:
+        DC32     i2cw_pmu
+        CFI EndBlock cfiBlock10
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for ccu1_t0>`:
+        DATA
+        DC8 3, 10, 0, 0
+        DC32 int_ccu1_t0_handler
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for Prescaler>`:
+        DATA
+        DC32 1
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for Frequency>`:
+        DATA
+        DC32 1000
+`?<Initializer for Dutycycle>`:
+        DC32 50
+`?<Initializer for dat_40>`:
+        DC8 38
+`?<Initializer for dat_42>`:
+        DC8 4
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "ELF Started!">`:
+        DATA
+        DC8 "ELF Started!"
+        DC8 0, 0, 0
+
+        END
+// 
+// 1 440 bytes in segment CODE
+// 1 000 bytes in segment DATA_AN
+//    16 bytes in segment DATA_C
+//    22 bytes in segment DATA_I
+//    22 bytes in segment DATA_ID
+//    12 bytes in segment INITTAB
+// 
+// 1 416 bytes of CODE  memory (+    36 bytes shared)
+//    38 bytes of CONST memory
+//    22 bytes of DATA  memory (+ 1 000 bytes shared)
+//
+//Errors: none
+//Warnings: none

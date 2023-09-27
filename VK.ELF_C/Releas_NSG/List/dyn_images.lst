@@ -1,0 +1,1494 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:37 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \dyn_images.c                                        #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \dyn_images.c -D NEWSGOLD -D DEBUG -lCN              #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\dyn_images.lst                      #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\dyn_images.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\dyn_images.c
+      1          //!!!Значит так. Нужен свой список для смайлов. Удаление смайлов при выходе через 
+      2          //таблицу Dyn иконок не дает 100% ой гарантии.  
+      3          #include "dyn_images.h"
+      4          #include <siemens/pnglist.h>
+      5          #include <siemens/swilib.h>
+      6          #include "main.h"
+      7          #include "list.h"
+      8          
+      9          extern const char APP_DIR[];
+     10          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     11          LIST_HEAD(smiles);
+   \                     smiles:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for smiles>`
+     12          
+     13          struct image_st
+     14          {
+     15            struct list_head list;
+     16            IMGHDR img;
+     17          };
+     18          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     19          PNGLIST *pngtop = NULL;
+   \                     pngtop:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     20          DYNPNGICONLIST *dyn_pnglist = NULL;
+   \                     dyn_pnglist:
+   \   00000000                      DS8 4
+     21          
+     22          //!!!!! 0x4E74 юзать для иконки хэдера в меню. SetDynIcon в помощь
+     23          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     24          void DisableDynImages()
+     25          {
+   \                     DisableDynImages:
+   \   00000000   00402DE9           PUSH     {LR}
+     26            PNGTOP_DESC* pngtop=PNG_TOP();
+   \   00000004   B98100EF           SWI      +33209
+     27            pngtop->dyn_pltop=NULL;
+   \   00000008   0010A0E3           MOV      R1,#+0
+   \   0000000C   081080E5           STR      R1,[R0, #+8]
+     28          }
+   \   00000010   0080BDE8           POP      {PC}             ;; return
+     29          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     30          void EnableDynImages()
+     31          {
+   \                     EnableDynImages:
+   \   00000000   00402DE9           PUSH     {LR}
+     32            PNGTOP_DESC* pngtop=PNG_TOP();
+   \   00000004   B98100EF           SWI      +33209
+     33            pngtop->dyn_pltop=dyn_pnglist;
+   \   00000008   ........           LDR      R1,??DataTable12  ;; dyn_pnglist
+   \   0000000C   001091E5           LDR      R1,[R1, #+0]
+   \   00000010   081080E5           STR      R1,[R0, #+8]
+     34          }
+   \   00000014   0080BDE8           POP      {PC}             ;; return
+     35          
+     36          static void AddDynImage(IMGHDR* img, int npic)
+     37          {
+     38            DYNPNGICONLIST *dl;
+     39            DYNPNGICONLIST *dynimage;
+     40            
+     41            dynimage=dyn_pnglist;
+     42            
+     43            while(dynimage)
+     44            {
+     45              if (dynimage->icon == npic)//есть уже такой в списке. обновляем imghdr
+     46              {
+     47                mfree(dynimage->img);
+     48                dynimage->img=img;
+     49                return;
+     50              }
+     51              dynimage=dynimage->next;
+     52            }
+     53            
+     54            dl=malloc(sizeof(DYNPNGICONLIST)); 
+     55            dl->img=img;
+     56            dl->icon=npic;
+     57            dl->next=dyn_pnglist;
+     58            dyn_pnglist=dl;
+     59          }
+     60          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     61          void FreeDynPngList()
+     62          {
+   \                     FreeDynPngList:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+     63            DYNPNGICONLIST *d=dyn_pnglist;
+   \   00000004   ........           LDR      R4,??DataTable12  ;; dyn_pnglist
+   \   00000008   005094E5           LDR      R5,[R4, #+0]
+   \   0000000C   000055E3           CMP      R5,#+0
+   \   00000010   0E00000A           BEQ      ??FreeDynPngList_0
+     64            
+     65            while (d)
+     66            {
+     67              if (d->img)
+   \                     ??FreeDynPngList_1:
+   \   00000014   080095E5           LDR      R0,[R5, #+8]
+   \   00000018   000050E3           CMP      R0,#+0
+   \   0000001C   0600000A           BEQ      ??FreeDynPngList_2
+     68              {
+     69                if (d->img->bitmap)
+   \   00000020   041090E5           LDR      R1,[R0, #+4]
+   \   00000024   000051E3           CMP      R1,#+0
+   \   00000028   0100000A           BEQ      ??FreeDynPngList_3
+     70                  mfree(d->img->bitmap);
+   \   0000002C   0100A0E1           MOV      R0,R1
+   \   00000030   150000EF           SWI      +21
+     71                mfree(d->img);
+   \                     ??FreeDynPngList_3:
+   \   00000034   080095E5           LDR      R0,[R5, #+8]
+   \   00000038   150000EF           SWI      +21
+     72              }
+     73              void* next=d->next;
+   \                     ??FreeDynPngList_2:
+   \   0000003C   006095E5           LDR      R6,[R5, #+0]
+     74              mfree(d);
+   \   00000040   0500A0E1           MOV      R0,R5
+   \   00000044   150000EF           SWI      +21
+     75              d=next;
+   \   00000048   0650B0E1           MOVS     R5,R6
+     76            }
+   \   0000004C   F0FFFF1A           BNE      ??FreeDynPngList_1
+     77            
+     78            dyn_pnglist=NULL;
+   \                     ??FreeDynPngList_0:
+   \   00000050   0000A0E3           MOV      R0,#+0
+   \   00000054   000084E5           STR      R0,[R4, #+0]
+     79          }
+   \   00000058   7080BDE8           POP      {R4-R6,PC}       ;; return
+     80          
+     81          //******************************************************************************
+     82          //максимальное кол-во доступных иконок начиная с FIRST_UCS2_BITMAP всего 60:(
+     83          //остальные символы либо системные, либо ссылыются на один и тот же номер картинки
+     84          //Альтернатива только 
+
+   \                                 In segment CODE, align 4, keep-with-next
+     85          void LoadSmilesTo_0xE12A(int start_symbol, int n, int UCS2_offset)
+     86          {
+   \                     LoadSmilesTo_0xE12A:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   80D04DE2           SUB      SP,SP,#+128
+   \   00000008   0070A0E1           MOV      R7,R0
+   \   0000000C   0140A0E1           MOV      R4,R1
+   \   00000010   0250A0E1           MOV      R5,R2
+     87            char path[128];
+     88            int symbol=start_symbol;
+     89           
+     90           for(int i=0; i < n; i++)
+   \   00000014   0060A0E3           MOV      R6,#+0
+   \   00000018   010054E3           CMP      R4,#+1
+   \   0000001C   1C0000AA           BGE      ??LoadSmilesTo_0xE12A_0
+   \   00000020   80D08DE2           ADD      SP,SP,#+128
+   \   00000024   F081BDE8           POP      {R4-R8,PC}
+     91           {
+     92             snprintf(path, 127, "%ssmiles\\%X.png", APP_DIR, symbol);
+   \                     ??LoadSmilesTo_0xE12A_1:
+   \   00000028   ........           LDR      R3,??DataTable10  ;; APP_DIR
+   \   0000002C   ........           LDR      R2,??DataTable6  ;; `?<Constant "%ssmiles\\\\%X.png">`
+   \   00000030   0700A0E1           MOV      R0,R7
+   \   00000034   01002DE9           PUSH     {R0}
+   \   00000038   7F10A0E3           MOV      R1,#+127
+     93             DYNPNGICONLIST* dp=malloc(sizeof(DYNPNGICONLIST));
+     94             dp->icon=GetPicNByUnicodeSymbol(FIRST_UCS2_BITMAP+UCS2_offset+i);
+     95             dp->img=CreateIMGHDRFromPngFile(path, 0);
+     96             dp->next=dyn_pnglist;
+     97             dyn_pnglist=dp;
+     98             
+     99             symbol++;
+   \   0000003C   017087E2           ADD      R7,R7,#+1
+   \   00000040   04008DE2           ADD      R0,SP,#+4
+   \   00000044   1B0100EF           SWI      +283
+   \   00000048   0C00A0E3           MOV      R0,#+12
+   \   0000004C   140000EF           SWI      +20
+   \   00000050   0080A0E1           MOV      R8,R0
+   \   00000054   050086E0           ADD      R0,R6,R5
+   \   00000058   2A10A0E3           MOV      R1,#+42
+   \   0000005C   E11C81E3           ORR      R1,R1,#0xE100
+   \   00000060   000081E0           ADD      R0,R1,R0
+   \   00000064   E40100EF           SWI      +484
+   \   00000068   040088E5           STR      R0,[R8, #+4]
+   \   0000006C   0010A0E3           MOV      R1,#+0
+   \   00000070   04008DE2           ADD      R0,SP,#+4
+   \   00000074   E90100EF           SWI      +489
+   \   00000078   080088E5           STR      R0,[R8, #+8]
+   \   0000007C   ........           LDR      R0,??DataTable12  ;; dyn_pnglist
+    100           }
+   \   00000080   016086E2           ADD      R6,R6,#+1
+   \   00000084   001090E5           LDR      R1,[R0, #+0]
+   \   00000088   001088E5           STR      R1,[R8, #+0]
+   \   0000008C   008080E5           STR      R8,[R0, #+0]
+   \   00000090   04D08DE2           ADD      SP,SP,#+4
+   \                     ??LoadSmilesTo_0xE12A_0:
+   \   00000094   040056E1           CMP      R6,R4
+   \   00000098   E2FFFFBA           BLT      ??LoadSmilesTo_0xE12A_1
+    101          }
+   \   0000009C   80D08DE2           ADD      SP,SP,#+128      ;; stack cleaning
+   \   000000A0   F081BDE8           POP      {R4-R8,PC}       ;; return
+    102          
+    103          
+    104          //грузим смайлы в символы 0xE200 стандартным способом
+    105          //макс. число смайлов кот. можно загрузить-156
+    106          //0xE254-0xE25D используются прошивкой, поэтому доступно только 146
+    107          //!!!не хватает 0x1F63A смайлика
+    108          
+    109          typedef struct
+    110          {
+    111            IMGHDR imghdr;
+    112            int isBusy;
+    113          #ifdef NEWSGOLD  
+    114            int isFree;
+    115          #endif
+    116          } E200_SYMBOL_STRUCT;
+    117          
+    118          //Альтернатива SetDynIcon. 
+
+   \                                 In segment CODE, align 4, keep-with-next
+    119          static void LoadSmilesTo_0xE200(int unicode_symbol, int offset, int n)
+    120          {
+   \                     LoadSmilesTo_0xE200:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   80D04DE2           SUB      SP,SP,#+128
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0260A0E1           MOV      R6,R2
+    121            char path[128];
+    122            IMGHDR* img;
+    123            
+    124            E200_SYMBOL_STRUCT* tab;
+    125            
+    126            IMGHDR* first_img=GetPitAdrBy0xE200Symbol(0xE200);
+   \   00000014   E20CA0E3           MOV      R0,#+57856
+   \   00000018   F60100EF           SWI      +502
+   \   0000001C   0070B0E1           MOVS     R7,R0
+    127            
+    128            if (first_img)
+   \   00000020   2200000A           BEQ      ??LoadSmilesTo_0xE200_0
+    129            {
+    130              tab=(E200_SYMBOL_STRUCT*)first_img;//начало таблицы
+    131              
+    132              for(int i=0; i < n; i++)
+   \   00000024   0080A0E3           MOV      R8,#+0
+   \   00000028   010056E3           CMP      R6,#+1
+   \   0000002C   1D0000AA           BGE      ??LoadSmilesTo_0xE200_1
+   \   00000030   80D08DE2           ADD      SP,SP,#+128
+   \   00000034   F081BDE8           POP      {R4-R8,PC}
+    133              {
+    134                snprintf(path, 127, "%ssmiles\\%X.png", APP_DIR, i + unicode_symbol);
+   \                     ??LoadSmilesTo_0xE200_2:
+   \   00000038   ........           LDR      R3,??DataTable10  ;; APP_DIR
+   \   0000003C   ........           LDR      R2,??DataTable6  ;; `?<Constant "%ssmiles\\\\%X.png">`
+   \   00000040   080084E0           ADD      R0,R4,R8
+   \   00000044   01002DE9           PUSH     {R0}
+   \   00000048   7F10A0E3           MOV      R1,#+127
+   \   0000004C   04008DE2           ADD      R0,SP,#+4
+   \   00000050   1B0100EF           SWI      +283
+    135                img=CreateIMGHDRFromPngFile(path, 0);
+   \   00000054   0010A0E3           MOV      R1,#+0
+   \   00000058   04008DE2           ADD      R0,SP,#+4
+   \   0000005C   E90100EF           SWI      +489
+    136                if (img)
+   \   00000060   000050E3           CMP      R0,#+0
+   \   00000064   04D08DE2           ADD      SP,SP,#+4
+   \   00000068   0D00000A           BEQ      ??LoadSmilesTo_0xE200_3
+    137                {
+    138                  E200_SYMBOL_STRUCT* e = &tab[offset+i];
+    139                  e->imghdr.w=img->w;
+   \   0000006C   0020D0E5           LDRB     R2,[R0, #+0]
+   \   00000070   051088E0           ADD      R1,R8,R5
+   \   00000074   011287E0           ADD      R1,R7,R1, LSL #+4
+   \   00000078   0020C1E5           STRB     R2,[R1, #+0]
+    140                  e->imghdr.h=img->h;
+   \   0000007C   0120D0E5           LDRB     R2,[R0, #+1]
+   \   00000080   0120C1E5           STRB     R2,[R1, #+1]
+    141                  e->imghdr.bpnum=img->bpnum;
+   \   00000084   B220D0E1           LDRH     R2,[R0, #+2]
+   \   00000088   B220C1E1           STRH     R2,[R1, #+2]
+    142                  e->imghdr.bitmap=img->bitmap;
+   \   0000008C   042090E5           LDR      R2,[R0, #+4]
+   \   00000090   042081E5           STR      R2,[R1, #+4]
+    143                  e->isBusy=1;//если 0, то смайлы не рисуются-значит символ не занят
+   \   00000094   0120A0E3           MOV      R2,#+1
+   \   00000098   082081E5           STR      R2,[R1, #+8]
+    144          #ifdef NEWSGOLD        
+    145                  e->isFree=1;//флаг на удаление битмапа при вызове FreeDynIcon(only NSG/ELKA)
+   \   0000009C   0C2081E5           STR      R2,[R1, #+12]
+    146          #endif
+    147                  mfree(img);
+   \   000000A0   150000EF           SWI      +21
+    148                }
+    149              }
+   \                     ??LoadSmilesTo_0xE200_3:
+   \   000000A4   018088E2           ADD      R8,R8,#+1
+   \                     ??LoadSmilesTo_0xE200_1:
+   \   000000A8   060058E1           CMP      R8,R6
+   \   000000AC   E1FFFFBA           BLT      ??LoadSmilesTo_0xE200_2
+    150            }
+    151          }
+   \                     ??LoadSmilesTo_0xE200_0:
+   \   000000B0   80D08DE2           ADD      SP,SP,#+128      ;; stack cleaning
+   \   000000B4   F081BDE8           POP      {R4-R8,PC}       ;; return
+    152          
+    153          
+    154          static void Free0xE200(int offset, int n)
+    155          {
+    156            IMGHDR *img;
+    157            int E200_SymbolPic=0x4E20;
+    158            
+    159            for(int i=0; i < n; i++)
+    160            {
+    161          #ifndef NEWSGOLD
+    162              if (img = GetPitAdrBy0xE200Symbol(0xE200 + offset + i))
+    163                mfree(img->bitmap);
+    164          #endif
+    165              FreeDynIcon(E200_SymbolPic + offset + i);
+    166            }
+    167          }
+    168          
+    169          static void LoadEmoji()
+    170          {
+    171            LoadSmilesTo_0xE200(0x1F600, 3, 80);
+    172          }
+    173          
+    174          static void LoadSmiles0x1F440()
+    175          {
+    176           LoadSmilesTo_0xE200(0x1F440, 96, 17);  
+    177          }
+    178          
+    179          static void LoadSmiles0x2600()
+    180          {
+    181            LoadSmilesTo_0xE200(0x2639, 113, 2);
+    182          }
+    183          
+    184          static void LoadSmiles0x2700()
+    185          {
+    186            LoadSmilesTo_0xE200(0x270C, 115, 1);
+    187            LoadSmilesTo_0xE200(0x2764, 116, 1);
+    188          }
+    189          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    190          void LoadSmiles()
+    191          {
+   \                     LoadSmiles:
+   \   00000000   00402DE9           PUSH     {LR}
+    192            LoadEmoji();
+   \   00000004   5020A0E3           MOV      R2,#+80
+   \   00000008   0310A0E3           MOV      R1,#+3
+   \   0000000C   400BA0E3           MOV      R0,#+65536
+   \   00000010   F60C80E3           ORR      R0,R0,#0xF600
+   \   00000014   ........           BL       LoadSmilesTo_0xE200
+    193            LoadSmiles0x1F440();
+   \   00000018   1120A0E3           MOV      R2,#+17
+   \   0000001C   6010A0E3           MOV      R1,#+96
+   \   00000020   4000A0E3           MOV      R0,#+64
+   \   00000024   7D0B80E3           ORR      R0,R0,#0x1F400
+   \   00000028   ........           BL       LoadSmilesTo_0xE200
+    194            LoadSmiles0x2600();
+   \   0000002C   0220A0E3           MOV      R2,#+2
+   \   00000030   7110A0E3           MOV      R1,#+113
+   \   00000034   3900A0E3           MOV      R0,#+57
+   \   00000038   980D80E3           ORR      R0,R0,#0x2600
+   \   0000003C   ........           BL       LoadSmilesTo_0xE200
+    195            LoadSmiles0x2700();
+   \   00000040   0120A0E3           MOV      R2,#+1
+   \   00000044   7310A0E3           MOV      R1,#+115
+   \   00000048   0C00A0E3           MOV      R0,#+12
+   \   0000004C   9C0D80E3           ORR      R0,R0,#0x2700
+   \   00000050   ........           BL       LoadSmilesTo_0xE200
+   \   00000054   0120A0E3           MOV      R2,#+1
+   \   00000058   7410A0E3           MOV      R1,#+116
+   \   0000005C   6400A0E3           MOV      R0,#+100
+   \   00000060   9C0D80E3           ORR      R0,R0,#0x2700
+   \   00000064   ........           BL       LoadSmilesTo_0xE200
+    196            //__LoadSmiles(0x1F600, 80, 0);
+    197            //__LoadSmiles(0x1F440, 17, 81);  
+    198            //__LoadSmiles(0x2600, 2, 98);
+    199            //__LoadSmiles(0x2700, 2, 100);
+    200          }
+   \   00000068   0080BDE8           POP      {PC}             ;; return
+    201          
+    202          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    203          void FreeDynSmiles()
+    204          {
+   \                     FreeDynSmiles:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    205             Free0xE200(3, 80);
+   \   00000004   0040A0E3           MOV      R4,#+0
+   \                     ??FreeDynSmiles_0:
+   \   00000008   2300A0E3           MOV      R0,#+35
+   \   0000000C   4E0C80E3           ORR      R0,R0,#0x4E00
+   \   00000010   040080E0           ADD      R0,R0,R4
+   \   00000014   EC0100EF           SWI      +492
+   \   00000018   014084E2           ADD      R4,R4,#+1
+   \   0000001C   500054E3           CMP      R4,#+80
+   \   00000020   F8FFFFBA           BLT      ??FreeDynSmiles_0
+    206             Free0xE200(96, 21);
+   \   00000024   0040A0E3           MOV      R4,#+0
+   \                     ??FreeDynSmiles_1:
+   \   00000028   8000A0E3           MOV      R0,#+128
+   \   0000002C   4E0C80E3           ORR      R0,R0,#0x4E00
+   \   00000030   040080E0           ADD      R0,R0,R4
+   \   00000034   EC0100EF           SWI      +492
+   \   00000038   014084E2           ADD      R4,R4,#+1
+   \   0000003C   150054E3           CMP      R4,#+21
+   \   00000040   F8FFFFBA           BLT      ??FreeDynSmiles_1
+    207            //FreeDynPngList();
+    208          }
+   \   00000044   1080BDE8           POP      {R4,PC}          ;; return
+    209          
+    210          //******************************************************************************
+    211          
+    212          IMGHDR *CreateIMGHDRFromAnyFile(char *fname, int w, int h);
+    213          
+    214          /*void LoadDynImages()
+    215          {
+    216            char path[128];
+    217            int picnum;
+    218            IMGHDR* img;
+    219            
+    220            picnum=GetPicNByUnicodeSymbol(FIRST_UCS2_BITMAP+VK_HEADER_ICON);
+    221            snprintf(path, 127, "%simg\\header.png", DIR);
+    222            img=CreateIMGHDRFromPngFile(path, 0);
+    223            AddDynImage(img, picnum);
+    224            
+    225            picnum=GetPicNByUnicodeSymbol(FIRST_UCS2_BITMAP+ITEM1_ICON);
+    226            snprintf(path, 127, "%simg\\i1.jpg", DIR);
+    227            img=CreateIMGHDRFromAnyFile(path, 58, 58);
+    228            AddDynImage(img, picnum);
+    229            
+    230            picnum=GetPicNByUnicodeSymbol(FIRST_UCS2_BITMAP+ITEM2_ICON);
+    231            snprintf(path, 127, "%simg\\i2.jpg", DIR);
+    232            img=CreateIMGHDRFromAnyFile(path, 58, 58);
+    233            AddDynImage(img, picnum);
+    234          
+    235          }
+    236          */
+    237          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    238          void PNGLIST_Add(IMGHDR* img)
+    239          {
+   \                     PNGLIST_Add:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    240            PNGLIST *pl=malloc(sizeof(PNGLIST));
+   \   00000008   0C00A0E3           MOV      R0,#+12
+   \   0000000C   140000EF           SWI      +20
+    241            //char *s=malloc(strlen(path)+1);
+    242            //strcpy(s, path);
+    243            pl->pngname=NULL;
+   \   00000010   0010A0E3           MOV      R1,#+0
+   \   00000014   041080E5           STR      R1,[R0, #+4]
+    244            pl->img=img;
+    245            pl->next=pngtop;
+   \   00000018   ........           LDR      R1,??DataTable11  ;; pngtop
+   \   0000001C   084080E5           STR      R4,[R0, #+8]
+   \   00000020   002091E5           LDR      R2,[R1, #+0]
+   \   00000024   002080E5           STR      R2,[R0, #+0]
+    246            pngtop=pl;
+   \   00000028   000081E5           STR      R0,[R1, #+0]
+    247          }
+   \   0000002C   1080BDE8           POP      {R4,PC}          ;; return
+    248          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    249          void PNGLIST_Free()
+    250          {
+   \                     PNGLIST_Free:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    251            PNGLIST* pl=pngtop;
+   \   00000004   ........           LDR      R4,??DataTable11  ;; pngtop
+   \   00000008   005094E5           LDR      R5,[R4, #+0]
+   \   0000000C   000055E3           CMP      R5,#+0
+   \   00000010   0F00000A           BEQ      ??PNGLIST_Free_0
+    252            
+    253            while(pl)
+    254            {
+    255              if (pl->pngname)
+   \                     ??PNGLIST_Free_1:
+   \   00000014   040095E5           LDR      R0,[R5, #+4]
+   \   00000018   000050E3           CMP      R0,#+0
+   \   0000001C   0000000A           BEQ      ??PNGLIST_Free_2
+    256                mfree(pl->pngname);
+   \   00000020   150000EF           SWI      +21
+    257              
+    258              if (pl->img)
+   \                     ??PNGLIST_Free_2:
+   \   00000024   080095E5           LDR      R0,[R5, #+8]
+   \   00000028   000050E3           CMP      R0,#+0
+   \   0000002C   0300000A           BEQ      ??PNGLIST_Free_3
+    259              {
+    260                mfree(pl->img->bitmap);
+   \   00000030   040090E5           LDR      R0,[R0, #+4]
+   \   00000034   150000EF           SWI      +21
+    261                mfree(pl->img);
+   \   00000038   080095E5           LDR      R0,[R5, #+8]
+   \   0000003C   150000EF           SWI      +21
+    262              }
+    263              void* next=pl->next;
+   \                     ??PNGLIST_Free_3:
+   \   00000040   006095E5           LDR      R6,[R5, #+0]
+    264              mfree(pl);
+   \   00000044   0500A0E1           MOV      R0,R5
+   \   00000048   150000EF           SWI      +21
+    265              pl=next;
+   \   0000004C   0650B0E1           MOVS     R5,R6
+    266            }
+   \   00000050   EFFFFF1A           BNE      ??PNGLIST_Free_1
+    267            pngtop=NULL;
+   \                     ??PNGLIST_Free_0:
+   \   00000054   0000A0E3           MOV      R0,#+0
+   \   00000058   000084E5           STR      R0,[R4, #+0]
+    268          }
+   \   0000005C   7080BDE8           POP      {R4-R6,PC}       ;; return
+    269          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    270          IMGHDR* PNGLIST_GetImgByIndex(int index)
+    271          {
+    272            IMGHDR* img=NULL;
+    273            PNGLIST *pl=pngtop;
+   \                     PNGLIST_GetImgByIndex:
+   \   00000000   ........           LDR      R1,??DataTable11  ;; pngtop
+    274            int n=0;
+   \   00000004   0020A0E3           MOV      R2,#+0
+   \   00000008   001091E5           LDR      R1,[R1, #+0]
+   \   0000000C   010000EA           B        ??PNGLIST_GetImgByIndex_0
+    275            
+    276            while (pl)
+    277            {
+    278              if (n==index)
+    279                return pl->img;
+    280              pl=pl->next;
+   \                     ??PNGLIST_GetImgByIndex_1:
+   \   00000010   001091E5           LDR      R1,[R1, #+0]
+    281              n++;
+   \   00000014   012082E2           ADD      R2,R2,#+1
+   \                     ??PNGLIST_GetImgByIndex_0:
+   \   00000018   000051E3           CMP      R1,#+0
+   \   0000001C   0300000A           BEQ      ??PNGLIST_GetImgByIndex_2
+   \   00000020   000052E1           CMP      R2,R0
+   \   00000024   F9FFFF1A           BNE      ??PNGLIST_GetImgByIndex_1
+   \   00000028   080091E5           LDR      R0,[R1, #+8]
+   \   0000002C   1EFF2FE1           BX       LR
+    282            }
+    283            return img;
+   \                     ??PNGLIST_GetImgByIndex_2:
+   \   00000030   0000A0E3           MOV      R0,#+0
+   \   00000034   1EFF2FE1           BX       LR               ;; return
+    284          }
+    285          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    286          void LoadImages()
+    287          {
+   \                     LoadImages:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    288            IMGHDR* img;
+    289            char path[128];
+    290          
+    291            //1
+    292            snprintf(path, 127, "%simg\\camera.png", APP_DIR);
+   \   00000004   64409FE5           LDR      R4,??LoadImages_0  ;; `?<Constant "%simg\\\\camera.png">`
+   \   00000008   ........           LDR      R5,??DataTable10  ;; APP_DIR
+   \   0000000C   80D04DE2           SUB      SP,SP,#+128
+   \   00000010   0530A0E1           MOV      R3,R5
+   \   00000014   0420A0E1           MOV      R2,R4
+   \   00000018   7F10A0E3           MOV      R1,#+127
+   \   0000001C   0D00A0E1           MOV      R0,SP
+   \   00000020   1B0100EF           SWI      +283
+    293            img=CreateIMGHDRFromPngFile(path, 0);
+   \   00000024   0010A0E3           MOV      R1,#+0
+   \   00000028   0D00A0E1           MOV      R0,SP
+   \   0000002C   E90100EF           SWI      +489
+    294            if (img)
+   \   00000030   000050E3           CMP      R0,#+0
+   \   00000034   0000000A           BEQ      ??LoadImages_1
+    295              PNGLIST_Add(img);
+   \   00000038   ........           BL       PNGLIST_Add
+    296            
+    297            //0
+    298            snprintf(path, 127, "%simg\\deactivated.png", APP_DIR);
+   \                     ??LoadImages_1:
+   \   0000003C   0530A0E1           MOV      R3,R5
+   \   00000040   142084E2           ADD      R2,R4,#+20
+   \   00000044   7F10A0E3           MOV      R1,#+127
+   \   00000048   0D00A0E1           MOV      R0,SP
+   \   0000004C   1B0100EF           SWI      +283
+    299            img=CreateIMGHDRFromPngFile(path, 0);
+   \   00000050   0010A0E3           MOV      R1,#+0
+   \   00000054   0D00A0E1           MOV      R0,SP
+   \   00000058   E90100EF           SWI      +489
+    300            if (img)
+   \   0000005C   000050E3           CMP      R0,#+0
+   \   00000060   0000000A           BEQ      ??LoadImages_2
+    301              PNGLIST_Add(img);
+   \   00000064   ........           BL       PNGLIST_Add
+    302          }
+   \                     ??LoadImages_2:
+   \   00000068   80D08DE2           ADD      SP,SP,#+128      ;; stack cleaning
+   \   0000006C   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??LoadImages_0:
+   \   00000070   ........           DC32     `?<Constant "%simg\\\\camera.png">`
+    303          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    304          void AddImage(IMGHDR* img)
+    305          {
+   \                     AddImage:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    306            PNGLIST* pl=malloc(sizeof(PNGLIST));
+   \   00000008   0C00A0E3           MOV      R0,#+12
+   \   0000000C   140000EF           SWI      +20
+    307            pl->pngname=NULL;
+   \   00000010   0010A0E3           MOV      R1,#+0
+   \   00000014   041080E5           STR      R1,[R0, #+4]
+    308            pl->img=img;
+    309            pl->next=pngtop;
+   \   00000018   ........           LDR      R1,??DataTable11  ;; pngtop
+   \   0000001C   084080E5           STR      R4,[R0, #+8]
+   \   00000020   002091E5           LDR      R2,[R1, #+0]
+   \   00000024   002080E5           STR      R2,[R0, #+0]
+    310            pngtop=pl;
+   \   00000028   000081E5           STR      R0,[R1, #+0]
+    311          }
+   \   0000002C   1080BDE8           POP      {R4,PC}          ;; return
+    312          
+    313          
+    314          //******************************************************************************
+    315          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    316          HObj CreateIMGHDRFromMemoryAsync(int uid, char *buf, int len, int msg)
+    317          {//Вызывать только в контексте MMI(CepID==0x4209). SUBPROC не прокатит
+   \                     CreateIMGHDRFromMemoryAsync:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   04D04DE2           SUB      SP,SP,#+4
+   \   00000008   0140A0E1           MOV      R4,R1
+   \   0000000C   0250A0E1           MOV      R5,R2
+    318            unsigned int err=0;
+   \   00000010   0020A0E3           MOV      R2,#+0
+   \   00000014   00208DE5           STR      R2,[SP, #+0]
+    319            HObj obj;
+    320            
+    321          #ifdef ELKA  
+    322            short w=58;
+    323            short h=58;
+    324          #else
+    325            short w=32;
+    326            short h=32;
+    327          #endif  
+    328            
+    329            obj=Obs_CreateObject(uid, 0x2D, 3, msg, 1, 0, &err);
+   \   00000018   0D10A0E1           MOV      R1,SP
+   \   0000001C   02002DE9           PUSH     {R1}
+   \   00000020   0320A0E3           MOV      R2,#+3
+   \   00000024   0010A0E3           MOV      R1,#+0
+   \   00000028   02002DE9           PUSH     {R1}
+   \   0000002C   0110A0E3           MOV      R1,#+1
+   \   00000030   02002DE9           PUSH     {R1}
+   \   00000034   2D10A0E3           MOV      R1,#+45
+   \   00000038   590200EF           SWI      +601
+   \   0000003C   0060A0E1           MOV      R6,R0
+    330            
+    331            //err=Obs_SetCSM(obj, csm);
+    332            
+    333            //err=Obs_SetUnk2(obj, 3);
+    334            //if (err) goto exit;
+    335            
+    336            err=Obs_SetInputMemory(obj, 0, buf, len);
+   \   00000040   0530A0E1           MOV      R3,R5
+   \   00000044   0420A0E1           MOV      R2,R4
+   \   00000048   0010A0E3           MOV      R1,#+0
+   \   0000004C   7A0200EF           SWI      +634
+   \   00000050   0C008DE5           STR      R0,[SP, #+12]
+    337                 
+    338            err=Obs_SetOutputImageSize(obj, w, h);
+   \   00000054   2020A0E3           MOV      R2,#+32
+   \   00000058   0210A0E1           MOV      R1,R2
+   \   0000005C   0600A0E1           MOV      R0,R6
+   \   00000060   5D0200EF           SWI      +605
+   \   00000064   0C008DE5           STR      R0,[SP, #+12]
+    339            
+    340            err=Obs_SetScaling(obj, 0xF);
+   \   00000068   0F10A0E3           MOV      R1,#+15
+   \   0000006C   0600A0E1           MOV      R0,R6
+   \   00000070   630200EF           SWI      +611
+   \   00000074   0C008DE5           STR      R0,[SP, #+12]
+    341            
+    342            //err=Obs_SetUnk(obj, 5);
+    343            //if (err) goto exit;
+    344            
+    345            err=Obs_Start(obj);
+   \   00000078   0600A0E1           MOV      R0,R6
+   \   0000007C   5E0200EF           SWI      +606
+    346              
+    347            return obj;
+   \   00000080   0600A0E1           MOV      R0,R6
+   \   00000084   10D08DE2           ADD      SP,SP,#+16
+   \   00000088   7080BDE8           POP      {R4-R6,PC}       ;; return
+    348          }
+    349          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    350          HObj CreateIMGHDRFromFileAsync(char *fname, int msg, short w, short h)
+    351          {//Вызывать только в контексте MMI(CepID==0x4209). SUBPROC не прокатит
+   \                     CreateIMGHDRFromFileAsync:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   47DF4DE2           SUB      SP,SP,#+284
+   \   00000008   0160A0E1           MOV      R6,R1
+   \   0000000C   0070A0E1           MOV      R7,R0
+   \   00000010   0240A0E1           MOV      R4,R2
+   \   00000014   0350A0E1           MOV      R5,R3
+    352            unsigned int err=0;
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   00108DE5           STR      R1,[SP, #+0]
+    353            HObj obj;
+    354            int uid;
+    355            
+    356            WSHDR ws;
+    357            unsigned short wsbody[128];
+    358            
+    359            short _w=w;
+   \   00000020   B440CDE1           STRH     R4,[SP, #+4]
+    360            short _h=h;
+   \   00000024   B650CDE1           STRH     R5,[SP, #+6]
+    361            
+    362            CreateLocalWS(&ws, wsbody, 127);
+   \   00000028   7F20A0E3           MOV      R2,#+127
+   \   0000002C   1C108DE2           ADD      R1,SP,#+28
+   \   00000030   08008DE2           ADD      R0,SP,#+8
+   \   00000034   270100EF           SWI      +295
+    363            wsprintf(&ws, fname);
+   \   00000038   0710A0E1           MOV      R1,R7
+   \   0000003C   08008DE2           ADD      R0,SP,#+8
+   \   00000040   240100EF           SWI      +292
+    364            uid=GetExtUidByFileName(&ws);
+   \   00000044   08008DE2           ADD      R0,SP,#+8
+   \   00000048   E10200EF           SWI      +737
+    365            
+    366            obj=Obs_CreateObject(uid, 0x2D, 2, msg, 1, 0, &err);
+   \   0000004C   0D10A0E1           MOV      R1,SP
+   \   00000050   02002DE9           PUSH     {R1}
+   \   00000054   0630A0E1           MOV      R3,R6
+   \   00000058   0220A0E3           MOV      R2,#+2
+   \   0000005C   0010A0E3           MOV      R1,#+0
+   \   00000060   02002DE9           PUSH     {R1}
+   \   00000064   0110A0E3           MOV      R1,#+1
+   \   00000068   02002DE9           PUSH     {R1}
+   \   0000006C   2D10A0E3           MOV      R1,#+45
+   \   00000070   590200EF           SWI      +601
+   \   00000074   0060A0E1           MOV      R6,R0
+    367            if (err) goto exit;
+   \   00000078   0C009DE5           LDR      R0,[SP, #+12]
+   \   0000007C   0CD08DE2           ADD      SP,SP,#+12
+   \   00000080   000050E3           CMP      R0,#+0
+   \   00000084   2800001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    368            
+    369            //err=Obs_SetCSM(obj, (void*)csm);
+    370            
+    371            err=Obs_SetInputFile(obj, 0, &ws);
+   \   00000088   08208DE2           ADD      R2,SP,#+8
+   \   0000008C   0010A0E3           MOV      R1,#+0
+   \   00000090   0600A0E1           MOV      R0,R6
+   \   00000094   5B0200EF           SWI      +603
+   \   00000098   00008DE5           STR      R0,[SP, #+0]
+    372            if (err) goto exit;
+   \   0000009C   000050E3           CMP      R0,#+0
+   \   000000A0   2100001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    373            
+    374            //err=Obs_SetRotation(obj, 0);
+    375            //if (err) goto exit;
+    376            
+    377            if (w==0 || h==0)
+   \   000000A4   000054E3           CMP      R4,#+0
+   \   000000A8   00005513           CMPNE    R5,#+0
+   \   000000AC   0C00001A           BNE      ??CreateIMGHDRFromFileAsync_1
+    378            { 
+    379              err=Obs_GetInfo(obj, 0);
+   \   000000B0   0010A0E3           MOV      R1,#+0
+   \   000000B4   0600A0E1           MOV      R0,R6
+   \   000000B8   620200EF           SWI      +610
+   \   000000BC   00008DE5           STR      R0,[SP, #+0]
+    380              if (err) goto exit;
+   \   000000C0   000050E3           CMP      R0,#+0
+   \   000000C4   1800001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    381              
+    382              err=Obs_GetInputImageSize (obj, &_w, &_h);
+   \   000000C8   06208DE2           ADD      R2,SP,#+6
+   \   000000CC   04108DE2           ADD      R1,SP,#+4
+   \   000000D0   0600A0E1           MOV      R0,R6
+   \   000000D4   5C0200EF           SWI      +604
+   \   000000D8   00008DE5           STR      R0,[SP, #+0]
+    383              if (err) goto exit;
+   \   000000DC   000050E3           CMP      R0,#+0
+   \   000000E0   1100001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    384            }
+    385            
+    386            err=Obs_SetOutputImageSize(obj, _w, _h);
+   \                     ??CreateIMGHDRFromFileAsync_1:
+   \   000000E4   F620DDE1           LDRSH    R2,[SP, #+6]
+   \   000000E8   F410DDE1           LDRSH    R1,[SP, #+4]
+   \   000000EC   0600A0E1           MOV      R0,R6
+   \   000000F0   5D0200EF           SWI      +605
+   \   000000F4   00008DE5           STR      R0,[SP, #+0]
+    387            if(err) goto exit;
+   \   000000F8   000050E3           CMP      R0,#+0
+   \   000000FC   0A00001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    388            
+    389            err=Obs_SetScaling(obj, 0xF);
+   \   00000100   0F10A0E3           MOV      R1,#+15
+   \   00000104   0600A0E1           MOV      R0,R6
+   \   00000108   630200EF           SWI      +611
+   \   0000010C   00008DE5           STR      R0,[SP, #+0]
+    390            if (err) goto exit;
+   \   00000110   000050E3           CMP      R0,#+0
+   \   00000114   0400001A           BNE      ??CreateIMGHDRFromFileAsync_0
+    391          
+    392           // err=Obs_Unk(obj, 5);
+    393           // if (err) goto exit;
+    394          
+    395            //err=Obs_Prepare(obj);
+    396            //if (err) goto exit;
+    397            
+    398            err=Obs_Start(obj);
+   \   00000118   0600A0E1           MOV      R0,R6
+   \   0000011C   5E0200EF           SWI      +606
+    399            return obj;
+   \   00000120   0600A0E1           MOV      R0,R6
+   \   00000124   47DF8DE2           ADD      SP,SP,#+284
+   \   00000128   F080BDE8           POP      {R4-R7,PC}
+    400            
+    401          exit:
+    402            Obs_DestroyObject(obj);
+   \                     ??CreateIMGHDRFromFileAsync_0:
+   \   0000012C   0600A0E1           MOV      R0,R6
+   \   00000130   5A0200EF           SWI      +602
+    403            return NULL;
+   \   00000134   0000A0E3           MOV      R0,#+0
+   \   00000138   47DF8DE2           ADD      SP,SP,#+284
+   \   0000013C   F080BDE8           POP      {R4-R7,PC}       ;; return
+    404          }
+    405          
+    406          //******************************************************************************
+    407          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    408          IMGHDR *CreateIMGHDRFromAnyFile(char *fname, int w, int h)
+    409          {
+   \                     CreateIMGHDRFromAnyFile:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   48DF4DE2           SUB      SP,SP,#+288
+   \   00000008   0050A0E1           MOV      R5,R0
+    410            IMGHDR *ret=NULL;
+   \   0000000C   0040A0E3           MOV      R4,#+0
+    411            IMGHDR *temp=NULL;
+   \   00000010   04408DE5           STR      R4,[SP, #+4]
+    412            HObj obj;
+    413            unsigned int err=0;
+   \   00000014   00408DE5           STR      R4,[SP, #+0]
+    414            int len;
+    415            
+    416            WSHDR ws;
+    417            unsigned short wsbody[128];
+    418            
+    419            short _w=w;
+   \   00000018   B810CDE1           STRH     R1,[SP, #+8]
+    420            short _h=h;
+   \   0000001C   BA20CDE1           STRH     R2,[SP, #+10]
+    421            
+    422            CreateLocalWS(&ws, wsbody, 127);
+   \   00000020   7F20A0E3           MOV      R2,#+127
+   \   00000024   20108DE2           ADD      R1,SP,#+32
+   \   00000028   0C008DE2           ADD      R0,SP,#+12
+   \   0000002C   270100EF           SWI      +295
+    423            str_2ws(&ws, fname, 127);
+   \   00000030   7F20A0E3           MOV      R2,#+127
+   \   00000034   0510A0E1           MOV      R1,R5
+   \   00000038   0C008DE2           ADD      R0,SP,#+12
+   \   0000003C   6C0100EF           SWI      +364
+    424            int uid=GetExtUidByFileName(&ws);
+   \   00000040   0C008DE2           ADD      R0,SP,#+12
+   \   00000044   E10200EF           SWI      +737
+    425            
+    426            obj=Obs_CreateObject(uid, 0x2D, 0, 0x0, 1, 1, &err);//синхронный режим
+   \   00000048   0D10A0E1           MOV      R1,SP
+   \   0000004C   02002DE9           PUSH     {R1}
+   \   00000050   0030A0E3           MOV      R3,#+0
+   \   00000054   0320A0E1           MOV      R2,R3
+   \   00000058   0110A0E3           MOV      R1,#+1
+   \   0000005C   02002DE9           PUSH     {R1}
+   \   00000060   02002DE9           PUSH     {R1}
+   \   00000064   2D10A0E3           MOV      R1,#+45
+   \   00000068   590200EF           SWI      +601
+   \   0000006C   0050A0E1           MOV      R5,R0
+    427            if(err) return(0);
+   \   00000070   0C009DE5           LDR      R0,[SP, #+12]
+   \   00000074   0CD08DE2           ADD      SP,SP,#+12
+   \   00000078   000050E3           CMP      R0,#+0
+   \   0000007C   4B00001A           BNE      ??CreateIMGHDRFromAnyFile_0
+    428            
+    429            err=Obs_SetInputFile(obj, 0, &ws);
+   \   00000080   0C208DE2           ADD      R2,SP,#+12
+   \   00000084   0010A0E3           MOV      R1,#+0
+   \   00000088   0500A0E1           MOV      R0,R5
+   \   0000008C   5B0200EF           SWI      +603
+   \   00000090   00008DE5           STR      R0,[SP, #+0]
+    430            if(err) goto exit;
+   \   00000094   000050E3           CMP      R0,#+0
+   \   00000098   4200001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    431            
+    432            if (_w==NULL)
+   \   0000009C   F800DDE1           LDRSH    R0,[SP, #+8]
+   \   000000A0   000050E3           CMP      R0,#+0
+   \   000000A4   0C00001A           BNE      ??CreateIMGHDRFromAnyFile_2
+    433            {
+    434              err=Obs_GetInfo(obj, 0);
+   \   000000A8   0010A0E3           MOV      R1,#+0
+   \   000000AC   0500A0E1           MOV      R0,R5
+   \   000000B0   620200EF           SWI      +610
+   \   000000B4   00008DE5           STR      R0,[SP, #+0]
+    435              if(err) goto exit;
+   \   000000B8   000050E3           CMP      R0,#+0
+   \   000000BC   3900001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    436              
+    437              err=Obs_GetInputImageSize (obj, &_w, &_h);
+   \   000000C0   0A208DE2           ADD      R2,SP,#+10
+   \   000000C4   08108DE2           ADD      R1,SP,#+8
+   \   000000C8   0500A0E1           MOV      R0,R5
+   \   000000CC   5C0200EF           SWI      +604
+   \   000000D0   00008DE5           STR      R0,[SP, #+0]
+    438              if(err) goto exit;
+   \   000000D4   000050E3           CMP      R0,#+0
+   \   000000D8   3200001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    439            }
+    440            
+    441            err=Obs_SetOutputImageSize(obj, _w, _h);
+   \                     ??CreateIMGHDRFromAnyFile_2:
+   \   000000DC   FA20DDE1           LDRSH    R2,[SP, #+10]
+   \   000000E0   F810DDE1           LDRSH    R1,[SP, #+8]
+   \   000000E4   0500A0E1           MOV      R0,R5
+   \   000000E8   5D0200EF           SWI      +605
+   \   000000EC   00008DE5           STR      R0,[SP, #+0]
+    442            if(err) goto exit;
+   \   000000F0   000050E3           CMP      R0,#+0
+   \   000000F4   2B00001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    443            
+    444            err=Obs_SetScaling(obj, 0xF);
+   \   000000F8   0F10A0E3           MOV      R1,#+15
+   \   000000FC   0500A0E1           MOV      R0,R5
+   \   00000100   630200EF           SWI      +611
+   \   00000104   00008DE5           STR      R0,[SP, #+0]
+    445            if(err) goto exit;
+   \   00000108   000050E3           CMP      R0,#+0
+   \   0000010C   2500001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    446            
+    447            err=Obs_Start(obj);
+   \   00000110   0500A0E1           MOV      R0,R5
+   \   00000114   5E0200EF           SWI      +606
+   \   00000118   00008DE5           STR      R0,[SP, #+0]
+    448            if(err) goto exit;
+   \   0000011C   000050E3           CMP      R0,#+0
+   \   00000120   2000001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    449              
+    450            err=Obs_Output_GetPictstruct(obj, &temp);
+   \   00000124   04108DE2           ADD      R1,SP,#+4
+   \   00000128   0500A0E1           MOV      R0,R5
+   \   0000012C   5F0200EF           SWI      +607
+   \   00000130   00008DE5           STR      R0,[SP, #+0]
+    451            if(err) goto exit;
+   \   00000134   000050E3           CMP      R0,#+0
+   \   00000138   1A00001A           BNE      ??CreateIMGHDRFromAnyFile_1
+    452              
+    453            ret=malloc(sizeof(IMGHDR));
+   \   0000013C   0800A0E3           MOV      R0,#+8
+   \   00000140   140000EF           SWI      +20
+   \   00000144   0040A0E1           MOV      R4,R0
+    454            ret->w=temp->w;
+   \   00000148   04009DE5           LDR      R0,[SP, #+4]
+   \   0000014C   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000150   0000C4E5           STRB     R0,[R4, #+0]
+    455            ret->h=temp->h;
+   \   00000154   04009DE5           LDR      R0,[SP, #+4]
+   \   00000158   0100D0E5           LDRB     R0,[R0, #+1]
+   \   0000015C   0100C4E5           STRB     R0,[R4, #+1]
+    456            ret->bpnum=(char)temp->bpnum;// читаем только один байт
+   \   00000160   04009DE5           LDR      R0,[SP, #+4]
+   \   00000164   B200D0E1           LDRH     R0,[R0, #+2]
+   \   00000168   FF0000E2           AND      R0,R0,#0xFF
+   \   0000016C   B200C4E1           STRH     R0,[R4, #+2]
+    457            len=CalcBitmapSize(temp->w, temp->h,(char)temp->bpnum);
+   \   00000170   04009DE5           LDR      R0,[SP, #+4]
+   \   00000174   B220D0E1           LDRH     R2,[R0, #+2]
+   \   00000178   0110D0E5           LDRB     R1,[R0, #+1]
+   \   0000017C   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000180   FF2002E2           AND      R2,R2,#0xFF
+   \   00000184   580200EF           SWI      +600
+   \   00000188   0060A0E1           MOV      R6,R0
+    458            ret->bitmap=malloc(len);
+   \   0000018C   140000EF           SWI      +20
+   \   00000190   040084E5           STR      R0,[R4, #+4]
+    459            memcpy(ret->bitmap, temp->bitmap, len); 
+   \   00000194   04009DE5           LDR      R0,[SP, #+4]
+   \   00000198   0620A0E1           MOV      R2,R6
+   \   0000019C   041090E5           LDR      R1,[R0, #+4]
+   \   000001A0   040094E5           LDR      R0,[R4, #+4]
+   \   000001A4   1E0100EF           SWI      +286
+    460          
+    461          exit:
+    462            Obs_DestroyObject(obj);
+   \                     ??CreateIMGHDRFromAnyFile_1:
+   \   000001A8   0500A0E1           MOV      R0,R5
+   \   000001AC   5A0200EF           SWI      +602
+    463            return ret;
+   \                     ??CreateIMGHDRFromAnyFile_0:
+   \   000001B0   0400A0E1           MOV      R0,R4
+   \   000001B4   48DF8DE2           ADD      SP,SP,#+288
+   \   000001B8   7080BDE8           POP      {R4-R6,PC}       ;; return
+    464          }
+    465          
+    466          //******************************************************************************
+    467          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    468          IMGHDR *CreateIMGHDRFromMemory(short w, short h, int uid, char *buf, int len)//синхронный режим
+    469          {
+   \                     CreateIMGHDRFromMemory:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+   \   00000004   0CD04DE2           SUB      SP,SP,#+12
+   \   00000008   28709DE5           LDR      R7,[SP, #+40]
+   \   0000000C   0040A0E1           MOV      R4,R0
+   \   00000010   0150A0E1           MOV      R5,R1
+    470            IMGHDR *imghdr1=NULL;
+   \   00000014   0080A0E3           MOV      R8,#+0
+   \   00000018   04808DE5           STR      R8,[SP, #+4]
+    471            IMGHDR *imghdr2=NULL;
+    472            HObj obj;
+    473            unsigned int err=0;
+   \   0000001C   00808DE5           STR      R8,[SP, #+0]
+    474            
+    475            short w2=w;
+   \   00000020   B840CDE1           STRH     R4,[SP, #+8]
+    476            short h2=h;
+   \   00000024   BA50CDE1           STRH     R5,[SP, #+10]
+    477            
+    478            obj=Obs_CreateObject(uid, 0x2D, 0, 0x0, 1, 1, &err);
+   \   00000028   0D10A0E1           MOV      R1,SP
+   \   0000002C   02002DE9           PUSH     {R1}
+   \   00000030   0200A0E1           MOV      R0,R2
+   \   00000034   0360A0E1           MOV      R6,R3
+   \   00000038   0030A0E3           MOV      R3,#+0
+   \   0000003C   0110A0E3           MOV      R1,#+1
+   \   00000040   02002DE9           PUSH     {R1}
+   \   00000044   02002DE9           PUSH     {R1}
+   \   00000048   0320A0E1           MOV      R2,R3
+   \   0000004C   2D10A0E3           MOV      R1,#+45
+   \   00000050   590200EF           SWI      +601
+   \   00000054   0090A0E1           MOV      R9,R0
+    479            if(err) return(0);
+   \   00000058   0C009DE5           LDR      R0,[SP, #+12]
+   \   0000005C   0CD08DE2           ADD      SP,SP,#+12
+   \   00000060   000050E3           CMP      R0,#+0
+   \   00000064   4C00001A           BNE      ??CreateIMGHDRFromMemory_0
+    480            
+    481            err=Obs_SetInputMemory(obj, 0, buf, len);
+   \   00000068   0730A0E1           MOV      R3,R7
+   \   0000006C   0620A0E1           MOV      R2,R6
+   \   00000070   0010A0E3           MOV      R1,#+0
+   \   00000074   0900A0E1           MOV      R0,R9
+   \   00000078   7A0200EF           SWI      +634
+   \   0000007C   00008DE5           STR      R0,[SP, #+0]
+    482            if(err)  goto exit;
+   \   00000080   000050E3           CMP      R0,#+0
+   \   00000084   4200001A           BNE      ??CreateIMGHDRFromMemory_1
+    483          
+    484            if (w==0 || h==0)
+   \   00000088   000054E3           CMP      R4,#+0
+   \   0000008C   00005513           CMPNE    R5,#+0
+   \   00000090   0C00001A           BNE      ??CreateIMGHDRFromMemory_2
+    485            {
+    486              err=Obs_GetInfo(obj, 0);   
+   \   00000094   0010A0E3           MOV      R1,#+0
+   \   00000098   0900A0E1           MOV      R0,R9
+   \   0000009C   620200EF           SWI      +610
+   \   000000A0   00008DE5           STR      R0,[SP, #+0]
+    487              if(err)  goto exit;
+   \   000000A4   000050E3           CMP      R0,#+0
+   \   000000A8   3900001A           BNE      ??CreateIMGHDRFromMemory_1
+    488              
+    489              err=Obs_GetInputImageSize (obj, &w2, &h2);
+   \   000000AC   0A208DE2           ADD      R2,SP,#+10
+   \   000000B0   08108DE2           ADD      R1,SP,#+8
+   \   000000B4   0900A0E1           MOV      R0,R9
+   \   000000B8   5C0200EF           SWI      +604
+   \   000000BC   00008DE5           STR      R0,[SP, #+0]
+    490              if(err)  goto exit;
+   \   000000C0   000050E3           CMP      R0,#+0
+   \   000000C4   3200001A           BNE      ??CreateIMGHDRFromMemory_1
+    491            }
+    492            
+    493            err=Obs_SetOutputImageSize(obj, w2, h2);
+   \                     ??CreateIMGHDRFromMemory_2:
+   \   000000C8   FA20DDE1           LDRSH    R2,[SP, #+10]
+   \   000000CC   F810DDE1           LDRSH    R1,[SP, #+8]
+   \   000000D0   0900A0E1           MOV      R0,R9
+   \   000000D4   5D0200EF           SWI      +605
+   \   000000D8   00008DE5           STR      R0,[SP, #+0]
+    494            if(err)  goto exit;
+   \   000000DC   000050E3           CMP      R0,#+0
+   \   000000E0   2B00001A           BNE      ??CreateIMGHDRFromMemory_1
+    495            
+    496            err=Obs_SetScaling(obj, 0xF);
+   \   000000E4   0F10A0E3           MOV      R1,#+15
+   \   000000E8   0900A0E1           MOV      R0,R9
+   \   000000EC   630200EF           SWI      +611
+   \   000000F0   00008DE5           STR      R0,[SP, #+0]
+    497            if(err)  goto exit;
+   \   000000F4   000050E3           CMP      R0,#+0
+   \   000000F8   2500001A           BNE      ??CreateIMGHDRFromMemory_1
+    498            
+    499            err=Obs_Start(obj);
+   \   000000FC   0900A0E1           MOV      R0,R9
+   \   00000100   5E0200EF           SWI      +606
+   \   00000104   00008DE5           STR      R0,[SP, #+0]
+    500            if(err)  goto exit;
+   \   00000108   000050E3           CMP      R0,#+0
+   \   0000010C   2000001A           BNE      ??CreateIMGHDRFromMemory_1
+    501              
+    502            err=Obs_Output_GetPictstruct(obj, &imghdr1);
+   \   00000110   04108DE2           ADD      R1,SP,#+4
+   \   00000114   0900A0E1           MOV      R0,R9
+   \   00000118   5F0200EF           SWI      +607
+   \   0000011C   00008DE5           STR      R0,[SP, #+0]
+    503            if(err)  goto exit;
+   \   00000120   000050E3           CMP      R0,#+0
+   \   00000124   1A00001A           BNE      ??CreateIMGHDRFromMemory_1
+    504              
+    505            imghdr2=malloc(sizeof(IMGHDR));
+   \   00000128   0800A0E3           MOV      R0,#+8
+   \   0000012C   140000EF           SWI      +20
+   \   00000130   0080A0E1           MOV      R8,R0
+    506            imghdr2->w=imghdr1->w;
+   \   00000134   04009DE5           LDR      R0,[SP, #+4]
+   \   00000138   0000D0E5           LDRB     R0,[R0, #+0]
+   \   0000013C   0000C8E5           STRB     R0,[R8, #+0]
+    507            imghdr2->h=imghdr1->h;
+   \   00000140   04009DE5           LDR      R0,[SP, #+4]
+   \   00000144   0100D0E5           LDRB     R0,[R0, #+1]
+   \   00000148   0100C8E5           STRB     R0,[R8, #+1]
+    508            imghdr2->bpnum=(char)imghdr1->bpnum;// читаем только один байт
+   \   0000014C   04009DE5           LDR      R0,[SP, #+4]
+   \   00000150   B200D0E1           LDRH     R0,[R0, #+2]
+   \   00000154   FF0000E2           AND      R0,R0,#0xFF
+   \   00000158   B200C8E1           STRH     R0,[R8, #+2]
+    509            len=CalcBitmapSize(imghdr1->w, imghdr1->h,(char)imghdr1->bpnum);
+   \   0000015C   04009DE5           LDR      R0,[SP, #+4]
+   \   00000160   B220D0E1           LDRH     R2,[R0, #+2]
+   \   00000164   0110D0E5           LDRB     R1,[R0, #+1]
+   \   00000168   0000D0E5           LDRB     R0,[R0, #+0]
+   \   0000016C   FF2002E2           AND      R2,R2,#0xFF
+   \   00000170   580200EF           SWI      +600
+   \   00000174   0070A0E1           MOV      R7,R0
+    510            imghdr2->bitmap=malloc(len);
+   \   00000178   140000EF           SWI      +20
+   \   0000017C   040088E5           STR      R0,[R8, #+4]
+    511            memcpy(imghdr2->bitmap, imghdr1->bitmap, len); 
+   \   00000180   04009DE5           LDR      R0,[SP, #+4]
+   \   00000184   0720A0E1           MOV      R2,R7
+   \   00000188   041090E5           LDR      R1,[R0, #+4]
+   \   0000018C   040098E5           LDR      R0,[R8, #+4]
+   \   00000190   1E0100EF           SWI      +286
+    512          
+    513          exit:
+    514            Obs_DestroyObject(obj);
+   \                     ??CreateIMGHDRFromMemory_1:
+   \   00000194   0900A0E1           MOV      R0,R9
+   \   00000198   5A0200EF           SWI      +602
+    515            return imghdr2;
+   \                     ??CreateIMGHDRFromMemory_0:
+   \   0000019C   0800A0E1           MOV      R0,R8
+   \   000001A0   FE83BDE8           POP      {R1-R9,PC}       ;; return
+    516          }
+    517          
+    518          //******************************************************************************
+    519          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    520          void CreateDynImage(short w, short h, int uid, int index, char* buf, int len)
+    521          {
+   \                     CreateDynImage:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+   \   00000004   0050A0E1           MOV      R5,R0
+   \   00000008   1C809DE5           LDR      R8,[SP, #+28]
+   \   0000000C   20909DE5           LDR      R9,[SP, #+32]
+   \   00000010   0160A0E1           MOV      R6,R1
+   \   00000014   0270A0E1           MOV      R7,R2
+    522            int npic=GetPicNByUnicodeSymbol(FIRST_UCS2_BITMAP + index);
+   \   00000018   2A00A0E3           MOV      R0,#+42
+   \   0000001C   E10C80E3           ORR      R0,R0,#0xE100
+   \   00000020   030080E0           ADD      R0,R0,R3
+   \   00000024   E40100EF           SWI      +484
+    523            IMGHDR* img=CreateIMGHDRFromMemory(w, h, uid, buf, len);
+   \   00000028   0610A0E1           MOV      R1,R6
+    524            AddDynImage(img, npic);
+   \   0000002C   ........           LDR      R6,??DataTable12  ;; dyn_pnglist
+   \   00000030   0040A0E1           MOV      R4,R0
+   \   00000034   00022DE9           PUSH     {R9}
+   \   00000038   0830A0E1           MOV      R3,R8
+   \   0000003C   0720A0E1           MOV      R2,R7
+   \   00000040   0500A0E1           MOV      R0,R5
+   \   00000044   ........           BL       CreateIMGHDRFromMemory
+   \   00000048   007096E5           LDR      R7,[R6, #+0]
+   \   0000004C   0050A0E1           MOV      R5,R0
+   \   00000050   04D08DE2           ADD      SP,SP,#+4
+   \   00000054   000000EA           B        ??CreateDynImage_0
+   \                     ??CreateDynImage_1:
+   \   00000058   007097E5           LDR      R7,[R7, #+0]
+   \                     ??CreateDynImage_0:
+   \   0000005C   000057E3           CMP      R7,#+0
+   \   00000060   0600000A           BEQ      ??CreateDynImage_2
+   \   00000064   040097E5           LDR      R0,[R7, #+4]
+   \   00000068   040050E1           CMP      R0,R4
+   \   0000006C   F9FFFF1A           BNE      ??CreateDynImage_1
+   \   00000070   080097E5           LDR      R0,[R7, #+8]
+   \   00000074   150000EF           SWI      +21
+   \   00000078   085087E5           STR      R5,[R7, #+8]
+   \   0000007C   F083BDE8           POP      {R4-R9,PC}
+   \                     ??CreateDynImage_2:
+   \   00000080   0C00A0E3           MOV      R0,#+12
+   \   00000084   140000EF           SWI      +20
+   \   00000088   085080E5           STR      R5,[R0, #+8]
+   \   0000008C   044080E5           STR      R4,[R0, #+4]
+   \   00000090   001096E5           LDR      R1,[R6, #+0]
+   \   00000094   001080E5           STR      R1,[R0, #+0]
+   \   00000098   000086E5           STR      R0,[R6, #+0]
+    525          }
+   \   0000009C   F083BDE8           POP      {R4-R9,PC}       ;; return
+    526          
+    527          //******************************************************************************
+    528          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    529          void Example(const char *fname)
+    530          {
+   \                     Example:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   50DF4DE2           SUB      SP,SP,#+320
+   \   00000008   0040A0E1           MOV      R4,R0
+    531            WSHDR ws;
+    532            unsigned short wsbody[128];
+    533            
+    534            char *buf;
+    535            
+    536            FSTATS stat;
+    537            int f;
+    538            int fsize;
+    539            unsigned  err;
+    540            
+    541            if (GetFileStats(fname, &stat, &err)==-1)
+   \   0000000C   0060E0E3           MVN      R6,#+0
+   \   00000010   0D20A0E1           MOV      R2,SP
+   \   00000014   461F8DE2           ADD      R1,SP,#+280
+   \   00000018   840000EF           SWI      +132
+   \   0000001C   060050E1           CMP      R0,R6
+   \   00000020   2800000A           BEQ      ??Example_0
+    542              return;
+    543            
+    544            if ((fsize=stat.size)<=0)
+   \   00000024   1C719DE5           LDR      R7,[SP, #+284]
+   \   00000028   010057E3           CMP      R7,#+1
+   \   0000002C   250000BA           BLT      ??Example_0
+    545              return; 
+    546            
+    547            if ((f=fopen(fname, A_ReadOnly+A_BIN, P_READ, &err))!= -1)
+   \   00000030   0D30A0E1           MOV      R3,SP
+   \   00000034   8020A0E3           MOV      R2,#+128
+   \   00000038   801CA0E3           MOV      R1,#+32768
+   \   0000003C   0400A0E1           MOV      R0,R4
+   \   00000040   0A0000EF           SWI      +10
+   \   00000044   0040A0E1           MOV      R4,R0
+   \   00000048   060054E1           CMP      R4,R6
+   \   0000004C   0A00000A           BEQ      ??Example_1
+    548            {
+    549              buf=malloc(fsize);
+   \   00000050   0700A0E1           MOV      R0,R7
+   \   00000054   140000EF           SWI      +20
+   \   00000058   0050A0E1           MOV      R5,R0
+    550              fread(f, buf, fsize, &err);
+   \   0000005C   0D30A0E1           MOV      R3,SP
+   \   00000060   0720A0E1           MOV      R2,R7
+   \   00000064   0510A0E1           MOV      R1,R5
+   \   00000068   0400A0E1           MOV      R0,R4
+   \   0000006C   0B0000EF           SWI      +11
+    551              fclose(f, &err);
+   \   00000070   0D10A0E1           MOV      R1,SP
+   \   00000074   0400A0E1           MOV      R0,R4
+   \   00000078   0D0000EF           SWI      +13
+    552            }
+    553              
+    554              CreateLocalWS(&ws, wsbody, 127);
+   \                     ??Example_1:
+   \   0000007C   7F20A0E3           MOV      R2,#+127
+   \   00000080   18108DE2           ADD      R1,SP,#+24
+   \   00000084   04008DE2           ADD      R0,SP,#+4
+   \   00000088   270100EF           SWI      +295
+    555              wsprintf(&ws, "%s", "jpg");
+   \   0000008C   0F2F8FE2           ADR      R2,??Example_2   ;; "jpg"
+   \   00000090   0F1F8FE2           ADR      R1,??Example_2+0x4  ;; "%s"
+   \   00000094   04008DE2           ADD      R0,SP,#+4
+   \   00000098   240100EF           SWI      +292
+    556              CreateDynImage(0, 0, GetExtUid_ws(&ws), FIRST_UCS2_BITMAP, buf, fsize);
+   \   0000009C   04008DE2           ADD      R0,SP,#+4
+   \   000000A0   D00100EF           SWI      +464
+   \   000000A4   80002DE9           PUSH     {R7}
+   \   000000A8   20002DE9           PUSH     {R5}
+   \   000000AC   2A30A0E3           MOV      R3,#+42
+   \   000000B0   E13C83E3           ORR      R3,R3,#0xE100
+   \   000000B4   0020A0E1           MOV      R2,R0
+   \   000000B8   0010A0E3           MOV      R1,#+0
+   \   000000BC   0000A0E3           MOV      R0,#+0
+   \   000000C0   ........           BL       CreateDynImage
+    557          }
+   \   000000C4   08D08DE2           ADD      SP,SP,#+8
+   \                     ??Example_0:
+   \   000000C8   50DF8DE2           ADD      SP,SP,#+320      ;; stack cleaning
+   \   000000CC   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??Example_2:
+   \   000000D0   6A706700           DC8      "jpg"
+   \   000000D4   25730000           DC8      "%s",+0
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   ........           DC32     `?<Constant "%ssmiles\\\\%X.png">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   ........           DC32     APP_DIR
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable11:
+   \   00000000   ........           DC32     pngtop
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   ........           DC32     dyn_pnglist
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for smiles>`:
+   \   00000000   ............       DC32 smiles, smiles
+   \              ....        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%ssmiles\\\\%X.png">`:
+   \   00000000   2573736D696C       DC8 "%ssmiles\\%X.png"
+   \              65735C25582E
+   \              706E6700    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%simg\\\\camera.png">`:
+   \   00000000   2573696D675C       DC8 "%simg\\camera.png"
+   \              63616D657261
+   \              2E706E6700  
+   \   00000011   000000             DC8 0, 0, 0
+   \   00000014   2573696D675C       DC8 "%simg\\deactivated.png"
+   \              646561637469
+   \              76617465642E
+   \              706E6700    
+   \   0000002A   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   257300             DC8 "%s"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   6A706700           DC8 "jpg"
+
+   Maximum stack usage in bytes:
+
+     Function                    CSTACK
+     --------                    ------
+     AddImage                        8
+     CreateDynImage                 32
+     CreateIMGHDRFromAnyFile       316
+     CreateIMGHDRFromFileAsync     316
+     CreateIMGHDRFromMemory         52
+     CreateIMGHDRFromMemoryAsync    32
+     DisableDynImages                4
+     EnableDynImages                 4
+     Example                       348
+     FreeDynPngList                 16
+     FreeDynSmiles                   8
+     LoadImages                    140
+     LoadSmiles                      4
+     LoadSmilesTo_0xE12A           156
+     LoadSmilesTo_0xE200           156
+     PNGLIST_Add                     8
+     PNGLIST_Free                   16
+     PNGLIST_GetImgByIndex           0
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     smiles                            8
+     pngtop                            4
+     dyn_pnglist                       4
+     DisableDynImages                 20
+     EnableDynImages                  24
+     FreeDynPngList                   92
+     LoadSmilesTo_0xE12A             164
+     LoadSmilesTo_0xE200             184
+     LoadSmiles                      108
+     FreeDynSmiles                    72
+     PNGLIST_Add                      48
+     PNGLIST_Free                     96
+     PNGLIST_GetImgByIndex            56
+     LoadImages                      116
+     AddImage                         48
+     CreateIMGHDRFromMemoryAsync     140
+     CreateIMGHDRFromFileAsync       320
+     CreateIMGHDRFromAnyFile         444
+     CreateIMGHDRFromMemory          420
+     CreateDynImage                  160
+     Example                         216
+     ??DataTable6                      4
+     ??DataTable10                     4
+     ??DataTable11                     4
+     ??DataTable12                     4
+     ?<Initializer for smiles>         8
+     ?<Constant "%ssmiles\\%X.png">   16
+     ?<Constant "%simg\\camera.png">
+                                      44
+     ?<Constant "%s">                  3
+     ?<Constant "jpg">                 4
+      Others                          96
+
+ 
+ 2 816 bytes in segment CODE
+    67 bytes in segment DATA_C
+     8 bytes in segment DATA_I
+     8 bytes in segment DATA_ID
+     8 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 2 744 bytes of CODE  memory (+ 96 bytes shared)
+    75 bytes of CONST memory
+    16 bytes of DATA  memory
+
+Errors: none
+Warnings: 1

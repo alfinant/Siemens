@@ -1,0 +1,1836 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Nov/2019  12:43:39 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\openssl\ssl\s3_lib.c                               #
+#    Command line    =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\openssl\ssl\s3_lib.c -D NEWSGOLD -D DEBUG -lCN     #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\List\ -la                      #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\List\ -o                       #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\Obj\ -z9 --cpu_mode arm        #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork --diag_suppress Pe301 -e --fpu None      #
+#                       --dlib_config E:\Users\alfinant7\Documents\Siemens\I #
+#                       AR\ARM\LIB\dl5tpainl8n.h -I                          #
+#                       E:\Users\alfinant7\Documents\Siemens\IAR\ARM\INC\    #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\List\s3_lib.lst                #
+#    Object file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\Obj\s3_lib.r79                 #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\openssl\ssl\s3_lib.c
+      1          /* ssl/s3_lib.c */
+      2          /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+      3           * All rights reserved.
+      4           *
+      5           * This package is an SSL implementation written
+      6           * by Eric Young (eay@cryptsoft.com).
+      7           * The implementation was written so as to conform with Netscapes SSL.
+      8           * 
+      9           * This library is free for commercial and non-commercial use as long as
+     10           * the following conditions are aheared to.  The following conditions
+     11           * apply to all code found in this distribution, be it the RC4, RSA,
+     12           * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+     13           * included with this distribution is covered by the same copyright terms
+     14           * except that the holder is Tim Hudson (tjh@cryptsoft.com).
+     15           * 
+     16           * Copyright remains Eric Young's, and as such any Copyright notices in
+     17           * the code are not to be removed.
+     18           * If this package is used in a product, Eric Young should be given attribution
+     19           * as the author of the parts of the library used.
+     20           * This can be in the form of a textual message at program startup or
+     21           * in documentation (online or textual) provided with the package.
+     22           * 
+     23           * Redistribution and use in source and binary forms, with or without
+     24           * modification, are permitted provided that the following conditions
+     25           * are met:
+     26           * 1. Redistributions of source code must retain the copyright
+     27           *    notice, this list of conditions and the following disclaimer.
+     28           * 2. Redistributions in binary form must reproduce the above copyright
+     29           *    notice, this list of conditions and the following disclaimer in the
+     30           *    documentation and/or other materials provided with the distribution.
+     31           * 3. All advertising materials mentioning features or use of this software
+     32           *    must display the following acknowledgement:
+     33           *    "This product includes cryptographic software written by
+     34           *     Eric Young (eay@cryptsoft.com)"
+     35           *    The word 'cryptographic' can be left out if the rouines from the library
+     36           *    being used are not cryptographic related :-).
+     37           * 4. If you include any Windows specific code (or a derivative thereof) from 
+     38           *    the apps directory (application code) you must include an acknowledgement:
+     39           *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+     40           * 
+     41           * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+     42           * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     43           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+     44           * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+     45           * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+     46           * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+     47           * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     48           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+     49           * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+     50           * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+     51           * SUCH DAMAGE.
+     52           * 
+     53           * The licence and distribution terms for any publically available version or
+     54           * derivative of this code cannot be changed.  i.e. this code cannot simply be
+     55           * copied and put under another distribution licence
+     56           * [including the GNU Public Licence.]
+     57           */
+     58          /* ====================================================================
+     59           * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
+     60           *
+     61           * Redistribution and use in source and binary forms, with or without
+     62           * modification, are permitted provided that the following conditions
+     63           * are met:
+     64           *
+     65           * 1. Redistributions of source code must retain the above copyright
+     66           *    notice, this list of conditions and the following disclaimer. 
+     67           *
+     68           * 2. Redistributions in binary form must reproduce the above copyright
+     69           *    notice, this list of conditions and the following disclaimer in
+     70           *    the documentation and/or other materials provided with the
+     71           *    distribution.
+     72           *
+     73           * 3. All advertising materials mentioning features or use of this
+     74           *    software must display the following acknowledgment:
+     75           *    "This product includes software developed by the OpenSSL Project
+     76           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     77           *
+     78           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     79           *    endorse or promote products derived from this software without
+     80           *    prior written permission. For written permission, please contact
+     81           *    openssl-core@openssl.org.
+     82           *
+     83           * 5. Products derived from this software may not be called "OpenSSL"
+     84           *    nor may "OpenSSL" appear in their names without prior written
+     85           *    permission of the OpenSSL Project.
+     86           *
+     87           * 6. Redistributions of any form whatsoever must retain the following
+     88           *    acknowledgment:
+     89           *    "This product includes software developed by the OpenSSL Project
+     90           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     91           *
+     92           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     93           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     94           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     95           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     96           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     97           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     98           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     99           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    100           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+    101           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    102           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+    103           * OF THE POSSIBILITY OF SUCH DAMAGE.
+    104           * ====================================================================
+    105           *
+    106           * This product includes cryptographic software written by Eric Young
+    107           * (eay@cryptsoft.com).  This product includes software written by Tim
+    108           * Hudson (tjh@cryptsoft.com).
+    109           *
+    110           */
+    111          
+    112          #define NO_FP_API
+    113          #define OPENSSL_NO_FP_API
+    114          
+    115          #include <stdio.h>
+    116          #include <openssl/objects.h>
+    117          #include <openssl/ssl_locl.h>
+    118          #include <openssl/kssl_lcl.h>
+    119          #include <openssl/md5.h>
+    120          
+    121          const char *ssl3_version_str="SSLv3" OPENSSL_VERSION_PTEXT;
+    122          
+    123          #define SSL3_NUM_CIPHERS	(sizeof(ssl3_ciphers)/sizeof(SSL_CIPHER))
+    124          
+    125          static long ssl3_default_timeout(void );
+    126          
+    127          OPENSSL_GLOBAL SSL_CIPHER ssl3_ciphers[]={
+    128          /* The RSA ciphers */
+    129          /* Cipher 01 */
+    130          	{
+    131          	1,
+    132          	SSL3_TXT_RSA_NULL_MD5,
+    133          	SSL3_CK_RSA_NULL_MD5,
+    134          	SSL_kRSA|SSL_aRSA|SSL_eNULL |SSL_MD5|SSL_SSLV3,
+    135          	SSL_NOT_EXP|SSL_STRONG_NONE,
+    136          	0,
+    137          	0,
+    138          	0,
+    139          	SSL_ALL_CIPHERS,
+    140          	SSL_ALL_STRENGTHS,
+    141          	},
+    142          /* Cipher 02 */
+    143          	{
+    144          	1,
+    145          	SSL3_TXT_RSA_NULL_SHA,
+    146          	SSL3_CK_RSA_NULL_SHA,
+    147          	SSL_kRSA|SSL_aRSA|SSL_eNULL |SSL_SHA1|SSL_SSLV3,
+    148          	SSL_NOT_EXP|SSL_STRONG_NONE,
+    149          	0,
+    150          	0,
+    151          	0,
+    152          	SSL_ALL_CIPHERS,
+    153          	SSL_ALL_STRENGTHS,
+    154          	},
+    155          
+    156          /* anon DH */
+    157          /* Cipher 17 */
+    158          	{
+    159          	1,
+    160          	SSL3_TXT_ADH_RC4_40_MD5,
+    161          	SSL3_CK_ADH_RC4_40_MD5,
+    162          	SSL_kEDH |SSL_aNULL|SSL_RC4  |SSL_MD5 |SSL_SSLV3,
+    163          	SSL_EXPORT|SSL_EXP40,
+    164          	0,
+    165          	40,
+    166          	128,
+    167          	SSL_ALL_CIPHERS,
+    168          	SSL_ALL_STRENGTHS,
+    169          	},
+    170          /* Cipher 18 */
+    171          	{
+    172          	1,
+    173          	SSL3_TXT_ADH_RC4_128_MD5,
+    174          	SSL3_CK_ADH_RC4_128_MD5,
+    175          	SSL_kEDH |SSL_aNULL|SSL_RC4  |SSL_MD5 |SSL_SSLV3,
+    176          	SSL_NOT_EXP|SSL_MEDIUM,
+    177          	0,
+    178          	128,
+    179          	128,
+    180          	SSL_ALL_CIPHERS,
+    181          	SSL_ALL_STRENGTHS,
+    182          	},
+    183          /* Cipher 19 */
+    184          	{
+    185          	1,
+    186          	SSL3_TXT_ADH_DES_40_CBC_SHA,
+    187          	SSL3_CK_ADH_DES_40_CBC_SHA,
+    188          	SSL_kEDH |SSL_aNULL|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    189          	SSL_EXPORT|SSL_EXP40,
+    190          	0,
+    191          	40,
+    192          	128,
+    193          	SSL_ALL_CIPHERS,
+    194          	SSL_ALL_STRENGTHS,
+    195          	},
+    196          /* Cipher 1A */
+    197          	{
+    198          	1,
+    199          	SSL3_TXT_ADH_DES_64_CBC_SHA,
+    200          	SSL3_CK_ADH_DES_64_CBC_SHA,
+    201          	SSL_kEDH |SSL_aNULL|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    202          	SSL_NOT_EXP|SSL_LOW,
+    203          	0,
+    204          	56,
+    205          	56,
+    206          	SSL_ALL_CIPHERS,
+    207          	SSL_ALL_STRENGTHS,
+    208          	},
+    209          /* Cipher 1B */
+    210          	{
+    211          	1,
+    212          	SSL3_TXT_ADH_DES_192_CBC_SHA,
+    213          	SSL3_CK_ADH_DES_192_CBC_SHA,
+    214          	SSL_kEDH |SSL_aNULL|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    215          	SSL_NOT_EXP|SSL_HIGH,
+    216          	0,
+    217          	168,
+    218          	168,
+    219          	SSL_ALL_CIPHERS,
+    220          	SSL_ALL_STRENGTHS,
+    221          	},
+    222          
+    223          /* RSA again */
+    224          /* Cipher 03 */
+    225          	{
+    226          	1,
+    227          	SSL3_TXT_RSA_RC4_40_MD5,
+    228          	SSL3_CK_RSA_RC4_40_MD5,
+    229          	SSL_kRSA|SSL_aRSA|SSL_RC4  |SSL_MD5 |SSL_SSLV3,
+    230          	SSL_EXPORT|SSL_EXP40,
+    231          	0,
+    232          	40,
+    233          	128,
+    234          	SSL_ALL_CIPHERS,
+    235          	SSL_ALL_STRENGTHS,
+    236          	},
+    237          /* Cipher 04 */
+    238          	{
+    239          	1,
+    240          	SSL3_TXT_RSA_RC4_128_MD5,
+    241          	SSL3_CK_RSA_RC4_128_MD5,
+    242          	SSL_kRSA|SSL_aRSA|SSL_RC4  |SSL_MD5|SSL_SSLV3,
+    243          	SSL_NOT_EXP|SSL_MEDIUM,
+    244          	0,
+    245          	128,
+    246          	128,
+    247          	SSL_ALL_CIPHERS,
+    248          	SSL_ALL_STRENGTHS,
+    249          	},
+    250          /* Cipher 05 */
+    251          	{
+    252          	1,
+    253          	SSL3_TXT_RSA_RC4_128_SHA,
+    254          	SSL3_CK_RSA_RC4_128_SHA,
+    255          	SSL_kRSA|SSL_aRSA|SSL_RC4  |SSL_SHA1|SSL_SSLV3,
+    256          	SSL_NOT_EXP|SSL_MEDIUM,
+    257          	0,
+    258          	128,
+    259          	128,
+    260          	SSL_ALL_CIPHERS,
+    261          	SSL_ALL_STRENGTHS,
+    262          	},
+    263          /* Cipher 06 */
+    264          	{
+    265          	1,
+    266          	SSL3_TXT_RSA_RC2_40_MD5,
+    267          	SSL3_CK_RSA_RC2_40_MD5,
+    268          	SSL_kRSA|SSL_aRSA|SSL_RC2  |SSL_MD5 |SSL_SSLV3,
+    269          	SSL_EXPORT|SSL_EXP40,
+    270          	0,
+    271          	40,
+    272          	128,
+    273          	SSL_ALL_CIPHERS,
+    274          	SSL_ALL_STRENGTHS,
+    275          	},
+    276          /* Cipher 07 */
+    277          	{
+    278          	1,
+    279          	SSL3_TXT_RSA_IDEA_128_SHA,
+    280          	SSL3_CK_RSA_IDEA_128_SHA,
+    281          	SSL_kRSA|SSL_aRSA|SSL_IDEA |SSL_SHA1|SSL_SSLV3,
+    282          	SSL_NOT_EXP|SSL_MEDIUM,
+    283          	0,
+    284          	128,
+    285          	128,
+    286          	SSL_ALL_CIPHERS,
+    287          	SSL_ALL_STRENGTHS,
+    288          	},
+    289          /* Cipher 08 */
+    290          	{
+    291          	1,
+    292          	SSL3_TXT_RSA_DES_40_CBC_SHA,
+    293          	SSL3_CK_RSA_DES_40_CBC_SHA,
+    294          	SSL_kRSA|SSL_aRSA|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    295          	SSL_EXPORT|SSL_EXP40,
+    296          	0,
+    297          	40,
+    298          	56,
+    299          	SSL_ALL_CIPHERS,
+    300          	SSL_ALL_STRENGTHS,
+    301          	},
+    302          /* Cipher 09 */
+    303          	{
+    304          	1,
+    305          	SSL3_TXT_RSA_DES_64_CBC_SHA,
+    306          	SSL3_CK_RSA_DES_64_CBC_SHA,
+    307          	SSL_kRSA|SSL_aRSA|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    308          	SSL_NOT_EXP|SSL_LOW,
+    309          	0,
+    310          	56,
+    311          	56,
+    312          	SSL_ALL_CIPHERS,
+    313          	SSL_ALL_STRENGTHS,
+    314          	},
+    315          /* Cipher 0A */
+    316          	{
+    317          	1,
+    318          	SSL3_TXT_RSA_DES_192_CBC3_SHA,
+    319          	SSL3_CK_RSA_DES_192_CBC3_SHA,
+    320          	SSL_kRSA|SSL_aRSA|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    321          	SSL_NOT_EXP|SSL_HIGH,
+    322          	0,
+    323          	168,
+    324          	168,
+    325          	SSL_ALL_CIPHERS,
+    326          	SSL_ALL_STRENGTHS,
+    327          	},
+    328          
+    329          /*  The DH ciphers */
+    330          /* Cipher 0B */
+    331          	{
+    332          	0,
+    333          	SSL3_TXT_DH_DSS_DES_40_CBC_SHA,
+    334          	SSL3_CK_DH_DSS_DES_40_CBC_SHA,
+    335          	SSL_kDHd |SSL_aDH|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    336          	SSL_EXPORT|SSL_EXP40,
+    337          	0,
+    338          	40,
+    339          	56,
+    340          	SSL_ALL_CIPHERS,
+    341          	SSL_ALL_STRENGTHS,
+    342          	},
+    343          /* Cipher 0C */
+    344          	{
+    345          	0,
+    346          	SSL3_TXT_DH_DSS_DES_64_CBC_SHA,
+    347          	SSL3_CK_DH_DSS_DES_64_CBC_SHA,
+    348          	SSL_kDHd |SSL_aDH|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    349          	SSL_NOT_EXP|SSL_LOW,
+    350          	0,
+    351          	56,
+    352          	56,
+    353          	SSL_ALL_CIPHERS,
+    354          	SSL_ALL_STRENGTHS,
+    355          	},
+    356          /* Cipher 0D */
+    357          	{
+    358          	0,
+    359          	SSL3_TXT_DH_DSS_DES_192_CBC3_SHA,
+    360          	SSL3_CK_DH_DSS_DES_192_CBC3_SHA,
+    361          	SSL_kDHd |SSL_aDH|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    362          	SSL_NOT_EXP|SSL_HIGH,
+    363          	0,
+    364          	168,
+    365          	168,
+    366          	SSL_ALL_CIPHERS,
+    367          	SSL_ALL_STRENGTHS,
+    368          	},
+    369          /* Cipher 0E */
+    370          	{
+    371          	0,
+    372          	SSL3_TXT_DH_RSA_DES_40_CBC_SHA,
+    373          	SSL3_CK_DH_RSA_DES_40_CBC_SHA,
+    374          	SSL_kDHr |SSL_aDH|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    375          	SSL_EXPORT|SSL_EXP40,
+    376          	0,
+    377          	40,
+    378          	56,
+    379          	SSL_ALL_CIPHERS,
+    380          	SSL_ALL_STRENGTHS,
+    381          	},
+    382          /* Cipher 0F */
+    383          	{
+    384          	0,
+    385          	SSL3_TXT_DH_RSA_DES_64_CBC_SHA,
+    386          	SSL3_CK_DH_RSA_DES_64_CBC_SHA,
+    387          	SSL_kDHr |SSL_aDH|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    388          	SSL_NOT_EXP|SSL_LOW,
+    389          	0,
+    390          	56,
+    391          	56,
+    392          	SSL_ALL_CIPHERS,
+    393          	SSL_ALL_STRENGTHS,
+    394          	},
+    395          /* Cipher 10 */
+    396          	{
+    397          	0,
+    398          	SSL3_TXT_DH_RSA_DES_192_CBC3_SHA,
+    399          	SSL3_CK_DH_RSA_DES_192_CBC3_SHA,
+    400          	SSL_kDHr |SSL_aDH|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    401          	SSL_NOT_EXP|SSL_HIGH,
+    402          	0,
+    403          	168,
+    404          	168,
+    405          	SSL_ALL_CIPHERS,
+    406          	SSL_ALL_STRENGTHS,
+    407          	},
+    408          
+    409          /* The Ephemeral DH ciphers */
+    410          /* Cipher 11 */
+    411          	{
+    412          	1,
+    413          	SSL3_TXT_EDH_DSS_DES_40_CBC_SHA,
+    414          	SSL3_CK_EDH_DSS_DES_40_CBC_SHA,
+    415          	SSL_kEDH|SSL_aDSS|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    416          	SSL_EXPORT|SSL_EXP40,
+    417          	0,
+    418          	40,
+    419          	56,
+    420          	SSL_ALL_CIPHERS,
+    421          	SSL_ALL_STRENGTHS,
+    422          	},
+    423          /* Cipher 12 */
+    424          	{
+    425          	1,
+    426          	SSL3_TXT_EDH_DSS_DES_64_CBC_SHA,
+    427          	SSL3_CK_EDH_DSS_DES_64_CBC_SHA,
+    428          	SSL_kEDH|SSL_aDSS|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    429          	SSL_NOT_EXP|SSL_LOW,
+    430          	0,
+    431          	56,
+    432          	56,
+    433          	SSL_ALL_CIPHERS,
+    434          	SSL_ALL_STRENGTHS,
+    435          	},
+    436          /* Cipher 13 */
+    437          	{
+    438          	1,
+    439          	SSL3_TXT_EDH_DSS_DES_192_CBC3_SHA,
+    440          	SSL3_CK_EDH_DSS_DES_192_CBC3_SHA,
+    441          	SSL_kEDH|SSL_aDSS|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    442          	SSL_NOT_EXP|SSL_HIGH,
+    443          	0,
+    444          	168,
+    445          	168,
+    446          	SSL_ALL_CIPHERS,
+    447          	SSL_ALL_STRENGTHS,
+    448          	},
+    449          /* Cipher 14 */
+    450          	{
+    451          	1,
+    452          	SSL3_TXT_EDH_RSA_DES_40_CBC_SHA,
+    453          	SSL3_CK_EDH_RSA_DES_40_CBC_SHA,
+    454          	SSL_kEDH|SSL_aRSA|SSL_DES|SSL_SHA1|SSL_SSLV3,
+    455          	SSL_EXPORT|SSL_EXP40,
+    456          	0,
+    457          	40,
+    458          	56,
+    459          	SSL_ALL_CIPHERS,
+    460          	SSL_ALL_STRENGTHS,
+    461          	},
+    462          /* Cipher 15 */
+    463          	{
+    464          	1,
+    465          	SSL3_TXT_EDH_RSA_DES_64_CBC_SHA,
+    466          	SSL3_CK_EDH_RSA_DES_64_CBC_SHA,
+    467          	SSL_kEDH|SSL_aRSA|SSL_DES  |SSL_SHA1|SSL_SSLV3,
+    468          	SSL_NOT_EXP|SSL_LOW,
+    469          	0,
+    470          	56,
+    471          	56,
+    472          	SSL_ALL_CIPHERS,
+    473          	SSL_ALL_STRENGTHS,
+    474          	},
+    475          /* Cipher 16 */
+    476          	{
+    477          	1,
+    478          	SSL3_TXT_EDH_RSA_DES_192_CBC3_SHA,
+    479          	SSL3_CK_EDH_RSA_DES_192_CBC3_SHA,
+    480          	SSL_kEDH|SSL_aRSA|SSL_3DES |SSL_SHA1|SSL_SSLV3,
+    481          	SSL_NOT_EXP|SSL_HIGH,
+    482          	0,
+    483          	168,
+    484          	168,
+    485          	SSL_ALL_CIPHERS,
+    486          	SSL_ALL_STRENGTHS,
+    487          	},
+    488          
+    489          /* Fortezza */
+    490          /* Cipher 1C */
+    491          	{
+    492          	0,
+    493          	SSL3_TXT_FZA_DMS_NULL_SHA,
+    494          	SSL3_CK_FZA_DMS_NULL_SHA,
+    495          	SSL_kFZA|SSL_aFZA |SSL_eNULL |SSL_SHA1|SSL_SSLV3,
+    496          	SSL_NOT_EXP|SSL_STRONG_NONE,
+    497          	0,
+    498          	0,
+    499          	0,
+    500          	SSL_ALL_CIPHERS,
+    501          	SSL_ALL_STRENGTHS,
+    502          	},
+    503          
+    504          /* Cipher 1D */
+    505          	{
+    506          	0,
+    507          	SSL3_TXT_FZA_DMS_FZA_SHA,
+    508          	SSL3_CK_FZA_DMS_FZA_SHA,
+    509          	SSL_kFZA|SSL_aFZA |SSL_eFZA |SSL_SHA1|SSL_SSLV3,
+    510          	SSL_NOT_EXP|SSL_STRONG_NONE,
+    511          	0,
+    512          	0,
+    513          	0,
+    514          	SSL_ALL_CIPHERS,
+    515          	SSL_ALL_STRENGTHS,
+    516          	},
+    517          
+    518          #if 0
+    519          /* Cipher 1E */
+    520          	{
+    521          	0,
+    522          	SSL3_TXT_FZA_DMS_RC4_SHA,
+    523          	SSL3_CK_FZA_DMS_RC4_SHA,
+    524          	SSL_kFZA|SSL_aFZA |SSL_RC4  |SSL_SHA1|SSL_SSLV3,
+    525          	SSL_NOT_EXP|SSL_MEDIUM,
+    526          	0,
+    527          	128,
+    528          	128,
+    529          	SSL_ALL_CIPHERS,
+    530          	SSL_ALL_STRENGTHS,
+    531          	},
+    532          #endif
+    533          
+    534          #ifndef OPENSSL_NO_KRB5
+    535          /* The Kerberos ciphers
+    536          ** 20000107 VRS: And the first shall be last,
+    537          ** in hopes of avoiding the lynx ssl renegotiation problem.
+    538          */
+    539          /* Cipher 1E VRS */
+    540          	{
+    541          	1,
+    542          	SSL3_TXT_KRB5_DES_64_CBC_SHA,
+    543          	SSL3_CK_KRB5_DES_64_CBC_SHA,
+    544          	SSL_kKRB5|SSL_aKRB5|  SSL_DES|SSL_SHA1   |SSL_SSLV3,
+    545          	SSL_NOT_EXP|SSL_LOW,
+    546          	0,
+    547          	56,
+    548          	56,
+    549          	SSL_ALL_CIPHERS,
+    550          	SSL_ALL_STRENGTHS,
+    551          	},
+    552          
+    553          /* Cipher 1F VRS */
+    554          	{
+    555          	1,
+    556          	SSL3_TXT_KRB5_DES_192_CBC3_SHA,
+    557          	SSL3_CK_KRB5_DES_192_CBC3_SHA,
+    558          	SSL_kKRB5|SSL_aKRB5|  SSL_3DES|SSL_SHA1  |SSL_SSLV3,
+    559          	SSL_NOT_EXP|SSL_HIGH,
+    560          	0,
+    561          	112,
+    562          	168,
+    563          	SSL_ALL_CIPHERS,
+    564          	SSL_ALL_STRENGTHS,
+    565          	},
+    566          
+    567          /* Cipher 20 VRS */
+    568          	{
+    569          	1,
+    570          	SSL3_TXT_KRB5_RC4_128_SHA,
+    571          	SSL3_CK_KRB5_RC4_128_SHA,
+    572          	SSL_kKRB5|SSL_aKRB5|  SSL_RC4|SSL_SHA1  |SSL_SSLV3,
+    573          	SSL_NOT_EXP|SSL_MEDIUM,
+    574          	0,
+    575          	128,
+    576          	128,
+    577          	SSL_ALL_CIPHERS,
+    578          	SSL_ALL_STRENGTHS,
+    579          	},
+    580          
+    581          /* Cipher 21 VRS */
+    582          	{
+    583          	1,
+    584          	SSL3_TXT_KRB5_IDEA_128_CBC_SHA,
+    585          	SSL3_CK_KRB5_IDEA_128_CBC_SHA,
+    586          	SSL_kKRB5|SSL_aKRB5|  SSL_IDEA|SSL_SHA1  |SSL_SSLV3,
+    587          	SSL_NOT_EXP|SSL_MEDIUM,
+    588          	0,
+    589          	128,
+    590          	128,
+    591          	SSL_ALL_CIPHERS,
+    592          	SSL_ALL_STRENGTHS,
+    593          	},
+    594          
+    595          /* Cipher 22 VRS */
+    596          	{
+    597          	1,
+    598          	SSL3_TXT_KRB5_DES_64_CBC_MD5,
+    599          	SSL3_CK_KRB5_DES_64_CBC_MD5,
+    600          	SSL_kKRB5|SSL_aKRB5|  SSL_DES|SSL_MD5    |SSL_SSLV3,
+    601          	SSL_NOT_EXP|SSL_LOW,
+    602          	0,
+    603          	56,
+    604          	56,
+    605          	SSL_ALL_CIPHERS,
+    606          	SSL_ALL_STRENGTHS,
+    607          	},
+    608          
+    609          /* Cipher 23 VRS */
+    610          	{
+    611          	1,
+    612          	SSL3_TXT_KRB5_DES_192_CBC3_MD5,
+    613          	SSL3_CK_KRB5_DES_192_CBC3_MD5,
+    614          	SSL_kKRB5|SSL_aKRB5|  SSL_3DES|SSL_MD5   |SSL_SSLV3,
+    615          	SSL_NOT_EXP|SSL_HIGH,
+    616          	0,
+    617          	112,
+    618          	168,
+    619          	SSL_ALL_CIPHERS,
+    620          	SSL_ALL_STRENGTHS,
+    621          	},
+    622          
+    623          /* Cipher 24 VRS */
+    624          	{
+    625          	1,
+    626          	SSL3_TXT_KRB5_RC4_128_MD5,
+    627          	SSL3_CK_KRB5_RC4_128_MD5,
+    628          	SSL_kKRB5|SSL_aKRB5|  SSL_RC4|SSL_MD5  |SSL_SSLV3,
+    629          	SSL_NOT_EXP|SSL_MEDIUM,
+    630          	0,
+    631          	128,
+    632          	128,
+    633          	SSL_ALL_CIPHERS,
+    634          	SSL_ALL_STRENGTHS,
+    635          	},
+    636          
+    637          /* Cipher 25 VRS */
+    638          	{
+    639          	1,
+    640          	SSL3_TXT_KRB5_IDEA_128_CBC_MD5,
+    641          	SSL3_CK_KRB5_IDEA_128_CBC_MD5,
+    642          	SSL_kKRB5|SSL_aKRB5|  SSL_IDEA|SSL_MD5  |SSL_SSLV3,
+    643          	SSL_NOT_EXP|SSL_MEDIUM,
+    644          	0,
+    645          	128,
+    646          	128,
+    647          	SSL_ALL_CIPHERS,
+    648          	SSL_ALL_STRENGTHS,
+    649          	},
+    650          
+    651          /* Cipher 26 VRS */
+    652          	{
+    653          	1,
+    654          	SSL3_TXT_KRB5_DES_40_CBC_SHA,
+    655          	SSL3_CK_KRB5_DES_40_CBC_SHA,
+    656          	SSL_kKRB5|SSL_aKRB5|  SSL_DES|SSL_SHA1   |SSL_SSLV3,
+    657          	SSL_EXPORT|SSL_EXP40,
+    658          	0,
+    659          	40,
+    660          	56,
+    661          	SSL_ALL_CIPHERS,
+    662          	SSL_ALL_STRENGTHS,
+    663          	},
+    664          
+    665          /* Cipher 27 VRS */
+    666          	{
+    667          	1,
+    668          	SSL3_TXT_KRB5_RC2_40_CBC_SHA,
+    669          	SSL3_CK_KRB5_RC2_40_CBC_SHA,
+    670          	SSL_kKRB5|SSL_aKRB5|  SSL_RC2|SSL_SHA1   |SSL_SSLV3,
+    671          	SSL_EXPORT|SSL_EXP40,
+    672          	0,
+    673          	40,
+    674          	128,
+    675          	SSL_ALL_CIPHERS,
+    676          	SSL_ALL_STRENGTHS,
+    677          	},
+    678          
+    679          /* Cipher 28 VRS */
+    680          	{
+    681          	1,
+    682          	SSL3_TXT_KRB5_RC4_40_SHA,
+    683          	SSL3_CK_KRB5_RC4_40_SHA,
+    684          	SSL_kKRB5|SSL_aKRB5|  SSL_RC4|SSL_SHA1   |SSL_SSLV3,
+    685          	SSL_EXPORT|SSL_EXP40,
+    686          	0,
+    687          	128,
+    688          	128,
+    689          	SSL_ALL_CIPHERS,
+    690          	SSL_ALL_STRENGTHS,
+    691          	},
+    692          
+    693          /* Cipher 29 VRS */
+    694          	{
+    695          	1,
+    696          	SSL3_TXT_KRB5_DES_40_CBC_MD5,
+    697          	SSL3_CK_KRB5_DES_40_CBC_MD5,
+    698          	SSL_kKRB5|SSL_aKRB5|  SSL_DES|SSL_MD5    |SSL_SSLV3,
+    699          	SSL_EXPORT|SSL_EXP40,
+    700          	0,
+    701          	40,
+    702          	56,
+    703          	SSL_ALL_CIPHERS,
+    704          	SSL_ALL_STRENGTHS,
+    705          	},
+    706          
+    707          /* Cipher 2A VRS */
+    708          	{
+    709          	1,
+    710          	SSL3_TXT_KRB5_RC2_40_CBC_MD5,
+    711          	SSL3_CK_KRB5_RC2_40_CBC_MD5,
+    712          	SSL_kKRB5|SSL_aKRB5|  SSL_RC2|SSL_MD5    |SSL_SSLV3,
+    713          	SSL_EXPORT|SSL_EXP40,
+    714          	0,
+    715          	40,
+    716          	128,
+    717          	SSL_ALL_CIPHERS,
+    718          	SSL_ALL_STRENGTHS,
+    719          	},
+    720          
+    721          /* Cipher 2B VRS */
+    722          	{
+    723          	1,
+    724          	SSL3_TXT_KRB5_RC4_40_MD5,
+    725          	SSL3_CK_KRB5_RC4_40_MD5,
+    726          	SSL_kKRB5|SSL_aKRB5|  SSL_RC4|SSL_MD5    |SSL_SSLV3,
+    727          	SSL_EXPORT|SSL_EXP40,
+    728          	0,
+    729          	128,
+    730          	128,
+    731          	SSL_ALL_CIPHERS,
+    732          	SSL_ALL_STRENGTHS,
+    733          	},
+    734          #endif	/* OPENSSL_NO_KRB5 */
+    735          
+    736          
+    737          #if TLS1_ALLOW_EXPERIMENTAL_CIPHERSUITES
+    738          	/* New TLS Export CipherSuites */
+    739          	/* Cipher 60 */
+    740          	    {
+    741          	    1,
+    742          	    TLS1_TXT_RSA_EXPORT1024_WITH_RC4_56_MD5,
+    743          	    TLS1_CK_RSA_EXPORT1024_WITH_RC4_56_MD5,
+    744          	    SSL_kRSA|SSL_aRSA|SSL_RC4|SSL_MD5|SSL_TLSV1,
+    745          	    SSL_EXPORT|SSL_EXP56,
+    746          	    0,
+    747          	    56,
+    748          	    128,
+    749          	    SSL_ALL_CIPHERS,
+    750          	    SSL_ALL_STRENGTHS,
+    751          	    },
+    752          	/* Cipher 61 */
+    753          	    {
+    754          	    1,
+    755          	    TLS1_TXT_RSA_EXPORT1024_WITH_RC2_CBC_56_MD5,
+    756          	    TLS1_CK_RSA_EXPORT1024_WITH_RC2_CBC_56_MD5,
+    757          	    SSL_kRSA|SSL_aRSA|SSL_RC2|SSL_MD5|SSL_TLSV1,
+    758          	    SSL_EXPORT|SSL_EXP56,
+    759          	    0,
+    760          	    56,
+    761          	    128,
+    762          	    SSL_ALL_CIPHERS,
+    763          	    SSL_ALL_STRENGTHS,
+    764          	    },
+    765          	/* Cipher 62 */
+    766          	    {
+    767          	    1,
+    768          	    TLS1_TXT_RSA_EXPORT1024_WITH_DES_CBC_SHA,
+    769          	    TLS1_CK_RSA_EXPORT1024_WITH_DES_CBC_SHA,
+    770          	    SSL_kRSA|SSL_aRSA|SSL_DES|SSL_SHA|SSL_TLSV1,
+    771          	    SSL_EXPORT|SSL_EXP56,
+    772          	    0,
+    773          	    56,
+    774          	    56,
+    775          	    SSL_ALL_CIPHERS,
+    776          	    SSL_ALL_STRENGTHS,
+    777          	    },
+    778          	/* Cipher 63 */
+    779          	    {
+    780          	    1,
+    781          	    TLS1_TXT_DHE_DSS_EXPORT1024_WITH_DES_CBC_SHA,
+    782          	    TLS1_CK_DHE_DSS_EXPORT1024_WITH_DES_CBC_SHA,
+    783          	    SSL_kEDH|SSL_aDSS|SSL_DES|SSL_SHA|SSL_TLSV1,
+    784          	    SSL_EXPORT|SSL_EXP56,
+    785          	    0,
+    786          	    56,
+    787          	    56,
+    788          	    SSL_ALL_CIPHERS,
+    789          	    SSL_ALL_STRENGTHS,
+    790          	    },
+    791          	/* Cipher 64 */
+    792          	    {
+    793          	    1,
+    794          	    TLS1_TXT_RSA_EXPORT1024_WITH_RC4_56_SHA,
+    795          	    TLS1_CK_RSA_EXPORT1024_WITH_RC4_56_SHA,
+    796          	    SSL_kRSA|SSL_aRSA|SSL_RC4|SSL_SHA|SSL_TLSV1,
+    797          	    SSL_EXPORT|SSL_EXP56,
+    798          	    0,
+    799          	    56,
+    800          	    128,
+    801          	    SSL_ALL_CIPHERS,
+    802          	    SSL_ALL_STRENGTHS,
+    803          	    },
+    804          	/* Cipher 65 */
+    805          	    {
+    806          	    1,
+    807          	    TLS1_TXT_DHE_DSS_EXPORT1024_WITH_RC4_56_SHA,
+    808          	    TLS1_CK_DHE_DSS_EXPORT1024_WITH_RC4_56_SHA,
+    809          	    SSL_kEDH|SSL_aDSS|SSL_RC4|SSL_SHA|SSL_TLSV1,
+    810          	    SSL_EXPORT|SSL_EXP56,
+    811          	    0,
+    812          	    56,
+    813          	    128,
+    814          	    SSL_ALL_CIPHERS,
+    815          	    SSL_ALL_STRENGTHS,
+    816          	    },
+    817          	/* Cipher 66 */
+    818          	    {
+    819          	    1,
+    820          	    TLS1_TXT_DHE_DSS_WITH_RC4_128_SHA,
+    821          	    TLS1_CK_DHE_DSS_WITH_RC4_128_SHA,
+    822          	    SSL_kEDH|SSL_aDSS|SSL_RC4|SSL_SHA|SSL_TLSV1,
+    823          	    SSL_NOT_EXP|SSL_MEDIUM,
+    824          	    0,
+    825          	    128,
+    826          	    128,
+    827          	    SSL_ALL_CIPHERS,
+    828          	    SSL_ALL_STRENGTHS
+    829          	    },
+    830          #endif
+    831          	/* New AES ciphersuites */
+    832          
+    833          	/* Cipher 2F */
+    834          	    {
+    835          	    1,
+    836          	    TLS1_TXT_RSA_WITH_AES_128_SHA,
+    837          	    TLS1_CK_RSA_WITH_AES_128_SHA,
+    838          	    SSL_kRSA|SSL_aRSA|SSL_AES|SSL_SHA |SSL_TLSV1,
+    839          	    SSL_NOT_EXP|SSL_MEDIUM,
+    840          	    0,
+    841          	    128,
+    842          	    128,
+    843          	    SSL_ALL_CIPHERS,
+    844          	    SSL_ALL_STRENGTHS,
+    845          	    },
+    846          	/* Cipher 30 */
+    847          	    {
+    848          	    0,
+    849          	    TLS1_TXT_DH_DSS_WITH_AES_128_SHA,
+    850          	    TLS1_CK_DH_DSS_WITH_AES_128_SHA,
+    851          	    SSL_kDHd|SSL_aDH|SSL_AES|SSL_SHA|SSL_TLSV1,
+    852          	    SSL_NOT_EXP|SSL_MEDIUM,
+    853          	    0,
+    854          	    128,
+    855          	    128,
+    856          	    SSL_ALL_CIPHERS,
+    857          	    SSL_ALL_STRENGTHS,
+    858          	    },
+    859          	/* Cipher 31 */
+    860          	    {
+    861          	    0,
+    862          	    TLS1_TXT_DH_RSA_WITH_AES_128_SHA,
+    863          	    TLS1_CK_DH_RSA_WITH_AES_128_SHA,
+    864          	    SSL_kDHr|SSL_aDH|SSL_AES|SSL_SHA|SSL_TLSV1,
+    865          	    SSL_NOT_EXP|SSL_MEDIUM,
+    866          	    0,
+    867          	    128,
+    868          	    128,
+    869          	    SSL_ALL_CIPHERS,
+    870          	    SSL_ALL_STRENGTHS,
+    871          	    },
+    872          	/* Cipher 32 */
+    873          	    {
+    874          	    1,
+    875          	    TLS1_TXT_DHE_DSS_WITH_AES_128_SHA,
+    876          	    TLS1_CK_DHE_DSS_WITH_AES_128_SHA,
+    877          	    SSL_kEDH|SSL_aDSS|SSL_AES|SSL_SHA|SSL_TLSV1,
+    878          	    SSL_NOT_EXP|SSL_MEDIUM,
+    879          	    0,
+    880          	    128,
+    881          	    128,
+    882          	    SSL_ALL_CIPHERS,
+    883          	    SSL_ALL_STRENGTHS,
+    884          	    },
+    885          	/* Cipher 33 */
+    886          	    {
+    887          	    1,
+    888          	    TLS1_TXT_DHE_RSA_WITH_AES_128_SHA,
+    889          	    TLS1_CK_DHE_RSA_WITH_AES_128_SHA,
+    890          	    SSL_kEDH|SSL_aRSA|SSL_AES|SSL_SHA|SSL_TLSV1,
+    891          	    SSL_NOT_EXP|SSL_MEDIUM,
+    892          	    0,
+    893          	    128,
+    894          	    128,
+    895          	    SSL_ALL_CIPHERS,
+    896          	    SSL_ALL_STRENGTHS,
+    897          	    },
+    898          	/* Cipher 34 */
+    899          	    {
+    900          	    1,
+    901          	    TLS1_TXT_ADH_WITH_AES_128_SHA,
+    902          	    TLS1_CK_ADH_WITH_AES_128_SHA,
+    903          	    SSL_kEDH|SSL_aNULL|SSL_AES|SSL_SHA|SSL_TLSV1,
+    904          	    SSL_NOT_EXP|SSL_MEDIUM,
+    905          	    0,
+    906          	    128,
+    907          	    128,
+    908          	    SSL_ALL_CIPHERS,
+    909          	    SSL_ALL_STRENGTHS,
+    910          	    },
+    911          
+    912          	/* Cipher 35 */
+    913          	    {
+    914          	    1,
+    915          	    TLS1_TXT_RSA_WITH_AES_256_SHA,
+    916          	    TLS1_CK_RSA_WITH_AES_256_SHA,
+    917          	    SSL_kRSA|SSL_aRSA|SSL_AES|SSL_SHA |SSL_TLSV1,
+    918          	    SSL_NOT_EXP|SSL_HIGH,
+    919          	    0,
+    920          	    256,
+    921          	    256,
+    922          	    SSL_ALL_CIPHERS,
+    923          	    SSL_ALL_STRENGTHS,
+    924          	    },
+    925          	/* Cipher 36 */
+    926          	    {
+    927          	    0,
+    928          	    TLS1_TXT_DH_DSS_WITH_AES_256_SHA,
+    929          	    TLS1_CK_DH_DSS_WITH_AES_256_SHA,
+    930          	    SSL_kDHd|SSL_aDH|SSL_AES|SSL_SHA|SSL_TLSV1,
+    931          	    SSL_NOT_EXP|SSL_HIGH,
+    932          	    0,
+    933          	    256,
+    934          	    256,
+    935          	    SSL_ALL_CIPHERS,
+    936          	    SSL_ALL_STRENGTHS,
+    937          	    },
+    938          	/* Cipher 37 */
+    939          	    {
+    940          	    0,
+    941          	    TLS1_TXT_DH_RSA_WITH_AES_256_SHA,
+    942          	    TLS1_CK_DH_RSA_WITH_AES_256_SHA,
+    943          	    SSL_kDHr|SSL_aDH|SSL_AES|SSL_SHA|SSL_TLSV1,
+    944          	    SSL_NOT_EXP|SSL_HIGH,
+    945          	    0,
+    946          	    256,
+    947          	    256,
+    948          	    SSL_ALL_CIPHERS,
+    949          	    SSL_ALL_STRENGTHS,
+    950          	    },
+    951          	/* Cipher 38 */
+    952          	    {
+    953          	    1,
+    954          	    TLS1_TXT_DHE_DSS_WITH_AES_256_SHA,
+    955          	    TLS1_CK_DHE_DSS_WITH_AES_256_SHA,
+    956          	    SSL_kEDH|SSL_aDSS|SSL_AES|SSL_SHA|SSL_TLSV1,
+    957          	    SSL_NOT_EXP|SSL_HIGH,
+    958          	    0,
+    959          	    256,
+    960          	    256,
+    961          	    SSL_ALL_CIPHERS,
+    962          	    SSL_ALL_STRENGTHS,
+    963          	    },
+    964          	/* Cipher 39 */
+    965          	    {
+    966          	    1,
+    967          	    TLS1_TXT_DHE_RSA_WITH_AES_256_SHA,
+    968          	    TLS1_CK_DHE_RSA_WITH_AES_256_SHA,
+    969          	    SSL_kEDH|SSL_aRSA|SSL_AES|SSL_SHA|SSL_TLSV1,
+    970          	    SSL_NOT_EXP|SSL_HIGH,
+    971          	    0,
+    972          	    256,
+    973          	    256,
+    974          	    SSL_ALL_CIPHERS,
+    975          	    SSL_ALL_STRENGTHS,
+    976          	    },
+    977          	/* Cipher 3A */
+    978          	    {
+    979          	    1,
+    980          	    TLS1_TXT_ADH_WITH_AES_256_SHA,
+    981          	    TLS1_CK_ADH_WITH_AES_256_SHA,
+    982          	    SSL_kEDH|SSL_aNULL|SSL_AES|SSL_SHA|SSL_TLSV1,
+    983          	    SSL_NOT_EXP|SSL_HIGH,
+    984          	    0,
+    985          	    256,
+    986          	    256,
+    987          	    SSL_ALL_CIPHERS,
+    988          	    SSL_ALL_STRENGTHS,
+    989          	    },
+    990          
+    991          /* end of list */
+    992          	};
+    993          /*
+    994          static SSL3_ENC_METHOD SSLv3_enc_data={
+    995          	ssl3_enc,
+    996          	ssl3_mac,
+    997          	ssl3_setup_key_block,
+    998          	ssl3_generate_master_secret,
+    999          	ssl3_change_cipher_state,
+   1000          	ssl3_final_finish_mac,
+   1001          	MD5_DIGEST_LENGTH+SHA_DIGEST_LENGTH,
+   1002          	ssl3_cert_verify_mac,
+   1003          	SSL3_MD_CLIENT_FINISHED_CONST,4,
+   1004          	SSL3_MD_SERVER_FINISHED_CONST,4,
+   1005          	ssl3_alert_code,
+   1006          	};
+   1007          
+   1008          static SSL_METHOD SSLv3_data= {
+   1009          	SSL3_VERSION,
+   1010          	ssl3_new,
+   1011          	ssl3_clear,
+   1012          	ssl3_free,
+   1013          	ssl_undefined_function,
+   1014          	ssl_undefined_function,
+   1015          	ssl3_read,
+   1016          	ssl3_peek,
+   1017          	ssl3_write,
+   1018          	ssl3_shutdown,
+   1019          	ssl3_renegotiate,
+   1020          	ssl3_renegotiate_check,
+   1021          	ssl3_ctrl,
+   1022          	ssl3_ctx_ctrl,
+   1023          	ssl3_get_cipher_by_char,
+   1024          	ssl3_put_cipher_by_char,
+   1025          	ssl3_pending,
+   1026          	ssl3_num_ciphers,
+   1027          	ssl3_get_cipher,
+   1028          	ssl_bad_method,
+   1029          	ssl3_default_timeout,
+   1030          	&SSLv3_enc_data,
+   1031          	ssl_undefined_function,
+   1032          	ssl3_callback_ctrl,
+   1033          	ssl3_ctx_callback_ctrl,
+   1034          	};
+   1035          
+   1036          static long ssl3_default_timeout(void)
+   1037          	{
+   1038          	/* 2 hours, the 24 hours mentioned in the SSLv3 spec
+   1039          	 * is way too long for http, the cache would over fill */
+   1040          /*	return(60*60*2);
+   1041          	}
+   1042          
+   1043          SSL_METHOD *sslv3_base_method(void)
+   1044          	{
+   1045          	return(&SSLv3_data);
+   1046          	}
+   1047          
+   1048          int ssl3_num_ciphers(void)
+   1049          	{
+   1050          	return(SSL3_NUM_CIPHERS);
+   1051          	}
+   1052          
+   1053          SSL_CIPHER *ssl3_get_cipher(unsigned int u)
+   1054          	{
+   1055          	if (u < SSL3_NUM_CIPHERS)
+   1056          		return(&(ssl3_ciphers[SSL3_NUM_CIPHERS-1-u]));
+   1057          	else
+   1058          		return(NULL);
+   1059          	}
+   1060          
+   1061          int ssl3_pending(SSL *s)
+   1062          	{
+   1063          	if (s->rstate == SSL_ST_READ_BODY)
+   1064          		return 0;
+   1065          	
+   1066          	return (s->s3->rrec.type == SSL3_RT_APPLICATION_DATA) ? s->s3->rrec.length : 0;
+   1067          	}
+   1068          
+   1069          int ssl3_new(SSL *s)
+   1070          	{
+   1071          	SSL3_STATE *s3;
+   1072          
+   1073          	if ((s3=OPENSSL_malloc(sizeof *s3)) == NULL) goto err;
+   1074          	memset(s3,0,sizeof *s3);
+   1075          	EVP_MD_CTX_init(&s3->finish_dgst1);
+   1076          	EVP_MD_CTX_init(&s3->finish_dgst2);
+   1077          
+   1078          	s->s3=s3;
+   1079          
+   1080          	s->method->ssl_clear(s);
+   1081          	return(1);
+   1082          err:
+   1083          	return(0);
+   1084          	}
+   1085          
+   1086          void ssl3_free(SSL *s)
+   1087          	{
+   1088          	if(s == NULL)
+   1089          	    return;
+   1090          
+   1091          	ssl3_cleanup_key_block(s);
+   1092          	if (s->s3->rbuf.buf != NULL)
+   1093          		OPENSSL_free(s->s3->rbuf.buf);
+   1094          	if (s->s3->wbuf.buf != NULL)
+   1095          		OPENSSL_free(s->s3->wbuf.buf);
+   1096          	if (s->s3->rrec.comp != NULL)
+   1097          		OPENSSL_free(s->s3->rrec.comp);
+   1098          #ifndef OPENSSL_NO_DH
+   1099          	if (s->s3->tmp.dh != NULL)
+   1100          		DH_free(s->s3->tmp.dh);
+   1101          #endif
+   1102          	if (s->s3->tmp.ca_names != NULL)
+   1103          		sk_X509_NAME_pop_free(s->s3->tmp.ca_names,X509_NAME_free);
+   1104          	EVP_MD_CTX_cleanup(&s->s3->finish_dgst1);
+   1105          	EVP_MD_CTX_cleanup(&s->s3->finish_dgst2);
+   1106          	OPENSSL_cleanse(s->s3,sizeof *s->s3);
+   1107          	OPENSSL_free(s->s3);
+   1108          	s->s3=NULL;
+   1109          	}
+   1110          
+   1111          void ssl3_clear(SSL *s)
+   1112          	{
+   1113          	unsigned char *rp,*wp;
+   1114          	size_t rlen, wlen;
+   1115          
+   1116          	ssl3_cleanup_key_block(s);
+   1117          	if (s->s3->tmp.ca_names != NULL)
+   1118          		sk_X509_NAME_pop_free(s->s3->tmp.ca_names,X509_NAME_free);
+   1119          
+   1120          	if (s->s3->rrec.comp != NULL)
+   1121          		{
+   1122          		OPENSSL_free(s->s3->rrec.comp);
+   1123          		s->s3->rrec.comp=NULL;
+   1124          		}
+   1125          #ifndef OPENSSL_NO_DH
+   1126          	if (s->s3->tmp.dh != NULL)
+   1127          		DH_free(s->s3->tmp.dh);
+   1128          #endif
+   1129          
+   1130          	rp = s->s3->rbuf.buf;
+   1131          	wp = s->s3->wbuf.buf;
+   1132          	rlen = s->s3->rbuf.len;
+   1133           	wlen = s->s3->wbuf.len;
+   1134          
+   1135          	EVP_MD_CTX_cleanup(&s->s3->finish_dgst1);
+   1136          	EVP_MD_CTX_cleanup(&s->s3->finish_dgst2);
+   1137          
+   1138          	memset(s->s3,0,sizeof *s->s3);
+   1139          	s->s3->rbuf.buf = rp;
+   1140          	s->s3->wbuf.buf = wp;
+   1141          	s->s3->rbuf.len = rlen;
+   1142           	s->s3->wbuf.len = wlen;
+   1143          
+   1144          	ssl_free_wbio_buffer(s);
+   1145          
+   1146          	s->packet_length=0;
+   1147          	s->s3->renegotiate=0;
+   1148          	s->s3->total_renegotiations=0;
+   1149          	s->s3->num_renegotiations=0;
+   1150          	s->s3->in_read_app_data=0;
+   1151          	s->version=SSL3_VERSION;
+   1152          	}
+   1153          
+   1154          long ssl3_ctrl(SSL *s, int cmd, long larg, void *parg)
+   1155          	{
+   1156          	int ret=0;
+   1157          
+   1158          #if !defined(OPENSSL_NO_DSA) || !defined(OPENSSL_NO_RSA)
+   1159          	if (
+   1160          #ifndef OPENSSL_NO_RSA
+   1161          	    cmd == SSL_CTRL_SET_TMP_RSA ||
+   1162          	    cmd == SSL_CTRL_SET_TMP_RSA_CB ||
+   1163          #endif
+   1164          #ifndef OPENSSL_NO_DSA
+   1165          	    cmd == SSL_CTRL_SET_TMP_DH ||
+   1166          	    cmd == SSL_CTRL_SET_TMP_DH_CB ||
+   1167          #endif
+   1168          		0)
+   1169          		{
+   1170          		if (!ssl_cert_inst(&s->cert))
+   1171          		    	{
+   1172          			SSLerr(SSL_F_SSL3_CTRL, ERR_R_MALLOC_FAILURE);
+   1173          			return(0);
+   1174          			}
+   1175          		}
+   1176          #endif
+   1177          
+   1178          	switch (cmd)
+   1179          		{
+   1180          	case SSL_CTRL_GET_SESSION_REUSED:
+   1181          		ret=s->hit;
+   1182          		break;
+   1183          	case SSL_CTRL_GET_CLIENT_CERT_REQUEST:
+   1184          		break;
+   1185          	case SSL_CTRL_GET_NUM_RENEGOTIATIONS:
+   1186          		ret=s->s3->num_renegotiations;
+   1187          		break;
+   1188          	case SSL_CTRL_CLEAR_NUM_RENEGOTIATIONS:
+   1189          		ret=s->s3->num_renegotiations;
+   1190          		s->s3->num_renegotiations=0;
+   1191          		break;
+   1192          	case SSL_CTRL_GET_TOTAL_RENEGOTIATIONS:
+   1193          		ret=s->s3->total_renegotiations;
+   1194          		break;
+   1195          	case SSL_CTRL_GET_FLAGS:
+   1196          		ret=(int)(s->s3->flags);
+   1197          		break;
+   1198          #ifndef OPENSSL_NO_RSA
+   1199          	case SSL_CTRL_NEED_TMP_RSA:
+   1200          		if ((s->cert != NULL) && (s->cert->rsa_tmp == NULL) &&
+   1201          		    ((s->cert->pkeys[SSL_PKEY_RSA_ENC].privatekey == NULL) ||
+   1202          		     (EVP_PKEY_size(s->cert->pkeys[SSL_PKEY_RSA_ENC].privatekey) > (512/8))))
+   1203          			ret = 1;
+   1204          		break;
+   1205          	case SSL_CTRL_SET_TMP_RSA:
+   1206          		{
+   1207          			RSA *rsa = (RSA *)parg;
+   1208          			if (rsa == NULL)
+   1209          				{
+   1210          				SSLerr(SSL_F_SSL3_CTRL, ERR_R_PASSED_NULL_PARAMETER);
+   1211          				return(ret);
+   1212          				}
+   1213          			if ((rsa = RSAPrivateKey_dup(rsa)) == NULL)
+   1214          				{
+   1215          				SSLerr(SSL_F_SSL3_CTRL, ERR_R_RSA_LIB);
+   1216          				return(ret);
+   1217          				}
+   1218          			if (s->cert->rsa_tmp != NULL)
+   1219          				RSA_free(s->cert->rsa_tmp);
+   1220          			s->cert->rsa_tmp = rsa;
+   1221          			ret = 1;
+   1222          		}
+   1223          		break;
+   1224          	case SSL_CTRL_SET_TMP_RSA_CB:
+   1225          		{
+   1226          		SSLerr(SSL_F_SSL3_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
+   1227          		return(ret);
+   1228          		}
+   1229          		break;
+   1230          #endif
+   1231          #ifndef OPENSSL_NO_DH
+   1232          	case SSL_CTRL_SET_TMP_DH:
+   1233          		{
+   1234          			DH *dh = (DH *)parg;
+   1235          			if (dh == NULL)
+   1236          				{
+   1237          				SSLerr(SSL_F_SSL3_CTRL, ERR_R_PASSED_NULL_PARAMETER);
+   1238          				return(ret);
+   1239          				}
+   1240          			if ((dh = DHparams_dup(dh)) == NULL)
+   1241          				{
+   1242          				SSLerr(SSL_F_SSL3_CTRL, ERR_R_DH_LIB);
+   1243          				return(ret);
+   1244          				}
+   1245          			if (!(s->options & SSL_OP_SINGLE_DH_USE))
+   1246          				{
+   1247          				if (!DH_generate_key(dh))
+   1248          					{
+   1249          					DH_free(dh);
+   1250          					SSLerr(SSL_F_SSL3_CTRL, ERR_R_DH_LIB);
+   1251          					return(ret);
+   1252          					}
+   1253          				}
+   1254          			if (s->cert->dh_tmp != NULL)
+   1255          				DH_free(s->cert->dh_tmp);
+   1256          			s->cert->dh_tmp = dh;
+   1257          			ret = 1;
+   1258          		}
+   1259          		break;
+   1260          	case SSL_CTRL_SET_TMP_DH_CB:
+   1261          		{
+   1262          		SSLerr(SSL_F_SSL3_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
+   1263          		return(ret);
+   1264          		}
+   1265          		break;
+   1266          #endif
+   1267          	default:
+   1268          		break;
+   1269          		}
+   1270          	return(ret);
+   1271          	}
+   1272          
+   1273          long ssl3_callback_ctrl(SSL *s, int cmd, void (*fp)())
+   1274          	{
+   1275          	int ret=0;
+   1276          
+   1277          #if !defined(OPENSSL_NO_DSA) || !defined(OPENSSL_NO_RSA)
+   1278          	if (
+   1279          #ifndef OPENSSL_NO_RSA
+   1280          	    cmd == SSL_CTRL_SET_TMP_RSA_CB ||
+   1281          #endif
+   1282          #ifndef OPENSSL_NO_DSA
+   1283          	    cmd == SSL_CTRL_SET_TMP_DH_CB ||
+   1284          #endif
+   1285          		0)
+   1286          		{
+   1287          		if (!ssl_cert_inst(&s->cert))
+   1288          			{
+   1289          			SSLerr(SSL_F_SSL3_CALLBACK_CTRL, ERR_R_MALLOC_FAILURE);
+   1290          			return(0);
+   1291          			}
+   1292          		}
+   1293          #endif
+   1294          
+   1295          	switch (cmd)
+   1296          		{
+   1297          #ifndef OPENSSL_NO_RSA
+   1298          	case SSL_CTRL_SET_TMP_RSA_CB:
+   1299          		{
+   1300          		s->cert->rsa_tmp_cb = (RSA *(*)(SSL *, int, int))fp;
+   1301          		}
+   1302          		break;
+   1303          #endif
+   1304          #ifndef OPENSSL_NO_DH
+   1305          	case SSL_CTRL_SET_TMP_DH_CB:
+   1306          		{
+   1307          		s->cert->dh_tmp_cb = (DH *(*)(SSL *, int, int))fp;
+   1308          		}
+   1309          		break;
+   1310          #endif
+   1311          	default:
+   1312          		break;
+   1313          		}
+   1314          	return(ret);
+   1315          	}
+   1316          
+   1317          long ssl3_ctx_ctrl(SSL_CTX *ctx, int cmd, long larg, void *parg)
+   1318          	{
+   1319          	CERT *cert;
+   1320          
+   1321          	cert=ctx->cert;
+   1322          
+   1323          	switch (cmd)
+   1324          		{
+   1325          #ifndef OPENSSL_NO_RSA
+   1326          	case SSL_CTRL_NEED_TMP_RSA:
+   1327          		if (	(cert->rsa_tmp == NULL) &&
+   1328          			((cert->pkeys[SSL_PKEY_RSA_ENC].privatekey == NULL) ||
+   1329          			 (EVP_PKEY_size(cert->pkeys[SSL_PKEY_RSA_ENC].privatekey) > (512/8)))
+   1330          			)
+   1331          			return(1);
+   1332          		else
+   1333          			return(0);
+   1334          		/* break; */
+   1335          /*	case SSL_CTRL_SET_TMP_RSA:
+   1336          		{
+   1337          		RSA *rsa;
+   1338          		int i;
+   1339          
+   1340          		rsa=(RSA *)parg;
+   1341          		i=1;
+   1342          		if (rsa == NULL)
+   1343          			i=0;
+   1344          		else
+   1345          			{
+   1346          			if ((rsa=RSAPrivateKey_dup(rsa)) == NULL)
+   1347          				i=0;
+   1348          			}
+   1349          		if (!i)
+   1350          			{
+   1351          			SSLerr(SSL_F_SSL3_CTX_CTRL,ERR_R_RSA_LIB);
+   1352          			return(0);
+   1353          			}
+   1354          		else
+   1355          			{
+   1356          			if (cert->rsa_tmp != NULL)
+   1357          				RSA_free(cert->rsa_tmp);
+   1358          			cert->rsa_tmp=rsa;
+   1359          			return(1);
+   1360          			}
+   1361          		}
+   1362          		/* break; */
+   1363          /*	case SSL_CTRL_SET_TMP_RSA_CB:
+   1364          		{
+   1365          		SSLerr(SSL_F_SSL3_CTX_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
+   1366          		return(0);
+   1367          		}
+   1368          		break;
+   1369          #endif
+   1370          #ifndef OPENSSL_NO_DH
+   1371          	case SSL_CTRL_SET_TMP_DH:
+   1372          		{
+   1373          		DH *new=NULL,*dh;
+   1374          
+   1375          		dh=(DH *)parg;
+   1376          		if ((new=DHparams_dup(dh)) == NULL)
+   1377          			{
+   1378          			SSLerr(SSL_F_SSL3_CTX_CTRL,ERR_R_DH_LIB);
+   1379          			return 0;
+   1380          			}
+   1381          		if (!(ctx->options & SSL_OP_SINGLE_DH_USE))
+   1382          			{
+   1383          			if (!DH_generate_key(new))
+   1384          				{
+   1385          				SSLerr(SSL_F_SSL3_CTX_CTRL,ERR_R_DH_LIB);
+   1386          				DH_free(new);
+   1387          				return 0;
+   1388          				}
+   1389          			}
+   1390          		if (cert->dh_tmp != NULL)
+   1391          			DH_free(cert->dh_tmp);
+   1392          		cert->dh_tmp=new;
+   1393          		return 1;
+   1394          		}
+   1395          		/*break; */
+   1396          /*	case SSL_CTRL_SET_TMP_DH_CB:
+   1397          		{
+   1398          		SSLerr(SSL_F_SSL3_CTX_CTRL, ERR_R_SHOULD_NOT_HAVE_BEEN_CALLED);
+   1399          		return(0);
+   1400          		}
+   1401          		break;
+   1402          #endif
+   1403          	/* A Thawte special :-) */
+   1404          /*	case SSL_CTRL_EXTRA_CHAIN_CERT:
+   1405          		if (ctx->extra_certs == NULL)
+   1406          			{
+   1407          			if ((ctx->extra_certs=sk_X509_new_null()) == NULL)
+   1408          				return(0);
+   1409          			}
+   1410          		sk_X509_push(ctx->extra_certs,(X509 *)parg);
+   1411          		break;
+   1412          
+   1413          	default:
+   1414          		return(0);
+   1415          		}
+   1416          	return(1);
+   1417          	}
+   1418          
+   1419          long ssl3_ctx_callback_ctrl(SSL_CTX *ctx, int cmd, void (*fp)())
+   1420          	{
+   1421          	CERT *cert;
+   1422          
+   1423          	cert=ctx->cert;
+   1424          
+   1425          	switch (cmd)
+   1426          		{
+   1427          #ifndef OPENSSL_NO_RSA
+   1428          	case SSL_CTRL_SET_TMP_RSA_CB:
+   1429          		{
+   1430          		cert->rsa_tmp_cb = (RSA *(*)(SSL *, int, int))fp;
+   1431          		}
+   1432          		break;
+   1433          #endif
+   1434          #ifndef OPENSSL_NO_DH
+   1435          	case SSL_CTRL_SET_TMP_DH_CB:
+   1436          		{
+   1437          		cert->dh_tmp_cb = (DH *(*)(SSL *, int, int))fp;
+   1438          		}
+   1439          		break;
+   1440          #endif
+   1441          	default:
+   1442          		return(0);
+   1443          		}
+   1444          	return(1);
+   1445          	}
+   1446          
+   1447          /* This function needs to check if the ciphers required are actually
+   1448           * available */
+   1449          /*SSL_CIPHER *ssl3_get_cipher_by_char(const unsigned char *p)
+   1450          	{
+   1451          	static int init=1;
+   1452          	static SSL_CIPHER *sorted[SSL3_NUM_CIPHERS];
+   1453          	SSL_CIPHER c,*cp= &c,**cpp;
+   1454          	unsigned long id;
+   1455          	int i;
+   1456          
+   1457          	if (init)
+   1458          		{
+   1459          		CRYPTO_w_lock(CRYPTO_LOCK_SSL);
+   1460          
+   1461          		if (init)
+   1462          			{
+   1463          			for (i=0; i<SSL3_NUM_CIPHERS; i++)
+   1464          				sorted[i]= &(ssl3_ciphers[i]);
+   1465          
+   1466          			qsort(sorted,
+   1467          				SSL3_NUM_CIPHERS,sizeof(SSL_CIPHER *),
+   1468          				FP_ICC ssl_cipher_ptr_id_cmp);
+   1469          
+   1470          			init=0;
+   1471          			}
+   1472          		
+   1473          		CRYPTO_w_unlock(CRYPTO_LOCK_SSL);
+   1474          		}
+   1475          
+   1476          	id=0x03000000L|((unsigned long)p[0]<<8L)|(unsigned long)p[1];
+   1477          	c.id=id;
+   1478          	cpp=(SSL_CIPHER **)OBJ_bsearch((char *)&cp,
+   1479          		(char *)sorted,
+   1480          		SSL3_NUM_CIPHERS,sizeof(SSL_CIPHER *),
+   1481          		FP_ICC ssl_cipher_ptr_id_cmp);
+   1482          	if ((cpp == NULL) || !(*cpp)->valid)
+   1483          		return(NULL);
+   1484          	else
+   1485          		return(*cpp);
+   1486          	}
+   1487          
+   1488          int ssl3_put_cipher_by_char(const SSL_CIPHER *c, unsigned char *p)
+   1489          	{
+   1490          	long l;
+   1491          
+   1492          	if (p != NULL)
+   1493          		{
+   1494          		l=c->id;
+   1495          		if ((l & 0xff000000) != 0x03000000) return(0);
+   1496          		p[0]=((unsigned char)(l>> 8L))&0xFF;
+   1497          		p[1]=((unsigned char)(l     ))&0xFF;
+   1498          		}
+   1499          	return(2);
+   1500          	}
+   1501          
+   1502          SSL_CIPHER *ssl3_choose_cipher(SSL *s, STACK_OF(SSL_CIPHER) *clnt,
+   1503          	     STACK_OF(SSL_CIPHER) *srvr)
+   1504          	{
+   1505          	SSL_CIPHER *c,*ret=NULL;
+   1506          	STACK_OF(SSL_CIPHER) *prio, *allow;
+   1507          	int i,j,ok;
+   1508          	CERT *cert;
+   1509          	unsigned long alg,mask,emask;
+   1510          
+   1511          	/* Let's see which ciphers we can support */
+   1512          	cert=s->cert;
+   1513          
+   1514          #if 0
+   1515          	/* Do not set the compare functions, because this may lead to a
+   1516          	 * reordering by "id". We want to keep the original ordering.
+   1517          	 * We may pay a price in performance during sk_SSL_CIPHER_find(),
+   1518          	 * but would have to pay with the price of sk_SSL_CIPHER_dup().
+   1519          	 */
+   1520          /*	sk_SSL_CIPHER_set_cmp_func(srvr, ssl_cipher_ptr_id_cmp);
+   1521          	sk_SSL_CIPHER_set_cmp_func(clnt, ssl_cipher_ptr_id_cmp);
+   1522          #endif
+   1523          
+   1524          #ifdef CIPHER_DEBUG
+   1525                  printf("Server has %d from %p:\n", sk_SSL_CIPHER_num(srvr), srvr);
+   1526                  for(i=0 ; i < sk_SSL_CIPHER_num(srvr) ; ++i)
+   1527          	    {
+   1528          	    c=sk_SSL_CIPHER_value(srvr,i);
+   1529          	    printf("%p:%s\n",c,c->name);
+   1530          	    }
+   1531                  printf("Client sent %d from %p:\n", sk_SSL_CIPHER_num(clnt), clnt);
+   1532                  for(i=0 ; i < sk_SSL_CIPHER_num(clnt) ; ++i)
+   1533          	    {
+   1534          	    c=sk_SSL_CIPHER_value(clnt,i);
+   1535          	    printf("%p:%s\n",c,c->name);
+   1536          	    }
+   1537          #endif
+   1538          
+   1539          	if (s->options & SSL_OP_CIPHER_SERVER_PREFERENCE)
+   1540          	    {
+   1541          	    prio = srvr;
+   1542          	    allow = clnt;
+   1543          	    }
+   1544          	else
+   1545          	    {
+   1546          	    prio = clnt;
+   1547          	    allow = srvr;
+   1548          	    }
+   1549          
+   1550          	for (i=0; i<sk_SSL_CIPHER_num(prio); i++)
+   1551          		{
+   1552          		c=sk_SSL_CIPHER_value(prio,i);
+   1553          
+   1554          		ssl_set_cert_masks(cert,c);
+   1555          		mask=cert->mask;
+   1556          		emask=cert->export_mask;
+   1557          			
+   1558          #ifdef KSSL_DEBUG
+   1559          		printf("ssl3_choose_cipher %d alg= %lx\n", i,c->algorithms);
+   1560          #endif    /* KSSL_DEBUG */
+   1561          
+   1562          /*		alg=c->algorithms&(SSL_MKEY_MASK|SSL_AUTH_MASK);
+   1563          #ifndef OPENSSL_NO_KRB5
+   1564                          if (alg & SSL_KRB5) 
+   1565                                  {
+   1566                                  if ( !kssl_keytab_is_available(s->kssl_ctx) )
+   1567                                      continue;
+   1568                                  }
+   1569          #endif /* OPENSSL_NO_KRB5 */
+   1570          /*		if (SSL_C_IS_EXPORT(c))
+   1571          			{
+   1572          			ok=((alg & emask) == alg)?1:0;
+   1573          #ifdef CIPHER_DEBUG
+   1574          			printf("%d:[%08lX:%08lX]%p:%s (export)\n",ok,alg,emask,
+   1575          			       c,c->name);
+   1576          #endif
+   1577          			}
+   1578          		else
+   1579          			{
+   1580          			ok=((alg & mask) == alg)?1:0;
+   1581          #ifdef CIPHER_DEBUG
+   1582          			printf("%d:[%08lX:%08lX]%p:%s\n",ok,alg,mask,c,
+   1583          			       c->name);
+   1584          #endif
+   1585          			}
+   1586          
+   1587          		if (!ok) continue;
+   1588          	
+   1589          		j=sk_SSL_CIPHER_find(allow,c);
+   1590          		if (j >= 0)
+   1591          			{
+   1592          			ret=sk_SSL_CIPHER_value(allow,j);
+   1593          			break;
+   1594          			}
+   1595          		}
+   1596          	return(ret);
+   1597          	}
+   1598          
+   1599          int ssl3_get_req_cert_type(SSL *s, unsigned char *p)
+   1600          	{
+   1601          	int ret=0;
+   1602          	unsigned long alg;
+   1603          
+   1604          	alg=s->s3->tmp.new_cipher->algorithms;
+   1605          
+   1606          #ifndef OPENSSL_NO_DH
+   1607          	if (alg & (SSL_kDHr|SSL_kEDH))
+   1608          		{
+   1609          #  ifndef OPENSSL_NO_RSA
+   1610          		p[ret++]=SSL3_CT_RSA_FIXED_DH;
+   1611          #  endif
+   1612          #  ifndef OPENSSL_NO_DSA
+   1613          		p[ret++]=SSL3_CT_DSS_FIXED_DH;
+   1614          #  endif
+   1615          		}
+   1616          	if ((s->version == SSL3_VERSION) &&
+   1617          		(alg & (SSL_kEDH|SSL_kDHd|SSL_kDHr)))
+   1618          		{
+   1619          #  ifndef OPENSSL_NO_RSA
+   1620          		p[ret++]=SSL3_CT_RSA_EPHEMERAL_DH;
+   1621          #  endif
+   1622          #  ifndef OPENSSL_NO_DSA
+   1623          		p[ret++]=SSL3_CT_DSS_EPHEMERAL_DH;
+   1624          #  endif
+   1625          		}
+   1626          #endif /* !OPENSSL_NO_DH */
+   1627          /*#ifndef OPENSSL_NO_RSA
+   1628          	p[ret++]=SSL3_CT_RSA_SIGN;
+   1629          #endif
+   1630          #ifndef OPENSSL_NO_DSA
+   1631          	p[ret++]=SSL3_CT_DSS_SIGN;
+   1632          #endif
+   1633          	return(ret);
+   1634          	}
+   1635          
+   1636          int ssl3_shutdown(SSL *s)
+   1637          	{
+   1638          
+   1639          	/* Don't do anything much if we have not done the handshake or
+   1640          	 * we don't want to send messages :-) */
+   1641          /*	if ((s->quiet_shutdown) || (s->state == SSL_ST_BEFORE))
+   1642          		{
+   1643          		s->shutdown=(SSL_SENT_SHUTDOWN|SSL_RECEIVED_SHUTDOWN);
+   1644          		return(1);
+   1645          		}
+   1646          
+   1647          	if (!(s->shutdown & SSL_SENT_SHUTDOWN))
+   1648          		{
+   1649          		s->shutdown|=SSL_SENT_SHUTDOWN;
+   1650          #if 1
+   1651          		ssl3_send_alert(s,SSL3_AL_WARNING,SSL_AD_CLOSE_NOTIFY);
+   1652          #endif
+   1653          		/* our shutdown alert has been sent now, and if it still needs
+   1654          	 	 * to be written, s->s3->alert_dispatch will be true */
+   1655          		}
+   1656          /*	else if (s->s3->alert_dispatch)
+   1657          		{
+   1658          		/* resend it if not sent */
+   1659          #if 1
+   1660          /*		ssl3_dispatch_alert(s);
+   1661          #endif
+   1662          		}
+   1663          	else if (!(s->shutdown & SSL_RECEIVED_SHUTDOWN))
+   1664          		{
+   1665          		/* If we are waiting for a close from our peer, we are closed */
+   1666          /*		ssl3_read_bytes(s,0,NULL,0,0);
+   1667          		}
+   1668          
+   1669          	if ((s->shutdown == (SSL_SENT_SHUTDOWN|SSL_RECEIVED_SHUTDOWN)) &&
+   1670          		!s->s3->alert_dispatch)
+   1671          		return(1);
+   1672          	else
+   1673          		return(0);
+   1674          	}
+   1675          
+   1676          int ssl3_write(SSL *s, const void *buf, int len)
+   1677          	{
+   1678          	int ret,n;
+   1679          
+   1680          #if 0
+   1681          	if (s->shutdown & SSL_SEND_SHUTDOWN)
+   1682          		{
+   1683          		s->rwstate=SSL_NOTHING;
+   1684          		return(0);
+   1685          		}
+   1686          #endif
+   1687          	clear_sys_error();
+   1688          	if (s->s3->renegotiate) ssl3_renegotiate_check(s);
+   1689          
+   1690          	/* This is an experimental flag that sends the
+   1691          	 * last handshake message in the same packet as the first
+   1692          	 * use data - used to see if it helps the TCP protocol during
+   1693          	 * session-id reuse */
+   1694          	/* The second test is because the buffer may have been removed */
+   1695          /*	if ((s->s3->flags & SSL3_FLAGS_POP_BUFFER) && (s->wbio == s->bbio))
+   1696          		{
+   1697          		/* First time through, we write into the buffer */
+   1698          /*		if (s->s3->delay_buf_pop_ret == 0)
+   1699          			{
+   1700          			ret=ssl3_write_bytes(s,SSL3_RT_APPLICATION_DATA,
+   1701          					     buf,len);
+   1702          			if (ret <= 0) return(ret);
+   1703          
+   1704          			s->s3->delay_buf_pop_ret=ret;
+   1705          			}
+   1706          
+   1707          		s->rwstate=SSL_WRITING;
+   1708          		n=BIO_flush(s->wbio);
+   1709          		if (n <= 0) return(n);
+   1710          		s->rwstate=SSL_NOTHING;
+   1711          
+   1712          		/* We have flushed the buffer, so remove it */
+   1713          /*		ssl_free_wbio_buffer(s);
+   1714          		s->s3->flags&= ~SSL3_FLAGS_POP_BUFFER;
+   1715          
+   1716          		ret=s->s3->delay_buf_pop_ret;
+   1717          		s->s3->delay_buf_pop_ret=0;
+   1718          		}
+   1719          	else
+   1720          		{
+   1721          		ret=ssl3_write_bytes(s,SSL3_RT_APPLICATION_DATA,
+   1722          				     buf,len);
+   1723          		if (ret <= 0) return(ret);
+   1724          		}
+   1725          
+   1726          	return(ret);
+   1727          	}
+   1728          
+   1729          static int ssl3_read_internal(SSL *s, void *buf, int len, int peek)
+   1730          	{
+   1731          	int ret;
+   1732          	
+   1733          	clear_sys_error();
+   1734          	if (s->s3->renegotiate) ssl3_renegotiate_check(s);
+   1735          	s->s3->in_read_app_data=1;
+   1736          	ret=ssl3_read_bytes(s,SSL3_RT_APPLICATION_DATA,buf,len,peek);
+   1737          	if ((ret == -1) && (s->s3->in_read_app_data == 2))
+   1738          		{
+   1739          		/* ssl3_read_bytes decided to call s->handshake_func, which
+   1740          		 * called ssl3_read_bytes to read handshake data.
+   1741          		 * However, ssl3_read_bytes actually found application data
+   1742          		 * and thinks that application data makes sense here; so disable
+   1743          		 * handshake processing and try to read application data again. */
+   1744          /*		s->in_handshake++;
+   1745          		ret=ssl3_read_bytes(s,SSL3_RT_APPLICATION_DATA,buf,len,peek);
+   1746          		s->in_handshake--;
+   1747          		}
+   1748          	else
+   1749          		s->s3->in_read_app_data=0;
+   1750          
+   1751          	return(ret);
+   1752          	}
+   1753          
+   1754          int ssl3_read(SSL *s, void *buf, int len)
+   1755          	{
+   1756          	return ssl3_read_internal(s, buf, len, 0);
+   1757          	}
+   1758          
+   1759          int ssl3_peek(SSL *s, void *buf, int len)
+   1760          	{
+   1761          	return ssl3_read_internal(s, buf, len, 1);
+   1762          	}
+   1763          
+   1764          int ssl3_renegotiate(SSL *s)
+   1765          	{
+   1766          	if (s->handshake_func == NULL)
+   1767          		return(1);
+   1768          
+   1769          	if (s->s3->flags & SSL3_FLAGS_NO_RENEGOTIATE_CIPHERS)
+   1770          		return(0);
+   1771          
+   1772          	s->s3->renegotiate=1;
+   1773          	return(1);
+   1774          	}
+   1775          
+   1776          int ssl3_renegotiate_check(SSL *s)
+   1777          	{
+   1778          	int ret=0;
+   1779          
+   1780          	if (s->s3->renegotiate)
+   1781          		{
+   1782          		if (	(s->s3->rbuf.left == 0) &&
+   1783          			(s->s3->wbuf.left == 0) &&
+   1784          			!SSL_in_init(s))
+   1785          			{
+   1786          /*
+   1787          if we are the server, and we have sent a 'RENEGOTIATE' message, we
+   1788          need to go to SSL_ST_ACCEPT.
+   1789          */
+   1790          			/* SSL_ST_ACCEPT */
+   1791          /*			s->state=SSL_ST_RENEGOTIATE;
+   1792          			s->s3->renegotiate=0;
+   1793          			s->s3->num_renegotiations++;
+   1794          			s->s3->total_renegotiations++;
+   1795          			ret=1;
+   1796          			}
+   1797          		}
+   1798          	return(ret);
+   1799          	}
+   1800          
+
+Errors: 65
+Warnings: 20

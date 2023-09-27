@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>651358833</fileChecksum>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\LogSms.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\config.c</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\Release_NSG\List\config.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\List\LogSms.map</file>
+      <file>$PROJ_DIR$\strings.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\..\[ROOT_NODE]</file>
+      <file>$TOOLKIT_DIR$\INC\cfg_items.h</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\strings.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\config.pbi</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\strings.lst</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\config.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\LogSms.elf</file>
+      <file>$PROJ_DIR$\Release_NSG\List\func.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\strings.r79</file>
+      <file>$TOOLKIT_DIR$\INC\stddef.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\time.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rand.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\stack.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\safestack.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ripemd.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bio.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\buffer.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md4.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\symhacks.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\evp.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ossl_typ.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\e_os2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\blowfish.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\lhash.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdio.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslv.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\des.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\aes.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\cast.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc4.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\mdc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl3.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl23.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509_vfy.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pkcs7.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\obj_mac.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\undifined_functions.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\objects.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\asn1.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\tls1.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dh.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 12 46</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24 34</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31 23 14 28 43 29 35 1 2 27 22 39 13 26</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31 23 14 28 54 55 53 51 50 58 57 43 49 22 39 59 52 62 61 56 60 81 72 75 66 79 70 68 80 77 73 74 78 71 69 86 67 83 88 82 84 76 87 89 85 63 102 98 104 99 95 101 96 93 94 100 92 90 103 91 97 13 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\LogSms.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 37 25 45 19</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 0 47</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 48 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17 20 21 30 65 41 42 64 5 33 44 40 13</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36 11</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17 20 21 30 65 41 42 64 5 33 44 40 16 26</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\..\[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 12 46</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\LogSms.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 18 36 38 0 24 48</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\config.c</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\strings.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\..\[ROOT_NODE]</file>
+      <file>$TOOLKIT_DIR$\INC\cfg_items.h</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\LogSms.pbd</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\LogSms.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config.r79</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\config.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\func.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\strings.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\LogSms.map</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 41 48</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23 17 9 20 30 21 25 0 1 19 16 26 8 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 17 9 20 30 21 25 0 1 19 16 26 8 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 35 45</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 40 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12 14 15 22 50 28 29 43 3 24 31 27 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 14 15 22 50 28 29 43 3 24 31 27 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 38 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 12 14 15 22 50 28 29 43 3 24 31 27 11 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 14 15 22 50 28 29 43 3 24 31 27 11 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\..\[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 41 48</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\LogSms.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 32 36 34 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\LogSms.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 13 38 42 35 39 40</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

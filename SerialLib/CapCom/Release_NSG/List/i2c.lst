@@ -1,0 +1,102 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    07/Feb/2014  22:15:30 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\sie #
+#                       mens\i2c.c                                           #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\sie #
+#                       mens\i2c.c -D NEWSGOLD -lCN                          #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\ -la                       #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\ -o                        #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\Obj\ -z9 --cpu_mode arm         #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork -e --fpu None --dlib_config              #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\i2c.lst                    #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\Obj\i2c.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\siemens\i2c.c
+      1          #include <swilib.h>
+      2          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      3          I2C_MSG msg;
+   \                     msg:
+   \   00000000                      DS8 20
+      4          char data = 0;
+   \                     `data`:
+   \   00000014                      DS8 1
+      5          
+
+   \                                 In segment CODE, align 4, keep-with-next
+      6          int i2cw_pmu(short reg, char value)
+      7          {
+   \                     i2cw_pmu:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+      8            data = value;  
+   \   00000004   38509FE5           LDR      R5,??i2cw_pmu_0  ;; msg
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   1410C5E5           STRB     R1,[R5, #+20]
+      9            ClearMemory(&msg, sizeof(I2C_MSG));
+   \   00000010   1410A0E3           MOV      R1,#+20
+   \   00000014   0500A0E1           MOV      R0,R5
+   \   00000018   580000EF           SWI      +88
+     10            msg.chip_addr = 0x31;
+   \   0000001C   3100A0E3           MOV      R0,#+49
+   \   00000020   0000C5E5           STRB     R0,[R5, #+0]
+     11            msg.nRegister = reg;
+   \   00000024   B440C5E1           STRH     R4,[R5, #+4]
+     12            msg.data = &data;
+   \   00000028   140085E2           ADD      R0,R5,#+20
+   \   0000002C   0C0085E5           STR      R0,[R5, #+12]
+     13            msg.size = 1;
+   \   00000030   0100A0E3           MOV      R0,#+1
+   \   00000034   100085E5           STR      R0,[R5, #+16]
+     14            return i2c_transfer(&msg);
+   \   00000038   0500A0E1           MOV      R0,R5
+   \   0000003C   EC0200EF           SWI      +748
+   \   00000040   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??i2cw_pmu_0:
+   \   00000044   ........           DC32     msg
+     15          }
+     16          
+
+   Maximum stack usage in bytes:
+
+     Function CSTACK
+     -------- ------
+     i2cw_pmu    12
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     msg              21
+     i2cw_pmu         72
+      Others          16
+
+ 
+ 76 bytes in segment CODE
+ 21 bytes in segment DATA_Z
+ 12 bytes in segment INITTAB
+ 
+ 72 bytes of CODE memory (+ 16 bytes shared)
+ 21 bytes of DATA memory
+
+Errors: none
+Warnings: none

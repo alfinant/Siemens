@@ -1,0 +1,1080 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:35 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \socket_work.c                                       #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \socket_work.c -D NEWSGOLD -D DEBUG -lCN             #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\socket_work.lst                     #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\socket_work.r79                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\socket_work.c
+      1          #include "socket_work.h"
+      2          #include "buffer.h"
+      3          
+      4          #define TMR_SECOND 216
+      5          static unsigned int RECONNECT_TIME=3;//сек
+      6          int disautorecconect=0;
+      7          
+      8          extern char logmsg[];
+      9          extern void SMART_REDRAW();
+     10          
+     11          int (*sock_data_read_handler)(CONNDATA *conn)=NULL;
+     12          void (*sock_remote_closed_handler)(short sock)=NULL;
+     13          void (*sock_error_handler)(int err)=NULL;
+     14          
+     15          int is_gprs_online=1;
+     16          
+     17          static GBSTMR reconnect_tmr;
+     18          
+     19          //******************************************************************************
+     20          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     21          void socket_work_init(void* error_handler, void* data_read_handler, void* remote_close_handler)
+     22          {
+     23            sock_data_read_handler=(int(*)(CONNDATA*))data_read_handler;
+   \                     socket_work_init:
+   \   00000000   ........           LDR      R3,??DataTable4  ;; disautorecconect
+   \   00000004   041083E5           STR      R1,[R3, #+4]
+     24            sock_remote_closed_handler=(void(*)(short))remote_close_handler;
+   \   00000008   082083E5           STR      R2,[R3, #+8]
+     25            sock_error_handler=(void(*)(int))error_handler;
+   \   0000000C   0C0083E5           STR      R0,[R3, #+12]
+     26          }
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+     27          
+     28          //******************************************************************************
+     29          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     30          void end_socket(int sock)
+     31          {
+   \                     end_socket:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     32            GBS_DelTimer(&reconnect_tmr);
+   \   00000008   ........           LDR      R0,??DataTable3  ;; disautorecconect + 24
+   \   0000000C   8C0100EF           SWI      +396
+     33          
+     34            if (sock !=-1)
+   \   00000010   010074E3           CMN      R4,#+1
+   \   00000014   1080BD08           POPEQ    {R4,PC}
+     35            {
+     36              shutdown(sock, 2);
+   \   00000018   0210A0E3           MOV      R1,#+2
+   \   0000001C   0400A0E1           MOV      R0,R4
+   \   00000020   770100EF           SWI      +375
+     37              closesocket(sock);
+   \   00000024   0400A0E1           MOV      R0,R4
+   \   00000028   760100EF           SWI      +374
+     38            }
+     39            
+     40          }
+   \   0000002C   1080BDE8           POP      {R4,PC}          ;; return
+     41          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     42          void end_socket_work()
+     43          {
+     44            GBS_DelTimer(&reconnect_tmr);
+   \                     end_socket_work:
+   \   00000000   ........           LDR      R0,??DataTable3  ;; disautorecconect + 24
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   8C0100EF           SWI      +396
+     45            CONNDATA *conn=CONNDATA_getTop();
+   \   0000000C   ........           _BLF     CONNDATA_getTop,??CONNDATA_getTop??rA
+     46            if (conn)
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   0100000A           BEQ      ??end_socket_work_0
+     47              end_socket(conn->sock);
+   \   00000018   4C0090E5           LDR      R0,[R0, #+76]
+   \   0000001C   ........           BL       end_socket
+     48            free_buffers();
+   \                     ??end_socket_work_0:
+   \   00000020   0040BDE8           POP      {LR}             ;; Pop
+   \   00000024   ........           _BF      free_buffers,??free_buffers??rA  ;; tailcall
+     49          }
+     50          
+     51          //******************************************************************************
+     52          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     53          static void reconnect_tmr_handler()
+     54          {
+     55            if (is_gprs_online)
+   \                     reconnect_tmr_handler:
+   \   00000000   28009FE5           LDR      R0,??reconnect_tmr_handler_0  ;; disautorecconect + 16
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   000090E5           LDR      R0,[R0, #+0]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   0080BD08           POPEQ    {PC}
+     56            {
+     57              CONNDATA_getTop()->DNR_TRIES=3;
+   \   00000014   ........           _BLF     CONNDATA_getTop,??CONNDATA_getTop??rA
+   \   00000018   0310A0E3           MOV      R1,#+3
+   \   0000001C   601080E5           STR      R1,[R0, #+96]
+     58              SUBPROC((void*)connect_socket, NULL);
+   \   00000020   0C009FE5           LDR      R0,??reconnect_tmr_handler_0+0x4  ;; connect_socket
+   \   00000024   0010A0E3           MOV      R1,#+0
+   \   00000028   710100EF           SWI      +369
+     59            }
+     60          }
+   \   0000002C   0080BDE8           POP      {PC}             ;; return
+   \                     ??reconnect_tmr_handler_0:
+   \   00000030   ........           DC32     disautorecconect + 16
+   \   00000034   ........           DC32     connect_socket
+     61          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     62          void reconnect()
+     63          {
+     64            GBS_StartTimerProc(&reconnect_tmr,TMR_SECOND*RECONNECT_TIME, reconnect_tmr_handler);
+   \                     reconnect:
+   \   00000000   10209FE5           LDR      R2,??reconnect_0  ;; reconnect_tmr_handler
+   \   00000004   ........           LDR      R0,??DataTable3  ;; disautorecconect + 24
+   \   00000008   00402DE9           PUSH     {LR}
+   \   0000000C   A21FA0E3           MOV      R1,#+648
+   \   00000010   4D0000EF           SWI      +77
+     65          }
+   \   00000014   0080BDE8           POP      {PC}             ;; return
+   \                     ??reconnect_0:
+   \   00000018   ........           DC32     reconnect_tmr_handler
+     66          
+     67          //******************************************************************************
+
+   \                                 In segment CODE, align 4, keep-with-next
+     68          void connect_socket(CONNDATA *conn)
+     69          {
+   \                     connect_socket:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+     70            static CONNDATA *__conn;
+     71            HOSTENT *hst=NULL;
+     72            SOCK_ADDR sa;
+     73            int err;
+     74            
+     75            if (conn)
+   \   00000004   ........           LDR      R4,??DataTable4  ;; disautorecconect
+     76            {
+     77              __conn = conn;
+     78              conn->sock_state=0;
+     79            }
+     80             
+     81            GBS_DelTimer(&reconnect_tmr);
+     82            
+     83            if (!IsGPRSEnabled())
+   \   00000008   ........           LDR      R5,??DataTable8  ;; logmsg
+   \   0000000C   F0619FE5           LDR      R6,??connect_socket_0  ;; `?<Constant "Waiting for GPRS up...">`
+   \   00000010   14D04DE2           SUB      SP,SP,#+20
+   \   00000014   0070A0E3           MOV      R7,#+0
+   \   00000018   00708DE5           STR      R7,[SP, #+0]
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   14008415           STRNE    R0,[R4, #+20]
+   \   00000024   54708015           STRNE    R7,[R0, #+84]
+   \   00000028   180084E2           ADD      R0,R4,#+24
+   \   0000002C   8C0100EF           SWI      +396
+   \   00000030   A70000EF           SWI      +167
+   \   00000034   000050E3           CMP      R0,#+0
+   \   00000038   0700001A           BNE      ??connect_socket_1
+     84            {
+     85          #ifdef DEBUG     
+     86              sprintf(logmsg, "Waiting for GPRS up...");
+   \   0000003C   0610A0E1           MOV      R1,R6
+   \   00000040   0500A0E1           MOV      R0,R5
+   \   00000044   160000EF           SWI      +22
+     87              SMART_REDRAW();
+   \   00000048   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+     88          #endif
+     89              is_gprs_online = 0;
+   \   0000004C   107084E5           STR      R7,[R4, #+16]
+     90              sock_error_handler(WAITING_FOR_GPRS_UP);
+   \   00000050   0100A0E3           MOV      R0,#+1
+   \                     ??connect_socket_2:
+   \   00000054   0C1094E5           LDR      R1,[R4, #+12]
+   \   00000058   600000EA           B        ??connect_socket_3
+     91              return;
+     92            }
+     93            
+     94            __conn->DNR_ID=0;
+   \                     ??connect_socket_1:
+   \   0000005C   140094E5           LDR      R0,[R4, #+20]
+   \   00000060   5C7080E5           STR      R7,[R0, #+92]
+     95            *socklasterr()=0;
+   \   00000064   7C8100EF           SWI      +33148
+   \   00000068   007080E5           STR      R7,[R0, #+0]
+     96            
+     97          #ifdef DEBUG   
+     98            sprintf(logmsg, "Connect to: %s Using port: %d", __conn->hostname, __conn->port);
+   \   0000006C   140094E5           LDR      R0,[R4, #+20]
+   \   00000070   181086E2           ADD      R1,R6,#+24
+   \   00000074   B035D0E1           LDRH     R3,[R0, #+80]
+   \   00000078   0C2080E2           ADD      R2,R0,#+12
+   \   0000007C   0500A0E1           MOV      R0,R5
+   \   00000080   160000EF           SWI      +22
+     99            SMART_REDRAW();
+   \   00000084   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    100          #endif  
+    101            
+    102            //err=gethostbyname(host, &hst, &DNR_ID, 0); //используется в браузере. Если флаг==1, то вернет counter.rambler.ru и err==0xD3, connect не всегда удается с этой функцией
+    103            err=async_gethostbyname(__conn->hostname, &hst, &__conn->DNR_ID);
+   \   00000088   140094E5           LDR      R0,[R4, #+20]
+   \   0000008C   0D10A0E1           MOV      R1,SP
+   \   00000090   5C2080E2           ADD      R2,R0,#+92
+   \   00000094   0C0080E2           ADD      R0,R0,#+12
+   \   00000098   B60100EF           SWI      +438
+    104            if (err)
+   \   0000009C   000050E3           CMP      R0,#+0
+   \   000000A0   0D00000A           BEQ      ??connect_socket_4
+    105            {
+    106              if ((err==0xC9)||(err==0xD6))
+   \   000000A4   C90050E3           CMP      R0,#+201
+   \   000000A8   D6005013           CMPNE    R0,#+214
+   \   000000AC   0800001A           BNE      ??connect_socket_5
+    107              {
+    108                if (__conn->DNR_ID)
+   \   000000B0   140094E5           LDR      R0,[R4, #+20]
+   \   000000B4   5C0090E5           LDR      R0,[R0, #+92]
+   \   000000B8   000050E3           CMP      R0,#+0
+   \   000000BC   0600000A           BEQ      ??connect_socket_4
+    109                {
+    110          #ifdef DEBUG         
+    111                  strcpy(logmsg, "Wait DNR..");
+   \   000000C0   381086E2           ADD      R1,R6,#+56
+   \   000000C4   0500A0E1           MOV      R0,R5
+   \   000000C8   1A0000EF           SWI      +26
+    112                  SMART_REDRAW();
+   \   000000CC   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    113          #endif        
+    114          	return; //Ждем готовности DNR
+   \   000000D0   430000EA           B        ??connect_socket_6
+    115                }
+    116              }
+    117              else
+    118              {
+    119                //snprintf(logmsg,255,"DNR error %d",err);
+    120                //SMART_REDRAW();
+    121                //sendError();
+    122                reconnect();
+   \                     ??connect_socket_5:
+   \   000000D4   ........           BL       reconnect
+    123                return;
+   \   000000D8   410000EA           B        ??connect_socket_6
+    124              }
+    125            }
+    126           
+    127            if (hst)
+   \                     ??connect_socket_4:
+   \   000000DC   00009DE5           LDR      R0,[SP, #+0]
+   \   000000E0   000050E3           CMP      R0,#+0
+   \   000000E4   4000000A           BEQ      ??connect_socket_7
+    128            {
+    129              if (hst->h_addr_list)
+   \   000000E8   0C0090E5           LDR      R0,[R0, #+12]
+   \   000000EC   000050E3           CMP      R0,#+0
+   \   000000F0   4100000A           BEQ      ??connect_socket_8
+    130              {
+    131          #ifdef DEBUG      
+    132                strcpy(logmsg,"DNR ok!");
+   \   000000F4   441086E2           ADD      R1,R6,#+68
+   \   000000F8   0500A0E1           MOV      R0,R5
+   \   000000FC   1A0000EF           SWI      +26
+    133                SMART_REDRAW();
+   \   00000100   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    134          #endif            
+    135                __conn->DNR_TRIES=0;
+   \   00000104   140094E5           LDR      R0,[R4, #+20]
+    136                sa.ip=**((int**)hst->h_addr_list);
+    137                
+    138                __conn->sock=socket(1,1,0);
+   \   00000108   0020A0E3           MOV      R2,#+0
+   \   0000010C   607080E5           STR      R7,[R0, #+96]
+   \   00000110   00109DE5           LDR      R1,[SP, #+0]
+    139                
+    140                if (__conn->sock != -1)
+   \   00000114   0770E0E1           MVN      R7,R7
+   \   00000118   0C1091E5           LDR      R1,[R1, #+12]
+   \   0000011C   001091E5           LDR      R1,[R1, #+0]
+   \   00000120   001091E5           LDR      R1,[R1, #+0]
+   \   00000124   08108DE5           STR      R1,[SP, #+8]
+   \   00000128   0110A0E3           MOV      R1,#+1
+   \   0000012C   0100A0E1           MOV      R0,R1
+   \   00000130   730100EF           SWI      +371
+   \   00000134   141094E5           LDR      R1,[R4, #+20]
+   \   00000138   070050E1           CMP      R0,R7
+   \   0000013C   4C0081E5           STR      R0,[R1, #+76]
+   \   00000140   1F00000A           BEQ      ??connect_socket_9
+    141                {       
+    142          	sa.family=hst->h_addrtype;//1
+   \   00000144   00209DE5           LDR      R2,[SP, #+0]
+   \   00000148   B820D2E1           LDRH     R2,[R2, #+8]
+   \   0000014C   B420CDE1           STRH     R2,[SP, #+4]
+    143          	sa.port=htons(__conn->port);
+   \   00000150   B005D1E1           LDRH     R0,[R1, #+80]
+   \   00000154   7A0100EF           SWI      +378
+   \   00000158   B600CDE1           STRH     R0,[SP, #+6]
+    144          	if (connect(__conn->sock, &sa, sizeof(sa)) != -1)
+   \   0000015C   140094E5           LDR      R0,[R4, #+20]
+   \   00000160   1020A0E3           MOV      R2,#+16
+   \   00000164   4C0090E5           LDR      R0,[R0, #+76]
+   \   00000168   04108DE2           ADD      R1,SP,#+4
+   \   0000016C   740100EF           SWI      +372
+   \   00000170   070050E1           CMP      R0,R7
+   \   00000174   0800000A           BEQ      ??connect_socket_10
+    145          	{
+    146          	  __conn->sock_state = 1;
+   \   00000178   140094E5           LDR      R0,[R4, #+20]
+   \   0000017C   0110A0E3           MOV      R1,#+1
+   \   00000180   541080E5           STR      R1,[R0, #+84]
+    147          #ifdef DEBUG          
+    148                    snprintf(logmsg,255,"Socket connected");
+   \   00000184   4C2086E2           ADD      R2,R6,#+76
+   \   00000188   FF10A0E3           MOV      R1,#+255
+   \   0000018C   0500A0E1           MOV      R0,R5
+   \   00000190   1B0100EF           SWI      +283
+    149                    SMART_REDRAW();
+   \   00000194   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+   \   00000198   110000EA           B        ??connect_socket_6
+    150          #endif          
+    151          	}
+    152          	else
+    153          	{
+    154          #ifdef DEBUG           
+    155                    snprintf(logmsg,255,"Connect fault");
+   \                     ??connect_socket_10:
+   \   0000019C   602086E2           ADD      R2,R6,#+96
+   \   000001A0   FF10A0E3           MOV      R1,#+255
+   \   000001A4   0500A0E1           MOV      R0,R5
+   \   000001A8   1B0100EF           SWI      +283
+    156                    SMART_REDRAW();
+   \   000001AC   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    157          #endif          
+    158          	  closesocket(__conn->sock);          
+   \   000001B0   140094E5           LDR      R0,[R4, #+20]
+   \   000001B4   4C0090E5           LDR      R0,[R0, #+76]
+   \   000001B8   760100EF           SWI      +374
+    159                    sock_error_handler(CONNECT_FAULT);
+   \   000001BC   0200A0E3           MOV      R0,#+2
+   \   000001C0   A3FFFFEA           B        ??connect_socket_2
+    160          	}
+    161                }
+    162                else
+    163                {
+    164          #ifdef DEBUG         
+    165                  snprintf(logmsg,255,"Error Create Socket");
+   \                     ??connect_socket_9:
+   \   000001C4   702086E2           ADD      R2,R6,#+112
+   \   000001C8   FF10A0E3           MOV      R1,#+255
+   \   000001CC   0500A0E1           MOV      R0,R5
+   \   000001D0   1B0100EF           SWI      +283
+    166                  SMART_REDRAW();
+   \   000001D4   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    167          #endif        
+    168                  sock_error_handler(ERROR_CREATE_SOCK);
+   \   000001D8   0C1094E5           LDR      R1,[R4, #+12]
+   \   000001DC   0300A0E3           MOV      R0,#+3
+   \                     ??connect_socket_3:
+   \   000001E0   31FF2FE1           BLX      R1
+   \                     ??connect_socket_6:
+   \   000001E4   14D08DE2           ADD      SP,SP,#+20
+   \   000001E8   F080BDE8           POP      {R4-R7,PC}
+    169                }
+    170              }
+    171            }
+    172            else
+    173            {
+    174              __conn->DNR_TRIES--;
+   \                     ??connect_socket_7:
+   \   000001EC   140094E5           LDR      R0,[R4, #+20]
+   \   000001F0   601090E5           LDR      R1,[R0, #+96]
+   \   000001F4   011041E2           SUB      R1,R1,#+1
+   \   000001F8   601080E5           STR      R1,[R0, #+96]
+   \                     ??connect_socket_8:
+   \   000001FC   14D08DE2           ADD      SP,SP,#+20       ;; stack cleaning
+   \   00000200   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??connect_socket_0:
+   \   00000204   ........           DC32     `?<Constant "Waiting for GPRS up...">`
+    175            }
+    176          }
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     disautorecconect:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for disautorecconect>`
+   \                     sock_data_read_handler:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for sock_data_read_handler>`
+   \                     sock_remote_closed_handler:
+   \   00000008                      DS8 4
+   \   0000000C                      REQUIRE `?<Initializer for sock_remote_closed_handler>`
+   \                     sock_error_handler:
+   \   0000000C                      DS8 4
+   \   00000010                      REQUIRE `?<Initializer for sock_error_handler>`
+   \                     is_gprs_online:
+   \   00000010                      DS8 4
+   \   00000014                      REQUIRE `?<Initializer for is_gprs_online>`
+   \   00000014                      DS8 4
+   \   00000018                      REQUIRE `?<Initializer for __conn>`
+   \   00000018                      DS8 16
+   \   00000028                      REQUIRE `?<Initializer for reconnect_tmr>`
+    177          
+    178          //******************************************************************************
+    179          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    180          void send_answer(const char *url, char *buf, int len, int flag)
+    181          { 
+   \                     send_answer:
+   \   00000000   F04F2DE9           PUSH     {R4-R11,LR}
+    182            static int send_q_size;
+    183            CONNDATA *conn=NULL;
+    184            
+    185            if (url)//если первый вызов функции, проверяем наличии сокета для данного хоста
+   \   00000004   18519FE5           LDR      R5,??send_answer_0  ;; ??send_q_size
+   \   00000008   18619FE5           LDR      R6,??send_answer_0+0x4  ;; send_buf_len
+   \   0000000C   18719FE5           LDR      R7,??send_answer_0+0x8  ;; send_buf
+   \   00000010   0090A0E1           MOV      R9,R0
+   \   00000014   01A0A0E1           MOV      R10,R1
+   \   00000018   0280A0E1           MOV      R8,R2
+   \   0000001C   03B0A0E1           MOV      R11,R3
+   \   00000020   0040A0E3           MOV      R4,#+0
+   \   00000024   000059E3           CMP      R9,#+0
+   \   00000028   1100000A           BEQ      ??send_answer_1
+    186            { 
+    187              free_send_buf();
+   \   0000002C   ........           _BLF     free_send_buf,??free_send_buf??rA
+    188              send_buf = buf;
+   \   00000030   00A087E5           STR      R10,[R7, #+0]
+    189              send_buf_len=len;
+   \   00000034   008086E5           STR      R8,[R6, #+0]
+    190              send_q_size=len;
+   \   00000038   008085E5           STR      R8,[R5, #+0]
+    191              
+    192              conn=CONNDATA_findByURL(url);
+   \   0000003C   0900A0E1           MOV      R0,R9
+   \   00000040   ........           _BLF     CONNDATA_findByURL,??CONNDATA_findByURL??rA
+   \   00000044   0040B0E1           MOVS     R4,R0
+    193              if(conn==NULL)
+   \   00000048   0300001A           BNE      ??send_answer_2
+    194                conn=CONNDATA_new(url, flag);
+   \   0000004C   0B10A0E1           MOV      R1,R11
+   \   00000050   0900A0E1           MOV      R0,R9
+   \   00000054   ........           _BLF     CONNDATA_new,??CONNDATA_new??rA
+   \   00000058   0040A0E1           MOV      R4,R0
+    195           
+    196              if (conn->sock == -1)
+   \                     ??send_answer_2:
+   \   0000005C   4C0094E5           LDR      R0,[R4, #+76]
+   \   00000060   010070E3           CMN      R0,#+1
+   \   00000064   0200001A           BNE      ??send_answer_1
+    197              {
+    198                connect_socket(conn);
+   \   00000068   0400A0E1           MOV      R0,R4
+   \   0000006C   ........           BL       connect_socket
+    199                return;
+   \   00000070   F08FBDE8           POP      {R4-R11,PC}
+    200              }
+    201            }
+    202            
+    203            if (send_q_size==0)
+   \                     ??send_answer_1:
+   \   00000074   000095E5           LDR      R0,[R5, #+0]
+   \   00000078   000050E3           CMP      R0,#+0
+   \   0000007C   0E00001A           BNE      ??send_answer_3
+    204              send_q_size=send_buf_len;
+   \   00000080   000096E5           LDR      R0,[R6, #+0]
+   \   00000084   000085E5           STR      R0,[R5, #+0]
+   \   00000088   0B0000EA           B        ??send_answer_3
+    205            
+    206            while ((len = send_q_size) != 0)
+    207            {
+    208              if (len > 0x400)
+    209              len=0x400;
+    210              
+    211              int send_res = send(conn->sock, send_buf+(send_buf_len-send_q_size), len, 0);
+    212          
+    213              conn->recv_mode = 1;
+    214              
+    215              if (send_res < 0)
+    216              {
+    217                int err = *socklasterr();
+    218                if (err == 0xC9 || err == 0xD6)
+    219                {
+    220          	return; //Видимо, надо ждать сообщения ENIP_BUFFER_FREE
+    221                }
+    222                else
+    223                {
+    224                  //error send
+    225          	return;
+    226                }
+    227              }
+    228              send_q_size-=send_res;
+   \                     ??send_answer_4:
+   \   0000008C   001095E5           LDR      R1,[R5, #+0]
+    229              conn->TOTALSENDED+=send_res;
+    230              ALLTOTALSENDED+=send_res;
+    231              
+    232              if (send_res < len)
+   \   00000090   080050E1           CMP      R0,R8
+   \   00000094   001041E0           SUB      R1,R1,R0
+   \   00000098   001085E5           STR      R1,[R5, #+0]
+   \   0000009C   681094E5           LDR      R1,[R4, #+104]
+   \   000000A0   011080E0           ADD      R1,R0,R1
+   \   000000A4   681084E5           STR      R1,[R4, #+104]
+   \   000000A8   80109FE5           LDR      R1,??send_answer_0+0xC  ;; ALLTOTALSENDED
+   \   000000AC   002091E5           LDR      R2,[R1, #+0]
+   \   000000B0   022080E0           ADD      R2,R0,R2
+   \   000000B4   002081E5           STR      R2,[R1, #+0]
+   \   000000B8   F08FBDB8           POPLT    {R4-R11,PC}
+   \                     ??send_answer_3:
+   \   000000BC   000095E5           LDR      R0,[R5, #+0]
+   \   000000C0   0080B0E1           MOVS     R8,R0
+   \   000000C4   1100000A           BEQ      ??send_answer_5
+   \   000000C8   0110A0E3           MOV      R1,#+1
+   \   000000CC   401E81E3           ORR      R1,R1,#0x400
+   \   000000D0   010058E1           CMP      R8,R1
+   \   000000D4   001096E5           LDR      R1,[R6, #+0]
+   \   000000D8   408EA0A3           MOVGE    R8,#+1024
+   \   000000DC   000041E0           SUB      R0,R1,R0
+   \   000000E0   001097E5           LDR      R1,[R7, #+0]
+   \   000000E4   0030A0E3           MOV      R3,#+0
+   \   000000E8   011080E0           ADD      R1,R0,R1
+   \   000000EC   4C0094E5           LDR      R0,[R4, #+76]
+   \   000000F0   0820A0E1           MOV      R2,R8
+   \   000000F4   790100EF           SWI      +377
+   \   000000F8   0110A0E3           MOV      R1,#+1
+   \   000000FC   581084E5           STR      R1,[R4, #+88]
+   \   00000100   000050E3           CMP      R0,#+0
+   \   00000104   E0FFFF5A           BPL      ??send_answer_4
+   \   00000108   7C8100EF           SWI      +33148
+   \   0000010C   F08FBDE8           POP      {R4-R11,PC}
+    233              {
+    234                //Передали меньше чем заказывали
+    235          #ifdef SOCK_SEND_TIMER
+    236                Top = this;
+    237                GBS_StartTimerProc(&send_tmr, _tmr_second(5), _resend);
+    238          #endif
+    239                return; //Ждем сообщения ENIP_BUFFER_FREE1
+    240              }    
+    241            }
+    242            
+    243          #ifdef DEBUG  
+    244            sprintf(logmsg,"sock data sended");
+   \                     ??send_answer_5:
+   \   00000110   1C109FE5           LDR      R1,??send_answer_0+0x10  ;; `?<Constant "sock data sended">`
+   \   00000114   ........           LDR      R0,??DataTable8  ;; logmsg
+   \   00000118   160000EF           SWI      +22
+    245            SMART_REDRAW();
+   \   0000011C   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    246          #endif  
+    247          }
+   \   00000120   F08FBDE8           POP      {R4-R11,PC}      ;; return
+   \                     ??send_answer_0:
+   \   00000124   ........           DC32     ??send_q_size
+   \   00000128   ........           DC32     send_buf_len
+   \   0000012C   ........           DC32     send_buf
+   \   00000130   ........           DC32     ALLTOTALSENDED
+   \   00000134   ........           DC32     `?<Constant "sock data sended">`
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     ??send_q_size:
+   \   00000000                      DS8 4
+    248          
+    249          //******************************************************************************
+    250          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    251          static int get_answer(CONNDATA *conn)
+    252          {
+   \                     get_answer:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    253            static int recv_size;
+    254            
+    255            if (recv_buf == NULL)
+   \   00000004   F8609FE5           LDR      R6,??get_answer_0  ;; recv_buf_len
+   \   00000008   F8709FE5           LDR      R7,??get_answer_0+0x4  ;; recv_buf
+   \   0000000C   F8809FE5           LDR      R8,??get_answer_0+0x8  ;; ??recv_size
+   \   00000010   0040A0E1           MOV      R4,R0
+   \   00000014   000097E5           LDR      R0,[R7, #+0]
+   \   00000018   0050A0E3           MOV      R5,#+0
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   0600001A           BNE      ??get_answer_1
+    256            {
+    257              recv_size = 0;
+   \   00000024   005088E5           STR      R5,[R8, #+0]
+    258              conn->TOTALRECEIVED = 0;
+   \   00000028   6C5084E5           STR      R5,[R4, #+108]
+    259              recv_buf = realloc(recv_buf, 4096);
+   \   0000002C   401DA0E3           MOV      R1,#+4096
+   \   00000030   BA0000EF           SWI      +186
+   \   00000034   000087E5           STR      R0,[R7, #+0]
+    260              recv_buf_len = 4096;
+   \   00000038   400DA0E3           MOV      R0,#+4096
+   \   0000003C   000086E5           STR      R0,[R6, #+0]
+    261            }
+    262            
+    263            int n=recv(conn->sock, recv_buf+recv_size, 4096, 0);
+   \                     ??get_answer_1:
+   \   00000040   000098E5           LDR      R0,[R8, #+0]
+   \   00000044   001097E5           LDR      R1,[R7, #+0]
+    264            
+    265            if (n==4096)
+   \   00000048   C0809FE5           LDR      R8,??get_answer_0+0xC  ;; ALLTOTALRECEIVED
+   \   0000004C   011080E0           ADD      R1,R0,R1
+   \   00000050   4C0094E5           LDR      R0,[R4, #+76]
+   \   00000054   0030A0E3           MOV      R3,#+0
+   \   00000058   402DA0E3           MOV      R2,#+4096
+   \   0000005C   780100EF           SWI      +376
+   \   00000060   400D50E3           CMP      R0,#+4096
+   \   00000064   0F00001A           BNE      ??get_answer_2
+    266            {
+    267              recv_buf = realloc(recv_buf, recv_buf_len + 4096);
+   \   00000068   000096E5           LDR      R0,[R6, #+0]
+   \   0000006C   401D80E2           ADD      R1,R0,#+4096
+   \   00000070   000097E5           LDR      R0,[R7, #+0]
+   \   00000074   BA0000EF           SWI      +186
+   \   00000078   000087E5           STR      R0,[R7, #+0]
+    268              recv_buf_len += 4096;
+   \   0000007C   000096E5           LDR      R0,[R6, #+0]
+   \   00000080   400D80E2           ADD      R0,R0,#+4096
+   \   00000084   000086E5           STR      R0,[R6, #+0]
+    269              conn->TOTALRECEIVED += n;
+   \   00000088   6C0094E5           LDR      R0,[R4, #+108]
+   \   0000008C   400D80E2           ADD      R0,R0,#+4096
+   \   00000090   6C0084E5           STR      R0,[R4, #+108]
+    270              ALLTOTALRECEIVED += n;
+   \   00000094   000098E5           LDR      R0,[R8, #+0]
+   \   00000098   400D80E2           ADD      R0,R0,#+4096
+   \   0000009C   000088E5           STR      R0,[R8, #+0]
+    271              return (0);
+   \   000000A0   0000A0E3           MOV      R0,#+0
+   \   000000A4   F081BDE8           POP      {R4-R8,PC}
+    272             }
+    273             
+    274             else if (n >= 0 && n < 4096)//нихера не работает. Конечный размер данных брать из http заголовка.
+   \                     ??get_answer_2:
+   \   000000A8   ........           LDR      R2,??DataTable8  ;; logmsg
+   \   000000AC   60109FE5           LDR      R1,??get_answer_0+0x10  ;; `?<Constant "recv ok">`
+   \   000000B0   000050E3           CMP      R0,#+0
+   \   000000B4   0D00004A           BMI      ??get_answer_3
+   \   000000B8   400D50E3           CMP      R0,#+4096
+   \   000000BC   0E0000AA           BGE      ??get_answer_4
+    275             {
+    276               conn->recv_mode = 0;//получены все данные
+   \   000000C0   585084E5           STR      R5,[R4, #+88]
+    277               conn->TOTALRECEIVED += n;
+   \   000000C4   6C3094E5           LDR      R3,[R4, #+108]
+   \   000000C8   033080E0           ADD      R3,R0,R3
+   \   000000CC   6C3084E5           STR      R3,[R4, #+108]
+    278               ALLTOTALRECEIVED += n;
+   \   000000D0   003098E5           LDR      R3,[R8, #+0]
+   \   000000D4   030080E0           ADD      R0,R0,R3
+   \   000000D8   000088E5           STR      R0,[R8, #+0]
+    279          #ifdef DEBUG     
+    280               sprintf(logmsg,"recv ok");
+   \   000000DC   0200A0E1           MOV      R0,R2
+   \   000000E0   160000EF           SWI      +22
+    281               SMART_REDRAW();
+   \   000000E4   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    282          #endif     
+    283               return (1);
+   \   000000E8   0100A0E3           MOV      R0,#+1
+   \   000000EC   F081BDE8           POP      {R4-R8,PC}
+    284             }
+    285             
+    286             if (n < 0)
+    287               sprintf(logmsg,"recv error!");
+   \                     ??get_answer_3:
+   \   000000F0   081081E2           ADD      R1,R1,#+8
+   \   000000F4   0200A0E1           MOV      R0,R2
+   \   000000F8   160000EF           SWI      +22
+    288             
+    289             return (-1);
+   \                     ??get_answer_4:
+   \   000000FC   0500E0E1           MVN      R0,R5
+   \   00000100   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??get_answer_0:
+   \   00000104   ........           DC32     recv_buf_len
+   \   00000108   ........           DC32     recv_buf
+   \   0000010C   ........           DC32     ??recv_size
+   \   00000110   ........           DC32     ALLTOTALRECEIVED
+   \   00000114   ........           DC32     `?<Constant "recv ok">`
+    290          }
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     ??recv_size:
+   \   00000000                      DS8 4
+    291          
+    292          //******************************************************************************
+    293          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    294          void socket_msg_handler(GBS_MSG *msg)
+    295          {
+   \                     socket_msg_handler:
+   \   00000000   F0472DE9           PUSH     {R4-R10,LR}
+    296            CONNDATA *conn=NULL;
+    297            
+    298            switch((int)msg->data0)
+   \   00000004   78519FE5           LDR      R5,??socket_msg_handler_1  ;; disautorecconect
+   \   00000008   04D04DE2           SUB      SP,SP,#+4
+   \   0000000C   0C1095E5           LDR      R1,[R5, #+12]
+   \   00000010   ........           LDR      R6,??DataTable8  ;; logmsg
+   \   00000014   6C719FE5           LDR      R7,??socket_msg_handler_1+0x4  ;; `?<Constant "GPRS offline...">`
+   \   00000018   0040A0E1           MOV      R4,R0
+   \   0000001C   0C2094E5           LDR      R2,[R4, #+12]
+   \   00000020   100094E5           LDR      R0,[R4, #+16]
+   \   00000024   0180A0E3           MOV      R8,#+1
+   \   00000028   0090A0E3           MOV      R9,#+0
+   \   0000002C   802052E2           SUBS     R2,R2,#+128
+   \   00000030   0900000A           BEQ      ??socket_msg_handler_2
+   \   00000034   022052E2           SUBS     R2,R2,#+2
+   \   00000038   0200000A           BEQ      ??socket_msg_handler_3
+   \   0000003C   122052E2           SUBS     R2,R2,#+18
+   \   00000040   1100000A           BEQ      ??socket_msg_handler_4
+   \   00000044   180000EA           B        ??socket_msg_handler_5
+    299            {
+    300            case LMAN_DISCONNECT_IND:
+    301              is_gprs_online=0;
+   \                     ??socket_msg_handler_3:
+   \   00000048   109085E5           STR      R9,[R5, #+16]
+    302              sock_error_handler(GPRS_OFFLINE);
+   \   0000004C   0400A0E3           MOV      R0,#+4
+   \   00000050   31FF2FE1           BLX      R1
+    303          #ifdef DEBUG     
+    304              sprintf(logmsg,"GPRS offline...");
+   \   00000054   0710A0E1           MOV      R1,R7
+   \   00000058   380000EA           B        ??socket_msg_handler_6
+    305              SMART_REDRAW();
+    306          #endif    
+    307              return;
+    308            
+    309            case LMAN_CONNECT_CNF:
+    310              //start_vibra(VIBR_ON_CONNECT);
+    311              sock_error_handler(GPRS_ONLINE);
+   \                     ??socket_msg_handler_2:
+   \   0000005C   0500A0E3           MOV      R0,#+5
+   \   00000060   31FF2FE1           BLX      R1
+    312              is_gprs_online=1;
+    313                if (!disautorecconect)
+   \   00000064   000095E5           LDR      R0,[R5, #+0]
+   \   00000068   108085E5           STR      R8,[R5, #+16]
+   \   0000006C   000050E3           CMP      R0,#+0
+   \   00000070   F187BD18           POPNE    {R0,R4-R10,PC}
+    314                {
+    315          #ifdef DEBUG         
+    316                  sprintf(logmsg,"GPRS online");
+   \   00000074   101087E2           ADD      R1,R7,#+16
+   \   00000078   0600A0E1           MOV      R0,R6
+   \   0000007C   160000EF           SWI      +22
+    317                  SMART_REDRAW();
+   \   00000080   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    318          #endif        
+    319                  reconnect();
+   \   00000084   ........           BL       reconnect
+   \   00000088   F187BDE8           POP      {R0,R4-R10,PC}
+    320                }
+    321                return;
+    322            
+    323            case ENIP_DNR_HOST_BY_NAME:
+    324              
+    325              conn=CONNDATA_findByDNR((int)msg->data1);
+   \                     ??socket_msg_handler_4:
+   \   0000008C   ........           _BLF     CONNDATA_findByDNR,??CONNDATA_findByDNR??rA
+   \   00000090   00A0B0E1           MOVS     R10,R0
+    326              
+    327              if (conn && conn->DNR_TRIES)
+   \   00000094   60009015           LDRNE    R0,[R0, #+96]
+   \   00000098   00005013           CMPNE    R0,#+0
+   \   0000009C   F187BD08           POPEQ    {R0,R4-R10,PC}
+    328                connect_socket(NULL);
+   \   000000A0   0000A0E3           MOV      R0,#+0
+   \   000000A4   ........           BL       connect_socket
+   \   000000A8   F187BDE8           POP      {R0,R4-R10,PC}
+    329              
+    330              return;
+    331            }
+    332            
+    333            if (conn=CONNDATA_findBySock((int)msg->data1))//если наш сокет
+   \                     ??socket_msg_handler_5:
+   \   000000AC   ........           _BLF     CONNDATA_findBySock,??CONNDATA_findBySock??rA
+   \   000000B0   00A0B0E1           MOVS     R10,R0
+   \   000000B4   F187BD08           POPEQ    {R0,R4-R10,PC}
+    334            {
+    335              switch((int)msg->data0)
+   \   000000B8   0C0094E5           LDR      R0,[R4, #+12]
+   \   000000BC   8A0040E2           SUB      R0,R0,#+138
+   \   000000C0   050050E3           CMP      R0,#+5
+   \   000000C4   F187BD88           POPHI    {R0,R4-R10,PC}
+   \   000000C8   011F8FE2           ADR      R1,??socket_msg_handler_0
+   \   000000CC   0010D1E7           LDRB     R1,[R1, R0]
+   \   000000D0   01F18FE0           ADD      PC,PC,R1, LSL #+2
+   \                     ??socket_msg_handler_0:
+   \   000000D4   14140901           DC8      +20,+20,+9,+1
+   \   000000D8   2A1E0000           DC8      +42,+30,+0,+0
+    336              {
+    337                
+    338              case ENIP_SOCK_CONNECTED:
+    339                
+    340                conn->sock_state = 1;
+   \                     ??socket_msg_handler_7:
+   \   000000DC   54808AE5           STR      R8,[R10, #+84]
+    341                conn->recv_mode = 0;
+   \   000000E0   58908AE5           STR      R9,[R10, #+88]
+    342                send_answer(0,0,0,0);//resend 
+   \   000000E4   0030A0E3           MOV      R3,#+0
+   \   000000E8   0320A0E1           MOV      R2,R3
+   \   000000EC   0210A0E1           MOV      R1,R2
+   \   000000F0   0100A0E1           MOV      R0,R1
+   \   000000F4   ........           BL       send_answer
+   \   000000F8   F187BDE8           POP      {R0,R4-R10,PC}
+    343                break;
+    344              
+    345              case ENIP_SOCK_DATA_READ:
+    346                //Если посылали send
+    347                if (conn->recv_mode == 1)
+   \                     ??socket_msg_handler_8:
+   \   000000FC   58009AE5           LDR      R0,[R10, #+88]
+   \   00000100   010050E3           CMP      R0,#+1
+   \   00000104   F187BD18           POPNE    {R0,R4-R10,PC}
+    348                {
+    349                  if (get_answer(conn) == 1)
+   \   00000108   0A00A0E1           MOV      R0,R10
+   \   0000010C   ........           BL       get_answer
+   \   00000110   010050E3           CMP      R0,#+1
+   \   00000114   F187BD18           POPNE    {R0,R4-R10,PC}
+    350                    sock_data_read_handler(conn);
+   \   00000118   041095E5           LDR      R1,[R5, #+4]
+   \   0000011C   0A00A0E1           MOV      R0,R10
+   \   00000120   31FF2FE1           BLX      R1
+   \   00000124   F187BDE8           POP      {R0,R4-R10,PC}
+    351                }
+    352                break;
+    353              
+    354              case ENIP_BUFFER_FREE:
+    355              case ENIP_BUFFER_FREE1:
+    356                //Досылаем очередь
+    357                send_answer(0,0,0,0);
+   \                     ??socket_msg_handler_9:
+   \   00000128   0030A0E3           MOV      R3,#+0
+   \   0000012C   0320A0E1           MOV      R2,R3
+   \   00000130   0210A0E1           MOV      R1,R2
+   \   00000134   0100A0E1           MOV      R0,R1
+   \   00000138   ........           BL       send_answer
+    358          #ifdef DEBUG       
+    359                sprintf(logmsg,"ENIP_BUFFER_FREE");
+   \   0000013C   1C1087E2           ADD      R1,R7,#+28
+   \                     ??socket_msg_handler_6:
+   \   00000140   0600A0E1           MOV      R0,R6
+   \   00000144   160000EF           SWI      +22
+    360                SMART_REDRAW();
+   \   00000148   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+   \   0000014C   F187BDE8           POP      {R0,R4-R10,PC}
+    361          #endif      
+    362                break;
+    363          
+    364              case ENIP_SOCK_REMOTE_CLOSED:
+    365                //Закрыт со стороны сервера
+    366                conn->recv_mode=0;
+   \                     ??socket_msg_handler_10:
+   \   00000150   58908AE5           STR      R9,[R10, #+88]
+    367                end_socket((int)msg->data1);
+   \   00000154   100094E5           LDR      R0,[R4, #+16]
+   \   00000158   ........           BL       end_socket
+    368          #ifdef DEBUG      
+    369                sprintf(logmsg,"Сервер закрыл соед.");
+   \   0000015C   301087E2           ADD      R1,R7,#+48
+   \   00000160   0600A0E1           MOV      R0,R6
+   \   00000164   160000EF           SWI      +22
+    370                SMART_REDRAW();
+   \   00000168   ........           _BLF     SMART_REDRAW,??SMART_REDRAW??rA
+    371          #endif      
+    372                sock_remote_closed_handler((int)msg->data1);
+   \   0000016C   100094E5           LDR      R0,[R4, #+16]
+   \   00000170   081095E5           LDR      R1,[R5, #+8]
+   \   00000174   0008A0E1           MOV      R0,R0, LSL #+16
+   \   00000178   4008A0E1           MOV      R0,R0, ASR #+16
+   \   0000017C   31FF2FE1           BLX      R1
+   \                     ??socket_msg_handler_11:
+   \   00000180   F187BDE8           POP      {R0,R4-R10,PC}   ;; return
+   \                     ??socket_msg_handler_1:
+   \   00000184   ........           DC32     disautorecconect
+   \   00000188   ........           DC32     `?<Constant "GPRS offline...">`
+    373                break;
+    374              
+    375              case ENIP_SOCK_CLOSED:
+    376                //Закрыт вызовом closesocket
+    377                //sprintf(logmsg,"Соединение закрыто вызовом closesocket");
+    378                break;
+    379              }
+    380            }
+    381          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     disautorecconect + 24
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   ........           DC32     disautorecconect
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     logmsg
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for disautorecconect>`:
+   \   00000000   00000000           DC32 0
+   \                     `?<Initializer for sock_data_read_handler>`:
+   \   00000004   00000000           DC32 0H
+   \                     `?<Initializer for sock_remote_closed_handler>`:
+   \   00000008   00000000           DC32 0H
+   \                     `?<Initializer for sock_error_handler>`:
+   \   0000000C   00000000           DC32 0H
+   \                     `?<Initializer for is_gprs_online>`:
+   \   00000010   01000000           DC32 1
+   \                     `?<Initializer for __conn>`:
+   \   00000014   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for reconnect_tmr>`:
+   \   00000018   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Waiting for GPRS up...">`:
+   \   00000000   57616974696E       DC8 "Waiting for GPRS up..."
+   \              6720666F7220
+   \              475052532075
+   \              702E2E2E00  
+   \   00000017   00                 DC8 0
+   \   00000018   436F6E6E6563       DC8 "Connect to: %s Using port: %d"
+   \              7420746F3A20
+   \              257320557369
+   \              6E6720706F72
+   \              743A20256400
+   \   00000036   0000               DC8 0, 0
+   \   00000038   576169742044       DC8 "Wait DNR.."
+   \              4E522E2E00  
+   \   00000043   00                 DC8 0
+   \   00000044   444E52206F6B       DC8 "DNR ok!"
+   \              2100        
+   \   0000004C   536F636B6574       DC8 "Socket connected"
+   \              20636F6E6E65
+   \              6374656400  
+   \   0000005D   000000             DC8 0, 0, 0
+   \   00000060   436F6E6E6563       DC8 "Connect fault"
+   \              74206661756C
+   \              7400        
+   \   0000006E   0000               DC8 0, 0
+   \   00000070   4572726F7220       DC8 "Error Create Socket"
+   \              437265617465
+   \              20536F636B65
+   \              7400        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "sock data sended">`:
+   \   00000000   736F636B2064       DC8 "sock data sended"
+   \              617461207365
+   \              6E64656400  
+   \   00000011   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "recv ok">`:
+   \   00000000   72656376206F       DC8 "recv ok"
+   \              6B00        
+   \   00000008   726563762065       DC8 "recv error!"
+   \              72726F722100
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "GPRS offline...">`:
+   \   00000000   47505253206F       DC8 "GPRS offline..."
+   \              66666C696E65
+   \              2E2E2E00    
+   \   00000010   47505253206F       DC8 "GPRS online"
+   \              6E6C696E6500
+   \   0000001C   454E49505F42       DC8 "ENIP_BUFFER_FREE"
+   \              55464645525F
+   \              4652454500  
+   \   0000002D   000000             DC8 0, 0, 0
+   \   00000030   D1E5F0E2E5F0       DC8 "\321\345\360\342\345\360 \347\340\352\360\373\353 \361\356\345\344."
+   \              20E7E0EAF0FB
+   \              EB20F1EEE5E4
+   \              2E00        
+    382          
+
+   Maximum stack usage in bytes:
+
+     Function              CSTACK
+     --------              ------
+     connect_socket           40
+     end_socket                8
+     end_socket_work           4
+     get_answer               24
+     reconnect                 4
+     reconnect_tmr_handler     4
+     send_answer              36
+     socket_msg_handler       36
+     socket_work_init          0
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     socket_work_init                 20
+     end_socket                       48
+     end_socket_work                  40
+     reconnect_tmr_handler            56
+     reconnect                        28
+     connect_socket                  520
+     disautorecconect                 40
+     send_answer                     312
+     send_q_size                       4
+     get_answer                      280
+     recv_size                         4
+     socket_msg_handler              396
+     ??DataTable3                      4
+     ??DataTable4                      4
+     ??DataTable8                      4
+     ?<Initializer for disautorecconect>
+                                      40
+     ?<Constant "Waiting for GPRS up...">
+                                     132
+     ?<Constant "sock data sended">   20
+     ?<Constant "recv ok">            20
+     ?<Constant "GPRS offline...">    68
+      Others                         156
+
+ 
+ 1 844 bytes in segment CODE
+   240 bytes in segment DATA_C
+    40 bytes in segment DATA_I
+    40 bytes in segment DATA_ID
+     8 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 712 bytes of CODE  memory (+ 156 bytes shared)
+   280 bytes of CONST memory
+    48 bytes of DATA  memory
+
+Errors: none
+Warnings: none

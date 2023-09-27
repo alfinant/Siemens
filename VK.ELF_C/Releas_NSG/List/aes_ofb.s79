@@ -1,0 +1,189 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   17/Nov/2019  22:07:00 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\openssl\crypto\aes\aes_ofb.c                     /
+//    Command line    =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\openssl\crypto\aes\aes_ofb.c -D NEWSGOLD -D      /
+//                       DEBUG -lCN E:\Users\alfinant7\Documents\Siemens\alf /
+//                       inant\src_iar\VK.ELF_C\Releas_NSG\List\ -la         /
+//                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\List\ -o                     /
+//                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\Obj\ -z9 --cpu_mode arm      /
+//                       --endian little --cpu ARM926EJ-S --stack_align 4    /
+//                       --interwork --diag_suppress Pe301 -e --fpu None     /
+//                       --dlib_config E:\Users\alfinant7\Documents\Siemens\ /
+//                       IAR\ARM\LIB\dl5tpainl8n.h -I                        /
+//                       E:\Users\alfinant7\Documents\Siemens\IAR\ARM\INC\   /
+//                       --inline_threshold=2                                /
+//    List file       =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\List\aes_ofb.s79             /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME aes_ofb
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??AES_encrypt??rA
+        MULTWEAK ??AES_ofb128_encrypt??rT
+        PUBLIC AES_ofb128_encrypt
+        FUNCTION AES_ofb128_encrypt,0203H
+        LOCFRAME CSTACK, 32, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+AES_encrypt         SYMBOL "AES_encrypt"
+??AES_encrypt??rA   SYMBOL "??rA", AES_encrypt
+AES_ofb128_encrypt  SYMBOL "AES_ofb128_encrypt"
+??AES_ofb128_encrypt??rT SYMBOL "??rT", AES_ofb128_encrypt
+
+        EXTERN AES_encrypt
+        FUNCTION AES_encrypt,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??AES_ofb128_encrypt??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE AES_ofb128_encrypt
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function AES_ofb128_encrypt
+        ARM
+AES_ofb128_encrypt:
+        PUSH     {R4-R10,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R10 Frame(CFA, -8)
+        CFI R9 Frame(CFA, -12)
+        CFI R8 Frame(CFA, -16)
+        CFI R7 Frame(CFA, -20)
+        CFI R6 Frame(CFA, -24)
+        CFI R5 Frame(CFA, -28)
+        CFI R4 Frame(CFA, -32)
+        CFI CFA R13+32
+        LDR      R8,[SP, #+32]
+        LDR      R9,[SP, #+36]
+        MOV      R4,R0
+        LDR      R10,[R9, #+0]
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R7,R3
+        B        ??AES_ofb128_encrypt_0
+??AES_ofb128_encrypt_1:
+        CMP      R10,#+0
+        BNE      ??AES_ofb128_encrypt_2
+        MOV      R2,R7
+        MOV      R1,R8
+        MOV      R0,R8
+        _BLF     AES_encrypt,??AES_encrypt??rA
+??AES_ofb128_encrypt_2:
+        LDRB     R0,[R4], #+1
+        LDRB     R1,[R10, +R8]
+        EOR      R0,R1,R0
+        STRB     R0,[R5], #+1
+        ADD      R0,R10,#+1
+        AND      R10,R0,#0xF
+??AES_ofb128_encrypt_0:
+        MOV      R0,R6
+        SUB      R6,R0,#+1
+        CMP      R0,#+0
+        BNE      ??AES_ofb128_encrypt_1
+        STR      R10,[R9, #+0]
+        POP      {R4-R10,PC}      ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??AES_encrypt??rA:
+        LDR      R12,??Subroutine1_0  ;; AES_encrypt
+        BX       R12
+        DATA
+??Subroutine1_0:
+        DC32     AES_encrypt
+        CFI EndBlock cfiBlock2
+
+        END
+// 
+// 124 bytes in segment CODE
+// 
+// 108 bytes of CODE memory (+ 16 bytes shared)
+//
+//Errors: none
+//Warnings: none

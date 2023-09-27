@@ -1,0 +1,537 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Dec/2015  15:07:09 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\sms.c                                            #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\sms.c -D X75 -D SGOLD -lC                        #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLDX75\List\ -o                        #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLDX75\Obj\ -s9 --no_unroll            #
+#                       --cpu_mode arm --endian little --cpu ARM926EJ-S      #
+#                       --stack_align 4 --interwork -e --fpu None -I         #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLDX75\List\sms.lst                    #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLDX75\Obj\sms.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\CarControl\sms.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/sms.h"
+      3          
+      4          typedef struct{ 
+      5            int word[26]; 
+      6          }GBSPROC;
+      7          
+      8          #pragma swi_number=0x385
+      9          __swi __arm GBSPROC *GBS_GetProcAddress(short cepid);
+     10          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     11          GBSPROC * gproc;
+   \                     gproc:
+   \   00000000                      DS8 4
+     12          
+     13          void (*sms_simif_sm)()=NULL;
+   \                     sms_simif_sm:
+   \   00000004                      DS8 4
+     14          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     15          void SetSMSListener(void *new_handler)
+     16          {
+   \                     SetSMSListener:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     17            gproc = GBS_GetProcAddress(SMS_SIMIF_SM);
+   \   00000004   ........           LDR      R5,??DataTable1  ;; gproc
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   7700A0E3           MOV      R0,#+119
+   \   00000010   400C80E3           ORR      R0,R0,#0x4000
+   \   00000014   850300EF           SWI      +901
+   \   00000018   000085E5           STR      R0,[R5, #+0]
+     18            sms_simif_sm = (void(*)()) gproc->word[15];
+   \   0000001C   3C1090E5           LDR      R1,[R0, #+60]
+   \   00000020   041085E5           STR      R1,[R5, #+4]
+     19            gproc->word[15] = (int) new_handler;  
+   \   00000024   3C4080E5           STR      R4,[R0, #+60]
+     20          }
+   \   00000028   3080BDE8           POP      {R4,R5,PC}       ;; return
+     21          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     22          void DeleteSMSListener()
+     23          {
+     24            gproc->word[15] = (int) sms_simif_sm;  
+   \                     DeleteSMSListener:
+   \   00000000   ........           LDR      R0,??DataTable1  ;; gproc
+   \   00000004   001090E5           LDR      R1,[R0, #+0]
+   \   00000008   040090E5           LDR      R0,[R0, #+4]
+   \   0000000C   3C0081E5           STR      R0,[R1, #+60]
+     25          }
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+     26          
+     27          //код распаковки из LogSms
+     28          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     29          SMS *UnpackTPDU(TPDU *tpdu)
+     30          { 
+   \                     UnpackTPDU:
+   \   00000000   B0472DE9           PUSH     {R4,R5,R7-R10,LR}
+     31            char *s;
+     32            const char *p=tpdu->data;
+     33            SMS *sms=NULL;
+     34            unsigned int i;
+     35            unsigned int m;
+     36            int c;
+     37            int c1;
+     38            int c2;
+     39            unsigned int is_udhl;
+     40            if ((*p++)!=1) return NULL;
+   \   00000004   0010D0E5           LDRB     R1,[R0, #+0]
+   \   00000008   010051E3           CMP      R1,#+1
+   \   0000000C   0100000A           BEQ      ??UnpackTPDU_0
+   \                     ??UnpackTPDU_1:
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \   00000014   B087BDE8           POP      {R4,R5,R7-R10,PC}
+     41            if ((*p++)==0) return NULL; //длина TPDU
+   \                     ??UnpackTPDU_0:
+   \   00000018   010080E2           ADD      R0,R0,#+1
+   \   0000001C   019080E2           ADD      R9,R0,#+1
+   \   00000020   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000024   000050E3           CMP      R0,#+0
+   \   00000028   B087BD08           POPEQ    {R4,R5,R7-R10,PC}
+     42            is_udhl=*p&0x40;
+   \   0000002C   0000D9E5           LDRB     R0,[R9, #+0]
+   \   00000030   404000E2           AND      R4,R0,#0x40
+     43            if ((*p++)&3) return NULL; //Неподходящий тип сообщения ;)
+   \   00000034   ........           LDRB     R0,[R9], #+1
+   \   00000038   030010E3           TST      R0,#0x3
+   \   0000003C   F3FFFF1A           BNE      ??UnpackTPDU_1
+     44            s=malloc(sizeof(SMS));
+   \   00000040   DD00A0E3           MOV      R0,#+221
+   \   00000044   140000EF           SWI      +20
+   \   00000048   0080A0E1           MOV      R8,R0
+     45            zeromem(s, sizeof(SMS));
+   \   0000004C   DD10A0E3           MOV      R1,#+221
+   \   00000050   1D0100EF           SWI      +285
+     46            sms=(SMS*)s;
+     47            i=*p++; //Длина номера в нибблах
+   \   00000054   ........           LDRB     R0,[R9], #+1
+     48            if (*p == 0x91) {*s='+'; s++; } /* если интернациональный номер,добавляем символ '+' */
+   \   00000058   0010D9E5           LDRB     R1,[R9, #+0]
+   \   0000005C   0850A0E1           MOV      R5,R8
+     49            if (*p == 0xD0)  /* алфавитно-цифровой тип номера */
+   \   00000060   0070A0E3           MOV      R7,#+0
+   \   00000064   910051E3           CMP      R1,#+145
+   \   00000068   2B10A003           MOVEQ    R1,#+43
+   \   0000006C   ........           STRBEQ   R1,[R8], #+1
+   \   00000070   0010D9E5           LDRB     R1,[R9, #+0]
+   \   00000074   D00051E3           CMP      R1,#+208
+   \   00000078   011089E2           ADD      R1,R9,#+1
+   \   0000007C   3000001A           BNE      ??UnpackTPDU_2
+     50          {
+     51            p++;
+     52            m = (i * 4 / 7); /* кол-во символов в номере */
+   \   00000080   78229FE5           LDR      R2,??UnpackTPDU_3  ;; 0x24924925
+   \   00000084   0001A0E1           LSL      R0,R0,#+2
+   \   00000088   923089E0           UMULL    R3,R9,R2,R0
+   \   0000008C   009099E0           ADDS     R9,R9,R0
+   \   00000090   6990A0E1           RRX      R9,R9
+   \   00000094   2991A0E1           LSR      R9,R9,#+2
+     53            i = 0;
+   \   00000098   0000A0E3           MOV      R0,#+0
+     54            c2 = 0;
+   \   0000009C   0030A0E1           MOV      R3,R0
+   \   000000A0   000059E3           CMP      R9,#+0
+   \   000000A4   1700001A           BNE      ??UnpackTPDU_4
+     55            while(m)
+     56            {
+     57              c=0x80;    do
+     58              {
+     59                if(!i) {c2=*p++; i=8;}
+     60                c>>=1;
+     61                if(c2&1) c|=0x80;
+     62                c2>>=1; i--;
+     63              }while(!(c&1)); 
+     64              c>>=1;
+     65              if(!c) c='@';
+     66              if(c==2) c='$';
+     67              *s = c; s++;
+     68              m--;
+     69            }
+     70          
+     71          }
+     72            else
+     73            {
+     74              p++;
+     75              m=0;
+     76              c=0;
+     77              while(m<i)
+     78              {
+     79                if (m&1) c1=c>>4; else c1=(c=(*p++))&0x0F;
+     80                *s=c1+0x30;
+     81                s++;
+     82                m++;
+     83              }
+     84            }
+     85                   
+     86            //PID-идентификатор протокола,пропускаем
+     87            p++;
+   \                     ??UnpackTPDU_5:
+   \   000000A8   011081E2           ADD      R1,R1,#+1
+     88            //DCS-схема кодирования данных 
+     89            c1=*p++;
+   \   000000AC   ........           LDRB     R8,[R1], #+1
+     90            //SCTS-Время/дата
+     91            s=sms->time;
+   \   000000B0   140085E2           ADD      R0,R5,#+20
+     92            m=6;
+   \   000000B4   0630A0E3           MOV      R3,#+6
+     93            do
+     94            {
+     95              c=*p++;
+   \                     ??UnpackTPDU_6:
+   \   000000B8   ........           LDRB     R2,[R1], #+1
+     96              *s=(c&0x0F)+'0'; s++;
+   \   000000BC   0F9002E2           AND      R9,R2,#0xF
+   \   000000C0   309089E2           ADD      R9,R9,#+48
+   \   000000C4   ........           STRB     R9,[R0], #+1
+     97              *s=(c>>4)+'0'; s++;
+   \   000000C8   3090A0E3           MOV      R9,#+48
+   \   000000CC   422289E0           ADD      R2,R9,R2, ASR #+4
+   \   000000D0   ........           STRB     R2,[R0], #+1
+     98              switch(m)
+   \   000000D4   022043E2           SUB      R2,R3,#+2
+   \   000000D8   010052E3           CMP      R2,#+1
+   \   000000DC   2700009A           BLS      ??UnpackTPDU_7
+   \   000000E0   032042E2           SUB      R2,R2,#+3
+   \   000000E4   010052E3           CMP      R2,#+1
+   \   000000E8   2020A083           MOVHI    R2,#+32
+     99              {
+    100              case 6:
+    101              case 5:
+    102                c='-';
+   \   000000EC   2D20A093           MOVLS    R2,#+45
+   \   000000F0   230000EA           B        ??UnpackTPDU_8
+   \                     ??UnpackTPDU_9:
+   \   000000F4   020052E3           CMP      R2,#+2
+   \   000000F8   2420A003           MOVEQ    R2,#+36
+   \                     ??UnpackTPDU_10:
+   \   000000FC   ........           STRB     R2,[R8], #+1
+   \   00000100   019059E2           SUBS     R9,R9,#+1
+   \   00000104   E7FFFF0A           BEQ      ??UnpackTPDU_5
+   \                     ??UnpackTPDU_4:
+   \   00000108   8020A0E3           MOV      R2,#+128
+   \                     ??UnpackTPDU_11:
+   \   0000010C   000050E3           CMP      R0,#+0
+   \   00000110   ........           LDRBEQ   R3,[R1], #+1
+   \   00000114   0800A003           MOVEQ    R0,#+8
+   \   00000118   C220A0E1           ASR      R2,R2,#+1
+   \   0000011C   010013E3           TST      R3,#0x1
+   \   00000120   80208213           ORRNE    R2,R2,#0x80
+   \   00000124   C330A0E1           ASR      R3,R3,#+1
+   \   00000128   010040E2           SUB      R0,R0,#+1
+   \   0000012C   010012E3           TST      R2,#0x1
+   \   00000130   F5FFFF0A           BEQ      ??UnpackTPDU_11
+   \   00000134   C220B0E1           ASRS     R2,R2,#+1
+   \   00000138   EDFFFF1A           BNE      ??UnpackTPDU_9
+   \   0000013C   4020A0E3           MOV      R2,#+64
+   \   00000140   EDFFFFEA           B        ??UnpackTPDU_10
+   \                     ??UnpackTPDU_2:
+   \   00000144   0090A0E3           MOV      R9,#+0
+   \   00000148   0720A0E1           MOV      R2,R7
+   \   0000014C   000050E3           CMP      R0,#+0
+   \   00000150   0300001A           BNE      ??UnpackTPDU_12
+   \   00000154   D3FFFFEA           B        ??UnpackTPDU_5
+   \                     ??UnpackTPDU_13:
+   \   00000158   303083E2           ADD      R3,R3,#+48
+   \   0000015C   ........           STRB     R3,[R8], #+1
+   \   00000160   019089E2           ADD      R9,R9,#+1
+   \                     ??UnpackTPDU_12:
+   \   00000164   000059E1           CMP      R9,R0
+   \   00000168   CEFFFF2A           BCS      ??UnpackTPDU_5
+   \   0000016C   010019E3           TST      R9,#0x1
+   \   00000170   ........           LDRBEQ   R2,[R1], #+1
+   \   00000174   0F300202           ANDEQ    R3,R2,#0xF
+   \   00000178   4232A011           ASRNE    R3,R2,#+4
+   \   0000017C   F5FFFFEA           B        ??UnpackTPDU_13
+    103                break;
+    104              case 3:
+    105              case 2:
+    106                c=':';
+   \                     ??UnpackTPDU_7:
+   \   00000180   3A20A0E3           MOV      R2,#+58
+    107                break;
+    108              default:
+    109                c=' ';
+    110              }
+    111              *s=c; s++;
+   \                     ??UnpackTPDU_8:
+   \   00000184   ........           STRB     R2,[R0], #+1
+    112            }
+    113            while(--m);
+   \   00000188   013053E2           SUBS     R3,R3,#+1
+   \   0000018C   C9FFFF1A           BNE      ??UnpackTPDU_6
+    114            p++; //Пропускаем TimeZone
+   \   00000190   019081E2           ADD      R9,R1,#+1
+    115            m=*p++; //Длинна текста
+   \   00000194   ........           LDRB     R10,[R9], #+1
+    116            if (is_udhl)
+   \   00000198   000054E3           CMP      R4,#+0
+   \   0000019C   1D00000A           BEQ      ??UnpackTPDU_14
+    117            {
+    118              s=sms->header;
+    119              //Есть доп. заголовок, вычитываем
+    120              is_udhl=*p; //Длина поля данных заголовка
+    121              c=p[1];
+   \   000001A0   0120D9E5           LDRB     R2,[R9, #+1]
+   \   000001A4   0040D9E5           LDRB     R4,[R9, #+0]
+   \   000001A8   280085E2           ADD      R0,R5,#+40
+    122              if ((c==0)||(c==8))
+   \   000001AC   000052E3           CMP      R2,#+0
+   \   000001B0   1000000A           BEQ      ??UnpackTPDU_15
+   \   000001B4   080052E3           CMP      R2,#+8
+   \   000001B8   0300001A           BNE      ??UnpackTPDU_16
+    123              {
+    124                //Длинная смс, добавляем номер
+    125                if (c)
+    126                {
+    127          	c=p[6];
+   \   000001BC   0620D9E5           LDRB     R2,[R9, #+6]
+    128          	c2=p[5];
+   \   000001C0   0530D9E5           LDRB     R3,[R9, #+5]
+    129                }
+    130                else
+    131                {
+    132          	c=p[5];
+    133          	c2=p[4];
+    134                }
+    135                s+=sprintf(s,"%u/%u ",c,c2);
+   \                     ??UnpackTPDU_17:
+   \   000001C4   38119FE5           LDR      R1,??UnpackTPDU_3+0x4  ;; `?<Constant "%u/%u ">`
+   \   000001C8   160000EF           SWI      +22
+    136              }
+    137              is_udhl++; //Длина заголовка с учетом байта длинны
+   \                     ??UnpackTPDU_16:
+   \   000001CC   014084E2           ADD      R4,R4,#+1
+    138              
+    139              c1 &= 0xC;/* кодировка */
+   \   000001D0   0C8018E2           ANDS     R8,R8,#0xC
+    140              
+    141              if (c1 == 0)
+   \   000001D4   0A00001A           BNE      ??UnpackTPDU_18
+    142              {
+    143                //Для сообщения 7-бит
+    144                is_udhl=((is_udhl*8)+6)/7; //Преобразуем в число пропускаемых септетов
+   \   000001D8   20119FE5           LDR      R1,??UnpackTPDU_3  ;; 0x24924925
+   \   000001DC   0600A0E3           MOV      R0,#+6
+   \   000001E0   840180E0           ADD      R0,R0,R4, LSL #+3
+   \   000001E4   912084E0           UMULL    R2,R4,R1,R0
+   \   000001E8   004094E0           ADDS     R4,R4,R0
+   \   000001EC   6440A0E1           RRX      R4,R4
+   \   000001F0   2441A0E1           LSR      R4,R4,#+2
+   \   000001F4   070000EA           B        ??UnpackTPDU_14
+    145              }
+   \                     ??UnpackTPDU_15:
+   \   000001F8   0520D9E5           LDRB     R2,[R9, #+5]
+   \   000001FC   0430D9E5           LDRB     R3,[R9, #+4]
+   \   00000200   EFFFFFEA           B        ??UnpackTPDU_17
+    146              else if(c1 == 8 || c1 == 4)
+   \                     ??UnpackTPDU_18:
+   \   00000204   080058E3           CMP      R8,#+8
+   \   00000208   04005813           CMPNE    R8,#+4
+    147              {
+    148                //Для сообщения в юникоде или 8 бит
+    149                p+=is_udhl; //Указатель на текст
+   \   0000020C   09908400           ADDEQ    R9,R4,R9
+    150                m-=is_udhl; //Убрать длинну
+   \   00000210   04A04A00           SUBEQ    R10,R10,R4
+    151                is_udhl=0; //Все уже пропущено
+   \   00000214   0040A003           MOVEQ    R4,#+0
+    152              }
+    153            }
+    154          
+    155            s=sms->text;
+   \                     ??UnpackTPDU_14:
+   \   00000218   3C0085E2           ADD      R0,R5,#+60
+    156            i=0;
+   \   0000021C   0030A0E3           MOV      R3,#+0
+    157            c2=0;
+   \   00000220   0310A0E1           MOV      R1,R3
+    158            if (c1==8) m>>=1;
+   \   00000224   080058E3           CMP      R8,#+8
+   \   00000228   0200001A           BNE      ??UnpackTPDU_19
+   \   0000022C   AAA0A0E1           LSR      R10,R10,#+1
+   \   00000230   000000EA           B        ??UnpackTPDU_19
+    159            while(m)
+    160            {
+    161              switch(c1)
+    162              {
+    163              default:
+    164                //7 бит
+    165                c=0x80; //Символ
+    166                do
+    167                {
+    168          	if (!i) {c2=*p++; i=8;}
+    169          	c>>=1;
+    170          	if (c2&1) c|=0x80;
+    171          	c2>>=1; i--;
+    172                }
+    173                while(!(c&1));
+    174                c>>=1;
+    175                if (!c) c='@';
+    176                if (c==2) c='$';
+    177                break;
+    178                
+    179              case 4:
+    180                //8 бит
+    181                c=*p++;
+    182                break;
+    183                
+    184              case 8:
+    185                //Юникод
+    186                i=(*p++)<<8;
+    187                i|=(*p++);
+    188                if ((i>=0x410)&&(i<0x450)) i-=0x350;
+    189                c=i;
+    190                break;
+    191              }
+    192              if (!c) c='?';
+    193              if ((c==0x0A)||(c==0x0D)) c=' ';
+    194              if (is_udhl) //Если необходимо пропустить символы
+    195              {
+    196                is_udhl--; //Пропускаем
+    197              }
+    198              else
+    199              {
+    200                *s=c; s++;
+    201              }
+    202              m--;
+   \                     ??UnpackTPDU_20:
+   \   00000234   01A04AE2           SUB      R10,R10,#+1
+   \                     ??UnpackTPDU_19:
+   \   00000238   00005AE3           CMP      R10,#+0
+   \   0000023C   2C00000A           BEQ      ??UnpackTPDU_21
+   \   00000240   042058E2           SUBS     R2,R8,#+4
+   \   00000244   1300000A           BEQ      ??UnpackTPDU_22
+   \   00000248   042052E2           SUBS     R2,R2,#+4
+   \   0000024C   1300000A           BEQ      ??UnpackTPDU_23
+   \   00000250   8020A0E3           MOV      R2,#+128
+   \                     ??UnpackTPDU_24:
+   \   00000254   000053E3           CMP      R3,#+0
+   \   00000258   ........           LDRBEQ   R1,[R9], #+1
+   \   0000025C   0830A003           MOVEQ    R3,#+8
+   \   00000260   C220A0E1           ASR      R2,R2,#+1
+   \   00000264   010011E3           TST      R1,#0x1
+   \   00000268   80208213           ORRNE    R2,R2,#0x80
+   \   0000026C   C110A0E1           ASR      R1,R1,#+1
+   \   00000270   013043E2           SUB      R3,R3,#+1
+   \   00000274   010012E3           TST      R2,#0x1
+   \   00000278   F5FFFF0A           BEQ      ??UnpackTPDU_24
+   \   0000027C   C220B0E1           ASRS     R2,R2,#+1
+   \   00000280   4020A003           MOVEQ    R2,#+64
+   \   00000284   1600000A           BEQ      ??UnpackTPDU_25
+   \   00000288   020052E3           CMP      R2,#+2
+   \   0000028C   1100001A           BNE      ??UnpackTPDU_26
+   \   00000290   2420A0E3           MOV      R2,#+36
+   \   00000294   120000EA           B        ??UnpackTPDU_25
+   \                     ??UnpackTPDU_22:
+   \   00000298   ........           LDRB     R2,[R9], #+1
+   \   0000029C   0A0000EA           B        ??UnpackTPDU_27
+   \                     ??UnpackTPDU_23:
+   \   000002A0   ........           LDRB     R2,[R9], #+1
+   \   000002A4   ........           LDRB     R3,[R9], #+1
+   \   000002A8   0224A0E1           LSL      R2,R2,#+8
+   \   000002AC   023083E1           ORR      R3,R3,R2
+   \   000002B0   410E53E3           CMP      R3,#+1040
+   \   000002B4   0300003A           BCC      ??UnpackTPDU_28
+   \   000002B8   450E53E3           CMP      R3,#+1104
+   \   000002BC   4F20E033           MVNCC    R2,#+79
+   \   000002C0   C02FC233           BICCC    R2,R2,#0x300
+   \   000002C4   03308230           ADDCC    R3,R2,R3
+   \                     ??UnpackTPDU_28:
+   \   000002C8   0320A0E1           MOV      R2,R3
+   \                     ??UnpackTPDU_27:
+   \   000002CC   000052E3           CMP      R2,#+0
+   \   000002D0   3F20A003           MOVEQ    R2,#+63
+   \   000002D4   0200000A           BEQ      ??UnpackTPDU_25
+   \                     ??UnpackTPDU_26:
+   \   000002D8   0A0052E3           CMP      R2,#+10
+   \   000002DC   0D005213           CMPNE    R2,#+13
+   \   000002E0   2020A003           MOVEQ    R2,#+32
+   \                     ??UnpackTPDU_25:
+   \   000002E4   000054E3           CMP      R4,#+0
+   \   000002E8   ........           STRBEQ   R2,[R0], #+1
+   \   000002EC   01404412           SUBNE    R4,R4,#+1
+   \   000002F0   CFFFFFEA           B        ??UnpackTPDU_20
+    203            }
+    204           // *s=0x0D; s++;
+    205           // *s=0x0A; s++; 
+    206            *s=0;
+   \                     ??UnpackTPDU_21:
+   \   000002F4   0070C0E5           STRB     R7,[R0, #+0]
+    207          
+    208            return sms;
+   \   000002F8   0500A0E1           MOV      R0,R5
+   \   000002FC   B087BDE8           POP      {R4,R5,R7-R10,PC}
+   \                     ??UnpackTPDU_3:
+   \   00000300   25499224           DC32     0x24924925
+   \   00000304   ........           DC32     `?<Constant "%u/%u ">`
+    209          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     gproc
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%u/%u ">`:
+   \   00000000   25752F257520       DC8 "%u/%u "
+   \              00          
+   \   00000007   00                 DC8 0
+    210          /******************************************************************************/
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     DeleteSMSListener     0
+     SetSMSListener       12
+     UnpackTPDU           32
+
+
+   Segment part sizes:
+
+     Function/Label       Bytes
+     --------------       -----
+     gproc                   8
+     SetSMSListener         44
+     DeleteSMSListener      20
+     UnpackTPDU            776
+     ??DataTable1            4
+     ?<Constant "%u/%u ">    8
+      Others                24
+
+ 
+ 856 bytes in segment CODE
+   8 bytes in segment DATA_C
+   8 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+ 844 bytes of CODE  memory (+ 24 bytes shared)
+   8 bytes of CONST memory
+   8 bytes of DATA  memory
+
+Errors: none
+Warnings: none

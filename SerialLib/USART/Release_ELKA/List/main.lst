@@ -1,0 +1,139 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    19/Nov/2014  17:48:00 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\main.c                                         #
+#    Command line    =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\main.c -D NEWSGOLD -D ELKA -lC                 #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\List\ -o                          #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\Obj\ -s9 --no_unroll --cpu_mode   #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None -I                       #
+#                       C:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\        #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\List\main.lst                     #
+#    Object file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\Obj\main.r79                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\USART\main.c
+      1          #include "..\..\inc\swilib.h"
+      2          #include "..\..\inc\usart.h"
+      3          
+      4          extern void kill_data(void *p, void (*func_p)(void *));
+      5          
+      6          #pragma segment="ELFBEGIN"
+
+   \                                 In segment CODE, align 4, keep-with-next
+      7          void ElfKiller(void)
+      8          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+      9            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+     10          }
+     11          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     12          void tx_str(char *str)
+     13          {
+   \                     tx_str:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     14            int len = strlen(str);
+   \   00000008   1B0000EF           SWI      +27
+   \   0000000C   0050A0E1           MOV      R5,R0
+     15            for (int i=0; i<len; i++)
+   \   00000010   0060A0E3           MOV      R6,#+0
+   \   00000014   010055E3           CMP      R5,#+1
+   \   00000018   030000AA           BGE      ??tx_str_0
+   \   0000001C   7080BDE8           POP      {R4-R6,PC}
+     16              S0Tx_byte(str[i]);
+   \                     ??tx_str_1:
+   \   00000020   0400D6E7           LDRB     R0,[R6, +R4]
+   \   00000024   016086E2           ADD      R6,R6,#+1
+   \   00000028   ........           _BLF     S0Tx_byte,??S0Tx_byte??rA
+   \                     ??tx_str_0:
+   \   0000002C   050056E1           CMP      R6,R5
+   \   00000030   FAFFFFBA           BLT      ??tx_str_1
+     17          }
+   \   00000034   7080BDE8           POP      {R4-R6,PC}       ;; return
+     18          
+     19          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     20          void main(char *exename, char *fname)
+     21          { 
+   \                     main:
+   \   00000000   00402DE9           PUSH     {LR}
+     22            S0_setbaudrate(USART_57600_DATA);
+   \   00000004   6409A0E3           MOV      R0,#+1638400
+   \   00000008   760F80E3           ORR      R0,R0,#0x1D8
+   \   0000000C   ........           _BLF     S0_setbaudrate,??S0_setbaudrate??rA
+     23            tx_str("HELLO SIEMENS E71!\n");
+   \   00000010   0C009FE5           LDR      R0,??main_0      ;; `?<Constant "HELLO SIEMENS E71!\\n">`
+   \   00000014   ........           BL       tx_str
+     24            SUBPROC((void *)ElfKiller);
+   \   00000018   08009FE5           LDR      R0,??main_0+0x4  ;; ElfKiller
+   \   0000001C   710100EF           SWI      +369
+     25          }
+   \   00000020   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_0:
+   \   00000024   ........           DC32     `?<Constant "HELLO SIEMENS E71!\\n">`
+   \   00000028   ........           DC32     ElfKiller
+
+   \                                 In segment ELFBEGIN, align 1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "HELLO SIEMENS E71!\\n">`:
+   \   00000000   48454C4C4F20       DC8 "HELLO SIEMENS E71!\012"
+   \              5349454D454E
+   \              532045373121
+   \              0A00        
+     26          
+
+   Maximum stack usage in bytes:
+
+     Function  CSTACK
+     --------  ------
+     ElfKiller     4
+     main          4
+     tx_str       16
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     ElfKiller                        28
+     tx_str                           56
+     main                             44
+     ?<Constant "HELLO SIEMENS E71!\n">
+                                      20
+      Others                          48
+
+ 
+ 176 bytes in segment CODE
+  20 bytes in segment DATA_C
+ 
+ 128 bytes of CODE  memory (+ 48 bytes shared)
+  20 bytes of CONST memory
+
+Errors: none
+Warnings: none

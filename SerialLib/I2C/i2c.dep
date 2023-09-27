@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2124338328</fileChecksum>
+  <configuration>
+    <name>Release_ELKA</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\INC\siemens\nu_swilib.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\i2clib.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2clib.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\reg8876.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\i2c.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+      <file>$PROJ_DIR$\i2clib.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2clib.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\i2clib.lst</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2c.pbd</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\i2c.elf</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\i2clib.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 22 31</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13 9 37 27 36 6 23 12</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 13 9 37 27 19 36 6 23 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 2 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32 30 18 24 28 20 17 29 33 15 26 16 0 13 9 37 27 36 6 23 21 14</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 32 30 18 24 28 20 17 29 33 15 26 16 0 13 9 37 27 19 36 6 23 21 14</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 35</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Obj\i2c.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 11 8</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\i2c.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 3 1 22 2 10</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

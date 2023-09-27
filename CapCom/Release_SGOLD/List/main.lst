@@ -1,0 +1,273 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    19/Jan/2015  12:16:51 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \main.c                                              #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \main.c -D SGOLD -D CX75v25 -lCN                     #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \Release_SGOLD\List\ -la C:\Users\alfin_000\Document #
+#                       s\Siemens\alfinant\CapCom\Release_SGOLD\List\ -o     #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \Release_SGOLD\Obj\ -z9 --cpu_mode arm --endian      #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \Release_SGOLD\List\main.lst                         #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom #
+#                       \Release_SGOLD\Obj\main.r79                          #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\alfinant\CapCom\main.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/i2c.h"
+      3          #include "../inc/clkman.h"
+      4          #include "../inc/interrupt.h"
+      5          
+      6          #ifdef NEWSGOLD
+      7          #include "../inc/reg8876.h"
+      8          #else
+      9          #include "../inc/reg8875.h"
+     10          #endif
+     11          
+     12          void int_ccu1_t0_handler(int irq);
+     13          
+     14          typedef struct{
+     15            char state; //3
+     16            char prio; //max priority==15
+     17            char unk2;
+     18            char unk3;  
+     19            void (*handler)(int vector);
+     20          } IRQ_DESC;
+     21          
+     22          
+     23          IRQ_DESC ccu1_t0=
+     24          {
+     25            3,
+     26            0xA,
+     27            0,
+     28            0,
+     29            int_ccu1_t0_handler,
+     30          };
+     31          
+     32          
+     33          #ifdef  CX75
+     34          #define Register_IRQ ((void(*)(char irq_vector, IRQ_DESC* new, IRQ_DESC *old )) 0xA0ACA5F8)
+     35          #endif
+     36          
+     37          int Prescaler = 1; 
+     38          int Frequency = 1000;
+     39          int Dutycycle = 50; 
+     40          
+     41          
+     42          char dat_40 = 0x26;
+     43          char dat_42 = 0x04;
+     44          
+     45          #ifdef SGOLD
+     46          #define PM_RINGIN   GPIO.CC_VZ
+     47          #endif
+     48          #ifdef NEWSGOLD
+     49          #define PM_RINGIN   GPIO.RF_STR1
+     50          #endif
+     51          
+     52          extern void kill_data(void *p, void (*func_p)(void *));
+     53          void ElfKiller(void)
+     54          {
+     55            extern void *ELF_BEGIN;
+     56            kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+     57          }
+     58          
+     59          void pwm_test_sound()
+     60          {
+     61            int count;
+     62          
+     63             PM_RINGIN = 0x30; 
+     64             int saved = disable_interrupts();
+     65             count = divide(Frequency << 10, capcom_hw_clk) << 10; // Алгоритм вычислений взят из прошивки.Частота не должна быть больше 26kHz
+     66             CCU1.CLC = 0x100;
+     67             CCU1.T0REL = 65536 - count;
+     68             CCU1.T0 = 65536 - count; 
+     69             CCU1.CC5 = 65536 - divide(1000, Dutycycle * count * 10);
+     70             
+     71             CCU1.CCSEM &= ~ CCSEM5;  //отключаем режим одного события
+     72             CCU1.CCSEE &= ~ CCSEE5;     
+     73             CCU1.CCM1  |=  CCM1_MOD5 & (MODE_COMPARE_3 << 4); /* Режим сравнения 3: При совпадении устанавливается флаг прерывания  и дополнительно выходной контакт CCxIO будет установлен в 1.При переполнение таймера выходной контакт сбрасывается. */
+     74             CCU1.CCM1  &= ~ CCM1_ACC5;    /* Обнуляем  бит,регистр захвата/сравнения CC5 будет привязан к таймеру T0 */
+     75          
+     76             CCU1.CCIOC &= ~ PL;
+     77             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+     78             CCU1.CCIOC &= ~ PDS;
+     79          
+     80          
+     81             CCU1.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */
+     82             CCU1.CC5IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC5 со значением таймера*/
+     83             
+     84             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+     85             CCU1.T01CON  &= ~ T0M;  /* обнуляем бит,режим таймера */
+     86             CCU1.T01CON |= T0R;    /* установка этого бита запускает таймер */
+     87             enable_interrupts(saved);
+     88          
+     89             i2cw_pmu(0x42, &dat_42, 0, 0); //устанавливаем PM_RINGIN источником входного сигнала на Dialog
+     90             i2cw_pmu(0x40, &dat_40, 0, 0); //громкость
+     91          } 
+     92          
+     93          void test_pin()
+     94          {
+     95            int count;
+     96            
+     97             GPIO.DSPOUT0 = 0x30; // pin 6
+     98             int saved = disable_interrupts();   
+     99             count = divide(Frequency << 10, capcom_hw_clk) << 10; // Алгоритм вычислений взят из прошивки.Есть ограничение-частота не должна быть больше 26kHz
+    100             CCU1.CLC = 0x100;  
+    101             CCU1.T0REL = 65536 - count;
+    102             CCU1.T0 = 65536 - count; 
+    103             CCU1.CC6 = 65536 - divide(1000, Dutycycle * count * 10);
+    104             
+    105             CCU1.CCSEM &= ~ CCSEM6;    //отключаем режим одного события
+    106             CCU1.CCSEE &= ~ CCSEE6;     
+    107             CCU1.CCM1  |=  CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+    108             CCU1.CCM1  &= ~ CCM1_ACC6;  /* Обнуляем  бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+    109             
+    110             CCU1.CCIOC &= ~ PL;
+    111             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+    112             CCU1.CCIOC &= ~ PDS;
+    113                     
+    114             CCU1.T0IC  &= ~ ICR_IEN;   /* отключаем прерывание при переполнении таймера T0 */ 
+    115             CCU1.CC6IC &= ~ ICR_IEN;    /* отключаем прерывание при совпадении */
+    116             
+    117             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+    118             CCU1.T01CON  &= ~ T0M;  /* режим таймера */
+    119             CCU1.T01CON  |= T0R;    /* cтарт таймера */ 
+    120             enable_interrupts(saved);
+    121          }
+    122          
+    123          
+    124          void test_100kHz()
+    125          {
+    126             GPIO.DSPOUT0 = GPIO_PPEN | 0x30; // Открытый коллектор, ассоциация с CAPCOM
+    127             int saved = disable_interrupts();   
+    128          //CCU1.T0 = 0x10000 - (Period(ns) / 39.0625)
+    129             CCU1.CLC = 0x100;
+    130             CCU1.T0REL = 0xFF00;  //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+    131             CCU1.T0 = 0xFF00; 
+    132             CCU1.CC6 = 0xFF80;
+    133             
+    134             CCU1.CCSEM &= ~ CCSEM6;    //отключаем режим одного события
+    135             CCU1.CCSEE &= ~ CCSEE6;     
+    136             CCU1.CCM1  |=  CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+    137             CCU1.CCM1  &= ~ CCM1_ACC6;  /* Обнуляем бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+    138             
+    139             CCU1.CCIOC &= ~ PL;
+    140             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+    141             CCU1.CCIOC &= ~ PDS;
+    142                     
+    143             CCU1.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+    144             CCU1.CC6IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC6 со значением таймера T0*/
+    145             
+    146             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+    147             CCU1.T01CON  &= ~ T0M;  /* режим таймера */
+    148             CCU1.T01CON  |= T0R;    /* cтарт таймера */ 
+    149             enable_interrupts(saved);
+    150          }
+    151          
+    152          void test_1Gz()
+    153          { 
+    154             GPIO.DSPOUT0 = 0x30; // pin 6
+    155             int input_clk = divide(Prescaler, capcom_hw_clk );  
+    156          
+    157             CCU0.CLC = 0x100;
+    158             CCU0.T0 =  0x3C00;
+    159             CCU0.T0REL = 0x3C00;
+    160             CCU0.CC2 = 0x9E00;
+    161             
+    162             CCU0.CCSEM &= ~ CCSEM2;    //отключаем режим одного события
+    163             CCU0.CCSEE &= ~ CCSEE2;     
+    164             CCU0.CCM0  |=   CCM0_MOD2 & (MODE_COMPARE_3 << 8); ; /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+    165             CCU0.CCM0  &= ~ CCM0_ACC2;  /* Обнуляем  бит,регистр захвата/сравнения CC2 будет привязан к таймеру T0 */
+    166             
+    167             CCU0.CCIOC |= STAG;    /* Если не установлен этот бит,значение пределителя увеличится в 8 раз.Отключаем.. */
+    168                     
+    169             CCU0.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+    170             CCU0.CC2IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении */
+    171             
+    172             CCU0.T01CON  |= 6;  /* пределитель 1, входная частота для таймера 26 Мгц */
+    173             CCU0.T01CON  &= ~ T0M;  /* режим таймера */
+    174             CCU0.T01CON  |= T0R;   /* cтарт таймера */  
+    175          }
+    176          
+    177          
+    178          void test_pin_cts()//sgold
+    179          {
+    180             GPIO.USART0_CTS = GPIO_PPEN | 0x30; // Открытый коллектор(open drain), ассоциация с CAPCOM 
+    181             //CCU1.T0 = 0x10000 - (Period(ns) / 39.0625)
+    182             CCU1.CLC = 0x100;
+    183             CCU1.T0REL = 0xFF00;  //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+    184             CCU1.T0 = 0xFF00; 
+    185             CCU1.CC2 = 0xFF80;
+    186             
+    187             CCU1.CCSEM &= ~ CCSEM2;    //отключаем режим одного события
+    188             CCU1.CCSEE &= ~ CCSEE2;     
+    189             CCU1.CCM0 |=  CCM0_MOD2 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+    190             CCU1.CCM0 &= ~ CCM0_ACC2;  /* Обнуляем бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+    191             
+    192             CCU1.CCIOC &= ~ PL;
+    193             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+    194             CCU1.CCIOC &= ~ PDS;
+    195                     
+    196             CCU1.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+    197             CCU1.CC2IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC2 со значением таймера T0*/
+    198             
+    199             CCU1.T01CON &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+    200             CCU1.T01CON &= ~ T0M;  /* режим таймера */
+    201             CCU1.T01CON |= T0R;    /* cтарт таймера */
+    202          }
+    203          
+    204          void test_pin_tx()
+    205          {
+    206             GPIO.USART0_TXD = GPIO_PPEN | 0x30; // Открытый коллектор(open drain), ассоциация с CAPCOM 
+    207             //CCU1.T0 = 0x10000 - (Period(ns) / 39.0625)
+    208             CCU0.CLC = 0x100;
+    209             CCU0.T0REL = 0xFF00;  //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+    210             CCU0.T0 = 0xFF00; 
+    211             CCU0.CC2 = 0xFF80;
+    212             
+    213             CCU0.CCSEM &= ~ CCSEM2;    //отключаем режим одного события
+    214             CCU0.CCSEE &= ~ CCSEE2;     
+    215             CCU0.CCM0 |=  CCM0_MOD2 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+    216             CCU0.CCM0 &= ~ CCM0_ACC2;  /* Обнуляем бит,регистр захвата/сравнения CC2 будет привязан к таймеру T0 */
+    217             
+    218             CCU0.CCIOC &= ~ PL;
+    219             CCU0.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+    220             CCU0.CCIOC &= ~ PDS;
+    221                     
+    222             CCU0.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+    223             CCU0.CC2IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC2 со значением таймера T0*/
+    224             
+    225             CCU0.T01CON &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+    226             CCU0.T01CON &= ~ T0M;  /* режим таймера */
+    227             CCU0.T01CON |= T0R;    /* cтарт таймера */
+    228          }
+    229          
+    230          int main(void)
+    231          {   
+    232             ShowMSG(1,(int)"ELF Started!" );
+    233             ClkStateOn(CAPCOM_MASK);
+    234             test_pin_tx();
+    235          
+    236             SUBPROC((void *)ElfKiller);
+    237             return 0;
+    238          }
+    239          
+
+Errors: 1
+Warnings: none

@@ -1,0 +1,992 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    06/Jul/2014  22:48:22 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\main.c                                         #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\main.c -D NEWSGOLD -D ELKA -D E71v45 -lCN      #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\Release_ELKA\List\ -la                         #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\Release_ELKA\List\ -o                          #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\Release_ELKA\Obj\ -z9 --cpu_mode arm --endian  #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\Release_ELKA\List\main.lst                     #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM\Release_ELKA\Obj\main.r79                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\PWM\main.c
+      1          #include <siemens/i2clib.h>
+      2          #include <siemens/gpio.h>
+      3          #include <siemens/clkman.h>
+      4          #include <siemens/swilib.h>
+      5          #include "rect_patcher.h"
+      6          
+      7          #ifdef E71v45
+      8          #define CapCom_RegClient        ((int(*)(char* label, int channel)) 0xA04CE1C8)
+      9          #define CapCom_UnRegClient      ((int(*)(unsigned pwm_id)) 0xA04CE3D4)
+     10          #define CapCom_ConnectTimer     ((int(*)(unsigned pwm_id, int frequency, int dutycycle))0xA04CE25C)
+     11          #define CapCom_DisconnectTimer  ((int(*)(unsigned pwm_id)) 0xA04CE32C)
+     12          #define CapCom_TimerOn          ((int(*)(unsigned pwm_id)) 0xA04CE454)
+     13          #define CapCom_TimerOn_CSS      ((int(*)(unsigned pwm_id)) 0xA04CE4E4)
+     14          #define CapCom_TimerOff         ((int(*)(unsigned pwm_id)) 0xA04CE574) 
+     15          #define CapCom_SetFreq          ((int(*)(unsigned pwm_id, int frequency, void (*callback)(void) )) 0xA04CE600)
+     16          #define CapCom_SetDutycycle     ((int(*)(unsigned pwm_id, int dutycycle, void (*callback)(void) )) 0xA04CE69C)
+     17          #define CapCom_SetDutycycle_2   ((int(*)(unsigned pwm_id, int dutycycle, void (*callback)(void) )) 0xA04CE73C) 
+     18          
+     19          #define SetClock                ((int(*)(unsigned dev,int))0xA04D0728)
+     20          #endif
+     21          
+     22          #ifdef S75v47
+     23          #define CapCom_RegClient       ((int(*)(char* name, char channel)) 0x)
+     24          #define CapCom_UnRegClient     ((int(*)(unsigned id)) 0x)
+     25          #define CapCom_ConnectTimer    ((int(*)(unsigned id, int frequency, int dutycycle))0x)
+     26          #define CapCom_DisconnectTimer ((int(*)(unsigned id)) 0x)
+     27          #define CapCom_TimerOn         ((int(*)(unsigned id)) 0x)
+     28          #define CapCom_TimerOff        ((int(*)(unsigned id)) 0x)
+     29          #define CapCom_TimerOn_CSS     ((int(*)(unsigned id)) 0x) 
+     30          #define CapCom_SetFreq         ((int(*)(unsigned id, int frequency, int zero)) 0x)
+     31          #define CapCom_SetDutycycle    ((int(*)(unsigned id, int dutycycle, int zero)) 0x)
+     32          #define CapCom_SetDutycycle2   ((int(*)(unsigned id, int dutycycle, int zero)) 0x)
+     33          #define SetClkState            ((int(*)(unsigned port_id,int))0xA01D0C78)
+     34          #endif
+     35          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     36          unsigned pwm = 0x2F1C71;
+   \                     pwm:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for pwm>`
+     37          int FREQUENCY=1000; 
+   \                     FREQUENCY:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for FREQUENCY>`
+     38          int DUTYCYCLE=50;
+   \                     DUTYCYCLE:
+   \   00000008                      DS8 4
+   \   0000000C                      REQUIRE `?<Initializer for DUTYCYCLE>`
+     39          int STATE=1;
+   \                     STATE:
+   \   0000000C                      DS8 4
+   \   00000010                      REQUIRE `?<Initializer for STATE>`
+     40          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     41          const int minus11=-11;
+   \                     minus11:
+   \   00000000   F5FFFFFF           DC32 -11
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     42          unsigned int MAINCSM_ID = 0;
+   \                     MAINCSM_ID:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     43          unsigned int MAINGUI_ID = 0;
+   \                     MAINGUI_ID:
+   \   00000000                      DS8 4
+     44          
+     45          
+     46          typedef struct
+     47          {
+     48            CSM_RAM csm;
+     49            int gui_id;
+     50          }MAIN_CSM;
+     51          
+     52          typedef struct
+     53          {
+     54            GUI gui;
+     55            WSHDR *ws1;
+     56          }MAIN_GUI;
+     57          
+     58          
+     59          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     60          void OnRedraw(MAIN_GUI *data)
+     61          {
+   \                     OnRedraw:
+   \   00000000   F04F2DE9           PUSH     {R4-R11,LR}
+     62            int scr_w=ScreenW();
+     63            int scr_h=ScreenH();
+     64            
+     65           DrawRoundedFrame(0,YDISP,scr_w-1,scr_h-1,0,0,0,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(1));
+     66           
+     67           wsprintf(data->ws1,
+     68                    "Frequency:\n"
+     69                      "%dHz\n"
+     70                       "Dutycycle:\n"
+     71                         "%d%\n"
+     72                           ,FREQUENCY,DUTYCYCLE);
+   \   00000004   A8819FE5           LDR      R8,??OnRedraw_0+0x8  ;; pwm
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   888100EF           SWI      +33160
+   \   00000010   0050A0E1           MOV      R5,R0
+   \   00000014   898100EF           SWI      +33161
+   \   00000018   0060A0E1           MOV      R6,R0
+   \   0000001C   0100A0E3           MOV      R0,#+1
+   \   00000020   2E0100EF           SWI      +302
+   \   00000024   0070A0E1           MOV      R7,R0
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   2E0100EF           SWI      +302
+   \   00000030   80002DE9           PUSH     {R7}
+   \   00000034   7C719FE5           LDR      R7,??OnRedraw_0+0xC  ;; `?<Constant "Frequency:\\n%dHz\\nDutyc...">`
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   013046E2           SUB      R3,R6,#+1
+   \   00000040   012045E2           SUB      R2,R5,#+1
+   \   00000044   1810A0E3           MOV      R1,#+24
+   \   00000048   0000A0E3           MOV      R0,#+0
+   \   0000004C   01002DE9           PUSH     {R0}
+   \   00000050   01002DE9           PUSH     {R0}
+   \   00000054   01002DE9           PUSH     {R0}
+   \   00000058   500100EF           SWI      +336
+   \   0000005C   340094E5           LDR      R0,[R4, #+52]
+   \   00000060   083098E5           LDR      R3,[R8, #+8]
+   \   00000064   042098E5           LDR      R2,[R8, #+4]
+   \   00000068   0710A0E1           MOV      R1,R7
+   \   0000006C   240100EF           SWI      +292
+     73            DrawString(data->ws1,15,20+YDISP,scr_w,scr_h-20,
+     74                       FONT_LARGE,0,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23));
+   \   00000070   1700A0E3           MOV      R0,#+23
+   \   00000074   2E0100EF           SWI      +302
+   \   00000078   0090A0E1           MOV      R9,R0
+   \   0000007C   0000A0E3           MOV      R0,#+0
+   \   00000080   2E0100EF           SWI      +302
+   \   00000084   00022DE9           PUSH     {R9}
+   \   00000088   01002DE9           PUSH     {R0}
+   \   0000008C   0530A0E1           MOV      R3,R5
+   \   00000090   2C20A0E3           MOV      R2,#+44
+   \   00000094   0F10A0E3           MOV      R1,#+15
+   \   00000098   0000A0E3           MOV      R0,#+0
+   \   0000009C   01002DE9           PUSH     {R0}
+   \   000000A0   01002DE9           PUSH     {R0}
+   \   000000A4   140046E2           SUB      R0,R6,#+20
+   \   000000A8   01002DE9           PUSH     {R0}
+   \   000000AC   340094E5           LDR      R0,[R4, #+52]
+   \   000000B0   4C0100EF           SWI      +332
+   \   000000B4   28D08DE2           ADD      SP,SP,#+40
+     75          
+     76            if(STATE==0)  wsprintf(data->ws1,"Off");
+   \   000000B8   0C0098E5           LDR      R0,[R8, #+12]
+   \   000000BC   000050E3           CMP      R0,#+0
+   \   000000C0   0200001A           BNE      ??OnRedraw_1
+   \   000000C4   340094E5           LDR      R0,[R4, #+52]
+   \   000000C8   371F8FE2           ADR      R1,??OnRedraw_0  ;; "Off"
+   \   000000CC   240100EF           SWI      +292
+     77            if(STATE==1)  wsprintf(data->ws1,"On");
+   \                     ??OnRedraw_1:
+   \   000000D0   0C0098E5           LDR      R0,[R8, #+12]
+   \   000000D4   010050E3           CMP      R0,#+1
+   \   000000D8   0200001A           BNE      ??OnRedraw_2
+   \   000000DC   340094E5           LDR      R0,[R4, #+52]
+   \   000000E0   321F8FE2           ADR      R1,??OnRedraw_0+0x4  ;; "On"
+   \   000000E4   240100EF           SWI      +292
+     78            
+     79            DrawString(data->ws1,6,scr_h-6-GetFontYSIZE(FONT_MEDIUM_BOLD),scr_w-6,scr_h-6,
+     80                       FONT_MEDIUM_BOLD,TEXT_ALIGNLEFT,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23)); 
+   \                     ??OnRedraw_2:
+   \   000000E8   1700A0E3           MOV      R0,#+23
+   \   000000EC   2E0100EF           SWI      +302
+   \   000000F0   0080A0E1           MOV      R8,R0
+   \   000000F4   0000A0E3           MOV      R0,#+0
+   \   000000F8   2E0100EF           SWI      +302
+   \   000000FC   0090A0E1           MOV      R9,R0
+   \   00000100   0500A0E3           MOV      R0,#+5
+   \   00000104   C50100EF           SWI      +453
+   \   00000108   00012DE9           PUSH     {R8}
+   \   0000010C   00022DE9           PUSH     {R9}
+   \   00000110   0110A0E3           MOV      R1,#+1
+   \   00000114   02002DE9           PUSH     {R1}
+   \   00000118   06B046E2           SUB      R11,R6,#+6
+   \   0000011C   06A045E2           SUB      R10,R5,#+6
+   \   00000120   0A30A0E1           MOV      R3,R10
+   \   00000124   0510A0E3           MOV      R1,#+5
+   \   00000128   02002DE9           PUSH     {R1}
+   \   0000012C   00204BE0           SUB      R2,R11,R0
+   \   00000130   0B10A0E1           MOV      R1,R11
+   \   00000134   02002DE9           PUSH     {R1}
+   \   00000138   340094E5           LDR      R0,[R4, #+52]
+   \   0000013C   0610A0E3           MOV      R1,#+6
+   \   00000140   4C0100EF           SWI      +332
+     81          
+     82            
+     83            wsprintf(data->ws1,"Exit");
+   \   00000144   340094E5           LDR      R0,[R4, #+52]
+   \   00000148   201087E2           ADD      R1,R7,#+32
+   \   0000014C   240100EF           SWI      +292
+     84            DrawString(data->ws1,scr_w>>1,scr_h-4-GetFontYSIZE(FONT_MEDIUM_BOLD),scr_w-6,scr_h-6,
+     85                       FONT_MEDIUM_BOLD,TEXT_ALIGNRIGHT,GetPaletteAdrByColorIndex(0),GetPaletteAdrByColorIndex(23)); 
+   \   00000150   1700A0E3           MOV      R0,#+23
+   \   00000154   2E0100EF           SWI      +302
+   \   00000158   0070A0E1           MOV      R7,R0
+   \   0000015C   0000A0E3           MOV      R0,#+0
+   \   00000160   2E0100EF           SWI      +302
+   \   00000164   0080A0E1           MOV      R8,R0
+   \   00000168   0500A0E3           MOV      R0,#+5
+   \   0000016C   C50100EF           SWI      +453
+   \   00000170   80002DE9           PUSH     {R7}
+   \   00000174   00012DE9           PUSH     {R8}
+   \   00000178   0410A0E3           MOV      R1,#+4
+   \   0000017C   02002DE9           PUSH     {R1}
+   \   00000180   0A30A0E1           MOV      R3,R10
+   \   00000184   0510A0E3           MOV      R1,#+5
+   \   00000188   02002DE9           PUSH     {R1}
+   \   0000018C   00082DE9           PUSH     {R11}
+   \   00000190   041046E2           SUB      R1,R6,#+4
+   \   00000194   002041E0           SUB      R2,R1,R0
+   \   00000198   340094E5           LDR      R0,[R4, #+52]
+   \   0000019C   C510A0E1           ASR      R1,R5,#+1
+   \   000001A0   4C0100EF           SWI      +332
+   \   000001A4   28D08DE2           ADD      SP,SP,#+40
+     86          
+     87          }
+   \   000001A8   F08FBDE8           POP      {R4-R11,PC}      ;; return
+   \                     ??OnRedraw_0:
+   \   000001AC   4F666600           DC8      "Off"
+   \   000001B0   4F6E0000           DC8      "On",+0
+   \   000001B4   ........           DC32     pwm
+   \   000001B8   ........           DC32     `?<Constant "Frequency:\\n%dHz\\nDutyc...">`
+     88          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     89          void onCreate(MAIN_GUI *data, void *(*malloc_adr)(int))
+     90          {
+   \                     onCreate:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     91          
+     92            data->ws1=AllocWS(80);
+   \   00000008   5000A0E3           MOV      R0,#+80
+   \   0000000C   250100EF           SWI      +293
+   \   00000010   340084E5           STR      R0,[R4, #+52]
+     93            data->gui.state=1;
+   \   00000014   0100A0E3           MOV      R0,#+1
+   \   00000018   ........           B        ?Subroutine17
+     94          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine17:
+   \   00000000   0C00C4E5           STRB     R0,[R4, #+12]
+   \   00000004   1080BDE8           POP      {R4,PC}          ;; return
+     95          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     96          void onClose(MAIN_GUI *data, void (*mfree_adr)(void *))
+     97          {
+   \                     onClose:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     98            FreeWS(data->ws1);
+   \   00000008   340094E5           LDR      R0,[R4, #+52]
+   \   0000000C   290100EF           SWI      +297
+     99            data->gui.state=0;
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \   00000014                      REQUIRE ?Subroutine17
+   \   00000014                      ;; // Fall through to label ?Subroutine17
+    100          }
+    101          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    102          void onFocus(MAIN_GUI *data, void *(*malloc_adr)(int), void (*mfree_adr)(void *))
+    103          { 
+   \                     onFocus:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    104            DisableIDLETMR();
+   \   00000008   7F0100EF           SWI      +383
+    105            data->gui.state=2;
+   \   0000000C   0200A0E3           MOV      R0,#+2
+   \   00000010   ........           B        ?Subroutine17
+    106          }
+    107          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    108          void onUnfocus(MAIN_GUI *data, void (*mfree_adr)(void *))
+    109          {
+    110            if (data->gui.state!=2) return;
+   \                     onUnfocus:
+   \   00000000   0C10D0E5           LDRB     R1,[R0, #+12]
+   \   00000004   020051E3           CMP      R1,#+2
+    111            data->gui.state=1;
+   \   00000008   0110A003           MOVEQ    R1,#+1
+   \   0000000C   0C10C005           STRBEQ   R1,[R0, #+12]
+    112          }
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+    113          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    114          static int OnKey(MAIN_GUI *data, GUI_MSG *msg)
+    115          {
+   \                     OnKey:
+   \   00000000   00402DE9           PUSH     {LR}
+    116            if (msg->gbsmsg->msg==KEY_DOWN)
+   \   00000004   041091E5           LDR      R1,[R1, #+4]
+   \   00000008   9320A0E3           MOV      R2,#+147
+   \   0000000C   040091E5           LDR      R0,[R1, #+4]
+   \   00000010   402F82E3           ORR      R2,R2,#0x100
+   \   00000014   020050E1           CMP      R0,R2
+   \   00000018   2000001A           BNE      ??OnKey_0
+    117            {
+    118              switch(msg->gbsmsg->submess)
+   \   0000001C   ........           LDR      R0,??DataTable10  ;; pwm
+   \   00000020   081091E5           LDR      R1,[R1, #+8]
+   \   00000024   082090E5           LDR      R2,[R0, #+8]
+   \   00000028   043090E5           LDR      R3,[R0, #+4]
+   \   0000002C   00C0A0E3           MOV      R12,#+0
+   \   00000030   011051E2           SUBS     R1,R1,#+1
+   \   00000034   3B00000A           BEQ      ??OnKey_1
+   \   00000038   031051E2           SUBS     R1,R1,#+3
+   \   0000003C   4300000A           BEQ      ??OnKey_2
+   \   00000040   091051E2           SUBS     R1,R1,#+9
+   \   00000044   3200000A           BEQ      ??OnKey_3
+   \   00000048   011051E2           SUBS     R1,R1,#+1
+   \   0000004C   3200000A           BEQ      ??OnKey_4
+   \   00000050   231051E2           SUBS     R1,R1,#+35
+   \   00000054   0A00000A           BEQ      ??OnKey_5
+   \   00000058   031051E2           SUBS     R1,R1,#+3
+   \   0000005C   1100000A           BEQ      ??OnKey_6
+   \   00000060   071051E2           SUBS     R1,R1,#+7
+   \   00000064   2400000A           BEQ      ??OnKey_7
+   \   00000068   011051E2           SUBS     R1,R1,#+1
+   \   0000006C   2400000A           BEQ      ??OnKey_8
+   \   00000070   011051E2           SUBS     R1,R1,#+1
+   \   00000074   1C00000A           BEQ      ??OnKey_9
+   \   00000078   011051E2           SUBS     R1,R1,#+1
+   \   0000007C   1100000A           BEQ      ??OnKey_10
+   \   00000080   050000EA           B        ??OnKey_11
+    119              {
+    120              case '1': CapCom_SetFreq (pwm, FREQUENCY+=1000, 0);  //шаг 1kHz
+   \                     ??OnKey_5:
+   \   00000084   FA1F83E2           ADD      R1,R3,#+1000
+   \                     ??OnKey_12:
+   \   00000088   041080E5           STR      R1,[R0, #+4]
+   \   0000008C   0020A0E3           MOV      R2,#+0
+   \                     ??OnKey_13:
+   \   00000090   000090E5           LDR      R0,[R0, #+0]
+   \   00000094   BC309FE5           LDR      R3,??OnKey_14    ;; 0xffffffffa04ce600
+   \   00000098   33FF2FE1           BLX      R3
+    121              break;      
+    122              case '4': if((FREQUENCY-1000) < 0)  CapCom_SetFreq (pwm,FREQUENCY=0 , 0); 
+    123                        else CapCom_SetFreq (pwm, FREQUENCY-=1000, 0);
+    124              break;     
+    125              case RIGHT_BUTTON: if(DUTYCYCLE <100)  CapCom_SetDutycycle (pwm, ++DUTYCYCLE, 0);
+    126              break;     
+    127              case LEFT_BUTTON: if(DUTYCYCLE != 0)  CapCom_SetDutycycle (pwm, --DUTYCYCLE, 0);
+    128              break; 
+    129              case UP_BUTTON: CapCom_SetFreq (pwm, ++FREQUENCY, 0); //шаг 1Hz
+    130              break;         
+    131              case DOWN_BUTTON: if(FREQUENCY != 0) CapCom_SetFreq (pwm, --FREQUENCY, 0); 
+    132              break;
+    133              case VOL_UP_BUTTON: CapCom_SetFreq (pwm, FREQUENCY+=100, 0); //шаг 1000Hz
+    134              break;
+    135              case VOL_DOWN_BUTTON: if((FREQUENCY-100) < 0) CapCom_SetFreq (pwm,FREQUENCY=0 , 0); 
+    136                        else CapCom_SetFreq (pwm, FREQUENCY-=100, 0);
+    137              break;
+    138              case LEFT_SOFT:
+    139                if(STATE==1) {STATE=0; GPIO_USART0_TXD = 0x500; } // ножка отключена
+    140                else {STATE=1; GPIO_USART0_TXD = 0x30; }          // ножка управляется ШИМ'ом
+    141              break;
+    142              case RIGHT_SOFT: return (1);
+    143              }
+    144            REDRAW();
+   \                     ??OnKey_11:
+   \   0000009C   720100EF           SWI      +370
+    145            }
+    146          
+    147            return(0);
+   \                     ??OnKey_0:
+   \   000000A0   0000A0E3           MOV      R0,#+0
+   \   000000A4   0080BDE8           POP      {PC}             ;; return
+   \                     ??OnKey_6:
+   \   000000A8   E710E0E3           MVN      R1,#+231
+   \   000000AC   C01FC1E3           BIC      R1,R1,#0x300
+   \   000000B0   031091E0           ADDS     R1,R1,R3
+   \   000000B4   F3FFFF5A           BPL      ??OnKey_12
+   \                     ??OnKey_15:
+   \   000000B8   04C080E5           STR      R12,[R0, #+4]
+   \   000000BC   0020A0E3           MOV      R2,#+0
+   \   000000C0   0210A0E1           MOV      R1,R2
+   \   000000C4   F1FFFFEA           B        ??OnKey_13
+   \                     ??OnKey_10:
+   \   000000C8   640052E3           CMP      R2,#+100
+   \   000000CC   F2FFFFAA           BGE      ??OnKey_11
+   \   000000D0   011082E2           ADD      R1,R2,#+1
+   \                     ??OnKey_16:
+   \   000000D4   80309FE5           LDR      R3,??OnKey_14+0x4  ;; 0xffffffffa04ce69c
+   \   000000D8   081080E5           STR      R1,[R0, #+8]
+   \   000000DC   000090E5           LDR      R0,[R0, #+0]
+   \   000000E0   0020A0E3           MOV      R2,#+0
+   \   000000E4   33FF2FE1           BLX      R3
+   \   000000E8   EBFFFFEA           B        ??OnKey_11
+   \                     ??OnKey_9:
+   \   000000EC   000052E3           CMP      R2,#+0
+   \   000000F0   E9FFFF0A           BEQ      ??OnKey_11
+   \   000000F4   011042E2           SUB      R1,R2,#+1
+   \   000000F8   F5FFFFEA           B        ??OnKey_16
+   \                     ??OnKey_7:
+   \   000000FC   011083E2           ADD      R1,R3,#+1
+   \   00000100   E0FFFFEA           B        ??OnKey_12
+   \                     ??OnKey_8:
+   \   00000104   000053E3           CMP      R3,#+0
+   \   00000108   E3FFFF0A           BEQ      ??OnKey_11
+   \   0000010C   011043E2           SUB      R1,R3,#+1
+   \   00000110   DCFFFFEA           B        ??OnKey_12
+   \                     ??OnKey_3:
+   \   00000114   641083E2           ADD      R1,R3,#+100
+   \   00000118   DAFFFFEA           B        ??OnKey_12
+   \                     ??OnKey_4:
+   \   0000011C   641053E2           SUBS     R1,R3,#+100
+   \   00000120   E4FFFF4A           BMI      ??OnKey_15
+   \   00000124   D7FFFFEA           B        ??OnKey_12
+   \                     ??OnKey_1:
+   \   00000128   ........           LDR      R1,??DataTable4  ;; 0xfffffffff4300050
+   \   0000012C   0C2090E5           LDR      R2,[R0, #+12]
+   \   00000130   010052E3           CMP      R2,#+1
+   \   00000134   0120A013           MOVNE    R2,#+1
+   \   00000138   0C208015           STRNE    R2,[R0, #+12]
+   \   0000013C   3000A013           MOVNE    R0,#+48
+   \   00000140   0CC08005           STREQ    R12,[R0, #+12]
+   \   00000144   500EA003           MOVEQ    R0,#+1280
+   \   00000148   000081E5           STR      R0,[R1, #+0]
+   \   0000014C   D2FFFFEA           B        ??OnKey_11
+   \                     ??OnKey_2:
+   \   00000150   0100A0E3           MOV      R0,#+1
+   \   00000154   0080BDE8           POP      {PC}
+   \                     ??OnKey_14:
+   \   00000158   00E64CA0           DC32     0xffffffffa04ce600
+   \   0000015C   9CE64CA0           DC32     0xffffffffa04ce69c
+    148          }
+    149          
+    150          extern void kill_data(void *p, void (*func_p)(void *));
+    151          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    152          int method8(void){return(0);}
+   \                     method8:
+   \   00000000   ........           B        ?Subroutine18
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine18:
+   \   00000000   0000A0E3           MOV      R0,#+0
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+    153          int method9(void){return(0);}
+   \                     method9:
+   \   00000000                      REQUIRE ?Subroutine18
+   \   00000000                      ;; // Fall through to label ?Subroutine18
+    154          const void * const gui_methods[11]={
+    155            (void *)OnRedraw,
+    156            (void *)onCreate,
+    157            (void *)onClose,
+    158            (void *)onFocus,
+    159            (void *)onUnfocus,
+    160            (void *)OnKey,
+    161            0,
+    162            (void *)kill_data,
+    163            (void *)method8,
+    164            (void *)method9,
+    165            0
+    166          };
+    167          
+    168          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    169          static void maincsm_oncreate(CSM_RAM *data)
+    170          {
+   \                     maincsm_oncreate:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    171            static const RECT Canvas={0,0,0,0};
+    172            MAIN_GUI *main_gui=malloc(sizeof(MAIN_GUI));
+   \   00000008   3800A0E3           MOV      R0,#+56
+   \   0000000C   140000EF           SWI      +20
+   \   00000010   0050A0E1           MOV      R5,R0
+    173            MAIN_CSM *csm=(MAIN_CSM *)data;
+    174            zeromem(main_gui,sizeof(MAIN_GUI));
+   \   00000014   3810A0E3           MOV      R1,#+56
+   \   00000018   1D0100EF           SWI      +285
+    175            patch_rect((RECT*)&Canvas,0,YDISP,ScreenW()-1,ScreenH()-1);
+   \   0000001C   898100EF           SWI      +33161
+   \   00000020   0060A0E1           MOV      R6,R0
+   \   00000024   888100EF           SWI      +33160
+   \   00000028   58209FE5           LDR      R2,??maincsm_oncreate_0  ;; ??Canvas
+   \   0000002C   011046E2           SUB      R1,R6,#+1
+   \   00000030   010040E2           SUB      R0,R0,#+1
+   \   00000034   0060A0E3           MOV      R6,#+0
+   \   00000038   B060C2E1           STRH     R6,[R2, #+0]
+   \   0000003C   1830A0E3           MOV      R3,#+24
+   \   00000040   B230C2E1           STRH     R3,[R2, #+2]
+   \   00000044   B400C2E1           STRH     R0,[R2, #+4]
+   \   00000048   B610C2E1           STRH     R1,[R2, #+6]
+    176            main_gui->gui.canvas=(void *)(&Canvas);
+   \   0000004C   002085E5           STR      R2,[R5, #+0]
+    177            main_gui->gui.flag30=2;
+   \   00000050   0200A0E3           MOV      R0,#+2
+   \   00000054   300085E5           STR      R0,[R5, #+48]
+    178            main_gui->gui.methods=(void *)gui_methods;
+   \   00000058   080082E2           ADD      R0,R2,#+8
+   \   0000005C   040085E5           STR      R0,[R5, #+4]
+    179            main_gui->gui.item_ll.data_mfree=(void (*)(void *))mfree_adr();
+   \   00000060   158000EF           SWI      +32789
+   \   00000064   200085E5           STR      R0,[R5, #+32]
+    180            csm->csm.state=0;
+   \   00000068   106084E5           STR      R6,[R4, #+16]
+    181            csm->csm.unk1=0;
+   \   0000006C   146084E5           STR      R6,[R4, #+20]
+    182            MAINGUI_ID=csm->gui_id=CreateGUI(main_gui);
+   \   00000070   0500A0E1           MOV      R0,R5
+   \   00000074   370100EF           SWI      +311
+   \   00000078   0C109FE5           LDR      R1,??maincsm_oncreate_0+0x4  ;; MAINGUI_ID
+   \   0000007C   280084E5           STR      R0,[R4, #+40]
+   \   00000080   000081E5           STR      R0,[R1, #+0]
+    183          }
+   \   00000084   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??maincsm_oncreate_0:
+   \   00000088   ........           DC32     ??Canvas
+   \   0000008C   ........           DC32     MAINGUI_ID
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     ??Canvas:
+   \   00000000   000000000000       DC16 0, 0, 0, 0
+   \              0000        
+   \                     gui_methods:
+   \   00000008   ............       DC32 OnRedraw, onCreate, onClose, onFocus, onUnfocus, OnKey, 0H
+   \              ............
+   \              ............
+   \              ............
+   \              00000000    
+   \   00000024   ............       DC32 kill_data, method8, method9, 0H
+   \              ............
+   \              00000000    
+    184          
+    185          #pragma segment="ELFBEGIN"
+
+   \                                 In segment CODE, align 4, keep-with-next
+    186          void ElfKiller(void)
+    187          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+    188            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+    189          }
+    190          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    191          static void maincsm_onclose(CSM_RAM *data)
+    192          { 
+    193            CapCom_TimerOff(pwm);
+   \                     maincsm_onclose:
+   \   00000000   3C109FE5           LDR      R1,??maincsm_onclose_0  ;; 0xffffffffa04ce574
+   \   00000004   10402DE9           PUSH     {R4,LR}
+   \   00000008   ........           LDR      R4,??DataTable10  ;; pwm
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   31FF2FE1           BLX      R1
+    194            CapCom_DisconnectTimer(pwm); 
+   \   00000014   000094E5           LDR      R0,[R4, #+0]
+   \   00000018   28109FE5           LDR      R1,??maincsm_onclose_0+0x4  ;; 0xffffffffa04ce32c
+   \   0000001C   31FF2FE1           BLX      R1
+    195            CapCom_UnRegClient(pwm);
+   \   00000020   000094E5           LDR      R0,[R4, #+0]
+   \   00000024   ........           LDR      R1,??DataTable6  ;; 0xffffffffa04ce3d4
+   \   00000028   31FF2FE1           BLX      R1
+    196            ClkStateOff(1 << CAPCOM);
+   \   0000002C   18109FE5           LDR      R1,??maincsm_onclose_0+0x8  ;; 0xffffffffa04d0804
+   \   00000030   8007A0E3           MOV      R0,#+33554432
+   \   00000034   31FF2FE1           BLX      R1
+    197          
+    198            SUBPROC((void *)ElfKiller);
+   \   00000038   10009FE5           LDR      R0,??maincsm_onclose_0+0xC  ;; ElfKiller
+   \   0000003C   710100EF           SWI      +369
+    199          }
+   \   00000040   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??maincsm_onclose_0:
+   \   00000044   74E54CA0           DC32     0xffffffffa04ce574
+   \   00000048   2CE34CA0           DC32     0xffffffffa04ce32c
+   \   0000004C   04084DA0           DC32     0xffffffffa04d0804
+   \   00000050   ........           DC32     ElfKiller
+    200          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    201          static int maincsm_onmessage(CSM_RAM *data, GBS_MSG *msg)
+    202          {
+    203             MAIN_CSM *csm=(MAIN_CSM*)data;
+    204            if ((msg->msg==MSG_GUI_DESTROYED)&&((int)msg->data0==csm->gui_id))
+   \                     maincsm_onmessage:
+   \   00000000   042091E5           LDR      R2,[R1, #+4]
+   \   00000004   0E30A0E3           MOV      R3,#+14
+   \   00000008   643C83E3           ORR      R3,R3,#0x6400
+   \   0000000C   030052E1           CMP      R2,R3
+   \   00000010   0C109105           LDREQ    R1,[R1, #+12]
+   \   00000014   28209005           LDREQ    R2,[R0, #+40]
+   \   00000018   02005101           CMPEQ    R1,R2
+    205            {
+    206              csm->csm.state=-3;
+   \   0000001C   0210E003           MVNEQ    R1,#+2
+   \   00000020   10108005           STREQ    R1,[R0, #+16]
+    207            }
+    208            return(1);
+   \   00000024   0100A0E3           MOV      R0,#+1
+   \   00000028   1EFF2FE1           BX       LR               ;; return
+    209          }
+    210          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    211          static unsigned short maincsm_name_body[140];
+   \                     maincsm_name_body:
+   \   00000000                      DS8 280
+    212          
+    213          static const struct
+    214          {
+    215            CSM_DESC maincsm;
+    216            WSHDR maincsm_name;
+
+   \                                 In segment DATA_C, align 4, align-sorted
+    217          }MAINCSM =
+   \                     MAINCSM:
+   \   00000000   ............       DC32 maincsm_onmessage, maincsm_oncreate, 0, 0, 0, 0, maincsm_onclose
+   \              ....00000000
+   \              000000000000
+   \              000000000000
+   \              ........    
+   \   0000001C   2C0000000100       DC32 44, 1, minus11, maincsm_name_body, 55AACCCCH, 3333AA55H, 0
+   \              0000........
+   \              ........CCCC
+   \              AA5555AA3333
+   \              00000000    
+   \   00000038   8B00               DC16 139
+   \   0000003A   0000               DC8 0, 0
+    218          {
+    219            {
+    220            maincsm_onmessage,
+    221            maincsm_oncreate,
+    222          #ifdef NEWSGOLD
+    223            0,
+    224            0,
+    225            0,
+    226            0,
+    227          #endif
+    228            maincsm_onclose,
+    229            sizeof(MAIN_CSM),
+    230            1,
+    231            &minus11
+    232            },
+    233            {
+    234              maincsm_name_body,
+    235              NAMECSM_MAGIC1,
+    236              NAMECSM_MAGIC2,
+    237              0x0,
+    238              139
+    239            }
+    240          };
+    241          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    242          void UpdateCSMname(void)
+    243          {
+    244            wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"PWM");
+   \                     UpdateCSMname:
+   \   00000000   10009FE5           LDR      R0,??UpdateCSMname_0+0x4  ;; MAINCSM + 40
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   011F8FE2           ADR      R1,??UpdateCSMname_0  ;; "PWM"
+   \   0000000C   240100EF           SWI      +292
+    245          }
+   \   00000010   0080BDE8           POP      {PC}             ;; return
+   \                     ??UpdateCSMname_0:
+   \   00000014   50574D00           DC8      "PWM"
+   \   00000018   ........           DC32     MAINCSM + 40
+    246          
+    247          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    248          void callback() {GPIO_USART0_TXD = 0x500; }
+   \                     callback:
+   \   00000000   ........           LDR      R0,??DataTable4  ;; 0xfffffffff4300050
+   \   00000004   501EA0E3           MOV      R1,#+1280
+   \   00000008   001080E5           STR      R1,[R0, #+0]
+   \   0000000C   1EFF2FE1           BX       LR               ;; return
+    249          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    250          void test_pm_ringin() {
+    251              // ClkStateOn(CLKSTATE.capcom);
+    252               GPIO_RF_STR1 = 0x30;
+   \                     test_pm_ringin:
+   \   00000000   64009FE5           LDR      R0,??test_pm_ringin_0  ;; 0xfffffffff4300104
+   \   00000004   10402DE9           PUSH     {R4,LR}
+    253               CapCom_UnRegClient(pwm);
+   \   00000008   ........           LDR      R4,??DataTable10  ;; pwm
+   \   0000000C   3010A0E3           MOV      R1,#+48
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+   \   00000014   000094E5           LDR      R0,[R4, #+0]
+   \   00000018   ........           LDR      R1,??DataTable6  ;; 0xffffffffa04ce3d4
+   \   0000001C   31FF2FE1           BLX      R1
+    254               pwm=CapCom_RegClient("PM_RINGIN", 13);
+   \   00000020   48009FE5           LDR      R0,??test_pm_ringin_0+0x4  ;; `?<Constant "PM_RINGIN">`
+   \   00000024   ........           LDR      R2,??DataTable11  ;; 0xffffffffa04ce1c8
+   \   00000028   0D10A0E3           MOV      R1,#+13
+   \   0000002C   32FF2FE1           BLX      R2
+    255               CapCom_ConnectTimer(pwm,FREQUENCY,DUTYCYCLE);
+   \   00000030   082094E5           LDR      R2,[R4, #+8]
+   \   00000034   041094E5           LDR      R1,[R4, #+4]
+   \   00000038   ........           LDR      R3,??DataTable12  ;; 0xffffffffa04ce25c
+   \   0000003C   000084E5           STR      R0,[R4, #+0]
+   \   00000040   33FF2FE1           BLX      R3
+    256               CapCom_TimerOn(pwm);
+   \   00000044   000094E5           LDR      R0,[R4, #+0]
+   \   00000048   ........           LDR      R1,??DataTable13  ;; 0xffffffffa04ce454
+   \   0000004C   31FF2FE1           BLX      R1
+    257               i2cw_pmu(0x42, 0x04); //устанавливаем PM_RINGIN источником входного сигнала на Dialog  
+   \   00000050   0410A0E3           MOV      R1,#+4
+   \   00000054   4200A0E3           MOV      R0,#+66
+   \   00000058   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+    258               i2cw_pmu(0x40, 0x28); //громкость
+   \   0000005C   2810A0E3           MOV      R1,#+40
+   \   00000060   4000A0E3           MOV      R0,#+64
+   \   00000064   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+    259          }
+   \   00000068   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??test_pm_ringin_0:
+   \   0000006C   040130F4           DC32     0xfffffffff4300104
+   \   00000070   ........           DC32     `?<Constant "PM_RINGIN">`
+    260              
+
+   \                                 In segment CODE, align 4, keep-with-next
+    261          void test_pin() {
+    262            ClkStateOn(1 << CAPCOM);
+   \                     test_pin:
+   \   00000000   50109FE5           LDR      R1,??test_pin_0+0x4  ;; 0xffffffffa04d07e0
+   \   00000004   10402DE9           PUSH     {R4,LR}
+    263            GPIO_DSPOUT0 = 0x30;
+    264            pwm=CapCom_RegClient("Pin", 14);
+   \   00000008   ........           LDR      R4,??DataTable10  ;; pwm
+   \   0000000C   8007A0E3           MOV      R0,#+33554432
+   \   00000010   31FF2FE1           BLX      R1
+   \   00000014   40009FE5           LDR      R0,??test_pin_0+0x8  ;; 0xfffffffff430005c
+   \   00000018   ........           LDR      R2,??DataTable11  ;; 0xffffffffa04ce1c8
+   \   0000001C   3010A0E3           MOV      R1,#+48
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+   \   00000024   0E10A0E3           MOV      R1,#+14
+   \   00000028   090F8FE2           ADR      R0,??test_pin_0  ;; "Pin"
+   \   0000002C   32FF2FE1           BLX      R2
+    265            CapCom_ConnectTimer (pwm, FREQUENCY, DUTYCYCLE);
+   \   00000030   082094E5           LDR      R2,[R4, #+8]
+   \   00000034   041094E5           LDR      R1,[R4, #+4]
+   \   00000038   ........           LDR      R3,??DataTable12  ;; 0xffffffffa04ce25c
+   \   0000003C   000084E5           STR      R0,[R4, #+0]
+   \   00000040   33FF2FE1           BLX      R3
+    266            CapCom_TimerOn(pwm);                           
+   \   00000044   000094E5           LDR      R0,[R4, #+0]
+   \   00000048   ........           LDR      R1,??DataTable13  ;; 0xffffffffa04ce454
+   \   0000004C   1040BDE8           POP      {R4,LR}          ;; Pop
+   \   00000050   01F0A0E1           MOV      PC,R1            ;; tailcall
+   \                     ??test_pin_0:
+   \   00000054   50696E00           DC8      "Pin"
+   \   00000058   E0074DA0           DC32     0xffffffffa04d07e0
+   \   0000005C   5C0030F4           DC32     0xfffffffff430005c
+    267          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+    268          int main(char *exename, char *fname)
+    269          { 
+   \                     main:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   2CD04DE2           SUB      SP,SP,#+44
+    270             test_pin();
+   \   00000008   ........           BL       test_pin
+    271             MAIN_CSM main_csm;
+    272             zeromem(&main_csm, sizeof(MAIN_CSM));
+   \   0000000C   2C10A0E3           MOV      R1,#+44
+   \   00000010   0D00A0E1           MOV      R0,SP
+   \   00000014   1D0100EF           SWI      +285
+    273             LockSched();
+   \   00000018   460100EF           SWI      +326
+    274             UpdateCSMname();
+   \   0000001C   ........           BL       UpdateCSMname
+    275             MAINCSM_ID=CreateCSM(&MAINCSM.maincsm,&main_csm,0);
+   \   00000020   20009FE5           LDR      R0,??main_0      ;; MAINCSM
+   \   00000024   0020A0E3           MOV      R2,#+0
+   \   00000028   0D10A0E1           MOV      R1,SP
+   \   0000002C   070100EF           SWI      +263
+   \   00000030   14109FE5           LDR      R1,??main_0+0x4  ;; MAINCSM_ID
+   \   00000034   000081E5           STR      R0,[R1, #+0]
+    276             UnlockSched();
+   \   00000038   470100EF           SWI      +327
+    277          
+    278             return 0;
+   \   0000003C   0000A0E3           MOV      R0,#+0
+   \   00000040   2CD08DE2           ADD      SP,SP,#+44
+   \   00000044   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_0:
+   \   00000048   ........           DC32     MAINCSM
+   \   0000004C   ........           DC32     MAINCSM_ID
+    279          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   500030F4           DC32     0xfffffffff4300050
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   D4E34CA0           DC32     0xffffffffa04ce3d4
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   ........           DC32     pwm
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable11:
+   \   00000000   C8E14CA0           DC32     0xffffffffa04ce1c8
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   5CE24CA0           DC32     0xffffffffa04ce25c
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable13:
+   \   00000000   54E44CA0           DC32     0xffffffffa04ce454
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for pwm>`:
+   \   00000000   711C2F00           DC32 3087473
+   \                     `?<Initializer for FREQUENCY>`:
+   \   00000004   E8030000           DC32 1000
+   \                     `?<Initializer for DUTYCYCLE>`:
+   \   00000008   32000000           DC32 50
+   \                     `?<Initializer for STATE>`:
+   \   0000000C   01000000           DC32 1
+
+   \                                 In segment ELFBEGIN, align 1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Frequency:\\n%dHz\\nDutyc...">`:
+   \   00000000   467265717565       DC8 "Frequency:\012%dHz\012Dutycycle:\012%d%\012"
+   \              6E63793A0A25
+   \              64487A0A4475
+   \              74796379636C
+   \              653A0A256425
+   \              0A00        
+   \   00000020   4578697400         DC8 "Exit"
+   \   00000025   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   4F666600           DC8 "Off"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   4F6E00             DC8 "On"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   50574D00           DC8 "PWM"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "PM_RINGIN">`:
+   \   00000000   504D5F52494E       DC8 "PM_RINGIN"
+   \              47494E00    
+   \   0000000A   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   50696E00           DC8 "Pin"
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     ElfKiller             4
+     OnKey                 4
+     OnRedraw             76
+     UpdateCSMname         4
+     callback              0
+     main                 48
+     maincsm_onclose       8
+     maincsm_oncreate     16
+     maincsm_onmessage     0
+     method8               0
+     method9               0
+     onClose               8
+     onCreate              8
+     onFocus               8
+     onUnfocus             0
+     test_pin              8
+     test_pm_ringin        8
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     pwm                              16
+     minus11                           4
+     MAINCSM_ID                        4
+     MAINGUI_ID                        4
+     OnRedraw                        444
+     onCreate                         28
+     ?Subroutine17                     8
+     onClose                          20
+     onFocus                          20
+     onUnfocus                        20
+     OnKey                           352
+     method8                           4
+     ?Subroutine18                     8
+     method9                           0
+     maincsm_oncreate                144
+     Canvas                           52
+     ElfKiller                        28
+     maincsm_onclose                  84
+     maincsm_onmessage                44
+     maincsm_name_body               280
+     MAINCSM                          60
+     UpdateCSMname                    28
+     callback                         16
+     test_pm_ringin                  116
+     test_pin                         96
+     main                             80
+     ??DataTable4                      4
+     ??DataTable6                      4
+     ??DataTable10                     4
+     ??DataTable11                     4
+     ??DataTable12                     4
+     ??DataTable13                     4
+     ?<Initializer for pwm>           16
+     ?<Constant "Frequency:\n%dHz\nDutyc...">
+                                      40
+     ?<Constant "Off">                 4
+     ?<Constant "On">                  3
+     ?<Constant "PWM">                 4
+     ?<Constant "PM_RINGIN">          12
+     ?<Constant "Pin">                 4
+      Others                         116
+
+ 
+ 1 656 bytes in segment CODE
+   183 bytes in segment DATA_C
+    16 bytes in segment DATA_I
+    16 bytes in segment DATA_ID
+   288 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 564 bytes of CODE  memory (+ 116 bytes shared)
+   199 bytes of CONST memory
+   304 bytes of DATA  memory
+
+Errors: none
+Warnings: none

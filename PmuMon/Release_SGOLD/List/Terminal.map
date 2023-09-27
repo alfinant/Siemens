@@ -1,0 +1,285 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  27/Sep/2014  19:57:08                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\List\Terminal.map     #
+#           Output file 1 =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\Exe\Terminal.elf      #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\Obj\func.r79          #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\Obj\main.r79          #
+#                            -o                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\Exe\Terminal.elf      #
+#                            -Felf -l                                          #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\Release_SGOLD\List\Terminal.map     #
+#                            -xms                                              #
+#                            -IC:\Users\alfin_000\Documents\Siemens\IAR\ARM\LI #
+#                            B\                                                #
+#                            -f                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfi #
+#                            nant\Terminal\test.xcl                            #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\ #
+#                            dl5tpainl8n.r79                                   #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000298  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\Terminal\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000007 (0x8 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000000        ElfKiller (main)
+                                                   gui_methods (main)
+           seqkill                 00000004 
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\Terminal\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 00000390 - 00000393 (0x4 bytes), align: 2
+  Segment part 4.             Intra module refs:   maincsm_oncreate
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maingui_id              00000390 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000008 - 000000F7 (0xf0 bytes), align: 2
+  Segment part 9.             Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           OnRedraw                00000008 
+               stack 1 = 00000000 ( 0000003C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000F8 - 00000117 (0x20 bytes), align: 2
+  Segment part 11.            Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           onCreate                000000F8 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000118 - 0000012F (0x18 bytes), align: 2
+  Segment part 13.            Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           onClose                 00000118 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000130 - 0000014B (0x1c bytes), align: 2
+  Segment part 15.            Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           onFocus                 00000130 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000014C - 0000015F (0x14 bytes), align: 2
+  Segment part 17.            Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           onUnfocus               0000014C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000160 - 0000018B (0x2c bytes), align: 2
+  Segment part 19.            Intra module refs:   gui_methods
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           OnKey                   00000160 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000018C - 00000193 (0x8 bytes), align: 2
+  Segment part 21.            Intra module refs:   gui_methods
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           method8                 0000018C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000194 - 0000019B (0x8 bytes), align: 2
+  Segment part 23.            Intra module refs:   gui_methods
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           method9                 00000194 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000019C - 00000223 (0x88 bytes), align: 2
+  Segment part 25.            Intra module refs:   Segment part 3
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_oncreate        0000019C 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000224 - 0000023F (0x1c bytes), align: 2
+  Segment part 27.            Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000224 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000240 - 00000253 (0x14 bytes), align: 2
+  Segment part 29.            Intra module refs:   Segment part 3
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_onclose         00000240 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000254 - 0000027B (0x28 bytes), align: 2
+  Segment part 31.            Intra module refs:   Segment part 3
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_onmessage       00000254 
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 00000394 - 000004AB (0x118 bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 3
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 000002D8 - 00000313 (0x3c bytes), align: 2
+  Segment part 2.             Intra module refs:   OnRedraw
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000314 - 0000034B (0x38 bytes), align: 2
+  Segment part 3.             Intra module refs:   UpdateCSMname
+                                                   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 0000034C - 0000037F (0x34 bytes), align: 2
+  Segment part 5.             Intra module refs:   maincsm_oncreate
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           gui_methods             00000354 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000380 - 00000383 (0x4 bytes), align: 2
+  Segment part 7.             Intra module refs:   Segment part 3
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000027C - 00000297 (0x1c bytes), align: 2
+  Segment part 33.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           UpdateCSMname           0000027C 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000298 - 000002D7 (0x40 bytes), align: 2
+  Segment part 35.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000298        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000030 )
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00000384 - 0000038F (0xc bytes), align: 2
+  Segment part 37. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        00000384 
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+DATA_ID              CODE_AREA           00000000                     dse    0
+START                CODE_AREA           00000000                     dse    0
+ELFBEGIN             CODE_AREA           00000000                     rel    0
+CODE                 CODE_AREA      00000000 - 000002D7         2D8   rel    2
+DATA_C               CODE_AREA      000002D8 - 00000383          AC   rel    2
+INITTAB              CODE_AREA      00000384 - 0000038F           C   rel    2
+DATA_Z               CODE_AREA      00000390 - 000004AB         11C   rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 1 196 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

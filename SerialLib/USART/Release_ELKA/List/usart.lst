@@ -1,0 +1,101 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    19/Nov/2014  17:48:00 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\usart.c                                        #
+#    Command line    =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\usart.c -D NEWSGOLD -D ELKA -lC                #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\List\ -o                          #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\Obj\ -s9 --no_unroll --cpu_mode   #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None -I                       #
+#                       C:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\        #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\List\usart.lst                    #
+#    Object file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\ #
+#                       USART\Release_ELKA\Obj\usart.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\Инсаф\Documents\Siemens\alfinant\SerialLib\USART\usart.c
+      1          #include "..\..\inc\usart.h"
+
+   \                                 In segment DATA_AN, at 0xf1000000
+   \   USART_TypeDef __data S0
+   \                     S0:
+   \   00000000                      DS8 128
+      2          
+
+   \                                 In segment CODE, align 4, keep-with-next
+      3          void S0Tx_byte(unsigned char tx)
+      4          {
+      5            S0.ICON &= ~ (USART_IC_TX | USART_IC_TBUF);  /* отключаем прерывания при передаче(прерывания не будут выполняться,но флаги запроса на прерывания будут устанавливаться) */
+   \                     S0Tx_byte:
+   \   00000000   F114A0E3           MOV      R1,#-251658240
+   \   00000004   642091E5           LDR      R2,[R1, #+100]
+   \   00000008   0320C2E3           BIC      R2,R2,#0x3
+   \   0000000C   642081E5           STR      R2,[R1, #+100]
+      6            S0.TBUF = tx & 0xFF;
+   \   00000010   200081E5           STR      R0,[R1, #+32]
+      7            while(!(S0.ISTAT & (USART_IC_TX | USART_IC_TBUF))); /* ждем установки флагов запроса на прерывание */
+   \                     ??S0Tx_byte_0:
+   \   00000014   680091E5           LDR      R0,[R1, #+104]
+   \   00000018   030010E3           TST      R0,#0x3
+   \   0000001C   FCFFFF0A           BEQ      ??S0Tx_byte_0
+      8            S0.IFLCLR = (USART_IC_TX | USART_IC_TBUF);   /* сбрасываем флаги запроса на прерывание */
+   \   00000020   0300A0E3           MOV      R0,#+3
+   \   00000024   700081E5           STR      R0,[R1, #+112]
+      9          }
+   \   00000028   1EFF2FE1           BX       LR               ;; return
+     10          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     11          void S0_setbaudrate(unsigned int baudrate_data)
+     12          {
+     13            S0.BG = ((baudrate_data>>16)&0xFFFF);
+   \                     S0_setbaudrate:
+   \   00000000   F114A0E3           MOV      R1,#-251658240
+   \   00000004   2028A0E1           LSR      R2,R0,#+16
+   \   00000008   142081E5           STR      R2,[R1, #+20]
+     14            S0.FDV = baudrate_data&0xFFFF;
+   \   0000000C   0008A0E1           LSL      R0,R0,#+16
+   \   00000010   2008A0E1           LSR      R0,R0,#+16
+   \   00000014   180081E5           STR      R0,[R1, #+24]
+     15          }
+   \   00000018   1EFF2FE1           BX       LR               ;; return
+
+   Maximum stack usage in bytes:
+
+     Function       CSTACK
+     --------       ------
+     S0Tx_byte          0
+     S0_setbaudrate     0
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     S0              128
+     S0Tx_byte        44
+     S0_setbaudrate   28
+      Others           8
+
+ 
+  80 bytes in segment CODE
+ 128 bytes in segment DATA_AN
+ 
+ 72 bytes of CODE memory (+   8 bytes shared)
+  0 bytes of DATA memory (+ 128 bytes shared)
+
+Errors: none
+Warnings: none

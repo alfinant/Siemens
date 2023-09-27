@@ -1,0 +1,753 @@
+Table 0x0:  
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x1:  
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x2:  
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x3:        byte3R and  byte0W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---                          reserved
+6      HV06          ---                          reserved
+5      HV05          R /W                      
+4      HV04          R/W                     
+3      HV03          R /W 
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x4:        byte4R and  byte1W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---                          reserved
+6      HV06          R/W 
+5      HV05          R /W                      
+4      HV04          R/W                     
+3      HV03          R /W 
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x5:        byte5R descriotion
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---                          reserved
+6      HV06          R/W 
+5      HV05          R /W                      
+4      HV04          R/W                     
+3      HV03          R /W 
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x6:        byte6R and  byte2W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R/W   
+6      HV06          R/W 
+5      HV05          R /W                      
+4      HV04          R/W                     
+3      HV03          R /W 
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x7:        byte7R and  byte3W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---   
+6      HV06          ---
+5      HV05          ---                     
+4      HV04          ---                     
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x8:        byte8R and  byte4W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---   
+6      HV06          ---
+5      HV05          R/W                    
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x9:        byte9R and  byte5W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R/W 
+6      HV06          R/W
+5      HV05          R/W                    
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xA:        byte10R and  byte6W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---
+6      HV06          ---
+5      HV05          ---                   
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xB:        byte11R and  byte7W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---
+6      HV06          ---
+5      HV05          ---                   
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xC:        byte12R and  byte8W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---
+6      HV06          ---
+5      HV05          ---                   
+4      HV04          ---                  
+3      HV03          ---
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xD:        byte13R and  byte9W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---
+6      HV06          ---
+5      HV05          ---                   
+4      HV04          ---                  
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xE:        byte14R and  byte10W description
+Bit   Symbol   Access   Reset   Description                         при установке всех бит в 1 пикоф
+7      HV07          R/W 
+6      HV06          R/W
+5      HV05          R/W                    
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0xF:    byte15R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x10:   byte16R and  byte11W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06         -----                         reserved                       
+5      HV05        R/W                        
+4      HV04         -----                         reserved                 
+3      HV03        R/W   
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x11:  byte17R 
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x12:    DISPLAYILLUM - byte18R and  byte12W description
+Bit   Symbol   Access   Reset   Description      0-min...0x50-max  
+7      HV07        R/W                       
+6      HV06        R/W       
+5      HV05        R/W                        
+4      HV04        R/W                 
+3      HV03        R/W
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x13:   KEYBOARDILLUM-byte19R and  byte13W description
+Bit   Symbol   Access   Reset   Description      0-min...0x50-max  
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x14:  SLI - byte20R and  byte14W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x15:   SLI - byte21R and  byte15W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x16:    SLI - byte22R and  byte16W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x17:   SLI - byte23R and  byte17W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x18:   SLI - byte24R and  byte18W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x19:   SLI - byte25R and  byte19W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07         ----                        reserved
+6      HV06         ----      
+5      HV05         ----                     
+4      HV04         ----                
+3      HV03         ---- 
+2      HV02         ----              
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x1A:  byte26R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x1B:  byte27R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x1C:   byte28R and  byte20W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R/W                     
+6      HV06          R/W                     
+5      HV05          ---                       
+4      HV04          ---                    
+3      HV03          --- 
+2      HV02          ---
+1      HV01          ---
+0      HV00          ---
+
+Table 0x1D:   byte29R and  byte21W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R/W                    
+6      HV06          ---                     
+5      HV05          R/W                       
+4      HV04          ---                     
+3      HV03          ---  
+2      HV02          --- 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x1E:  byte30R and  byte22W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R /W                     
+6      HV06          ---                    
+5      HV05          ---                       
+4      HV04          ---                     
+3      HV03          ---  
+2      HV02          R/W
+1      HV01          ---
+0      HV00          R/W
+ 
+Table 0x1F: byte31R and  byte23W description 
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---                   
+6      HV06          ---                   
+5      HV05          ---                      
+4      HV04          ---                    
+3      HV03          ---  
+2      HV02          R/W
+1      HV01          ---
+0      HV00          ---
+
+Table 0x20:        byte32R and  byte24W description
+Bit   Symbol   Access   Reset   Description                         при установке всех бит в 1 пикоф
+7      HV07          R/W 
+6      HV06          R/W
+5      HV05          R/W                    
+4      HV04          R/W                    
+3      HV03          R/W
+2      HV02          R/W 
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x21:  byte33R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x22:  byte34R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+
+Table 0x23:    byte35R and byte25W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          ---                          reserved   
+6      HV06          R/W                     
+5      HV05          R/W                      
+4      HV04          ---                   
+3      HV03          ---
+2      HV02          R /W
+1      HV01          R/W
+0      HV00          R/W
+
+Table 0x24:  byte36R  and byte26W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          --                      
+6      HV06          --                     
+5      HV05          --                       
+4      HV04          --                   
+3      HV03          --  
+2      HV02          --
+1      HV01          --
+0      HV00          R/W
+......................................................................
+......................................................................
+.....................................................................
+Table 0x2F:  byte47R description
+Bit   Symbol   Access   Reset   Description     
+7      HV07          R                      
+6      HV06          R                      
+5      HV05          R                       
+4      HV04          R                     
+3      HV03          R  
+2      HV02          R 
+1      HV01          R
+0      HV00          R
+................................................
+..................................................
+.................................................
+
+Table 0x40:    byte64R  and byte27W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        ---         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x41:    byte65R  and byte28W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        ---         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x42:    byte66R  and byte29W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        ---         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        --- 
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x43:    byte67R  and byte30W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        ---         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        --- 
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W
+
+Table 0x44:    byte68R  and byte31W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x45:    byte69R  and byte32W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        ---         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x46:    byte70R  and byte33W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                       
+6      HV06        R/W        
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x47:  VIBRA - byte71R  and byte34W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x48:   byte72R  and byte35W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x49:   byte73R  and byte36W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4A:   byte74R  and byte37W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                     
+6      HV06        ---         
+5      HV05        ---                        
+4      HV04        ---                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4B:   byte75R  and byte38W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4C:   byte76R  and byte39W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4D:   byte77R  and byte40W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4E:   byte78R  and byte41W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        ---       
+5      HV05        ---                       
+4      HV04        ---                   
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x4F:   byte79R  and byte42W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        ---       
+5      HV05        ---                       
+4      HV04        ---                   
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+
+Table 0x50: HEADSETVOL - volume setting for headset byte80R  and byte43W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06         -----                         reserved            0xB9-min,0x87-max
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x51:  byte81R  and byte44W description
+Bit   Symbol   Access   Reset   Description
+7      SV07         ------                         reserved
+6      SV06         ------                      
+5      SV05        R/W 
+4      SV04        R/W 
+3      SV03        R/W 
+2      SV02        R/W 
+1      SV01        R/W 
+0      SV00        R/W 
+
+Table 0x52:    byte82R  and byte45W description
+Bit   Symbol   Access   Reset   Description
+7      SV07         ------                         reserved
+6      SV06         ------                        
+5      SV05        R/W 0
+4      SV04        R/W 1
+3      SV03        R/W 0
+2      SV02        R/W 0
+1      SV01        R/W 1
+0      SV00        R/W 0
+
+Table 0x53: SPEAKERVOL - volume setting for speaker  byte83R  and byte46W description
+Bit   Symbol   Access   Reset   Description
+7      SV07         R/W 1            
+6      SV06         ------                         reserved               0xB9-min,0x91-max
+5      SV05        R/W 0
+4      SV04        R/W 1
+3      SV03        R/W 0
+2      SV02        R/W 0
+1      SV01        R/W 1
+0      SV00        R/W 0
+
+Table 0x54:   byte84R  and byte47W description
+Bit   Symbol   Access   Reset   Description
+7      SV07         ---            
+6      SV06         ---                          reserved          
+5      SV05        R/W 0
+4      SV04        R/W 1
+3      SV03        R/W 0
+2      SV02        R/W 0
+1      SV01        R/W 1
+0      SV00        R/W 0
+
+Table 0x55:   byte85R  and byte48W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x56:   byte86R  and byte49W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        ---        
+5      HV05        ---                       
+4      HV04        ---                   
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x57:   byte87R  and byte50W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x58:   byte88R  and byte51W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        ---        
+5      HV05        ---                       
+4      HV04        ---                   
+3      HV03        ---
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W
+
+Table 0x59:   byte89R  and byte52W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x5A:   byte90R  and byte53W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        ---                      
+6      HV06        ---        
+5      HV05        ---                       
+4      HV04        ---                   
+3      HV03        R/W
+2      HV02        R/W 
+1      HV01        R/W 
+0      HV00        R/W
+
+Table 0x5B:   byte91R  and byte54W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        ---                             reserved
+1      HV01        R/W 
+0      HV00        R/W 
+
+Table 0x5C:   byte92R  and byte55W description
+Bit   Symbol   Access   Reset   Description     
+7      HV07        R/W                       
+6      HV06        R/W         
+5      HV05        R/W                        
+4      HV04        R/W                    
+3      HV03        R/W  
+2      HV02        ---                             reserved
+1      HV01        R/W 
+0      HV00        R/W 
+
+
+
+
+
+
+
+
+
+
+

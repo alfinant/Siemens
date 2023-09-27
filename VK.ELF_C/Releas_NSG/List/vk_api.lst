@@ -1,0 +1,3114 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:37 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \vk_api.c                                            #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \vk_api.c -D NEWSGOLD -D DEBUG -lCN                  #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\vk_api.lst                          #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\vk_api.r79                           #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\vk_api.c
+      1          //https://russianblogs.com/article/3077706523/ - как работать с jSON
+      2          #include "vk_api.h"
+      3          #include <siemens/swilib.h>
+      4          #include "socket_work.h"
+      5          #include "http.h"
+      6          #include "url_utils.h"
+      7          #include "main.h"
+      8          #include "vk_objects.h"
+      9          #include "string_util.h"
+     10          #include "buffer.h"
+     11          #include "parser_error.h"
+     12          #include "constants.h"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "server">`:
+   \   00000000   736572766572       DC8 "server"
+   \              00          
+   \   00000007   00                 DC8 0
+   \   00000008   6572726F7200       DC8 "error"
+   \   0000000E   0000               DC8 0, 0
+   \   00000010   726573706F6E       DC8 "response"
+   \              736500      
+   \   00000019   000000             DC8 0, 0, 0
+   \   0000001C   636F756E7400       DC8 "count"
+   \   00000022   0000               DC8 0, 0
+   \   00000024   6974656D7300       DC8 "items"
+   \   0000002A   0000               DC8 0, 0
+   \   0000002C   70726F66696C       DC8 "profiles"
+   \              657300      
+   \   00000035   000000             DC8 0, 0, 0
+   \   00000038   67726F757073       DC8 "groups"
+   \              00          
+   \   0000003F   00                 DC8 0
+   \   00000040   636F6E766572       DC8 "conversation"
+   \              736174696F6E
+   \              00          
+   \   0000004D   000000             DC8 0, 0, 0
+   \   00000050   6F75745F7265       DC8 "out_read"
+   \              616400      
+   \   00000059   000000             DC8 0, 0, 0
+   \   0000005C   756E72656164       DC8 "unread_count"
+   \              5F636F756E74
+   \              00          
+   \   00000069   000000             DC8 0, 0, 0
+   \   0000006C   6C6173745F6D       DC8 "last_message"
+   \              657373616765
+   \              00          
+   \   00000079   000000             DC8 0, 0, 0
+   \   0000007C   757365725F69       DC8 "user_id"
+   \              6400        
+   \   00000084   6E6565645F63       DC8 "need_captcha"
+   \              617074636861
+   \              00          
+   \   00000091   000000             DC8 0, 0, 0
+   \   00000094   6E6565645F76       DC8 "need_validation"
+   \              616C69646174
+   \              696F6E00    
+   \   000000A4   6572726F725F       DC8 "error_description"
+   \              646573637269
+   \              7074696F6E00
+   \   000000B6   0000               DC8 0, 0
+   \   000000B8   616363657373       DC8 "access_token"
+   \              5F746F6B656E
+   \              00          
+   \   000000C5   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static char const __data t_id[3]
+   \                     t_id:
+   \   00000000   696400             DC8 "id"
+   \   00000003   00                 DC8 0
+   \   00000004   66726F6D5F69       DC8 "from_id"
+   \              6400        
+   \   0000000C   6461746500         DC8 "date"
+   \   00000011   000000             DC8 0, 0, 0
+   \   00000014   617474616368       DC8 "attachments"
+   \              6D656E747300
+   \   00000020   70686F746F00       DC8 "photo"
+   \   00000026   0000               DC8 0, 0
+   \   00000028   7479706500         DC8 "type"
+   \   0000002D   000000             DC8 0, 0, 0
+   \   00000030   7465787400         DC8 "text"
+   \   00000035   000000             DC8 0, 0, 0
+   \   00000038   646561637469       DC8 "deactivated"
+   \              766174656400
+   \   00000044   6861735F7068       DC8 "has_photo"
+   \              6F746F00    
+   \   0000004E   0000               DC8 0, 0
+   \   00000050   70686F746F5F       DC8 "photo_50"
+   \              353000      
+   \   00000059   000000             DC8 0, 0, 0
+   \   0000005C   706565725F69       DC8 "peer_id"
+   \              6400        
+   \   00000064   6F757400           DC8 "out"
+   \   00000068   66697273745F       DC8 "first_name"
+   \              6E616D6500  
+   \   00000073   00                 DC8 0
+   \   00000074   6C6173745F6E       DC8 "last_name"
+   \              616D6500    
+   \   0000007E   0000               DC8 0, 0
+   \   00000080   667269656E64       DC8 "friend_status"
+   \              5F7374617475
+   \              7300        
+   \   0000008E   0000               DC8 0, 0
+   \   00000090   6F6E6C696E65       DC8 "online"
+   \              00          
+   \   00000097   00                 DC8 0
+   \   00000098   6E616D6500         DC8 "name"
+   \   0000009D   000000             DC8 0, 0, 0
+   \   000000A0   73637265656E       DC8 "screen_name"
+   \              5F6E616D6500
+   \   000000AC   69735F636C6F       DC8 "is_closed"
+   \              73656400    
+   \   000000B6   0000               DC8 0, 0
+   \   000000B8   67726F757000       DC8 "group"
+   \   000000BE   0000               DC8 0, 0
+   \   000000C0   7061676500         DC8 "page"
+   \   000000C5   000000             DC8 0, 0, 0
+   \   000000C8   6576656E7400       DC8 "event"
+   \   000000CE   0000               DC8 0, 0
+   \   000000D0   69735F6D656D       DC8 "is_member"
+   \              62657200    
+   \   000000DA   0000               DC8 0, 0
+     13          
+     14          #include "json/cJSON.h"
+     15          
+     16          extern int maincsm_id;
+     17          
+     18          int my_id = 0;
+     19          
+     20          char ACCESS_TOKEN[ACCESS_TOKEN_MAXLEN];
+     21          static const unsigned APP_ID = 5582937;
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%s/groups.get?v=%s&ac...">`:
+   \   00000000   25732F67726F       DC8 25H, 73H, 2FH, 67H, 72H, 6FH, 75H, 70H
+   \              7570        
+   \   00000008   732E6765743F       DC8 73H, 2EH, 67H, 65H, 74H, 3FH, 76H, 3DH
+   \              763D        
+   \   00000010   257326616363       DC8 25H, 73H, 26H, 61H, 63H, 63H, 65H, 73H
+   \              6573        
+   \   00000018   735F746F6B65       DC8 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH
+   \              6E3D        
+   \   00000020   2573266F6666       DC8 25H, 73H, 26H, 6FH, 66H, 66H, 73H, 65H
+   \              7365        
+   \   00000028   743D25642663       DC8 74H, 3DH, 25H, 64H, 26H, 63H, 6FH, 75H
+   \              6F75        
+   \   00000030   6E743D256426       DC8 6EH, 74H, 3DH, 25H, 64H, 26H, 65H, 78H
+   \              6578        
+   \   00000038   74656E646564       DC8 74H, 65H, 6EH, 64H, 65H, 64H, 3DH, 31H
+   \              3D31        
+   \   00000040   00                 DC8 0
+   \   00000041   000000             DC8 0, 0, 0
+   \   00000044   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   0000004C   6765732E6765       DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 48H
+   \              7448        
+   \   00000054   6973746F7279       DC8 69H, 73H, 74H, 6FH, 72H, 79H, 3FH, 61H
+   \              3F61        
+   \   0000005C   63636573735F       DC8 63H, 63H, 65H, 73H, 73H, 5FH, 74H, 6FH
+   \              746F        
+   \   00000064   6B656E3D2573       DC8 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H, 76H
+   \              2676        
+   \   0000006C   3D2573267573       DC8 3DH, 25H, 73H, 26H, 75H, 73H, 65H, 72H
+   \              6572        
+   \   00000074   5F69643D2564       DC8 5FH, 69H, 64H, 3DH, 25H, 64H, 26H, 63H
+   \              2663        
+   \   0000007C   6F756E743D25       DC8 6FH, 75H, 6EH, 74H, 3DH, 25H, 64H, 26H
+   \              6426        
+   \   00000084   73746172745F       DC8 73H, 74H, 61H, 72H, 74H, 5FH, 6DH, 65H
+   \              6D65        
+   \   0000008C   73736167655F       DC8 73H, 73H, 61H, 67H, 65H, 5FH, 69H, 64H
+   \              6964        
+   \   00000094   3D256400           DC8 3DH, 25H, 64H, 0
+   \   00000098   25732F757365       DC8 25H, 73H, 2FH, 75H, 73H, 65H, 72H, 73H
+   \              7273        
+   \   000000A0   2E6765743F76       DC8 2EH, 67H, 65H, 74H, 3FH, 76H, 3DH, 25H
+   \              3D25        
+   \   000000A8   732661636365       DC8 73H, 26H, 61H, 63H, 63H, 65H, 73H, 73H
+   \              7373        
+   \   000000B0   5F746F6B656E       DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+   \              3D25        
+   \   000000B8   732675736572       DC8 73H, 26H, 75H, 73H, 65H, 72H, 5FH, 69H
+   \              5F69        
+   \   000000C0   64733D257326       DC8 64H, 73H, 3DH, 25H, 73H, 26H, 66H, 69H
+   \              6669        
+   \   000000C8   656C64733D25       DC8 65H, 6CH, 64H, 73H, 3DH, 25H, 73H, 0
+   \              7300        
+   \   000000D0   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   000000D8   6765732E6765       DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 43H
+   \              7443        
+   \   000000E0   6F6E76657273       DC8 6FH, 6EH, 76H, 65H, 72H, 73H, 61H, 74H
+   \              6174        
+   \   000000E8   696F6E733F76       DC8 69H, 6FH, 6EH, 73H, 3FH, 76H, 3DH, 25H
+   \              3D25        
+   \   000000F0   732661636365       DC8 73H, 26H, 61H, 63H, 63H, 65H, 73H, 73H
+   \              7373        
+   \   000000F8   5F746F6B656E       DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+   \              3D25        
+   \   00000100   73266F666673       DC8 73H, 26H, 6FH, 66H, 66H, 73H, 65H, 74H
+   \              6574        
+   \   00000108   3D256426636F       DC8 3DH, 25H, 64H, 26H, 63H, 6FH, 75H, 6EH
+   \              756E        
+   \   00000110   743D25642665       DC8 74H, 3DH, 25H, 64H, 26H, 65H, 78H, 74H
+   \              7874        
+   \   00000118   656E6465643D       DC8 65H, 6EH, 64H, 65H, 64H, 3DH, 25H, 64H
+   \              2564        
+   \   00000120   266669656C64       DC8 26H, 66H, 69H, 65H, 6CH, 64H, 73H, 3DH
+   \              733D        
+   \   00000128   257300             DC8 25H, 73H, 0
+   \   0000012B   00                 DC8 0
+   \   0000012C   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   00000134   6765732E6765       DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 4CH
+   \              744C        
+   \   0000013C   6F6E67506F6C       DC8 6FH, 6EH, 67H, 50H, 6FH, 6CH, 6CH, 48H
+   \              6C48        
+   \   00000144   6973746F7279       DC8 69H, 73H, 74H, 6FH, 72H, 79H, 3FH, 76H
+   \              3F76        
+   \   0000014C   3D2573266163       DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+   \              6365        
+   \   00000154   73735F746F6B       DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+   \              656E        
+   \   0000015C   3D2573267473       DC8 3DH, 25H, 73H, 26H, 74H, 73H, 3DH, 25H
+   \              3D25        
+   \   00000164   64267074733D       DC8 64H, 26H, 70H, 74H, 73H, 3DH, 25H, 64H
+   \              2564        
+   \   0000016C   266669656C64       DC8 26H, 66H, 69H, 65H, 6CH, 64H, 73H, 3DH
+   \              733D        
+   \   00000174   2573266C705F       DC8 25H, 73H, 26H, 6CH, 70H, 5FH, 76H, 65H
+   \              7665        
+   \   0000017C   7273696F6E3D       DC8 72H, 73H, 69H, 6FH, 6EH, 3DH, 25H, 64H
+   \              2564        
+   \   00000184   00                 DC8 0
+   \   00000185   000000             DC8 0, 0, 0
+   \   00000188   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   00000190   6765732E6765       DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 4CH
+   \              744C        
+   \   00000198   6F6E67506F6C       DC8 6FH, 6EH, 67H, 50H, 6FH, 6CH, 6CH, 53H
+   \              6C53        
+   \   000001A0   65727665723F       DC8 65H, 72H, 76H, 65H, 72H, 3FH, 76H, 3DH
+   \              763D        
+   \   000001A8   257326616363       DC8 25H, 73H, 26H, 61H, 63H, 63H, 65H, 73H
+   \              6573        
+   \   000001B0   735F746F6B65       DC8 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH
+   \              6E3D        
+   \   000001B8   2573266E6565       DC8 25H, 73H, 26H, 6EH, 65H, 65H, 64H, 5FH
+   \              645F        
+   \   000001C0   7074733D2564       DC8 70H, 74H, 73H, 3DH, 25H, 64H, 26H, 67H
+   \              2667        
+   \   000001C8   726F75705F69       DC8 72H, 6FH, 75H, 70H, 5FH, 69H, 64H, 3DH
+   \              643D        
+   \   000001D0   2564266C705F       DC8 25H, 64H, 26H, 6CH, 70H, 5FH, 76H, 65H
+   \              7665        
+   \   000001D8   7273696F6E3D       DC8 72H, 73H, 69H, 6FH, 6EH, 3DH, 25H, 64H
+   \              2564        
+   \   000001E0   00                 DC8 0
+   \   000001E1   000000             DC8 0, 0, 0
+   \   000001E4   25732F737461       DC8 "%s/stats.trackVisitor?v=%s&access_token=%s"
+   \              74732E747261
+   \              636B56697369
+   \              746F723F763D
+   \              257326616363
+   \              6573735F746F
+   \              6B656E3D2573
+   \              00          
+   \   0000020F   00                 DC8 0
+   \   00000210   68747470733A       DC8 68H, 74H, 74H, 70H, 73H, 3AH, 2FH, 2FH
+   \              2F2F        
+   \   00000218   6F617574682E       DC8 6FH, 61H, 75H, 74H, 68H, 2EH, 76H, 6BH
+   \              766B        
+   \   00000220   2E636F6D2F74       DC8 2EH, 63H, 6FH, 6DH, 2FH, 74H, 6FH, 6BH
+   \              6F6B        
+   \   00000228   656E3F677261       DC8 65H, 6EH, 3FH, 67H, 72H, 61H, 6EH, 74H
+   \              6E74        
+   \   00000230   5F747970653D       DC8 5FH, 74H, 79H, 70H, 65H, 3DH, 70H, 61H
+   \              7061        
+   \   00000238   7373776F7264       DC8 73H, 73H, 77H, 6FH, 72H, 64H, 26H, 63H
+   \              2663        
+   \   00000240   6C69656E745F       DC8 6CH, 69H, 65H, 6EH, 74H, 5FH, 69H, 64H
+   \              6964        
+   \   00000248   3D256426636C       DC8 3DH, 25H, 64H, 26H, 63H, 6CH, 69H, 65H
+   \              6965        
+   \   00000250   6E745F736563       DC8 6EH, 74H, 5FH, 73H, 65H, 63H, 72H, 65H
+   \              7265        
+   \   00000258   743D25732675       DC8 74H, 3DH, 25H, 73H, 26H, 75H, 73H, 65H
+   \              7365        
+   \   00000260   726E616D653D       DC8 72H, 6EH, 61H, 6DH, 65H, 3DH, 25H, 73H
+   \              2573        
+   \   00000268   267061737377       DC8 26H, 70H, 61H, 73H, 73H, 77H, 6FH, 72H
+   \              6F72        
+   \   00000270   643D25732673       DC8 64H, 3DH, 25H, 73H, 26H, 73H, 63H, 6FH
+   \              636F        
+   \   00000278   70653D256426       DC8 70H, 65H, 3DH, 25H, 64H, 26H, 76H, 3DH
+   \              763D        
+   \   00000280   257326326661       DC8 25H, 73H, 26H, 32H, 66H, 61H, 5FH, 73H
+   \              5F73        
+   \   00000288   7570706F7274       DC8 75H, 70H, 70H, 6FH, 72H, 74H, 65H, 64H
+   \              6564        
+   \   00000290   3D3000             DC8 3DH, 30H, 0
+   \   00000293   00                 DC8 0
+   \   00000294   616363657373       DC8 61H, 63H, 63H, 65H, 73H, 73H, 5FH, 74H
+   \              5F74        
+   \   0000029C   6F6B656E3D25       DC8 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H
+   \              7326        
+   \   000002A4   763D25732666       DC8 76H, 3DH, 25H, 73H, 26H, 66H, 75H, 6EH
+   \              756E        
+   \   000002AC   635F763D3126       DC8 63H, 5FH, 76H, 3DH, 31H, 26H, 75H, 73H
+   \              7573        
+   \   000002B4   65725F69643D       DC8 65H, 72H, 5FH, 69H, 64H, 3DH, 25H, 64H
+   \              2564        
+   \   000002BC   266C6173745F       DC8 26H, 6CH, 61H, 73H, 74H, 5FH, 6DH, 65H
+   \              6D65        
+   \   000002C4   73736167655F       DC8 73H, 73H, 61H, 67H, 65H, 5FH, 69H, 64H
+   \              6964        
+   \   000002CC   3D2564266D65       DC8 3DH, 25H, 64H, 26H, 6DH, 65H, 73H, 73H
+   \              7373        
+   \   000002D4   6167653D2573       DC8 61H, 67H, 65H, 3DH, 25H, 73H, 0
+   \              00          
+   \   000002DB   00                 DC8 0
+   \   000002DC   25732F657865       DC8 25H, 73H, 2FH, 65H, 78H, 65H, 63H, 75H
+   \              6375        
+   \   000002E4   74652E676574       DC8 74H, 65H, 2EH, 67H, 65H, 74H, 48H, 69H
+   \              4869        
+   \   000002EC   73746F72792E       DC8 73H, 74H, 6FH, 72H, 79H, 2EH, 78H, 6DH
+   \              786D        
+   \   000002F4   6C3F61636365       DC8 6CH, 3FH, 61H, 63H, 63H, 65H, 73H, 73H
+   \              7373        
+   \   000002FC   5F746F6B656E       DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+   \              3D25        
+   \   00000304   7326763D2573       DC8 73H, 26H, 76H, 3DH, 25H, 73H, 26H, 75H
+   \              2675        
+   \   0000030C   7365725F6964       DC8 73H, 65H, 72H, 5FH, 69H, 64H, 3DH, 25H
+   \              3D25        
+   \   00000314   6426636F756E       DC8 64H, 26H, 63H, 6FH, 75H, 6EH, 74H, 3DH
+   \              743D        
+   \   0000031C   25642666756E       DC8 25H, 64H, 26H, 66H, 75H, 6EH, 63H, 5FH
+   \              635F        
+   \   00000324   763D3100           DC8 76H, 3DH, 31H, 0
+   \   00000328   25732F77616C       DC8 25H, 73H, 2FH, 77H, 61H, 6CH, 6CH, 2EH
+   \              6C2E        
+   \   00000330   6765743F763D       DC8 67H, 65H, 74H, 3FH, 76H, 3DH, 25H, 73H
+   \              2573        
+   \   00000338   266163636573       DC8 26H, 61H, 63H, 63H, 65H, 73H, 73H, 5FH
+   \              735F        
+   \   00000340   746F6B656E3D       DC8 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H
+   \              2573        
+   \   00000348   266F776E6572       DC8 26H, 6FH, 77H, 6EH, 65H, 72H, 5FH, 69H
+   \              5F69        
+   \   00000350   643D25642663       DC8 64H, 3DH, 25H, 64H, 26H, 63H, 6FH, 75H
+   \              6F75        
+   \   00000358   6E743D31266F       DC8 6EH, 74H, 3DH, 31H, 26H, 6FH, 66H, 66H
+   \              6666        
+   \   00000360   7365743D2564       DC8 73H, 65H, 74H, 3DH, 25H, 64H, 26H, 65H
+   \              2665        
+   \   00000368   7874656E6465       DC8 78H, 74H, 65H, 6EH, 64H, 65H, 64H, 3DH
+   \              643D        
+   \   00000370   256400             DC8 25H, 64H, 0
+   \   00000373   00                 DC8 0
+   \   00000374   25732F67726F       DC8 25H, 73H, 2FH, 67H, 72H, 6FH, 75H, 70H
+   \              7570        
+   \   0000037C   732E67657442       DC8 73H, 2EH, 67H, 65H, 74H, 42H, 79H, 49H
+   \              7949        
+   \   00000384   643F763D2573       DC8 64H, 3FH, 76H, 3DH, 25H, 73H, 26H, 61H
+   \              2661        
+   \   0000038C   63636573735F       DC8 63H, 63H, 65H, 73H, 73H, 5FH, 74H, 6FH
+   \              746F        
+   \   00000394   6B656E3D2573       DC8 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H, 67H
+   \              2667        
+   \   0000039C   726F75705F69       DC8 72H, 6FH, 75H, 70H, 5FH, 69H, 64H, 73H
+   \              6473        
+   \   000003A4   3D2573266669       DC8 3DH, 25H, 73H, 26H, 66H, 69H, 65H, 6CH
+   \              656C        
+   \   000003AC   64733D257300       DC8 64H, 73H, 3DH, 25H, 73H, 0
+   \   000003B2   0000               DC8 0, 0
+   \   000003B4   763D25732661       DC8 "v=%s&access_token=%s&user_id=%d&message=%s"
+   \              63636573735F
+   \              746F6B656E3D
+   \              257326757365
+   \              725F69643D25
+   \              64266D657373
+   \              6167653D2573
+   \              00          
+   \   000003DF   00                 DC8 0
+   \   000003E0   25732F667269       DC8 25H, 73H, 2FH, 66H, 72H, 69H, 65H, 6EH
+   \              656E        
+   \   000003E8   64732E676574       DC8 64H, 73H, 2EH, 67H, 65H, 74H, 3FH, 76H
+   \              3F76        
+   \   000003F0   3D2573266163       DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+   \              6365        
+   \   000003F8   73735F746F6B       DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+   \              656E        
+   \   00000400   3D257326636F       DC8 3DH, 25H, 73H, 26H, 63H, 6FH, 75H, 6EH
+   \              756E        
+   \   00000408   743D2564266F       DC8 74H, 3DH, 25H, 64H, 26H, 6FH, 66H, 66H
+   \              6666        
+   \   00000410   7365743D2564       DC8 73H, 65H, 74H, 3DH, 25H, 64H, 26H, 6FH
+   \              266F        
+   \   00000418   726465723D25       DC8 72H, 64H, 65H, 72H, 3DH, 25H, 73H, 26H
+   \              7326        
+   \   00000420   6669656C6473       DC8 66H, 69H, 65H, 6CH, 64H, 73H, 3DH, 25H
+   \              3D25        
+   \   00000428   7300               DC8 73H, 0
+   \   0000042A   0000               DC8 0, 0
+   \   0000042C   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   00000434   6765732E6D61       DC8 67H, 65H, 73H, 2EH, 6DH, 61H, 72H, 6BH
+   \              726B        
+   \   0000043C   417352656164       DC8 41H, 73H, 52H, 65H, 61H, 64H, 3FH, 76H
+   \              3F76        
+   \   00000444   3D2573266163       DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+   \              6365        
+   \   0000044C   73735F746F6B       DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+   \              656E        
+   \   00000454   3D2573266D65       DC8 3DH, 25H, 73H, 26H, 6DH, 65H, 73H, 73H
+   \              7373        
+   \   0000045C   6167655F6964       DC8 61H, 67H, 65H, 5FH, 69H, 64H, 73H, 3DH
+   \              733D        
+   \   00000464   257326706565       DC8 25H, 73H, 26H, 70H, 65H, 65H, 72H, 5FH
+   \              725F        
+   \   0000046C   69643D256400       DC8 69H, 64H, 3DH, 25H, 64H, 0
+   \   00000472   0000               DC8 0, 0
+   \   00000474   25732F6D6573       DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+   \              7361        
+   \   0000047C   6765732E6465       DC8 67H, 65H, 73H, 2EH, 64H, 65H, 6CH, 65H
+   \              6C65        
+   \   00000484   74654469616C       DC8 74H, 65H, 44H, 69H, 61H, 6CH, 6FH, 67H
+   \              6F67        
+   \   0000048C   3F6163636573       DC8 3FH, 61H, 63H, 63H, 65H, 73H, 73H, 5FH
+   \              735F        
+   \   00000494   746F6B656E3D       DC8 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H
+   \              2573        
+   \   0000049C   26763D257326       DC8 26H, 76H, 3DH, 25H, 73H, 26H, 75H, 73H
+   \              7573        
+   \   000004A4   65725F69643D       DC8 65H, 72H, 5FH, 69H, 64H, 3DH, 25H, 64H
+   \              2564        
+   \   000004AC   26636F756E74       DC8 26H, 63H, 6FH, 75H, 6EH, 74H, 3DH, 25H
+   \              3D25        
+   \   000004B4   6400               DC8 64H, 0
+   \   000004B6   0000               DC8 0, 0
+   \   000004B8   794A56445169       DC8 "yJVDQi2ry8J1hWS5MlYH"
+   \              327279384A31
+   \              685753354D6C
+   \              594800      
+   \   000004CD   000000             DC8 0, 0, 0
+   \   000004D0   68747470733A       DC8 "https://api.vk.com/method"
+   \              2F2F6170692E
+   \              766B2E636F6D
+   \              2F6D6574686F
+   \              6400        
+   \   000004EA   0000               DC8 0, 0
+     22          static const char SECRET_KEY[] = "yJVDQi2ry8J1hWS5MlYH";
+     23          static const char API_DIR[]="https://api.vk.com/method";
+     24          const char API_VER[]="5.131";
+   \                     API_VER:
+   \   000004EC   352E31333100       DC8 "5.131"
+   \   000004F2   0000               DC8 0, 0
+     25          
+     26          
+     27          int captcha_seed;
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     28          const char captcha_img[128];
+   \                     captcha_img:
+   \   00000000   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000010   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000020   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000030   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000040   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000050   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000060   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000070   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     my_id:
+   \   00000000                      DS8 4
+     29          static char sbuf[1024];
+     30          
+     31          //LongPoolServer
+     32          #define LP_VERSION     3
+     33          static char lp_key[64];
+     34          static char lp_server[32];
+     35          unsigned lp_ts = 0;
+   \                     lp_ts:
+   \   00000004                      DS8 4
+     36          unsigned pts = 0;
+   \                     pts:
+   \   00000008                      DS8 4
+   \                     ACCESS_TOKEN:
+   \   0000000C                      DS8 256
+   \   0000010C                      DS8 1024
+   \   0000050C                      DS8 64
+   \   0000054C                      DS8 32
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     captcha_seed:
+   \   00000000                      DS8 4
+     37          
+     38          //Прямая авторизация. Разрешение выдано 11.09.2017.
+
+   \                                 In segment CODE, align 4, keep-with-next
+     39          char* url_auth_direct(char *username, char *password, unsigned scope)
+     40          {
+     41            snprintf(sbuf, 511, "https://oauth.vk.com/token?grant_type=password&client_id=%d&client_secret=%s"
+     42                     "&username=%s&password=%s&scope=%d&v=%s&2fa_supported=0", APP_ID, SECRET_KEY, username, password, scope, API_VER);
+   \                     url_auth_direct:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   434FA0E3           MOV      R4,#+268
+   \   00000010   F83F84E2           ADD      R3,R4,#+992
+   \   00000014   0C3083E0           ADD      R3,R3,R12
+   \   00000018   08002DE9           PUSH     {R3}
+   \   0000001C   30309FE5           LDR      R3,??url_auth_direct_0  ;; 0x553059
+   \   00000020   04002DE9           PUSH     {R2}
+   \   00000024   02002DE9           PUSH     {R1}
+   \   00000028   01002DE9           PUSH     {R0}
+   \   0000002C   842F8CE2           ADD      R2,R12,#+528
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   EB0F84E2           ADD      R0,R4,#+940
+   \   00000038   0C0080E0           ADD      R0,R0,R12
+   \   0000003C   01002DE9           PUSH     {R0}
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   1B0100EF           SWI      +283
+     43            return sbuf;
+   \   00000048   050084E0           ADD      R0,R4,R5
+   \   0000004C   14D08DE2           ADD      SP,SP,#+20
+   \   00000050   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??url_auth_direct_0:
+   \   00000054   59305500           DC32     0x553059
+     44          }
+     45          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     46          char* url_stats_track_visitor()
+     47          {
+     48            snprintf(sbuf, 511, "%s/stats.trackVisitor?v=%s&access_token=%s", API_DIR, API_VER, ACCESS_TOKEN);
+   \                     url_stats_track_visitor:
+   \   00000000   ........           LDR      R0,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   434FA0E3           MOV      R4,#+268
+   \   00000010   0C1085E2           ADD      R1,R5,#+12
+   \   00000014   02002DE9           PUSH     {R1}
+   \   00000018   4D3E80E2           ADD      R3,R0,#+1232
+   \   0000001C   792F80E2           ADD      R2,R0,#+484
+   \   00000020   F81F84E2           ADD      R1,R4,#+992
+   \   00000024   001081E0           ADD      R1,R1,R0
+   \   00000028   02002DE9           PUSH     {R1}
+   \   0000002C   050084E0           ADD      R0,R4,R5
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   1B0100EF           SWI      +283
+     49            return sbuf;
+   \   00000038   050084E0           ADD      R0,R4,R5
+   \   0000003C   3680BDE8           POP      {R1,R2,R4,R5,PC}  ;; return
+     50          }
+     51          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     52          char* url_messages_getLongPollServer(int need_pts, int group_id/*,int lp_version*/)
+     53          {
+   \                     url_messages_getLongPollServer:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     54            snprintf(sbuf, 511, "%s/messages.getLongPollServer?v=%s&access_token=%s&need_pts=%d&group_id=%d&lp_version=%d", API_DIR, API_VER, ACCESS_TOKEN, need_pts, group_id, LP_VERSION);
+   \   00000004   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   0330A0E3           MOV      R3,#+3
+   \   00000010   08002DE9           PUSH     {R3}
+   \   00000014   02002DE9           PUSH     {R1}
+   \   00000018   01002DE9           PUSH     {R0}
+   \   0000001C   434FA0E3           MOV      R4,#+268
+   \   00000020   4D3E82E2           ADD      R3,R2,#+1232
+   \   00000024   F31084E3           ORR      R1,R4,#0xF3
+   \   00000028   0C0085E2           ADD      R0,R5,#+12
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   F80F84E2           ADD      R0,R4,#+992
+   \   00000034   020080E0           ADD      R0,R0,R2
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   622F82E2           ADD      R2,R2,#+392
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   1B0100EF           SWI      +283
+     55            return sbuf;
+   \   00000048   050084E0           ADD      R0,R4,R5
+   \   0000004C   14D08DE2           ADD      SP,SP,#+20
+   \   00000050   3080BDE8           POP      {R4,R5,PC}       ;; return
+     56          }
+     57          
+     58          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     59          char* url_messages_getLongPollHistory(/*int ts, int pts, */ const char* fields)
+     60          {
+   \                     url_messages_getLongPollHistory:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     61            snprintf(sbuf, 511, "%s/messages.getLongPollHistory?v=%s&access_token=%s&ts=%d&pts=%d&fields=%s&lp_version=%d", API_DIR, API_VER, ACCESS_TOKEN, lp_ts, pts, fields, LP_VERSION);
+   \   00000004   ........           LDR      R1,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   0320A0E3           MOV      R2,#+3
+   \   00000010   04002DE9           PUSH     {R2}
+   \   00000014   01002DE9           PUSH     {R0}
+   \   00000018   080095E5           LDR      R0,[R5, #+8]
+   \   0000001C   434FA0E3           MOV      R4,#+268
+   \   00000020   01002DE9           PUSH     {R0}
+   \   00000024   040095E5           LDR      R0,[R5, #+4]
+   \   00000028   4D3E81E2           ADD      R3,R1,#+1232
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   4B2F81E2           ADD      R2,R1,#+300
+   \   00000034   0C0085E2           ADD      R0,R5,#+12
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   F80F84E2           ADD      R0,R4,#+992
+   \   00000040   010080E0           ADD      R0,R0,R1
+   \   00000044   01002DE9           PUSH     {R0}
+   \   00000048   F31084E3           ORR      R1,R4,#0xF3
+   \   0000004C   050084E0           ADD      R0,R4,R5
+   \   00000050   1B0100EF           SWI      +283
+     62            return sbuf;
+   \   00000054   050084E0           ADD      R0,R4,R5
+   \   00000058   18D08DE2           ADD      SP,SP,#+24
+   \   0000005C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     63          }
+     64          
+     65          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     66          char* url_messages_getConversations(int offset, int count, int extended, const char* fields)
+     67          {
+     68            snprintf(sbuf, 511, "%s/messages.getConversations?v=%s&access_token=%s&offset=%d&count=%d&extended=%d&fields=%s", API_DIR, API_VER, ACCESS_TOKEN, offset, count, extended, fields);
+   \                     url_messages_getConversations:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   08002DE9           PUSH     {R3}
+   \   00000010   04002DE9           PUSH     {R2}
+   \   00000014   02002DE9           PUSH     {R1}
+   \   00000018   01002DE9           PUSH     {R0}
+   \   0000001C   434FA0E3           MOV      R4,#+268
+   \   00000020   4D3E8CE2           ADD      R3,R12,#+1232
+   \   00000024   D0208CE2           ADD      R2,R12,#+208
+   \   00000028   0C0085E2           ADD      R0,R5,#+12
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   F80F84E2           ADD      R0,R4,#+992
+   \   00000038   0C0080E0           ADD      R0,R0,R12
+   \   0000003C   01002DE9           PUSH     {R0}
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   1B0100EF           SWI      +283
+     69            return sbuf;  
+   \   00000048   050084E0           ADD      R0,R4,R5
+   \   0000004C   18D08DE2           ADD      SP,SP,#+24
+   \   00000050   3080BDE8           POP      {R4,R5,PC}       ;; return
+     70          }
+     71          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     72          char* url_users_get(const char* user_ids, const char* fields)
+     73          {
+     74            snprintf(sbuf, 1023, "%s/users.get?v=%s&access_token=%s&user_ids=%s&fields=%s", API_DIR, API_VER, ACCESS_TOKEN, user_ids, fields);
+   \                     url_users_get:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   FF10A0E3           MOV      R1,#+255
+   \   00000020   0C0085E2           ADD      R0,R5,#+12
+   \   00000024   01002DE9           PUSH     {R0}
+   \   00000028   C01F81E3           ORR      R1,R1,#0x300
+   \   0000002C   F80F84E2           ADD      R0,R4,#+992
+   \   00000030   020080E0           ADD      R0,R0,R2
+   \   00000034   01002DE9           PUSH     {R0}
+   \   00000038   982082E2           ADD      R2,R2,#+152
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   1B0100EF           SWI      +283
+     75            return sbuf;
+   \   00000044   050084E0           ADD      R0,R4,R5
+   \   00000048   10D08DE2           ADD      SP,SP,#+16
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     76          }
+     77          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     78          char* url_messages_getHistory(int user_id, int count, int start_msg_id)
+     79          {
+     80            snprintf(sbuf, 511, "%s/messages.getHistory?access_token=%s&v=%s&user_id=%d&count=%d&start_message_id=%d", API_DIR, ACCESS_TOKEN, API_VER, user_id, count, start_msg_id);
+   \                     url_messages_getHistory:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   04002DE9           PUSH     {R2}
+   \   00000010   02002DE9           PUSH     {R1}
+   \   00000014   01002DE9           PUSH     {R0}
+   \   00000018   434FA0E3           MOV      R4,#+268
+   \   0000001C   4D3E8CE2           ADD      R3,R12,#+1232
+   \   00000020   44208CE2           ADD      R2,R12,#+68
+   \   00000024   F80F84E2           ADD      R0,R4,#+992
+   \   00000028   0C0080E0           ADD      R0,R0,R12
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   0C0085E2           ADD      R0,R5,#+12
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   1B0100EF           SWI      +283
+     81            return sbuf;
+   \   00000044   050084E0           ADD      R0,R4,R5
+   \   00000048   14D08DE2           ADD      SP,SP,#+20
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     82          }
+     83          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     84          char* url_messages_deleteDialog(int user_id, int count)
+     85          {
+     86            snprintf(sbuf, 511, "%s/messages.deleteDialog?access_token=%s&v=%s&user_id=%d&count=%d", API_DIR, ACCESS_TOKEN, API_VER, user_id, count);
+   \                     url_messages_deleteDialog:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   F31084E3           ORR      R1,R4,#0xF3
+   \   00000020   F80F84E2           ADD      R0,R4,#+992
+   \   00000024   020080E0           ADD      R0,R0,R2
+   \   00000028   01002DE9           PUSH     {R0}
+   \   0000002C   0C0085E2           ADD      R0,R5,#+12
+   \   00000030   01002DE9           PUSH     {R0}
+   \   00000034   DA0F84E2           ADD      R0,R4,#+872
+   \   00000038   022080E0           ADD      R2,R0,R2
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   1B0100EF           SWI      +283
+     87            return sbuf;
+   \   00000044   050084E0           ADD      R0,R4,R5
+   \   00000048   10D08DE2           ADD      SP,SP,#+16
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     88          }
+     89          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     90          char* url_messages_markAsRead(char* message_ids, unsigned peer_id)
+     91          {
+     92            snprintf(sbuf, 1023, "%s/messages.markAsRead?v=%s&access_token=%s&message_ids=%s&peer_id=%d", API_DIR, API_VER, ACCESS_TOKEN, message_ids, peer_id);
+   \                     url_messages_markAsRead:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   0C0085E2           ADD      R0,R5,#+12
+   \   00000020   01002DE9           PUSH     {R0}
+   \   00000024   F80F84E2           ADD      R0,R4,#+992
+   \   00000028   020080E0           ADD      R0,R0,R2
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   C80F84E2           ADD      R0,R4,#+800
+   \   00000034   022080E0           ADD      R2,R0,R2
+   \   00000038   2D1040E2           SUB      R1,R0,#+45
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   1B0100EF           SWI      +283
+     93            return sbuf;  
+   \   00000044   050084E0           ADD      R0,R4,R5
+   \   00000048   10D08DE2           ADD      SP,SP,#+16
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     94          }
+     95          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     96          char* url_friends_get(int count, int offset, char* order, char* fields)
+     97          {
+     98            snprintf(sbuf, 511, "%s/friends.get?v=%s&access_token=%s&count=%d&offset=%d&order=%s&fields=%s", API_DIR, API_VER, ACCESS_TOKEN, count, offset, order, fields);
+   \                     url_friends_get:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   08002DE9           PUSH     {R3}
+   \   00000010   04002DE9           PUSH     {R2}
+   \   00000014   02002DE9           PUSH     {R1}
+   \   00000018   01002DE9           PUSH     {R0}
+   \   0000001C   434FA0E3           MOV      R4,#+268
+   \   00000020   4D3E8CE2           ADD      R3,R12,#+1232
+   \   00000024   F82F8CE2           ADD      R2,R12,#+992
+   \   00000028   0C0085E2           ADD      R0,R5,#+12
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   F80F84E2           ADD      R0,R4,#+992
+   \   00000038   0C0080E0           ADD      R0,R0,R12
+   \   0000003C   01002DE9           PUSH     {R0}
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   1B0100EF           SWI      +283
+     99            return sbuf;  
+   \   00000048   050084E0           ADD      R0,R4,R5
+   \   0000004C   18D08DE2           ADD      SP,SP,#+24
+   \   00000050   3080BDE8           POP      {R4,R5,PC}       ;; return
+    100          }
+    101          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    102          char* url_messages_send(int user_id, char* message)
+    103          {
+   \                     url_messages_send:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+    104            char* msg=URL_reencode_escapes(message);//кодируем строку
+    105            snprintf(sbuf, 511, "v=%s&access_token=%s&user_id=%d&message=%s", API_VER, ACCESS_TOKEN, user_id, msg);
+   \   00000004   ........           LDR      R7,??DataTable51  ;; my_id
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0100A0E1           MOV      R0,R1
+   \   00000010   ........           _BLF     URL_reencode_escapes,??URL_reencode_escapes??rA
+   \   00000014   0050A0E1           MOV      R5,R0
+   \   00000018   ........           LDR      R0,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   0000001C   0510A0E1           MOV      R1,R5
+   \   00000020   02002DE9           PUSH     {R1}
+   \   00000024   10002DE9           PUSH     {R4}
+   \   00000028   436FA0E3           MOV      R6,#+268
+   \   0000002C   0C1087E2           ADD      R1,R7,#+12
+   \   00000030   02002DE9           PUSH     {R1}
+   \   00000034   ED2F80E2           ADD      R2,R0,#+948
+   \   00000038   F81F86E2           ADD      R1,R6,#+992
+   \   0000003C   003081E0           ADD      R3,R1,R0
+   \   00000040   F31086E3           ORR      R1,R6,#0xF3
+   \   00000044   070086E0           ADD      R0,R6,R7
+   \   00000048   1B0100EF           SWI      +283
+    106            mfree(msg);
+   \   0000004C   0500A0E1           MOV      R0,R5
+   \   00000050   150000EF           SWI      +21
+    107            return sbuf;
+   \   00000054   070086E0           ADD      R0,R6,R7
+   \   00000058   FE80BDE8           POP      {R1-R7,PC}       ;; return
+    108          }
+    109          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    110          char* url_groups_get(int offset, int count)//список груп+инфо
+    111          {
+    112            snprintf(sbuf, 511, "%s/groups.get?v=%s&access_token=%s&offset=%d&count=%d&extended=1", API_DIR, API_VER, ACCESS_TOKEN, offset, count);
+   \                     url_groups_get:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   F31084E3           ORR      R1,R4,#0xF3
+   \   00000020   0C0085E2           ADD      R0,R5,#+12
+   \   00000024   01002DE9           PUSH     {R0}
+   \   00000028   F80F84E2           ADD      R0,R4,#+992
+   \   0000002C   020080E0           ADD      R0,R0,R2
+   \   00000030   01002DE9           PUSH     {R0}
+   \   00000034   050084E0           ADD      R0,R4,R5
+   \   00000038   1B0100EF           SWI      +283
+    113            return sbuf;
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   10D08DE2           ADD      SP,SP,#+16
+   \   00000044   3080BDE8           POP      {R4,R5,PC}       ;; return
+    114          }
+    115          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    116          char* url_groups_getById(const char* group_ids, const char* fields)//инфо о группе
+    117          {
+    118            snprintf(sbuf, 511, "%s/groups.getById?v=%s&access_token=%s&group_ids=%s&fields=%s", API_DIR, API_VER, ACCESS_TOKEN, group_ids, fields);
+   \                     url_groups_getById:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   F31084E3           ORR      R1,R4,#0xF3
+   \   00000020   0C0085E2           ADD      R0,R5,#+12
+   \   00000024   01002DE9           PUSH     {R0}
+   \   00000028   F80F84E2           ADD      R0,R4,#+992
+   \   0000002C   020080E0           ADD      R0,R0,R2
+   \   00000030   01002DE9           PUSH     {R0}
+   \   00000034   DD2F82E2           ADD      R2,R2,#+884
+   \   00000038   050084E0           ADD      R0,R4,R5
+   \   0000003C   1B0100EF           SWI      +283
+    119            return sbuf;  
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   10D08DE2           ADD      SP,SP,#+16
+   \   00000048   3080BDE8           POP      {R4,R5,PC}       ;; return
+    120          }
+    121          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    122          char* url_wall_get(int owner_id, int offset, int extended)
+    123          {
+    124            snprintf(sbuf, 511, "%s/wall.get?v=%s&access_token=%s&owner_id=%d&count=1&offset=%d&extended=%d", API_DIR, API_VER, ACCESS_TOKEN, owner_id, offset, extended);
+   \                     url_wall_get:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   04002DE9           PUSH     {R2}
+   \   00000010   02002DE9           PUSH     {R1}
+   \   00000014   01002DE9           PUSH     {R0}
+   \   00000018   434FA0E3           MOV      R4,#+268
+   \   0000001C   4D3E8CE2           ADD      R3,R12,#+1232
+   \   00000020   CA2F8CE2           ADD      R2,R12,#+808
+   \   00000024   0C0085E2           ADD      R0,R5,#+12
+   \   00000028   01002DE9           PUSH     {R0}
+   \   0000002C   F31084E3           ORR      R1,R4,#0xF3
+   \   00000030   F80F84E2           ADD      R0,R4,#+992
+   \   00000034   0C0080E0           ADD      R0,R0,R12
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   1B0100EF           SWI      +283
+    125            return sbuf;
+   \   00000044   050084E0           ADD      R0,R4,R5
+   \   00000048   14D08DE2           ADD      SP,SP,#+20
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+    126          }
+    127          
+    128          //Вариант отправки с помощью скрипта. Требует маскировки двойных кавычек в сообщении. Проще вызывать хранимые процедуры.
+    129          /*char* execute_send(int user_id, char* message)
+    130          {
+    131            char* msg=URL_reencode_escapes(message);//кодируем строку
+    132            snprintf(sbuf, 511, "v=%s&access_token=%s&code="
+    133                     "var id=API.messages.send({\"user_id\":%d, \"message\":\"%s\"});"
+    134                     "return API.messages.getById({\"message_ids\":id});"
+    135                     ,API_VER, ACCESS_TOKEN, user_id, msg);
+    136            mfree(msg);
+    137            return sbuf;
+    138          }*/
+    139          
+    140          //хранимые процедуры
+
+   \                                 In segment CODE, align 4, keep-with-next
+    141          char* url_execute_getHistory(int user_id, int count)
+    142          {
+    143            snprintf(sbuf, 511, "%s/execute.getHistory.xml?access_token=%s&v=%s&user_id=%d&count=%d&func_v=1", API_DIR, ACCESS_TOKEN, API_VER, user_id, count);
+   \                     url_execute_getHistory:
+   \   00000000   ........           LDR      R2,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   01002DE9           PUSH     {R0}
+   \   00000014   434FA0E3           MOV      R4,#+268
+   \   00000018   4D3E82E2           ADD      R3,R2,#+1232
+   \   0000001C   F31084E3           ORR      R1,R4,#0xF3
+   \   00000020   F80F84E2           ADD      R0,R4,#+992
+   \   00000024   020080E0           ADD      R0,R0,R2
+   \   00000028   01002DE9           PUSH     {R0}
+   \   0000002C   B72F82E2           ADD      R2,R2,#+732
+   \   00000030   0C0085E2           ADD      R0,R5,#+12
+   \   00000034   01002DE9           PUSH     {R0}
+   \   00000038   050084E0           ADD      R0,R4,R5
+   \   0000003C   1B0100EF           SWI      +283
+    144            return sbuf;
+   \   00000040   050084E0           ADD      R0,R4,R5
+   \   00000044   10D08DE2           ADD      SP,SP,#+16
+   \   00000048   3080BDE8           POP      {R4,R5,PC}       ;; return
+    145          }
+    146          
+    147          //через post
+
+   \                                 In segment CODE, align 4, keep-with-next
+    148          char* url_execute_sendAndGet(int user_id, char* message, int last_msg_id)
+    149          {
+    150            //char* msg=URL_reencode_escapes(message);//кодируем строку  
+    151            snprintf(sbuf, 511, "access_token=%s&v=%s&func_v=1&user_id=%d&last_message_id=%d&message=%s", ACCESS_TOKEN, API_VER, user_id, last_msg_id, message);
+   \                     url_execute_sendAndGet:
+   \   00000000   ........           LDR      R12,??DataTable30  ;; `?<Constant "%s/groups.get?v=%s&ac...">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   ........           LDR      R5,??DataTable51  ;; my_id
+   \   0000000C   02002DE9           PUSH     {R1}
+   \   00000010   04002DE9           PUSH     {R2}
+   \   00000014   01002DE9           PUSH     {R0}
+   \   00000018   434FA0E3           MOV      R4,#+268
+   \   0000001C   0C3085E2           ADD      R3,R5,#+12
+   \   00000020   A52F8CE2           ADD      R2,R12,#+660
+   \   00000024   F80F84E2           ADD      R0,R4,#+992
+   \   00000028   0C0080E0           ADD      R0,R0,R12
+   \   0000002C   01002DE9           PUSH     {R0}
+   \   00000030   F31084E3           ORR      R1,R4,#0xF3
+   \   00000034   050084E0           ADD      R0,R4,R5
+   \   00000038   1B0100EF           SWI      +283
+    152            //mfree(msg);
+    153            return sbuf;
+   \   0000003C   050084E0           ADD      R0,R4,R5
+   \   00000040   10D08DE2           ADD      SP,SP,#+16
+   \   00000044   3080BDE8           POP      {R4,R5,PC}       ;; return
+    154          }
+    155          
+    156          //******************************************************************************
+    157          
+    158          
+    159          static void __parse_obj_attachments(cJSON* json, struct list_head *attachments)
+    160          {
+    161            if (cJSON_GetArraySize(json) > 0)
+    162            {
+    163              cJSON* i = NULL;  
+    164              cJSON_ArrayForEach(i, json)
+    165              {
+    166                cJSON *j_item = cJSON_GetObjectItem(i, t_type);
+    167                if (j_item)
+    168                {
+    169                  VkAttach *attach = malloc(sizeof(VkAttach));
+    170                  INIT_LIST_HEAD(&attach->list);
+    171                  attach->type = 0;
+    172                  
+    173                  if (strcmp(j_item->valuestring, t_photo) == 0)
+    174                      attach->type = 1;
+    175                  list_add_tail(&attach->list, attachments);
+    176                }
+    177              }
+    178            }
+    179          }
+    180          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    181          static void __parse_obj_Message(cJSON* json, struct message_args *msg_args, struct list_head *attachments)
+    182          {
+   \                     __parse_obj_Message:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    183            zeromem(msg_args, sizeof(struct message_args));
+    184            
+    185            cJSON *j_item = cJSON_GetObjectItem(json, t_date);
+   \   00000004   ........           LDR      R7,??DataTable34  ;; t_id
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0260A0E1           MOV      R6,R2
+   \   00000014   1810A0E3           MOV      R1,#+24
+   \   00000018   0500A0E1           MOV      R0,R5
+   \   0000001C   1D0100EF           SWI      +285
+   \   00000020   0C1087E2           ADD      R1,R7,#+12
+   \   00000024   0400A0E1           MOV      R0,R4
+   \   00000028   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    186            if (j_item)
+   \   0000002C   000050E3           CMP      R0,#+0
+    187              msg_args->date = j_item->valueint; 
+   \   00000030   14009015           LDRNE    R0,[R0, #+20]
+    188            
+    189            j_item = cJSON_GetObjectItem(json, t_from_id);
+   \   00000034   041087E2           ADD      R1,R7,#+4
+   \   00000038   04008515           STRNE    R0,[R5, #+4]
+   \   0000003C   0400A0E1           MOV      R0,R4
+   \   00000040   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    190            if (j_item)
+   \   00000044   000050E3           CMP      R0,#+0
+    191              msg_args->from_id = j_item->valueint;
+   \   00000048   14009015           LDRNE    R0,[R0, #+20]
+    192            
+    193            j_item = cJSON_GetObjectItem(json, t_peer_id);
+   \   0000004C   5C1087E2           ADD      R1,R7,#+92
+   \   00000050   08008515           STRNE    R0,[R5, #+8]
+   \   00000054   0400A0E1           MOV      R0,R4
+   \   00000058   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    194            if (j_item)
+   \   0000005C   000050E3           CMP      R0,#+0
+    195              msg_args->peer_id = j_item->valueint;
+   \   00000060   14009015           LDRNE    R0,[R0, #+20]
+    196            
+    197            j_item = cJSON_GetObjectItem(json, t_id);
+   \   00000064   0710A0E1           MOV      R1,R7
+   \   00000068   0C008515           STRNE    R0,[R5, #+12]
+   \   0000006C   0400A0E1           MOV      R0,R4
+   \   00000070   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    198            if (j_item)
+   \   00000074   000050E3           CMP      R0,#+0
+    199              msg_args->id = j_item->valueint;
+   \   00000078   14009015           LDRNE    R0,[R0, #+20]
+    200            
+    201            j_item = cJSON_GetObjectItem(json, t_text);
+   \   0000007C   301087E2           ADD      R1,R7,#+48
+   \   00000080   00008515           STRNE    R0,[R5, #+0]
+   \   00000084   0400A0E1           MOV      R0,R4
+   \   00000088   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    202            if (j_item)
+   \   0000008C   000050E3           CMP      R0,#+0
+    203              msg_args->text = j_item->valuestring;
+   \   00000090   10009015           LDRNE    R0,[R0, #+16]
+    204            
+    205            j_item = cJSON_GetObjectItem(json, t_out);
+   \   00000094   641087E2           ADD      R1,R7,#+100
+   \   00000098   10008515           STRNE    R0,[R5, #+16]
+   \   0000009C   0400A0E1           MOV      R0,R4
+   \   000000A0   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    206            if (j_item)
+   \   000000A4   000050E3           CMP      R0,#+0
+    207              msg_args->out = j_item->valueint;
+   \   000000A8   14009015           LDRNE    R0,[R0, #+20]
+    208            
+    209              j_item = cJSON_GetObjectItem(json, t_attachments);
+   \   000000AC   141087E2           ADD      R1,R7,#+20
+   \   000000B0   14008515           STRNE    R0,[R5, #+20]
+   \   000000B4   0400A0E1           MOV      R0,R4
+   \   000000B8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000BC   0040B0E1           MOVS     R4,R0
+    210            if (j_item)
+   \   000000C0   F081BD08           POPEQ    {R4-R8,PC}
+    211              __parse_obj_attachments(j_item, attachments);
+   \   000000C4   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   000000C8   010050E3           CMP      R0,#+1
+   \   000000CC   F081BDB8           POPLT    {R4-R8,PC}
+   \   000000D0   084094E5           LDR      R4,[R4, #+8]
+   \   000000D4   170000EA           B        ??__parse_obj_Message_0
+   \                     ??__parse_obj_Message_1:
+   \   000000D8   281087E2           ADD      R1,R7,#+40
+   \   000000DC   0400A0E1           MOV      R0,R4
+   \   000000E0   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000E4   0050B0E1           MOVS     R5,R0
+   \   000000E8   1100000A           BEQ      ??__parse_obj_Message_2
+   \   000000EC   0C00A0E3           MOV      R0,#+12
+   \   000000F0   140000EF           SWI      +20
+   \   000000F4   0080A0E1           MOV      R8,R0
+   \   000000F8   008088E5           STR      R8,[R8, #+0]
+   \   000000FC   048088E5           STR      R8,[R8, #+4]
+   \   00000100   0000A0E3           MOV      R0,#+0
+   \   00000104   080088E5           STR      R0,[R8, #+8]
+   \   00000108   100095E5           LDR      R0,[R5, #+16]
+   \   0000010C   201087E2           ADD      R1,R7,#+32
+   \   00000110   190000EF           SWI      +25
+   \   00000114   000050E3           CMP      R0,#+0
+   \   00000118   0100A003           MOVEQ    R0,#+1
+   \   0000011C   08008805           STREQ    R0,[R8, #+8]
+   \   00000120   040096E5           LDR      R0,[R6, #+4]
+   \   00000124   048086E5           STR      R8,[R6, #+4]
+   \   00000128   006088E5           STR      R6,[R8, #+0]
+   \   0000012C   040088E5           STR      R0,[R8, #+4]
+   \   00000130   008080E5           STR      R8,[R0, #+0]
+   \                     ??__parse_obj_Message_2:
+   \   00000134   004094E5           LDR      R4,[R4, #+0]
+   \                     ??__parse_obj_Message_0:
+   \   00000138   000054E3           CMP      R4,#+0
+   \   0000013C   E5FFFF1A           BNE      ??__parse_obj_Message_1
+    212          }
+   \   00000140   F081BDE8           POP      {R4-R8,PC}       ;; return
+    213          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    214          static void __parse_obj_User(cJSON* json, struct user_args *args)
+    215          { 
+   \                     __parse_obj_User:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    216            zeromem(args, sizeof(struct user_args));
+    217            
+    218            cJSON* j_item = cJSON_GetObjectItem(json, t_id);
+   \   00000004   ........           LDR      R6,??DataTable34  ;; t_id
+   \   00000008   0050A0E1           MOV      R5,R0
+   \   0000000C   0140A0E1           MOV      R4,R1
+   \   00000010   2810A0E3           MOV      R1,#+40
+   \   00000014   0400A0E1           MOV      R0,R4
+   \   00000018   1D0100EF           SWI      +285
+   \   0000001C   0610A0E1           MOV      R1,R6
+   \   00000020   0500A0E1           MOV      R0,R5
+   \   00000024   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    219            if (j_item)
+   \   00000028   000050E3           CMP      R0,#+0
+    220              args->id = j_item->valueint;           
+   \   0000002C   14009015           LDRNE    R0,[R0, #+20]
+    221                    
+    222            j_item = cJSON_GetObjectItem(json, t_first_name);
+   \   00000030   681086E2           ADD      R1,R6,#+104
+   \   00000034   00008415           STRNE    R0,[R4, #+0]
+   \   00000038   0500A0E1           MOV      R0,R5
+   \   0000003C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    223            if (j_item)
+   \   00000040   000050E3           CMP      R0,#+0
+    224              args->first_name = j_item->valuestring;
+   \   00000044   10009015           LDRNE    R0,[R0, #+16]
+    225                    
+    226            j_item = cJSON_GetObjectItem(json, t_last_name);
+   \   00000048   741086E2           ADD      R1,R6,#+116
+   \   0000004C   04008415           STRNE    R0,[R4, #+4]
+   \   00000050   0500A0E1           MOV      R0,R5
+   \   00000054   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    227            if (j_item)
+   \   00000058   000050E3           CMP      R0,#+0
+    228              args->last_name = j_item->valuestring;  
+   \   0000005C   10009015           LDRNE    R0,[R0, #+16]
+    229          
+    230            j_item = cJSON_GetObjectItem(json, t_deactivated);
+    231            if (j_item)
+   \   00000060   381086E2           ADD      R1,R6,#+56
+   \   00000064   08008415           STRNE    R0,[R4, #+8]
+   \   00000068   0500A0E1           MOV      R0,R5
+   \   0000006C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000070   000050E3           CMP      R0,#+0
+    232              args->deactivated = 1;//string: "deleted", "banned"
+   \   00000074   0100A013           MOVNE    R0,#+1
+   \   00000078   0C008415           STRNE    R0,[R4, #+12]
+    233            
+    234            j_item = cJSON_GetObjectItem(json, t_photo_50);
+   \   0000007C   501086E2           ADD      R1,R6,#+80
+   \   00000080   0500A0E1           MOV      R0,R5
+   \   00000084   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    235            if (j_item)
+   \   00000088   000050E3           CMP      R0,#+0
+    236              args->photo_50 = j_item->valuestring;
+   \   0000008C   10009015           LDRNE    R0,[R0, #+16]
+    237          
+    238             j_item = cJSON_GetObjectItem(json, t_has_photo);
+   \   00000090   441086E2           ADD      R1,R6,#+68
+   \   00000094   20008415           STRNE    R0,[R4, #+32]
+   \   00000098   0500A0E1           MOV      R0,R5
+   \   0000009C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    239            if (j_item)
+   \   000000A0   000050E3           CMP      R0,#+0
+    240              args->has_photo = j_item->valueint; 
+   \   000000A4   14009015           LDRNE    R0,[R0, #+20]
+    241          
+    242            j_item = cJSON_GetObjectItem(json, t_friend_status);
+   \   000000A8   801086E2           ADD      R1,R6,#+128
+   \   000000AC   24008415           STRNE    R0,[R4, #+36]
+   \   000000B0   0500A0E1           MOV      R0,R5
+   \   000000B4   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    243            if (j_item)
+   \   000000B8   000050E3           CMP      R0,#+0
+    244              args->friend_status = j_item->valueint; 
+   \   000000BC   14009015           LDRNE    R0,[R0, #+20]
+    245            
+    246            j_item = cJSON_GetObjectItem(json, t_online);
+   \   000000C0   901086E2           ADD      R1,R6,#+144
+   \   000000C4   1C008415           STRNE    R0,[R4, #+28]
+   \   000000C8   0500A0E1           MOV      R0,R5
+   \   000000CC   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    247            if (j_item)
+   \   000000D0   000050E3           CMP      R0,#+0
+    248              args->online = j_item->valueint;  
+   \   000000D4   14009015           LDRNE    R0,[R0, #+20]
+   \   000000D8   18008415           STRNE    R0,[R4, #+24]
+    249          }
+   \   000000DC   7080BDE8           POP      {R4-R6,PC}       ;; return
+    250          
+    251          static void __parse_obj_profiles(cJSON *json)
+    252          {
+    253            if (cJSON_GetArraySize(json) > 0)
+    254            {
+    255              cJSON* i = NULL;
+    256              
+    257              cJSON_ArrayForEach(i, json)
+    258              {
+    259                struct user_args res;
+    260                struct list_head *list;
+    261                
+    262                __parse_obj_User(i, &res);
+    263                
+    264                if (res.friend_status == 3)
+    265                  list = &friends;
+    266                else
+    267                  list = &profiles;
+    268                
+    269                if (find_User(list, res.id) == 0)
+    270                {
+    271                  VkUser *user = new_User(&res);
+    272                  list_add(&user->list, list);
+    273                  VkDialog *dialog = FindDialog(&dialogs, user->id);
+    274                  if (dialog)
+    275                    dialog->user = user;
+    276                }
+    277              }
+    278            } 
+    279          }
+    280          
+    281          //******************************************************************************
+    282          //******************************************************************************
+    283          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    284          static void __parse_obj_Group(cJSON* json, struct group_args *args)
+    285          { 
+   \                     __parse_obj_Group:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    286            
+    287            zeromem(args, sizeof(struct group_args));
+    288            
+    289            cJSON* j_item = cJSON_GetObjectItem(json, t_id);
+   \   00000004   ........           LDR      R6,??DataTable34  ;; t_id
+   \   00000008   0050A0E1           MOV      R5,R0
+   \   0000000C   0140A0E1           MOV      R4,R1
+   \   00000010   2410A0E3           MOV      R1,#+36
+   \   00000014   0400A0E1           MOV      R0,R4
+   \   00000018   1D0100EF           SWI      +285
+   \   0000001C   0610A0E1           MOV      R1,R6
+   \   00000020   0500A0E1           MOV      R0,R5
+   \   00000024   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    290            if (j_item)
+   \   00000028   000050E3           CMP      R0,#+0
+    291              //здесь id положительный почему-то - делаем отрицательным
+    292              args->id = -j_item->valueint;
+   \   0000002C   14009015           LDRNE    R0,[R0, #+20]
+    293                    
+    294            j_item = cJSON_GetObjectItem(json, t_name);
+   \   00000030   981086E2           ADD      R1,R6,#+152
+   \   00000034   00006012           RSBNE    R0,R0,#+0
+   \   00000038   00008415           STRNE    R0,[R4, #+0]
+   \   0000003C   0500A0E1           MOV      R0,R5
+   \   00000040   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    295            if (j_item)
+   \   00000044   000050E3           CMP      R0,#+0
+    296              args->name = j_item->valuestring;
+   \   00000048   10009015           LDRNE    R0,[R0, #+16]
+    297                    
+    298            j_item = cJSON_GetObjectItem(json, t_screen_name);
+   \   0000004C   A01086E2           ADD      R1,R6,#+160
+   \   00000050   04008415           STRNE    R0,[R4, #+4]
+   \   00000054   0500A0E1           MOV      R0,R5
+   \   00000058   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    299            if (j_item)
+   \   0000005C   000050E3           CMP      R0,#+0
+    300              args->screen_name = j_item->valuestring;
+   \   00000060   10009015           LDRNE    R0,[R0, #+16]
+    301          
+    302            j_item = cJSON_GetObjectItem(json, t_is_closed);
+   \   00000064   AC1086E2           ADD      R1,R6,#+172
+   \   00000068   08008415           STRNE    R0,[R4, #+8]
+   \   0000006C   0500A0E1           MOV      R0,R5
+   \   00000070   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    303            if (j_item)
+   \   00000074   000050E3           CMP      R0,#+0
+    304              args->is_closed = j_item->valueint;
+   \   00000078   14009015           LDRNE    R0,[R0, #+20]
+    305            
+    306            j_item = cJSON_GetObjectItem(json, t_deactivated);
+    307            if (j_item)
+   \   0000007C   0170A0E3           MOV      R7,#+1
+   \   00000080   0C008415           STRNE    R0,[R4, #+12]
+   \   00000084   381086E2           ADD      R1,R6,#+56
+   \   00000088   0500A0E1           MOV      R0,R5
+   \   0000008C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000090   000050E3           CMP      R0,#+0
+    308              args->deactivated = 1;//string: "deleted", "banned"
+   \   00000094   10708415           STRNE    R7,[R4, #+16]
+    309            
+    310            j_item = cJSON_GetObjectItem(json, t_type);
+   \   00000098   281086E2           ADD      R1,R6,#+40
+   \   0000009C   0500A0E1           MOV      R0,R5
+   \   000000A0   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000A4   0080B0E1           MOVS     R8,R0
+    311            if (j_item)
+   \   000000A8   1100000A           BEQ      ??__parse_obj_Group_0
+    312            {
+    313              if (strcmp(j_item->valuestring, t_group) == 0)
+   \   000000AC   100098E5           LDR      R0,[R8, #+16]
+   \   000000B0   B81086E2           ADD      R1,R6,#+184
+   \   000000B4   190000EF           SWI      +25
+   \   000000B8   000050E3           CMP      R0,#+0
+   \   000000BC   0B00000A           BEQ      ??__parse_obj_Group_1
+    314                args->type = 0;
+    315              else
+    316                if (strcmp(j_item->valuestring, t_page) == 0)
+   \   000000C0   100098E5           LDR      R0,[R8, #+16]
+   \   000000C4   C01086E2           ADD      R1,R6,#+192
+   \   000000C8   190000EF           SWI      +25
+   \   000000CC   000050E3           CMP      R0,#+0
+    317                  args->type = 1;
+   \   000000D0   14708405           STREQ    R7,[R4, #+20]
+   \   000000D4   0600000A           BEQ      ??__parse_obj_Group_0
+    318                else
+    319                  if (strcmp(j_item->valuestring, t_event) == 0)
+   \   000000D8   100098E5           LDR      R0,[R8, #+16]
+   \   000000DC   C81086E2           ADD      R1,R6,#+200
+   \   000000E0   190000EF           SWI      +25
+   \   000000E4   000050E3           CMP      R0,#+0
+   \   000000E8   0100001A           BNE      ??__parse_obj_Group_0
+    320                    args->type = 2;
+   \   000000EC   0200A0E3           MOV      R0,#+2
+   \                     ??__parse_obj_Group_1:
+   \   000000F0   140084E5           STR      R0,[R4, #+20]
+    321            }
+    322            
+    323            j_item = cJSON_GetObjectItem(json, t_is_member);
+   \                     ??__parse_obj_Group_0:
+   \   000000F4   D01086E2           ADD      R1,R6,#+208
+   \   000000F8   0500A0E1           MOV      R0,R5
+   \   000000FC   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    324            if (j_item)
+   \   00000100   000050E3           CMP      R0,#+0
+    325              args->is_member = j_item->valueint;
+   \   00000104   14009015           LDRNE    R0,[R0, #+20]
+    326            
+    327            j_item = cJSON_GetObjectItem(json, t_has_photo);
+   \   00000108   441086E2           ADD      R1,R6,#+68
+   \   0000010C   18008415           STRNE    R0,[R4, #+24]
+   \   00000110   0500A0E1           MOV      R0,R5
+   \   00000114   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    328            if (j_item)
+   \   00000118   000050E3           CMP      R0,#+0
+    329              args->has_photo = j_item->valueint;
+   \   0000011C   14009015           LDRNE    R0,[R0, #+20]
+    330            
+    331            j_item = cJSON_GetObjectItem(json, t_photo_50);
+   \   00000120   501086E2           ADD      R1,R6,#+80
+   \   00000124   1C008415           STRNE    R0,[R4, #+28]
+   \   00000128   0500A0E1           MOV      R0,R5
+   \   0000012C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    332            if (j_item)
+   \   00000130   000050E3           CMP      R0,#+0
+    333              args->photo_50 = j_item->valuestring;  
+   \   00000134   10009015           LDRNE    R0,[R0, #+16]
+   \   00000138   20008415           STRNE    R0,[R4, #+32]
+    334          }
+   \   0000013C   F081BDE8           POP      {R4-R8,PC}       ;; return
+    335          
+    336          static void __parse_obj_groups(cJSON *j_items)
+    337          {
+    338            if (cJSON_GetArraySize(j_items) > 0)
+    339            {
+    340              cJSON* i = NULL;
+    341              
+    342              cJSON_ArrayForEach(i, j_items)
+    343              {
+    344                struct group_args res;
+    345                struct list_head *list;
+    346                
+    347                __parse_obj_Group(i, &res);
+    348                
+    349                if (res.is_member == 1)
+    350                  list = &my_groups;
+    351                else
+    352                  list = &groups;
+    353                
+    354                if (find_Group(list, res.id) == 0)
+    355                {
+    356                  VkGroup *group = new_Group(&res);
+    357                  list_add_tail(&group->list, list);
+    358                  VkDialog *dialog = FindDialog(&dialogs, group->id);
+    359                  if (dialog)
+    360                  {
+    361                    if (dialog->group)//если вдруг уже создан
+    362                      del_Group(dialog->group);
+    363                    dialog->group = group;
+    364                  }
+    365                }
+    366              }
+    367            } 
+    368          }
+    369          /******************************************************************************/
+    370          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    371          int parse_answer_groups_get(char *json_answer, int *count)
+    372          {
+   \                     parse_answer_groups_get:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   28D04DE2           SUB      SP,SP,#+40
+   \   00000008   0160A0E1           MOV      R6,R1
+    373            int error = 0;
+   \   0000000C   0040A0E3           MOV      R4,#+0
+    374            cJSON *j_err;
+    375            const char *return_parse_end = 0;
+   \   00000010   0020A0E3           MOV      R2,#+0
+   \   00000014   00208DE5           STR      R2,[SP, #+0]
+    376            
+    377            cJSON *json = cJSON_ParseWithOpts(json_answer, &return_parse_end, 0);
+   \   00000018   0D10A0E1           MOV      R1,SP
+   \   0000001C   ........           _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+   \   00000020   0050B0E1           MOVS     R5,R0
+    378            if (json == NULL)
+    379              return(-1);//cJSON parse error
+   \   00000024   0400E001           MVNEQ    R0,R4
+   \   00000028   3F00000A           BEQ      ??parse_answer_groups_get_0
+    380            
+    381            cJSON* j_response = cJSON_GetObjectItem(json, t_response);
+   \   0000002C   ........           LDR      R7,??DataTable52  ;; `?<Constant "server">`
+   \   00000030   101087E2           ADD      R1,R7,#+16
+   \   00000034   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000038   0080B0E1           MOVS     R8,R0
+    382            
+    383            if (j_response)
+   \   0000003C   3000000A           BEQ      ??parse_answer_groups_get_1
+    384            {
+    385              cJSON* j_count = cJSON_GetObjectItem(j_response, t_count);
+   \   00000040   1C1087E2           ADD      R1,R7,#+28
+   \   00000044   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    386              if (j_count)
+   \   00000048   000050E3           CMP      R0,#+0
+    387                *count = j_count->valueint;
+   \   0000004C   14009015           LDRNE    R0,[R0, #+20]
+    388              
+    389              cJSON *j_items = cJSON_GetObjectItem(j_response, t_items);    
+   \   00000050   241087E2           ADD      R1,R7,#+36
+   \   00000054   00008615           STRNE    R0,[R6, #+0]
+   \   00000058   0800A0E1           MOV      R0,R8
+   \   0000005C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000060   0060B0E1           MOVS     R6,R0
+    390              if (j_items)
+   \   00000064   2D00000A           BEQ      ??parse_answer_groups_get_2
+    391                __parse_obj_groups(j_items);
+   \   00000068   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   0000006C   010050E3           CMP      R0,#+1
+   \   00000070   2A0000BA           BLT      ??parse_answer_groups_get_2
+   \   00000074   086096E5           LDR      R6,[R6, #+8]
+   \   00000078   170000EA           B        ??parse_answer_groups_get_3
+   \                     ??parse_answer_groups_get_4:
+   \   0000007C   04109DE5           LDR      R1,[SP, #+4]
+   \   00000080   0700A0E1           MOV      R0,R7
+   \   00000084   ........           _BLF     find_Group,??find_Group??rA
+   \   00000088   000050E3           CMP      R0,#+0
+   \   0000008C   1100001A           BNE      ??parse_answer_groups_get_5
+   \   00000090   04008DE2           ADD      R0,SP,#+4
+   \   00000094   ........           _BLF     new_Group,??new_Group??rA
+   \   00000098   0080A0E1           MOV      R8,R0
+   \   0000009C   040097E5           LDR      R0,[R7, #+4]
+   \   000000A0   048087E5           STR      R8,[R7, #+4]
+   \   000000A4   007088E5           STR      R7,[R8, #+0]
+   \   000000A8   040088E5           STR      R0,[R8, #+4]
+   \   000000AC   008080E5           STR      R8,[R0, #+0]
+   \   000000B0   ........           LDR      R0,??DataTable53  ;; dialogs
+   \   000000B4   081098E5           LDR      R1,[R8, #+8]
+   \   000000B8   ........           _BLF     FindDialog,??FindDialog??rA
+   \   000000BC   0070B0E1           MOVS     R7,R0
+   \   000000C0   0400000A           BEQ      ??parse_answer_groups_get_5
+   \   000000C4   200097E5           LDR      R0,[R7, #+32]
+   \   000000C8   000050E3           CMP      R0,#+0
+   \   000000CC   0000000A           BEQ      ??parse_answer_groups_get_6
+   \   000000D0   ........           _BLF     del_Group,??del_Group??rA
+   \                     ??parse_answer_groups_get_6:
+   \   000000D4   208087E5           STR      R8,[R7, #+32]
+   \                     ??parse_answer_groups_get_5:
+   \   000000D8   006096E5           LDR      R6,[R6, #+0]
+   \                     ??parse_answer_groups_get_3:
+   \   000000DC   000056E3           CMP      R6,#+0
+   \   000000E0   0E00000A           BEQ      ??parse_answer_groups_get_2
+   \   000000E4   04108DE2           ADD      R1,SP,#+4
+   \   000000E8   0600A0E1           MOV      R0,R6
+   \   000000EC   ........           BL       __parse_obj_Group
+   \   000000F0   1C009DE5           LDR      R0,[SP, #+28]
+   \   000000F4   010050E3           CMP      R0,#+1
+   \   000000F8   ........           LDRNE    R7,??DataTable55  ;; groups
+   \   000000FC   ........           LDREQ    R7,??DataTable56  ;; my_groups
+   \   00000100   DDFFFFEA           B        ??parse_answer_groups_get_4
+    392            }
+    393            else
+    394              if (j_err = cJSON_GetObjectItem(json, t_error))
+   \                     ??parse_answer_groups_get_1:
+   \   00000104   081087E2           ADD      R1,R7,#+8
+   \   00000108   0500A0E1           MOV      R0,R5
+   \   0000010C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000110   000050E3           CMP      R0,#+0
+   \   00000114   0100000A           BEQ      ??parse_answer_groups_get_2
+    395                error = __parse_obj_Error(j_err);
+   \   00000118   ........           _BLF     __parse_obj_Error,??__parse_obj_Error??rA
+   \   0000011C   0040A0E1           MOV      R4,R0
+    396            
+    397            if (json) cJSON_Delete(json);
+   \                     ??parse_answer_groups_get_2:
+   \   00000120   0500A0E1           MOV      R0,R5
+   \   00000124   ........           _BLF     cJSON_Delete,??cJSON_Delete??rA
+    398            
+    399            return error;
+   \   00000128   0400A0E1           MOV      R0,R4
+   \                     ??parse_answer_groups_get_0:
+   \   0000012C   28D08DE2           ADD      SP,SP,#+40       ;; stack cleaning
+   \   00000130   F081BDE8           POP      {R4-R8,PC}       ;; return
+    400          }
+    401          
+    402          //******************************************************************************
+    403          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    404          int __parse_answer_users_get()
+    405          {
+    406            int error = 0;
+    407            
+    408            char* end = (char*)(recv_buf+HTTP_HEADER_LENGTH+HTTP_CONTENT_LENGTH);
+    409            *end = '\0';
+   \                     __parse_answer_users_get:
+   \   00000000   ........           LDR      R0,??DataTable47  ;; HTTP_HEADER_LENGTH
+   \   00000004   ........           LDR      R1,??DataTable48  ;; recv_buf
+   \   00000008   ........           LDR      R2,??DataTable49  ;; HTTP_CONTENT_LENGTH
+   \   0000000C   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000010   28D04DE2           SUB      SP,SP,#+40
+   \   00000014   002092E5           LDR      R2,[R2, #+0]
+   \   00000018   003090E5           LDR      R3,[R0, #+0]
+   \   0000001C   005091E5           LDR      R5,[R1, #+0]
+   \   00000020   0040A0E3           MOV      R4,#+0
+   \   00000024   053083E0           ADD      R3,R3,R5
+   \   00000028   0050A0E3           MOV      R5,#+0
+   \   0000002C   0350C2E7           STRB     R5,[R2, +R3]
+    410            
+    411            cJSON* json = cJSON_Parse(recv_buf + HTTP_HEADER_LENGTH);
+   \   00000030   000090E5           LDR      R0,[R0, #+0]
+   \   00000034   001091E5           LDR      R1,[R1, #+0]
+   \   00000038   010080E0           ADD      R0,R0,R1
+   \   0000003C   ........           _BLF     cJSON_Parse,??cJSON_Parse??rA
+   \   00000040   0050B0E1           MOVS     R5,R0
+    412            if (json == NULL)
+   \   00000044   2500000A           BEQ      ??__parse_answer_users_get_0
+    413              return 0;
+    414            
+    415            cJSON* j_response = cJSON_GetObjectItem(json, t_response);
+   \   00000048   ........           LDR      R6,??DataTable52  ;; `?<Constant "server">`
+   \   0000004C   101086E2           ADD      R1,R6,#+16
+   \   00000050   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000054   0070B0E1           MOVS     R7,R0
+    416            if (j_response)
+   \   00000058   1700000A           BEQ      ??__parse_answer_users_get_1
+    417            {
+    418              if (cJSON_GetArraySize(j_response) > 0)
+   \   0000005C   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   00000060   010050E3           CMP      R0,#+1
+   \   00000064   1B0000BA           BLT      ??__parse_answer_users_get_2
+   \   00000068   086097E5           LDR      R6,[R7, #+8]
+   \   0000006C   ........           LDR      R7,??DataTable54  ;; profiles
+    419              {
+    420                cJSON* i = NULL;
+    421                cJSON_ArrayForEach(i, j_response)
+   \                     ??__parse_answer_users_get_3:
+   \   00000070   000056E3           CMP      R6,#+0
+   \   00000074   1700000A           BEQ      ??__parse_answer_users_get_2
+    422                {
+    423                  struct user_args res;
+    424                  
+    425                  __parse_obj_User(i, &res);
+   \   00000078   0D10A0E1           MOV      R1,SP
+   \   0000007C   0600A0E1           MOV      R0,R6
+   \   00000080   ........           BL       __parse_obj_User
+    426                  
+    427                  if (find_User(&profiles, res.id) == 0)
+   \   00000084   00109DE5           LDR      R1,[SP, #+0]
+   \   00000088   0700A0E1           MOV      R0,R7
+   \   0000008C   ........           _BLF     find_User,??find_User??rA
+   \   00000090   000050E3           CMP      R0,#+0
+   \   00000094   0600001A           BNE      ??__parse_answer_users_get_4
+    428                  {
+    429                    VkUser *user = new_User(&res);
+   \   00000098   0D00A0E1           MOV      R0,SP
+   \   0000009C   ........           _BLF     new_User,??new_User??rA
+    430                    list_add(&user->list, &profiles);
+   \   000000A0   001097E5           LDR      R1,[R7, #+0]
+   \   000000A4   040081E5           STR      R0,[R1, #+4]
+   \   000000A8   001080E5           STR      R1,[R0, #+0]
+   \   000000AC   047080E5           STR      R7,[R0, #+4]
+   \   000000B0   000087E5           STR      R0,[R7, #+0]
+    431                  }
+    432                }
+   \                     ??__parse_answer_users_get_4:
+   \   000000B4   006096E5           LDR      R6,[R6, #+0]
+   \   000000B8   ECFFFFEA           B        ??__parse_answer_users_get_3
+    433              }
+    434            }
+    435            else
+    436              if (j_response = cJSON_GetObjectItem(json, t_error))
+   \                     ??__parse_answer_users_get_1:
+   \   000000BC   081086E2           ADD      R1,R6,#+8
+   \   000000C0   0500A0E1           MOV      R0,R5
+   \   000000C4   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000C8   0070B0E1           MOVS     R7,R0
+   \   000000CC   0100000A           BEQ      ??__parse_answer_users_get_2
+    437                error = __parse_obj_Error(j_response);
+   \   000000D0   ........           _BLF     __parse_obj_Error,??__parse_obj_Error??rA
+   \   000000D4   0040A0E1           MOV      R4,R0
+    438            
+    439            if (json) cJSON_Delete(json);
+   \                     ??__parse_answer_users_get_2:
+   \   000000D8   0500A0E1           MOV      R0,R5
+   \   000000DC   ........           _BLF     cJSON_Delete,??cJSON_Delete??rA
+    440            
+    441            return error;
+   \                     ??__parse_answer_users_get_0:
+   \   000000E0   0400A0E1           MOV      R0,R4
+   \   000000E4   28D08DE2           ADD      SP,SP,#+40
+   \   000000E8   F080BDE8           POP      {R4-R7,PC}       ;; return
+    442          }
+    443          /******************************************************************************/
+    444          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    445          int __parse_answer_friends_get()
+    446          {
+    447            return parse_answer_users_get();  
+   \                     __parse_answer_friends_get:
+   \   00000000   ........           _BF      parse_answer_users_get,??parse_answer_users_get??rA  ;; tailcall
+    448          }
+    449          
+    450          /******************************************************************************/
+    451          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    452          int parse_answer_auth_direct()
+    453          {
+    454            int error = 0;
+    455            const char *return_parse_end;
+    456            
+    457            cJSON *json = cJSON_ParseWithOpts(recv_buf+HTTP_HEADER_LENGTH, &return_parse_end, 0);
+   \                     parse_answer_auth_direct:
+   \   00000000   ........           LDR      R0,??DataTable47  ;; HTTP_HEADER_LENGTH
+   \   00000004   ........           LDR      R3,??DataTable48  ;; recv_buf
+   \   00000008   F0412DE9           PUSH     {R4-R8,LR}
+   \   0000000C   04D04DE2           SUB      SP,SP,#+4
+   \   00000010   000090E5           LDR      R0,[R0, #+0]
+   \   00000014   003093E5           LDR      R3,[R3, #+0]
+   \   00000018   0040A0E3           MOV      R4,#+0
+   \   0000001C   0020A0E3           MOV      R2,#+0
+   \   00000020   0D10A0E1           MOV      R1,SP
+   \   00000024   030080E0           ADD      R0,R0,R3
+   \   00000028   ........           _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+   \   0000002C   0050B0E1           MOVS     R5,R0
+    458            if (json == NULL)
+    459              return(-1);//cJSON parse error
+   \   00000030   0400E001           MVNEQ    R0,R4
+   \   00000034   F281BD08           POPEQ    {R1,R4-R8,PC}
+    460            
+    461            cJSON* j_item = cJSON_GetObjectItem(json, t_access_token);
+   \   00000038   ........           LDR      R6,??DataTable52  ;; `?<Constant "server">`
+   \   0000003C   B81086E2           ADD      R1,R6,#+184
+   \   00000040   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    462            if (j_item)
+   \   00000044   000050E3           CMP      R0,#+0
+   \   00000048   0C00000A           BEQ      ??parse_answer_auth_direct_0
+    463            {
+    464              strncpy(ACCESS_TOKEN, j_item->valuestring, ACCESS_TOKEN_MAXLEN-1);
+   \   0000004C   E4709FE5           LDR      R7,??parse_answer_auth_direct_1  ;; my_id
+   \   00000050   101090E5           LDR      R1,[R0, #+16]
+   \   00000054   FF20A0E3           MOV      R2,#+255
+   \   00000058   0C0087E2           ADD      R0,R7,#+12
+   \   0000005C   160100EF           SWI      +278
+    465              
+    466              j_item = cJSON_GetObjectItem(json, t_user_id);
+   \   00000060   7C1086E2           ADD      R1,R6,#+124
+   \   00000064   0500A0E1           MOV      R0,R5
+   \   00000068   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   0000006C   0080B0E1           MOVS     R8,R0
+    467              if (j_item)
+   \   00000070   2C00000A           BEQ      ??parse_answer_auth_direct_2
+    468                my_id = j_item->valueint;
+   \   00000074   140090E5           LDR      R0,[R0, #+20]
+   \   00000078   000087E5           STR      R0,[R7, #+0]
+   \   0000007C   290000EA           B        ??parse_answer_auth_direct_2
+    469            }
+    470            else
+    471              if (j_item = cJSON_GetObjectItem(json, t_error))
+   \                     ??parse_answer_auth_direct_0:
+   \   00000080   081086E2           ADD      R1,R6,#+8
+   \   00000084   0500A0E1           MOV      R0,R5
+   \   00000088   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   0000008C   0080B0E1           MOVS     R8,R0
+   \   00000090   2400000A           BEQ      ??parse_answer_auth_direct_2
+    472              {
+    473                if (strcmp(j_item->valuestring, t_need_captcha) == 0)
+   \   00000094   100098E5           LDR      R0,[R8, #+16]
+   \   00000098   9C409FE5           LDR      R4,??parse_answer_auth_direct_1+0x4  ;; error_msg
+   \   0000009C   841086E2           ADD      R1,R6,#+132
+   \   000000A0   190000EF           SWI      +25
+   \   000000A4   000050E3           CMP      R0,#+0
+   \   000000A8   0500001A           BNE      ??parse_answer_auth_direct_3
+    474                {
+    475                  strncpy(error_msg, j_item->valuestring, 255);
+   \   000000AC   101098E5           LDR      R1,[R8, #+16]
+   \   000000B0   FF20A0E3           MOV      R2,#+255
+   \   000000B4   0400A0E1           MOV      R0,R4
+   \   000000B8   160100EF           SWI      +278
+    476                  error = 14;
+   \   000000BC   0E40A0E3           MOV      R4,#+14
+   \   000000C0   180000EA           B        ??parse_answer_auth_direct_2
+    477                }
+    478                else
+    479                  if (stricmp(j_item->valuestring, t_need_validation) == 0)
+   \                     ??parse_answer_auth_direct_3:
+   \   000000C4   100098E5           LDR      R0,[R8, #+16]
+   \   000000C8   941086E2           ADD      R1,R6,#+148
+   \   000000CC   ........           _BLF     stricmp,??stricmp??rA
+   \   000000D0   000050E3           CMP      R0,#+0
+   \   000000D4   0500001A           BNE      ??parse_answer_auth_direct_4
+    480                  {
+    481                    strncpy(error_msg, j_item->valuestring, 255);
+   \   000000D8   101098E5           LDR      R1,[R8, #+16]
+   \   000000DC   FF20A0E3           MOV      R2,#+255
+   \   000000E0   0400A0E1           MOV      R0,R4
+   \   000000E4   160100EF           SWI      +278
+    482                    error = 17;
+   \   000000E8   1140A0E3           MOV      R4,#+17
+   \   000000EC   0D0000EA           B        ??parse_answer_auth_direct_2
+    483                  }
+    484                  else
+    485                    if (j_item = cJSON_GetObjectItem(json, t_error_description))
+   \                     ??parse_answer_auth_direct_4:
+   \   000000F0   A41086E2           ADD      R1,R6,#+164
+   \   000000F4   0500A0E1           MOV      R0,R5
+   \   000000F8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000FC   0080B0E1           MOVS     R8,R0
+   \   00000100   0300000A           BEQ      ??parse_answer_auth_direct_5
+    486                      {
+    487                        utf82win(error_msg, j_item->valuestring);
+   \   00000104   101090E5           LDR      R1,[R0, #+16]
+   \   00000108   0400A0E1           MOV      R0,R4
+   \   0000010C   ........           _BLF     utf82win,??utf82win??rA
+    488                        error = 1;
+   \   00000110   030000EA           B        ??parse_answer_auth_direct_6
+    489                      }
+    490                    else
+    491                    {
+    492                      strncpy(error_msg, j_item->valuestring, 255);
+   \                     ??parse_answer_auth_direct_5:
+   \   00000114   101090E5           LDR      R1,[R0, #+16]
+   \   00000118   FF20A0E3           MOV      R2,#+255
+   \   0000011C   0400A0E1           MOV      R0,R4
+   \   00000120   160100EF           SWI      +278
+    493                      error = 1;
+   \                     ??parse_answer_auth_direct_6:
+   \   00000124   0140A0E3           MOV      R4,#+1
+    494                    }
+    495              }
+    496            
+    497            if (json)
+    498              cJSON_Delete(json);
+   \                     ??parse_answer_auth_direct_2:
+   \   00000128   0500A0E1           MOV      R0,R5
+   \   0000012C   ........           _BLF     cJSON_Delete,??cJSON_Delete??rA
+    499           
+    500            return error;
+   \   00000130   0400A0E1           MOV      R0,R4
+   \   00000134   F281BDE8           POP      {R1,R4-R8,PC}    ;; return
+   \                     ??parse_answer_auth_direct_1:
+   \   00000138   ........           DC32     my_id
+   \   0000013C   ........           DC32     error_msg
+    501          }
+    502          
+    503          //***************************** messages.getLongPollServer *********************
+    504          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    505          int parse_answer_messages_getLongPollServer() /// json->response->{key, server, ts, pts} 
+    506          { 
+    507            int error = 0;
+    508            
+    509            char* end=(char*)(recv_buf+HTTP_HEADER_LENGTH+HTTP_CONTENT_LENGTH);
+    510            *end='\0';
+   \                     parse_answer_messages_getLongPollServer:
+   \   00000000   ........           LDR      R0,??DataTable47  ;; HTTP_HEADER_LENGTH
+   \   00000004   ........           LDR      R1,??DataTable48  ;; recv_buf
+   \   00000008   ........           LDR      R2,??DataTable49  ;; HTTP_CONTENT_LENGTH
+   \   0000000C   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000010   002092E5           LDR      R2,[R2, #+0]
+   \   00000014   003090E5           LDR      R3,[R0, #+0]
+   \   00000018   005091E5           LDR      R5,[R1, #+0]
+   \   0000001C   0040A0E3           MOV      R4,#+0
+   \   00000020   053083E0           ADD      R3,R3,R5
+   \   00000024   0050A0E3           MOV      R5,#+0
+   \   00000028   0350C2E7           STRB     R5,[R2, +R3]
+    511            
+    512            cJSON* json = cJSON_Parse(recv_buf+HTTP_HEADER_LENGTH);
+   \   0000002C   000090E5           LDR      R0,[R0, #+0]
+   \   00000030   001091E5           LDR      R1,[R1, #+0]
+   \   00000034   010080E0           ADD      R0,R0,R1
+   \   00000038   ........           _BLF     cJSON_Parse,??cJSON_Parse??rA
+   \   0000003C   0050B0E1           MOVS     R5,R0
+    513            if (json == NULL)
+   \   00000040   3100000A           BEQ      ??parse_answer_messages_getLongPollServer_0
+    514              return 0;
+    515            
+    516            cJSON* j_response = cJSON_GetObjectItem(json, t_response);
+   \   00000044   ........           LDR      R8,??DataTable52  ;; `?<Constant "server">`
+   \   00000048   101088E2           ADD      R1,R8,#+16
+   \   0000004C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000050   0070B0E1           MOVS     R7,R0
+    517            if (j_response)
+   \   00000054   2300000A           BEQ      ??parse_answer_messages_getLongPollServer_1
+    518            {
+    519              error = 0;
+    520              
+    521              cJSON* j_item = cJSON_GetObjectItem(j_response, "key");
+    522              if (j_item)
+   \   00000058   ........           LDR      R6,??DataTable51  ;; my_id
+   \   0000005C   2C1F8FE2           ADR      R1,??parse_answer_messages_getLongPollServer_2  ;; "key"
+   \   00000060   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000064   000050E3           CMP      R0,#+0
+   \   00000068   0500000A           BEQ      ??parse_answer_messages_getLongPollServer_3
+    523                strncpy(lp_key, j_item->valuestring, 63);
+   \   0000006C   101090E5           LDR      R1,[R0, #+16]
+   \   00000070   3F20A0E3           MOV      R2,#+63
+   \   00000074   0C00A0E3           MOV      R0,#+12
+   \   00000078   500E80E3           ORR      R0,R0,#0x500
+   \   0000007C   060080E0           ADD      R0,R0,R6
+   \   00000080   160100EF           SWI      +278
+    524              
+    525              j_item = cJSON_GetObjectItem(j_response, "server");
+   \                     ??parse_answer_messages_getLongPollServer_3:
+   \   00000084   0810A0E1           MOV      R1,R8
+   \   00000088   0700A0E1           MOV      R0,R7
+   \   0000008C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    526              if (j_item)
+   \   00000090   000050E3           CMP      R0,#+0
+   \   00000094   0500000A           BEQ      ??parse_answer_messages_getLongPollServer_4
+    527                strncpy(lp_server, j_item->valuestring, 31);
+   \   00000098   101090E5           LDR      R1,[R0, #+16]
+   \   0000009C   1F20A0E3           MOV      R2,#+31
+   \   000000A0   4C00A0E3           MOV      R0,#+76
+   \   000000A4   500E80E3           ORR      R0,R0,#0x500
+   \   000000A8   060080E0           ADD      R0,R0,R6
+   \   000000AC   160100EF           SWI      +278
+    528              
+    529              j_item = cJSON_GetObjectItem(j_response, "ts");
+   \                     ??parse_answer_messages_getLongPollServer_4:
+   \   000000B0   181F8FE2           ADR      R1,??parse_answer_messages_getLongPollServer_2+0x4  ;; "ts"
+   \   000000B4   0700A0E1           MOV      R0,R7
+   \   000000B8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    530              if (j_item)
+   \   000000BC   000050E3           CMP      R0,#+0
+    531                lp_ts = j_item->valueint;
+   \   000000C0   14009015           LDRNE    R0,[R0, #+20]
+    532              
+    533              j_item = cJSON_GetObjectItem(j_response, "pts");
+   \   000000C4   141F8FE2           ADR      R1,??parse_answer_messages_getLongPollServer_2+0x8  ;; "pts"
+   \   000000C8   04008615           STRNE    R0,[R6, #+4]
+   \   000000CC   0700A0E1           MOV      R0,R7
+   \   000000D0   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    534              if (j_item)
+   \   000000D4   000050E3           CMP      R0,#+0
+   \   000000D8   0900000A           BEQ      ??parse_answer_messages_getLongPollServer_5
+    535                pts = j_item->valueint;
+   \   000000DC   140090E5           LDR      R0,[R0, #+20]
+   \   000000E0   080086E5           STR      R0,[R6, #+8]
+   \   000000E4   060000EA           B        ??parse_answer_messages_getLongPollServer_5
+    536            }
+    537            else
+    538              if (j_response = cJSON_GetObjectItem(json, t_error))
+   \                     ??parse_answer_messages_getLongPollServer_1:
+   \   000000E8   081088E2           ADD      R1,R8,#+8
+   \   000000EC   0500A0E1           MOV      R0,R5
+   \   000000F0   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000F4   0070B0E1           MOVS     R7,R0
+   \   000000F8   0100000A           BEQ      ??parse_answer_messages_getLongPollServer_5
+    539                error = __parse_obj_Error(j_response);
+   \   000000FC   ........           _BLF     __parse_obj_Error,??__parse_obj_Error??rA
+   \   00000100   0040A0E1           MOV      R4,R0
+    540              
+    541            if (json) cJSON_Delete(json);
+   \                     ??parse_answer_messages_getLongPollServer_5:
+   \   00000104   0500A0E1           MOV      R0,R5
+   \   00000108   ........           _BLF     cJSON_Delete,??cJSON_Delete??rA
+    542            
+    543            return error;
+   \                     ??parse_answer_messages_getLongPollServer_0:
+   \   0000010C   0400A0E1           MOV      R0,R4
+   \   00000110   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??parse_answer_messages_getLongPollServer_2:
+   \   00000114   6B657900           DC8      "key"
+   \   00000118   74730000           DC8      "ts",+0
+   \   0000011C   70747300           DC8      "pts"
+    544          }
+    545          
+    546          //************************** messages.getLongPollHistory ***********************
+    547          /*
+    548          int parse_answer_messages_getLongPollHistory(LIST_HEAD *messages, LIST_HEAD *profiles)
+    549          {// json->response->{history[], messages->{count, items[{conversation, last_message}], new_pts, profiles[], conversations[]} 
+    550            
+    551            int error = 0;
+    552            int count = 0;
+    553            
+    554            char* end=(char*)(recv_buf+HTTP_HEADER_LENGTH+HTTP_CONTENT_LENGTH);
+    555            *end='\0';
+    556            
+    557            cJSON* json = cJSON_Parse(recv_buf+HTTP_HEADER_LENGTH);
+    558            if (json == NULL)
+    559              return 0;
+    560            
+    561            cJSON* j_response = cJSON_GetObjectItem(json, t_response);
+    562            if (j_response)
+    563            { 
+    564              cJSON* j_messages = cJSON_GetObjectItem(j_response, "messages");
+    565              if (j_messages)
+    566              {
+    567                cJSON* j_count = cJSON_GetObjectItem(j_messages, t_count);
+    568                if (j_count)
+    569                  count = j_count->valueint;
+    570                
+    571                cJSON* j_items = cJSON_GetObjectItem(j_messages, t_items);
+    572                if (j_items)
+    573                {                            
+    574                  if (cJSON_GetArraySize(j_items) > 0)
+    575                  {
+    576                    cJSON* i = NULL;              
+    577                    cJSON_ArrayForEach(i, j_items)
+    578                    {
+    579                      struct message_args __msg_args;
+    580                      LIST_HEAD(__attachments);
+    581                      __parse_obj_Message(i, &__msg_args, &__attachments);
+    582                      VkMsg *message = new_Message(&__msg_args, &__attachments);
+    583                      list_add(&message->list, messages);
+    584                    }
+    585                  }
+    586                }
+    587              }
+    588              
+    589              cJSON* j_new_pts = cJSON_GetObjectItem(j_response, "new_pts");
+    590              if (j_new_pts)
+    591                pts = j_new_pts->valueint;
+    592              
+    593              cJSON* j_profiles = cJSON_GetObjectItem(j_response, t_profiles);
+    594              if (j_profiles)
+    595                __parse_obj_profiles(j_profiles);
+    596            }
+    597            else
+    598              if (j_response = cJSON_GetObjectItem(json, t_error))
+    599                error = __parse_obj_Error(j_response);
+    600            
+    601            if (json) cJSON_Delete(json);
+    602          
+    603            return error;
+    604          }
+    605          */
+    606          //************************** messages.getConversations *************************
+    607          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    608          int parse_answer_messages_getConversations(char *json_answer, int *count)
+    609          {/* json->response->{count, items[{conversation, last_message}], profiles[]} */
+   \                     parse_answer_messages_getConversations:
+   \   00000000   F04F2DE9           PUSH     {R4-R11,LR}
+   \   00000004   78D04DE2           SUB      SP,SP,#+120
+   \   00000008   0160A0E1           MOV      R6,R1
+    610            int error = 0;
+   \   0000000C   0020A0E3           MOV      R2,#+0
+   \   00000010   0C208DE5           STR      R2,[SP, #+12]
+    611            const char *return_parse_end = 0;
+   \   00000014   10208DE5           STR      R2,[SP, #+16]
+    612            
+    613            cJSON *json = cJSON_ParseWithOpts(json_answer, &return_parse_end, 0);
+   \   00000018   10108DE2           ADD      R1,SP,#+16
+   \   0000001C   ........           _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+   \   00000020   00008DE5           STR      R0,[SP, #+0]
+    614            if (json == NULL)
+   \   00000024   000050E3           CMP      R0,#+0
+    615              return(-1);//cJSON parse error
+   \   00000028   0000E003           MVNEQ    R0,#+0
+   \   0000002C   AD00000A           BEQ      ??parse_answer_messages_getConversations_0
+    616            
+    617            cJSON* j_response = cJSON_GetObjectItem(json, t_response);
+   \   00000030   ........           LDR      R4,??DataTable52  ;; `?<Constant "server">`
+   \   00000034   101084E2           ADD      R1,R4,#+16
+   \   00000038   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   0000003C   0050B0E1           MOVS     R5,R0
+    618            if (j_response)
+   \   00000040   9E00000A           BEQ      ??parse_answer_messages_getConversations_1
+    619            {
+    620              cJSON* j_count = cJSON_GetObjectItem(j_response, t_count);
+   \   00000044   1C1084E2           ADD      R1,R4,#+28
+   \   00000048   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+    621              if (j_count)
+   \   0000004C   000050E3           CMP      R0,#+0
+    622                *count = j_count->valueint;    
+   \   00000050   14009015           LDRNE    R0,[R0, #+20]
+    623              
+    624              cJSON* j_items = cJSON_GetObjectItem(j_response, t_items);
+   \   00000054   241084E2           ADD      R1,R4,#+36
+   \   00000058   00008615           STRNE    R0,[R6, #+0]
+    625              if (j_items)
+   \   0000005C   ........           LDR      R6,??DataTable53  ;; dialogs
+   \   00000060   0500A0E1           MOV      R0,R5
+   \   00000064   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000068   0070B0E1           MOVS     R7,R0
+   \   0000006C   4000000A           BEQ      ??parse_answer_messages_getConversations_2
+    626              {
+    627                if (cJSON_GetArraySize(j_items) > 0)
+   \   00000070   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   00000074   010050E3           CMP      R0,#+1
+   \   00000078   3D0000BA           BLT      ??parse_answer_messages_getConversations_2
+   \   0000007C   087097E5           LDR      R7,[R7, #+8]
+   \   00000080   0A0000EA           B        ??parse_answer_messages_getConversations_3
+    628                {       
+    629                  cJSON* i = NULL;
+    630                  
+    631                  cJSON_ArrayForEach(i, j_items)
+    632                  {
+    633                    int unread_count = 0;
+    634                    int out_read = 0;
+    635                    cJSON* j_item = cJSON_GetObjectItem(i, t_conversation);
+    636                    if (j_item)
+    637                    {
+    638                      j_item = cJSON_GetObjectItem(j_item, t_out_read);
+    639                      if (j_item)
+    640                        out_read = j_item->valueint;            
+    641                      
+    642                      j_item = cJSON_GetObjectItem(j_item, t_unread_count);
+    643                      if (j_item)
+    644                        unread_count = j_item->valueint;
+    645                    }
+    646                    
+    647                    j_item = cJSON_GetObjectItem(i, t_last_message);
+    648                    if (j_item)
+    649                    {
+    650                      struct message_args __msg_args;
+    651                      LIST_HEAD(__attachments);
+    652                      int id;
+    653                      
+    654                      __parse_obj_Message(j_item, &__msg_args, &__attachments);
+    655                      VkMsg *message = new_Message(&__msg_args, &__attachments);
+    656                      
+    657                      if (__msg_args.out)
+    658                        id = __msg_args.peer_id;
+    659                      else
+    660                        id = __msg_args.from_id;
+    661                      
+    662                      VkDialog *dialog = FindDialog(&dialogs, id);
+    663                      if (dialog)
+    664                      {
+    665                        del_Messages(&dialog->messages);
+    666                        list_add_tail(&message->list, &dialog->messages);
+    667                      }
+    668                      else
+    669                      {
+    670                        dialog = new_Dialog(message, id, unread_count, out_read);
+   \                     ??parse_answer_messages_getConversations_4:
+   \   00000084   0830A0E1           MOV      R3,R8
+   \   00000088   0920A0E1           MOV      R2,R9
+   \   0000008C   0B10A0E1           MOV      R1,R11
+   \   00000090   0A00A0E1           MOV      R0,R10
+   \   00000094   ........           _BLF     new_Dialog,??new_Dialog??rA
+    671                        list_add_tail(&dialog->list, &dialogs);       
+   \   00000098   041096E5           LDR      R1,[R6, #+4]
+   \   0000009C   040086E5           STR      R0,[R6, #+4]
+   \   000000A0   006080E5           STR      R6,[R0, #+0]
+   \   000000A4   041080E5           STR      R1,[R0, #+4]
+   \   000000A8   000081E5           STR      R0,[R1, #+0]
+    672                      }
+   \                     ??parse_answer_messages_getConversations_5:
+   \   000000AC   007097E5           LDR      R7,[R7, #+0]
+   \                     ??parse_answer_messages_getConversations_3:
+   \   000000B0   000057E3           CMP      R7,#+0
+   \   000000B4   2E00000A           BEQ      ??parse_answer_messages_getConversations_2
+   \   000000B8   0090A0E3           MOV      R9,#+0
+   \   000000BC   0080A0E3           MOV      R8,#+0
+   \   000000C0   401084E2           ADD      R1,R4,#+64
+   \   000000C4   0700A0E1           MOV      R0,R7
+   \   000000C8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000CC   000050E3           CMP      R0,#+0
+   \   000000D0   0700000A           BEQ      ??parse_answer_messages_getConversations_6
+   \   000000D4   501084E2           ADD      R1,R4,#+80
+   \   000000D8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000DC   000050E3           CMP      R0,#+0
+   \   000000E0   14809015           LDRNE    R8,[R0, #+20]
+   \   000000E4   5C1084E2           ADD      R1,R4,#+92
+   \   000000E8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000000EC   000050E3           CMP      R0,#+0
+   \   000000F0   14909015           LDRNE    R9,[R0, #+20]
+   \                     ??parse_answer_messages_getConversations_6:
+   \   000000F4   6C1084E2           ADD      R1,R4,#+108
+   \   000000F8   0700A0E1           MOV      R0,R7
+   \   000000FC   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000100   000050E3           CMP      R0,#+0
+   \   00000104   E8FFFF0A           BEQ      ??parse_answer_messages_getConversations_5
+   \   00000108   04208DE2           ADD      R2,SP,#+4
+   \   0000010C   04208DE5           STR      R2,[SP, #+4]
+   \   00000110   08208DE5           STR      R2,[SP, #+8]
+   \   00000114   14108DE2           ADD      R1,SP,#+20
+   \   00000118   ........           BL       __parse_obj_Message
+   \   0000011C   04108DE2           ADD      R1,SP,#+4
+   \   00000120   14008DE2           ADD      R0,SP,#+20
+   \   00000124   ........           _BLF     new_Message,??new_Message??rA
+   \   00000128   00A0A0E1           MOV      R10,R0
+   \   0000012C   28009DE5           LDR      R0,[SP, #+40]
+   \   00000130   000050E3           CMP      R0,#+0
+   \   00000134   20B09D15           LDRNE    R11,[SP, #+32]
+   \   00000138   0600A0E1           MOV      R0,R6
+   \   0000013C   1CB09D05           LDREQ    R11,[SP, #+28]
+   \   00000140   0B10A0E1           MOV      R1,R11
+   \   00000144   ........           _BLF     FindDialog,??FindDialog??rA
+   \   00000148   000050E3           CMP      R0,#+0
+   \   0000014C   CCFFFF0A           BEQ      ??parse_answer_messages_getConversations_4
+   \   00000150   148080E2           ADD      R8,R0,#+20
+   \   00000154   0800A0E1           MOV      R0,R8
+   \   00000158   ........           _BLF     del_Messages,??del_Messages??rA
+   \   0000015C   040098E5           LDR      R0,[R8, #+4]
+   \   00000160   04A088E5           STR      R10,[R8, #+4]
+   \   00000164   00808AE5           STR      R8,[R10, #+0]
+   \   00000168   04008AE5           STR      R0,[R10, #+4]
+   \   0000016C   00A080E5           STR      R10,[R0, #+0]
+   \   00000170   CDFFFFEA           B        ??parse_answer_messages_getConversations_5
+    673                    }
+    674                  }
+    675                }
+    676              }
+    677             
+    678            cJSON* j_profiles = cJSON_GetObjectItem(j_response, t_profiles);
+   \                     ??parse_answer_messages_getConversations_2:
+   \   00000174   2C1084E2           ADD      R1,R4,#+44
+   \   00000178   0500A0E1           MOV      R0,R5
+   \   0000017C   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   00000180   0070B0E1           MOVS     R7,R0
+    679              if (j_profiles)
+   \   00000184   2100000A           BEQ      ??parse_answer_messages_getConversations_7
+    680                __parse_obj_profiles(j_profiles);
+   \   00000188   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   0000018C   010050E3           CMP      R0,#+1
+   \   00000190   1E0000BA           BLT      ??parse_answer_messages_getConversations_7
+   \   00000194   087097E5           LDR      R7,[R7, #+8]
+   \   00000198   120000EA           B        ??parse_answer_messages_getConversations_8
+   \                     ??parse_answer_messages_getConversations_9:
+   \   0000019C   2C109DE5           LDR      R1,[SP, #+44]
+   \   000001A0   0800A0E1           MOV      R0,R8
+   \   000001A4   ........           _BLF     find_User,??find_User??rA
+   \   000001A8   000050E3           CMP      R0,#+0
+   \   000001AC   0C00001A           BNE      ??parse_answer_messages_getConversations_10
+   \   000001B0   2C008DE2           ADD      R0,SP,#+44
+   \   000001B4   ........           _BLF     new_User,??new_User??rA
+   \   000001B8   0090A0E1           MOV      R9,R0
+   \   000001BC   000098E5           LDR      R0,[R8, #+0]
+   \   000001C0   049080E5           STR      R9,[R0, #+4]
+   \   000001C4   000089E5           STR      R0,[R9, #+0]
+   \   000001C8   048089E5           STR      R8,[R9, #+4]
+   \   000001CC   009088E5           STR      R9,[R8, #+0]
+   \   000001D0   081099E5           LDR      R1,[R9, #+8]
+   \   000001D4   0600A0E1           MOV      R0,R6
+   \   000001D8   ........           _BLF     FindDialog,??FindDialog??rA
+   \   000001DC   000050E3           CMP      R0,#+0
+   \   000001E0   1C908015           STRNE    R9,[R0, #+28]
+   \                     ??parse_answer_messages_getConversations_10:
+   \   000001E4   007097E5           LDR      R7,[R7, #+0]
+   \                     ??parse_answer_messages_getConversations_8:
+   \   000001E8   000057E3           CMP      R7,#+0
+   \   000001EC   0700000A           BEQ      ??parse_answer_messages_getConversations_7
+   \   000001F0   2C108DE2           ADD      R1,SP,#+44
+   \   000001F4   0700A0E1           MOV      R0,R7
+   \   000001F8   ........           BL       __parse_obj_User
+   \   000001FC   48009DE5           LDR      R0,[SP, #+72]
+   \   00000200   030050E3           CMP      R0,#+3
+   \   00000204   ........           LDRNE    R8,??DataTable54  ;; profiles
+   \   00000208   E0809F05           LDREQ    R8,??parse_answer_messages_getConversations_11  ;; friends
+   \   0000020C   E2FFFFEA           B        ??parse_answer_messages_getConversations_9
+    681              
+    682            cJSON* j_groups = cJSON_GetObjectItem(j_response, t_groups);
+   \                     ??parse_answer_messages_getConversations_7:
+   \   00000210   381084E2           ADD      R1,R4,#+56
+   \   00000214   0500A0E1           MOV      R0,R5
+   \   00000218   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   0000021C   0040B0E1           MOVS     R4,R0
+    683              if (j_groups)
+   \   00000220   2D00000A           BEQ      ??parse_answer_messages_getConversations_12
+    684                __parse_obj_groups(j_groups);    
+   \   00000224   ........           _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+   \   00000228   010050E3           CMP      R0,#+1
+   \   0000022C   2A0000BA           BLT      ??parse_answer_messages_getConversations_12
+   \   00000230   084094E5           LDR      R4,[R4, #+8]
+   \   00000234   170000EA           B        ??parse_answer_messages_getConversations_13
+   \                     ??parse_answer_messages_getConversations_14:
+   \   00000238   54109DE5           LDR      R1,[SP, #+84]
+   \   0000023C   0500A0E1           MOV      R0,R5
+   \   00000240   ........           _BLF     find_Group,??find_Group??rA
+   \   00000244   000050E3           CMP      R0,#+0
+   \   00000248   1100001A           BNE      ??parse_answer_messages_getConversations_15
+   \   0000024C   54008DE2           ADD      R0,SP,#+84
+   \   00000250   ........           _BLF     new_Group,??new_Group??rA
+   \   00000254   0070A0E1           MOV      R7,R0
+   \   00000258   040095E5           LDR      R0,[R5, #+4]
+   \   0000025C   047085E5           STR      R7,[R5, #+4]
+   \   00000260   005087E5           STR      R5,[R7, #+0]
+   \   00000264   040087E5           STR      R0,[R7, #+4]
+   \   00000268   007080E5           STR      R7,[R0, #+0]
+   \   0000026C   081097E5           LDR      R1,[R7, #+8]
+   \   00000270   0600A0E1           MOV      R0,R6
+   \   00000274   ........           _BLF     FindDialog,??FindDialog??rA
+   \   00000278   0050B0E1           MOVS     R5,R0
+   \   0000027C   0400000A           BEQ      ??parse_answer_messages_getConversations_15
+   \   00000280   200095E5           LDR      R0,[R5, #+32]
+   \   00000284   000050E3           CMP      R0,#+0
+   \   00000288   0000000A           BEQ      ??parse_answer_messages_getConversations_16
+   \   0000028C   ........           _BLF     del_Group,??del_Group??rA
+   \                     ??parse_answer_messages_getConversations_16:
+   \   00000290   207085E5           STR      R7,[R5, #+32]
+   \                     ??parse_answer_messages_getConversations_15:
+   \   00000294   004094E5           LDR      R4,[R4, #+0]
+   \                     ??parse_answer_messages_getConversations_13:
+   \   00000298   000054E3           CMP      R4,#+0
+   \   0000029C   0E00000A           BEQ      ??parse_answer_messages_getConversations_12
+   \   000002A0   54108DE2           ADD      R1,SP,#+84
+   \   000002A4   0400A0E1           MOV      R0,R4
+   \   000002A8   ........           BL       __parse_obj_Group
+   \   000002AC   6C009DE5           LDR      R0,[SP, #+108]
+   \   000002B0   010050E3           CMP      R0,#+1
+   \   000002B4   ........           LDRNE    R5,??DataTable55  ;; groups
+   \   000002B8   ........           LDREQ    R5,??DataTable56  ;; my_groups
+   \   000002BC   DDFFFFEA           B        ??parse_answer_messages_getConversations_14
+    685            }
+    686            else
+    687              if (j_response = cJSON_GetObjectItem(json, t_error))
+   \                     ??parse_answer_messages_getConversations_1:
+   \   000002C0   00009DE5           LDR      R0,[SP, #+0]
+   \   000002C4   081084E2           ADD      R1,R4,#+8
+   \   000002C8   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   000002CC   0050B0E1           MOVS     R5,R0
+   \   000002D0   0100000A           BEQ      ??parse_answer_messages_getConversations_12
+    688                error = __parse_obj_Error(j_response);
+   \   000002D4   ........           _BLF     __parse_obj_Error,??__parse_obj_Error??rA
+   \   000002D8   0C008DE5           STR      R0,[SP, #+12]
+    689            
+    690            if (json) cJSON_Delete(json);
+   \                     ??parse_answer_messages_getConversations_12:
+   \   000002DC   00009DE5           LDR      R0,[SP, #+0]
+   \   000002E0   ........           _BLF     cJSON_Delete,??cJSON_Delete??rA
+    691          
+    692            return error;  
+   \   000002E4   0C009DE5           LDR      R0,[SP, #+12]
+   \                     ??parse_answer_messages_getConversations_0:
+   \   000002E8   78D08DE2           ADD      SP,SP,#+120      ;; stack cleaning
+   \   000002EC   F08FBDE8           POP      {R4-R11,PC}      ;; return
+   \                     ??parse_answer_messages_getConversations_11:
+   \   000002F0   ........           DC32     friends
+    693          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable30:
+   \   00000000   ........           DC32     `?<Constant "%s/groups.get?v=%s&ac...">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable34:
+   \   00000000   ........           DC32     t_id
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable47:
+   \   00000000   ........           DC32     HTTP_HEADER_LENGTH
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable48:
+   \   00000000   ........           DC32     recv_buf
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable49:
+   \   00000000   ........           DC32     HTTP_CONTENT_LENGTH
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable51:
+   \   00000000   ........           DC32     my_id
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable52:
+   \   00000000   ........           DC32     `?<Constant "server">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable53:
+   \   00000000   ........           DC32     dialogs
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable54:
+   \   00000000   ........           DC32     profiles
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable55:
+   \   00000000   ........           DC32     groups
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable56:
+   \   00000000   ........           DC32     my_groups
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   70747300           DC8 "pts"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   747300             DC8 "ts"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   6B657900           DC8 "key"
+    694          
+    695          
+    696          /* Старые функции, под xml данные.
+    697          
+    698          int parse_answer_messages_get(int* item_count, int* result_out)
+    699          {
+    700            int err=0;
+    701            int n=0;
+    702            CLIST*c;
+    703            char* body_utf8;
+    704            char* url;
+    705            int url_len;
+    706          
+    707            WSHDR* body_ws; 
+    708            int count;
+    709            int id;//for message
+    710            unsigned date;
+    711            int user_id;
+    712            int read_state;
+    713            int out;
+    714            int emoji;  
+    715            int attach;
+    716            
+    717            char* s=recv_buf+HTTP_HEADER_LENGTH;
+    718            char* msgblk;
+    719            char* msgblk_end;
+    720            
+    721            char* start_tag=NULL;
+    722            char* end_tag=NULL;
+    723            
+    724            if (err=checkError(s))
+    725              return err;
+    726            
+    727            count=0;
+    728            if (s=strstr(s, "<count>"))
+    729            {
+    730              s+=7;
+    731              count=strtol(s, 0, 10);
+    732            }
+    733            
+    734            if(count==0)
+    735              return err;
+    736            
+    737            if (strstr(s, "<message>"))
+    738            {
+    739              start_tag="<message>";
+    740              end_tag="</message>";
+    741            }
+    742            else
+    743            {
+    744              start_tag="<item>";
+    745              end_tag="</item>";
+    746            }
+    747            
+    748            if (start_tag==NULL || end_tag==NULL)
+    749              return parseError();
+    750            
+    751            while (msgblk=strstr(s, start_tag))
+    752            {
+    753              if(msgblk_end=strstr(s, end_tag))
+    754                 *msgblk_end='\0';
+    755              else
+    756                return parseError();
+    757              
+    758              id=0; 
+    759              if(s=strstr(msgblk, "<id>"))
+    760              {
+    761                s+=4;
+    762                id=strtol(s, 0, 10); 
+    763               }
+    764              
+    765              date=0;
+    766              if(s=strstr(msgblk, "<date>"))
+    767              {
+    768                s+=6;
+    769                date=strtol(s, 0, 10); 
+    770               }    
+    771          
+    772              user_id=0;
+    773              if(s=strstr(msgblk, "<user_id>"))
+    774              {
+    775                s+=9;
+    776                user_id=strtol(s, 0, 10);
+    777              }
+    778          
+    779              read_state=0;
+    780              if(s=strstr(msgblk, "<read_state>"))
+    781              {
+    782                s+=12;
+    783                read_state=strtol(s, 0, 10); 
+    784              }
+    785              
+    786              out=0;
+    787              if(s=strstr(msgblk, "<out>"))
+    788              {
+    789                s+=5;
+    790                out=strtol(s, 0, 10); 
+    791              }
+    792                 
+    793              body_utf8=NULL;
+    794              body_ws=NULL;
+    795              emoji=0;
+    796              if(s=strstr(msgblk, "<body>"))
+    797              {
+    798                s+=6;
+    799                char* body_end=strstr(s, "</body>"); 
+    800                *body_end='\0';
+    801                body_utf8=Replace_Special_Syms(s);
+    802                *body_end='<';      
+    803                
+    804                if (s=strstr(s, "<emoji>"))
+    805                {
+    806                  s+=7;
+    807                  emoji=strtol(s, 0, 10);
+    808                }
+    809              }
+    810              
+    811              attach=0;
+    812              url=NULL;
+    813              if (s=strstr(msgblk, "<attachment>"))
+    814              {
+    815                if (s=strstr(s, "<type>"))
+    816                {
+    817                  s+=6;
+    818                  for (; *s == ' ' || *s == '\n' || *s == '\r'; s++);
+    819                   
+    820                  if (strncmp(s, "wall", 4)==0)
+    821                    attach=8;
+    822                  else
+    823                    if (strncmp(s, "photo", 5)==0)
+    824                      attach=1;
+    825                    else
+    826                      if (strncmp(s, "video", 5)==0)
+    827                      attach=2;
+    828                    else
+    829                      if (strncmp(s, "link", 4)==0)
+    830                      {
+    831                        if(s=strstr(s, "<url>"))
+    832                        {
+    833                          s+=5;
+    834                          url=s;
+    835                          url_len=strstr(s, "</url>")-s;
+    836                          attach=5;
+    837                        }
+    838                      }
+    839                }
+    840              }
+    841              
+    842              *msgblk_end='<';
+    843              s=msgblk_end+strlen(end_tag);
+    844              
+    845              if (body_utf8)
+    846              {
+    847                int len=strlen(body_utf8);
+    848                if (emoji)
+    849                  len=Replace_Smiles_Syms(body_utf8);
+    850          
+    851                body_ws=AllocWS(utf8_syms_n(body_utf8, len));
+    852                utf8_2ws(body_ws, body_utf8, len);
+    853                mfree(body_utf8);
+    854              }
+    855              else
+    856                if (url)
+    857                {
+    858                  body_ws=AllocWS(url_len);
+    859                  str_2ws(body_ws, url, url_len);
+    860                 }
+    861          
+    862              
+    863              if (user_id && date)//иначе итем без полезной инфы
+    864              {
+    865              
+    866              if ((c=FindContactById(csm->dialogs_list, user_id))==0)//если контакта нет в списке
+    867                c=CreateContact(user_id);
+    868                //тут можно скопировать данные контакта из списка друзей
+    869          
+    870              
+    871              PERSONAL_MSG* msg=FindMsgById(c, id);
+    872          
+    873              if (msg)//если сообщение уже есть в списке,то обновим его статус прочтения
+    874              {
+    875                msg->read_state=read_state;
+    876                if (body_ws)
+    877                  FreeWS(body_ws); 
+    878              }
+    879                
+    880              else//новое сообщение
+    881              {
+    882                msg=AllocMSG();
+    883                msg->id=id;
+    884                msg->date=date;
+    885                msg->user_id=user_id; 
+    886                msg->read_state=read_state;
+    887                msg->out=out;
+    888                msg->body=body_ws;
+    889                msg->emoji=emoji;
+    890                msg->attach=attach;
+    891                
+    892                AddMsg(c, msg);  
+    893                AddContactToList(&csm->dialogs_list, c);
+    894                
+    895                if (out==0 && msg->read_state==0)
+    896                  total_unread_messages++;
+    897                
+    898                if (out)
+    899                  *result_out=1;
+    900                
+    901                if (msg->id > last_message_id)
+    902                  last_message_id=msg->id;
+    903                
+    904                n++;
+    905              }
+    906              }
+    907            }
+    908            *item_count=n;
+    909            return err;
+    910          }
+    911          
+    912          
+    913          
+    914          int parse_answer_messages_getHistory()
+    915          {
+    916            int result_count;
+    917            int result_out;
+    918            return parse_answer_messages_get(&result_count, &result_out);  
+    919          }
+    920          
+    921          
+    922          
+    923          int parse_answer_messages_getDialogs()
+    924          {
+    925            int result_count;
+    926            int result_out;
+    927            return parse_answer_messages_get(&result_count, &result_out);
+    928          }
+    929          
+    930          
+    931          
+    932          int parse_answer_groups_get(CLIST** cltop_adr)
+    933          {
+    934            int err=0;
+    935            CLIST* c;
+    936            CLIST** cl=(CLIST**)cltop_adr;
+    937            WSHDR* ws1;
+    938            WSHDR* ws2;
+    939            
+    940            int id=0;
+    941            const char* first_name;//for name
+    942            const char* last_name;//for sreen_name
+    943            const char* photo50_url;  
+    944            int first_name_len=0;
+    945            int last_name_len=0;
+    946            int photo50_url_len=0;
+    947            int deactivated;
+    948            
+    949            char* content=recv_buf+HTTP_HEADER_LENGTH;
+    950            char* userblk;
+    951            char* userblk_end;
+    952            char* s=content;
+    953            
+    954            if (err=checkError(content))
+    955              return err;
+    956            
+    957             while (userblk=strstr(s, "<group>"))
+    958             {
+    959               s=userblk+6;
+    960               userblk_end=strstr(s, "</group>");
+    961               *userblk_end='\0';
+    962              
+    963               id=0;
+    964               if(s=strstr(userblk, "<id>"))
+    965               {
+    966                 s+=4;
+    967                 id=strtol(s, 0, 10);
+    968                 if (id > 0)
+    969                   id=-id; //тут знак у id положительный-делаем отрицательным
+    970               }
+    971               
+    972               first_name=NULL;
+    973               if(s=strstr(userblk, "<name>"))
+    974               {
+    975                 s+=6;
+    976                 first_name=s;
+    977                 first_name_len=strstr(s, "</name>") - s;
+    978                 s+=first_name_len;
+    979               }
+    980               
+    981               last_name=NULL;
+    982               if(s=strstr(userblk, "<screen_name>"))
+    983               {
+    984                 s+=13;
+    985                 last_name=s;
+    986                 last_name_len=strstr(s, "</screen_name>") - s;
+    987                 s+=last_name_len;         
+    988               }
+    989          
+    990               deactivated=0;
+    991               if(s=strstr(userblk, "<deactivated>"))
+    992                 deactivated=1;        
+    993               
+    994               photo50_url=NULL;
+    995               if(s=strstr(userblk, "<photo_50>"))
+    996               {
+    997                 s+=10;
+    998                 photo50_url=s;
+    999                 photo50_url_len=strstr(s, "</photo_50>") - s;
+   1000                 s+=photo50_url_len;
+   1001               }
+   1002               
+   1003               s=userblk_end+7;   
+   1004               
+   1005               
+   1006               if ((c=FindContactById(*cl, id))==0)
+   1007               {
+   1008                 c=CreateContact(id);
+   1009                 AddContactToList(cl, c);
+   1010               }
+   1011               
+   1012               if (c->first_name)
+   1013                 FreeWS(c->first_name);
+   1014               if (c->last_name)
+   1015                 FreeWS(c->last_name);
+   1016               
+   1017               ws1=AllocWS(65);
+   1018               ws2=AllocWS(65);
+   1019               utf8_2ws(ws1, first_name, first_name_len);
+   1020               utf8_2ws(ws2, last_name, last_name_len);
+   1021               c->first_name=ws1;
+   1022               c->last_name=ws2;
+   1023               c->deactivated=deactivated;
+   1024               c->photo_url=malloc(photo50_url_len+1);
+   1025               strncpy(c->photo_url, photo50_url, photo50_url_len);
+   1026               c->photo_url[photo50_url_len]='\0';
+   1027             }
+   1028             return err;
+   1029          }
+   1030          
+   1031          
+   1032          int parse_answer_messages_send()
+   1033          {
+   1034            int err=0;
+   1035            char* s=recv_buf+HTTP_HEADER_LENGTH;
+   1036            
+   1037            if (err=checkError(s))
+   1038              return err;
+   1039            
+   1040            return err;
+   1041          }
+   1042          
+   1043          int parse_answer_messages_deleteDialog(int* user_id)
+   1044          {
+   1045            int err=0;
+   1046            char* s=recv_buf+HTTP_HEADER_LENGTH;
+   1047            
+   1048            *user_id=last_user_id;
+   1049            
+   1050            if (err=checkError(s))
+   1051              return err;
+   1052            
+   1053            return err;
+   1054          }
+   1055          
+   1056          int parse_answer_friends_get()
+   1057          {
+   1058            return parse_answer_users_get();  
+   1059          }
+   1060          
+   1061          
+   1062          int parse_answer_wall_get(int* item_count)//!!!рассчитано на чтение только одного сообщения
+   1063          {
+   1064            int err=0;
+   1065            int n=0;
+   1066            CLIST*c;
+   1067            WALL_MSG* msg;
+   1068            char* text_utf8;
+   1069          
+   1070            WSHDR* text_ws; 
+   1071            int id;
+   1072            unsigned date;
+   1073            int from_id;
+   1074            int owner_id;
+   1075            int emoji;  
+   1076            WALL_ATTACH* attach_list=NULL;
+   1077            int likes;
+   1078            int comments;
+   1079            
+   1080            char* s=recv_buf+HTTP_HEADER_LENGTH;
+   1081            char* postblk;
+   1082            char* postblk_end;
+   1083            
+   1084            if (err=checkError(s))
+   1085              return err;
+   1086            
+   1087            if (postblk=strstr(s, "<post>"))
+   1088            {
+   1089              s=postblk + (sizeof("<post>")-1);
+   1090          
+   1091              if(postblk_end=strstr(s, "</post>"))
+   1092                 *postblk_end='\0';
+   1093              else
+   1094                return parseError();
+   1095              
+   1096              id=0; 
+   1097              if(s=strstr(postblk, "<id>"))
+   1098              {
+   1099                s+=4;
+   1100                id=strtol(s, 0, 10); 
+   1101               }
+   1102              
+   1103              from_id=0;
+   1104              if(s=strstr(postblk, "<from_id>"))
+   1105              {
+   1106                s+=9;
+   1107                from_id=strtol(s, 0, 10);
+   1108              }
+   1109              
+   1110              owner_id=0;
+   1111              if(s=strstr(postblk, "<owner_id>"))
+   1112              {
+   1113                s+=10;
+   1114                owner_id=strtol(s, 0, 10);
+   1115              }    
+   1116          
+   1117              date=0;
+   1118              if(s=strstr(postblk, "<date>"))
+   1119              {
+   1120                s+=6;
+   1121                date=strtol(s, 0, 10);
+   1122              }    
+   1123              
+   1124              text_utf8=NULL;
+   1125              text_ws=NULL;
+   1126              emoji=0;
+   1127              if(s=strstr(postblk, "<text>"))
+   1128              {
+   1129                s+=6;
+   1130                char* text_end=strstr(s, "</text>");
+   1131                *text_end='\0';
+   1132                text_utf8=Replace_Special_Syms(s);
+   1133                *text_end='<';
+   1134                
+   1135                if (s=strstr(s, "<emoji>"))
+   1136                {
+   1137                  s+=7;
+   1138                  emoji=strtol(s, 0, 10);
+   1139                }
+   1140              }
+   1141          //------------------------------------------------------------------------------    
+   1142              attach_list=NULL;                                  
+   1143              char* attachblk=postblk; 
+   1144              while (s=strstr(attachblk, "<attachment>"))
+   1145              {
+   1146                char* attachblk_end=strstr(attachblk, "</attachment>");
+   1147                *attachblk_end='\0';
+   1148                  
+   1149                if (s=strstr(s, "<type>"))
+   1150                {
+   1151                  s+=6;
+   1152                  for (; *s == ' ' || *s == '\n' || *s == '\r'; s++);
+   1153                  
+   1154                  if (strncmp(s, "photo", 5)==0)
+   1155                  {
+   1156                    if(s=strstr(s, "<photo_604>"))//130 маловат а 604 большой:(
+   1157                    {
+   1158                      s+=11; 
+   1159                      int len=strstr(s, "</photo_604>") - s;
+   1160                      WALL_ATTACH* wall_attach=malloc(sizeof(WALL_ATTACH));
+   1161                      wall_attach->next=0;
+   1162                      wall_attach->type=1;
+   1163                      wall_attach->url=malloc(len+1);
+   1164                      strncpy(wall_attach->url, s, len);
+   1165                      wall_attach->url[len]='\0';
+   1166                      WALL_ATTACH* a=attach_list;
+   1167                      while (a)
+   1168                      {
+   1169                        if (a->next==0)
+   1170                          break;
+   1171                        a=a->next;
+   1172                      }
+   1173                      if (a)
+   1174                        a->next=wall_attach;
+   1175                      else
+   1176                        attach_list=wall_attach;
+   1177                    }
+   1178                  }
+   1179                  else
+   1180                    if (strncmp(s, "link", 4)==0)
+   1181                    {
+   1182                      if(s=strstr(s, "<url>"))
+   1183                      {
+   1184                        s+=5;
+   1185                        int len=strstr(s, "</url>") - s;
+   1186                        WALL_ATTACH* wall_attach=malloc(sizeof(WALL_ATTACH));
+   1187                        wall_attach->next=0;
+   1188                        wall_attach->type=7;
+   1189                        wall_attach->url=malloc(len+1);
+   1190                        strncpy(wall_attach->url, s, len);
+   1191                        wall_attach->url[len]='\0';
+   1192                        WALL_ATTACH* a=attach_list;
+   1193                        while (a)
+   1194                        {
+   1195                          if (a->next==0)
+   1196                          break;
+   1197                        a=a->next;
+   1198                        }
+   1199                        if (a)
+   1200                          a->next=wall_attach;
+   1201                        else
+   1202                          attach_list=wall_attach;            
+   1203                      }
+   1204                    }
+   1205                    else
+   1206                      if (strncmp(s, "video", 5)==0)
+   1207                      {
+   1208                        WALL_ATTACH* wall_attach=malloc(sizeof(WALL_ATTACH));
+   1209                        wall_attach->next=0;   
+   1210                        wall_attach->type=3;
+   1211                        wall_attach->url=NULL;
+   1212                        WALL_ATTACH* a=attach_list;
+   1213                        while (a)
+   1214                        {
+   1215                          if (a->next==0)
+   1216                            break;
+   1217                          a=a->next;
+   1218                        }
+   1219                        if (a)
+   1220                          a->next=wall_attach;
+   1221                        else
+   1222                          attach_list=wall_attach;  
+   1223                      }
+   1224                }
+   1225                
+   1226                *attachblk_end='<';
+   1227                attachblk=attachblk_end + (sizeof("</attachment>")-1);
+   1228              }     
+   1229          //------------------------------------------------------------------------------  
+   1230              comments=0;
+   1231              if (s=strstr(postblk, "<comments>"))
+   1232              {
+   1233                if(s=strstr(s, "<count>"))
+   1234                {
+   1235                  s+=(sizeof("<count>")-1);
+   1236                  comments=strtol(s, 0, 10);
+   1237                }
+   1238              }
+   1239              
+   1240              likes=0;
+   1241              if (s=strstr(postblk, "<likes>"))
+   1242              {
+   1243                if(s=strstr(s, "<count>"))
+   1244                {
+   1245                  s+=(sizeof("<count>")-1);
+   1246                  likes=strtol(s, 0, 10);
+   1247                }
+   1248              }    
+   1249          //------------------------------------------------------------------------------    
+   1250              *postblk_end='<';
+   1251              s=postblk_end+7;
+   1252              
+   1253              if (text_utf8)
+   1254              {
+   1255                int len=strlen(text_utf8);
+   1256                if (emoji)
+   1257                  len=Replace_Smiles_Syms(text_utf8);
+   1258          
+   1259                text_ws=AllocWS(utf8_syms_n(text_utf8, len));
+   1260                utf8_2ws(text_ws, text_utf8, len);
+   1261                mfree(text_utf8);
+   1262              }
+   1263              
+   1264              if (from_id && date)//иначе итем без полезной инфы
+   1265              {
+   1266                if ((c=FindContactById(csm->groups_list, owner_id))==0)
+   1267                  c=CreateContact(id);
+   1268                
+   1269                msg=(WALL_MSG*)FindMsgById(c, id);
+   1270          
+   1271              if (msg)//если сообщение уже есть в списке
+   1272              {
+   1273                if (text_ws)
+   1274                  FreeWS(text_ws);      
+   1275              }
+   1276              else//новое сообщение
+   1277              {
+   1278                msg=malloc(sizeof(WALL_MSG));
+   1279                msg->next=0;
+   1280                msg->prev=0;
+   1281                msg->id=id;
+   1282                msg->from_id=from_id;
+   1283                msg->date=date;
+   1284                msg->owner_id=owner_id;
+   1285                msg->date=date;
+   1286                msg->text=text_ws;
+   1287                msg->emoji=emoji;
+   1288                msg->attach_list=attach_list;
+   1289                msg->comments=comments;
+   1290                msg->likes=likes;
+   1291                
+   1292                c->wall_msglist=msg;  
+   1293                
+   1294                n++;
+   1295              }
+   1296              }
+   1297            }
+   1298            
+   1299            *item_count=n;
+   1300            
+   1301            s=postblk_end + (sizeof("</post>")-1);
+   1302            msg->profiles=NULL;
+   1303            parse_answer_users_get();
+   1304            
+   1305            return err;
+   1306          }
+   1307          
+   1308          */
+   1309          
+
+   Maximum stack usage in bytes:
+
+     Function                       CSTACK
+     --------                       ------
+     __parse_answer_friends_get         4
+     __parse_answer_users_get          60
+     __parse_obj_Group                 24
+     __parse_obj_Message               24
+     __parse_obj_User                  16
+     parse_answer_auth_direct          28
+     parse_answer_groups_get           64
+     parse_answer_messages_getConversations
+                                      156
+     parse_answer_messages_getLongPollServer
+                                       24
+     url_auth_direct                   32
+     url_execute_getHistory            28
+     url_execute_sendAndGet            28
+     url_friends_get                   36
+     url_groups_get                    28
+     url_groups_getById                28
+     url_messages_deleteDialog         28
+     url_messages_getConversations     36
+     url_messages_getHistory           32
+     url_messages_getLongPollHistory
+                                       36
+     url_messages_getLongPollServer    32
+     url_messages_markAsRead           28
+     url_messages_send                 32
+     url_stats_track_visitor           20
+     url_users_get                     28
+     url_wall_get                      32
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     ?<Constant "server">            200
+     t_id                            220
+     ?<Constant "%s/groups.get?v=%s&ac...">
+                                    1268
+     captcha_img                     128
+     my_id                          1388
+     captcha_seed                      4
+     url_auth_direct                  88
+     url_stats_track_visitor          64
+     url_messages_getLongPollServer   84
+     url_messages_getLongPollHistory
+                                      96
+     url_messages_getConversations    84
+     url_users_get                    80
+     url_messages_getHistory          80
+     url_messages_deleteDialog        80
+     url_messages_markAsRead          80
+     url_friends_get                  84
+     url_messages_send                92
+     url_groups_get                   72
+     url_groups_getById               76
+     url_wall_get                     80
+     url_execute_getHistory           76
+     url_execute_sendAndGet           72
+     __parse_obj_Message             324
+     __parse_obj_User                224
+     __parse_obj_Group               320
+     parse_answer_groups_get         308
+     __parse_answer_users_get        236
+     __parse_answer_friends_get        4
+     parse_answer_auth_direct        320
+     parse_answer_messages_getLongPollServer
+                                     288
+     parse_answer_messages_getConversations
+                                     756
+     ??DataTable30                     4
+     ??DataTable34                     4
+     ??DataTable47                     4
+     ??DataTable48                     4
+     ??DataTable49                     4
+     ??DataTable51                     4
+     ??DataTable52                     4
+     ??DataTable53                     4
+     ??DataTable54                     4
+     ??DataTable55                     4
+     ??DataTable56                     4
+     ?<Constant "pts">                 4
+     ?<Constant "ts">                  3
+     ?<Constant "key">                 4
+      Others                         340
+
+ 
+ 4 440 bytes in segment CODE
+ 1 827 bytes in segment DATA_C
+ 1 392 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 4 112 bytes of CODE  memory (+ 340 bytes shared)
+ 1 827 bytes of CONST memory
+ 1 392 bytes of DATA  memory
+
+Errors: none
+Warnings: none

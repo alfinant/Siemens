@@ -1,0 +1,762 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    24/Nov/2014  18:04:32 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  arm                                                  #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\mai #
+#                       n.c                                                  #
+#    Command line    =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\mai #
+#                       n.c -D NEWSGOLD -D E71v45 -lCN                       #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Rel #
+#                       ease_NSG\List\ -la C:\Users\Инсаф\Documents\Siemens\ #
+#                       alfinant\CapCom\Release_NSG\List\ -o                 #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Rel #
+#                       ease_NSG\Obj\ -z9 --cpu_mode arm --endian little     #
+#                       --cpu ARM926EJ-S --stack_align 4 -e --fpu None       #
+#                       --dlib_config C:\Users\Инсаф\Documents\Siemens\IAR\A #
+#                       RM\LIB\dl5tpannl8n.h -I C:\Users\Инсаф\Documents\Sie #
+#                       mens\IAR\ARM\INC\ --inline_threshold=2               #
+#    List file       =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Rel #
+#                       ease_NSG\List\main.lst                               #
+#    Object file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\Rel #
+#                       ease_NSG\Obj\main.r79                                #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\Инсаф\Documents\Siemens\alfinant\CapCom\main.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/i2c.h"
+      3          #include "../inc/clkman.h"
+      4          #include "../inc/interrupt.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __arm __atpcs int disable_interrupts(void)
+   \                     disable_interrupts:
+   \   00000000   00000FE1           MRS      R0,CPSR
+   \   00000004   1F1000E2           AND      R1,R0,#0x1F
+   \   00000008   100051E3           CMP      R1,#+16
+   \   0000000C   0000001A           BNE      ??disable_interrupts_0
+   \   00000010   040000EF           SWI 4            
+   \                     ??disable_interrupts_0:
+   \   00000014   C01090E3           ORRS     R1,R0,#0xC0
+   \   00000018   01F029E1           MSR      CPSR,R1
+   \   0000001C   C00000E2           AND      R0,R0,#0xC0
+   \   00000020   0EF0A0E1           MOV      PC,LR            ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __arm __atpcs void enable_interrupts(int)
+   \                     enable_interrupts:
+   \   00000000   00100FE1           MRS      R1,CPSR
+   \   00000004   1F2001E2           AND      R2,R1,#0x1F
+   \   00000008   100052E3           CMP      R2,#+16
+   \   0000000C   0000001A           BNE      ??enable_interrupts_0
+   \   00000010   040000EF           SWI 4            
+   \                     ??enable_interrupts_0:
+   \   00000014   C010C1E3           BIC      R1,R1,#0xC0
+   \   00000018   010090E1           ORRS     R0,R0,R1
+   \   0000001C   00F029E1           MSR      CPSR,R0
+   \   00000020   0EF0A0E1           MOV      PC,LR            ;; return
+      5          
+      6          #ifdef NEWSGOLD
+      7          #include "../inc/reg8876.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 488
+
+   \                                 In segment DATA_AN, at 0xf4000000
+   \   CAPCOM_TypeDef __data CCU0
+   \                     CCU0:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_AN, at 0xf4100000
+   \   CAPCOM_TypeDef __data CCU1
+   \                     CCU1:
+   \   00000000                      DS8 256
+      8          #else
+      9          #include "../inc/reg8875.h"
+     10          #endif
+     11          
+     12          void int_ccu1_t0_handler(int irq);
+     13          
+     14          typedef struct{
+     15            char state; //3
+     16            char prio; //max priority==15
+     17            char unk2;
+     18            char unk3;  
+     19            void (*handler)(int vector);
+     20          } IRQ_DESC;
+     21          
+     22          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     23          IRQ_DESC ccu1_t0=
+   \                     ccu1_t0:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for ccu1_t0>`
+     24          {
+     25            3,
+     26            0xA,
+     27            0,
+     28            0,
+     29            int_ccu1_t0_handler,
+     30          };
+     31          
+     32          
+     33          #ifdef  CX75
+     34          #define Register_IRQ ((void(*)(char irq_vector, IRQ_DESC* new, IRQ_DESC *old )) 0xA0ACA5F8)
+     35          #endif
+     36          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     37          int Prescaler = 1; 
+   \                     Prescaler:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for Prescaler>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     38          int Frequency = 1000;
+   \                     Frequency:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for Frequency>`
+     39          int Dutycycle = 50; 
+   \                     Dutycycle:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for Dutycycle>`
+     40          
+     41          
+     42          char dat_40 = 0x26;
+   \                     dat_40:
+   \   00000008                      DS8 1
+   \   00000009                      REQUIRE `?<Initializer for dat_40>`
+     43          char dat_42 = 0x04;
+   \                     dat_42:
+   \   00000009                      DS8 1
+   \   0000000A                      REQUIRE `?<Initializer for dat_42>`
+     44          
+     45          #ifdef SGOLD
+     46          #define PM_RINGIN   GPIO.CC_VZ
+     47          #endif
+     48          #ifdef NEWSGOLD
+     49          #define PM_RINGIN   GPIO.RF_STR1
+     50          #endif
+     51          
+     52          extern void kill_data(void *p, void (*func_p)(void *));
+
+   \                                 In segment CODE, align 4, keep-with-next
+     53          void ElfKiller(void)
+     54          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+     55            extern void *ELF_BEGIN;
+     56            kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; ELF_BEGIN
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     ELF_BEGIN
+     57          }
+     58          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     59          void pwm_test_sound()
+     60          {
+   \                     pwm_test_sound:
+   \   00000000   71402DE9           PUSH     {R0,R4-R6,LR}
+     61            int count;
+     62          
+     63             PM_RINGIN = 0x30; 
+     64             int saved = disable_interrupts();
+     65             count = divide(Frequency << 10, capcom_hw_clk) << 10; // Алгоритм вычислений взят из прошивки.Частота не должна быть больше 26kHz
+   \   00000004   ........           LDR      R5,??DataTable2  ;; Frequency
+   \   00000008   410FA0E3           MOV      R0,#+260
+   \   0000000C   BD0640E2           SUB      R0,R0,#+198180864
+   \   00000010   3010A0E3           MOV      R1,#+48
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+   \   00000018   ........           BL       disable_interrupts
+   \   0000001C   ........           LDR      R1,??DataTable4  ;; 0x18cba80
+   \   00000020   0040A0E1           MOV      R4,R0
+   \   00000024   000095E5           LDR      R0,[R5, #+0]
+     66             CCU1.CLC = 0x100;
+   \   00000028   F064A0E3           MOV      R6,#-268435456
+   \   0000002C   0005A0E1           LSL      R0,R0,#+10
+   \   00000030   BC0000EF           SWI      +188
+   \   00000034   0005A0E1           LSL      R0,R0,#+10
+   \   00000038   416686E3           ORR      R6,R6,#0x4100000
+   \   0000003C   401FA0E3           MOV      R1,#+256
+   \   00000040   001086E5           STR      R1,[R6, #+0]
+     67             CCU1.T0REL = 65536 - count;
+   \   00000044   401B60E2           RSB      R1,R0,#+65536
+   \   00000048   441086E5           STR      R1,[R6, #+68]
+     68             CCU1.T0 = 65536 - count; 
+   \   0000004C   401086E5           STR      R1,[R6, #+64]
+     69             CCU1.CC5 = 65536 - divide(1000, Dutycycle * count * 10);
+   \   00000050   041095E5           LDR      R1,[R5, #+4]
+   \   00000054   900101E0           MUL      R1,R0,R1
+   \   00000058   0A00A0E3           MOV      R0,#+10
+   \   0000005C   900101E0           MUL      R1,R0,R1
+   \   00000060   FA0FA0E3           MOV      R0,#+1000
+   \   00000064   BC0000EF           SWI      +188
+   \   00000068   400B60E2           RSB      R0,R0,#+65536
+   \   0000006C   640086E5           STR      R0,[R6, #+100]
+     70             
+     71             CCU1.CCSEM &= ~ CCSEM5;  //отключаем режим одного события
+   \   00000070   301096E5           LDR      R1,[R6, #+48]
+   \   00000074   2000E0E3           MVN      R0,#+32
+   \   00000078   011000E0           AND      R1,R0,R1
+   \   0000007C   301086E5           STR      R1,[R6, #+48]
+     72             CCU1.CCSEE &= ~ CCSEE5;     
+   \   00000080   2C1096E5           LDR      R1,[R6, #+44]
+   \   00000084   010000E0           AND      R0,R0,R1
+   \   00000088   2C0086E5           STR      R0,[R6, #+44]
+     73             CCU1.CCM1  |=  CCM1_MOD5 & (MODE_COMPARE_3 << 4); /* Режим сравнения 3: При совпадении устанавливается флаг прерывания  и дополнительно выходной контакт CCxIO будет установлен в 1.При переполнение таймера выходной контакт сбрасывается. */
+   \   0000008C   180096E5           LDR      R0,[R6, #+24]
+   \   00000090   700080E3           ORR      R0,R0,#0x70
+   \   00000094   180086E5           STR      R0,[R6, #+24]
+     74             CCU1.CCM1  &= ~ CCM1_ACC5;    /* Обнуляем  бит,регистр захвата/сравнения CC5 будет привязан к таймеру T0 */
+   \   00000098   180096E5           LDR      R0,[R6, #+24]
+   \   0000009C   8000C0E3           BIC      R0,R0,#0x80
+   \   000000A0   180086E5           STR      R0,[R6, #+24]
+     75          
+     76             CCU1.CCIOC &= ~ PL;
+   \   000000A4   280096E5           LDR      R0,[R6, #+40]
+   \   000000A8   0200C0E3           BIC      R0,R0,#0x2
+   \   000000AC   280086E5           STR      R0,[R6, #+40]
+     77             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+   \   000000B0   280096E5           LDR      R0,[R6, #+40]
+   \   000000B4   040080E3           ORR      R0,R0,#0x4
+   \   000000B8   280086E5           STR      R0,[R6, #+40]
+     78             CCU1.CCIOC &= ~ PDS;
+   \   000000BC   281096E5           LDR      R1,[R6, #+40]
+   \   000000C0   0800E0E3           MVN      R0,#+8
+   \   000000C4   011000E0           AND      R1,R0,R1
+   \   000000C8   281086E5           STR      R1,[R6, #+40]
+     79          
+     80          
+     81             CCU1.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */
+   \   000000CC   FC2096E5           LDR      R2,[R6, #+252]
+   \   000000D0   401DE0E3           MVN      R1,#+4096
+   \   000000D4   022001E0           AND      R2,R1,R2
+   \   000000D8   FC2086E5           STR      R2,[R6, #+252]
+     82             CCU1.CC5IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC5 со значением таймера*/
+   \   000000DC   E02096E5           LDR      R2,[R6, #+224]
+   \   000000E0   021001E0           AND      R1,R1,R2
+   \   000000E4   E01086E5           STR      R1,[R6, #+224]
+     83             
+     84             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000E8   101096E5           LDR      R1,[R6, #+16]
+   \   000000EC   0710C1E3           BIC      R1,R1,#0x7
+   \   000000F0   101086E5           STR      R1,[R6, #+16]
+     85             CCU1.T01CON  &= ~ T0M;  /* обнуляем бит,режим таймера */
+   \   000000F4   101096E5           LDR      R1,[R6, #+16]
+   \   000000F8   010000E0           AND      R0,R0,R1
+   \   000000FC   100086E5           STR      R0,[R6, #+16]
+     86             CCU1.T01CON |= T0R;    /* установка этого бита запускает таймер */
+   \   00000100   100096E5           LDR      R0,[R6, #+16]
+   \   00000104   400080E3           ORR      R0,R0,#0x40
+   \   00000108   100086E5           STR      R0,[R6, #+16]
+     87             enable_interrupts(saved);
+   \   0000010C   0400A0E1           MOV      R0,R4
+   \   00000110   ........           BL       enable_interrupts
+     88          
+     89             i2cw_pmu(0x42, &dat_42, 0, 0); //устанавливаем PM_RINGIN источником входного сигнала на Dialog
+   \   00000114   0030A0E3           MOV      R3,#+0
+   \   00000118   0020A0E3           MOV      R2,#+0
+   \   0000011C   091085E2           ADD      R1,R5,#+9
+   \   00000120   4200A0E3           MOV      R0,#+66
+   \   00000124   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+     90             i2cw_pmu(0x40, &dat_40, 0, 0); //громкость
+   \   00000128   0030A0E3           MOV      R3,#+0
+   \   0000012C   0320A0E1           MOV      R2,R3
+   \   00000130   081085E2           ADD      R1,R5,#+8
+   \   00000134   4000A0E3           MOV      R0,#+64
+   \   00000138   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+     91          } 
+   \   0000013C   7180BDE8           POP      {R0,R4-R6,PC}    ;; return
+     92          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     93          void test_pin()
+     94          {
+   \                     test_pin:
+   \   00000000   71402DE9           PUSH     {R0,R4-R6,LR}
+     95            int count;
+     96            
+     97             GPIO.DSPOUT0 = 0x30; // pin 6
+     98             int saved = disable_interrupts();   
+     99             count = divide(Frequency << 10, capcom_hw_clk) << 10; // Алгоритм вычислений взят из прошивки.Есть ограничение-частота не должна быть больше 26kHz
+   \   00000004   ........           LDR      R6,??DataTable2  ;; Frequency
+   \   00000008   5C00A0E3           MOV      R0,#+92
+   \   0000000C   BD0640E2           SUB      R0,R0,#+198180864
+   \   00000010   3010A0E3           MOV      R1,#+48
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+   \   00000018   ........           BL       disable_interrupts
+   \   0000001C   ........           LDR      R1,??DataTable4  ;; 0x18cba80
+   \   00000020   0040A0E1           MOV      R4,R0
+   \   00000024   000096E5           LDR      R0,[R6, #+0]
+    100             CCU1.CLC = 0x100;  
+   \   00000028   F054A0E3           MOV      R5,#-268435456
+   \   0000002C   0005A0E1           LSL      R0,R0,#+10
+   \   00000030   BC0000EF           SWI      +188
+   \   00000034   0005A0E1           LSL      R0,R0,#+10
+   \   00000038   415685E3           ORR      R5,R5,#0x4100000
+   \   0000003C   401FA0E3           MOV      R1,#+256
+   \   00000040   001085E5           STR      R1,[R5, #+0]
+    101             CCU1.T0REL = 65536 - count;
+   \   00000044   401B60E2           RSB      R1,R0,#+65536
+   \   00000048   441085E5           STR      R1,[R5, #+68]
+    102             CCU1.T0 = 65536 - count; 
+   \   0000004C   401085E5           STR      R1,[R5, #+64]
+    103             CCU1.CC6 = 65536 - divide(1000, Dutycycle * count * 10);
+   \   00000050   041096E5           LDR      R1,[R6, #+4]
+   \   00000054   900101E0           MUL      R1,R0,R1
+   \   00000058   0A00A0E3           MOV      R0,#+10
+   \   0000005C   900101E0           MUL      R1,R0,R1
+   \   00000060   FA0FA0E3           MOV      R0,#+1000
+   \   00000064   BC0000EF           SWI      +188
+   \   00000068   400B60E2           RSB      R0,R0,#+65536
+   \   0000006C   680085E5           STR      R0,[R5, #+104]
+    104             
+    105             CCU1.CCSEM &= ~ CCSEM6;    //отключаем режим одного события
+   \   00000070   301095E5           LDR      R1,[R5, #+48]
+   \   00000074   4000E0E3           MVN      R0,#+64
+   \   00000078   011000E0           AND      R1,R0,R1
+   \   0000007C   301085E5           STR      R1,[R5, #+48]
+    106             CCU1.CCSEE &= ~ CCSEE6;     
+   \   00000080   2C1095E5           LDR      R1,[R5, #+44]
+   \   00000084   010000E0           AND      R0,R0,R1
+   \   00000088   2C0085E5           STR      R0,[R5, #+44]
+    107             CCU1.CCM1  |=  CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   0000008C   180095E5           LDR      R0,[R5, #+24]
+   \   00000090   700E80E3           ORR      R0,R0,#0x700
+   \   00000094   180085E5           STR      R0,[R5, #+24]
+    108             CCU1.CCM1  &= ~ CCM1_ACC6;  /* Обнуляем  бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+   \   00000098   180095E5           LDR      R0,[R5, #+24]
+   \   0000009C   800EC0E3           BIC      R0,R0,#0x800
+   \   000000A0   180085E5           STR      R0,[R5, #+24]
+    109             
+    110             CCU1.CCIOC &= ~ PL;
+   \   000000A4   280095E5           LDR      R0,[R5, #+40]
+   \   000000A8   0200C0E3           BIC      R0,R0,#0x2
+   \   000000AC   280085E5           STR      R0,[R5, #+40]
+    111             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+   \   000000B0   280095E5           LDR      R0,[R5, #+40]
+   \   000000B4   040080E3           ORR      R0,R0,#0x4
+   \   000000B8   280085E5           STR      R0,[R5, #+40]
+    112             CCU1.CCIOC &= ~ PDS;
+   \   000000BC   281095E5           LDR      R1,[R5, #+40]
+   \   000000C0   0800E0E3           MVN      R0,#+8
+   \   000000C4   011000E0           AND      R1,R0,R1
+   \   000000C8   281085E5           STR      R1,[R5, #+40]
+    113                     
+    114             CCU1.T0IC  &= ~ ICR_IEN;   /* отключаем прерывание при переполнении таймера T0 */ 
+   \   000000CC   FC2095E5           LDR      R2,[R5, #+252]
+   \   000000D0   401DE0E3           MVN      R1,#+4096
+   \   000000D4   022001E0           AND      R2,R1,R2
+   \   000000D8   FC2085E5           STR      R2,[R5, #+252]
+    115             CCU1.CC6IC &= ~ ICR_IEN;    /* отключаем прерывание при совпадении */
+   \   000000DC   DC2095E5           LDR      R2,[R5, #+220]
+   \   000000E0   021001E0           AND      R1,R1,R2
+   \   000000E4   DC1085E5           STR      R1,[R5, #+220]
+    116             
+    117             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000E8   101095E5           LDR      R1,[R5, #+16]
+   \   000000EC   0710C1E3           BIC      R1,R1,#0x7
+   \   000000F0   101085E5           STR      R1,[R5, #+16]
+    118             CCU1.T01CON  &= ~ T0M;  /* режим таймера */
+   \   000000F4   101095E5           LDR      R1,[R5, #+16]
+   \   000000F8   010000E0           AND      R0,R0,R1
+   \   000000FC   100085E5           STR      R0,[R5, #+16]
+    119             CCU1.T01CON  |= T0R;    /* cтарт таймера */ 
+   \   00000100   100095E5           LDR      R0,[R5, #+16]
+   \   00000104   400080E3           ORR      R0,R0,#0x40
+   \   00000108   100085E5           STR      R0,[R5, #+16]
+    120             enable_interrupts(saved);
+   \   0000010C   0400A0E1           MOV      R0,R4
+   \   00000110   ........           BL       enable_interrupts
+    121          }
+   \   00000114   7180BDE8           POP      {R0,R4-R6,PC}    ;; return
+    122          
+    123          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    124          void test_100kHz()
+    125          {
+   \                     test_100kHz:
+   \   00000000   00402DE9           PUSH     {LR}
+    126             GPIO.DSPOUT0 = GPIO_PPEN | 0x30; // Открытый коллектор, ассоциация с CAPCOM
+   \   00000004   5C00A0E3           MOV      R0,#+92
+   \   00000008   BD0640E2           SUB      R0,R0,#+198180864
+   \   0000000C   3010A0E3           MOV      R1,#+48
+   \   00000010   401D81E3           ORR      R1,R1,#0x1000
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+    127             int saved = disable_interrupts();   
+   \   00000018   ........           BL       disable_interrupts
+    128          //CCU1.T0 = 0x10000 - (Period(ns) / 39.0625)
+    129             CCU1.CLC = 0x100;
+   \   0000001C   F014A0E3           MOV      R1,#-268435456
+   \   00000020   411681E3           ORR      R1,R1,#0x4100000
+   \   00000024   402FA0E3           MOV      R2,#+256
+   \   00000028   002081E5           STR      R2,[R1, #+0]
+    130             CCU1.T0REL = 0xFF00;  //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+   \   0000002C   FF2CA0E3           MOV      R2,#+65280
+   \   00000030   442081E5           STR      R2,[R1, #+68]
+    131             CCU1.T0 = 0xFF00; 
+   \   00000034   402081E5           STR      R2,[R1, #+64]
+    132             CCU1.CC6 = 0xFF80;
+   \   00000038   802082E3           ORR      R2,R2,#0x80
+   \   0000003C   682081E5           STR      R2,[R1, #+104]
+    133             
+    134             CCU1.CCSEM &= ~ CCSEM6;    //отключаем режим одного события
+   \   00000040   303091E5           LDR      R3,[R1, #+48]
+   \   00000044   4020E0E3           MVN      R2,#+64
+   \   00000048   033002E0           AND      R3,R2,R3
+   \   0000004C   303081E5           STR      R3,[R1, #+48]
+    135             CCU1.CCSEE &= ~ CCSEE6;     
+   \   00000050   2C3091E5           LDR      R3,[R1, #+44]
+   \   00000054   032002E0           AND      R2,R2,R3
+   \   00000058   2C2081E5           STR      R2,[R1, #+44]
+    136             CCU1.CCM1  |=  CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   0000005C   182091E5           LDR      R2,[R1, #+24]
+   \   00000060   702E82E3           ORR      R2,R2,#0x700
+   \   00000064   182081E5           STR      R2,[R1, #+24]
+    137             CCU1.CCM1  &= ~ CCM1_ACC6;  /* Обнуляем бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+   \   00000068   182091E5           LDR      R2,[R1, #+24]
+   \   0000006C   802EC2E3           BIC      R2,R2,#0x800
+   \   00000070   182081E5           STR      R2,[R1, #+24]
+    138             
+    139             CCU1.CCIOC &= ~ PL;
+   \   00000074   282091E5           LDR      R2,[R1, #+40]
+   \   00000078   0220C2E3           BIC      R2,R2,#0x2
+   \   0000007C   282081E5           STR      R2,[R1, #+40]
+    140             CCU1.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+   \   00000080   282091E5           LDR      R2,[R1, #+40]
+   \   00000084   042082E3           ORR      R2,R2,#0x4
+   \   00000088   282081E5           STR      R2,[R1, #+40]
+    141             CCU1.CCIOC &= ~ PDS;
+   \   0000008C   283091E5           LDR      R3,[R1, #+40]
+   \   00000090   0820E0E3           MVN      R2,#+8
+   \   00000094   033002E0           AND      R3,R2,R3
+   \   00000098   283081E5           STR      R3,[R1, #+40]
+    142                     
+    143             CCU1.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+   \   0000009C   FCC091E5           LDR      R12,[R1, #+252]
+   \   000000A0   403DE0E3           MVN      R3,#+4096
+   \   000000A4   0CC003E0           AND      R12,R3,R12
+   \   000000A8   FCC081E5           STR      R12,[R1, #+252]
+    144             CCU1.CC6IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC6 со значением таймера T0*/
+   \   000000AC   DCC091E5           LDR      R12,[R1, #+220]
+   \   000000B0   0C3003E0           AND      R3,R3,R12
+   \   000000B4   DC3081E5           STR      R3,[R1, #+220]
+    145             
+    146             CCU1.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000B8   103091E5           LDR      R3,[R1, #+16]
+   \   000000BC   0730C3E3           BIC      R3,R3,#0x7
+   \   000000C0   103081E5           STR      R3,[R1, #+16]
+    147             CCU1.T01CON  &= ~ T0M;  /* режим таймера */
+   \   000000C4   103091E5           LDR      R3,[R1, #+16]
+   \   000000C8   032002E0           AND      R2,R2,R3
+   \   000000CC   102081E5           STR      R2,[R1, #+16]
+    148             CCU1.T01CON  |= T0R;    /* cтарт таймера */ 
+   \   000000D0   102091E5           LDR      R2,[R1, #+16]
+   \   000000D4   402082E3           ORR      R2,R2,#0x40
+   \   000000D8   102081E5           STR      R2,[R1, #+16]
+    149             enable_interrupts(saved);
+   \   000000DC   ........           BL       enable_interrupts
+    150          }
+   \   000000E0   0080BDE8           POP      {PC}             ;; return
+    151          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    152          void test_1Gz()
+    153          { 
+   \                     test_1Gz:
+   \   00000000   00402DE9           PUSH     {LR}
+    154             GPIO.DSPOUT0 = 0x30; // pin 6
+   \   00000004   5C00A0E3           MOV      R0,#+92
+   \   00000008   BD0640E2           SUB      R0,R0,#+198180864
+   \   0000000C   3010A0E3           MOV      R1,#+48
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+    155             int input_clk = divide(Prescaler, capcom_hw_clk );
+   \   00000014   B0009FE5           LDR      R0,??test_1Gz_0  ;; Prescaler
+   \   00000018   ........           LDR      R1,??DataTable4  ;; 0x18cba80
+   \   0000001C   000090E5           LDR      R0,[R0, #+0]
+   \   00000020   BC0000EF           SWI      +188
+    156             int saved = disable_interrupts();   
+   \   00000024   ........           BL       disable_interrupts
+    157          
+    158             CCU0.CLC = 0x100;
+   \   00000028   F404A0E3           MOV      R0,#-201326592
+   \   0000002C   401FA0E3           MOV      R1,#+256
+   \   00000030   001080E5           STR      R1,[R0, #+0]
+    159             CCU0.T0 =  0x3C00;
+   \   00000034   F01DA0E3           MOV      R1,#+15360
+   \   00000038   401080E5           STR      R1,[R0, #+64]
+    160             CCU0.T0REL = 0x3C00;
+   \   0000003C   441080E5           STR      R1,[R0, #+68]
+    161             CCU0.CC2 = 0x9E00;
+   \   00000040   9E1CA0E3           MOV      R1,#+40448
+   \   00000044   581080E5           STR      R1,[R0, #+88]
+    162             
+    163             CCU0.CCSEM &= ~ CCSEM2;    //отключаем режим одного события
+   \   00000048   302090E5           LDR      R2,[R0, #+48]
+   \   0000004C   0410E0E3           MVN      R1,#+4
+   \   00000050   022001E0           AND      R2,R1,R2
+   \   00000054   302080E5           STR      R2,[R0, #+48]
+    164             CCU0.CCSEE &= ~ CCSEE2;     
+   \   00000058   2C2090E5           LDR      R2,[R0, #+44]
+   \   0000005C   021001E0           AND      R1,R1,R2
+   \   00000060   2C1080E5           STR      R1,[R0, #+44]
+    165             CCU0.CCM0  |=   CCM0_MOD2 & (MODE_COMPARE_3 << 8); ; /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   00000064   141090E5           LDR      R1,[R0, #+20]
+   \   00000068   701E81E3           ORR      R1,R1,#0x700
+   \   0000006C   141080E5           STR      R1,[R0, #+20]
+    166             CCU0.CCM0  &= ~ CCM0_ACC2;  /* Обнуляем  бит,регистр захвата/сравнения CC2 будет привязан к таймеру T0 */
+   \   00000070   141090E5           LDR      R1,[R0, #+20]
+   \   00000074   801EC1E3           BIC      R1,R1,#0x800
+   \   00000078   141080E5           STR      R1,[R0, #+20]
+    167             
+    168             CCU0.CCIOC |= STAG;    /* Если не установлен этот бит,значение пределителя увеличится в 8 раз.Отключаем.. */
+   \   0000007C   281090E5           LDR      R1,[R0, #+40]
+   \   00000080   041081E3           ORR      R1,R1,#0x4
+   \   00000084   281080E5           STR      R1,[R0, #+40]
+    169                     
+    170             CCU0.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+   \   00000088   FC2090E5           LDR      R2,[R0, #+252]
+   \   0000008C   401DE0E3           MVN      R1,#+4096
+   \   00000090   022001E0           AND      R2,R1,R2
+   \   00000094   FC2080E5           STR      R2,[R0, #+252]
+    171             CCU0.CC2IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении */
+   \   00000098   EC2090E5           LDR      R2,[R0, #+236]
+   \   0000009C   021001E0           AND      R1,R1,R2
+   \   000000A0   EC1080E5           STR      R1,[R0, #+236]
+    172             
+    173             CCU0.T01CON  |= 6;  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000A4   101090E5           LDR      R1,[R0, #+16]
+   \   000000A8   061081E3           ORR      R1,R1,#0x6
+   \   000000AC   101080E5           STR      R1,[R0, #+16]
+    174             CCU0.T01CON  &= ~ T0M;  /* режим таймера */
+   \   000000B0   101090E5           LDR      R1,[R0, #+16]
+   \   000000B4   0810C1E3           BIC      R1,R1,#0x8
+   \   000000B8   101080E5           STR      R1,[R0, #+16]
+    175             CCU0.T01CON  |= T0R;   /* cтарт таймера */  
+   \   000000BC   101090E5           LDR      R1,[R0, #+16]
+   \   000000C0   401081E3           ORR      R1,R1,#0x40
+   \   000000C4   101080E5           STR      R1,[R0, #+16]
+    176          }
+   \   000000C8   0080BDE8           POP      {PC}             ;; return
+   \                     ??test_1Gz_0:
+   \   000000CC   ........           DC32     Prescaler
+    177          
+    178          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    179          void test_pin_cts()
+    180          {
+    181             GPIO.DSPOUT0 = GPIO_PPEN | 0x30; // Открытый коллектор, ассоциация с CAPCOM 
+   \                     test_pin_cts:
+   \   00000000   5C00A0E3           MOV      R0,#+92
+   \   00000004   BD0640E2           SUB      R0,R0,#+198180864
+   \   00000008   3010A0E3           MOV      R1,#+48
+   \   0000000C   401D81E3           ORR      R1,R1,#0x1000
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+    182             //CCU1.T0 = 0x10000 - (Period(ns) / 39.0625)
+    183             CCU0.CLC = 0x100;
+   \   00000014   F404A0E3           MOV      R0,#-201326592
+   \   00000018   401FA0E3           MOV      R1,#+256
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+    184             CCU0.T0REL = 0xFF00;  //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+   \   00000020   FF1CA0E3           MOV      R1,#+65280
+   \   00000024   441080E5           STR      R1,[R0, #+68]
+    185             CCU0.T0 = 0xFF00; 
+   \   00000028   401080E5           STR      R1,[R0, #+64]
+    186             CCU0.CC6 = 0xFF80;
+   \   0000002C   801081E3           ORR      R1,R1,#0x80
+   \   00000030   681080E5           STR      R1,[R0, #+104]
+    187             
+    188             CCU0.CCSEM &= ~ CCSEM6;    //отключаем режим одного события
+   \   00000034   302090E5           LDR      R2,[R0, #+48]
+   \   00000038   4010E0E3           MVN      R1,#+64
+   \   0000003C   022001E0           AND      R2,R1,R2
+   \   00000040   302080E5           STR      R2,[R0, #+48]
+    189             CCU0.CCSEE &= ~ CCSEE6;     
+   \   00000044   2C2090E5           LDR      R2,[R0, #+44]
+   \   00000048   021001E0           AND      R1,R1,R2
+   \   0000004C   2C1080E5           STR      R1,[R0, #+44]
+    190             CCU0.CCM1  |=  CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   00000050   181090E5           LDR      R1,[R0, #+24]
+   \   00000054   701E81E3           ORR      R1,R1,#0x700
+   \   00000058   181080E5           STR      R1,[R0, #+24]
+    191             CCU0.CCM1  &= ~ CCM1_ACC6;  /* Обнуляем бит,регистр захвата/сравнения CC6 будет привязан к таймеру T0 */
+   \   0000005C   181090E5           LDR      R1,[R0, #+24]
+   \   00000060   801EC1E3           BIC      R1,R1,#0x800
+   \   00000064   181080E5           STR      R1,[R0, #+24]
+    192             
+    193             CCU0.CCIOC &= ~ PL;
+   \   00000068   281090E5           LDR      R1,[R0, #+40]
+   \   0000006C   0210C1E3           BIC      R1,R1,#0x2
+   \   00000070   281080E5           STR      R1,[R0, #+40]
+    194             CCU0.CCIOC |= STAG;      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+   \   00000074   281090E5           LDR      R1,[R0, #+40]
+   \   00000078   041081E3           ORR      R1,R1,#0x4
+   \   0000007C   281080E5           STR      R1,[R0, #+40]
+    195             CCU0.CCIOC &= ~ PDS;
+   \   00000080   282090E5           LDR      R2,[R0, #+40]
+   \   00000084   0810E0E3           MVN      R1,#+8
+   \   00000088   022001E0           AND      R2,R1,R2
+   \   0000008C   282080E5           STR      R2,[R0, #+40]
+    196                     
+    197             CCU0.T0IC  &= ~ ICR_IEN;  /* отключаем прерывание при переполнении таймера T0 */ 
+   \   00000090   FC3090E5           LDR      R3,[R0, #+252]
+   \   00000094   402DE0E3           MVN      R2,#+4096
+   \   00000098   033002E0           AND      R3,R2,R3
+   \   0000009C   FC3080E5           STR      R3,[R0, #+252]
+    198             CCU0.CC6IC &= ~ ICR_IEN;  /* отключаем прерывание при совпадении значения регистра CC6 со значением таймера T0*/
+   \   000000A0   DC3090E5           LDR      R3,[R0, #+220]
+   \   000000A4   032002E0           AND      R2,R2,R3
+   \   000000A8   DC2080E5           STR      R2,[R0, #+220]
+    199             
+    200             CCU0.T01CON  &= ~ T0I;  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000AC   102090E5           LDR      R2,[R0, #+16]
+   \   000000B0   0720C2E3           BIC      R2,R2,#0x7
+   \   000000B4   102080E5           STR      R2,[R0, #+16]
+    201             CCU0.T01CON  &= ~ T0M;  /* режим таймера */
+   \   000000B8   102090E5           LDR      R2,[R0, #+16]
+   \   000000BC   021001E0           AND      R1,R1,R2
+   \   000000C0   101080E5           STR      R1,[R0, #+16]
+    202             CCU0.T01CON  |= T0R;    /* cтарт таймера */ 
+   \   000000C4   101090E5           LDR      R1,[R0, #+16]
+   \   000000C8   401081E3           ORR      R1,R1,#0x40
+   \   000000CC   101080E5           STR      R1,[R0, #+16]
+    203          }
+   \   000000D0   0EF0A0E1           MOV      PC,LR            ;; return
+    204          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    205          int main(void)
+    206          {   
+    207          
+    208             ShowMSG(1,(int)"ELF Started!" );
+   \                     main:
+   \   00000000   28109FE5           LDR      R1,??main_0      ;; `?<Constant "ELF Started!">`
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   0100A0E3           MOV      R0,#+1
+   \   0000000C   480100EF           SWI      +328
+    209             ClkStateOn(CAPCOM_MASK);
+   \   00000010   1C109FE5           LDR      R1,??main_0+0x4  ;; 0xffffffffa04d07e0
+   \   00000014   8007A0E3           MOV      R0,#+33554432
+   \   00000018   31FF2FE1           BLX      R1
+    210             test_pin_cts();
+   \   0000001C   ........           BL       test_pin_cts
+    211             //test_100kHz();
+    212          
+    213             SUBPROC((void *)ElfKiller);
+   \   00000020   10009FE5           LDR      R0,??main_0+0x8  ;; ElfKiller
+   \   00000024   710100EF           SWI      +369
+    214             return 0;
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_0:
+   \   00000030   ........           DC32     `?<Constant "ELF Started!">`
+   \   00000034   E0074DA0           DC32     0xffffffffa04d07e0
+   \   00000038   ........           DC32     ElfKiller
+    215          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   ........           DC32     Frequency
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   80BA8C01           DC32     0x18cba80
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for ccu1_t0>`:
+   \   00000000   030A0000           DC8 3, 10, 0, 0
+   \   00000004   ........           DC32 int_ccu1_t0_handler
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for Prescaler>`:
+   \   00000000   01000000           DC32 1
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for Frequency>`:
+   \   00000000   E8030000           DC32 1000
+   \                     `?<Initializer for Dutycycle>`:
+   \   00000004   32000000           DC32 50
+   \                     `?<Initializer for dat_40>`:
+   \   00000008   26                 DC8 38
+   \                     `?<Initializer for dat_42>`:
+   \   00000009   04                 DC8 4
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "ELF Started!">`:
+   \   00000000   454C46205374       DC8 "ELF Started!"
+   \              617274656421
+   \              00          
+   \   0000000D   000000             DC8 0, 0, 0
+    216          
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     ElfKiller              4
+     disable_interrupts     0
+     enable_interrupts      0
+     main                   4
+     pwm_test_sound        20
+     test_100kHz            4
+     test_1Gz               4
+     test_pin              20
+     test_pin_cts           0
+
+
+   Segment part sizes:
+
+     Function/Label               Bytes
+     --------------               -----
+     disable_interrupts             36
+     enable_interrupts              36
+     GPIO                          488
+     CCU0                          256
+     CCU1                          256
+     ccu1_t0                         8
+     Prescaler                       4
+     Frequency                      10
+     ElfKiller                      28
+     pwm_test_sound                320
+     test_pin                      280
+     test_100kHz                   228
+     test_1Gz                      208
+     test_pin_cts                  212
+     main                           60
+     ??DataTable2                    4
+     ??DataTable4                    4
+     ?<Initializer for ccu1_t0>      8
+     ?<Initializer for Prescaler>    4
+     ?<Initializer for Frequency>   10
+     ?<Constant "ELF Started!">     16
+      Others                        36
+
+ 
+ 1 440 bytes in segment CODE
+ 1 000 bytes in segment DATA_AN
+    16 bytes in segment DATA_C
+    22 bytes in segment DATA_I
+    22 bytes in segment DATA_ID
+    12 bytes in segment INITTAB
+ 
+ 1 416 bytes of CODE  memory (+    36 bytes shared)
+    38 bytes of CONST memory
+    22 bytes of DATA  memory (+ 1 000 bytes shared)
+
+Errors: none
+Warnings: none

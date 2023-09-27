@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>i2c_info/Release_NSG</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>206</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    <Build><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>975</ColumnWidth1><ColumnWidth2>260</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build></Static>
+    <Windows>
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-17170-16944</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>i2c_info</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-29215-18560</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\i2c.c</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>410</SelStart><SelEnd>410</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>944</SelStart><SelEnd>944</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant\Documents\Siemens\alfinant\inc\reg8875.h</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>7196</SelStart><SelEnd>7196</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant\Documents\Siemens\alfinant\inc\reg8876.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>7526</SelStart><SelEnd>7526</SelEnd></Tab><ActiveTab>3</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-024c22d8><key>iaridepm.enu1</key></Toolbar-024c22d8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>765</Bottom><Right>280</Right><x>-2</x><y>-2</y><xscreen>282</xscreen><yscreen>291</yscreen><sizeHorzCX>146875</sizeHorzCX><sizeHorzCY>291876</sizeHorzCY><sizeVertCX>146875</sizeVertCX><sizeVertCY>769308</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>187</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>189</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>189569</sizeHorzCY><sizeVertCX>146875</sizeVertCX><sizeVertCY>291876</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

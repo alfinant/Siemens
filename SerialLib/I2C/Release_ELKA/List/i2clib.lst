@@ -1,0 +1,868 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    21/Sep/2014  21:59:26 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\i2clib.c                             #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\i2clib.c -D NEWSGOLD -D ELKA -lCN    #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\List\ -o                #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\Obj\ -s9 --cpu_mode     #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None --dlib_config            #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\List\i2clib.lst         #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\SerialLib\I2C\Release_ELKA\Obj\i2clib.r79          #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\I2C\i2clib.c
+      1          #include <siemens/reg8876.h>
+      2          #include <intrinsics.h>
+      3          #include <stdint.h>
+      4          
+      5          #define  __IO    volatile
+      6          
+      7          #define   FMRADIO    0x10  /* TEA5761UK */	
+      8          #define   CAMERA     0xB0  /* OmniVision */
+      9          #define   PMU        0x31  /* Mozart/Dialog/Twigo */
+     10          
+     11          #define   DEF_PORT      0
+     12          #define   ALT_PORT      1
+     13          
+     14          
+     15          #define   I2C_CLK          *( __IO uint32_t*)     0xF7600000 
+     16          #define   I2C_0x10         *( __IO uint32_t*)     0xF7600010 
+     17          #define   I2C_0x14         *( __IO uint32_t*)     0xF7600014
+     18          #define   I2C_0x18         *( __IO uint32_t*)     0xF7600018 
+     19          #define   I2C_0x20         *( __IO uint32_t*)     0xF7600020 
+     20          #define   I2C_0x68         *( __IO uint32_t*)     0xF7600068 
+     21          #define   I2C_0x28         *( __IO uint32_t*)     0xF7600028 
+     22          #define   I2C_RXCNT        *( __IO uint32_t*)     0xF760002C 
+     23          #define   I2C_TXCNT        *( __IO uint32_t*)     0xF7600034 
+     24          #define   I2C_0x74         *( __IO uint32_t*)     0xF7600074 
+     25          #define   I2C_0x78         *( __IO uint32_t*)     0xF7600078 
+     26          #define   I2C_STAT         *( __IO uint32_t*)     0xF7600080 
+     27          #define   I2C_0x84         *( __IO uint32_t*)     0xF7600084 
+     28          #define   I2C_0x8C         *( __IO uint32_t*)     0xF760008C 
+     29          #define   I2C_TXBUF        *( __IO uint32_t*)     0xF7608000 
+     30          #define   I2C_RXBUF        *( __IO uint32_t*)     0xF760C000 
+     31          
+     32          #define   RST_CTRL_ST      *( __IO uint32_t*)     0xF4400018       /* Reset Control And Status Register */
+     33          #define   SIFCLKS          *( __IO uint32_t*)     0xF45000B4       /* Serial Interface Clock Select Register */
+     34          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     35          void i2c_reset(void)
+     36          {
+     37             RST_CTRL_ST |= (1 << 15);
+   \                     i2c_reset:
+   \   00000000   6301A0E3           MOV      R0,#-1073741800
+   \   00000004   D10580E3           ORR      R0,R0,#0x34400000
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+     38             RST_CTRL_ST &= (1 << 15);
+   \   00000014   001090E5           LDR      R1,[R0, #+0]
+   \   00000018   801C01E2           AND      R1,R1,#0x8000
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+     39          }
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+     40          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     41          void i2c_clkOn(void)
+     42          {
+   \                     i2c_clkOn:
+   \   00000000   00402DE9           PUSH     {LR}
+     43            __disable_interrupt();
+   \   00000004   ........           _BLF     ??DiI_a,??rA??DiI_a
+     44              SIFCLKS &= ~ 0x33 | 2;
+   \   00000008   ........           LDR      R0,??DataTable1  ;; 0xfffffffff45000b4
+   \   0000000C   001090E5           LDR      R1,[R0, #+0]
+   \   00000010   3110C1E3           BIC      R1,R1,#0x31
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+     45            __enable_interrupt();
+   \   00000018   0040BDE8           POP      {LR}             ;; Pop
+   \   0000001C   ........           _BF      ??EnI_a,??rA??EnI_a
+     46          }
+     47          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     48          void i2c_clkOff()
+     49          {
+   \                     i2c_clkOff:
+   \   00000000   00402DE9           PUSH     {LR}
+     50            __disable_interrupt();
+   \   00000004   ........           _BLF     ??DiI_a,??rA??DiI_a
+     51              SIFCLKS &= ~ 0x33 | 3;
+   \   00000008   ........           LDR      R0,??DataTable1  ;; 0xfffffffff45000b4
+   \   0000000C   001090E5           LDR      R1,[R0, #+0]
+   \   00000010   3010C1E3           BIC      R1,R1,#0x30
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+     52            __enable_interrupt();
+   \   00000018   0040BDE8           POP      {LR}             ;; Pop
+   \   0000001C   ........           _BF      ??EnI_a,??rA??EnI_a
+     53          }
+     54          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     55          void i2c_disable_INT() 
+     56          {
+     57            I2C_0x84 &= 0xFFC0;
+   \                     i2c_disable_INT:
+   \   00000000   ........           LDR      R0,??DataTable4  ;; 0xfffffffff7600084
+   \   00000004   C020A0E3           MOV      R2,#+192
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000010   011002E0           AND      R1,R2,R1
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+     58          }
+   \   00000018   1EFF2FE1           BX       LR               ;; return
+     59          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     60          void i2c_enable_INT() 
+     61          {
+     62            I2C_0x84 &= 0x3F;
+   \                     i2c_enable_INT:
+   \   00000000   ........           LDR      R0,??DataTable4  ;; 0xfffffffff7600084
+   \   00000004   001090E5           LDR      R1,[R0, #+0]
+   \   00000008   3F1001E2           AND      R1,R1,#0x3F
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+     63          }
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+     64          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     65          void i2c_wakeup(int rw) /* 0-read, 1-write */
+     66          {
+   \                     i2c_wakeup:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     67            i2c_clkOn();
+   \   00000008   ........           BL       i2c_clkOn
+     68            
+     69            I2C_CLK = 0x400;
+   \   0000000C   F004A0E3           MOV      R0,#-268435456
+   \   00000010   760680E3           ORR      R0,R0,#0x7600000
+   \   00000014   401EA0E3           MOV      R1,#+1024
+   \   00000018   001080E5           STR      R1,[R0, #+0]
+     70            I2C_0x10 = 0;
+   \   0000001C   100080E3           ORR      R0,R0,#0x10
+   \   00000020   0010A0E3           MOV      R1,#+0
+   \   00000024   001080E5           STR      R1,[R0, #+0]
+     71            if(rw) I2C_0x20 = 0x280000;
+   \   00000028   101080E2           ADD      R1,R0,#+16
+   \   0000002C   000054E3           CMP      R4,#+0
+   \   00000030   A029A013           MOVNE    R2,#+2621440
+     72            else I2C_0x20 = 0x80000;
+   \   00000034   802AA003           MOVEQ    R2,#+524288
+   \   00000038   002081E5           STR      R2,[R1, #+0]
+     73            I2C_0x28 = 0x30022;
+   \   0000003C   181080E2           ADD      R1,R0,#+24
+   \   00000040   2220A0E3           MOV      R2,#+34
+   \   00000044   C02B82E3           ORR      R2,R2,#0x30000
+   \   00000048   002081E5           STR      R2,[R1, #+0]
+     74            I2C_0x18 = 0x4003D; 
+   \   0000004C   081080E3           ORR      R1,R0,#0x8
+   \   00000050   3D20A0E3           MOV      R2,#+61
+   \   00000054   402A82E3           ORR      R2,R2,#0x40000
+   \   00000058   002081E5           STR      R2,[R1, #+0]
+     75            I2C_0x10 = 1;
+   \   0000005C   0110A0E3           MOV      R1,#+1
+   \   00000060   ........           STR      R1,[R0], #+124
+     76            I2C_0x8C = 0x3F;
+   \   00000064   3F10A0E3           MOV      R1,#+63
+   \   00000068   ........           STR      R1,[R0], #-20
+     77            I2C_0x78 = 0x7F; 
+   \   0000006C   7F10A0E3           MOV      R1,#+127
+   \   00000070   001080E5           STR      R1,[R0, #+0]
+     78            I2C_0x68 = 0xF;
+   \   00000074   1000C0E3           BIC      R0,R0,#0x10
+   \   00000078   0F10A0E3           MOV      R1,#+15
+   \   0000007C   ........           STR      R1,[R0], #+28
+     79            
+     80            i2c_disable_INT();
+   \   00000080   001090E5           LDR      R1,[R0, #+0]
+   \   00000084   C020A0E3           MOV      R2,#+192
+   \   00000088   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   0000008C   011002E0           AND      R1,R2,R1
+   \   00000090   001080E5           STR      R1,[R0, #+0]
+     81          }
+   \   00000094   1080BDE8           POP      {R4,PC}          ;; return
+     82          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     83          void i2c_sleep() 
+     84          {
+     85             i2c_disable_INT();
+   \                     i2c_sleep:
+   \   00000000   ........           LDR      R0,??DataTable4  ;; 0xfffffffff7600084
+   \   00000004   001090E5           LDR      R1,[R0, #+0]
+   \   00000008   C020A0E3           MOV      R2,#+192
+   \   0000000C   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000010   011002E0           AND      R1,R2,R1
+   \   00000014   ........           STR      R1,[R0], #-116
+     86             I2C_0x10 = 0;
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+     87             I2C_CLK = 1;
+   \   00000020   1000C0E3           BIC      R0,R0,#0x10
+   \   00000024   0110A0E3           MOV      R1,#+1
+   \   00000028   001080E5           STR      R1,[R0, #+0]
+     88             
+     89             i2c_clkOff();
+   \   0000002C   ........           B        i2c_clkOff       ;; tailcall
+     90          }
+     91          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     92          int check_port(int port)
+     93          {  int old;
+     94          
+     95             if(!(GPIO_I2C_SCL & _BV(ENAQ))) old = DEF_PORT;
+   \                     check_port:
+   \   00000000   94209FE5           LDR      R2,??check_port_0  ;; 0xfffffffff4300090
+   \   00000004   30002DE9           PUSH     {R4,R5}
+   \   00000008   002092E5           LDR      R2,[R2, #+0]
+   \   0000000C   800C12E3           TST      R2,#0x8000
+   \   00000010   0010A003           MOVEQ    R1,#+0
+   \   00000014   0300000A           BEQ      ??check_port_1
+     96             else
+     97               if(!(GPIO_TOUT9 & _BV(ENAQ))) old = ALT_PORT;
+   \   00000018   80209FE5           LDR      R2,??check_port_0+0x4  ;; 0xfffffffff43000f0
+   \   0000001C   002092E5           LDR      R2,[R2, #+0]
+   \   00000020   800C12E3           TST      R2,#0x8000
+   \   00000024   0110A003           MOVEQ    R1,#+1
+     98             
+     99             if(port == old) return old;
+   \                     ??check_port_1:
+   \   00000028   010050E1           CMP      R0,R1
+   \   0000002C   0000001A           BNE      ??check_port_2
+   \                     ??check_port_3:
+   \   00000030   0C0000EA           B        ??check_port_4
+    100             
+    101             if(port == DEF_PORT)
+   \                     ??check_port_2:
+   \   00000034   68209FE5           LDR      R2,??check_port_0+0x8  ;; 0xfffffffff43000f8
+   \   00000038   80CCA0E3           MOV      R12,#+32768
+   \   0000003C   643042E2           SUB      R3,R2,#+100
+   \   00000040   0840C2E3           BIC      R4,R2,#0x8
+   \   00000044   6850C2E3           BIC      R5,R2,#0x68
+   \   00000048   000050E3           CMP      R0,#+0
+   \   0000004C   0800001A           BNE      ??check_port_5
+    102             {
+    103               GPIO_I2C_SCL = (OPENDRAIN << PPEN) | (ALT0 << OS) | (ALT0 << IS);
+   \   00000050   1100A0E3           MOV      R0,#+17
+   \   00000054   400D80E3           ORR      R0,R0,#0x1000
+   \   00000058   000085E5           STR      R0,[R5, #+0]
+    104               GPIO_I2C_SDA = (OPENDRAIN << PPEN) | (ALT0 << OS) | (ALT0 << IS);
+   \   0000005C   000083E5           STR      R0,[R3, #+0]
+    105               GPIO_TOUT9 =  (1 << ENAQ);
+   \   00000060   00C084E5           STR      R12,[R4, #+0]
+    106               GPIO_TOUT11 = (1 << ENAQ);
+   \   00000064   00C082E5           STR      R12,[R2, #+0]
+   \                     ??check_port_4:
+   \   00000068   3000BDE8           POP      {R4,R5}
+   \   0000006C   0100A0E1           MOV      R0,R1
+   \   00000070   1EFF2FE1           BX       LR
+    107             }
+    108             else
+    109               if(port == ALT_PORT)
+   \                     ??check_port_5:
+   \   00000074   010050E3           CMP      R0,#+1
+   \   00000078   FAFFFF1A           BNE      ??check_port_4
+    110               {
+    111                 GPIO_I2C_SCL = (1 << ENAQ);
+   \   0000007C   00C085E5           STR      R12,[R5, #+0]
+    112                 GPIO_I2C_SDA = (1 << ENAQ);
+   \   00000080   00C083E5           STR      R12,[R3, #+0]
+    113                 GPIO_TOUT9 =  (OPENDRAIN << PPEN) | (ALT1 << OS) | (ALT1 << IS);
+   \   00000084   2200A0E3           MOV      R0,#+34
+   \   00000088   400D80E3           ORR      R0,R0,#0x1000
+   \   0000008C   000084E5           STR      R0,[R4, #+0]
+    114                 GPIO_TOUT11 = (OPENDRAIN << PPEN) | (ALT3 << OS) | (ALT3 << IS);
+   \   00000090   220080E2           ADD      R0,R0,#+34
+   \   00000094   000082E5           STR      R0,[R2, #+0]
+   \   00000098   F2FFFFEA           B        ??check_port_4
+   \                     ??check_port_0:
+   \   0000009C   900030F4           DC32     0xfffffffff4300090
+   \   000000A0   F00030F4           DC32     0xfffffffff43000f0
+   \   000000A4   F80030F4           DC32     0xfffffffff43000f8
+    115               }
+    116                
+    117             return old;
+    118          }
+    119          /*============================================================================*/
+    120          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    121          int __i2cw_byte(uint8_t addr, uint8_t data)
+    122          {  	   
+    123             I2C_TXCNT = 2;
+   \                     __i2cw_byte:
+   \   00000000   ........           LDR      R2,??DataTable13  ;; 0xfffffffff7600034
+   \   00000004   0230A0E3           MOV      R3,#+2
+   \   00000008   003082E5           STR      R3,[R2, #+0]
+    124             while(!(I2C_STAT & 0x1));   
+   \                     ??__i2cw_byte_0:
+   \   0000000C   ........           LDR      R2,??DataTable10  ;; 0xfffffffff7600080
+   \   00000010   002092E5           LDR      R2,[R2, #+0]
+   \   00000014   010012E3           TST      R2,#0x1
+   \   00000018   FBFFFF0A           BEQ      ??__i2cw_byte_0
+    125             I2C_TXBUF = ((addr << 1) & 0x7F) | data << 8;  
+   \   0000001C   ........           LDR      R2,??DataTable14  ;; 0xfffffffff7608000
+   \   00000020   7F30A0E3           MOV      R3,#+127
+   \   00000024   800003E0           AND      R0,R3,R0, LSL #+1
+   \   00000028   010480E1           ORR      R0,R0,R1, LSL #+8
+   \   0000002C   000082E5           STR      R0,[R2, #+0]
+    126             I2C_0x8C = 1;
+   \   00000030   ........           LDR      R0,??DataTable12  ;; 0xfffffffff760008c
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   001080E5           STR      R1,[R0, #+0]
+    127             
+    128             while(!(I2C_STAT & 0x20));
+   \                     ??__i2cw_byte_1:
+   \   0000003C   0C10C0E3           BIC      R1,R0,#0xC
+   \   00000040   001091E5           LDR      R1,[R1, #+0]
+   \   00000044   200011E3           TST      R1,#0x20
+   \   00000048   FBFFFF0A           BEQ      ??__i2cw_byte_1
+    129             if(I2C_0x74 & 0x10) return 4;  
+   \   0000004C   181040E2           SUB      R1,R0,#+24
+   \   00000050   001091E5           LDR      R1,[R1, #+0]
+   \   00000054   100011E3           TST      R1,#0x10
+   \   00000058   0400A013           MOVNE    R0,#+4
+   \   0000005C   1EFF2F11           BXNE     LR
+    130             if(I2C_0x74 & 0x20)
+   \   00000060   181040E2           SUB      R1,R0,#+24
+   \   00000064   001091E5           LDR      R1,[R1, #+0]
+   \   00000068   200011E3           TST      R1,#0x20
+   \   0000006C   0500000A           BEQ      ??__i2cw_byte_2
+    131             {
+    132               I2C_0x78 = 0x20;
+   \   00000070   2010A0E3           MOV      R1,#+32
+   \   00000074   142040E2           SUB      R2,R0,#+20
+   \   00000078   001082E5           STR      R1,[R2, #+0]
+    133               I2C_0x8C = 0x20;
+   \   0000007C   001080E5           STR      R1,[R0, #+0]
+    134             }
+    135             else return 0xD;
+    136             
+    137             return 0;
+   \   00000080   0000A0E3           MOV      R0,#+0
+   \   00000084   1EFF2FE1           BX       LR
+   \                     ??__i2cw_byte_2:
+   \   00000088   0D00A0E3           MOV      R0,#+13
+   \   0000008C   1EFF2FE1           BX       LR               ;; return
+    138          }
+    139          /*============================================================================*/
+    140          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    141          int __i2cw_short(uint8_t addr, short data)
+    142          {  	
+    143             I2C_TXCNT = 3;	
+   \                     __i2cw_short:
+   \   00000000   ........           LDR      R2,??DataTable13  ;; 0xfffffffff7600034
+   \   00000004   0330A0E3           MOV      R3,#+3
+   \   00000008   003082E5           STR      R3,[R2, #+0]
+    144             while(!(I2C_STAT & 0x1));   
+   \                     ??__i2cw_short_0:
+   \   0000000C   ........           LDR      R2,??DataTable10  ;; 0xfffffffff7600080
+   \   00000010   002092E5           LDR      R2,[R2, #+0]
+   \   00000014   010012E3           TST      R2,#0x1
+   \   00000018   FBFFFF0A           BEQ      ??__i2cw_short_0
+    145             I2C_TXBUF = ((addr << 1) & 0x7F) | data << 8;   // отправка данных
+   \   0000001C   ........           LDR      R2,??DataTable14  ;; 0xfffffffff7608000
+   \   00000020   7F30A0E3           MOV      R3,#+127
+   \   00000024   800003E0           AND      R0,R3,R0, LSL #+1
+   \   00000028   010480E1           ORR      R0,R0,R1, LSL #+8
+   \   0000002C   000082E5           STR      R0,[R2, #+0]
+    146             I2C_0x8C = 1; // далее идет проверка ошибок
+   \   00000030   ........           LDR      R0,??DataTable12  ;; 0xfffffffff760008c
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   001080E5           STR      R1,[R0, #+0]
+    147            
+    148             while(!(I2C_STAT & 0x20));
+   \                     ??__i2cw_short_1:
+   \   0000003C   0C10C0E3           BIC      R1,R0,#0xC
+   \   00000040   001091E5           LDR      R1,[R1, #+0]
+   \   00000044   200011E3           TST      R1,#0x20
+   \   00000048   FBFFFF0A           BEQ      ??__i2cw_short_1
+    149             if(I2C_0x74 & 0x10)  return 4;   
+   \   0000004C   181040E2           SUB      R1,R0,#+24
+   \   00000050   001091E5           LDR      R1,[R1, #+0]
+   \   00000054   100011E3           TST      R1,#0x10
+   \   00000058   0400A013           MOVNE    R0,#+4
+   \   0000005C   1EFF2F11           BXNE     LR
+    150             if(I2C_0x74 & 0x20)
+   \   00000060   181040E2           SUB      R1,R0,#+24
+   \   00000064   001091E5           LDR      R1,[R1, #+0]
+   \   00000068   200011E3           TST      R1,#0x20
+   \   0000006C   0500000A           BEQ      ??__i2cw_short_2
+    151             {
+    152               I2C_0x78 = 0x20;
+   \   00000070   2010A0E3           MOV      R1,#+32
+   \   00000074   142040E2           SUB      R2,R0,#+20
+   \   00000078   001082E5           STR      R1,[R2, #+0]
+    153               I2C_0x8C = 0x20;
+   \   0000007C   001080E5           STR      R1,[R0, #+0]
+    154             }
+    155             else return 0xD;
+    156             
+    157             return 0;
+   \   00000080   0000A0E3           MOV      R0,#+0
+   \   00000084   1EFF2FE1           BX       LR
+   \                     ??__i2cw_short_2:
+   \   00000088   0D00A0E3           MOV      R0,#+13
+   \   0000008C   1EFF2FE1           BX       LR               ;; return
+    158          }
+    159          
+    160          /*============================================================================*/
+    161          
+    162          /********************** int writeByte(uint8_t addr, uint8_t data) *************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    163          int __i2cr_byte(uint8_t address, uint8_t reg, char *data)
+    164          {  	
+    165             I2C_TXCNT = 2;
+   \                     __i2cr_byte:
+   \   00000000   ........           LDR      R3,??DataTable13  ;; 0xfffffffff7600034
+   \   00000004   F0002DE9           PUSH     {R4-R7}
+   \   00000008   0240A0E3           MOV      R4,#+2
+   \   0000000C   004083E5           STR      R4,[R3, #+0]
+    166             while(!(I2C_STAT & 0x1));  
+   \                     ??__i2cr_byte_0:
+   \   00000010   4C4083E2           ADD      R4,R3,#+76
+   \   00000014   004094E5           LDR      R4,[R4, #+0]
+   \   00000018   010014E3           TST      R4,#0x1
+   \   0000001C   FBFFFF0A           BEQ      ??__i2cr_byte_0
+    167             I2C_TXBUF = ((address << 1) & 0x7F) | reg << 8;
+   \   00000020   ........           LDR      R12,??DataTable14  ;; 0xfffffffff7608000
+   \   00000024   7F40A0E3           MOV      R4,#+127
+   \   00000028   800004E0           AND      R0,R4,R0, LSL #+1
+   \   0000002C   011480E1           ORR      R1,R0,R1, LSL #+8
+   \   00000030   00108CE5           STR      R1,[R12, #+0]
+    168             I2C_0x8C = 1;	
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   584083E2           ADD      R4,R3,#+88
+   \   0000003C   001084E5           STR      R1,[R4, #+0]
+    169          	 
+    170             while(!(I2C_STAT & 0x20));
+   \                     ??__i2cr_byte_1:
+   \   00000040   4C5083E2           ADD      R5,R3,#+76
+   \   00000044   005095E5           LDR      R5,[R5, #+0]
+   \   00000048   200015E3           TST      R5,#0x20
+   \   0000004C   FBFFFF0A           BEQ      ??__i2cr_byte_1
+    171             if(I2C_0x74 & 0x10) return 4;
+   \   00000050   405083E3           ORR      R5,R3,#0x40
+   \   00000054   005095E5           LDR      R5,[R5, #+0]
+   \   00000058   100015E3           TST      R5,#0x10
+   \   0000005C   0200000A           BEQ      ??__i2cr_byte_2
+   \                     ??__i2cr_byte_3:
+   \   00000060   F000BDE8           POP      {R4-R7}
+   \   00000064   0400A0E3           MOV      R0,#+4
+   \   00000068   1EFF2FE1           BX       LR
+    172             if(I2C_0x74 & 0x20)
+   \                     ??__i2cr_byte_2:
+   \   0000006C   405083E3           ORR      R5,R3,#0x40
+   \   00000070   005095E5           LDR      R5,[R5, #+0]
+   \   00000074   200015E3           TST      R5,#0x20
+   \   00000078   3500000A           BEQ      ??__i2cr_byte_4
+    173             { 
+    174                I2C_0x78 = 0x20;
+   \   0000007C   445083E2           ADD      R5,R3,#+68
+   \   00000080   2060A0E3           MOV      R6,#+32
+   \   00000084   006085E5           STR      R6,[R5, #+0]
+    175                I2C_0x8C = 0x20;
+   \   00000088   006084E5           STR      R6,[R4, #+0]
+    176             }
+    177             else return 0xD;
+    178          /*************** int requestByteFrom(uint8_t address); ************************/   
+    179             I2C_RXCNT = 1;
+   \   0000008C   087043E2           SUB      R7,R3,#+8
+   \   00000090   001087E5           STR      R1,[R7, #+0]
+    180             I2C_TXCNT = 1;
+   \   00000094   001083E5           STR      R1,[R3, #+0]
+    181             while(!(I2C_STAT & 0x1));     
+   \                     ??__i2cr_byte_5:
+   \   00000098   0C30C4E3           BIC      R3,R4,#0xC
+   \   0000009C   003093E5           LDR      R3,[R3, #+0]
+   \   000000A0   010013E3           TST      R3,#0x1
+   \   000000A4   FBFFFF0A           BEQ      ??__i2cr_byte_5
+    182             I2C_TXBUF = ((address << 1) & 0x7F) | 1; //set read bit
+   \   000000A8   010080E3           ORR      R0,R0,#0x1
+   \   000000AC   00008CE5           STR      R0,[R12, #+0]
+    183             I2C_0x8C = 1;
+   \   000000B0   001084E5           STR      R1,[R4, #+0]
+    184             
+    185             while(!(I2C_STAT & 0x1));  
+   \                     ??__i2cr_byte_6:
+   \   000000B4   0C00C4E3           BIC      R0,R4,#0xC
+   \   000000B8   000090E5           LDR      R0,[R0, #+0]
+   \   000000BC   010010E3           TST      R0,#0x1
+   \   000000C0   FBFFFF0A           BEQ      ??__i2cr_byte_6
+    186             *data = I2C_RXBUF;
+   \   000000C4   400C8CE3           ORR      R0,R12,#0x4000
+   \   000000C8   000090E5           LDR      R0,[R0, #+0]
+   \   000000CC   0000C2E5           STRB     R0,[R2, #+0]
+    187             I2C_0x8C = 1; 
+   \   000000D0   001084E5           STR      R1,[R4, #+0]
+    188             
+    189             while(!(I2C_STAT & 0x20));
+   \                     ??__i2cr_byte_7:
+   \   000000D4   0C00C4E3           BIC      R0,R4,#0xC
+   \   000000D8   000090E5           LDR      R0,[R0, #+0]
+   \   000000DC   200010E3           TST      R0,#0x20
+   \   000000E0   FBFFFF0A           BEQ      ??__i2cr_byte_7
+    190             if(I2C_0x74 & 0x10) return 4;    
+   \   000000E4   180044E2           SUB      R0,R4,#+24
+   \   000000E8   000090E5           LDR      R0,[R0, #+0]
+   \   000000EC   100010E3           TST      R0,#0x10
+   \   000000F0   DAFFFF1A           BNE      ??__i2cr_byte_3
+    191             if(I2C_0x74 & 0x40) 
+   \   000000F4   180044E2           SUB      R0,R4,#+24
+   \   000000F8   000090E5           LDR      R0,[R0, #+0]
+   \   000000FC   400010E3           TST      R0,#0x40
+   \   00000100   1300000A           BEQ      ??__i2cr_byte_4
+    192             {
+    193                 I2C_0x78 = 0x40;
+   \   00000104   4000A0E3           MOV      R0,#+64
+   \   00000108   000085E5           STR      R0,[R5, #+0]
+    194                 I2C_0x8C = 0x20;
+   \   0000010C   006084E5           STR      R6,[R4, #+0]
+    195             }
+    196             else return 0xD;
+    197          	 
+    198             while(!(I2C_STAT & 0x20));
+   \                     ??__i2cr_byte_8:
+   \   00000110   0C00C4E3           BIC      R0,R4,#0xC
+   \   00000114   000090E5           LDR      R0,[R0, #+0]
+   \   00000118   200010E3           TST      R0,#0x20
+   \   0000011C   FBFFFF0A           BEQ      ??__i2cr_byte_8
+    199             if(I2C_0x74 & 0x10) return 4;   
+   \   00000120   180044E2           SUB      R0,R4,#+24
+   \   00000124   000090E5           LDR      R0,[R0, #+0]
+   \   00000128   100010E3           TST      R0,#0x10
+   \   0000012C   CBFFFF1A           BNE      ??__i2cr_byte_3
+    200             if(I2C_0x74 & 0x20)
+   \   00000130   180044E2           SUB      R0,R4,#+24
+   \   00000134   000090E5           LDR      R0,[R0, #+0]
+   \   00000138   200010E3           TST      R0,#0x20
+   \   0000013C   0400000A           BEQ      ??__i2cr_byte_4
+    201             {
+    202               I2C_0x78 = 0x20;
+   \   00000140   006085E5           STR      R6,[R5, #+0]
+    203               I2C_0x8C = 0x20;
+   \   00000144   006084E5           STR      R6,[R4, #+0]
+    204             }
+    205             else return 0xD; 
+    206          
+    207             return 0;
+   \   00000148   F000BDE8           POP      {R4-R7}
+   \   0000014C   0000A0E3           MOV      R0,#+0
+   \   00000150   1EFF2FE1           BX       LR
+   \                     ??__i2cr_byte_4:
+   \   00000154   F000BDE8           POP      {R4-R7}
+   \   00000158   0D00A0E3           MOV      R0,#+13
+   \   0000015C   1EFF2FE1           BX       LR               ;; return
+    208          }
+    209          
+    210          /*============================================================================*/
+    211          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    212          int i2c_write_arduino(uint8_t addr, uint8_t data)
+    213          {
+   \                     i2c_write_arduino:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    214            int cpsr, old, err;
+    215                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    216              __asm("SWI 4");
+   \   00000010   040000EF           SWI 4            
+    217                old = check_port(ALT_PORT);    
+   \   00000014   0100A0E3           MOV      R0,#+1
+   \   00000018   ........           BL       check_port
+   \   0000001C   0070A0E1           MOV      R7,R0
+    218                i2c_wakeup(1);
+   \   00000020   0100A0E3           MOV      R0,#+1
+   \   00000024   ........           BL       i2c_wakeup
+    219                err = __i2cw_byte(addr, data );
+   \   00000028   0510A0E1           MOV      R1,R5
+   \   0000002C   0400A0E1           MOV      R0,R4
+   \   00000030   ........           BL       __i2cw_byte
+   \   00000034   0040A0E1           MOV      R4,R0
+    220                i2c_sleep();
+   \   00000038   ........           BL       i2c_sleep
+    221                check_port(old);      
+   \   0000003C   0700A0E1           MOV      R0,R7
+   \   00000040   ........           BL       check_port
+    222              __set_CPSR(cpsr);
+   \   00000044   06F029E1           MSR      CPSR,R6
+    223                return err;		
+   \   00000048   0400A0E1           MOV      R0,R4
+   \   0000004C   F080BDE8           POP      {R4-R7,PC}       ;; return
+    224          }
+    225          
+    226          /*============================================================================*/
+    227          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    228          int i2c_write_pmu(int reg, char data)
+    229          {
+   \                     i2c_write_pmu:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    230            int cpsr, old, err;
+    231                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    232              __asm("SWI 4");
+   \   00000010   040000EF           SWI 4            
+    233                old = check_port(DEF_PORT);    
+   \   00000014   0000A0E3           MOV      R0,#+0
+   \   00000018   ........           BL       check_port
+   \   0000001C   0070A0E1           MOV      R7,R0
+    234                i2c_wakeup(1);
+   \   00000020   0100A0E3           MOV      R0,#+1
+   \   00000024   ........           BL       i2c_wakeup
+    235                err = __i2cw_short(PMU, data << 8 | reg);
+   \   00000028   051484E1           ORR      R1,R4,R5, LSL #+8
+   \   0000002C   0118A0E1           MOV      R1,R1, LSL #+16
+   \   00000030   4118A0E1           MOV      R1,R1, ASR #+16
+   \   00000034   3100A0E3           MOV      R0,#+49
+   \   00000038   ........           BL       __i2cw_short
+   \   0000003C   0040A0E1           MOV      R4,R0
+    236                i2c_sleep();
+   \   00000040   ........           BL       i2c_sleep
+    237                check_port(old);      
+   \   00000044   0700A0E1           MOV      R0,R7
+   \   00000048   ........           BL       check_port
+    238              __set_CPSR(cpsr);
+   \   0000004C   06F029E1           MSR      CPSR,R6
+    239                return err;		
+   \   00000050   0400A0E1           MOV      R0,R4
+   \   00000054   F080BDE8           POP      {R4-R7,PC}       ;; return
+    240          }
+    241          
+    242          /*============================================================================*/
+    243          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    244          int i2c_read_pmu(int reg, char *data)
+    245          {
+   \                     i2c_read_pmu:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    246            int cpsr, old, err;
+    247                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    248              __asm("SWI 4");
+   \   00000010   040000EF           SWI 4            
+    249                old = check_port(DEF_PORT);    
+   \   00000014   0000A0E3           MOV      R0,#+0
+   \   00000018   ........           BL       check_port
+   \   0000001C   0070A0E1           MOV      R7,R0
+    250                i2c_wakeup(0);
+   \   00000020   0000A0E3           MOV      R0,#+0
+   \   00000024   ........           BL       i2c_wakeup
+    251                err = __i2cr_byte(PMU, reg, data);
+   \   00000028   0520A0E1           MOV      R2,R5
+   \   0000002C   FF1004E2           AND      R1,R4,#0xFF
+   \   00000030   3100A0E3           MOV      R0,#+49
+   \   00000034   ........           BL       __i2cr_byte
+   \   00000038   0040A0E1           MOV      R4,R0
+    252                i2c_sleep();
+   \   0000003C   ........           BL       i2c_sleep
+    253                check_port(old);      
+   \   00000040   0700A0E1           MOV      R0,R7
+   \   00000044   ........           BL       check_port
+    254              __set_CPSR(cpsr);
+   \   00000048   06F029E1           MSR      CPSR,R6
+    255                return err;	
+   \   0000004C   0400A0E1           MOV      R0,R4
+   \   00000050   F080BDE8           POP      {R4-R7,PC}       ;; return
+    256          }
+    257          
+    258          /*============================================================================*/
+    259          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    260          int i2c_write_cam(int reg, char data)
+    261          {
+   \                     i2c_write_cam:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    262            int cpsr, old, err;
+    263                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    264              __asm("SWI 4");
+   \   00000010   040000EF           SWI 4            
+    265                old = check_port(ALT_PORT);    
+   \   00000014   0100A0E3           MOV      R0,#+1
+   \   00000018   ........           BL       check_port
+   \   0000001C   0070A0E1           MOV      R7,R0
+    266                i2c_wakeup(1);    
+   \   00000020   0100A0E3           MOV      R0,#+1
+   \   00000024   ........           BL       i2c_wakeup
+    267                err = __i2cw_short(CAMERA, data << 8 | reg);
+   \   00000028   051484E1           ORR      R1,R4,R5, LSL #+8
+   \   0000002C   0118A0E1           MOV      R1,R1, LSL #+16
+   \   00000030   4118A0E1           MOV      R1,R1, ASR #+16
+   \   00000034   B000A0E3           MOV      R0,#+176
+   \   00000038   ........           BL       __i2cw_short
+   \   0000003C   0040A0E1           MOV      R4,R0
+    268                i2c_sleep();
+   \   00000040   ........           BL       i2c_sleep
+    269                check_port(old);      
+   \   00000044   0700A0E1           MOV      R0,R7
+   \   00000048   ........           BL       check_port
+    270              __set_CPSR(cpsr);
+   \   0000004C   06F029E1           MSR      CPSR,R6
+    271                return err;	
+   \   00000050   0400A0E1           MOV      R0,R4
+   \   00000054   F080BDE8           POP      {R4-R7,PC}       ;; return
+    272          }
+    273          
+    274          /*============================================================================*/
+    275          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    276          int  i2c_read_cam(int reg, char *data)
+    277          {
+   \                     i2c_read_cam:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    278            int cpsr, old, err;
+    279                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    280              __asm("SWI 4"); //system mode
+   \   00000010   040000EF           SWI 4            
+    281                old = check_port(ALT_PORT);     
+   \   00000014   0100A0E3           MOV      R0,#+1
+   \   00000018   ........           BL       check_port
+   \   0000001C   0070A0E1           MOV      R7,R0
+    282                i2c_wakeup(0);
+   \   00000020   0000A0E3           MOV      R0,#+0
+   \   00000024   ........           BL       i2c_wakeup
+    283                err = __i2cr_byte(CAMERA, reg, data);
+   \   00000028   0520A0E1           MOV      R2,R5
+   \   0000002C   FF1004E2           AND      R1,R4,#0xFF
+   \   00000030   B000A0E3           MOV      R0,#+176
+   \   00000034   ........           BL       __i2cr_byte
+   \   00000038   0040A0E1           MOV      R4,R0
+    284                i2c_sleep();
+   \   0000003C   ........           BL       i2c_sleep
+    285                check_port(old);
+   \   00000040   0700A0E1           MOV      R0,R7
+   \   00000044   ........           BL       check_port
+    286              __set_CPSR(cpsr);
+   \   00000048   06F029E1           MSR      CPSR,R6
+    287                return err;	
+   \   0000004C   0400A0E1           MOV      R0,R4
+   \   00000050   F080BDE8           POP      {R4-R7,PC}       ;; return
+    288          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   B40050F4           DC32     0xfffffffff45000b4
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   840060F7           DC32     0xfffffffff7600084
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   800060F7           DC32     0xfffffffff7600080
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   8C0060F7           DC32     0xfffffffff760008c
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable13:
+   \   00000000   340060F7           DC32     0xfffffffff7600034
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable14:
+   \   00000000   008060F7           DC32     0xfffffffff7608000
+    289          	
+    290          
+    291          
+    292          
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     __i2cr_byte          16
+     __i2cw_byte           0
+     __i2cw_short          0
+     check_port            8
+     i2c_clkOff            4
+     i2c_clkOn             4
+     i2c_disable_INT       0
+     i2c_enable_INT        0
+     i2c_read_cam         20
+     i2c_read_pmu         20
+     i2c_reset             0
+     i2c_sleep             4
+     i2c_wakeup            8
+     i2c_write_arduino    20
+     i2c_write_cam        20
+     i2c_write_pmu        20
+
+
+   Segment part sizes:
+
+     Function/Label    Bytes
+     --------------    -----
+     i2c_reset           36
+     i2c_clkOn           32
+     i2c_clkOff          32
+     i2c_disable_INT     28
+     i2c_enable_INT      20
+     i2c_wakeup         152
+     i2c_sleep           48
+     check_port         168
+     __i2cw_byte        144
+     __i2cw_short       144
+     __i2cr_byte        352
+     i2c_write_arduino   80
+     i2c_write_pmu       88
+     i2c_read_pmu        84
+     i2c_write_cam       88
+     i2c_read_cam        84
+     ??DataTable1         4
+     ??DataTable4         4
+     ??DataTable10        4
+     ??DataTable12        4
+     ??DataTable13        4
+     ??DataTable14        4
+      Others             88
+
+ 
+ 1 692 bytes in segment CODE
+ 
+ 1 604 bytes of CODE memory (+ 88 bytes shared)
+
+Errors: none
+Warnings: none

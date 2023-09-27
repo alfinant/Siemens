@@ -1,0 +1,810 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Dec/2018  19:43:42 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\LoginDialog.c                                      #
+#    Command line    =  C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\LoginDialog.c -D NEWSGOLD -D DEVELOP -lCN          #
+#                       C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\Releas_NSG\List\ -la C:\Users\alfinant\Documents\S #
+#                       iemens\alfinant\VK.ELF_C\Releas_NSG\List\ -o         #
+#                       C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\Releas_NSG\Obj\ -z9 --cpu_mode arm --endian        #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       C:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I C:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\Releas_NSG\List\LoginDialog.lst                    #
+#    Object file     =  C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_ #
+#                       C\Releas_NSG\Obj\LoginDialog.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_C\LoginDialog.c
+      1          #include <siemens\swilib.h>
+      2          #include "rect_patcher.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void patch_header(HEADER_DESC const *)
+   \                     patch_header:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0000A0E3           MOV      R0,#+0
+   \   0000000C   B000C4E1           STRH     R0,[R4, #+0]
+   \   00000010   B200C4E1           STRH     R0,[R4, #+2]
+   \   00000014   888100EF           SWI      +33160
+   \   00000018   010040E2           SUB      R0,R0,#+1
+   \   0000001C   B400C4E1           STRH     R0,[R4, #+4]
+   \   00000020   8A8100EF           SWI      +33162
+   \   00000024   010040E2           SUB      R0,R0,#+1
+   \   00000028   B600C4E1           STRH     R0,[R4, #+6]
+   \   0000002C   1080BDE8           POP      {R4,PC}          ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void patch_input(INPUTDIA_DESC const *)
+   \                     patch_input:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0400A0E3           MOV      R0,#+4
+   \   0000000C   B801C4E1           STRH     R0,[R4, #+24]
+   \   00000010   8A8100EF           SWI      +33162
+   \   00000014   020080E2           ADD      R0,R0,#+2
+   \   00000018   BA01C4E1           STRH     R0,[R4, #+26]
+   \   0000001C   888100EF           SWI      +33160
+   \   00000020   040040E2           SUB      R0,R0,#+4
+   \   00000024   BC01C4E1           STRH     R0,[R4, #+28]
+   \   00000028   898100EF           SWI      +33161
+   \   0000002C   0050A0E1           MOV      R5,R0
+   \   00000030   8B8100EF           SWI      +33163
+   \   00000034   000045E0           SUB      R0,R5,R0
+   \   00000038   020040E2           SUB      R0,R0,#+2
+   \   0000003C   BE01C4E1           STRH     R0,[R4, #+30]
+   \   00000040   3080BDE8           POP      {R4,R5,PC}       ;; return
+      3          #include "dyn_images.h"
+      4          #include "dyn_theme.h"
+      5          #include "anim_widget.h"
+      6          #include "main.h"
+      7          #include "socket_work.h"
+      8          #include "http.h"
+      9          #include "process.h"
+     10          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     11          static const char percent_t[]="%t";
+   \                     percent_t:
+   \   00000000   257400             DC8 "%t"
+   \   00000003   00                 DC8 0
+   \   00000004   C2EAEEEDF2E0       DC8 "\302\352\356\355\362\340\352\362\345"
+   \              EAF2E500    
+   \   0000000E   0000               DC8 0, 0
+     12          static const char HEADER_TEXT[]="Вконтакте";
+     13          
+     14          extern int CreateDebugGUI();
+     15          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     16          int vk_com_parsed=0;
+   \                     vk_com_parsed:
+   \   00000000                      DS8 4
+     17          char action_url[256];
+     18          char email[32];
+     19          char pass[32];
+     20          char captcha_key[32];
+   \                     captcha_key:
+   \   00000004                      DS8 32
+   \                     action_url:
+   \   00000024                      DS8 256
+   \                     email:
+   \   00000124                      DS8 32
+   \                     pass:
+   \   00000144                      DS8 32
+     21          char captcha_sid[32];
+   \                     captcha_sid:
+   \   00000164                      DS8 32
+   \   00000184                      DS8 128
+     22          static char post_data[128];
+     23          
+     24          static HEADER_DESC hdr={0,0,0,0,NULL,NULL,LGP_NULL};
+     25          
+     26          static SOFTKEY_DESC ed_menu_sk[]=
+     27          {
+     28            {0x0018,0x0000,(int)"Лев"},
+     29            {0x0001,0x0000,(int)"Прав"},
+     30            {0x003D,0x0000,(int)LGP_DOIT_PIC}
+     31          };
+     32          
+     33          static SOFTKEYSTAB ed_menu_skt=
+     34          {
+     35            ed_menu_sk,0
+     36          };
+     37          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     38          static void ed_inp_locret(void){}
+   \                     ed_inp_locret:
+   \   00000000   1EFF2FE1           BX       LR               ;; return
+     39          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     40          static int ed_inp_onkey(GUI *data, GUI_MSG *msg)
+     41          {
+   \                     ed_inp_onkey:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+   \   00000004   2CD04DE2           SUB      SP,SP,#+44
+   \   00000008   0070A0E1           MOV      R7,R0
+     42            EDITCONTROL ec;
+     43            
+     44            if ((msg->gbsmsg->msg==KEY_DOWN)||(msg->gbsmsg->msg==LONG_PRESS))
+   \   0000000C   040091E5           LDR      R0,[R1, #+4]
+   \   00000010   9320A0E3           MOV      R2,#+147
+   \   00000014   041090E5           LDR      R1,[R0, #+4]
+   \   00000018   402F82E3           ORR      R2,R2,#0x100
+   \   0000001C   020051E1           CMP      R1,R2
+   \   00000020   02208212           ADDNE    R2,R2,#+2
+   \   00000024   02005111           CMPNE    R1,R2
+   \   00000028   5300001A           BNE      ??ed_inp_onkey_0
+     45            { 
+     46              switch(msg->gbsmsg->submess)
+   \   0000002C   080090E5           LDR      R0,[R0, #+8]
+   \   00000030   010050E2           SUBS     R0,R0,#+1
+   \   00000034   0200000A           BEQ      ??ed_inp_onkey_1
+   \   00000038   0A0050E2           SUBS     R0,R0,#+10
+   \   0000003C   4D00000A           BEQ      ??ed_inp_onkey_2
+   \   00000040   4D0000EA           B        ??ed_inp_onkey_0
+     47              {
+     48              case LEFT_SOFT:
+     49                
+     50                AnimWidget_Wait_bottom(); 
+     51                
+     52                ExtractEditControl(data, 2, &ec);//email
+     53                ws_2str(ec.pWS, email, 31);
+   \                     ??ed_inp_onkey_1:
+   \   00000044   3C519FE5           LDR      R5,??ed_inp_onkey_3  ;; vk_com_parsed
+   \   00000048   ........           _BLF     AnimWidget_Wait_bottom,??AnimWidget_Wait_bottom??rA
+   \   0000004C   0D20A0E1           MOV      R2,SP
+   \   00000050   0210A0E3           MOV      R1,#+2
+   \   00000054   0700A0E1           MOV      R0,R7
+   \   00000058   690100EF           SWI      +361
+   \   0000005C   28009DE5           LDR      R0,[SP, #+40]
+   \   00000060   494FA0E3           MOV      R4,#+292
+   \   00000064   1F20A0E3           MOV      R2,#+31
+   \   00000068   051084E0           ADD      R1,R4,R5
+   \   0000006C   A30000EF           SWI      +163
+     54                
+     55                ExtractEditControl(data, 4, &ec);//pass
+   \   00000070   0D20A0E1           MOV      R2,SP
+   \   00000074   0410A0E3           MOV      R1,#+4
+   \   00000078   0700A0E1           MOV      R0,R7
+   \   0000007C   690100EF           SWI      +361
+     56                ws_2str(ec.pWS, pass, 31);
+   \   00000080   28009DE5           LDR      R0,[SP, #+40]
+   \   00000084   516FA0E3           MOV      R6,#+324
+   \   00000088   1F20A0E3           MOV      R2,#+31
+   \   0000008C   051086E0           ADD      R1,R6,R5
+   \   00000090   A30000EF           SWI      +163
+     57                
+     58                *captcha_key='\0';
+   \   00000094   0000A0E3           MOV      R0,#+0
+   \   00000098   0400C5E5           STRB     R0,[R5, #+4]
+     59                if(ExtractEditControl(data,6,&ec))//captcha_key
+   \   0000009C   0D20A0E1           MOV      R2,SP
+   \   000000A0   0610A0E3           MOV      R1,#+6
+   \   000000A4   0700A0E1           MOV      R0,R7
+   \   000000A8   690100EF           SWI      +361
+   \   000000AC   000050E3           CMP      R0,#+0
+   \   000000B0   0300000A           BEQ      ??ed_inp_onkey_4
+     60                  ws_2str(ec.pWS, captcha_key, 31); 
+   \   000000B4   28009DE5           LDR      R0,[SP, #+40]
+   \   000000B8   1F20A0E3           MOV      R2,#+31
+   \   000000BC   041085E2           ADD      R1,R5,#+4
+   \   000000C0   A30000EF           SWI      +163
+     61                
+     62                if (vk_com_parsed == 0)
+   \                     ??ed_inp_onkey_4:
+   \   000000C4   002095E5           LDR      R2,[R5, #+0]
+   \   000000C8   BC709FE5           LDR      R7,??ed_inp_onkey_3+0x4  ;; sock_keepalive
+   \   000000CC   BC109FE5           LDR      R1,??ed_inp_onkey_3+0x8  ;; `?<Constant "https://m.vk.com/login">`
+   \   000000D0   ........           LDR      R0,??DataTable1  ;; process
+   \   000000D4   0180A0E3           MOV      R8,#+1
+   \   000000D8   000052E3           CMP      R2,#+0
+   \   000000DC   0400001A           BNE      ??ed_inp_onkey_5
+     63                {
+     64                  process=AUTH_PARSE_M_VK_COM_LOGIN;
+   \   000000E0   008080E5           STR      R8,[R0, #+0]
+     65                  sock_keepalive=1;
+     66                  SUBPROC((void *)HttpSendReq, "https://m.vk.com/login");
+   \   000000E4   A8009FE5           LDR      R0,??ed_inp_onkey_3+0xC  ;; HttpSendReq
+   \   000000E8   008087E5           STR      R8,[R7, #+0]
+   \   000000EC   710100EF           SWI      +369
+   \   000000F0   210000EA           B        ??ed_inp_onkey_0
+     67                }
+     68                else
+     69                {
+     70                  process=AUTH_SEND_LOGIN_PASS;
+   \                     ??ed_inp_onkey_5:
+   \   000000F4   0220A0E3           MOV      R2,#+2
+   \   000000F8   002080E5           STR      R2,[R0, #+0]
+     71                  
+     72                  if (*captcha_key)
+   \   000000FC   0400D5E5           LDRB     R0,[R5, #+4]
+   \   00000100   619FA0E3           MOV      R9,#+388
+   \   00000104   000050E3           CMP      R0,#+0
+   \   00000108   0C00000A           BEQ      ??ed_inp_onkey_6
+     73                    snprintf(post_data, 127, "email=%s&pass=%s&captcha_sid=%s&captcha_key=%s", email, pass, captcha_sid, captcha_key); 
+   \   0000010C   040085E2           ADD      R0,R5,#+4
+   \   00000110   01002DE9           PUSH     {R0}
+   \   00000114   053084E0           ADD      R3,R4,R5
+   \   00000118   182081E2           ADD      R2,R1,#+24
+   \   0000011C   7F10A0E3           MOV      R1,#+127
+   \   00000120   590F85E2           ADD      R0,R5,#+356
+   \   00000124   01002DE9           PUSH     {R0}
+   \   00000128   050086E0           ADD      R0,R6,R5
+   \   0000012C   01002DE9           PUSH     {R0}
+   \   00000130   050089E0           ADD      R0,R9,R5
+   \   00000134   1B0100EF           SWI      +283
+   \   00000138   0CD08DE2           ADD      SP,SP,#+12
+   \   0000013C   070000EA           B        ??ed_inp_onkey_7
+     74                  else
+     75                    snprintf(post_data, 127, "email=%s&pass=%s", email, pass);
+   \                     ??ed_inp_onkey_6:
+   \   00000140   050086E0           ADD      R0,R6,R5
+   \   00000144   01002DE9           PUSH     {R0}
+   \   00000148   053084E0           ADD      R3,R4,R5
+   \   0000014C   482081E2           ADD      R2,R1,#+72
+   \   00000150   7F10A0E3           MOV      R1,#+127
+   \   00000154   050089E0           ADD      R0,R9,R5
+   \   00000158   1B0100EF           SWI      +283
+   \   0000015C   04D08DE2           ADD      SP,SP,#+4
+     76                  
+     77                  sock_keepalive=1;
+     78                  SUBPROC((void*)HttpSendPostReq, action_url, post_data);
+   \                     ??ed_inp_onkey_7:
+   \   00000160   30009FE5           LDR      R0,??ed_inp_onkey_3+0x10  ;; HttpSendPostReq
+   \   00000164   008087E5           STR      R8,[R7, #+0]
+   \   00000168   052089E0           ADD      R2,R9,R5
+   \   0000016C   241085E2           ADD      R1,R5,#+36
+   \   00000170   710100EF           SWI      +369
+   \   00000174   000000EA           B        ??ed_inp_onkey_0
+     79                }
+     80                break;
+     81              
+     82              case GREEN_BUTTON: CreateDebugGUI();
+   \                     ??ed_inp_onkey_2:
+   \   00000178   ........           _BLF     CreateDebugGUI,??CreateDebugGUI??rA
+     83              break;
+     84              
+     85            }
+     86            }
+     87            return(0);
+   \                     ??ed_inp_onkey_0:
+   \   0000017C   0000A0E3           MOV      R0,#+0
+   \   00000180   2CD08DE2           ADD      SP,SP,#+44
+   \   00000184   F083BDE8           POP      {R4-R9,PC}       ;; return
+   \                     ??ed_inp_onkey_3:
+   \   00000188   ........           DC32     vk_com_parsed
+   \   0000018C   ........           DC32     sock_keepalive
+   \   00000190   ........           DC32     `?<Constant "https://m.vk.com/login">`
+   \   00000194   ........           DC32     HttpSendReq
+   \   00000198   ........           DC32     HttpSendPostReq
+     88          }
+     89          
+     90          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     91          static void ed_inp_ghook(GUI *data, int cmd)
+     92          {
+   \                     ed_inp_ghook:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     93           // static int hdr_pic;
+     94            static SOFTKEY_DESC sk = {0x0FFF,0x0000,(int)"Войти"};
+     95             
+     96            if (cmd == TI_CMD_CREATE)
+   \   00000008   020051E3           CMP      R1,#+2
+   \   0000000C   1000001A           BNE      ??ed_inp_ghook_0
+     97            {    
+     98              //LoadDynTheme();
+     99              //LoadDynImages();
+    100          
+    101              //hdr_pic=GetDynPicNum(VK_HEADER_ICON);
+    102              //hdr.icon=&hdr_pic;
+    103              
+    104              void* hdr_pointer=GetHeaderPointer(data);
+   \   00000010   AE0200EF           SWI      +686
+   \   00000014   0040A0E1           MOV      R4,R0
+    105              WSHDR* ws=AllocWS(32);
+   \   00000018   2000A0E3           MOV      R0,#+32
+   \   0000001C   250100EF           SWI      +293
+    106              wsprintf(ws, percent_t, HEADER_TEXT);
+   \   00000020   A4109FE5           LDR      R1,??ed_inp_ghook_1  ;; percent_t
+   \   00000024   0050A0E1           MOV      R5,R0
+   \   00000028   042081E2           ADD      R2,R1,#+4
+   \   0000002C   240100EF           SWI      +292
+    107              SetHeaderText(hdr_pointer, ws, malloc_adr(), mfree_adr());   
+   \   00000030   158000EF           SWI      +32789
+   \   00000034   0060A0E1           MOV      R6,R0
+   \   00000038   148000EF           SWI      +32788
+   \   0000003C   0630A0E1           MOV      R3,R6
+   \   00000040   0020A0E1           MOV      R2,R0
+   \   00000044   0510A0E1           MOV      R1,R5
+   \   00000048   0400A0E1           MOV      R0,R4
+   \   0000004C   AF0200EF           SWI      +687
+   \   00000050   7080BDE8           POP      {R4-R6,PC}
+    108            }
+    109               
+    110            if (cmd == TI_CMD_UNFOCUS)
+   \                     ??ed_inp_ghook_0:
+   \   00000054   090051E3           CMP      R1,#+9
+   \   00000058   0300001A           BNE      ??ed_inp_ghook_2
+    111            {
+    112              AnimWidget_Close();
+   \   0000005C   ........           _BLF     AnimWidget_Close,??AnimWidget_Close??rA
+    113              
+    114              DisableDynImages();
+   \   00000060   ........           _BLF     DisableDynImages,??DisableDynImages??rA
+    115              DisableDynTheme();
+   \   00000064   ........           _BLF     DisableDynTheme,??DisableDynTheme??rA
+   \   00000068   7080BDE8           POP      {R4-R6,PC}
+    116            }
+    117            
+    118            if (cmd == TI_CMD_FOCUS)
+   \                     ??ed_inp_ghook_2:
+   \   0000006C   0A0051E3           CMP      R1,#+10
+   \   00000070   0800001A           BNE      ??ed_inp_ghook_3
+    119            {
+    120              if (process)
+   \   00000074   ........           LDR      R0,??DataTable1  ;; process
+   \   00000078   000090E5           LDR      R0,[R0, #+0]
+   \   0000007C   000050E3           CMP      R0,#+0
+   \   00000080   0000000A           BEQ      ??ed_inp_ghook_4
+    121                AnimWidget_Wait_bottom();
+   \   00000084   ........           _BLF     AnimWidget_Wait_bottom,??AnimWidget_Wait_bottom??rA
+    122              
+    123              EnableDynImages();
+   \                     ??ed_inp_ghook_4:
+   \   00000088   ........           _BLF     EnableDynImages,??EnableDynImages??rA
+    124              EnableDynTheme();  
+   \   0000008C   ........           _BLF     EnableDynTheme,??EnableDynTheme??rA
+    125              DisableIDLETMR();
+   \   00000090   7F0100EF           SWI      +383
+   \   00000094   7080BDE8           POP      {R4-R6,PC}
+    126            }  
+    127            
+    128            if (cmd == TI_CMD_REDRAW)
+   \                     ??ed_inp_ghook_3:
+   \   00000098   070051E3           CMP      R1,#+7
+   \   0000009C   0500001A           BNE      ??ed_inp_ghook_5
+    129            {
+    130              EnableDynImages(); 
+   \   000000A0   ........           _BLF     EnableDynImages,??EnableDynImages??rA
+    131              SetSoftKey(data, &sk, 0);
+   \   000000A4   24109FE5           LDR      R1,??ed_inp_ghook_1+0x4  ;; ??sk
+   \   000000A8   0020A0E3           MOV      R2,#+0
+   \   000000AC   0400A0E1           MOV      R0,R4
+   \   000000B0   680100EF           SWI      +360
+   \   000000B4   7080BDE8           POP      {R4-R6,PC}
+    132            }
+    133            
+    134            if (cmd == TI_CMD_DESTROY)
+   \                     ??ed_inp_ghook_5:
+   \   000000B8   030051E3           CMP      R1,#+3
+   \   000000BC   7080BD18           POPNE    {R4-R6,PC}
+    135            { 
+    136              DisableDynTheme();
+   \   000000C0   ........           _BLF     DisableDynTheme,??DisableDynTheme??rA
+    137              DisableDynImages();
+   \   000000C4   ........           _BLF     DisableDynImages,??DisableDynImages??rA
+    138            }
+    139            
+    140          }
+   \   000000C8   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??ed_inp_ghook_1:
+   \   000000CC   ........           DC32     percent_t
+   \   000000D0   ........           DC32     ??sk
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     hdr:
+   \   00000000                      DS8 20
+   \   00000014                      REQUIRE `?<Initializer for hdr>`
+   \   00000014                      DS8 56
+   \   0000004C                      REQUIRE `?<Initializer for ed_inp_desc>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     ed_menu_sk:
+   \   00000000                      DS8 24
+   \   00000018                      REQUIRE `?<Initializer for ed_menu_sk>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     ed_menu_skt:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for ed_menu_skt>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     ??sk:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for sk>`
+    141          
+    142          static INPUTDIA_DESC ed_inp_desc=
+    143          {
+    144            1,
+    145            ed_inp_onkey,
+    146            ed_inp_ghook,
+    147            (void *)ed_inp_locret,
+    148            0,
+    149            &ed_menu_skt,
+    150            {0,0,0,0},
+    151            4,
+    152            100,
+    153            101,
+    154            0,
+    155            0,
+    156            0x40000000
+    157          };
+    158          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    159          int CreateLoginDialog(int flag)
+    160          {
+   \                     CreateLoginDialog:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    161            void *ma = malloc_adr();
+    162            void *eq;
+    163            EDITCONTROL ec;
+    164          
+    165            if (csm->login_dialog_gui_id)//закрываем до этого созданный гуй
+   \   00000004   0C429FE5           LDR      R4,??CreateLoginDialog_0+0xC  ;; csm
+   \   00000008   90DF4DE2           SUB      SP,SP,#+576
+   \   0000000C   0050A0E1           MOV      R5,R0
+   \   00000010   148000EF           SWI      +32788
+   \   00000014   0060A0E1           MOV      R6,R0
+   \   00000018   000094E5           LDR      R0,[R4, #+0]
+   \   0000001C   2C0090E5           LDR      R0,[R0, #+44]
+   \   00000020   000050E3           CMP      R0,#+0
+   \   00000024   0400000A           BEQ      ??CreateLoginDialog_1
+    166            {
+    167              GeneralFunc_flag1(csm->login_dialog_gui_id, 1);
+   \   00000028   0110A0E3           MOV      R1,#+1
+   \   0000002C   3D0100EF           SWI      +317
+    168              csm->login_dialog_gui_id=NULL;
+   \   00000030   000094E5           LDR      R0,[R4, #+0]
+   \   00000034   0010A0E3           MOV      R1,#+0
+   \   00000038   2C1080E5           STR      R1,[R0, #+44]
+    169            }
+    170            
+    171            WSHDR ws;
+    172            unsigned short wsbody[256];
+    173            
+    174            CreateLocalWS(&ws, wsbody, 255);
+    175            
+    176            PrepareEditControl(&ec);
+    177            eq=AllocEQueue(ma,mfree_adr());
+    178          
+    179            wsprintf(&ws, "\n%t", "Телефон или email:");
+   \                     ??CreateLoginDialog_1:
+   \   0000003C   D8819FE5           LDR      R8,??CreateLoginDialog_0+0x10  ;; `?<Constant "\\322\\345\\353\\345\\364\\356\\355 \\350\\`
+   \   00000040   FF20A0E3           MOV      R2,#+255
+   \   00000044   40108DE2           ADD      R1,SP,#+64
+   \   00000048   0D00A0E1           MOV      R0,SP
+   \   0000004C   270100EF           SWI      +295
+   \   00000050   14008DE2           ADD      R0,SP,#+20
+   \   00000054   640100EF           SWI      +356
+   \   00000058   158000EF           SWI      +32789
+   \   0000005C   0010A0E1           MOV      R1,R0
+   \   00000060   0600A0E1           MOV      R0,R6
+   \   00000064   630100EF           SWI      +355
+   \   00000068   0070A0E1           MOV      R7,R0
+   \   0000006C   0820A0E1           MOV      R2,R8
+   \   00000070   651F8FE2           ADR      R1,??CreateLoginDialog_0  ;; "\n%t"
+   \   00000074   0D00A0E1           MOV      R0,SP
+   \   00000078   240100EF           SWI      +292
+    180            ConstructEditControl(&ec, ECT_HEADER, ECF_APPEND_EOL, &ws, 32);
+   \   0000007C   2000A0E3           MOV      R0,#+32
+   \   00000080   01002DE9           PUSH     {R0}
+   \   00000084   04308DE2           ADD      R3,SP,#+4
+   \   00000088   4020A0E3           MOV      R2,#+64
+   \   0000008C   0110A0E3           MOV      R1,#+1
+   \   00000090   18008DE2           ADD      R0,SP,#+24
+   \   00000094   650100EF           SWI      +357
+    181            AddEditControlToEditQend(eq, &ec, ma);
+   \   00000098   0620A0E1           MOV      R2,R6
+   \   0000009C   18108DE2           ADD      R1,SP,#+24
+   \   000000A0   0700A0E1           MOV      R0,R7
+   \   000000A4   660100EF           SWI      +358
+    182            
+    183            wsprintf(&ws, "%s", "alfinant@gmail.com");
+   \   000000A8   142088E2           ADD      R2,R8,#+20
+   \   000000AC   571F8FE2           ADR      R1,??CreateLoginDialog_0+0x4  ;; "%s"
+   \   000000B0   04008DE2           ADD      R0,SP,#+4
+   \   000000B4   240100EF           SWI      +292
+    184            ConstructEditControl(&ec,ECT_NORMAL_TEXT, ECF_NORMAL_STR | ECF_APPEND_EOL, NULL, 32);
+   \   000000B8   2000A0E3           MOV      R0,#+32
+   \   000000BC   01002DE9           PUSH     {R0}
+   \   000000C0   0030A0E3           MOV      R3,#+0
+   \   000000C4   4020A0E3           MOV      R2,#+64
+   \   000000C8   0310A0E3           MOV      R1,#+3
+   \   000000CC   1C008DE2           ADD      R0,SP,#+28
+   \   000000D0   650100EF           SWI      +357
+    185            AddEditControlToEditQend(eq, &ec, ma);
+   \   000000D4   0620A0E1           MOV      R2,R6
+   \   000000D8   1C108DE2           ADD      R1,SP,#+28
+   \   000000DC   0700A0E1           MOV      R0,R7
+   \   000000E0   660100EF           SWI      +358
+    186            
+    187            wsprintf(&ws, "%t", "Пароль:");
+   \   000000E4   282088E2           ADD      R2,R8,#+40
+   \   000000E8   491F8FE2           ADR      R1,??CreateLoginDialog_0+0x8  ;; "%t"
+   \   000000EC   08008DE2           ADD      R0,SP,#+8
+   \   000000F0   240100EF           SWI      +292
+    188            ConstructEditControl(&ec, ECT_HEADER, ECF_APPEND_EOL, &ws, 32);
+   \   000000F4   2000A0E3           MOV      R0,#+32
+   \   000000F8   01002DE9           PUSH     {R0}
+   \   000000FC   0C308DE2           ADD      R3,SP,#+12
+   \   00000100   4020A0E3           MOV      R2,#+64
+   \   00000104   0110A0E3           MOV      R1,#+1
+   \   00000108   20008DE2           ADD      R0,SP,#+32
+   \   0000010C   650100EF           SWI      +357
+    189            AddEditControlToEditQend(eq, &ec, ma);
+   \   00000110   0620A0E1           MOV      R2,R6
+   \   00000114   20108DE2           ADD      R1,SP,#+32
+   \   00000118   0700A0E1           MOV      R0,R7
+   \   0000011C   660100EF           SWI      +358
+    190            
+    191            ConstructEditControl(&ec, ECT_NORMAL_TEXT, ECF_PASSW | ECF_APPEND_EOL , NULL, 32);
+   \   00000120   2000A0E3           MOV      R0,#+32
+   \   00000124   01002DE9           PUSH     {R0}
+   \   00000128   0030A0E3           MOV      R3,#+0
+   \   0000012C   5020A0E3           MOV      R2,#+80
+   \   00000130   0310A0E3           MOV      R1,#+3
+   \   00000134   24008DE2           ADD      R0,SP,#+36
+   \   00000138   650100EF           SWI      +357
+    192            AddEditControlToEditQend(eq, &ec, ma); 
+   \   0000013C   0620A0E1           MOV      R2,R6
+   \   00000140   24108DE2           ADD      R1,SP,#+36
+   \   00000144   0700A0E1           MOV      R0,R7
+   \   00000148   660100EF           SWI      +358
+    193            
+    194            if (flag)
+   \   0000014C   000055E3           CMP      R5,#+0
+   \   00000150   10D08DE2           ADD      SP,SP,#+16
+   \   00000154   1C00000A           BEQ      ??CreateLoginDialog_2
+    195            {
+    196              wsprintf(&ws, "%c\n%t", FIRST_UCS2_BITMAP + 0, "Код с картинки:");
+   \   00000158   383088E2           ADD      R3,R8,#+56
+   \   0000015C   2A20A0E3           MOV      R2,#+42
+   \   00000160   E12C82E3           ORR      R2,R2,#0xE100
+   \   00000164   301088E2           ADD      R1,R8,#+48
+   \   00000168   0D00A0E1           MOV      R0,SP
+   \   0000016C   240100EF           SWI      +292
+    197              ConstructEditControl(&ec, ECT_HEADER, ECF_APPEND_EOL, &ws, 32);
+   \   00000170   2000A0E3           MOV      R0,#+32
+   \   00000174   01002DE9           PUSH     {R0}
+   \   00000178   04308DE2           ADD      R3,SP,#+4
+   \   0000017C   4020A0E3           MOV      R2,#+64
+   \   00000180   0110A0E3           MOV      R1,#+1
+   \   00000184   18008DE2           ADD      R0,SP,#+24
+   \   00000188   650100EF           SWI      +357
+    198              AddEditControlToEditQend(eq, &ec, ma);
+   \   0000018C   0620A0E1           MOV      R2,R6
+   \   00000190   18108DE2           ADD      R1,SP,#+24
+   \   00000194   0700A0E1           MOV      R0,R7
+   \   00000198   660100EF           SWI      +358
+    199               
+    200              ConstructEditControl(&ec,ECT_NORMAL_TEXT, ECF_NORMAL_STR | ECF_APPEND_EOL, NULL, 32);
+   \   0000019C   2000A0E3           MOV      R0,#+32
+   \   000001A0   01002DE9           PUSH     {R0}
+   \   000001A4   0030A0E3           MOV      R3,#+0
+   \   000001A8   4020A0E3           MOV      R2,#+64
+   \   000001AC   0310A0E3           MOV      R1,#+3
+   \   000001B0   1C008DE2           ADD      R0,SP,#+28
+   \   000001B4   650100EF           SWI      +357
+    201              AddEditControlToEditQend(eq, &ec, ma);      
+   \   000001B8   0620A0E1           MOV      R2,R6
+   \   000001BC   1C108DE2           ADD      R1,SP,#+28
+   \   000001C0   0700A0E1           MOV      R0,R7
+   \   000001C4   660100EF           SWI      +358
+   \   000001C8   08D08DE2           ADD      SP,SP,#+8
+    202            }
+    203            
+    204            patch_header(&hdr);
+   \                     ??CreateLoginDialog_2:
+   \   000001CC   4C509FE5           LDR      R5,??CreateLoginDialog_0+0x14  ;; hdr
+   \   000001D0   0500A0E1           MOV      R0,R5
+   \   000001D4   ........           _BLF     patch_header,??patch_header??rA
+    205            patch_input(&ed_inp_desc);
+   \   000001D8   140085E2           ADD      R0,R5,#+20
+   \   000001DC   ........           _BLF     patch_input,??patch_input??rA
+    206            
+    207            return (csm->login_dialog_gui_id=CreateInputTextDialog(&ed_inp_desc,&hdr,eq,1,0));
+   \   000001E0   0000A0E3           MOV      R0,#+0
+   \   000001E4   01002DE9           PUSH     {R0}
+   \   000001E8   0130A0E3           MOV      R3,#+1
+   \   000001EC   0720A0E1           MOV      R2,R7
+   \   000001F0   0510A0E1           MOV      R1,R5
+   \   000001F4   140085E2           ADD      R0,R5,#+20
+   \   000001F8   670100EF           SWI      +359
+   \   000001FC   001094E5           LDR      R1,[R4, #+0]
+   \   00000200   2C0081E5           STR      R0,[R1, #+44]
+   \   00000204   91DF8DE2           ADD      SP,SP,#+580
+   \   00000208   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??CreateLoginDialog_0:
+   \   0000020C   0A257400           DC8      "\n%t"
+   \   00000210   25730000           DC8      "%s",+0
+   \   00000214   25740000           DC8      "%t",+0
+   \   00000218   ........           DC32     csm
+   \   0000021C   ........           DC32     `?<Constant "\\322\\345\\353\\345\\364\\356\\355 \\350\\`
+   \   00000220   ........           DC32     hdr
+    208          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     process
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for hdr>`:
+   \   00000000   000000000000       DC16 0, 0, 0, 0
+   \              0000        
+   \   00000008   000000000000       DC32 0H, 0, 2147483647
+   \              0000FFFFFF7F
+   \                     `?<Initializer for ed_inp_desc>`:
+   \   00000014   01000000....       DC32 1, ed_inp_onkey, ed_inp_ghook, ed_inp_locret, 0, ed_menu_skt
+   \              ............
+   \              ........0000
+   \              0000........
+   \   0000002C   000000000000       DC16 0, 0, 0, 0
+   \              0000        
+   \   00000034   040000006400       DC32 4, 100, 101, 0, 0, 1073741824
+   \              000065000000
+   \              000000000000
+   \              000000000040
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for ed_menu_sk>`:
+   \   00000000   18000000           DC16 24, 0
+   \   00000004   ........           DC32 `?<Constant "\\313\\345\\342">`
+   \   00000008   01000000           DC16 1, 0
+   \   0000000C   ........           DC32 `?<Constant "\\317\\360\\340\\342">`
+   \   00000010   3D000000           DC16 61, 0
+   \   00000014   FBC0FF7F           DC32 2147467515
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for ed_menu_skt>`:
+   \   00000000   ........0000       DC32 ed_menu_sk, 0
+   \              0000        
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for sk>`:
+   \   00000000   FF0F0000           DC16 4095, 0
+   \   00000004   ........           DC32 `?<Constant "\\302\\356\\351\\362\\350">`
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\313\\345\\342">`:
+   \   00000000   CBE5E200           DC8 "\313\345\342"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\317\\360\\340\\342">`:
+   \   00000000   CFF0E0E200         DC8 "\317\360\340\342"
+   \   00000005   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "https://m.vk.com/login">`:
+   \   00000000   68747470733A       DC8 "https://m.vk.com/login"
+   \              2F2F6D2E766B
+   \              2E636F6D2F6C
+   \              6F67696E00  
+   \   00000017   00                 DC8 0
+   \   00000018   656D61696C3D       DC8 "email=%s&pass=%s&captcha_sid=%s&captcha_key=%s"
+   \              257326706173
+   \              733D25732663
+   \              617074636861
+   \              5F7369643D25
+   \              732663617074
+   \              6368615F6B65
+   \              793D257300  
+   \   00000047   00                 DC8 0
+   \   00000048   656D61696C3D       DC8 "email=%s&pass=%s"
+   \              257326706173
+   \              733D257300  
+   \   00000059   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\302\\356\\351\\362\\350">`:
+   \   00000000   C2EEE9F2E800       DC8 "\302\356\351\362\350"
+   \   00000006   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   0A257400           DC8 "\012%t"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\322\\345\\353\\345\\364\\356\\355 \\350\\`:
+   \   00000000   D2E5EBE5F4EE       DC8 "\322\345\353\345\364\356\355 \350\353\350 email:"
+   \              ED20E8EBE820
+   \              656D61696C3A
+   \              00          
+   \   00000013   00                 DC8 0
+   \   00000014   616C66696E61       DC8 "alfinant@gmail.com"
+   \              6E7440676D61
+   \              696C2E636F6D
+   \              00          
+   \   00000027   00                 DC8 0
+   \   00000028   CFE0F0EEEBFC       DC8 "\317\340\360\356\353\374:"
+   \              3A00        
+   \   00000030   25630A257400       DC8 "%c\012%t"
+   \   00000036   0000               DC8 0, 0
+   \   00000038   CAEEE420F120       DC8 "\312\356\344 \361 \352\340\360\362\350\355\352\350:"
+   \              EAE0F0F2E8ED
+   \              EAE83A00    
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   257300             DC8 "%s"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   257400             DC8 "%t"
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     CreateLoginDialog   616
+     ed_inp_ghook         16
+     ed_inp_locret         0
+     ed_inp_onkey         84
+     patch_header          8
+     patch_input          12
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     patch_header                     48
+     patch_input                      68
+     percent_t                        16
+     vk_com_parsed                   516
+     ed_inp_locret                     4
+     ed_inp_onkey                    412
+     ed_inp_ghook                    212
+     hdr                              76
+     ed_menu_sk                       24
+     ed_menu_skt                       8
+     sk                                8
+     CreateLoginDialog               548
+     ??DataTable1                      4
+     ?<Initializer for hdr>           76
+     ?<Initializer for ed_menu_sk>    24
+     ?<Initializer for ed_menu_skt>    8
+     ?<Initializer for sk>             8
+     ?<Constant "\313\345\342">        4
+     ?<Constant "\317\360\340\342">    8
+     ?<Constant "https://m.vk.com/login">
+                                      92
+     ?<Constant "\302\356\351\362\350">
+                                       8
+     ?<Constant "\n%t">                4
+     ?<Constant "\322\345\353\345\364\356\355 \350\
+                                      72
+     ?<Constant "%s">                  3
+     ?<Constant "%t">                  3
+      Others                         148
+
+ 
+ 1 420 bytes in segment CODE
+   210 bytes in segment DATA_C
+   116 bytes in segment DATA_I
+   116 bytes in segment DATA_ID
+   516 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 180 bytes of CODE  memory (+ 264 bytes shared)
+   326 bytes of CONST memory
+   632 bytes of DATA  memory
+
+Errors: none
+Warnings: none

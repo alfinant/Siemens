@@ -1,0 +1,129 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:34 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \parser_error.c                                      #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \parser_error.c -D NEWSGOLD -D DEBUG -lCN            #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\parser_error.lst                    #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\parser_error.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\parser_error.c
+      1          #include "parser_error.h"
+      2          #include "json/cJSON.h"
+      3          #include <siemens\swilib.h>
+      4          #include "constants.h"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static char const __data t_error_code[11]
+   \                     t_error_code:
+   \   00000000   6572726F725F       DC8 "error_code"
+   \              636F646500  
+   \   0000000B   00                 DC8 0
+   \   0000000C   6572726F725F       DC8 "error_msg"
+   \              6D736700    
+   \   00000016   0000               DC8 0, 0
+      5          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      6          int error_code;
+   \                     error_code:
+   \   00000000                      DS8 4
+      7          char error_msg[256];
+   \                     error_msg:
+   \   00000004                      DS8 256
+      8          
+
+   \                                 In segment CODE, align 4, keep-with-next
+      9          int __parse_obj_Error(cJSON* j_error)
+     10          {   
+   \                     __parse_obj_Error:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+     11            int error = 0;
+     12            
+     13            cJSON* j_item = cJSON_GetObjectItem(j_error, t_error_code);
+   \   00000004   48609FE5           LDR      R6,??__parse_obj_Error_0  ;; t_error_code
+   \   00000008   0040A0E1           MOV      R4,R0
+     14            if (j_item)
+   \   0000000C   44709FE5           LDR      R7,??__parse_obj_Error_0+0x4  ;; error_code
+   \   00000010   0050A0E3           MOV      R5,#+0
+   \   00000014   0610A0E1           MOV      R1,R6
+   \   00000018   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+   \   0000001C   000050E3           CMP      R0,#+0
+     15            {
+     16              error = j_item->valueint;
+   \   00000020   14509015           LDRNE    R5,[R0, #+20]
+     17              error_code = error;
+     18            }
+     19            
+     20            j_item = cJSON_GetObjectItem(j_error, t_error_msg);
+   \   00000024   0C1086E2           ADD      R1,R6,#+12
+   \   00000028   00508715           STRNE    R5,[R7, #+0]
+   \   0000002C   0400A0E1           MOV      R0,R4
+   \   00000030   ........           _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+     21            if (j_item)
+   \   00000034   000050E3           CMP      R0,#+0
+   \   00000038   0300000A           BEQ      ??__parse_obj_Error_1
+     22              strncpy(error_msg, j_item->valuestring, 255);     
+   \   0000003C   101090E5           LDR      R1,[R0, #+16]
+   \   00000040   FF20A0E3           MOV      R2,#+255
+   \   00000044   040087E2           ADD      R0,R7,#+4
+   \   00000048   160100EF           SWI      +278
+     23          
+     24            return error;
+   \                     ??__parse_obj_Error_1:
+   \   0000004C   0500A0E1           MOV      R0,R5
+   \   00000050   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??__parse_obj_Error_0:
+   \   00000054   ........           DC32     t_error_code
+   \   00000058   ........           DC32     error_code
+     25          }
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     __parse_obj_Error    20
+
+
+   Segment part sizes:
+
+     Function/Label    Bytes
+     --------------    -----
+     t_error_code        24
+     error_code         260
+     __parse_obj_Error   92
+      Others             28
+
+ 
+ 108 bytes in segment CODE
+  24 bytes in segment DATA_C
+ 260 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+  92 bytes of CODE  memory (+ 28 bytes shared)
+  24 bytes of CONST memory
+ 260 bytes of DATA  memory
+
+Errors: none
+Warnings: none

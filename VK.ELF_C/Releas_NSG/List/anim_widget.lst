@@ -1,0 +1,752 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:36 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \anim_widget.c                                       #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \anim_widget.c -D NEWSGOLD -D DEBUG -lCN             #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\anim_widget.lst                     #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\anim_widget.r79                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\anim_widget.c
+      1           #include "anim_widget.h"
+      2          
+      3          #include <siemens\swilib.h>
+      4          #include "main.h"
+      5          
+      6          extern const char APP_DIR[];
+      7          
+      8          static HObj obj_anim = 0;
+      9          static IMGHDR* img_anim = 0;
+     10          
+     11          static int widget_type;
+     12          static int transparent;
+     13          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     14          int AnimWidget_IsBottom()
+     15          {
+     16            return widget_type == 2;
+   \                     AnimWidget_IsBottom:
+   \   00000000   14009FE5           LDR      R0,??AnimWidget_IsBottom_0  ;; obj_anim + 8
+   \   00000004   000090E5           LDR      R0,[R0, #+0]
+   \   00000008   020050E3           CMP      R0,#+2
+   \   0000000C   0100A003           MOVEQ    R0,#+1
+   \   00000010   1EFF2F01           BXEQ     LR
+   \   00000014   0000A0E3           MOV      R0,#+0
+   \   00000018   1EFF2FE1           BX       LR               ;; return
+   \                     ??AnimWidget_IsBottom_0:
+   \   0000001C   ........           DC32     obj_anim + 8
+     17          }
+     18          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     19          static int HandleObsPrepareCon(HObj obj)
+     20          {
+   \                     HandleObsPrepareCon:
+   \   00000000   00402DE9           PUSH     {LR}
+     21            Obs_Start(obj);
+   \   00000004   5E0200EF           SWI      +606
+     22            return(0);
+   \   00000008   0000A0E3           MOV      R0,#+0
+   \   0000000C   0080BDE8           POP      {PC}             ;; return
+     23          }
+     24          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     25          static int HandleObsFrameUpdate(HObj obj)
+     26          {
+   \                     HandleObsFrameUpdate:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+     27            IMGHDR* temp;  
+     28            unsigned err;
+     29            DRWOBJ drwobj;
+     30            RECT rect;
+     31            int x=0;
+     32            int y=0;
+     33            
+     34            err=Obs_Output_GetPictstruct(obj, &temp);
+     35            
+     36            if (err == 0)
+   \   00000004   ........           LDR      R4,??DataTable12  ;; obj_anim
+   \   00000008   30D04DE2           SUB      SP,SP,#+48
+   \   0000000C   0050A0E3           MOV      R5,#+0
+   \   00000010   0060A0E3           MOV      R6,#+0
+   \   00000014   0D10A0E1           MOV      R1,SP
+   \   00000018   5F0200EF           SWI      +607
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   2200001A           BNE      ??HandleObsFrameUpdate_0
+     37            {
+     38              if (img_anim)//очистка предыдущего изображения
+   \   00000024   040094E5           LDR      R0,[R4, #+4]
+   \   00000028   000050E3           CMP      R0,#+0
+   \   0000002C   0300000A           BEQ      ??HandleObsFrameUpdate_1
+     39              {
+     40                mfree(img_anim->bitmap);
+   \   00000030   040090E5           LDR      R0,[R0, #+4]
+   \   00000034   150000EF           SWI      +21
+     41                mfree(img_anim);
+   \   00000038   040094E5           LDR      R0,[R4, #+4]
+   \   0000003C   150000EF           SWI      +21
+     42              }
+     43                
+     44              img_anim=  malloc(sizeof(IMGHDR));
+   \                     ??HandleObsFrameUpdate_1:
+   \   00000040   0800A0E3           MOV      R0,#+8
+   \   00000044   140000EF           SWI      +20
+   \   00000048   040084E5           STR      R0,[R4, #+4]
+     45              img_anim->w = temp->w;
+   \   0000004C   00109DE5           LDR      R1,[SP, #+0]
+   \   00000050   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000054   0010C0E5           STRB     R1,[R0, #+0]
+     46              img_anim->h = temp->h;
+   \   00000058   00109DE5           LDR      R1,[SP, #+0]
+   \   0000005C   0110D1E5           LDRB     R1,[R1, #+1]
+   \   00000060   0110C0E5           STRB     R1,[R0, #+1]
+     47              img_anim->bpnum = (char)temp->bpnum;// читаем только один байт
+   \   00000064   00109DE5           LDR      R1,[SP, #+0]
+   \   00000068   B210D1E1           LDRH     R1,[R1, #+2]
+   \   0000006C   FF1001E2           AND      R1,R1,#0xFF
+   \   00000070   B210C0E1           STRH     R1,[R0, #+2]
+     48              int len = CalcBitmapSize(temp->w, temp->h,(char)temp->bpnum);
+   \   00000074   00009DE5           LDR      R0,[SP, #+0]
+   \   00000078   B220D0E1           LDRH     R2,[R0, #+2]
+   \   0000007C   0110D0E5           LDRB     R1,[R0, #+1]
+   \   00000080   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000084   FF2002E2           AND      R2,R2,#0xFF
+   \   00000088   580200EF           SWI      +600
+   \   0000008C   0070A0E1           MOV      R7,R0
+     49              img_anim->bitmap = malloc(len);
+   \   00000090   140000EF           SWI      +20
+   \   00000094   043094E5           LDR      R3,[R4, #+4]
+     50              memcpy(img_anim->bitmap, temp->bitmap, len);
+   \   00000098   0720A0E1           MOV      R2,R7
+   \   0000009C   040083E5           STR      R0,[R3, #+4]
+   \   000000A0   00009DE5           LDR      R0,[SP, #+0]
+   \   000000A4   041090E5           LDR      R1,[R0, #+4]
+   \   000000A8   040093E5           LDR      R0,[R3, #+4]
+   \   000000AC   1E0100EF           SWI      +286
+     51            }  
+     52            
+     53            short w = img_anim->w;
+   \                     ??HandleObsFrameUpdate_0:
+   \   000000B0   040094E5           LDR      R0,[R4, #+4]
+   \   000000B4   0070D0E5           LDRB     R7,[R0, #+0]
+     54            short h = img_anim->h;
+   \   000000B8   0180D0E5           LDRB     R8,[R0, #+1]
+     55            
+     56            if (obj_anim)
+   \   000000BC   000094E5           LDR      R0,[R4, #+0]
+   \   000000C0   000050E3           CMP      R0,#+0
+   \   000000C4   3400000A           BEQ      ??HandleObsFrameUpdate_2
+     57            {
+     58              if (widget_type == 0)//center
+   \   000000C8   080094E5           LDR      R0,[R4, #+8]
+   \   000000CC   C790A0E1           ASR      R9,R7,#+1
+   \   000000D0   000050E3           CMP      R0,#+0
+   \   000000D4   0C00001A           BNE      ??HandleObsFrameUpdate_3
+     59              {
+     60                x = (ScreenW() >> 1) - (w >> 1);
+   \   000000D8   888100EF           SWI      +33160
+   \   000000DC   C05069E0           RSB      R5,R9,R0, ASR #+1
+     61                y = (YDISP+HeaderH()) + ((ScreenH()-YDISP-HeaderH()-SoftkeyH()) >> 1) - (h >> 1);
+   \   000000E0   8A8100EF           SWI      +33162
+   \   000000E4   0060A0E1           MOV      R6,R0
+   \   000000E8   898100EF           SWI      +33161
+   \   000000EC   0090A0E1           MOV      R9,R0
+   \   000000F0   8A8100EF           SWI      +33162
+   \   000000F4   009049E0           SUB      R9,R9,R0
+   \   000000F8   8B8100EF           SWI      +33163
+   \   000000FC   000049E0           SUB      R0,R9,R0
+   \   00000100   C00086E0           ADD      R0,R6,R0, ASR #+1
+   \   00000104   C86040E0           SUB      R6,R0,R8, ASR #+1
+   \   00000108   0F0000EA           B        ??HandleObsFrameUpdate_4
+     62              }
+     63              else
+     64                if (widget_type == 1)//headline
+   \                     ??HandleObsFrameUpdate_3:
+   \   0000010C   010050E3           CMP      R0,#+1
+   \   00000110   0300001A           BNE      ??HandleObsFrameUpdate_5
+     65                {
+     66                  x = (ScreenW()- w -2);
+   \   00000114   888100EF           SWI      +33160
+   \   00000118   070040E0           SUB      R0,R0,R7
+   \   0000011C   025040E2           SUB      R5,R0,#+2
+     67                  y = YDISP+0;        
+   \   00000120   090000EA           B        ??HandleObsFrameUpdate_4
+     68                }
+     69              else
+     70                if (widget_type == 2)//bottom
+   \                     ??HandleObsFrameUpdate_5:
+   \   00000124   020050E3           CMP      R0,#+2
+   \   00000128   0700001A           BNE      ??HandleObsFrameUpdate_4
+     71                {
+     72                  x = (ScreenW() >> 1) - (w >> 1);
+   \   0000012C   888100EF           SWI      +33160
+   \   00000130   C05069E0           RSB      R5,R9,R0, ASR #+1
+     73                  y = ScreenH()-SoftkeyH() - h + 1;        
+   \   00000134   898100EF           SWI      +33161
+   \   00000138   0060A0E1           MOV      R6,R0
+   \   0000013C   8B8100EF           SWI      +33163
+   \   00000140   000046E0           SUB      R0,R6,R0
+   \   00000144   080040E0           SUB      R0,R0,R8
+   \   00000148   016080E2           ADD      R6,R0,#+1
+     74                }
+     75                
+     76              StoreXYXYtoRECT (&rect, x, y, x+w, y+h);
+   \                     ??HandleObsFrameUpdate_4:
+   \   0000014C   060088E0           ADD      R0,R8,R6
+   \   00000150   01002DE9           PUSH     {R0}
+   \   00000154   053087E0           ADD      R3,R7,R5
+   \   00000158   0620A0E1           MOV      R2,R6
+   \   0000015C   0510A0E1           MOV      R1,R5
+   \   00000160   08008DE2           ADD      R0,SP,#+8
+   \   00000164   340100EF           SWI      +308
+     77              SetPropTo_Obj5(&drwobj, &rect, 0, img_anim);
+   \   00000168   043094E5           LDR      R3,[R4, #+4]
+   \   0000016C   0020A0E3           MOV      R2,#+0
+   \   00000170   08108DE2           ADD      R1,SP,#+8
+   \   00000174   10008DE2           ADD      R0,SP,#+16
+   \   00000178   510100EF           SWI      +337
+     78              if (transparent)
+   \   0000017C   0C0094E5           LDR      R0,[R4, #+12]
+   \   00000180   04D08DE2           ADD      SP,SP,#+4
+   \   00000184   000050E3           CMP      R0,#+0
+   \   00000188   0000000A           BEQ      ??HandleObsFrameUpdate_6
+     79                DirectRedrawGUI();//если гифка с прозрачным фоном
+   \   0000018C   3F0100EF           SWI      +319
+     80              DrawObject(&drwobj);
+   \                     ??HandleObsFrameUpdate_6:
+   \   00000190   0C008DE2           ADD      R0,SP,#+12
+   \   00000194   2A0100EF           SWI      +298
+     81            }
+     82            
+     83            return 0;
+   \   00000198   0000A0E3           MOV      R0,#+0
+   \                     ??HandleObsFrameUpdate_2:
+   \   0000019C   30D08DE2           ADD      SP,SP,#+48       ;; stack cleaning
+   \   000001A0   F083BDE8           POP      {R4-R9,PC}       ;; return
+     84          }
+     85          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     86          static int HandleObsError(HObj obj, int err)
+     87          {
+   \                     HandleObsError:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+     88            Obs_SetCSM(obj_anim, 0);
+   \   00000004   ........           LDR      R4,??DataTable12  ;; obj_anim
+   \   00000008   0010A0E3           MOV      R1,#+0
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   7B0200EF           SWI      +635
+     89            Obs_DestroyObject(obj_anim);
+   \   00000014   000094E5           LDR      R0,[R4, #+0]
+   \   00000018   5A0200EF           SWI      +602
+     90            obj_anim = NULL;
+   \   0000001C   0000A0E3           MOV      R0,#+0
+   \   00000020   000084E5           STR      R0,[R4, #+0]
+     91            return (0);
+   \   00000024   1080BDE8           POP      {R4,PC}          ;; return
+     92          }
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     obj_anim:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for obj_anim>`
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for img_anim>`
+   \   00000008                      DS8 4
+   \   0000000C                      REQUIRE `?<Initializer for widget_type>`
+   \   0000000C                      DS8 4
+   \   00000010                      REQUIRE `?<Initializer for transparent>`
+   \   00000010                      DS8 32
+   \   00000030                      REQUIRE `?<Initializer for ObsEventsHandlers>`
+     93          
+     94          static OBSevent ObsEventsHandlers[]={
+     95          #ifdef NEWSGOLD
+     96            OBS_EV_PrepareCon,  (void*) HandleObsPrepareCon,
+     97          #endif
+     98            OBS_EV_FrameUpdate, (void*) HandleObsFrameUpdate,
+     99            OBS_EV_Error,       (void*) HandleObsError,
+    100            OBS_EV_EndList, 0
+    101          };
+    102          
+    103          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    104          void AnimWidgetHandler(void* data)
+    105          {
+    106            GBS_MSG* msg=(GBS_MSG*)data;
+    107            if (obj_anim && (HObj)msg->data0==obj_anim)
+   \                     AnimWidgetHandler:
+   \   00000000   ........           LDR      R1,??DataTable12  ;; obj_anim
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   002091E5           LDR      R2,[R1, #+0]
+   \   0000000C   000052E3           CMP      R2,#+0
+   \   00000010   0080BD08           POPEQ    {PC}
+   \   00000014   0C3090E5           LDR      R3,[R0, #+12]
+   \   00000018   020053E1           CMP      R3,R2
+   \   0000001C   0080BD18           POPNE    {PC}
+    108              Obs_TranslateMessageGBS(msg, ObsEventsHandlers);
+   \   00000020   101081E2           ADD      R1,R1,#+16
+   \   00000024   640200EF           SWI      +612
+    109          }
+   \   00000028   0080BDE8           POP      {PC}             ;; return
+    110          
+    111          //******************************************************************************
+    112          
+    113          static char* LoadFile(char* fname, int* len)
+    114          {
+    115            char *_buf = NULL;
+    116            
+    117            FSTATS stat;
+    118            int f;
+    119            int fsize;
+    120            unsigned  err;
+    121            
+    122            if (GetFileStats(fname, &stat, &err)==-1)
+    123              return NULL;
+    124            
+    125            if ((fsize=stat.size)<=0)
+    126              return NULL;
+    127            
+    128            *len=fsize;
+    129            
+    130            if ((f=fopen(fname, A_ReadOnly+A_BIN, P_READ, &err))!= -1)
+    131            {
+    132              _buf = malloc(fsize);
+    133              fread(f, _buf, fsize, &err);
+    134              fclose(f, &err);
+    135            }
+    136            return _buf;
+    137          }
+    138          
+    139          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    140          static void AnimWidget_Wait_fn(WSHDR* fname)
+    141          {//Вызывать только в контексте MMI(CepID==0x4209). SUBPROC не прокатит
+   \                     AnimWidget_Wait_fn:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   04D04DE2           SUB      SP,SP,#+4
+   \   00000008   0040A0E1           MOV      R4,R0
+    142          #ifdef NEWSGOLD
+    143            
+    144            unsigned int err = 0;
+   \   0000000C   0010A0E3           MOV      R1,#+0
+   \   00000010   00108DE5           STR      R1,[SP, #+0]
+    145            HObj obj;
+    146            int uid;
+    147            
+    148            uid = GetExtUidByFileName(fname);
+   \   00000014   E10200EF           SWI      +737
+    149            
+    150            obj=Obs_CreateObject(uid, 0x2D, 2, 0x8055, 1, 0, &err);
+   \   00000018   0D10A0E1           MOV      R1,SP
+   \   0000001C   02002DE9           PUSH     {R1}
+   \   00000020   5530A0E3           MOV      R3,#+85
+   \   00000024   803C83E3           ORR      R3,R3,#0x8000
+   \   00000028   0220A0E3           MOV      R2,#+2
+   \   0000002C   0010A0E3           MOV      R1,#+0
+   \   00000030   02002DE9           PUSH     {R1}
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   02002DE9           PUSH     {R1}
+   \   0000003C   2D10A0E3           MOV      R1,#+45
+   \   00000040   590200EF           SWI      +601
+   \   00000044   0050A0E1           MOV      R5,R0
+    151            if (err) goto exit;
+   \   00000048   0C009DE5           LDR      R0,[SP, #+12]
+   \   0000004C   0CD08DE2           ADD      SP,SP,#+12
+   \   00000050   000050E3           CMP      R0,#+0
+   \   00000054   2B00001A           BNE      ??AnimWidget_Wait_fn_0
+    152            
+    153            err = Obs_SetCSM(obj, (CSM_RAM*)csm);
+   \   00000058   B4009FE5           LDR      R0,??AnimWidget_Wait_fn_1  ;; csm
+   \   0000005C   001090E5           LDR      R1,[R0, #+0]
+   \   00000060   0500A0E1           MOV      R0,R5
+   \   00000064   7B0200EF           SWI      +635
+   \   00000068   00008DE5           STR      R0,[SP, #+0]
+    154            
+    155            err = Obs_SetInputFile(obj, 0, fname);
+   \   0000006C   0420A0E1           MOV      R2,R4
+   \   00000070   0010A0E3           MOV      R1,#+0
+   \   00000074   0500A0E1           MOV      R0,R5
+   \   00000078   5B0200EF           SWI      +603
+   \   0000007C   00008DE5           STR      R0,[SP, #+0]
+    156            if (err) goto exit;
+   \   00000080   000050E3           CMP      R0,#+0
+   \   00000084   1F00001A           BNE      ??AnimWidget_Wait_fn_0
+    157            
+    158            err = Obs_SetRotation(obj, 0);
+   \   00000088   0010A0E3           MOV      R1,#+0
+   \   0000008C   0500A0E1           MOV      R0,R5
+   \   00000090   610200EF           SWI      +609
+   \   00000094   00008DE5           STR      R0,[SP, #+0]
+    159            if (err) goto exit;
+   \   00000098   000050E3           CMP      R0,#+0
+   \   0000009C   1900001A           BNE      ??AnimWidget_Wait_fn_0
+    160            
+    161            if (widget_type == 1)
+   \   000000A0   ........           LDR      R4,??DataTable12  ;; obj_anim
+   \   000000A4   080094E5           LDR      R0,[R4, #+8]
+   \   000000A8   010050E3           CMP      R0,#+1
+    162          #ifdef ELKA
+    163              err = Obs_SetOutputImageSize(obj, 32, 32);
+    164            else
+    165              err = Obs_SetOutputImageSize(obj, 240, 232);
+    166          #else    
+    167              err = Obs_SetOutputImageSize(obj, 22, 22);
+   \   000000AC   1620A003           MOVEQ    R2,#+22
+    168            else
+    169              err = Obs_SetOutputImageSize(obj, 132, 132);
+   \   000000B0   8420A013           MOVNE    R2,#+132
+   \   000000B4   0210A0E1           MOV      R1,R2
+   \   000000B8   0500A0E1           MOV      R0,R5
+   \   000000BC   5D0200EF           SWI      +605
+   \   000000C0   00008DE5           STR      R0,[SP, #+0]
+    170          #endif
+    171            
+    172            if(err) goto exit;
+   \   000000C4   00009DE5           LDR      R0,[SP, #+0]
+   \   000000C8   000050E3           CMP      R0,#+0
+   \   000000CC   0D00001A           BNE      ??AnimWidget_Wait_fn_0
+    173            
+    174            err = Obs_SetScaling(obj, 5);
+   \   000000D0   0510A0E3           MOV      R1,#+5
+   \   000000D4   0500A0E1           MOV      R0,R5
+   \   000000D8   630200EF           SWI      +611
+   \   000000DC   00008DE5           STR      R0,[SP, #+0]
+    175            if (err) goto exit;
+   \   000000E0   000050E3           CMP      R0,#+0
+   \   000000E4   0700001A           BNE      ??AnimWidget_Wait_fn_0
+    176          
+    177          #ifdef NEWSGOLD  
+    178            err = Obs_Prepare(obj);
+   \   000000E8   0500A0E1           MOV      R0,R5
+   \   000000EC   680200EF           SWI      +616
+   \   000000F0   00008DE5           STR      R0,[SP, #+0]
+    179            if (err == 0x8006)
+   \   000000F4   0610A0E3           MOV      R1,#+6
+   \   000000F8   801C81E3           ORR      R1,R1,#0x8000
+   \   000000FC   010050E1           CMP      R0,R1
+    180          #else
+    181            err = Obs_Start(obj);
+    182            if (err == 0x8008)//sgold
+    183          #endif
+    184            {
+    185              obj_anim = obj;
+   \   00000100   00508405           STREQ    R5,[R4, #+0]
+    186              return;
+   \   00000104   3180BD08           POPEQ    {R0,R4,R5,PC}
+    187            } 
+    188          
+    189          exit:
+    190            Obs_DestroyObject(obj);
+   \                     ??AnimWidget_Wait_fn_0:
+   \   00000108   0500A0E1           MOV      R0,R5
+   \   0000010C   5A0200EF           SWI      +602
+    191          #endif
+    192          }
+   \   00000110   3180BDE8           POP      {R0,R4,R5,PC}    ;; return
+   \                     ??AnimWidget_Wait_fn_1:
+   \   00000114   ........           DC32     csm
+    193          //******************************************************************************
+    194          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    195          static void AnimWidget_Wait_center()
+    196          {
+   \                     AnimWidget_Wait_center:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   45DF4DE2           SUB      SP,SP,#+276
+    197            WSHDR ws;
+    198            unsigned short wsbody[128];
+    199            
+    200            AnimWidget_Close();
+   \   00000008   ........           BL       AnimWidget_Close
+    201            
+    202            CreateLocalWS(&ws, wsbody, 127);
+   \   0000000C   7F20A0E3           MOV      R2,#+127
+   \   00000010   14108DE2           ADD      R1,SP,#+20
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   270100EF           SWI      +295
+    203            wsprintf(&ws, "%simg\\body_wait.gif", APP_DIR);
+   \   0000001C   ........           LDR      R2,??DataTable10  ;; APP_DIR
+   \   00000020   ........           LDR      R1,??DataTable8  ;; `?<Constant "%simg\\\\body_wait.gif">`
+   \   00000024   0D00A0E1           MOV      R0,SP
+   \   00000028   240100EF           SWI      +292
+    204            widget_type = 0;//body centr
+   \   0000002C   ........           LDR      R0,??DataTable12  ;; obj_anim
+   \   00000030   0010A0E3           MOV      R1,#+0
+   \   00000034   081080E5           STR      R1,[R0, #+8]
+    205            transparent = 1;
+   \   00000038   0110A0E3           MOV      R1,#+1
+   \   0000003C   0C1080E5           STR      R1,[R0, #+12]
+    206            AnimWidget_Wait_fn(&ws);
+   \   00000040   0D00A0E1           MOV      R0,SP
+   \   00000044   ........           BL       AnimWidget_Wait_fn
+    207          }
+   \   00000048   45DF8DE2           ADD      SP,SP,#+276
+   \   0000004C   0080BDE8           POP      {PC}             ;; return
+    208          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    209          static void AnimWidget_Wait_bottom()
+    210          {
+   \                     AnimWidget_Wait_bottom:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   45DF4DE2           SUB      SP,SP,#+276
+    211            WSHDR ws;
+    212            unsigned short wsbody[128];
+    213            
+    214            AnimWidget_Close();
+   \   00000008   ........           BL       AnimWidget_Close
+    215            
+    216            CreateLocalWS(&ws, wsbody, 127);
+   \   0000000C   7F20A0E3           MOV      R2,#+127
+   \   00000010   14108DE2           ADD      R1,SP,#+20
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   270100EF           SWI      +295
+    217            wsprintf(&ws, "%simg\\body_wait.gif", APP_DIR);
+   \   0000001C   ........           LDR      R2,??DataTable10  ;; APP_DIR
+   \   00000020   ........           LDR      R1,??DataTable8  ;; `?<Constant "%simg\\\\body_wait.gif">`
+   \   00000024   0D00A0E1           MOV      R0,SP
+   \   00000028   240100EF           SWI      +292
+    218            widget_type = 2;//bottom
+   \   0000002C   ........           LDR      R0,??DataTable12  ;; obj_anim
+   \   00000030   0210A0E3           MOV      R1,#+2
+   \   00000034   081080E5           STR      R1,[R0, #+8]
+    219            transparent = 1;
+   \   00000038   0110A0E3           MOV      R1,#+1
+   \   0000003C   0C1080E5           STR      R1,[R0, #+12]
+    220            AnimWidget_Wait_fn(&ws);
+   \   00000040   0D00A0E1           MOV      R0,SP
+   \   00000044   ........           BL       AnimWidget_Wait_fn
+    221          }
+   \   00000048   45DF8DE2           ADD      SP,SP,#+276
+   \   0000004C   0080BDE8           POP      {PC}             ;; return
+    222          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    223          static void AnimWidget_Wait_headline()
+    224          {
+   \                     AnimWidget_Wait_headline:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   45DF4DE2           SUB      SP,SP,#+276
+    225            WSHDR ws;
+    226            unsigned short wsbody[128];
+    227            
+    228            AnimWidget_Close();
+   \   00000008   ........           BL       AnimWidget_Close
+    229            
+    230            CreateLocalWS(&ws, wsbody, 127);
+   \   0000000C   7F20A0E3           MOV      R2,#+127
+   \   00000010   14108DE2           ADD      R1,SP,#+20
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   270100EF           SWI      +295
+    231            wsprintf(&ws, "%simg\\headline_wait.gif", APP_DIR);
+   \   0000001C   ........           LDR      R2,??DataTable10  ;; APP_DIR
+   \   00000020   24109FE5           LDR      R1,??AnimWidget_Wait_headline_0  ;; `?<Constant "%simg\\\\headline_wait.gif">`
+   \   00000024   0D00A0E1           MOV      R0,SP
+   \   00000028   240100EF           SWI      +292
+    232            widget_type = 1;//headline
+   \   0000002C   ........           LDR      R0,??DataTable12  ;; obj_anim
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   081080E5           STR      R1,[R0, #+8]
+    233            transparent = 1;
+   \   00000038   0C1080E5           STR      R1,[R0, #+12]
+    234            AnimWidget_Wait_fn(&ws);
+   \   0000003C   0D00A0E1           MOV      R0,SP
+   \   00000040   ........           BL       AnimWidget_Wait_fn
+    235          }
+   \   00000044   45DF8DE2           ADD      SP,SP,#+276
+   \   00000048   0080BDE8           POP      {PC}             ;; return
+   \                     ??AnimWidget_Wait_headline_0:
+   \   0000004C   ........           DC32     `?<Constant "%simg\\\\headline_wait.gif">`
+    236          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    237          void AnimWidget_Wait(unsigned int type)
+    238          {
+    239            if(type == 0)
+   \                     AnimWidget_Wait:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   0000001A           BNE      ??AnimWidget_Wait_0
+    240              AnimWidget_Wait_center();
+   \   00000008   ........           B        AnimWidget_Wait_center  ;; tailcall
+    241            else if(type == 1)
+   \                     ??AnimWidget_Wait_0:
+   \   0000000C   010050E3           CMP      R0,#+1
+   \   00000010   0000001A           BNE      ??AnimWidget_Wait_1
+    242              AnimWidget_Wait_headline();
+   \   00000014   ........           B        AnimWidget_Wait_headline  ;; tailcall
+    243            else if(type == 2)
+   \                     ??AnimWidget_Wait_1:
+   \   00000018   020050E3           CMP      R0,#+2
+   \   0000001C   1EFF2F11           BXNE     LR
+    244              AnimWidget_Wait_bottom();
+   \   00000020   ........           B        AnimWidget_Wait_bottom  ;; tailcall
+    245          }
+    246          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    247          void AnimWidget_Close()
+    248          {
+   \                     AnimWidget_Close:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    249            if (obj_anim)
+   \   00000004   ........           LDR      R4,??DataTable12  ;; obj_anim
+   \   00000008   0050A0E3           MOV      R5,#+0
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   0400000A           BEQ      ??AnimWidget_Close_0
+    250            {
+    251              Obs_SetCSM(obj_anim, 0);
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   7B0200EF           SWI      +635
+    252              Obs_DestroyObject(obj_anim);
+   \   00000020   000094E5           LDR      R0,[R4, #+0]
+   \   00000024   5A0200EF           SWI      +602
+    253              obj_anim = NULL;
+   \   00000028   005084E5           STR      R5,[R4, #+0]
+    254            }
+    255            
+    256            if (img_anim)
+   \                     ??AnimWidget_Close_0:
+   \   0000002C   040094E5           LDR      R0,[R4, #+4]
+   \   00000030   000050E3           CMP      R0,#+0
+   \   00000034   3080BD08           POPEQ    {R4,R5,PC}
+    257            {
+    258              mfree(img_anim->bitmap);
+   \   00000038   040090E5           LDR      R0,[R0, #+4]
+   \   0000003C   150000EF           SWI      +21
+    259              mfree(img_anim);
+   \   00000040   040094E5           LDR      R0,[R4, #+4]
+   \   00000044   150000EF           SWI      +21
+    260              img_anim = NULL;
+   \   00000048   045084E5           STR      R5,[R4, #+4]
+    261            } 
+    262          }
+   \   0000004C   3080BDE8           POP      {R4,R5,PC}       ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     `?<Constant "%simg\\\\body_wait.gif">`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable10:
+   \   00000000   ........           DC32     APP_DIR
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable12:
+   \   00000000   ........           DC32     obj_anim
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for obj_anim>`:
+   \   00000000   00000000           DC32 0
+   \                     `?<Initializer for img_anim>`:
+   \   00000004   00000000           DC32 0H
+   \                     `?<Initializer for widget_type>`:
+   \   00000008   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for transparent>`:
+   \   0000000C   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for ObsEventsHandlers>`:
+   \   00000010   34000000....       DC32 52, HandleObsPrepareCon, 10, HandleObsFrameUpdate, 12
+   \              ....0A000000
+   \              ........0C00
+   \              0000        
+   \   00000024   ........5700       DC32 HandleObsError, 87, 0H
+   \              000000000000
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%simg\\\\body_wait.gif">`:
+   \   00000000   2573696D675C       DC8 "%simg\\body_wait.gif"
+   \              626F64795F77
+   \              6169742E6769
+   \              6600        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%simg\\\\headline_wait.gif">`:
+   \   00000000   2573696D675C       DC8 "%simg\\headline_wait.gif"
+   \              686561646C69
+   \              6E655F776169
+   \              742E67696600
+    263          
+    264          
+
+   Maximum stack usage in bytes:
+
+     Function                 CSTACK
+     --------                 ------
+     AnimWidgetHandler            4
+     AnimWidget_Close            12
+     AnimWidget_IsBottom          0
+     AnimWidget_Wait              4
+     AnimWidget_Wait_bottom     280
+     AnimWidget_Wait_center     280
+     AnimWidget_Wait_fn          28
+     AnimWidget_Wait_headline   280
+     HandleObsError               8
+     HandleObsFrameUpdate        80
+     HandleObsPrepareCon          4
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     AnimWidget_IsBottom              32
+     HandleObsPrepareCon              16
+     HandleObsFrameUpdate            420
+     HandleObsError                   40
+     obj_anim                         48
+     AnimWidgetHandler                44
+     AnimWidget_Wait_fn              280
+     AnimWidget_Wait_center           80
+     AnimWidget_Wait_bottom           80
+     AnimWidget_Wait_headline         80
+     AnimWidget_Wait                  36
+     AnimWidget_Close                 80
+     ??DataTable8                      4
+     ??DataTable10                     4
+     ??DataTable12                     4
+     ?<Initializer for obj_anim>      48
+     ?<Constant "%simg\\body_wait.gif">
+                                      20
+     ?<Constant "%simg\\headline_wait.gif">
+                                      24
+      Others                          56
+
+ 
+ 1 244 bytes in segment CODE
+    44 bytes in segment DATA_C
+    48 bytes in segment DATA_I
+    48 bytes in segment DATA_ID
+    12 bytes in segment INITTAB
+ 
+ 1 200 bytes of CODE  memory (+ 56 bytes shared)
+    92 bytes of CONST memory
+    48 bytes of DATA  memory
+
+Errors: none
+Warnings: 1

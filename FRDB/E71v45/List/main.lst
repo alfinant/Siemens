@@ -1,0 +1,104 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 26/Nov/2014  20:57:20              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\main.asm#
+#           List file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\E71v45\List\main.lst#
+#           Object file   =  C:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\E71v45\Obj\main.r79#
+#           Command line  =  C:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\main.asm #
+#                            -OC:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\E71v45\Obj\ #
+#                            -s+ -M<> -w+                                     #
+#                            -LC:\Users\Инсаф\Documents\Siemens\alfinant\FRDB\E71v45\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None                  #
+#                            -IC:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\  #
+#                                                                             #
+###############################################################################
+
+    1    00000000                     CODE16
+    2    00000000                     EXTERN my_onmessage
+    3    00000000                     EXTERN openItem
+    4    00000000                     
+    5    00000000                     RSEG PATCH_ONMESSAGE:DATA(2)
+    6    00000000 ........            DCD  my_onmessage 
+    7    00000004              
+    8    00000000                     RSEG PATCH_MAINCSMSIZE:DATA(2)
+    9    00000000 F8000000            DCD 0xF8
+   10    00000004               
+   11    00000000                     RSEG PATCH_ITEM_NAME:CODE(1) 
+   12    00000000 ........            BLX get_item_name   
+   13    00000004              
+   14    00000000                     RSEG PATCH_START:CODE(1)
+   15    00000000 201C                MOV R0,R4
+   16    00000002 ........            BLX start
+   17    00000006                     
+   18    00000000                     RSEG PATCH_START_JUMP:CODE(2)
+   19    00000000                     CODE32
+   20    00000000              start 
+   21    00000000 00C09FE5            LDR R12,data 
+   22    00000004 1CFF2FE1            BX R12
+   23    00000008 ........     data DCD openItem
+   24    0000000C                     
+   25    0000000C              get_item_name  
+   26    0000000C 00402DE9            PUSH {LR}
+   27    00000010 00108FE2            ADR R1,text
+   28    00000014 0080BDE8            POP {PC}
+   29    00000018 3CD4E0E9EB3E text: DCB 0x3c,0xd4,0xe0,0xe9,0xeb,0x3e,0 //item
+                                                name <File>(rus)
+                  00          
+   30    0000001F              
+   31    0000001F 00                  CODE16
+   32    00000000                     RSEG PATCH_PREDIAL:CODE(1)      
+                                
+   33    00000000 4821                MOV R1,#0x48
+   34    00000002 0906                LSL R1,R1,#24
+   35    00000004 8842                CMP R0,R1
+   36    00000006 ....                BEQ PREDIAL_JUMP
+   37    00000008 C046                NOP
+   38    0000000A                
+   39    00000000                     RSEG PREDIAL_JUMP:CODE(1)
+   40    00000000              PREDIAL_JUMP   
+   41    00000000              
+   42    00000000                     RSEG PATCH_APM_FRDB_GetInfo1:CODE(1)
+   43    00000000 ....                B GetInfo1_JUMP
+   44    00000002              
+   45    00000000                     RSEG GetInfo1_JUMP:CODE(1)
+   46    00000000              GetInfo1_JUMP
+   47    00000000              
+   48    00000000                     RSEG PATCH_APM_FRDB_GetInfo2:CODE(1)
+   49    00000000 ....                B GetInfo2_JUMP
+   50    00000002                     
+   51    00000000                     RSEG GetInfo2_JUMP:CODE(1)
+   52    00000000              GetInfo2_JUMP      
+   53    00000000              
+   54    00000000                     RSEG PATCH_APM_FileRef_Run_UNKNOWN:CODE(1
+                               )
+   55    00000000 ....                B UNKNOWN_JUMP
+   56    00000002                     
+   57    00000000                     RSEG UNKNOWN_JUMP:CODE(1)
+   58    00000000              UNKNOWN_JUMP
+   59    00000000              
+   60    00000000                     RSEG PATCH_APM_FileRef_Run_SOUND:CODE(1)
+   61    00000000 ....                B SOUND_JUMP
+   62    00000002                     
+   63    00000000                     RSEG SOUND_JUMP:CODE(1)
+   64    00000000              SOUND_JUMP     
+   65    00000000              
+   66    00000000                     RSEG PATCH_APM_FileRef_Run_VIDEOIMAGE:COD
+                               E(1)
+   67    00000000 0022                MOV R2,#0
+   68    00000002 0021                MOV R1,#0
+   69    00000004 2068                LDR R0,[R4,#0]
+   70    00000006 94DF                SWI 0x94 //ExecuteFile
+   71    00000008 C046                NOP
+   72    0000000A                END
+##############################
+#          CRC:7683          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 78          #
+##############################
+
+
+
+

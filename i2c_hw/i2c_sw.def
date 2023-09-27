@@ -1,0 +1,19 @@
+/******************************************************************************/
+/* The include file name: I2C.DEF					      */
+/*									      */	
+/* This is an include file for I/O port declaration of SCL and SDA as well    */
+/* the direction declaration of those I/O port. The users can modify this     */
+/* include file according to the I/O port assignment of thier preference.     */	
+/*                                                                            */
+/*                                                     			      */
+/******************************************************************************/
+				
+
+
+#define   DSCL    GPIO_USART0_RTS
+#define   DSDA    GPIO_USART0_RTS
+#define   SCL     GPIO_USART0_CTS 
+#define   SDA     GPIO_USART0_RTS
+
+
+

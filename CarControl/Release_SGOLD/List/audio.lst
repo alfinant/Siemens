@@ -1,0 +1,379 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    14/Dec/2014  21:12:03 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\audio.c                                         #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\audio.c -D SGOLD -lC                            #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\Release_SGOLD\List\ -o                          #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\Release_SGOLD\Obj\ -s9 --no_unroll --cpu_mode   #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None -I                       #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\    #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\Release_SGOLD\List\audio.lst                    #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\CarCon #
+#                       trol\Release_SGOLD\Obj\audio.r79                     #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/playsound.h"
+      3          
+      4          HObj hobj = NULL;
+      5          int played = 0;
+      6          int duration = 0;
+      7          int MSG_Report = 0xB034;
+      8          
+      9          extern void PlayNext();
+     10          
+     11          KillObj(){
+     12           if (!hobj) return;
+     13            Obs_DestroyObject(hobj);
+     14            hobj=NULL;
+     15            played = 0;
+     16            duration = 0;
+     17          }
+     18          
+     19          int isPlaying()
+     20          {
+     21            return played;
+     22          }
+     23          
+     24          void Pause()
+     25          {
+     26            Obs_Pause (hobj);
+     27            played = 2;
+     28          }
+     29          
+     30          void Stop()
+     31          {
+     32            Obs_Stop (hobj);
+     33            KillObj();
+     34          }
+     35          
+     36          void Resume()
+     37          {
+     38            Obs_Resume (hobj);
+     39            played = 1;
+     40          }
+     41          
+     42          void SetVolume(int volume)
+     43          {
+     44            Obs_Sound_SetVolumeEx (hobj, volume, 1);
+     45          }
+     46          
+     47          int obError(HObj hobj,int error){
+     48            ShowMSG(1,(int)"Авотхуй!");
+     49            KillObj();
+     50            return 0;
+     51          };
+     52          
+     53          int obPrep(HObj hobj,int error){
+     54            Obs_Start(hobj);
+     55            return 0;
+     56          };
+     57          
+     58          int obDestroy(HObj hobj,int err)
+     59          {
+     60            
+     61           // if (flag_nextsong)CallSomeToPlayNextSong();
+     62           // else ; //nothing when stop
+     63            return 0;
+     64          }
+     65          
+     66          int getDuration()
+     67          {
+     68            GetPlayObjDuration((void*)hobj, duration);
+                                                   ^
+Error[Pe167]: argument of type "int" is incompatible with parameter of type
+          "int *"
+     69            return(duration);
+     70          }
+     71          
+     72          int obInfo(HObj hobj,int error){
+     73            return 0;
+     74          };
+     75          
+     76          int obResumeCon(HObj hobj,int error){
+     77            return 0;
+     78          };
+     79          
+     80          int obParam (HObj hobj,int pl, int error){
+     81              //  if (pl==2)obFrameUpd(hobj);
+     82                if (pl==1)Obs_Resume(hobj);
+     83            return 0;
+     84          };
+     85          
+     86          int obSetPause(HObj hobj,int err)
+     87          {
+     88            return 0;
+     89          }
+     90          
+     91          int obSetStop(HObj hobj,int err)
+     92          {
+     93            return 0;
+     94          }
+     95          
+     96          int obNext(HObj hobj,int err)
+     97          {
+     98            PlayNext();
+     99            return 0;
+    100          }
+    101          
+    102          int obPause (HObj hobj,int pl, int error)
+    103          {
+    104            return 0;
+    105          };
+    106          
+    107          OBSevent ObsEventsHandlers[]={
+    108            OBS_EV_FrameUpdate,NULL,
+                   ^
+Error[Pe020]: identifier "OBS_EV_FrameUpdate" is undefined
+    109            OBS_EV_Error,(void*)obError,
+                   ^
+Error[Pe020]: identifier "OBS_EV_Error" is undefined
+
+    OBS_EV_Error,(void*)obError,
+                 ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",109  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    110            OBS_EV_GetInfoCon,(void*)obInfo,
+                   ^
+Error[Pe020]: identifier "OBS_EV_GetInfoCon" is undefined
+
+    OBS_EV_GetInfoCon,(void*)obInfo,
+                      ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",110  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    111            OBS_EV_PauseCon,(void*)obPause,
+                   ^
+Error[Pe020]: identifier "OBS_EV_PauseCon" is undefined
+
+    OBS_EV_PauseCon,(void*)obPause,
+                    ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",111  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    112            OBS_EV_ParamChanged,(void*)obParam,
+                   ^
+Error[Pe020]: identifier "OBS_EV_ParamChanged" is undefined
+
+    OBS_EV_ParamChanged,(void*)obParam,
+                        ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",112  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    113            OBS_EV_ResumeCon,(void*)obResumeCon,
+                   ^
+Error[Pe020]: identifier "OBS_EV_ResumeCon" is undefined
+
+    OBS_EV_ResumeCon,(void*)obResumeCon,
+                     ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",113  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    114            OBS_EV_PauseInd,(void*)obSetPause,
+                   ^
+Error[Pe020]: identifier "OBS_EV_PauseInd" is undefined
+
+    OBS_EV_PauseInd,(void*)obSetPause,
+                    ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",114  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    115            OBS_EV_StopInd,(void*)obSetStop,
+                   ^
+Error[Pe020]: identifier "OBS_EV_StopInd" is undefined
+
+    OBS_EV_StopInd,(void*)obSetStop,
+                   ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",115  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    116            OBS_EV_LoopUpdate,(void*)obNext,
+                   ^
+Error[Pe020]: identifier "OBS_EV_LoopUpdate" is undefined
+
+    OBS_EV_LoopUpdate,(void*)obNext,
+                      ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",116  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    117            OBS_EV_PrepareCon,(void*)obPrep,
+                   ^
+Error[Pe020]: identifier "OBS_EV_PrepareCon" is undefined
+
+    OBS_EV_PrepareCon,(void*)obPrep,
+                      ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",117  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    118            OBS_EV_ConvDestroyed,(void*)obDestroy,
+                   ^
+Error[Pe020]: identifier "OBS_EV_ConvDestroyed" is undefined
+
+    OBS_EV_ConvDestroyed,(void*)obDestroy,
+                         ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",118  Error[Pe144]: 
+          a value of type "void *" cannot be used to initialize an entity of
+          type "int"
+    119            OBS_EV_EndList,NULL
+                   ^
+Error[Pe020]: identifier "OBS_EV_EndList" is undefined
+    120          };
+    121          
+    122          void ParseMsg(GBS_MSG *msg)
+    123          {
+    124            /*GBS_PSOUND_MSG *pmsg=(GBS_PSOUND_MSG *)msg;
+    125            char errc[32];
+    126            sprintf(errc, "Message: %d", pmsg-&gt;cmd);
+    127            ShowMSG(1,(int)errc);*/
+    128            Obs_TranslateMessageGBS(msg,ObsEventsHandlers);
+    129          }
+    130          
+    131          void SetEq(int type)
+    132          {
+    133            int err;
+    134            switch(type)
+    135            {
+    136            case 0:
+    137              err = Obs_Sound_SetEqualizer(hobj, 112, -100, -100, -84);
+                           ^
+Warning[Pe223]: function "Obs_Sound_SetEqualizer" declared implicitly
+    138              break;
+    139            case 1:
+    140              err = Obs_Sound_SetEqualizer(hobj, 0, 0, 100, 45);
+    141              break;
+    142            case 2:
+    143              err = Obs_Sound_SetEqualizer(hobj, 255, -100, -100, 50);
+    144              break;
+    145            }
+    146            if(err) 
+    147            {
+    148              char tmp[128];
+    149              sprintf(tmp, "эквалайзер сказал %d", err);
+    150              ShowMSG(1,(int)tmp);
+    151            }
+    152          }
+    153          
+    154          void getHobj()
+    155          {
+    156            char tmp[128];
+    157            sprintf(tmp, "hObj = %04X", hobj);
+    158            ShowMSG(1,(int)tmp);
+    159          }
+    160          
+    161          void visCb(int one, int two, int three)
+    162          {
+    163            char str[128];
+    164            sprintf(str, "cb Value: %d, %d, %d", one, two, three);
+    165            COUTs(str);
+                   ^
+Warning[Pe223]: function "COUTs" declared implicitly
+    166          }
+    167          
+    168          void setVis()
+    169          {
+    170            VIS_FMT* fmt = malloc(sizeof(VIS_FMT));
+                   ^
+Error[Pe020]: identifier "VIS_FMT" is undefined
+
+    VIS_FMT* fmt = malloc(sizeof(VIS_FMT));
+             ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",170  Error[Pe020]: 
+          identifier "fmt" is undefined
+    171            fmt-&gt;bass=100;
+                        ^
+Error[Pe020]: identifier "gt" is undefined
+
+    fmt-&gt;bass=100;
+            ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",171  Error[Pe020]: 
+          identifier "bass" is undefined
+    172            fmt-&gt;treble=15;
+                           ^
+Error[Pe020]: identifier "treble" is undefined
+    173            fmt-&gt;vis=100;
+                           ^
+Error[Pe020]: identifier "vis" is undefined
+    174            int err = Obs_Sound_SetVisualisationsParams(hobj, 1, 1, (int)visCb, fmt);
+                             ^
+Warning[Pe223]: function "Obs_Sound_SetVisualisationsParams" declared
+          implicitly
+    175            if(!err) COUTs("Visual set!");
+                            ^
+Warning[Pe223]: function "COUTs" declared implicitly
+    176            else COUTs("Visual set error!");
+    177          }
+    178          
+    179          void playSoundFile(char* filename, int vol)
+    180          {
+    181            played = 1;
+    182            unsigned int err=0;
+    183            KillObj();
+    184            WSHDR *ext = AllocWS(256);
+    185            char* extt = strrchr (filename,'.');
+    186            extt++;
+    187            wsprintf(ext, "%s", extt);
+    188            int uid = GetExtUid_ws(ext);
+    189            hobj=Obs_CreateObject(uid, 0x34, 2, MSG_Report, 1, 0, &amp;err);
+                                                                          ^
+Error[Pe020]: identifier "amp" is undefined
+
+    hobj=Obs_CreateObject(uid, 0x34, 2, MSG_Report, 1, 0, &amp;err);
+                                                              ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",189  Error[Pe018]: 
+          expected a ")"
+
+    hobj=Obs_CreateObject(uid, 0x34, 2, MSG_Report, 1, 0, &amp;err);
+                                                               ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",189  Warning[Pe174]: 
+          expression has no effect
+
+    hobj=Obs_CreateObject(uid, 0x34, 2, MSG_Report, 1, 0, &amp;err);
+                                                                  ^
+"C:\Users\alfin_000\Documents\Siemens\alfinant\CarControl\audio.c",189  Error[Pe065]: 
+          expected a ";"
+    190            if(err) 
+    191            {
+    192              ShowMSG(1,(int)"Ашипка CreateObject");
+    193              return;
+    194            }
+    195            //wsprintf(ext, "%s", filename);
+    196            utf8_2ws(ext,filename, strlen(filename));
+    197            err = Obs_SetInput_File(hobj,0,ext);
+    198            if(err) 
+    199            {
+    200              ShowMSG(1,(int)"Файл херовый, да");
+    201              return;
+    202            }
+    203            FreeWS(ext);
+    204            Obs_Sound_SetVolumeEx (hobj, vol, 1);
+    205            Obs_Mam_SetPurpose(hobj,0x16);
+    206            //SetEq(0);
+    207            //setVis();
+    208            err = Obs_Prepare(hobj);
+    209            if(err) 
+    210            {
+    211              //ShowMSG(1,(int)"не Prapare`ваиццо");
+    212              return;
+    213            }
+    214            //Obs_Start(hobj);
+    215          }
+    216          
+
+Errors: 32
+Warnings: 5

@@ -1,0 +1,48 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 31/Oct/2014  10:08:30              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\menu.ASM#
+#           List file     =  C:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\CX75v25\List\menu.lst#
+#           Object file   =  C:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\CX75v25\Obj\menu.r79#
+#           Command line  =  C:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\menu.ASM #
+#                            -OC:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\CX75v25\Obj\ #
+#                            -s+ -M<> -w+ -DE71v45                            #
+#                            -LC:\Users\Инсаф\Documents\alfinant\IAR\ARM\HotKeys_SGOLD\CX75v25\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None                  #
+#                            -IC:\Users\Инсаф\Documents\alfinant\IAR\ARM\INC\ #
+#                                                                             #
+###############################################################################
+
+    1    00000000                EXTERN my_onmessage
+    2    00000000                EXTERN checkFile
+    3    00000000                EXTERN setFName
+    4    00000000                
+    5    00000000                RSEG PATCH_MENU_ONMESSAGE:DATA(2)
+    6    00000000 ........       DCD  my_onmessage
+    7    00000004              
+    8    00000000                RSEG PATCH_MENU_MAINCSMSIZE:DATA(2)
+    9    00000000 8C000000       DCD  0x8C
+   10    00000004                
+   11    00000004                CODE16
+   12    00000000                RSEG PATCH_MENU_PREDIAL_ENA:CODE(1)
+   13    00000000 C046           NOP
+   14    00000002                
+   15    00000000                RSEG PATCH_IDLE_START_XTRA_JC:CODE(1)
+   16    00000000 ........       BLX  checkFile
+   17    00000004                
+   18    00000000                RSEG PATCH_SET_FNAME:CODE(1)
+   19    00000000 ........       BLX  setFName
+   20    00000004                         
+   21    00000004                END
+##############################
+#          CRC:D4D9          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 18          #
+##############################
+
+
+
+

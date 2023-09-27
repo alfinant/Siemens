@@ -1,0 +1,74 @@
+;____________________ *** œ¿“◊ ¬Œ——“¿ÕŒ¬À≈Õ»ﬂ *** _____________________
+; Made by V_KLay v3.3.0.0
+; ∆ÏËÚÂ ÍÌÓÔÍÛ "ŒÚÏÂÌËÚ¸ œ‡Ú˜" ‰Îˇ ‚ÓÒÒÚ‡ÌÓ‚ÎÂÌËˇ ÚÂÎÂÙÓÌ‡.
+;
+;  !!!¬Õ»Ã¿Õ»≈!!! Õ≈ Œ“Ã≈Õﬂ…“≈ ›“Œ“ œ¿“◊, ≈—À» ¬€ ◊“Œ Õ»¡”ƒ‹ »«Ã≈ÕﬂÀ»
+; ¬ “≈À≈‘ŒÕ≈ œŒ—À≈ œ–»Ã≈Õ≈Õ»ﬂ œ¿“◊¿ — »Ã≈Õ≈Ã:
+;
+;__________________________ »Ãﬂ ‘¿…À¿ œ¿“◊¿: __________________________
+;  C:\Users\alfinant\Documents\Siemens\alfinant\VK.ELF_C\Files\Library\SGOLD\CX70v56.vkp
+;
+;__________________________ Œœ»—¿Õ»≈ œ¿“◊¿: ___________________________
+;
+; CX70 v56 lg3 - Patch made by "Smelter" © avkiev
+; http://avkiev.kiev.ua/Siemens/Smelter/Smelter.htm
+;********************************************************************************
+;
+;Library
+;
+;01.01.2019
+;
+;+0FD4000
+;#pragma enable  old_equal_ff
+;0464: 0xA16EF6B5   ; 119: int strtol(const char *nptr, char **endptr, int base)
+;0468: 0xA16EF731   ; 11A: int strtoul(const char *nptr, char **endptr, int base)
+;09E8: 0xA097E410   ; 27A: int Obs_SetInputMemory(HObj obj, int unk, char* buf, int len)
+;09EC: 0xA097A7F0   ; 27B: int Obs_SetCSM(HObj obj, CSM_RAM *csm)
+;0E50: 0xA87DB0F0   ; 394: void **RAM_INET_ptr
+;0E54: 0xA15D0D0B   ; 395: SSL_METHOD *TLSv1_client_method(void)
+;0E58: 0xA15D2347   ; 396: SSL_CTX *SSL_CTX_new(SSL_METHOD *meth)
+;0E5C: 0xA15D1743   ; 397: void SSL_CTX_free(SSL_CTX *ctx)
+;0E60: 0xA15CE81B   ; 398: long SSL_CTX_ctrl(SSL_CTX *ctx, int cmd, long larg, void *parg)
+;0E64: 0xA15D1913   ; 399: SSL *SSL_new(SSL_CTX *ctx)
+;0E68: 0xA15D1B33   ; 39A: int SSL_set_fd(SSL *s, int fd)
+;0E6C: 0xA15D1CD7   ; 39B: int SSL_connect(SSL *ssl)
+;0E70: 0xA15D1CF1   ; 39C: int SSL_shutdown(SSL *ssl)
+;0E74: 0xA15CD677   ; 39D: int SSL_read(SSL *ssl, void *buf, int num)
+;0E78: 0xA15CD6FD   ; 39E: int SSL_peek(SSL *ssl,void *buf,int num)
+;0E7C: 0xA15CD5D9   ; 39F: int SSL_write(SSL *ssl, const void *buf, int num)
+;
+;0E80: 0xA15D1A19   ; 3A0: void SSL_free(SSL *ssl)
+;0E84: 0xA15D2737   ; 3A1: int SSL_set_session(SSL *ssl, SSL_SESSION *session)
+;0E88: 0xA15CC61B   ; 3A2: void SSL_Session_free(SSL_SESSION *sess)
+;0E8C: 0xA0C96B97   ; 3A3: void SetMenuItemIconIMGHDR(void *gui, void *item, IMGHDR *img)
+;E90:              ; 3A4: void SetDrawingCanvas(int x, int y, int x2, int y2)
+;0E94: 0xA0CAE91B   ; 3A5: void DrawIMGHDR(int x, int y, IMGHDR *img)
+;0E98: 0xA0CB2E83   ; 3A6: void Get_Obj1_WH(DRWOBJ *drwobj, int *w, int *h)
+;0E9C: 0xA0B98CCB   ; 3A7: void Set_Connect(int _1)
+;#pragma disable old_equal_ff
+;+0
+; ...
+;______________________________________________________________________
+;
+#pragma disable warn_if_old_exist_on_undo
+
+;different phone data and old data from the patch:
+;       Old data in the phone:           Current (new) data in the phone: ;Old data in the patch:
+;addr.  0 1 2 3 4 5 6 7 8 9 A B C D E F  0 1 2 3 4 5 6 7 8 9 A B C D E F  ;0 1 2 3 4 5 6 7 8 9 A B C D E F
+FD4464:         B5F66EA131F76EA1                 B5F66EA131F76EA1         ;        FFFFFFFFFFFFFFFF        
+FD4E50: B555BFA0                         F0B07DA8                         ;FFFFFFFF                        
+
+;same phone data and old data from the patch:
+;       Old data in the phone:           Current (new) data in the phone: ;Old data in the patch:
+;addr.  0 1 2 3 4 5 6 7 8 9 A B C D E F  0 1 2 3 4 5 6 7 8 9 A B C D E F  ;0 1 2 3 4 5 6 7 8 9 A B C D E F
+FD49E8:                 FFFFFFFFFFFFFFFF                 10E497A0F0A797A0 ;                FFFFFFFFFFFFFFFF
+FD4E54:         FFFFFFFFFFFFFFFFFFFFFFFF         0B0D5DA147235DA143175DA1 ;        FFFFFFFFFFFFFFFFFFFFFFFF
+FD4E60: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1BE85CA113195DA1331B5DA1D71C5DA1 ;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+FD4E70: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF F11C5DA177D65CA1FDD65CA1D9D55CA1 ;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+FD4E80: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 191A5DA137275DA11BC65CA1976BC9A0 ;FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+FD4E94:         FFFFFFFFFFFFFFFFFFFFFFFF         1BE9CAA0832ECBA0CB8CB9A0 ;        FFFFFFFFFFFFFFFFFFFFFFFF
+
+#pragma enable warn_if_old_exist_on_undo
+
+
+;locale=Russian_Russia.1251

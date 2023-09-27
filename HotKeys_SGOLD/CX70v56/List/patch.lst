@@ -1,0 +1,91 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 11/Dec/2015  15:20:25              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\patch.asm#
+#           List file     =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\CX70v56\List\patch.lst#
+#           Object file   =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\CX70v56\Obj\patch.r79#
+#           Command line  =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\patch.asm #
+#                            -OE:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\CX70v56\Obj\ #
+#                            -s+ -M<> -w+ -DCX70v56                           #
+#                            -LE:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_SGOLD\CX70v56\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None -n               #
+#                            -IE:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\ #
+#                                                                             #
+###############################################################################
+
+    1    00000000              #include "def.h"
+    2    00000000              
+    3    00000000                      EXTERN my_onmessage
+    4    00000000                      EXTERN execFile
+    5    00000000                      EXTERN setFName
+    6    00000000                      
+    7    00000000                      CODE16
+    8    00000000                      
+    9    00000000                      RSEG PATCH_MENU_ONMESSAGE:DATA(2)
+   10    00000000 ........             DCD  my_onmessage
+   11    00000004                      
+   12    00000000                      RSEG PATCH_MENU_MAINCSMSIZE:DATA(2)
+   13    00000000 70040000             DCD  0x470
+   14    00000004                      
+   15    00000000                      RSEG PATCH_MENU_PREDIAL_ENA:CODE(1)
+   16    00000000 4007                 LSL R0,R0,#0x1D
+   17    00000002                      
+   18    00000000                      RSEG PATCH_IDLE_START_XTRA_JC:CODE(1)
+   19    00000000 ........             BL  execFile
+   20    00000004                      
+   21    00000000                      RSEG PATCH_SET_FILE_NAME:CODE(1)
+   22    00000000 ........             BL  setFName
+   23    00000004                 
+   24    00000004              //==============================================
+                               ================================
+   25    00000004              
+   26    00000004              //Только для CX70v56,а может и для остальных
+                                SGOLD X65.Убираем отображение лишних софткей
+                                табов при нажатии кнопки.Будет как на
+                                x75.
+   27    00000004              #ifdef CX70v56
+   28    00000000                      RSEG PATCH_IDLE_INPUTDIA_ONKEY:CODE(1)
+   29    00000000 C046                 NOP
+   30    00000002 C046                 NOP
+   31    00000004                      
+   32    00000000                      RSEG PATCH_IDLE_INPUTDIA_GHOOK:CODE(2)
+   33    00000000 004B                 LDR R3,_c
+   34    00000002 1847                 BX R3
+   35    00000004                      DATA
+   36    00000004 ........     _c      DCD check_tabs
+   37    00000008              
+   38    00000000                      RSEG CODE:CODE(2)   
+   39    00000000              check_tabs:
+   40    00000000 022D                 CMP R5,#2
+   41    00000002 02D1                 BNE _5
+   42    00000004 0128                 CMP R0,#1
+   43    00000006 00DC                 BGT _5
+   44    00000008              _0
+   45    00000008 0025                 MOV R5, #0
+   46    0000000A              _5
+   47    0000000A 291C                 MOV R1,R5 
+   48    0000000C 201C                 MOV R0,R4
+   49    0000000E 0122                 MOV R2,#1
+   50    00000010 014B                 LDR R3,a1
+   51    00000012 9847                 BLX R3
+   52    00000014 014B                 LDR R3,a2
+   53    00000016 1847                 BX R3
+   54    00000018                      DATA
+   55    00000018 87CCCEA0     a1      DCD somecode_3  
+   56    0000001C 7BB871A1     a2      DCD back_addr
+   57    00000020              #endif
+   58    00000020              ;===============================================
+                               ================================
+   59    00000020                      END
+##############################
+#          CRC:4F14          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 62          #
+##############################
+
+
+
+

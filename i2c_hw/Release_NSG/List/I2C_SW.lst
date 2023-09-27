@@ -1,0 +1,1236 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    08/Jan/2015  21:39:52 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  arm                                                  #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw #
+#                       \I2C_SW.C                                            #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw #
+#                       \I2C_SW.C -D NEWSGOLD -D S75v52 -lCN                 #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw #
+#                       \Release_NSG\List\ -o C:\Users\alfin_000\Documents\S #
+#                       iemens\alfinant\i2c_sw\Release_NSG\Obj\ -s3          #
+#                       --no_cse --no_unroll --no_inline --no_code_motion    #
+#                       --no_tbaa --no_clustering --no_scheduling            #
+#                       --cpu_mode arm --endian little --cpu ARM926EJ-S      #
+#                       --stack_align 4 -e --fpu None --dlib_config          #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpannl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\                                          #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw #
+#                       \Release_NSG\List\I2C_SW.lst                         #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw #
+#                       \Release_NSG\Obj\I2C_SW.r79                          #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\alfinant\i2c_sw\I2C_SW.C
+      1          #ifdef NEWSGOLD
+      2          #include "..\inc\reg8876.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 488
+
+   \                                 In segment DATA_AN, at 0xf4000000
+   \   CAPCOM_TypeDef __data CCU0
+   \                     CCU0:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_AN, at 0xf4100000
+   \   CAPCOM_TypeDef __data CCU1
+   \                     CCU1:
+   \   00000000                      DS8 256
+      3          #else
+      4          #include "..\inc\reg8875.h"
+      5          #endif
+      6          
+      7          #include "..\inc\clkman.h"
+      8          #include "..\inc\interrupt.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __arm __atpcs int disable_interrupts(void)
+   \                     disable_interrupts:
+   \   00000000   00000FE1           MRS      R0,CPSR
+   \   00000004   1F1010E2           ANDS     R1,R0,#0x1F
+   \   00000008   100051E3           CMP      R1,#+16
+   \   0000000C   0000001A           BNE      ??disable_interrupts_0
+   \   00000010   040000EF           SWI 4            
+   \                     ??disable_interrupts_0:
+   \   00000014   C01090E3           ORRS     R1,R0,#0xC0
+   \   00000018   01F029E1           MSR      CPSR,R1
+   \   0000001C   C00010E2           ANDS     R0,R0,#0xC0
+   \   00000020   0EF0A0E1           MOV      PC,LR            ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __arm __atpcs void enable_interrupts(int)
+   \                     enable_interrupts:
+   \   00000000   00100FE1           MRS      R1,CPSR
+   \   00000004   1F2011E2           ANDS     R2,R1,#0x1F
+   \   00000008   100052E3           CMP      R2,#+16
+   \   0000000C   0000001A           BNE      ??enable_interrupts_0
+   \   00000010   040000EF           SWI 4            
+   \                     ??enable_interrupts_0:
+   \   00000014   C010D1E3           BICS     R1,R1,#0xC0
+   \   00000018   010090E1           ORRS     R0,R0,R1
+   \   0000001C   00F029E1           MSR      CPSR,R0
+   \   00000020   0EF0A0E1           MOV      PC,LR            ;; return
+      9          
+     10          #define SDA   GPIO.USART0_RTS
+     11          #define SCL   GPIO.USART0_CTS
+     12          
+     13          #define period 10000		/* 10 ms time out for bus faulty */
+     14          
+     15          void int_timer1_handler(int irq);
+     16          
+     17          unsigned char I2cStop();
+     18          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     19          unsigned int time_out;
+   \                     time_out:
+   \   00000000                      DS8 4
+     20          
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     21          unsigned char rec_data;
+   \                     rec_data:
+   \   00000000                      DS8 1
+     22          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     23          int TX_RX,Ackge,COM_ON,RecAck,temp_SDA;
+   \                     TX_RX:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     Ackge:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     COM_ON:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     RecAck:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     temp_SDA:
+   \   00000000                      DS8 4
+     24          
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     25          unsigned char bit_count,input_data,mask;
+   \                     bit_count:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     input_data:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+   \                     mask:
+   \   00000000                      DS8 1
+     26          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     27          IRQ_DESC irq_old;
+   \                     irq_old:
+   \   00000000                      DS8 8
+     28          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     29          IRQ_DESC irq_ccu_t1=
+   \                     irq_ccu_t1:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for irq_ccu_t1>`
+     30          {
+     31            2,
+     32            0x0F,
+     33            0,
+     34            0,
+     35            int_timer1_handler,
+     36          };
+     37          
+     38          /******************************************************************************/
+     39          /*      Subroutine:	Delay	  					      */
+     40          /*                                                                            */
+     41          /*      Description:    This routine creates a time delay.                    */
+     42          /*			                                                      */     															
+     43          /*      Input:	        Time in microseconds	   		              */
+     44          /*                                                                            */
+     45          /*      Return:		None						      */
+     46          /*                                                                            */
+     47          /******************************************************************************/
+     48          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     49          void Delay(unsigned us)
+     50          {
+     51            unsigned endTime = STM_TIM0 + us;
+   \                     Delay:
+   \   00000000   ........           LDR      R1,??DataTable28  ;; 0xfffffffff4b00010
+   \   00000004   001091E5           LDR      R1,[R1, #+0]
+   \   00000008   010090E0           ADDS     R0,R0,R1
+     52            while(endTime > STM_TIM0);
+   \                     ??Delay_0:
+   \   0000000C   ........           LDR      R1,??DataTable28  ;; 0xfffffffff4b00010
+   \   00000010   001091E5           LDR      R1,[R1, #+0]
+   \   00000014   000051E1           CMP      R1,R0
+   \   00000018   FBFFFF3A           BCC      ??Delay_0
+     53          }
+   \   0000001C   0EF0A0E1           MOV      PC,LR            ;; return
+     54          
+     55          /******************************************************************************/
+     56          /*	Subroutine:	Check_SCL 				    	      */
+     57          /*			                             			      */
+     58          /*	Description:	Send HIGH and read the SCL line. It will wait until   */
+     59          /* 			the line has been released from slave device with the */
+     60          /* 			time-out of 10 ms.				      */	
+     61          /*                                                                            */
+     62          /*      Input:	    	None						      */
+     63          /*                       	                                              */
+     64          /*      Return:		"0" - SCL line is OK			       	      */
+     65          /*			"1" - SCL line is faulty			      */
+     66          /*                                                                            */
+     67          /******************************************************************************/
+
+   \                                 In segment CODE, align 4, keep-with-next
+     68          unsigned char Check_SCL()
+     69          {
+     70            unsigned endTime;
+     71            time_out = period;
+   \                     Check_SCL:
+   \   00000000   ........           LDR      R0,??DataTable36  ;; time_out
+   \   00000004   1010A0E3           MOV      R1,#+16
+   \   00000008   9C1D81E3           ORR      R1,R1,#0x2700
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+     72            
+     73            SCL = 0x1100;     /* Настраиваем SCL на вход*/
+   \   00000010   5400A0E3           MOV      R0,#+84
+   \   00000014   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000018   441DA0E3           MOV      R1,#+4352
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+     74            
+     75            endTime = STM_TIM0 + time_out;
+   \   00000020   ........           LDR      R0,??DataTable28  ;; 0xfffffffff4b00010
+   \   00000024   000090E5           LDR      R0,[R0, #+0]
+   \   00000028   ........           LDR      R1,??DataTable36  ;; time_out
+   \   0000002C   001091E5           LDR      R1,[R1, #+0]
+   \   00000030   000091E0           ADDS     R0,R1,R0
+     76            while(endTime > STM_TIM0)
+   \                     ??Check_SCL_0:
+   \   00000034   ........           LDR      R1,??DataTable28  ;; 0xfffffffff4b00010
+   \   00000038   001091E5           LDR      R1,[R1, #+0]
+   \   0000003C   000051E1           CMP      R1,R0
+   \   00000040   0C00002A           BCS      ??Check_SCL_1
+     77            {
+     78              if((SCL & GPIO_DAT) >> 9) /* Ждем пока slave закончит свои дела и отпустит линию */
+   \   00000044   5410A0E3           MOV      R1,#+84
+   \   00000048   BD1651E2           SUBS     R1,R1,#+198180864
+   \   0000004C   001091E5           LDR      R1,[R1, #+0]
+   \   00000050   801F11E2           ANDS     R1,R1,#0x200
+   \   00000054   A114B0E1           LSRS     R1,R1,#+9
+   \   00000058   000051E3           CMP      R1,#+0
+   \   0000005C   F4FFFF0A           BEQ      ??Check_SCL_0
+     79              {
+     80                SCL = 0x1700;  
+   \   00000060   5400A0E3           MOV      R0,#+84
+   \   00000064   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000068   5C1DA0E3           MOV      R1,#+5888
+   \   0000006C   001080E5           STR      R1,[R0, #+0]
+     81                return (0);
+   \   00000070   0000A0E3           MOV      R0,#+0
+   \   00000074   000000EA           B        ??Check_SCL_2
+     82              }
+     83            }
+     84            return (1);
+   \                     ??Check_SCL_1:
+   \   00000078   0100A0E3           MOV      R0,#+1
+   \                     ??Check_SCL_2:
+   \   0000007C   0EF0A0E1           MOV      PC,LR            ;; return
+     85          }
+     86          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     87          void I2cDeInit()
+     88          {
+   \                     I2cDeInit:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   08D04DE2           SUB      SP,SP,#+8
+     89            IRQ_DESC temp_irq_old;
+     90            
+     91           // ClkStateOff(CAPCOM_MASK);
+     92            
+     93          #ifdef NEWSGOLD
+     94            Register_LISR(CCU0_T1_IRQn, &irq_old, &temp_irq_old);
+   \   00000008   0D20B0E1           MOVS     R2,SP
+   \   0000000C   ........           LDR      R1,??DataTable8  ;; irq_old
+   \   00000010   4900A0E3           MOV      R0,#+73
+   \   00000014   ........           LDR      R3,??DataTable9  ;; 0xffffffffa0233140
+   \   00000018   33FF2FE1           BLX      R3
+     95          #else
+     96            Register_LISR(CCU1_T1_IRQn, &irq_old, &temp_irq_old)
+     97          #endif  
+     98          }
+   \   0000001C   08D08DE2           ADD      SP,SP,#+8        ;; stack cleaning
+   \   00000020   0080BDE8           POP      {PC}             ;; return
+     99          
+    100          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    101          unsigned char I2cInit()
+    102          {
+   \                     I2cInit:
+   \   00000000   00402DE9           PUSH     {LR}
+    103            ClkStateOn(CAPCOM_MASK);
+   \   00000004   8007A0E3           MOV      R0,#+33554432
+   \   00000008   48129FE5           LDR      R1,??I2cInit_0   ;; 0xffffffffa01d0e9c
+   \   0000000C   31FF2FE1           BLX      R1
+    104            
+    105          #ifdef NEWSGOLD
+    106            CCU0.CLC = 0x100; CCU0.CC6IC &= ~ICR_IEN; //CTS
+   \   00000010   F404A0E3           MOV      R0,#-201326592
+   \   00000014   401FA0E3           MOV      R1,#+256
+   \   00000018   001080E5           STR      R1,[R0, #+0]
+   \   0000001C   F404A0E3           MOV      R0,#-201326592
+   \   00000020   F414A0E3           MOV      R1,#-201326592
+   \   00000024   DC1091E5           LDR      R1,[R1, #+220]
+   \   00000028   401DD1E3           BICS     R1,R1,#0x1000
+   \   0000002C   DC1080E5           STR      R1,[R0, #+220]
+    107            CCU1.CLC = 0x100; CCU1.CC2IC &= ~ICR_IEN; //RTS
+   \   00000030   F004A0E3           MOV      R0,#-268435456
+   \   00000034   410680E3           ORR      R0,R0,#0x4100000
+   \   00000038   401FA0E3           MOV      R1,#+256
+   \   0000003C   001080E5           STR      R1,[R0, #+0]
+   \   00000040   EC00A0E3           MOV      R0,#+236
+   \   00000044   BF0650E2           SUBS     R0,R0,#+200278016
+   \   00000048   EC10A0E3           MOV      R1,#+236
+   \   0000004C   BF1651E2           SUBS     R1,R1,#+200278016
+   \   00000050   001091E5           LDR      R1,[R1, #+0]
+   \   00000054   401DD1E3           BICS     R1,R1,#0x1000
+   \   00000058   001080E5           STR      R1,[R0, #+0]
+    108            CCU0.T1REL = 0xFF00;
+   \   0000005C   F404A0E3           MOV      R0,#-201326592
+   \   00000060   FF1CA0E3           MOV      R1,#+65280
+   \   00000064   4C1080E5           STR      R1,[R0, #+76]
+    109            CCU0.T1 = 0xFFF0; //Разрешение таймера при делителе частоты 1(26 Mhz) будет 39.0625 ns, P = 39.0625  * 256 = 1/100000
+   \   00000068   F404A0E3           MOV      R0,#-201326592
+   \   0000006C   F010A0E3           MOV      R1,#+240
+   \   00000070   FF1C81E3           ORR      R1,R1,#0xFF00
+   \   00000074   481080E5           STR      R1,[R0, #+72]
+    110            CCU0.CC6 = 0xFF80;
+   \   00000078   F404A0E3           MOV      R0,#-201326592
+   \   0000007C   8010A0E3           MOV      R1,#+128
+   \   00000080   FF1C81E3           ORR      R1,R1,#0xFF00
+   \   00000084   681080E5           STR      R1,[R0, #+104]
+    111            CCU0.CCSEM &= ~ CCSEM6;  /* Отключаем режим одного события */
+   \   00000088   F404A0E3           MOV      R0,#-201326592
+   \   0000008C   F414A0E3           MOV      R1,#-201326592
+   \   00000090   301091E5           LDR      R1,[R1, #+48]
+   \   00000094   4010D1E3           BICS     R1,R1,#0x40
+   \   00000098   301080E5           STR      R1,[R0, #+48]
+    112            CCU0.CCSEE &= ~ CCSEE6;
+   \   0000009C   F404A0E3           MOV      R0,#-201326592
+   \   000000A0   F414A0E3           MOV      R1,#-201326592
+   \   000000A4   2C1091E5           LDR      R1,[R1, #+44]
+   \   000000A8   4010D1E3           BICS     R1,R1,#0x40
+   \   000000AC   2C1080E5           STR      R1,[R0, #+44]
+    113            CCU0.CCM1 |= CCM1_MOD6 & (MODE_COMPARE_3 << 8); /* Режим сравнения 3:Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   000000B0   F404A0E3           MOV      R0,#-201326592
+   \   000000B4   F414A0E3           MOV      R1,#-201326592
+   \   000000B8   181091E5           LDR      R1,[R1, #+24]
+   \   000000BC   701E91E3           ORRS     R1,R1,#0x700
+   \   000000C0   181080E5           STR      R1,[R0, #+24]
+    114            CCU0.CCM1 |= CCM1_ACC6;  /* регистр захвата/сравнения CC6 будет привязан к таймеру T1 */ 
+   \   000000C4   F404A0E3           MOV      R0,#-201326592
+   \   000000C8   F414A0E3           MOV      R1,#-201326592
+   \   000000CC   181091E5           LDR      R1,[R1, #+24]
+   \   000000D0   801E91E3           ORRS     R1,R1,#0x800
+   \   000000D4   181080E5           STR      R1,[R0, #+24]
+    115            CCU0.CCIOC &= ~ PL;
+   \   000000D8   F404A0E3           MOV      R0,#-201326592
+   \   000000DC   F414A0E3           MOV      R1,#-201326592
+   \   000000E0   281091E5           LDR      R1,[R1, #+40]
+   \   000000E4   0210D1E3           BICS     R1,R1,#0x2
+   \   000000E8   281080E5           STR      R1,[R0, #+40]
+    116            CCU0.CCIOC |= STAG;      /* Если не установлен этот бит, значение пределителя увеличится в 8 раз */
+   \   000000EC   F404A0E3           MOV      R0,#-201326592
+   \   000000F0   F414A0E3           MOV      R1,#-201326592
+   \   000000F4   281091E5           LDR      R1,[R1, #+40]
+   \   000000F8   041091E3           ORRS     R1,R1,#0x4
+   \   000000FC   281080E5           STR      R1,[R0, #+40]
+    117            CCU0.CCIOC &= ~ PDS;
+   \   00000100   F404A0E3           MOV      R0,#-201326592
+   \   00000104   F414A0E3           MOV      R1,#-201326592
+   \   00000108   281091E5           LDR      R1,[R1, #+40]
+   \   0000010C   0810D1E3           BICS     R1,R1,#0x8
+   \   00000110   281080E5           STR      R1,[R0, #+40]
+    118            CCU0.T01CON &= ~ T1I;    /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   00000114   F404A0E3           MOV      R0,#-201326592
+   \   00000118   F414A0E3           MOV      R1,#-201326592
+   \   0000011C   101091E5           LDR      R1,[R1, #+16]
+   \   00000120   701ED1E3           BICS     R1,R1,#0x700
+   \   00000124   101080E5           STR      R1,[R0, #+16]
+    119            CCU0.T01CON &= ~ T1M;    /* режим таймера */
+   \   00000128   F404A0E3           MOV      R0,#-201326592
+   \   0000012C   F414A0E3           MOV      R1,#-201326592
+   \   00000130   101091E5           LDR      R1,[R1, #+16]
+   \   00000134   801ED1E3           BICS     R1,R1,#0x800
+   \   00000138   101080E5           STR      R1,[R0, #+16]
+    120            CCU0.T1IC |= ICR_CLRFL;       /* Сбрасываем флаг прерывания таймера T1 */
+   \   0000013C   F404A0E3           MOV      R0,#-201326592
+   \   00000140   F414A0E3           MOV      R1,#-201326592
+   \   00000144   F81091E5           LDR      R1,[R1, #+248]
+   \   00000148   401C91E3           ORRS     R1,R1,#0x4000
+   \   0000014C   F81080E5           STR      R1,[R0, #+248]
+    121            CCU0.T1IC |= ICR_IEN;         /* Разрешаем прерывания для таймера T1*/
+   \   00000150   F404A0E3           MOV      R0,#-201326592
+   \   00000154   F414A0E3           MOV      R1,#-201326592
+   \   00000158   F81091E5           LDR      R1,[R1, #+248]
+   \   0000015C   401D91E3           ORRS     R1,R1,#0x1000
+   \   00000160   F81080E5           STR      R1,[R0, #+248]
+    122            Register_LISR(CCU0_T1_IRQn, &irq_ccu_t1, &irq_old);
+   \   00000164   ........           LDR      R2,??DataTable8  ;; irq_old
+   \   00000168   EC109FE5           LDR      R1,??I2cInit_0+0x4  ;; irq_ccu_t1
+   \   0000016C   4900A0E3           MOV      R0,#+73
+   \   00000170   ........           LDR      R3,??DataTable9  ;; 0xffffffffa0233140
+   \   00000174   33FF2FE1           BLX      R3
+    123          #else
+    124            CCU1.CLC = 0x100; CCU1.CC2IC &= ~ICR_IEN; //CTS
+    125            CCU0.CLC = 0x100; CCU0.CC6IC &= ~ICR_IEN; //RTS
+    126            CCU1.T1REL = 0xFF00;
+    127            CCU1.T1 = 0xFF80;
+    128            CCU1.CC2 = 0xFF80;
+    129            CCU1.CCSEM &= ~ CCSEM2;
+    130            CCU1.CCSEE &= ~ CCSEE2;
+    131            CCU1.CCM0 |= CCM0_MOD2 & (MODE_COMPARE_3 << 8);
+    132            CCU1.CCM0 |= CCM0_ACC2;
+    133            CCU1.CCIOC &= ~ PL;
+    134            CCU1.CCIOC |= STAG;
+    135            CCU1.CCIOC &= ~ PDS;
+    136            CCU1.T1IC &= ~ ICR_IEN;
+    137            CCU1.T01CON &= ~ T1I;
+    138            CCU1.T01CON &= ~ T1M;
+    139            Register_LISR(CCU1_T1_IRQn, &irq_ccu_t1, &irq_old)
+    140          #endif
+    141                
+    142            SCL |= GPIO_ENAQ;
+   \   00000178   5400A0E3           MOV      R0,#+84
+   \   0000017C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000180   5410A0E3           MOV      R1,#+84
+   \   00000184   BD1651E2           SUBS     R1,R1,#+198180864
+   \   00000188   001091E5           LDR      R1,[R1, #+0]
+   \   0000018C   801C91E3           ORRS     R1,R1,#0x8000
+   \   00000190   001080E5           STR      R1,[R0, #+0]
+    143            SCL = 0x1100;     /* Настраиваем SCL на вход, открытый сток */
+   \   00000194   5400A0E3           MOV      R0,#+84
+   \   00000198   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000019C   441DA0E3           MOV      R1,#+4352
+   \   000001A0   001080E5           STR      R1,[R0, #+0]
+    144                  
+    145            SDA |= GPIO_ENAQ;
+   \   000001A4   5800A0E3           MOV      R0,#+88
+   \   000001A8   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000001AC   5810A0E3           MOV      R1,#+88
+   \   000001B0   BD1651E2           SUBS     R1,R1,#+198180864
+   \   000001B4   001091E5           LDR      R1,[R1, #+0]
+   \   000001B8   801C91E3           ORRS     R1,R1,#0x8000
+   \   000001BC   001080E5           STR      R1,[R0, #+0]
+    146            SDA = 0x1100;     /* Настраиваем SDA на вход, открытый сток */
+   \   000001C0   5800A0E3           MOV      R0,#+88
+   \   000001C4   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000001C8   441DA0E3           MOV      R1,#+4352
+   \   000001CC   001080E5           STR      R1,[R0, #+0]
+    147            
+    148            if (!(SDA & GPIO_DAT) >> 9)   /* Если линия SDA прижата */
+   \   000001D0   5800A0E3           MOV      R0,#+88
+   \   000001D4   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000001D8   000090E5           LDR      R0,[R0, #+0]
+   \   000001DC   800F10E3           TST      R0,#0x200
+   \   000001E0   0100001A           BNE      ??I2cInit_1
+   \   000001E4   0100A0E3           MOV      R0,#+1
+   \   000001E8   000000EA           B        ??I2cInit_2
+   \                     ??I2cInit_1:
+   \   000001EC   0000A0E3           MOV      R0,#+0
+   \                     ??I2cInit_2:
+   \   000001F0   0000A0E3           MOV      R0,#+0
+   \   000001F4   000050E3           CMP      R0,#+0
+   \   000001F8   0400000A           BEQ      ??I2cInit_3
+    149              if (I2cStop())
+   \   000001FC   ........           BL       I2cStop
+   \   00000200   000050E3           CMP      R0,#+0
+   \   00000204   0100000A           BEQ      ??I2cInit_3
+    150                return (1);
+   \   00000208   0100A0E3           MOV      R0,#+1
+   \   0000020C   100000EA           B        ??I2cInit_4
+    151            
+    152            if (!(SCL & GPIO_DAT) >> 9)  /* Если линия SCL прижата */
+   \                     ??I2cInit_3:
+   \   00000210   5400A0E3           MOV      R0,#+84
+   \   00000214   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000218   000090E5           LDR      R0,[R0, #+0]
+   \   0000021C   800F10E3           TST      R0,#0x200
+   \   00000220   0100001A           BNE      ??I2cInit_5
+   \   00000224   0100A0E3           MOV      R0,#+1
+   \   00000228   000000EA           B        ??I2cInit_6
+   \                     ??I2cInit_5:
+   \   0000022C   0000A0E3           MOV      R0,#+0
+   \                     ??I2cInit_6:
+   \   00000230   0000A0E3           MOV      R0,#+0
+   \   00000234   000050E3           CMP      R0,#+0
+   \   00000238   0400000A           BEQ      ??I2cInit_7
+    153              if (I2cStop())
+   \   0000023C   ........           BL       I2cStop
+   \   00000240   000050E3           CMP      R0,#+0
+   \   00000244   0100000A           BEQ      ??I2cInit_7
+    154                return (1);
+   \   00000248   0100A0E3           MOV      R0,#+1
+   \   0000024C   000000EA           B        ??I2cInit_4
+    155            
+    156            return (0);
+   \                     ??I2cInit_7:
+   \   00000250   0000A0E3           MOV      R0,#+0
+   \                     ??I2cInit_4:
+   \   00000254   0080BDE8           POP      {PC}             ;; return
+   \                     ??I2cInit_0:
+   \   00000258   9C0E1DA0           DC32     0xffffffffa01d0e9c
+   \   0000025C   ........           DC32     irq_ccu_t1
+    157          }
+    158          	 	
+    159          /******************************************************************************/
+    160          /*	Subroutine:	I2cStart     					      */
+    161          /*			                              			      */
+    162          /*	Description:	Generate a START condition on I2C-bus.		      */	
+    163          /*                                                                            */
+    164          /*      Input:	    	None						      */
+    165          /*                                                                            */
+    166          /*      Return:		None						      */
+    167          /*                                                                            */
+    168          /******************************************************************************/
+    169          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    170          void I2cStart()
+    171          {
+   \                     I2cStart:
+   \   00000000   00402DE9           PUSH     {LR}
+    172            SDA = 0x1700; /* Поднимаем линию SDA */
+   \   00000004   5800A0E3           MOV      R0,#+88
+   \   00000008   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000000C   5C1DA0E3           MOV      R1,#+5888
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+    173            SCL = 0x1700; /* Поднимаем линию SCL */
+   \   00000014   5400A0E3           MOV      R0,#+84
+   \   00000018   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000001C   5C1DA0E3           MOV      R1,#+5888
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+    174            Delay(5);
+   \   00000024   0500A0E3           MOV      R0,#+5
+   \   00000028   ........           BL       Delay
+    175            SDA = 0x1500; /* Прижимаем линию SDA */
+   \   0000002C   5800A0E3           MOV      R0,#+88
+   \   00000030   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000034   541DA0E3           MOV      R1,#+5376
+   \   00000038   001080E5           STR      R1,[R0, #+0]
+    176            Delay(5);
+   \   0000003C   0500A0E3           MOV      R0,#+5
+   \   00000040   ........           BL       Delay
+    177            SCL = 0x1500; /* Прижимаем линию SCL */
+   \   00000044   5400A0E3           MOV      R0,#+84
+   \   00000048   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000004C   541DA0E3           MOV      R1,#+5376
+   \   00000050   001080E5           STR      R1,[R0, #+0]
+    178          }
+   \   00000054   0080BDE8           POP      {PC}             ;; return
+    179          
+    180          
+    181          /******************************************************************************/
+    182          /*	Subroutine:	I2cMasterWrite			 		      */
+    183          /*			                                 		      */
+    184          /*	Description:	Check for any WAIT condition before writing one byte  */
+    185          /*			of data to the slave device. Set-up the first bit of  */
+    186          /*			data right after the START condition.		      */	
+    187          /*                                                                            */
+    188          /*      Input:	    	one byte of data to be sent to slave.		      */
+    189          /*                                                                            */
+    190          /*      Return:		none						      */                       
+    191          /*                                                                    	      */
+    192          /******************************************************************************/
+    193          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    194          void I2cMasterWrite(unsigned char input_byte)
+    195          {
+    196            input_data = input_byte;      /* to be used in interrupt routine */
+   \                     I2cMasterWrite:
+   \   00000000   ........           LDR      R1,??DataTable48  ;; input_data
+   \   00000004   0000C1E5           STRB     R0,[R1, #+0]
+    197            
+    198            COM_ON = 1;			/* communication is on */
+   \   00000008   ........           LDR      R0,??DataTable53  ;; COM_ON
+   \   0000000C   0110A0E3           MOV      R1,#+1
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+    199            TX_RX = 0;			/* in transmission mode */
+   \   00000014   ........           LDR      R0,??DataTable29  ;; TX_RX
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+    200            mask = 0x80;			/* to send the MSB bit first */
+   \   00000020   ........           LDR      R0,??DataTable50  ;; mask
+   \   00000024   8010A0E3           MOV      R1,#+128
+   \   00000028   0010C0E5           STRB     R1,[R0, #+0]
+    201            bit_count = 0; 		/* counter for clock pulse */
+   \   0000002C   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000030   0010A0E3           MOV      R1,#+0
+   \   00000034   0010C0E5           STRB     R1,[R0, #+0]
+    202            if (mask & input_data) 	/* send the first bit of data while */
+   \   00000038   ........           LDR      R0,??DataTable50  ;; mask
+   \   0000003C   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000040   ........           LDR      R1,??DataTable48  ;; input_data
+   \   00000044   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000048   000011E1           TST      R1,R0
+   \   0000004C   0400000A           BEQ      ??I2cMasterWrite_0
+    203              SDA = 0x1700;               /* the clock is low */
+   \   00000050   5800A0E3           MOV      R0,#+88
+   \   00000054   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000058   5C1DA0E3           MOV      R1,#+5888
+   \   0000005C   001080E5           STR      R1,[R0, #+0]
+   \   00000060   030000EA           B        ??I2cMasterWrite_1
+    204            else SDA = 0x1500;
+   \                     ??I2cMasterWrite_0:
+   \   00000064   5800A0E3           MOV      R0,#+88
+   \   00000068   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000006C   541DA0E3           MOV      R1,#+5376
+   \   00000070   001080E5           STR      R1,[R0, #+0]
+    205            
+    206            mask = mask >> 1;		/* shift right for the next bit */
+   \                     ??I2cMasterWrite_1:
+   \   00000074   ........           LDR      R0,??DataTable50  ;; mask
+   \   00000078   ........           LDR      R1,??DataTable50  ;; mask
+   \   0000007C   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000080   FF1011E2           ANDS     R1,R1,#0xFF      ;; Zero extend
+   \   00000084   A110B0E1           LSRS     R1,R1,#+1
+   \   00000088   0010C0E5           STRB     R1,[R0, #+0]
+    207            //Check_SCL();
+    208            
+    209            SCL = 0x1030;                 /* Привязка SCL к интерфейсу CAPCOM */
+   \   0000008C   5400A0E3           MOV      R0,#+84
+   \   00000090   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000094   3010A0E3           MOV      R1,#+48
+   \   00000098   401D81E3           ORR      R1,R1,#0x1000
+   \   0000009C   001080E5           STR      R1,[R0, #+0]
+    210            
+    211          #ifdef NEWSGOLD
+    212            CCU0.T01CON |= T1R;           /* Старт таймера T1 */
+   \   000000A0   F404A0E3           MOV      R0,#-201326592
+   \   000000A4   F414A0E3           MOV      R1,#-201326592
+   \   000000A8   101091E5           LDR      R1,[R1, #+16]
+   \   000000AC   401C91E3           ORRS     R1,R1,#0x4000
+   \   000000B0   101080E5           STR      R1,[R0, #+16]
+    213          #else
+    214            CCU1.T1IC |= ICR_CLRFL;
+    215            CCU1.T1IC |= ICR_IEN;
+    216            CCU1.T01CON |= T1R;
+    217          #endif  
+    218          }
+   \   000000B4   0EF0A0E1           MOV      PC,LR            ;; return
+    219          
+    220          
+    221          /******************************************************************************/
+    222          /*	Subroutine:	I2cMasterRead			 		      */
+    223          /*			                                 		      */
+    224          /*	Description:	Check for WAIT condition before reading one byte of   */
+    225          /*			data from the slave device.			      */	
+    226          /*                                                                            */
+    227          /*      Input:	     	Acknowledge require:				      */
+    228          /*			0 - generate LOW output by the master after a byte of */
+    229          /*			    data is received.      			      */
+    230          /*			1 - generate HIGH output by the master after a byte   */
+    231          /*			    of data is received.     			      */
+    232          /*                                                                            */
+    233          /*      Return:  	none						      */
+    234          /*		        						      */                       
+    235          /*                                                                    	      */
+    236          /******************************************************************************/
+    237          				
+
+   \                                 In segment CODE, align 4, keep-with-next
+    238          void I2cMasterRead(unsigned char ack)
+    239          {
+   \                     I2cMasterRead:
+   \   00000000   00402DE9           PUSH     {LR}
+    240          
+    241                  Ackge = ack;                    /* to be used in interrupt routine */
+   \   00000004   ........           LDR      R1,??DataTable40  ;; Ackge
+   \   00000008   000081E5           STR      R0,[R1, #+0]
+    242          	rec_data = 0;
+   \   0000000C   ........           LDR      R0,??DataTable34  ;; rec_data
+   \   00000010   0010A0E3           MOV      R1,#+0
+   \   00000014   0010C0E5           STRB     R1,[R0, #+0]
+    243          	COM_ON = 1;			/* communication is on */
+   \   00000018   ........           LDR      R0,??DataTable53  ;; COM_ON
+   \   0000001C   0110A0E3           MOV      R1,#+1
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+    244          	TX_RX = 1;			/* in reception mode */
+   \   00000024   ........           LDR      R0,??DataTable29  ;; TX_RX
+   \   00000028   0110A0E3           MOV      R1,#+1
+   \   0000002C   001080E5           STR      R1,[R0, #+0]
+    245          	mask = 0x80;
+   \   00000030   ........           LDR      R0,??DataTable50  ;; mask
+   \   00000034   8010A0E3           MOV      R1,#+128
+   \   00000038   0010C0E5           STRB     R1,[R0, #+0]
+    246          	SDA = 0x1100;			/* configure SDA as an input */  
+   \   0000003C   5800A0E3           MOV      R0,#+88
+   \   00000040   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000044   441DA0E3           MOV      R1,#+4352
+   \   00000048   001080E5           STR      R1,[R0, #+0]
+    247          	bit_count = 0; 			/* counter for clock pulses */
+   \   0000004C   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000050   0010A0E3           MOV      R1,#+0
+   \   00000054   0010C0E5           STRB     R1,[R0, #+0]
+    248          
+    249          	Check_SCL();                    /* check for any WAIT condition before 
+   \   00000058   ........           BL       Check_SCL
+    250          					   receiving one byte of data */ 
+    251          
+    252                  //T2IE = 1;			/* interrupt enable for T2  */
+    253          	//T3R = 1;			/* timer starts running */
+    254          }
+   \   0000005C   0080BDE8           POP      {PC}             ;; return
+    255          
+    256          
+    257            
+    258          
+    259          
+    260          /******************************************************************************/
+    261          /*	Функция:	I2cStop				 		      */
+    262          /*			                                 		      */
+    263          /*	Описание:	генерирует условие STOP на i2c шине.В дополнении,     */
+    264          /*                      генерирует тактовые импульсы до тех пор,пока линия    */
+    265          /*                      освобождается ведомым устройством.Время ожидания      */
+    266          /*			высокого уровня на линии состовляет 10 миллисекунд.   */
+    267          /*                                                                            */
+    268          /*      Параметры:	нет                                                   */
+    269          /*                                                                            */
+    270          /*      Возвращает:  	"0" - все OK		                              */
+    271          /*		        "1" - линия удерживалась более 10 миллисекунд         */                       
+    272          /*							                      */
+    273          /*                                                                    	      */
+    274          /******************************************************************************/
+    275          				
+
+   \                                 In segment CODE, align 4, keep-with-next
+    276          unsigned char I2cStop()
+    277          { 
+   \                     I2cStop:
+   \   00000000   00402DE9           PUSH     {LR}
+    278            unsigned endTime;
+    279            time_out = period;
+   \   00000004   ........           LDR      R0,??DataTable36  ;; time_out
+   \   00000008   1010A0E3           MOV      R1,#+16
+   \   0000000C   9C1D81E3           ORR      R1,R1,#0x2700
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+    280            
+    281            SDA = 0x1100;     /* SDA настроен как вход */
+   \   00000014   5800A0E3           MOV      R0,#+88
+   \   00000018   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000001C   441DA0E3           MOV      R1,#+4352
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+    282            
+    283            endTime = STM_TIM0 + time_out;
+   \   00000024   ........           LDR      R0,??DataTable28  ;; 0xfffffffff4b00010
+   \   00000028   000090E5           LDR      R0,[R0, #+0]
+   \   0000002C   ........           LDR      R1,??DataTable36  ;; time_out
+   \   00000030   001091E5           LDR      R1,[R1, #+0]
+   \   00000034   000091E0           ADDS     R0,R1,R0
+    284            while(endTime > STM_TIM0) 
+   \                     ??I2cStop_0:
+   \   00000038   ........           LDR      R1,??DataTable28  ;; 0xfffffffff4b00010
+   \   0000003C   001091E5           LDR      R1,[R1, #+0]
+   \   00000040   000051E1           CMP      R1,R0
+   \   00000044   1900002A           BCS      ??I2cStop_1
+    285            {
+    286              if ((SDA & GPIO_DAT) >> 9) /* Ждем когда slave отпустит линию SDA после ответа(ASK) */
+   \   00000048   5810A0E3           MOV      R1,#+88
+   \   0000004C   BD1651E2           SUBS     R1,R1,#+198180864
+   \   00000050   001091E5           LDR      R1,[R1, #+0]
+   \   00000054   801F11E2           ANDS     R1,R1,#0x200
+   \   00000058   A114B0E1           LSRS     R1,R1,#+9
+   \   0000005C   000051E3           CMP      R1,#+0
+   \   00000060   F4FFFF0A           BEQ      ??I2cStop_0
+    287              {
+    288                SDA = 0x1500;            /* Прижимаем SDA */
+   \   00000064   5800A0E3           MOV      R0,#+88
+   \   00000068   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000006C   541DA0E3           MOV      R1,#+5376
+   \   00000070   001080E5           STR      R1,[R0, #+0]
+    289                Delay(5);
+   \   00000074   0500A0E3           MOV      R0,#+5
+   \   00000078   ........           BL       Delay
+    290                if (Check_SCL())         /* Проверяем отпустил ли slave SCL */
+   \   0000007C   ........           BL       Check_SCL
+   \   00000080   000050E3           CMP      R0,#+0
+   \   00000084   0100000A           BEQ      ??I2cStop_2
+    291                  return (1);            /* ERROR: SCL line is stuck to low */
+   \   00000088   0100A0E3           MOV      R0,#+1
+   \   0000008C   080000EA           B        ??I2cStop_3
+    292                
+    293                Delay(10);
+   \                     ??I2cStop_2:
+   \   00000090   0A00A0E3           MOV      R0,#+10
+   \   00000094   ........           BL       Delay
+    294                SDA = 0x1700;
+   \   00000098   5800A0E3           MOV      R0,#+88
+   \   0000009C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000000A0   5C1DA0E3           MOV      R1,#+5888
+   \   000000A4   001080E5           STR      R1,[R0, #+0]
+    295                return (0);
+   \   000000A8   0000A0E3           MOV      R0,#+0
+   \   000000AC   000000EA           B        ??I2cStop_3
+    296              }
+    297            }
+    298            
+    299            return (1);   	       /* ERROR: SDA line is stuck to low */
+   \                     ??I2cStop_1:
+   \   000000B0   0100A0E3           MOV      R0,#+1
+   \                     ??I2cStop_3:
+   \   000000B4   0080BDE8           POP      {PC}             ;; return
+    300          }
+    301          
+    302          /******************************************************************************/
+    303          /*	Subroutine:	Timer 2 interrupt service routine		      */
+    304          /*			                                 		      */
+    305          /*	Description:	The timer 2 is configured as an reload timer. The     */
+    306          /*                      timer 3 is the core timer with 400ns resolution, and  */
+    307          /* 		 	is reloaded with the contents of the timer 2 register.*/
+    308          /*			The resolution of the timer interrupt is t2 * t3.     */
+    309          /* 			(25 * 400ns). Each interrupt will send/receive one    */
+    310          /* 			bit of data.					      */
+    311          /*	  		         					      */
+    312          /******************************************************************************/
+    313              	
+    314          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    315          void int_timer1_handler(int irq)   
+    316          {
+    317          #ifdef NEWSGOLD
+    318            CCU0.T1IC |= ICR_CLRFL;       /* Сбрасываем флаг прерывания таймера T1 */
+   \                     int_timer1_handler:
+   \   00000000   F404A0E3           MOV      R0,#-201326592
+   \   00000004   F414A0E3           MOV      R1,#-201326592
+   \   00000008   F81091E5           LDR      R1,[R1, #+248]
+   \   0000000C   401C91E3           ORRS     R1,R1,#0x4000
+   \   00000010   F81080E5           STR      R1,[R0, #+248]
+    319          #else
+    320            CCU1.T1IC |= ICR_CLRFL;
+    321          #endif  
+    322          
+    323                  if (TX_RX)
+   \   00000014   ........           LDR      R0,??DataTable29  ;; TX_RX
+   \   00000018   000090E5           LDR      R0,[R0, #+0]
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   5900000A           BEQ      ??int_timer1_handler_0
+    324          	{                              		/* In receiving mode */
+    325                     SCL = 1;
+   \   00000024   5400A0E3           MOV      R0,#+84
+   \   00000028   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000002C   0110A0E3           MOV      R1,#+1
+   \   00000030   001080E5           STR      R1,[R0, #+0]
+    326          
+    327          	   bit_count++;
+   \   00000034   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000038   ........           LDR      R1,??DataTable52  ;; bit_count
+   \   0000003C   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000040   011091E2           ADDS     R1,R1,#+1
+   \   00000044   0010C0E5           STRB     R1,[R0, #+0]
+    328          
+    329          	   if (bit_count <= 8)
+   \   00000048   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   0000004C   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000050   090050E3           CMP      R0,#+9
+   \   00000054   3000002A           BCS      ??int_timer1_handler_1
+    330          	   {
+    331                        if (SDA)
+   \   00000058   5800A0E3           MOV      R0,#+88
+   \   0000005C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000060   000090E5           LDR      R0,[R0, #+0]
+   \   00000064   000050E3           CMP      R0,#+0
+   \   00000068   0700000A           BEQ      ??int_timer1_handler_2
+    332          	         rec_data |= mask;              /* store byte in rec_data while */
+   \   0000006C   ........           LDR      R0,??DataTable34  ;; rec_data
+   \   00000070   ........           LDR      R1,??DataTable34  ;; rec_data
+   \   00000074   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000078   ........           LDR      R2,??DataTable50  ;; mask
+   \   0000007C   0020D2E5           LDRB     R2,[R2, #+0]
+   \   00000080   011092E1           ORRS     R1,R2,R1
+   \   00000084   0010C0E5           STRB     R1,[R0, #+0]
+   \   00000088   070000EA           B        ??int_timer1_handler_3
+    333          	      else                              /* the clock is high */
+    334          	      {
+    335          		 time_out = period;            	/* for time delay */
+   \                     ??int_timer1_handler_2:
+   \   0000008C   ........           LDR      R0,??DataTable36  ;; time_out
+   \   00000090   1010A0E3           MOV      R1,#+16
+   \   00000094   9C1D81E3           ORR      R1,R1,#0x2700
+   \   00000098   001080E5           STR      R1,[R0, #+0]
+    336          		 SCL = 1;
+   \   0000009C   5400A0E3           MOV      R0,#+84
+   \   000000A0   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000000A4   0110A0E3           MOV      R1,#+1
+   \   000000A8   001080E5           STR      R1,[R0, #+0]
+    337          	      }
+    338          
+    339          	      mask = mask >> 1;
+   \                     ??int_timer1_handler_3:
+   \   000000AC   ........           LDR      R0,??DataTable50  ;; mask
+   \   000000B0   ........           LDR      R1,??DataTable50  ;; mask
+   \   000000B4   0010D1E5           LDRB     R1,[R1, #+0]
+   \   000000B8   FF1011E2           ANDS     R1,R1,#0xFF      ;; Zero extend
+   \   000000BC   A110B0E1           LSRS     R1,R1,#+1
+   \   000000C0   0010C0E5           STRB     R1,[R0, #+0]
+    340          	
+    341          	      SCL = 0;                          /* set clock to low */
+   \   000000C4   5400A0E3           MOV      R0,#+84
+   \   000000C8   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000000CC   0010A0E3           MOV      R1,#+0
+   \   000000D0   001080E5           STR      R1,[R0, #+0]
+    342          
+    343                        if (bit_count == 8)
+   \   000000D4   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   000000D8   0000D0E5           LDRB     R0,[R0, #+0]
+   \   000000DC   080050E3           CMP      R0,#+8
+   \   000000E0   7100001A           BNE      ??int_timer1_handler_4
+    344          	      {
+    345          		 if (Ackge)          		/* set the acknowledge bit */
+   \   000000E4   ........           LDR      R0,??DataTable40  ;; Ackge
+   \   000000E8   000090E5           LDR      R0,[R0, #+0]
+   \   000000EC   000050E3           CMP      R0,#+0
+   \   000000F0   0400000A           BEQ      ??int_timer1_handler_5
+    346          	            SDA = 0x1700;
+   \   000000F4   5800A0E3           MOV      R0,#+88
+   \   000000F8   BD0650E2           SUBS     R0,R0,#+198180864
+   \   000000FC   5C1DA0E3           MOV      R1,#+5888
+   \   00000100   001080E5           STR      R1,[R0, #+0]
+   \   00000104   680000EA           B        ??int_timer1_handler_4
+    347          	         else SDA = 0x1500;
+   \                     ??int_timer1_handler_5:
+   \   00000108   5800A0E3           MOV      R0,#+88
+   \   0000010C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000110   541DA0E3           MOV      R1,#+5376
+   \   00000114   001080E5           STR      R1,[R0, #+0]
+   \   00000118   630000EA           B        ??int_timer1_handler_4
+    348                 	      }
+    349                     }
+    350          	                    
+    351                     else if (bit_count == 9)
+   \                     ??int_timer1_handler_1:
+   \   0000011C   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000120   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000124   090050E3           CMP      R0,#+9
+   \   00000128   5F00001A           BNE      ??int_timer1_handler_4
+    352          	        {                    		/* end of Transmission for 1 byte */
+    353          		   if (bit_count == 9) 		/* for time delay purposes only */
+   \   0000012C   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000130   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000134   090050E3           CMP      R0,#+9
+   \   00000138   5B00001A           BNE      ??int_timer1_handler_4
+    354          		   {
+    355          		      SCL = 1;
+   \   0000013C   5400A0E3           MOV      R0,#+84
+   \   00000140   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000144   0110A0E3           MOV      R1,#+1
+   \   00000148   001080E5           STR      R1,[R0, #+0]
+    356          		      SCL = 1;
+   \   0000014C   5400A0E3           MOV      R0,#+84
+   \   00000150   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000154   0110A0E3           MOV      R1,#+1
+   \   00000158   001080E5           STR      R1,[R0, #+0]
+    357          		      SCL = 1;
+   \   0000015C   5400A0E3           MOV      R0,#+84
+   \   00000160   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000164   0110A0E3           MOV      R1,#+1
+   \   00000168   001080E5           STR      R1,[R0, #+0]
+    358             		     // T2IE = 0;                 /* reset interrupt */
+    359          		    //  T3IE = 0;
+    360          		    //  T2IR = 0;
+    361          		    //  T3R = 0;
+    362          		      COM_ON = 0;		/* completed the communication */
+   \   0000016C   ........           LDR      R0,??DataTable53  ;; COM_ON
+   \   00000170   0010A0E3           MOV      R1,#+0
+   \   00000174   001080E5           STR      R1,[R0, #+0]
+    363          
+    364          		      SCL = 0;
+   \   00000178   5400A0E3           MOV      R0,#+84
+   \   0000017C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000180   0010A0E3           MOV      R1,#+0
+   \   00000184   001080E5           STR      R1,[R0, #+0]
+   \   00000188   470000EA           B        ??int_timer1_handler_4
+    365                             }
+    366          	        }
+    367          	}
+    368          
+    369          
+    370          /* In transmission mode */
+    371                  else 
+    372                  {
+    373                    bit_count++; 
+   \                     ??int_timer1_handler_0:
+   \   0000018C   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000190   ........           LDR      R1,??DataTable52  ;; bit_count
+   \   00000194   0010D1E5           LDRB     R1,[R1, #+0]
+   \   00000198   011091E2           ADDS     R1,R1,#+1
+   \   0000019C   0010C0E5           STRB     R1,[R0, #+0]
+    374                    if (bit_count <= 8)
+   \   000001A0   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   000001A4   0000D0E5           LDRB     R0,[R0, #+0]
+   \   000001A8   090050E3           CMP      R0,#+9
+   \   000001AC   2700002A           BCS      ??int_timer1_handler_6
+    375                    {
+    376                      temp_SDA = 0x1500;
+   \   000001B0   F8009FE5           LDR      R0,??int_timer1_handler_7  ;; temp_SDA
+   \   000001B4   541DA0E3           MOV      R1,#+5376
+   \   000001B8   001080E5           STR      R1,[R0, #+0]
+    377                      if (mask & input_data)  	/* prepare for the next bit of data */
+   \   000001BC   ........           LDR      R0,??DataTable50  ;; mask
+   \   000001C0   0000D0E5           LDRB     R0,[R0, #+0]
+   \   000001C4   ........           LDR      R1,??DataTable48  ;; input_data
+   \   000001C8   0010D1E5           LDRB     R1,[R1, #+0]
+   \   000001CC   000011E1           TST      R1,R0
+   \   000001D0   0200000A           BEQ      ??int_timer1_handler_8
+    378                        temp_SDA = 0x1700;
+   \   000001D4   D4009FE5           LDR      R0,??int_timer1_handler_7  ;; temp_SDA
+   \   000001D8   5C1DA0E3           MOV      R1,#+5888
+   \   000001DC   001080E5           STR      R1,[R0, #+0]
+    379                      mask = mask >> 1;		/* shift right for the next bit */
+   \                     ??int_timer1_handler_8:
+   \   000001E0   ........           LDR      R0,??DataTable50  ;; mask
+   \   000001E4   ........           LDR      R1,??DataTable50  ;; mask
+   \   000001E8   0010D1E5           LDRB     R1,[R1, #+0]
+   \   000001EC   FF1011E2           ANDS     R1,R1,#0xFF      ;; Zero extend
+   \   000001F0   A110B0E1           LSRS     R1,R1,#+1
+   \   000001F4   0010C0E5           STRB     R1,[R0, #+0]
+    380                      
+    381                      if (bit_count != 8)
+   \   000001F8   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   000001FC   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000200   080050E3           CMP      R0,#+8
+   \   00000204   0C00000A           BEQ      ??int_timer1_handler_9
+    382                      {
+    383                          SDA |= GPIO_ENAQ;
+   \   00000208   5800A0E3           MOV      R0,#+88
+   \   0000020C   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000210   5810A0E3           MOV      R1,#+88
+   \   00000214   BD1651E2           SUBS     R1,R1,#+198180864
+   \   00000218   001091E5           LDR      R1,[R1, #+0]
+   \   0000021C   801C91E3           ORRS     R1,R1,#0x8000
+   \   00000220   001080E5           STR      R1,[R0, #+0]
+    384                          SDA = temp_SDA;      /* send one bit of data while clock is low */
+   \   00000224   5800A0E3           MOV      R0,#+88
+   \   00000228   BD0650E2           SUBS     R0,R0,#+198180864
+   \   0000022C   7C109FE5           LDR      R1,??int_timer1_handler_7  ;; temp_SDA
+   \   00000230   001091E5           LDR      R1,[R1, #+0]
+   \   00000234   001080E5           STR      R1,[R0, #+0]
+   \   00000238   1B0000EA           B        ??int_timer1_handler_4
+    385                      }
+    386                      else SDA = 0x1100;        /* освобождаем SDA линию после 8 го 
+   \                     ??int_timer1_handler_9:
+   \   0000023C   5800A0E3           MOV      R0,#+88
+   \   00000240   BD0650E2           SUBS     R0,R0,#+198180864
+   \   00000244   441DA0E3           MOV      R1,#+4352
+   \   00000248   001080E5           STR      R1,[R0, #+0]
+   \   0000024C   160000EA           B        ??int_timer1_handler_4
+    387                                                            импульса, ждем потверждение */
+    388                    }
+    389                    else if (bit_count == 9)
+   \                     ??int_timer1_handler_6:
+   \   00000250   ........           LDR      R0,??DataTable52  ;; bit_count
+   \   00000254   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000258   090050E3           CMP      R0,#+9
+   \   0000025C   1200001A           BNE      ??int_timer1_handler_4
+    390                    {
+    391          #ifdef NEWSGOLD
+    392                      CCU0.T01CON &= ~T1R;           /* Останавливаем таймер T1 */
+   \   00000260   F404A0E3           MOV      R0,#-201326592
+   \   00000264   F414A0E3           MOV      R1,#-201326592
+   \   00000268   101091E5           LDR      R1,[R1, #+16]
+   \   0000026C   401CD1E3           BICS     R1,R1,#0x4000
+   \   00000270   101080E5           STR      R1,[R0, #+16]
+    393                      CCU0.T1 = 0xFF80;
+   \   00000274   F404A0E3           MOV      R0,#-201326592
+   \   00000278   8010A0E3           MOV      R1,#+128
+   \   0000027C   FF1C81E3           ORR      R1,R1,#0xFF00
+   \   00000280   481080E5           STR      R1,[R0, #+72]
+    394          #else
+    395                      CCU1.T01CON &= ~T1R;
+    396                      CCU1.T1 = 0xFF80;
+    397          #endif
+    398                      RecAck = (SDA & GPIO_DAT) >> 9; /* 9 ый импульс, читаем бит потверждения */
+   \   00000284   28009FE5           LDR      R0,??int_timer1_handler_7+0x4  ;; RecAck
+   \   00000288   5810A0E3           MOV      R1,#+88
+   \   0000028C   BD1651E2           SUBS     R1,R1,#+198180864
+   \   00000290   001091E5           LDR      R1,[R1, #+0]
+   \   00000294   801F11E2           ANDS     R1,R1,#0x200
+   \   00000298   A114B0E1           LSRS     R1,R1,#+9
+   \   0000029C   001080E5           STR      R1,[R0, #+0]
+    399                      COM_ON = 0;	/* completed communication */
+   \   000002A0   ........           LDR      R0,??DataTable53  ;; COM_ON
+   \   000002A4   0010A0E3           MOV      R1,#+0
+   \   000002A8   001080E5           STR      R1,[R0, #+0]
+    400                      //SCL = 0x1500;
+    401                    }
+    402                  }                         	/* end of transmission */
+    403          }						     			
+   \                     ??int_timer1_handler_4:
+   \   000002AC   0EF0A0E1           MOV      PC,LR            ;; return
+   \                     ??int_timer1_handler_7:
+   \   000002B0   ........           DC32     temp_SDA
+   \   000002B4   ........           DC32     RecAck
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     irq_old
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable9:
+   \   00000000   403123A0           DC32     0xffffffffa0233140
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable28:
+   \   00000000   1000B0F4           DC32     0xfffffffff4b00010
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable29:
+   \   00000000   ........           DC32     TX_RX
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable34:
+   \   00000000   ........           DC32     rec_data
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable36:
+   \   00000000   ........           DC32     time_out
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable40:
+   \   00000000   ........           DC32     Ackge
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable48:
+   \   00000000   ........           DC32     input_data
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable50:
+   \   00000000   ........           DC32     mask
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable52:
+   \   00000000   ........           DC32     bit_count
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable53:
+   \   00000000   ........           DC32     COM_ON
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for irq_ccu_t1>`:
+   \   00000000   020F0000           DC8 2, 15, 0, 0
+   \   00000004   ........           DC32 int_timer1_handler
+    404          
+    405          
+    406          
+    407          
+    408          
+    409          
+    410          
+    411          
+    412          
+    413          
+    414          
+    415          
+    416          
+    417          
+    418          
+    419          
+    420          		 
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     Check_SCL              0
+     Delay                  0
+     I2cDeInit             12
+     I2cInit                4
+     I2cMasterRead          4
+     I2cMasterWrite         0
+     I2cStart               4
+     I2cStop                4
+     disable_interrupts     0
+     enable_interrupts      0
+     int_timer1_handler     0
+
+
+   Segment part sizes:
+
+     Function/Label                Bytes
+     --------------                -----
+     GPIO                           488
+     CCU0                           256
+     CCU1                           256
+     disable_interrupts              36
+     enable_interrupts               36
+     time_out                         4
+     rec_data                         1
+     TX_RX                            4
+     Ackge                            4
+     COM_ON                           4
+     RecAck                           4
+     temp_SDA                         4
+     bit_count                        1
+     input_data                       1
+     mask                             1
+     irq_old                          8
+     irq_ccu_t1                       8
+     Delay                           32
+     Check_SCL                      128
+     I2cDeInit                       36
+     I2cInit                        608
+     I2cStart                        88
+     I2cMasterWrite                 184
+     I2cMasterRead                   96
+     I2cStop                        184
+     int_timer1_handler             696
+     ??DataTable8                     4
+     ??DataTable9                     4
+     ??DataTable28                    4
+     ??DataTable29                    4
+     ??DataTable34                    4
+     ??DataTable36                    4
+     ??DataTable40                    4
+     ??DataTable48                    4
+     ??DataTable50                    4
+     ??DataTable52                    4
+     ??DataTable53                    4
+     ?<Initializer for irq_ccu_t1>    8
+      Others                         24
+
+ 
+ 2 168 bytes in segment CODE
+ 1 000 bytes in segment DATA_AN
+     8 bytes in segment DATA_I
+     8 bytes in segment DATA_ID
+    36 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 2 168 bytes of CODE  memory (+    24 bytes shared)
+     8 bytes of CONST memory
+    44 bytes of DATA  memory (+ 1 000 bytes shared)
+
+Errors: none
+Warnings: none

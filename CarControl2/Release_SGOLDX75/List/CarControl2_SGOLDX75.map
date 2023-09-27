@@ -1,0 +1,2432 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  08/Jun/2017  22:38:20                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\List\CarControl2_SGOLDX7 #
+#                            5.map                                             #
+#           Output file 1 =  E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Exe\CarControl2_SGOLDX75 #
+#                            .elf                                              #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\conf_loader.r79      #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\config.r79           #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\func.r79             #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\i2c.r79              #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\irq_work.r79         #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\main.r79             #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\meas.r79             #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\sms.r79              #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Obj\strings.r79          #
+#                            -o                                                #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\Exe\CarControl2_SGOLDX75 #
+#                            .elf                                              #
+#                            -Felf -l                                          #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\Release_SGOLDX75\List\CarControl2_SGOLDX7 #
+#                            5.map                                             #
+#                            -xmsno -f                                         #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\CarC #
+#                            ontrol2\test.xcl                                  #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra -s main    #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 000015FC  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\conf_loader.r79
+  PROGRAM MODULE, NAME : conf_loader
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_I
+  Relative segment, address: DATA_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 4.             Intra module refs:   LoadConfigData
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           successed_config_filename
+                                   00000000        maincsm_onmessage (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000094 - 00000197 (0x104 bytes), align: 2
+  Segment part 7.             Intra module refs:   InitConfig
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           LoadConfigData          00000094 
+               stack 1 = 00000000 ( 00000024 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000198 - 000001BF (0x28 bytes), align: 2
+  Segment part 9.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           InitConfig              00000198        main (main)
+                                                   maincsm_onmessage (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 5.             Intra module refs:   successed_config_filename
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00001DD4 - 00001DDF (0xc bytes), align: 2
+  Segment part 11. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00001DD4 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001DD0 - 00001DD0 (0x1 bytes), align: 0
+  Segment part 2.             Intra module refs:   Segment part 5
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001C34 - 00001C73 (0x40 bytes), align: 2
+  Segment part 3.             Intra module refs:   InitConfig
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\config.r79
+  PROGRAM MODULE, NAME : config
+
+  SEGMENTS IN THE MODULE
+  ======================
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000290C - 00002937 (0x2c bytes), align: 2
+  Segment part 2. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr0                 0000290C        LoadConfigData (conf_loader)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002938 - 000029B7 (0x80 bytes), align: 2
+  Segment part 3. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           MYNUMBER                00002938        Segment part 68 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000029B8 - 000029E3 (0x2c bytes), align: 2
+  Segment part 4. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr1                 000029B8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000029E4 - 00002A63 (0x80 bytes), align: 2
+  Segment part 5. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           MAGICWORD               000029E4        my_sms_simif_sm (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002A64 - 00002A8F (0x2c bytes), align: 2
+  Segment part 6. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_begin           00002A64 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002A90 - 00002ABB (0x2c bytes), align: 2
+  Segment part 7. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1               00002A90 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002ABC - 00002AE7 (0x2c bytes), align: 2
+  Segment part 8. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_0_0           00002ABC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002AE8 - 00002B67 (0x80 bytes), align: 2
+  Segment part 9. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           lock_word               00002AE8        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002B68 - 00002B93 (0x2c bytes), align: 2
+  Segment part 10. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_0             00002B68 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002B94 - 00002B97 (0x4 bytes), align: 2
+  Segment part 11. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           lock_t                  00002B94        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002B98 - 00002C17 (0x80 bytes), align: 2
+  Segment part 12. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_1_1            00002B98 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002C18 - 00002C43 (0x2c bytes), align: 2
+  Segment part 13. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_2             00002C18 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002C44 - 00002C47 (0x4 bytes), align: 2
+  Segment part 14. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           lock_key1               00002C44        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002C48 - 00002CE7 (0xa0 bytes), align: 2
+  Segment part 15. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_1_3            00002C48 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002CE8 - 00002D13 (0x2c bytes), align: 2
+  Segment part 16. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_4             00002CE8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002D14 - 00002D17 (0x4 bytes), align: 2
+  Segment part 17. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           lock_key2               00002D14        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002D18 - 00002DB7 (0xa0 bytes), align: 2
+  Segment part 18. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_1_5            00002D18 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002DB8 - 00002DE3 (0x2c bytes), align: 2
+  Segment part 19. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_6             00002DB8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002DE4 - 00002DE7 (0x4 bytes), align: 2
+  Segment part 20. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           lock_delay              00002DE4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002DE8 - 00002E13 (0x2c bytes), align: 2
+  Segment part 21. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_1_7             00002DE8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002E14 - 00002E3F (0x2c bytes), align: 2
+  Segment part 22. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2               00002E14 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002E40 - 00002E6B (0x2c bytes), align: 2
+  Segment part 23. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_0_0           00002E40 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002E6C - 00002EEB (0x80 bytes), align: 2
+  Segment part 24. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           unlock_word             00002E6C        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002EEC - 00002F17 (0x2c bytes), align: 2
+  Segment part 25. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_0             00002EEC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002F18 - 00002F1B (0x4 bytes), align: 2
+  Segment part 26. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           unlock_t                00002F18        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002F1C - 00002F9B (0x80 bytes), align: 2
+  Segment part 27. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_2_1            00002F1C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002F9C - 00002FC7 (0x2c bytes), align: 2
+  Segment part 28. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_2             00002F9C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002FC8 - 00002FCB (0x4 bytes), align: 2
+  Segment part 29. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           unlock_key1             00002FC8        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00002FCC - 0000306B (0xa0 bytes), align: 2
+  Segment part 30. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_2_3            00002FCC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000306C - 00003097 (0x2c bytes), align: 2
+  Segment part 31. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_4             0000306C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003098 - 0000309B (0x4 bytes), align: 2
+  Segment part 32. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           unlock_key2             00003098        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000309C - 0000313B (0xa0 bytes), align: 2
+  Segment part 33. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_2_5            0000309C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000313C - 00003167 (0x2c bytes), align: 2
+  Segment part 34. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_6             0000313C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003168 - 0000316B (0x4 bytes), align: 2
+  Segment part 35. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           unlock_delay            00003168 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000316C - 00003197 (0x2c bytes), align: 2
+  Segment part 36. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_2_7             0000316C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003198 - 000031C3 (0x2c bytes), align: 2
+  Segment part 37. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3               00003198 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000031C4 - 000031EF (0x2c bytes), align: 2
+  Segment part 38. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_0_0           000031C4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000031F0 - 0000326F (0x80 bytes), align: 2
+  Segment part 39. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_word              000031F0        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003270 - 0000329B (0x2c bytes), align: 2
+  Segment part 40. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_0             00003270 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000329C - 0000329F (0x4 bytes), align: 2
+  Segment part 41. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_t                 0000329C        Segment part 72 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000032A0 - 0000331F (0x80 bytes), align: 2
+  Segment part 42. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_3_1            000032A0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003320 - 0000334B (0x2c bytes), align: 2
+  Segment part 43. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_2             00003320 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000334C - 0000334F (0x4 bytes), align: 2
+  Segment part 44. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_key1              0000334C        Segment part 71 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003350 - 000033EF (0xa0 bytes), align: 2
+  Segment part 45. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_3_3            00003350 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000033F0 - 0000341B (0x2c bytes), align: 2
+  Segment part 46. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_4             000033F0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000341C - 0000341F (0x4 bytes), align: 2
+  Segment part 47. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_key2              0000341C        Segment part 70 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003420 - 000034BF (0xa0 bytes), align: 2
+  Segment part 48. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_3_5            00003420 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000034C0 - 000034EB (0x2c bytes), align: 2
+  Segment part 49. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_6             000034C0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000034EC - 000034EF (0x4 bytes), align: 2
+  Segment part 50. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_delay             000034EC        Segment part 69 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000034F0 - 0000351B (0x2c bytes), align: 2
+  Segment part 51. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_3_7             000034F0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000351C - 00003547 (0x2c bytes), align: 2
+  Segment part 52. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4               0000351C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003548 - 00003573 (0x2c bytes), align: 2
+  Segment part 53. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_0_0           00003548 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003574 - 000035F3 (0x80 bytes), align: 2
+  Segment part 54. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           stop_word               00003574        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000035F4 - 0000361F (0x2c bytes), align: 2
+  Segment part 55. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_0             000035F4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003620 - 00003623 (0x4 bytes), align: 2
+  Segment part 56. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           stop_t                  00003620        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003624 - 000036A3 (0x80 bytes), align: 2
+  Segment part 57. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_4_1            00003624 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000036A4 - 000036CF (0x2c bytes), align: 2
+  Segment part 58. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_2             000036A4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000036D0 - 000036D3 (0x4 bytes), align: 2
+  Segment part 59. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           stop_key1               000036D0        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000036D4 - 00003773 (0xa0 bytes), align: 2
+  Segment part 60. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_4_3            000036D4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003774 - 0000379F (0x2c bytes), align: 2
+  Segment part 61. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_4             00003774 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000037A0 - 000037A3 (0x4 bytes), align: 2
+  Segment part 62. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           stop_key2               000037A0        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000037A4 - 00003843 (0xa0 bytes), align: 2
+  Segment part 63. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_4_5            000037A4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003844 - 0000386F (0x2c bytes), align: 2
+  Segment part 64. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_6             00003844 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003870 - 00003873 (0x4 bytes), align: 2
+  Segment part 65. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           stop_delay              00003870        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003874 - 0000389F (0x2c bytes), align: 2
+  Segment part 66. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_4_7             00003874 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000038A0 - 000038CB (0x2c bytes), align: 2
+  Segment part 67. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5               000038A0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000038CC - 000038F7 (0x2c bytes), align: 2
+  Segment part 68. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_0_0           000038CC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000038F8 - 00003977 (0x80 bytes), align: 2
+  Segment part 69. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           trunk_word              000038F8        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003978 - 000039A3 (0x2c bytes), align: 2
+  Segment part 70. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_0             00003978 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000039A4 - 000039A7 (0x4 bytes), align: 2
+  Segment part 71. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           trunk_t                 000039A4        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000039A8 - 00003A27 (0x80 bytes), align: 2
+  Segment part 72. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_5_1            000039A8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003A28 - 00003A53 (0x2c bytes), align: 2
+  Segment part 73. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_2             00003A28 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003A54 - 00003A57 (0x4 bytes), align: 2
+  Segment part 74. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           trunk_key1              00003A54        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003A58 - 00003AF7 (0xa0 bytes), align: 2
+  Segment part 75. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_5_3            00003A58 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003AF8 - 00003B23 (0x2c bytes), align: 2
+  Segment part 76. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_4             00003AF8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003B24 - 00003B27 (0x4 bytes), align: 2
+  Segment part 77. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           trunk_key2              00003B24        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003B28 - 00003BC7 (0xa0 bytes), align: 2
+  Segment part 78. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_5_5            00003B28 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003BC8 - 00003BF3 (0x2c bytes), align: 2
+  Segment part 79. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_6             00003BC8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003BF4 - 00003BF7 (0x4 bytes), align: 2
+  Segment part 80. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           trunk_delay             00003BF4        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003BF8 - 00003C23 (0x2c bytes), align: 2
+  Segment part 81. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_5_7             00003BF8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003C24 - 00003C4F (0x2c bytes), align: 2
+  Segment part 82. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6               00003C24 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003C50 - 00003C7B (0x2c bytes), align: 2
+  Segment part 83. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_0_0           00003C50 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003C7C - 00003CFB (0x80 bytes), align: 2
+  Segment part 84. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           search_word             00003C7C        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003CFC - 00003D27 (0x2c bytes), align: 2
+  Segment part 85. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_0             00003CFC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003D28 - 00003D2B (0x4 bytes), align: 2
+  Segment part 86. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           search_t                00003D28        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003D2C - 00003DAB (0x80 bytes), align: 2
+  Segment part 87. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_6_1            00003D2C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003DAC - 00003DD7 (0x2c bytes), align: 2
+  Segment part 88. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_2             00003DAC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003DD8 - 00003DDB (0x4 bytes), align: 2
+  Segment part 89. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           search_key1             00003DD8        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003DDC - 00003E7B (0xa0 bytes), align: 2
+  Segment part 90. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_6_3            00003DDC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003E7C - 00003EA7 (0x2c bytes), align: 2
+  Segment part 91. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_4             00003E7C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003EA8 - 00003EAB (0x4 bytes), align: 2
+  Segment part 92. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           search_key2             00003EA8        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003EAC - 00003F4B (0xa0 bytes), align: 2
+  Segment part 93. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_6_5            00003EAC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003F4C - 00003F77 (0x2c bytes), align: 2
+  Segment part 94. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_6             00003F4C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003F78 - 00003F7B (0x4 bytes), align: 2
+  Segment part 95. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           search_delay            00003F78        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003F7C - 00003FA7 (0x2c bytes), align: 2
+  Segment part 96. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_6_7             00003F7C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003FA8 - 00003FD3 (0x2c bytes), align: 2
+  Segment part 97. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7               00003FA8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00003FD4 - 00003FFF (0x2c bytes), align: 2
+  Segment part 98. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_0_0           00003FD4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004000 - 0000407F (0x80 bytes), align: 2
+  Segment part 99. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOn_word            00004000        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004080 - 000040AB (0x2c bytes), align: 2
+  Segment part 100. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_0             00004080 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000040AC - 000040AF (0x4 bytes), align: 2
+  Segment part 101. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOn_t               000040AC        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000040B0 - 0000412F (0x80 bytes), align: 2
+  Segment part 102. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_7_1            000040B0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004130 - 0000415B (0x2c bytes), align: 2
+  Segment part 103. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_2             00004130 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000415C - 0000415F (0x4 bytes), align: 2
+  Segment part 104. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOn_key1            0000415C        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004160 - 000041FF (0xa0 bytes), align: 2
+  Segment part 105. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_7_3            00004160 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004200 - 0000422B (0x2c bytes), align: 2
+  Segment part 106. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_4             00004200 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000422C - 0000422F (0x4 bytes), align: 2
+  Segment part 107. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOn_key2            0000422C        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004230 - 000042CF (0xa0 bytes), align: 2
+  Segment part 108. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_7_5            00004230 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000042D0 - 000042FB (0x2c bytes), align: 2
+  Segment part 109. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_6             000042D0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000042FC - 000042FF (0x4 bytes), align: 2
+  Segment part 110. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOn_delay           000042FC        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004300 - 0000432B (0x2c bytes), align: 2
+  Segment part 111. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_7_7             00004300 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000432C - 00004357 (0x2c bytes), align: 2
+  Segment part 112. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8               0000432C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004358 - 00004383 (0x2c bytes), align: 2
+  Segment part 113. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_0_0           00004358 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004384 - 00004403 (0x80 bytes), align: 2
+  Segment part 114. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOff_word           00004384        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004404 - 0000442F (0x2c bytes), align: 2
+  Segment part 115. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_0             00004404 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004430 - 00004433 (0x4 bytes), align: 2
+  Segment part 116. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOff_t              00004430        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004434 - 000044B3 (0x80 bytes), align: 2
+  Segment part 117. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_8_1            00004434 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000044B4 - 000044DF (0x2c bytes), align: 2
+  Segment part 118. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_2             000044B4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000044E0 - 000044E3 (0x4 bytes), align: 2
+  Segment part 119. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOff_key1           000044E0        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000044E4 - 00004583 (0xa0 bytes), align: 2
+  Segment part 120. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_8_3            000044E4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004584 - 000045AF (0x2c bytes), align: 2
+  Segment part 121. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_4             00004584 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000045B0 - 000045B3 (0x4 bytes), align: 2
+  Segment part 122. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOff_key2           000045B0        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000045B4 - 00004653 (0xa0 bytes), align: 2
+  Segment part 123. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox2_8_5            000045B4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004654 - 0000467F (0x2c bytes), align: 2
+  Segment part 124. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_6             00004654 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004680 - 00004683 (0x4 bytes), align: 2
+  Segment part 125. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           panicOff_delay          00004680        CheckCmd (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004684 - 000046AF (0x2c bytes), align: 2
+  Segment part 126. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_8_7             00004684 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000046B0 - 000046DB (0x2c bytes), align: 2
+  Segment part 127. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr2_end             000046B0 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000046DC - 00004707 (0x2c bytes), align: 2
+  Segment part 128. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr4                 000046DC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004708 - 00004733 (0x2c bytes), align: 2
+  Segment part 129. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr4_1               00004708 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004734 - 00004737 (0x4 bytes), align: 2
+  Segment part 130. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           soundEnabled            00004734        Play (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004738 - 00004777 (0x40 bytes), align: 2
+  Segment part 131. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox4_2              00004738 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004778 - 000047A3 (0x2c bytes), align: 2
+  Segment part 132. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr4_3               00004778 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000047A4 - 000047A7 (0x4 bytes), align: 2
+  Segment part 133. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sndVolume               000047A4        Play (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000047A8 - 000047D3 (0x2c bytes), align: 2
+  Segment part 134. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr4_7               000047A8 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000047D4 - 000047FF (0x2c bytes), align: 2
+  Segment part 135. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr5                 000047D4 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004800 - 0000487F (0x80 bytes), align: 2
+  Segment part 136. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DIR                     00004800        InitPath (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004880 - 000048AB (0x2c bytes), align: 2
+  Segment part 137. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr6                 00004880 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000048AC - 000048D7 (0x2c bytes), align: 2
+  Segment part 138. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr61                000048AC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000048D8 - 000048DB (0x4 bytes), align: 2
+  Segment part 139. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           VOLTAGE_CONTROL_ENA     000048D8        Segment part 93 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000048DC - 0000491B (0x40 bytes), align: 2
+  Segment part 140. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox61               000048DC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000491C - 00004947 (0x2c bytes), align: 2
+  Segment part 141. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr62                0000491C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004948 - 0000494B (0x4 bytes), align: 2
+  Segment part 142. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           MEASUREMENT_TIME        00004948        Segment part 94 (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000494C - 00004977 (0x2c bytes), align: 2
+  Segment part 143. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr63                0000494C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004978 - 0000497B (0x4 bytes), align: 2
+  Segment part 144. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           VConst                  00004978        meas_callback (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 0000497C - 000049A7 (0x2c bytes), align: 2
+  Segment part 145. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr64                0000497C 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000049A8 - 000049AB (0x4 bytes), align: 2
+  Segment part 146. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           VOffset                 000049A8        meas_callback (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000049AC - 000049D7 (0x2c bytes), align: 2
+  Segment part 147. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr65                000049AC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000049D8 - 000049DB (0x4 bytes), align: 2
+  Segment part 148. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           VOffsetMode             000049D8        meas_callback (main)
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 000049DC - 00004A1B (0x40 bytes), align: 2
+  Segment part 149. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfgcbox65               000049DC 
+    -------------------------------------------------------------------------
+CONFIG_C
+  Relative segment, address: CODE_AREA 00004A1C - 00004A47 (0x2c bytes), align: 2
+  Segment part 150. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           cfghdr6_end             00004A1C 
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000        ElfKiller (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000001C0 - 000001C7 (0x8 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               000001C0        ElfKiller (main)
+           seqkill                 000001C4 
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\i2c.r79
+  PROGRAM MODULE, NAME : i2c
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 000001C8 - 0000022B (0x64 bytes), align: 2
+  Segment part 3.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           i2c_pmu_write           000001C8        RestorePin (main)
+               stack 1 = 00000000 ( 0000002C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000022C - 0000028F (0x64 bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           i2c_pmu_read            0000022C        InitPinSafe (main)
+               stack 1 = 00000000 ( 0000002C )
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\irq_work.r79
+  PROGRAM MODULE, NAME : irq_work
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000290 - 000002B3 (0x24 bytes), align: 2
+  Segment part 3.             Intra module refs:   irq_req
+                                                   irq_set_prio
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           disable_interrupts      00000290 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000002B4 - 000002D7 (0x24 bytes), align: 2
+  Segment part 5.             Intra module refs:   irq_req
+                                                   irq_set_prio
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           enable_interrupts       000002B4 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000002D8 - 0000030F (0x38 bytes), align: 2
+  Segment part 7.             Intra module refs:   irq_req
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           irq_set_prio            000002D8        meas_get_volt_m2 (meas)
+                                                   meas_rdyirq (meas)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000310 - 00000393 (0x84 bytes), align: 2
+  Segment part 11.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           irq_req                 00000310        meas_deinit (meas)
+                                                   meas_init (meas)
+               stack 1 = 00000000 ( 00000014 )
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 00001DEC - 00001E27 (0x3c bytes), align: 2
+  Segment part 12.            Intra module refs:   Segment part 43
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           connector               00001DEC 
+           save_connector          00001E0C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000394 - 000003D3 (0x40 bytes), align: 2
+  Segment part 30.            Intra module refs:   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           InitConnectorMap        00000394 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000003D4 - 000004CF (0xfc bytes), align: 2
+  Segment part 32.            Intra module refs:   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           InitPinSafe             000003D4 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000004D0 - 000005CB (0xfc bytes), align: 2
+  Segment part 34.            Intra module refs:   destroyApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           RestorePin              000004D0 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000005CC - 0000062B (0x60 bytes), align: 2
+  Segment part 38.            Intra module refs:   keyPress
+                                                   tmr_key_proc
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           pinMode                 000005CC 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000062C - 0000068B (0x60 bytes), align: 2
+  Segment part 40.            Intra module refs:   keyPress
+                                                   tmr_key_proc
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           digitalWrite            0000062C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000068C - 000006AF (0x24 bytes), align: 2
+  Segment part 42.            Intra module refs:   tmr_key_proc
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           digitalRead             0000068C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000006B0 - 000006B3 (0x4 bytes), align: 2
+  Segment part 43.            Intra module refs:   InitConnectorMap
+                                                   InitPinSafe
+                                                   RestorePin
+                                                   digitalRead
+                                                   digitalWrite
+                                                   pinMode
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000006B4 - 00000793 (0xe0 bytes), align: 2
+  Segment part 45.            Intra module refs:   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           my_sms_simif_sm         000006B4 
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000794 - 000007D7 (0x44 bytes), align: 2
+  Segment part 47.            Intra module refs:   IlluminationOn
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IlluminationOff         00000794 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000007D8 - 00000863 (0x8c bytes), align: 2
+  Segment part 49.            Intra module refs:   CheckCmd
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           IlluminationOn          000007D8 
+               stack 1 = 00000000 ( 0000001C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000864 - 00000933 (0xd0 bytes), align: 2
+  Segment part 51.            Intra module refs:   Segment part 54
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tmr_blink_proc          00000864 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000934 - 0000099F (0x6c bytes), align: 2
+  Segment part 53.            Intra module refs:   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Blink                   00000934 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000009A0 - 000009A3 (0x4 bytes), align: 2
+  Segment part 54.            Intra module refs:   Blink
+                                                   tmr_blink_proc
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 00001E28 - 00001E2F (0x8 bytes), align: 2
+  Segment part 24.            Intra module refs:   Segment part 81
+                                                   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sndLock                 00001E28 
+           sndUnlock               00001E2C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000009A4 - 00000AE7 (0x144 bytes), align: 2
+  Segment part 56.            Intra module refs:   CheckCmd
+                                                   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Play                    000009A4 
+               stack 1 = 00000000 ( 000000EC )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000AE8 - 00000BFB (0x114 bytes), align: 2
+  Segment part 58.            Intra module refs:   Segment part 61
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tmr_key_proc            00000AE8 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000BFC - 00000D5B (0x160 bytes), align: 2
+  Segment part 60.            Intra module refs:   CheckCmd
+                                                   tmr_call_proc
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           keyPress                00000BFC 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000D5C - 00000D5F (0x4 bytes), align: 2
+  Segment part 61.            Intra module refs:   keyPress
+                                                   tmr_key_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000D60 - 00001017 (0x2b8 bytes), align: 2
+  Segment part 63.            Intra module refs:   my_sms_simif_sm
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           CheckCmd                00000D60 
+               stack 1 = 00000000 ( 00000034 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001018 - 0000109F (0x88 bytes), align: 2
+  Segment part 65.            Intra module refs:   tmr_call_proc
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           UnpackIncomingNumber    00001018 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000010A0 - 000010F3 (0x54 bytes), align: 2
+  Segment part 67.            Intra module refs:   maincsm_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tmr_call_proc           000010A0 
+               stack 1 = 00000000 ( 00000024 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000010F4 - 000010F7 (0x4 bytes), align: 2
+  Segment part 68.            Intra module refs:   my_sms_simif_sm
+                                                   tmr_call_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000010F8 - 000010FB (0x4 bytes), align: 2
+  Segment part 69.            Intra module refs:   CheckCmd
+                                                   tmr_call_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000010FC - 000010FF (0x4 bytes), align: 2
+  Segment part 70.            Intra module refs:   CheckCmd
+                                                   tmr_call_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001100 - 00001103 (0x4 bytes), align: 2
+  Segment part 71.            Intra module refs:   CheckCmd
+                                                   tmr_call_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001104 - 00001107 (0x4 bytes), align: 2
+  Segment part 72.            Intra module refs:   CheckCmd
+                                                   tmr_call_proc
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: DATA_AREA 00000004 - 00000093 (0x90 bytes), align: 2
+  Segment part 14.            Intra module refs:   Segment part 92
+                                                   Segment part 98
+                                                   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           blink_n                 00000014 
+           delay                   0000003C 
+           ipc                     00000004 
+           keytab                  00000018 
+           maincsm_id              00000010 
+           n                       00000038 
+           pin1                    00000030 
+           pin2                    00000034 
+           tmr_blink               00000054 
+           tmr_call                00000074 
+           tmr_illumination        00000044 
+           tmr_key                 00000064 
+           tmr_voltage_control     00000084 
+           type                    0000002C 
+           voltage                 00000040 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001108 - 0000110F (0x8 bytes), align: 2
+  Segment part 74.            Intra module refs:   Segment part 95
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           tmr_voltage_control_entry
+                                   00001108 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001110 - 000011D7 (0xc8 bytes), align: 2
+  Segment part 76.            Intra module refs:   Segment part 87
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           meas_callback           00001110 
+               stack 1 = 00000000 ( 0000002C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000011D8 - 00001233 (0x5c bytes), align: 2
+  Segment part 78.            Intra module refs:   maincsm_onmessage
+                                                   startApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           InitPath                000011D8 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001234 - 0000124F (0x1c bytes), align: 2
+  Segment part 80.            Intra module refs:   destroyApp
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DeInitPath              00001234 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001250 - 00001253 (0x4 bytes), align: 2
+  Segment part 81.            Intra module refs:   CheckCmd
+                                                   DeInitPath
+                                                   InitPath
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001254 - 00001313 (0xc0 bytes), align: 2
+  Segment part 83.            Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           destroyApp              00001254 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001314 - 00001317 (0x4 bytes), align: 2
+  Segment part 84.            Intra module refs:   destroyApp
+                                                   my_sms_simif_sm
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001318 - 000013C3 (0xac bytes), align: 2
+  Segment part 86.            Intra module refs:   CheckDoubleRun
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           startApp                00001318 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000013C4 - 000013C7 (0x4 bytes), align: 2
+  Segment part 87.            Intra module refs:   startApp
+                                                   tmr_voltage_control_entry
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000013C8 - 0000140F (0x48 bytes), align: 2
+  Segment part 89.            Intra module refs:   maincsm_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           CheckDoubleRun          000013C8 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001410 - 0000156F (0x160 bytes), align: 2
+  Segment part 91.            Intra module refs:   Segment part 5
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maincsm_onmessage       00001410 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001570 - 00001573 (0x4 bytes), align: 2
+  Segment part 92.            Intra module refs:   Blink
+                                                   IlluminationOn
+                                                   destroyApp
+                                                   keyPress
+                                                   maincsm_onmessage
+                                                   meas_callback
+                                                   tmr_blink_proc
+                                                   tmr_key_proc
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001574 - 00001577 (0x4 bytes), align: 2
+  Segment part 93.            Intra module refs:   maincsm_onmessage
+                                                   meas_callback
+                                                   startApp
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001578 - 0000157B (0x4 bytes), align: 2
+  Segment part 94.            Intra module refs:   maincsm_onmessage
+                                                   meas_callback
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000157C - 0000157F (0x4 bytes), align: 2
+  Segment part 95.            Intra module refs:   maincsm_onmessage
+                                                   meas_callback
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001580 - 000015BF (0x40 bytes), align: 2
+  Segment part 97.            Intra module refs:   Segment part 5
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_oncreate        00001580 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000015C0 - 000015C3 (0x4 bytes), align: 2
+  Segment part 98.            Intra module refs:   CheckDoubleRun
+                                                   maincsm_oncreate
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000015C4 - 000015C7 (0x4 bytes), align: 2
+  Segment part 99.            Intra module refs:   maincsm_oncreate
+                                                   maincsm_onmessage
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000015C8 - 000015E3 (0x1c bytes), align: 2
+  Segment part 101.           Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               000015C8 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000015E4 - 000015FB (0x18 bytes), align: 2
+  Segment part 103.           Intra module refs:   Segment part 5
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_onclose         000015E4 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 00001E30 - 00001F47 (0x118 bytes), align: 2
+  Segment part 28.            Intra module refs:   Segment part 5
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001C74 - 00001CAB (0x38 bytes), align: 2
+  Segment part 5.             Intra module refs:   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001CAC - 00001CC7 (0x1c bytes), align: 2
+  Segment part 6.             Intra module refs:   CheckDoubleRun
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001CC8 - 00001CFF (0x38 bytes), align: 2
+  Segment part 7.             Intra module refs:   startApp
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001D00 - 00001D27 (0x28 bytes), align: 2
+  Segment part 8.             Intra module refs:   InitPath
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001D28 - 00001D3B (0x14 bytes), align: 2
+  Segment part 9.             Intra module refs:   meas_callback
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001D3C - 00001D6F (0x34 bytes), align: 2
+  Segment part 10.            Intra module refs:   CheckCmd
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001D70 - 00001DB3 (0x44 bytes), align: 2
+  Segment part 11.            Intra module refs:   Segment part 99
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ipc_my_name             00001D94 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001DB4 - 00001DB7 (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   Segment part 5
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           minus11                 00001DB4 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000015FC - 0000167F (0x84 bytes), align: 2
+  Segment part 107.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    000015FC        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000038 )
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000004 - 00000093 (0x90 bytes), align: 2
+  Segment part 15.            Intra module refs:   Segment part 14
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00001DE0 - 00001DEB (0xc bytes), align: 2
+  Segment part 121. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        00001DE0 
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\meas.r79
+  PROGRAM MODULE, NAME : meas
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 00001F48 - 00002903 (0x9bc bytes), align: 2
+  Segment part 4.             Intra module refs:   Segment part 13
+                                                   Segment part 16
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001680 - 000016D3 (0x54 bytes), align: 2
+  Segment part 6.             Intra module refs:   meas_init
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           H_MEAS_RDY_M2_entry     00001680 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000016D4 - 0000176B (0x98 bytes), align: 2
+  Segment part 8.             Intra module refs:   meas_init
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           meas_rdyirq             000016D4 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000176C - 0000180B (0xa0 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           meas_init               0000176C        startApp (main)
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000180C - 00001843 (0x38 bytes), align: 2
+  Segment part 12.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           meas_deinit             0000180C        destroyApp (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001844 - 00001847 (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   meas_deinit
+                                                   meas_init
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001848 - 000018B3 (0x6c bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           meas_get_volt_m2        00001848        startApp (main)
+                                                   tmr_voltage_control_entry (main)
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000018B4 - 000018B7 (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   H_MEAS_RDY_M2_entry
+                                                   meas_get_volt_m2
+                                                   meas_rdyirq
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001DB8 - 00001DC7 (0x10 bytes), align: 2
+  Segment part 3.             Intra module refs:   meas_init
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\sms.r79
+  PROGRAM MODULE, NAME : sms
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 00002904 - 0000290B (0x8 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 8
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           sms_simif_sm            00002908        Segment part 84 (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000018B8 - 000018E3 (0x2c bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           SetSMSListener          000018B8        startApp (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000018E4 - 000018F7 (0x14 bytes), align: 2
+  Segment part 7.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           DeleteSMSListener       000018E4        destroyApp (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000018F8 - 000018FB (0x4 bytes), align: 2
+  Segment part 8.             Intra module refs:   DeleteSMSListener
+                                                   SetSMSListener
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000018FC - 00001C03 (0x308 bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           UnpackTPDU              000018FC        my_sms_simif_sm (main)
+               stack 1 = 00000000 ( 00000020 )
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001DC8 - 00001DCF (0x8 bytes), align: 2
+  Segment part 2.             Intra module refs:   UnpackTPDU
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\CarControl2\Release_SGOLDX75\Obj\strings.r79
+  PROGRAM MODULE, NAME : strings
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00001C04 - 00001C33 (0x30 bytes), align: 2
+  Segment part 7.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           strcmp_nocase           00001C04        CheckCmd (main)
+                                                   maincsm_onmessage (main)
+                                                   my_sms_simif_sm (main)
+                                                   tmr_call_proc (main)
+
+
+
+
+                ****************************************
+                *                                      *
+                *            MODULE SUMMARY            *
+                *                                      *
+                ****************************************
+
+Module             CODE   DATA
+------             ----   ----
+                  (Rel)  (Rel)
+conf_loader         369      4
+  + shared           12
+config            8 508
+func                  8
+i2c                 200
+irq_work            260
+main              5 660    144
+  + shared           12
+meas              3 076
+sms                 860
+strings              48
+N/A (alignment)
+------           ------    ---
+Total:           19 013    148
+
+
+                ****************************************
+                *                                      *
+                *              CALL GRAPH              *
+                *                                      *
+                ****************************************
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  my_sms_simif_sm
+      | Stack used (prev) :  00000000
+      | + function block  :  00000020
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000020
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  IlluminationOff
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  tmr_blink_proc
+      | Stack used (prev) :  00000000
+      | + function block  :  00000008
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000008
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  tmr_key_proc
+      | Stack used (prev) :  00000000
+      | + function block  :  00000010
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000010
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  CheckCmd
+      | Stack used (prev) :  00000000
+      | + function block  :  00000034
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000034
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  tmr_call_proc
+      | Stack used (prev) :  00000000
+      | + function block  :  00000024
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000024
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  tmr_voltage_control_entry
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  meas_callback
+      | Stack used (prev) :  00000000
+      | + function block  :  0000002C
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  0000002C
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  startApp
+      | Stack used (prev) :  00000000
+      | + function block  :  00000008
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000008
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  CheckDoubleRun
+      | Stack used (prev) :  00000000
+      | + function block  :  00000008
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000008
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  maincsm_onmessage
+      | Stack used (prev) :  00000000
+      | + function block  :  00000014
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000014
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  maincsm_oncreate
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  ElfKiller
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  maincsm_onclose
+      | Stack used (prev) :  00000000
+      | + function block  :  00000004
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000004
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  H_MEAS_RDY_M2_entry
+      | Stack used (prev) :  00000000
+      | + function block  :  00000008
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000008
+
+
+  ->Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+                             CSTACK
+    | Stack used (prev) :  00000000
+  01  meas_rdyirq
+      | Stack used (prev) :  00000000
+      | + function block  :  00000008
+  <-Sub-tree of type: Indirectly called function tree that does not make
+                    : indirect calls (Is not an interrupt and is not flagged
+                    : as not overlayable)
+    | Stack used          :  00000008
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000034
+  01  LoadConfigData
+      | Stack used (prev) :  00000034
+      | + function block  :  00000024
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000058
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000058
+  01  InitConfig
+      | Stack used (prev) :  00000058
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000060
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000060
+  01  i2c_pmu_write
+      | Stack used (prev) :  00000060
+      | + function block  :  0000002C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  0000008C
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  0000008C
+  01  i2c_pmu_read
+      | Stack used (prev) :  0000008C
+      | + function block  :  0000002C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000B8
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000B8
+  01  disable_interrupts
+      | Stack used (prev) :  000000B8
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000B8
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000B8
+  01  enable_interrupts
+      | Stack used (prev) :  000000B8
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000B8
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000B8
+  01  irq_set_prio
+      | Stack used (prev) :  000000B8
+      | + function block  :  0000000C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000C4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000C4
+  01  irq_req
+      | Stack used (prev) :  000000C4
+      | + function block  :  00000014
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000D8
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000D8
+  01  InitConnectorMap
+      | Stack used (prev) :  000000D8
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000D8
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000D8
+  01  InitPinSafe
+      | Stack used (prev) :  000000D8
+      | + function block  :  00000014
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000EC
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000EC
+  01  RestorePin
+      | Stack used (prev) :  000000EC
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000F4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000F4
+  01  pinMode
+      | Stack used (prev) :  000000F4
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000F4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000F4
+  01  digitalWrite
+      | Stack used (prev) :  000000F4
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000F4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000F4
+  01  digitalRead
+      | Stack used (prev) :  000000F4
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000000F4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000000F4
+  01  IlluminationOn
+      | Stack used (prev) :  000000F4
+      | + function block  :  0000001C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000110
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000110
+  01  Blink
+      | Stack used (prev) :  00000110
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000118
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000118
+  01  Play
+      | Stack used (prev) :  00000118
+      | + function block  :  000000EC
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000204
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000204
+  01  keyPress
+      | Stack used (prev) :  00000204
+      | + function block  :  0000000C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000210
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000210
+  01  UnpackIncomingNumber
+      | Stack used (prev) :  00000210
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000218
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000218
+  01  InitPath
+      | Stack used (prev) :  00000218
+      | + function block  :  00000010
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000228
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000228
+  01  DeInitPath
+      | Stack used (prev) :  00000228
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000230
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000230
+  01  destroyApp
+      | Stack used (prev) :  00000230
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000238
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000238
+  01  main
+      | Stack used (prev) :  00000238
+      | + function block  :  00000038
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000270
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000270
+  01  meas_init
+      | Stack used (prev) :  00000270
+      | + function block  :  00000014
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000284
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000284
+  01  meas_deinit
+      | Stack used (prev) :  00000284
+      | + function block  :  0000000C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000290
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000290
+  01  meas_get_volt_m2
+      | Stack used (prev) :  00000290
+      | + function block  :  00000008
+  <-Sub-tree of type: Function tree
+    | Stack used          :  00000298
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  00000298
+  01  SetSMSListener
+      | Stack used (prev) :  00000298
+      | + function block  :  0000000C
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000002A4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000002A4
+  01  DeleteSMSListener
+      | Stack used (prev) :  000002A4
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000002A4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000002A4
+  01  UnpackTPDU
+      | Stack used (prev) :  000002A4
+      | + function block  :  00000020
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000002C4
+
+
+  ->Sub-tree of type: Function tree
+                             CSTACK
+    | Stack used (prev) :  000002C4
+  01  strcmp_nocase
+      | Stack used (prev) :  000002C4
+      | + function block  :  00000000
+  <-Sub-tree of type: Function tree
+    | Stack used          :  000002C4
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+ELFBEGIN             CODE_AREA           00000000                     rel    0
+DATA_ID              CODE_AREA      00000000 - 00000093          94   rel    2
+START                CODE_AREA           00000094                     dse    0
+CODE                 CODE_AREA      00000094 - 00001C33        1BA0   rel    2
+DATA_C               CODE_AREA      00001C34 - 00001DD0         19D   rel    2
+INITTAB              CODE_AREA      00001DD4 - 00001DEB          18   rel    2
+DATA_Z               CODE_AREA      00001DEC - 0000290B         B20   rel    2
+DATA_N               CODE_AREA           0000290C                     dse    0
+CONFIG_C             CODE_AREA      0000290C - 00004A47        213C   rel    2
+DATA_I               DATA_AREA      00000000 - 00000093          94   rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 19 013 bytes of CODE memory
+    148 bytes of DATA memory
+
+Errors: none
+Warnings: none
+

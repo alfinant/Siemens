@@ -1,0 +1,212 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    26/Apr/2018  15:02:22 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\ir #
+#                       q_work.c                                             #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\ir #
+#                       q_work.c -D SGOLD -lCN E:\Users\alfinant\Documents\S #
+#                       iemens\alfinant\Meas\Release_SGOLD\List\ -la         #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\ -o E:\Users\alfinant\Documents\Sie #
+#                       mens\alfinant\Meas\Release_SGOLD\Obj\ -z9            #
+#                       --cpu_mode arm --endian little --cpu ARM926EJ-S      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config E:\Users\alfinant\Documents\Siemens\IA #
+#                       R\ARM\LIB\dl5tpainl8n.h -I                           #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\irq_work.lst                        #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\Obj\irq_work.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\Meas\irq_work.c
+      1          #include "irq_work.h"
+      2          #include "interrupt.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int disable_interrupts(void)
+   \                     disable_interrupts:
+   \   00000000   00000FE1           MRS      R0,CPSR
+   \   00000004   1F1000E2           AND      R1,R0,#0x1F
+   \   00000008   100051E3           CMP      R1,#+16
+   \   0000000C   0000001A           BNE      ??disable_interrupts_0
+   \   00000010   000000EF           SWI 0            
+   \                     ??disable_interrupts_0:
+   \   00000014   C01090E3           ORRS     R1,R0,#0xC0
+   \   00000018   01F029E1           MSR      CPSR,R1
+   \   0000001C   C00000E2           AND      R0,R0,#0xC0
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void enable_interrupts(int)
+   \                     enable_interrupts:
+   \   00000000   00100FE1           MRS      R1,CPSR
+   \   00000004   1F2001E2           AND      R2,R1,#0x1F
+   \   00000008   100052E3           CMP      R2,#+16
+   \   0000000C   0000001A           BNE      ??enable_interrupts_0
+   \   00000010   000000EF           SWI 0            
+   \                     ??enable_interrupts_0:
+   \   00000014   C010C1E3           BIC      R1,R1,#0xC0
+   \   00000018   010090E1           ORRS     R0,R0,R1
+   \   0000001C   00F029E1           MSR      CPSR,R0
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+      3          
+
+   \                                 In segment CODE, align 4, keep-with-next
+      4          int irq_set_prio(int irq_n, int prio)
+      5          {
+   \                     irq_set_prio:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+      6            int prv_prio;
+      7            
+      8            int saved = disable_interrupts();
+   \   0000000C   ........           BL       disable_interrupts
+      9            int* pa= (int*)(IRQ_PRIO_TABLE + (irq_n << 2));
+   \   00000010   C311A0E3           MOV      R1,#-1073741776
+   \   00000014   CA1581E3           ORR      R1,R1,#0x32800000
+   \   00000018   041181E0           ADD      R1,R1,R4, LSL #+2
+     10            prv_prio = (*pa & 0xF);
+   \   0000001C   002091E5           LDR      R2,[R1, #+0]
+   \   00000020   0F4002E2           AND      R4,R2,#0xF
+     11            *pa = (prio & 0xF);
+   \   00000024   0F2005E2           AND      R2,R5,#0xF
+   \   00000028   002081E5           STR      R2,[R1, #+0]
+     12            enable_interrupts(saved);
+   \   0000002C   ........           BL       enable_interrupts
+     13            
+     14            return prv_prio;
+   \   00000030   0400A0E1           MOV      R0,R4
+   \   00000034   3080BDE8           POP      {R4,R5,PC}       ;; return
+     15          }
+     16          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     17          int irq_get_prio(int irq_n)
+     18          {
+     19            int* pa= (int*)(IRQ_PRIO_TABLE + (irq_n << 2));
+     20            
+     21            return (*pa & 0xF);
+   \                     irq_get_prio:
+   \   00000000   C311A0E3           MOV      R1,#-1073741776
+   \   00000004   CA1581E3           ORR      R1,R1,#0x32800000
+   \   00000008   000191E7           LDR      R0,[R1, +R0, LSL #+2]
+   \   0000000C   0F0000E2           AND      R0,R0,#0xF
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+     22          }
+     23          
+     24          static int irq_get_state(int irq_n)
+     25          {
+     26            char* sa= (char*)(IRQ_STATE_TABLE + irq_n);
+     27            
+     28            return *sa;  
+     29          }
+     30          
+     31          static void irq_set_state(int irq_n, int state)
+     32          {
+     33            int saved = disable_interrupts();
+     34            char* sa=(char*)(IRQ_STATE_TABLE + irq_n);
+     35            *sa=state;
+     36            enable_interrupts(saved);
+     37          }
+     38          
+     39          static void* irq_get_handler(int irq_n)
+     40          {
+     41            unsigned* ha= (unsigned*)(IRQ_HANDLER_TABLE + (irq_n << 2));
+     42            return (void*)*ha;
+     43          }
+     44          
+     45          static void irq_set_handler(int irq_n, void handler(int))
+     46          {
+     47            int saved = disable_interrupts();
+     48             unsigned *ha= (unsigned*)(IRQ_HANDLER_TABLE + (irq_n << 2));
+     49            *ha=(unsigned)handler;
+     50            enable_interrupts(saved);
+     51          }
+     52          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     53          void irq_req(int irq_n, int state, int prio, void handler(int), IRQ_DESC* d)
+     54          {
+   \                     irq_req:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   18809DE5           LDR      R8,[SP, #+24]
+   \   00000008   0040A0E1           MOV      R4,R0
+     55            d->state=irq_get_state(0x46);
+   \   0000000C   2600A0E3           MOV      R0,#+38
+   \   00000010   900D80E3           ORR      R0,R0,#0x2400
+   \   00000014   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000018   0150A0E1           MOV      R5,R1
+   \   0000001C   0260A0E1           MOV      R6,R2
+   \   00000020   0370A0E1           MOV      R7,R3
+   \   00000024   0000C8E5           STRB     R0,[R8, #+0]
+     56            d->prio=irq_get_prio(0x46);
+   \   00000028   4600A0E3           MOV      R0,#+70
+   \   0000002C   ........           BL       irq_get_prio
+   \   00000030   0100C8E5           STRB     R0,[R8, #+1]
+     57            d->handler=(void(*)(int))irq_get_handler(0x46);
+   \   00000034   7400A0E3           MOV      R0,#+116
+   \   00000038   940D80E3           ORR      R0,R0,#0x2500
+   \   0000003C   000090E5           LDR      R0,[R0, #+0]
+   \   00000040   040088E5           STR      R0,[R8, #+4]
+     58            
+     59            irq_set_handler(irq_n, handler);
+   \   00000044   ........           BL       disable_interrupts
+   \   00000048   5C10A0E3           MOV      R1,#+92
+   \   0000004C   901D81E3           ORR      R1,R1,#0x2400
+   \   00000050   047181E7           STR      R7,[R1, +R4, LSL #+2]
+   \   00000054   ........           BL       enable_interrupts
+     60            irq_set_state(irq_n, state);
+   \   00000058   ........           BL       disable_interrupts
+   \   0000005C   E010A0E3           MOV      R1,#+224
+   \   00000060   8C1D81E3           ORR      R1,R1,#0x2300
+   \   00000064   0450C1E7           STRB     R5,[R1, +R4]
+   \   00000068   ........           BL       enable_interrupts
+     61            irq_set_prio(irq_n, prio);
+   \   0000006C   0610A0E1           MOV      R1,R6
+   \   00000070   0400A0E1           MOV      R0,R4
+   \   00000074   ........           BL       irq_set_prio
+     62              
+     63          }
+   \   00000078   F081BDE8           POP      {R4-R8,PC}       ;; return
+     64          
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     disable_interrupts     0
+     enable_interrupts      0
+     irq_get_prio           0
+     irq_req               24
+     irq_set_prio          12
+
+
+   Segment part sizes:
+
+     Function/Label     Bytes
+     --------------     -----
+     disable_interrupts   36
+     enable_interrupts    36
+     irq_set_prio         56
+     irq_get_prio         20
+     irq_req             124
+      Others              20
+
+ 
+ 292 bytes in segment CODE
+ 
+ 272 bytes of CODE memory (+ 20 bytes shared)
+
+Errors: none
+Warnings: none

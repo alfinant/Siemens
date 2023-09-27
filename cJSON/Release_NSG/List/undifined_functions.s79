@@ -1,0 +1,454 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   21/Oct/2018  18:38:06 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\undifined_functions.c                       /
+//    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\undifined_functions.c -D NEWSGOLD -lCN      /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\ -la                       /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\ --diag_suppress Pe301 -o  /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\Obj\ -z9 --cpu_mode arm         /
+//                       --endian little --cpu ARM926EJ-S --stack_align 4    /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I E:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\undifined_functions.s79    /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME undifined_functions
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??__dAdd??rA
+        MULTWEAK ??__dMul??rA
+        MULTWEAK ??__longToDouble??rA
+        MULTWEAK ??strtod??rT
+        MULTWEAK ??tolower??rT
+        PUBLIC strtod
+        FUNCTION strtod,0203H
+        LOCFRAME CSTACK, 44, STACK
+        PUBLIC tolower
+        FUNCTION tolower,0203H
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+__dAdd              SYMBOL "__dAdd"
+__dMul              SYMBOL "__dMul"
+__longToDouble      SYMBOL "__longToDouble"
+??__dAdd??rA        SYMBOL "??rA", __dAdd
+??__dMul??rA        SYMBOL "??rA", __dMul
+??__longToDouble??rA SYMBOL "??rA", __longToDouble
+strtod              SYMBOL "strtod"
+??strtod??rT        SYMBOL "??rT", strtod
+tolower             SYMBOL "tolower"
+??tolower??rT       SYMBOL "??rT", tolower
+
+        EXTERN __dAdd
+        FUNCTION __dAdd,0202H
+        EXTERN __dMul
+        FUNCTION __dMul,0202H
+        EXTERN __longToDouble
+        FUNCTION __longToDouble,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??tolower??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE tolower
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function tolower
+        ARM
+tolower:
+        SUB      R1,R0,#+65
+        CMP      R1,#+25
+        BXHI     LR
+        ADR      R2,??tolower_0
+        LDRB     R2,[R2, R1]
+        ADD      PC,PC,R2, LSL #+2
+        DATA
+??tolower_0:
+        DC8      +6,+8,+10,+12
+        DC8      +14,+16,+18,+20
+        DC8      +22,+24,+26,+28
+        DC8      +30,+32,+34,+36
+        DC8      +38,+40,+42,+44
+        DC8      +46,+48,+50,+52
+        DC8      +54,+56,+0,+0
+        ARM
+??tolower_1:
+        MOV      R0,#+97
+        BX       LR
+??tolower_2:
+        MOV      R0,#+98
+        BX       LR
+??tolower_3:
+        MOV      R0,#+99
+        BX       LR
+??tolower_4:
+        MOV      R0,#+100
+        BX       LR
+??tolower_5:
+        MOV      R0,#+101
+        BX       LR
+??tolower_6:
+        MOV      R0,#+102
+        BX       LR
+??tolower_7:
+        MOV      R0,#+103
+        BX       LR
+??tolower_8:
+        MOV      R0,#+104
+        BX       LR
+??tolower_9:
+        MOV      R0,#+105
+        BX       LR
+??tolower_10:
+        MOV      R0,#+106
+        BX       LR
+??tolower_11:
+        MOV      R0,#+107
+        BX       LR
+??tolower_12:
+        MOV      R0,#+108
+        BX       LR
+??tolower_13:
+        MOV      R0,#+109
+        BX       LR
+??tolower_14:
+        MOV      R0,#+110
+        BX       LR
+??tolower_15:
+        MOV      R0,#+111
+        BX       LR
+??tolower_16:
+        MOV      R0,#+112
+        BX       LR
+??tolower_17:
+        MOV      R0,#+113
+        BX       LR
+??tolower_18:
+        MOV      R0,#+114
+        BX       LR
+??tolower_19:
+        MOV      R0,#+115
+        BX       LR
+??tolower_20:
+        MOV      R0,#+116
+        BX       LR
+??tolower_21:
+        MOV      R0,#+117
+        BX       LR
+??tolower_22:
+        MOV      R0,#+118
+        BX       LR
+??tolower_23:
+        MOV      R0,#+119
+        BX       LR
+??tolower_24:
+        MOV      R0,#+120
+        BX       LR
+??tolower_25:
+        MOV      R0,#+121
+        BX       LR
+??tolower_26:
+        MOV      R0,#+122
+??tolower_27:
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??strtod??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE strtod
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function strtod
+        ARM
+strtod:
+        PUSH     {R0,R4-R11,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R11 Frame(CFA, -8)
+        CFI R10 Frame(CFA, -12)
+        CFI R9 Frame(CFA, -16)
+        CFI R8 Frame(CFA, -20)
+        CFI R7 Frame(CFA, -24)
+        CFI R6 Frame(CFA, -28)
+        CFI R5 Frame(CFA, -32)
+        CFI R4 Frame(CFA, -36)
+        CFI CFA R13+40
+        SUB      SP,SP,#+4
+        CFI CFA R13+44
+        MOV      R10,R1
+        MOV      R8,R0
+        MOV      R6,#+0
+        MOV      R7,#+0
+        MOV      R9,#+1
+        B        ??strtod_0
+??strtod_1:
+        ADD      R8,R8,#+1
+??strtod_0:
+        LDRB     R0,[R8, #+0]
+        CMP      R0,#+32
+        BEQ      ??strtod_1
+        SUBS     R0,R0,#+43
+        BEQ      ??strtod_2
+        SUBS     R0,R0,#+2
+        BNE      ??strtod_3
+        MVN      R9,R6
+??strtod_2:
+        ADD      R8,R8,#+1
+??strtod_3:
+        LDRB     R0,[R8, #+0]
+        SUB      R11,R0,#+48
+        CMP      R11,#+10
+        BCS      ??strtod_4
+        MOV      R0,#+0
+        MOV      R1,#+1073741824
+        ORR      R1,R1,#0x240000
+        MOV      R2,R6
+        MOV      R3,R7
+        _BLF     __dMul,??__dMul??rA
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R0,R11
+        _BLF     __longToDouble,??__longToDouble??rA
+        MOV      R2,R4
+        MOV      R3,R5
+        _BLF     __dAdd,??__dAdd??rA
+        MOV      R6,R0
+        MOV      R7,R1
+        B        ??strtod_2
+??strtod_4:
+        CMP      R0,#+46
+        BNE      ??strtod_5
+        MOV      R4,#+0
+        MOV      R5,#+805306368
+        ORR      R5,R5,#0xFF00000
+        ADD      R8,R8,#+1
+        B        ??strtod_6
+??strtod_7:
+        LDR      R0,??strtod_8    ;; 0xffffffff9999999a
+        LDR      R1,??strtod_8+0x4  ;; 0x3fb99999
+        MOV      R2,R4
+        MOV      R3,R5
+        _BLF     __dMul,??__dMul??rA
+        MOV      R4,R0
+        LDRB     R0,[R8], #+1
+        MOV      R5,R1
+        SUB      R0,R0,#+48
+        _BLF     __longToDouble,??__longToDouble??rA
+        MOV      R2,R4
+        MOV      R3,R5
+        _BLF     __dMul,??__dMul??rA
+        MOV      R2,R6
+        MOV      R3,R7
+        _BLF     __dAdd,??__dAdd??rA
+        MOV      R6,R0
+        MOV      R7,R1
+??strtod_6:
+        LDRB     R0,[R8, #+0]
+        SUB      R0,R0,#+48
+        CMP      R0,#+10
+        BCC      ??strtod_7
+??strtod_5:
+        LDRB     R0,[R8, #+0]
+        ORR      R0,R0,#0x20
+        CMP      R0,#+101
+        BNE      ??strtod_9
+        LDRB     R0,[R8, #+1]!
+        MOV      R11,#+0
+        MOV      R4,#+0
+        MOV      R5,#+1073741824
+        ORR      R5,R5,#0x240000
+        SUBS     R0,R0,#+43
+        BEQ      ??strtod_10
+        SUBS     R0,R0,#+2
+        BEQ      ??strtod_11
+        SUB      R0,R0,#+3
+        CMP      R0,#+9
+        BLS      ??strtod_12
+        B        ??strtod_13
+??strtod_11:
+        LDR      R4,??strtod_8    ;; 0xffffffff9999999a
+        LDR      R5,??strtod_8+0x4  ;; 0x3fb99999
+??strtod_10:
+        ADD      R8,R8,#+1
+??strtod_12:
+        LDRB     R0,[R8, #+0]
+        SUB      R0,R0,#+48
+        CMP      R0,#+10
+        BCS      ??strtod_14
+        MOV      R1,#+10
+        MLA      R11,R1,R11,R0
+        B        ??strtod_10
+??strtod_13:
+        LDR      R8,[SP, #+4]
+        MOV      R6,#+0
+        MOV      R7,R4
+        B        ??strtod_9
+??strtod_15:
+        MOV      R2,R4
+        MOV      R3,R5
+        MOV      R0,R4
+        MOV      R1,R5
+        _BLF     __dMul,??__dMul??rA
+        MOV      R4,R0
+        MOV      R5,R1
+??strtod_14:
+        TST      R11,#0x1
+        BEQ      ??strtod_16
+        MOV      R2,R4
+        MOV      R3,R5
+        MOV      R0,R6
+        MOV      R1,R7
+        _BLF     __dMul,??__dMul??rA
+        MOV      R6,R0
+        MOV      R7,R1
+??strtod_16:
+        LSRS     R11,R11,#+1
+        BNE      ??strtod_15
+??strtod_9:
+        CMP      R10,#+0
+        STRNE    R8,[R10, #+0]
+        MOV      R0,R9
+        _BLF     __longToDouble,??__longToDouble??rA
+        MOV      R2,R6
+        MOV      R3,R7
+        _BLF     __dMul,??__dMul??rA
+        POP      {R2-R11,PC}      ;; return
+        DATA
+??strtod_8:
+        DC32     0xffffffff9999999a
+        DC32     0x3fb99999
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??__dMul??rA:
+        LDR      R12,??Subroutine2_0  ;; __dMul
+        BX       R12
+        DATA
+??Subroutine2_0:
+        DC32     __dMul
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??__longToDouble??rA:
+        LDR      R3,??Subroutine3_0  ;; __longToDouble
+        BX       R3
+        DATA
+??Subroutine3_0:
+        DC32     __longToDouble
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??__dAdd??rA:
+        LDR      R12,??Subroutine4_0  ;; __dAdd
+        BX       R12
+        DATA
+??Subroutine4_0:
+        DC32     __dAdd
+        CFI EndBlock cfiBlock6
+
+        END
+// 
+// 808 bytes in segment CODE
+// 
+// 764 bytes of CODE memory (+ 44 bytes shared)
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,81 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 30/Nov/2014  19:38:10              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\patch.asm#
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\List\patch.lst#
+#           Object file   =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\Obj\patch.r79#
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\patch.asm #
+#                            -OC:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\Obj\ #
+#                            -s+ -M<> -w+                                     #
+#                            -LC:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None -n               #
+#                            -IC:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\ #
+#                                                                             #
+###############################################################################
+
+    1    00000000                     EXTERN my_onmessage
+    2    00000000                     
+    3    00000000                     CODE16
+    4    00000000                     
+    5    00000000                     RSEG PATCH_ONMESSAGE:DATA(2)
+    6    00000000 ........            DCD  my_onmessage 
+    7    00000004              
+    8    00000000                     RSEG PATCH_MAINCSMSIZE:DATA(2)
+    9    00000000 78040000            DCD 0x478
+   10    00000004                     
+   11    00000004                     CODE16
+   12    00000000                     RSEG PATCH_PREDIAL_ENA1:CODE(1)      
+                                
+   13    00000000 4007                LSL R0,R0, #0x1D
+   14    00000002                
+   15    00000000                     RSEG PATCH_PREDIAL_ENA2:CODE(1)
+   16    00000000 C046                NOP
+   17    00000002 0120                MOV R0,#1 
+   18    00000004              
+   19    00000000                     RSEG PATCH_APM_FRDB_GetInfo1:CODE(1)
+   20    00000000 ....                B J_GetInfo1
+   21    00000002              
+   22    00000000                     RSEG J_GetInfo1:CODE(1)
+   23    00000000              J_GetInfo1
+   24    00000000              
+   25    00000000                     RSEG PATCH_APM_FRDB_GetInfo2:CODE(1)
+   26    00000000 ....                B J_GetInfo2
+   27    00000002                     
+   28    00000000                     RSEG J_GetInfo2:CODE(1)
+   29    00000000              J_GetInfo2      
+   30    00000000              
+   31    00000000                     RSEG PATCH_APM_FileRef_Run_UNKNOWN:CODE(1
+                               )
+   32    00000000 ....                B J_UNKNOWN
+   33    00000002                     
+   34    00000000                     RSEG J_UNKNOWN:CODE(1)
+   35    00000000              J_UNKNOWN
+   36    00000000              
+   37    00000000                     RSEG PATCH_APM_FileRef_Run_SOUND:CODE(1)
+   38    00000000 ....                B J_SOUND
+   39    00000002                     
+   40    00000000                     RSEG J_SOUND:CODE(1)
+   41    00000000              J_SOUND     
+   42    00000000              
+   43    00000000                     RSEG PATCH_APM_FileRef_Run_VIDEOIMAGE:COD
+                               E(1)
+   44    00000000 0022                MOV R2,#0
+   45    00000002 0021                MOV R1,#0
+   46    00000004 2068                LDR R0,[R4,#0]
+   47    00000006 ........            BL  ExecuteFile
+   48    0000000A              
+   49    00000000                     RSEG ExecuteFile:CODE(1)
+   50    00000000              ExecuteFile
+   51    00000000                END
+##############################
+#          CRC:7E71          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 32          #
+##############################
+
+
+
+

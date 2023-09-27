@@ -1,0 +1,253 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  08/Feb/2014  12:39:16                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\List\RF-partOff_SGOLD.ma #
+#                            p                                                 #
+#           Output file 1 =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\Exe\RF-partOff_SGOLD.elf #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\Obj\func.r79             #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\Obj\main.r79             #
+#                            -o                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\Exe\RF-partOff_SGOLD.elf #
+#                            -Felf -l                                          #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_ #
+#                            Test_Sound\Release_SGOLD\List\RF-partOff_SGOLD.ma #
+#                            p                                                 #
+#                            -xm -f                                            #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\Seri #
+#                            aLib\CapCom\test.xcl                              #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\ #
+#                            dl5tpainl8n.r79                                   #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 000002A0  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_Test_Sound\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000        ElfKiller (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000038 - 0000003B (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000038        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\PWM_Test_Sound\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 0000003C - 00000077 (0x3c bytes), align: 2
+  Segment part 10.            Intra module refs:   pwm_test_sound
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           i2cw_pmu                0000003C 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000078 - 0000009B (0x24 bytes), align: 2
+  Segment part 12.            Intra module refs:   pwm_test_sound
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           disable_interrupts      00000078 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000009C - 000000BF (0x24 bytes), align: 2
+  Segment part 14.            Intra module refs:   pwm_test_sound
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           enable_interrupts       0000009C 
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: DATA_AREA 00000000 - 00000037 (0x38 bytes), align: 2
+  Segment part 4.             Intra module refs:   pwm_test_sound
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           Dutycycle               00000008 
+           Frequency               00000004 
+           Prescaler               00000000 
+           dat_40                  0000000C 
+           dat_42                  0000000D 
+           msg_40                  00000010 
+           msg_42                  00000024 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000C0 - 00000237 (0x178 bytes), align: 2
+  Segment part 16.            Intra module refs:   maincsm_oncreate
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           pwm_test_sound          000000C0 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000238 - 0000023B (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   pwm_test_sound
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 0000039C - 0000039F (0x4 bytes), align: 2
+  Segment part 7.             Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maincsm_id              0000039C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000023C - 00000243 (0x8 bytes), align: 2
+  Segment part 21.            Intra module refs:   Segment part 3
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           maincsm_onmessage       0000023C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000244 - 0000026F (0x2c bytes), align: 2
+  Segment part 23.            Intra module refs:   Segment part 3
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_oncreate        00000244 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000270 - 0000028B (0x1c bytes), align: 2
+  Segment part 25.            Intra module refs:   maincsm_onclose
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000270 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 0000028C - 0000029F (0x14 bytes), align: 2
+  Segment part 27.            Intra module refs:   Segment part 3
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           maincsm_onclose         0000028C 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 000003A0 - 000004B7 (0x118 bytes), align: 2
+  Segment part 8.             Intra module refs:   Segment part 3
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000320 - 00000347 (0x28 bytes), align: 2
+  Segment part 2.             Intra module refs:   maincsm_oncreate
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000348 - 0000037F (0x38 bytes), align: 2
+  Segment part 3.             Intra module refs:   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000380 - 00000383 (0x4 bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 3
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           minus11                 00000380 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000002A0 - 0000031F (0x80 bytes), align: 2
+  Segment part 29.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    000002A0        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000038 )
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000000 - 00000037 (0x38 bytes), align: 2
+  Segment part 5.             Intra module refs:   Segment part 4
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00000384 - 0000038F (0xc bytes), align: 2
+  Segment part 32. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        00000384 
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00000390 - 0000039B (0xc bytes), align: 2
+  Segment part 34. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00000390 
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5tpainl8n.r79
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 1 208 bytes of CODE memory
+    56 bytes of DATA memory
+
+Errors: none
+Warnings: none
+

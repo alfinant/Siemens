@@ -1,0 +1,1323 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    07/Feb/2014  09:39:37 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\sie #
+#                       mens\i2clib.c                                        #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\sie #
+#                       mens\i2clib.c -D NEWSGOLD -lCN                       #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\ -la                       #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\ -o                        #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\Obj\ -z9 --cpu_mode arm         #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork -e --fpu None --dlib_config              #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\List\i2clib.lst                 #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaLi #
+#                       b\CapCom\Release_NSG\Obj\i2clib.r79                  #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\siemens\i2clib.c
+      1          #include <intrinsics.h>
+      2          
+      3          #define FMRADIO    0x20 // TEA5761UK	
+      4          #define CAMERA     0x60 // OmniVision
+      5          #define MOZART     0x62 //
+      6          
+      7          #define I2C_0x00       *(volatile int*) 0xF7600000 
+      8          #define I2C_0x10       *(volatile int*) 0xF7600010 
+      9          #define I2C_0x14       *(volatile int*) 0xF7600014
+     10          #define I2C_0x18       *(volatile int*) 0xF7600018 
+     11          #define I2C_0x20       *(volatile int*) 0xF7600020 
+     12          #define I2C_0x68       *(volatile int*) 0xF7600068 
+     13          #define I2C_0x28       *(volatile int*) 0xF7600028 
+     14          #define I2C_RCNT       *(volatile int*) 0xF760002C 
+     15          #define I2C_WCNT       *(volatile int*) 0xF7600034 
+     16          #define I2C_0x74       *(volatile int*) 0xF7600074 
+     17          #define I2C_0x78       *(volatile int*) 0xF7600078 
+     18          #define I2C_STAT       *(volatile int*) 0xF7600080 
+     19          #define I2C_0x84       *(volatile int*) 0xF7600084 
+     20          #define I2C_0x8C       *(volatile int*) 0xF760008C 
+     21          #define I2C_TBUF       *(volatile int*) 0xF7608000 
+     22          #define I2C_RBUF       *(volatile int*) 0xF760C000 
+     23          
+     24          #define GPIO_I2C_DAT   *(volatile int*) 0xF4300090
+     25          #define GPIO_I2C_CLK   *(volatile int*) 0xF4300094
+     26          
+     27          #define GPIO_I2C_2_DAT *(volatile int*) 0xF43000F0 
+     28          #define GPIO_I2C_2_CLK *(volatile int*) 0xF43000F8
+     29          
+     30          #define SCU_0x18       *(volatile int*) 0xF4400018
+     31          #define PLL_SIFCLKS    *(volatile int*) 0xF45000B4  //Serial Interface Clock Select Register
+     32          #define STM_0x10       *(volatile int*) 0xF4B00010
+     33          
+     34          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     35          void i2c_check_port_1()
+     36          {
+     37             GPIO_I2C_CLK = 0x1211;
+   \                     i2c_check_port_1:
+   \   00000000   ........           LDR      R1,??DataTable1  ;; 0xfffffffff4300094
+   \   00000004   1100A0E3           MOV      R0,#+17
+   \   00000008   480D80E3           ORR      R0,R0,#0x1200
+   \   0000000C   000081E5           STR      R0,[R1, #+0]
+     38             GPIO_I2C_DAT = 0x1211;
+   \   00000010   0410C1E3           BIC      R1,R1,#0x4
+   \   00000014   000081E5           STR      R0,[R1, #+0]
+     39             GPIO_I2C_2_DAT = 0x8200;
+   \   00000018   820CA0E3           MOV      R0,#+33280
+   \   0000001C   601081E3           ORR      R1,R1,#0x60
+   \   00000020   000081E5           STR      R0,[R1, #+0]
+     40             GPIO_I2C_2_CLK = 0x8200;	
+   \   00000024   081081E3           ORR      R1,R1,#0x8
+   \   00000028   ........           B        ?Subroutine20
+     41          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine20:
+   \   00000000   000081E5           STR      R0,[R1, #+0]
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+   \                     ??Subroutine20_0:
+   \   00000008   F00030F4           DC32     0xfffffffff43000f0
+     42          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     43          void i2c_check_port_2()
+     44          {
+     45             GPIO_I2C_2_DAT = 0x1222;
+   \                     i2c_check_port_2:
+   \   00000000   ........           LDR      R0,??Subroutine20_0  ;; 0xfffffffff43000f0
+   \   00000004   2210A0E3           MOV      R1,#+34
+   \   00000008   481D81E3           ORR      R1,R1,#0x1200
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+     46             GPIO_I2C_2_CLK = 0x1244;
+   \   00000010   080080E3           ORR      R0,R0,#0x8
+   \   00000014   221081E2           ADD      R1,R1,#+34
+   \   00000018   001080E5           STR      R1,[R0, #+0]
+     47             GPIO_I2C_CLK = 0x8200;
+   \   0000001C   ........           LDR      R1,??DataTable1  ;; 0xfffffffff4300094
+   \   00000020   820CA0E3           MOV      R0,#+33280
+   \   00000024   000081E5           STR      R0,[R1, #+0]
+     48             GPIO_I2C_DAT = 0x8200;        
+   \   00000028   0410C1E3           BIC      R1,R1,#0x4
+   \   0000002C                      REQUIRE ?Subroutine20
+   \   0000002C                      ;; // Fall through to label ?Subroutine20
+     49          }
+     50          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     51          void i2c_clk_on(void)
+     52          {
+   \                     i2c_clk_on:
+   \   00000000   00402DE9           PUSH     {LR}
+     53            __disable_interrupt();
+   \   00000004   ........           _BLF     ??DiI_a,??rA??DiI_a
+     54              PLL_SIFCLKS &= ~ 0x33 | 2;
+   \   00000008   ........           LDR      R0,??DataTable3  ;; 0xfffffffff45000b4
+   \   0000000C   001090E5           LDR      R1,[R0, #+0]
+   \   00000010   3110C1E3           BIC      R1,R1,#0x31
+   \   00000014   ........           B        ?Subroutine22
+     55            __enable_interrupt();
+     56          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine22:
+   \   00000000   001080E5           STR      R1,[R0, #+0]
+   \   00000004   0040BDE8           POP      {LR}             ;; Pop
+   \   00000008   ........           _BF      ??EnI_a,??rA??EnI_a
+     57          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     58          void i2c_clk_off(void)
+     59          {
+   \                     i2c_clk_off:
+   \   00000000   00402DE9           PUSH     {LR}
+     60            __disable_interrupt();
+   \   00000004   ........           _BLF     ??DiI_a,??rA??DiI_a
+     61              PLL_SIFCLKS &= ~ 0x33 | 3;
+   \   00000008   ........           LDR      R0,??DataTable3  ;; 0xfffffffff45000b4
+   \   0000000C   001090E5           LDR      R1,[R0, #+0]
+   \   00000010   3010C1E3           BIC      R1,R1,#0x30
+     62            __enable_interrupt();
+     63          }
+   \   00000014                      REQUIRE ?Subroutine22
+   \   00000014                      ;; // Fall through to label ?Subroutine22
+     64          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     65          void i2c_scu_init(void)
+     66          {
+     67             SCU_0x18 |= 0x8000;
+   \                     i2c_scu_init:
+   \   00000000   6301A0E3           MOV      R0,#-1073741800
+   \   00000004   D10580E3           ORR      R0,R0,#0x34400000
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+     68             SCU_0x18 &= ~ 0x8000;	
+   \   00000014   001090E5           LDR      R1,[R0, #+0]
+   \   00000018   801CC1E3           BIC      R1,R1,#0x8000
+   \   0000001C   ........           B        ?Subroutine21
+     69          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine21:
+   \   00000000   001080E5           STR      R1,[R0, #+0]
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+     70          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     71          void setConf() 
+     72          {
+     73            I2C_0x00 = 0x200;
+   \                     setConf:
+   \   00000000   F004A0E3           MOV      R0,#-268435456
+   \   00000004   760680E3           ORR      R0,R0,#0x7600000
+   \   00000008   801FA0E3           MOV      R1,#+512
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+     74            I2C_0x10 = 0;
+   \   00000010   100080E3           ORR      R0,R0,#0x10
+   \   00000014   0010A0E3           MOV      R1,#+0
+   \   00000018   001080E5           STR      R1,[R0, #+0]
+     75            I2C_0x20 = 0x80000;
+   \   0000001C   101080E2           ADD      R1,R0,#+16
+   \   00000020   802AA0E3           MOV      R2,#+524288
+   \   00000024   002081E5           STR      R2,[R1, #+0]
+     76            I2C_0x28 = 0x30022;
+   \   00000028   181080E2           ADD      R1,R0,#+24
+   \   0000002C   2220A0E3           MOV      R2,#+34
+   \   00000030   C02B82E3           ORR      R2,R2,#0x30000
+   \   00000034   002081E5           STR      R2,[R1, #+0]
+     77            I2C_0x18 = 0x10040; 
+   \   00000038   081080E3           ORR      R1,R0,#0x8
+   \   0000003C   4020A0E3           MOV      R2,#+64
+   \   00000040   402B82E3           ORR      R2,R2,#0x10000
+   \   00000044   002081E5           STR      R2,[R1, #+0]
+     78            I2C_0x10 = 1;
+   \   00000048   0110A0E3           MOV      R1,#+1
+   \   0000004C   001080E5           STR      R1,[R0, #+0]
+     79            I2C_0x8C = 0x3F;
+   \   00000050   ........           LDR      R1,??DataTable25  ;; 0xfffffffff760008c
+   \   00000054   3F00A0E3           MOV      R0,#+63
+   \   00000058   ........           STR      R0,[R1], #-20
+     80            I2C_0x78 = 0x3F; 
+   \   0000005C   000081E5           STR      R0,[R1, #+0]
+     81            I2C_0x68 = 0xF;
+   \   00000060   1000C1E3           BIC      R0,R1,#0x10
+   \   00000064   0F10A0E3           MOV      R1,#+15
+   \   00000068                      REQUIRE ?Subroutine21
+   \   00000068                      ;; // Fall through to label ?Subroutine21
+     82          }
+     83          
+     84          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     85          void disable_I2C_INT() 
+     86          {
+     87            I2C_0x84 &= 0xFFC0;
+   \                     disable_I2C_INT:
+   \   00000000   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000004   C020A0E3           MOV      R2,#+192
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000010   011002E0           AND      R1,R2,R1
+   \   00000014   ........           B        ?Subroutine21
+     88          }
+     89          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     90          void enable_I2C_INT() 
+     91          {
+     92            I2C_0x84 &= 0x3F;
+   \                     enable_I2C_INT:
+   \   00000000   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000004   001090E5           LDR      R1,[R0, #+0]
+   \   00000008   3F1001E2           AND      R1,R1,#0x3F
+   \   0000000C   ........           B        ?Subroutine21
+     93          }
+     94          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     95          void stop() 
+     96          {
+     97             disable_I2C_INT();
+   \                     stop:
+   \   00000000   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000004   C020A0E3           MOV      R2,#+192
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000010   011002E0           AND      R1,R2,R1
+   \   00000014   ........           STR      R1,[R0], #-116
+     98             I2C_0x10 = 0;
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   001080E5           STR      R1,[R0, #+0]
+     99             I2C_0x00 = 1;
+   \   00000020   1000C0E3           BIC      R0,R0,#0x10
+   \   00000024   0110A0E3           MOV      R1,#+1
+   \   00000028   ........           B        ?Subroutine21
+    100          }
+    101          
+    102          /*=============================================================================*/
+    103          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    104          int __i2cw_pmu(int adr, int reg, unsigned char data)
+    105          {
+   \                     __i2cw_pmu:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+   \   0000000C   0260A0E1           MOV      R6,R2
+    106             int status;   
+    107          	
+    108             setConf();
+   \   00000010   ........           BL       setConf
+    109             disable_I2C_INT();
+   \   00000014   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000018   C020A0E3           MOV      R2,#+192
+   \   0000001C   001090E5           LDR      R1,[R0, #+0]
+   \   00000020   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000024   011002E0           AND      R1,R2,R1
+   \   00000028   ........           STR      R1,[R0], #-80
+    110             I2C_WCNT = 3;
+   \   0000002C   0310A0E3           MOV      R1,#+3
+   \   00000030   001080E5           STR      R1,[R0, #+0]
+    111          	
+    112             while((status=I2C_STAT & 0x1) == 0);   
+   \                     ??__i2cw_pmu_0:
+   \   00000034   ........           LDR      R0,??DataTable23  ;; 0xfffffffff7600080
+   \   00000038   000090E5           LDR      R0,[R0, #+0]
+   \   0000003C   010010E2           ANDS     R0,R0,#0x1
+   \   00000040   FBFFFF0A           BEQ      ??__i2cw_pmu_0
+    113             I2C_TBUF = adr & 0x7F | reg << 8 | data << 16;
+   \   00000044   ........           LDR      R0,??DataTable24  ;; 0xfffffffff7608000
+   \   00000048   7F1004E2           AND      R1,R4,#0x7F
+   \   0000004C   051481E1           ORR      R1,R1,R5, LSL #+8
+   \   00000050   061881E1           ORR      R1,R1,R6, LSL #+16
+   \   00000054   001080E5           STR      R1,[R0, #+0]
+    114             I2C_0x8C = 1;	
+   \   00000058   ........           LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+   \   0000005C   0110A0E3           MOV      R1,#+1
+   \   00000060   001080E5           STR      R1,[R0, #+0]
+    115          
+    116                 while(!(I2C_STAT & 0x20));     
+   \                     ??__i2cw_pmu_1:
+   \   00000064   0C10C0E3           BIC      R1,R0,#0xC
+   \   00000068   001091E5           LDR      R1,[R1, #+0]
+   \   0000006C   200011E3           TST      R1,#0x20
+   \   00000070   FBFFFF0A           BEQ      ??__i2cw_pmu_1
+    117                 if((status = I2C_0x74) & 0x20)
+   \   00000074   181040E2           SUB      R1,R0,#+24
+   \   00000078   001091E5           LDR      R1,[R1, #+0]
+   \   0000007C   200011E3           TST      R1,#0x20
+   \   00000080   1000000A           BEQ      ??__i2cw_pmu_2
+    118             {
+    119                 I2C_0x14 |= 2;
+   \   00000084   781040E2           SUB      R1,R0,#+120
+   \   00000088   002091E5           LDR      R2,[R1, #+0]
+   \   0000008C   022082E3           ORR      R2,R2,#0x2
+   \   00000090   002081E5           STR      R2,[R1, #+0]
+    120                 I2C_0x78 = 0x20;
+   \   00000094   142040E2           SUB      R2,R0,#+20
+   \   00000098   2010A0E3           MOV      R1,#+32
+   \   0000009C   001082E5           STR      R1,[R2, #+0]
+    121                 I2C_0x8C = 0x20;
+   \   000000A0   001080E5           STR      R1,[R0, #+0]
+    122             }
+    123          	 else if(status & 0x10) return 4;
+    124             else return 0xD;
+    125             
+    126             while(!(I2C_STAT & 0x20));    
+   \                     ??__i2cw_pmu_3:
+   \   000000A4   0C10C0E3           BIC      R1,R0,#0xC
+   \   000000A8   001091E5           LDR      R1,[R1, #+0]
+   \   000000AC   200011E3           TST      R1,#0x20
+   \   000000B0   FBFFFF0A           BEQ      ??__i2cw_pmu_3
+    127             if((status = I2C_0x74) & 0x10)  return 0x4;
+   \   000000B4   181040E2           SUB      R1,R0,#+24
+   \   000000B8   001091E5           LDR      R1,[R1, #+0]
+   \   000000BC   100011E3           TST      R1,#0x10
+   \   000000C0   0300000A           BEQ      ??__i2cw_pmu_4
+   \   000000C4   010000EA           B        ??__i2cw_pmu_5
+   \                     ??__i2cw_pmu_2:
+   \   000000C8   100011E3           TST      R1,#0x10
+   \   000000CC   0200000A           BEQ      ??__i2cw_pmu_6
+   \                     ??__i2cw_pmu_5:
+   \   000000D0   ........           B        ?Subroutine26
+    128             if(!(status & 0x20)) return 0xD;
+   \                     ??__i2cw_pmu_4:
+   \   000000D4   200011E3           TST      R1,#0x20
+   \   000000D8   0000001A           BNE      ??__i2cw_pmu_7
+   \                     ??__i2cw_pmu_6:
+   \   000000DC   ........           B        ?Subroutine25
+    129             I2C_0x78 = 0;
+   \                     ??__i2cw_pmu_7:
+   \   000000E0   ........           B        ?Subroutine23
+    130             I2C_0x8C = 0;   
+    131             stop();
+    132             return 0;
+    133          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine26:
+   \   00000000   0400A0E3           MOV      R0,#+4
+   \   00000004   7080BDE8           POP      {R4-R6,PC}
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine25:
+   \   00000000   0D00A0E3           MOV      R0,#+13
+   \   00000004   7080BDE8           POP      {R4-R6,PC}
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine23:
+   \   00000000   0010A0E3           MOV      R1,#+0
+   \   00000004   001082E5           STR      R1,[R2, #+0]
+   \   00000008   001080E5           STR      R1,[R0, #+0]
+   \                     ??Subroutine23_0:
+   \   0000000C   ........           BL       stop
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \   00000014   7080BDE8           POP      {R4-R6,PC}       ;; return
+    134          
+    135          /*==========================================================================*/
+    136          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    137          int __i2cr_pmu(int adr, int reg, unsigned char *data)
+    138          {  
+   \                     __i2cr_pmu:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0250A0E1           MOV      R5,R2
+   \   0000000C   0160A0E1           MOV      R6,R1
+    139             int status;		
+    140          	
+    141             setConf();
+   \   00000010   ........           BL       setConf
+    142             disable_I2C_INT();
+   \   00000014   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000018   C020A0E3           MOV      R2,#+192
+   \   0000001C   001090E5           LDR      R1,[R0, #+0]
+   \   00000020   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000024   011002E0           AND      R1,R2,R1
+   \   00000028   ........           STR      R1,[R0], #-80
+    143             I2C_WCNT = 2;
+   \   0000002C   0210A0E3           MOV      R1,#+2
+   \   00000030   001080E5           STR      R1,[R0, #+0]
+    144          	
+    145             while((I2C_STAT & 0x1) == 0);   
+   \                     ??__i2cr_pmu_0:
+   \   00000034   4C1080E2           ADD      R1,R0,#+76
+   \   00000038   001091E5           LDR      R1,[R1, #+0]
+   \   0000003C   010011E3           TST      R1,#0x1
+   \   00000040   FBFFFF0A           BEQ      ??__i2cr_pmu_0
+    146             I2C_TBUF =  reg << 8 | (adr & 0x7F) | 1  ;
+   \   00000044   ........           LDR      R1,??DataTable24  ;; 0xfffffffff7608000
+   \   00000048   7F2004E2           AND      R2,R4,#0x7F
+   \   0000004C   062482E1           ORR      R2,R2,R6, LSL #+8
+   \   00000050   012082E3           ORR      R2,R2,#0x1
+   \   00000054   002081E5           STR      R2,[R1, #+0]
+    147             I2C_0x8C = 1;	
+   \   00000058   582080E2           ADD      R2,R0,#+88
+   \   0000005C   0130A0E3           MOV      R3,#+1
+   \   00000060   003082E5           STR      R3,[R2, #+0]
+    148          	 
+    149             while(!(I2C_STAT & 0x20));     
+   \                     ??__i2cr_pmu_1:
+   \   00000064   4C6080E2           ADD      R6,R0,#+76
+   \   00000068   006096E5           LDR      R6,[R6, #+0]
+   \   0000006C   200016E3           TST      R6,#0x20
+   \   00000070   FBFFFF0A           BEQ      ??__i2cr_pmu_1
+    150             if((status = I2C_0x74) & 0x20)
+   \   00000074   406080E3           ORR      R6,R0,#0x40
+   \   00000078   00C096E5           LDR      R12,[R6, #+0]
+   \   0000007C   20001CE3           TST      R12,#0x20
+   \   00000080   3000000A           BEQ      ??__i2cr_pmu_2
+    151             {	
+    152                I2C_RCNT = 1;
+   \   00000084   086040E2           SUB      R6,R0,#+8
+   \   00000088   003086E5           STR      R3,[R6, #+0]
+    153                I2C_WCNT = 1;
+   \   0000008C   ........           STR      R3,[R0], #+68
+    154                I2C_0x78 = 0x20;
+   \   00000090   2060A0E3           MOV      R6,#+32
+   \   00000094   006080E5           STR      R6,[R0, #+0]
+    155                I2C_0x8C = 0x20;      
+   \   00000098   006082E5           STR      R6,[R2, #+0]
+    156             }
+    157                   else if(status & 0x10) return 4;
+    158             else return 0xE;
+    159          		 
+    160             while(!(I2C_STAT & 0x1));     
+   \                     ??__i2cr_pmu_3:
+   \   0000009C   08C080E2           ADD      R12,R0,#+8
+   \   000000A0   00C09CE5           LDR      R12,[R12, #+0]
+   \   000000A4   01001CE3           TST      R12,#0x1
+   \   000000A8   FBFFFF0A           BEQ      ??__i2cr_pmu_3
+    161             I2C_TBUF = (adr & 0x7F) | 1;	 
+   \   000000AC   7F4004E2           AND      R4,R4,#0x7F
+   \   000000B0   014084E3           ORR      R4,R4,#0x1
+   \   000000B4   004081E5           STR      R4,[R1, #+0]
+    162             I2C_0x8C = 1;
+   \   000000B8   003082E5           STR      R3,[R2, #+0]
+    163             
+    164             while((status=I2C_STAT & 0xF) == 0);   
+   \                     ??__i2cr_pmu_4:
+   \   000000BC   081080E2           ADD      R1,R0,#+8
+   \   000000C0   001091E5           LDR      R1,[R1, #+0]
+   \   000000C4   0FC011E2           ANDS     R12,R1,#0xF
+   \   000000C8   FBFFFF0A           BEQ      ??__i2cr_pmu_4
+    165             *data = I2C_RBUF;
+   \   000000CC   ........           LDR      R1,??DataTable26  ;; 0xfffffffff760c000
+   \   000000D0   001091E5           LDR      R1,[R1, #+0]
+   \   000000D4   0010C5E5           STRB     R1,[R5, #+0]
+    166             I2C_0x8C = 1; 
+   \   000000D8   003082E5           STR      R3,[R2, #+0]
+    167             
+    168             while(!(I2C_STAT & 0x20));     
+   \                     ??__i2cr_pmu_5:
+   \   000000DC   081080E2           ADD      R1,R0,#+8
+   \   000000E0   001091E5           LDR      R1,[R1, #+0]
+   \   000000E4   200011E3           TST      R1,#0x20
+   \   000000E8   FBFFFF0A           BEQ      ??__i2cr_pmu_5
+    169             if((status =I2C_0x74) & 0x60)
+   \   000000EC   041040E2           SUB      R1,R0,#+4
+   \   000000F0   00C091E5           LDR      R12,[R1, #+0]
+   \   000000F4   60001CE3           TST      R12,#0x60
+   \   000000F8   1500000A           BEQ      ??__i2cr_pmu_6
+    170             {
+    171                 I2C_0x78 = 0x20;
+   \   000000FC   006080E5           STR      R6,[R0, #+0]
+    172                 I2C_0x14 |= 2;
+   \   00000100   641040E2           SUB      R1,R0,#+100
+   \   00000104   003091E5           LDR      R3,[R1, #+0]
+   \   00000108   023083E3           ORR      R3,R3,#0x2
+   \   0000010C   003081E5           STR      R3,[R1, #+0]
+    173                 I2C_0x78 = 0x40;		 
+   \   00000110   4010A0E3           MOV      R1,#+64
+   \   00000114   001080E5           STR      R1,[R0, #+0]
+    174                 I2C_0x8C = 0x20;
+   \   00000118   006082E5           STR      R6,[R2, #+0]
+    175             }
+    176                   else if(status & 0x10) return 4;
+    177             else return 0xE;
+    178          	 
+    179             while(!(I2C_STAT & 0x20));     
+   \                     ??__i2cr_pmu_7:
+   \   0000011C   081080E2           ADD      R1,R0,#+8
+   \   00000120   001091E5           LDR      R1,[R1, #+0]
+   \   00000124   200011E3           TST      R1,#0x20
+   \   00000128   FBFFFF0A           BEQ      ??__i2cr_pmu_7
+    180             if((status =I2C_0x74) & 0x20)
+   \   0000012C   041040E2           SUB      R1,R0,#+4
+   \   00000130   00C091E5           LDR      R12,[R1, #+0]
+   \   00000134   20001CE3           TST      R12,#0x20
+   \   00000138   0200000A           BEQ      ??__i2cr_pmu_2
+    181             {
+    182                 I2C_0x78 = 0x20;	 
+   \   0000013C   006080E5           STR      R6,[R0, #+0]
+    183                 I2C_0x8C = 0x20;
+   \   00000140   006082E5           STR      R6,[R2, #+0]
+    184             }
+    185          	 else if(status & 0x10) return 4;
+    186             else return 0xE; 
+    187          	 
+    188             stop();
+   \   00000144   ........           B        ??Subroutine23_0
+   \                     ??__i2cr_pmu_2:
+   \   00000148   10001CE3           TST      R12,#0x10
+   \   0000014C   0300000A           BEQ      ??__i2cr_pmu_8
+   \   00000150   010000EA           B        ??__i2cr_pmu_9
+   \                     ??__i2cr_pmu_6:
+   \   00000154   10001CE3           TST      R12,#0x10
+   \   00000158   0000000A           BEQ      ??__i2cr_pmu_8
+   \                     ??__i2cr_pmu_9:
+   \   0000015C   ........           B        ?Subroutine26
+   \                     ??__i2cr_pmu_8:
+   \   00000160   0E00A0E3           MOV      R0,#+14
+   \   00000164   7080BDE8           POP      {R4-R6,PC}
+    189             return 0;
+    190          }
+    191          /*=============================================================================*/
+    192          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    193          int __i2cr_fcam(int adr, int reg, unsigned char *data, int size)
+    194          {  
+   \                     __i2cr_fcam:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0170A0E1           MOV      R7,R1
+   \   0000000C   0250A0E1           MOV      R5,R2
+   \   00000010   0360A0E1           MOV      R6,R3
+    195             int status;		
+    196          	
+    197             setConf();
+   \   00000014   ........           BL       setConf
+    198             disable_I2C_INT();
+   \   00000018   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   0000001C   C020A0E3           MOV      R2,#+192
+   \   00000020   001090E5           LDR      R1,[R0, #+0]
+   \   00000024   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000028   011002E0           AND      R1,R2,R1
+   \   0000002C   001080E5           STR      R1,[R0, #+0]
+    199             I2C_WCNT = 2;
+   \   00000030   50C040E2           SUB      R12,R0,#+80
+   \   00000034   0200A0E3           MOV      R0,#+2
+   \   00000038   00008CE5           STR      R0,[R12, #+0]
+    200             while(!(I2C_STAT & 0x1));     // Wait   
+   \                     ??__i2cr_fcam_0:
+   \   0000003C   4C008CE2           ADD      R0,R12,#+76
+   \   00000040   000090E5           LDR      R0,[R0, #+0]
+   \   00000044   010010E3           TST      R0,#0x1
+   \   00000048   FBFFFF0A           BEQ      ??__i2cr_fcam_0
+    201             I2C_TBUF  = (adr & 0x7F) | (reg << 8);
+   \   0000004C   ........           LDR      LR,??DataTable24  ;; 0xfffffffff7608000
+   \   00000050   7F0004E2           AND      R0,R4,#0x7F
+   \   00000054   070480E1           ORR      R0,R0,R7, LSL #+8
+   \   00000058   00008EE5           STR      R0,[LR, #+0]
+    202             I2C_0x8C = 1;
+   \   0000005C   58008CE2           ADD      R0,R12,#+88
+   \   00000060   0170A0E3           MOV      R7,#+1
+   \   00000064   007080E5           STR      R7,[R0, #+0]
+    203             while(!(I2C_STAT & 0x20));     // Wait 
+   \                     ??__i2cr_fcam_1:
+   \   00000068   0C10C0E3           BIC      R1,R0,#0xC
+   \   0000006C   001091E5           LDR      R1,[R1, #+0]
+   \   00000070   200011E3           TST      R1,#0x20
+   \   00000074   FBFFFF0A           BEQ      ??__i2cr_fcam_1
+    204             if((status = I2C_0x74) & 0x20)
+   \   00000078   181040E2           SUB      R1,R0,#+24
+   \   0000007C   003091E5           LDR      R3,[R1, #+0]
+   \   00000080   200013E3           TST      R3,#0x20
+   \   00000084   1000000A           BEQ      ??__i2cr_fcam_2
+    205             {	
+    206                I2C_0x78 = 0x20;
+   \   00000088   141040E2           SUB      R1,R0,#+20
+   \   0000008C   2020A0E3           MOV      R2,#+32
+   \   00000090   002081E5           STR      R2,[R1, #+0]
+    207                I2C_0x8C = 0x20;
+   \   00000094   002080E5           STR      R2,[R0, #+0]
+    208                I2C_RCNT = size;
+   \   00000098   603040E2           SUB      R3,R0,#+96
+   \   0000009C   006083E5           STR      R6,[R3, #+0]
+    209                I2C_WCNT = 0x1;
+   \   000000A0   00708CE5           STR      R7,[R12, #+0]
+    210                while(!(I2C_STAT & 0x1));     // Wait
+   \                     ??__i2cr_fcam_3:
+   \   000000A4   0C30C0E3           BIC      R3,R0,#0xC
+   \   000000A8   003093E5           LDR      R3,[R3, #+0]
+   \   000000AC   010013E3           TST      R3,#0x1
+   \   000000B0   FBFFFF0A           BEQ      ??__i2cr_fcam_3
+    211             }
+    212                else if(status & 0x10) return 4;
+    213             else return 0xE;
+    214             
+    215             I2C_TBUF = (adr & 0x7F) | 1 ;	 
+   \   000000B4   7F3004E2           AND      R3,R4,#0x7F
+   \   000000B8   013083E3           ORR      R3,R3,#0x1
+   \   000000BC   00308EE5           STR      R3,[LR, #+0]
+    216             I2C_0x8C = 1;
+   \   000000C0   007080E5           STR      R7,[R0, #+0]
+    217           //  while(!(I2C_STAT & 0x1));     // Wait 
+    218          	 
+    219             for( int i=0; i < size;) 
+   \   000000C4   0040A0E3           MOV      R4,#+0
+   \   000000C8   140000EA           B        ??__i2cr_fcam_4
+   \                     ??__i2cr_fcam_2:
+   \   000000CC   100013E3           TST      R3,#0x10
+   \   000000D0   4400000A           BEQ      ??__i2cr_fcam_5
+   \   000000D4   410000EA           B        ??__i2cr_fcam_6
+    220          	 {  unsigned t1 = STM_0x10;
+    221                      while((status = I2C_STAT & 0xF) == 0 ) { if((STM_0x10 - t1) > 1000) return 0xD; }  
+    222          		 for( int k=0; k < 4 && i < size ; ++k)
+   \                     ??__i2cr_fcam_7:
+   \   000000D8   0070A0E3           MOV      R7,#+0
+    223          		 {
+    224          			 int j = 0;
+    225          			 int rx = I2C_RBUF;
+   \                     ??__i2cr_fcam_8:
+   \   000000DC   ........           LDR      LR,??DataTable26  ;; 0xfffffffff760c000
+   \   000000E0   00C0A0E3           MOV      R12,#+0
+   \   000000E4   00E09EE5           LDR      LR,[LR, #+0]
+    226          			 while(j < 4 && i < size) data[i++] = rx >> (j++ << 3);		 
+   \                     ??__i2cr_fcam_9:
+   \   000000E8   0C80A0E1           MOV      R8,R12
+   \   000000EC   8881A0E1           LSL      R8,R8,#+3
+   \   000000F0   5E88A0E1           ASR      R8,LR,R8
+   \   000000F4   0580C4E7           STRB     R8,[R4, +R5]
+   \   000000F8   01C08CE2           ADD      R12,R12,#+1
+   \   000000FC   014084E2           ADD      R4,R4,#+1
+   \   00000100   04005CE3           CMP      R12,#+4
+   \   00000104   060054B1           CMPLT    R4,R6
+   \   00000108   F6FFFFBA           BLT      ??__i2cr_fcam_9
+    227          		 }
+   \   0000010C   017087E2           ADD      R7,R7,#+1
+   \   00000110   040057E3           CMP      R7,#+4
+   \   00000114   060054B1           CMPLT    R4,R6
+   \   00000118   EFFFFFBA           BLT      ??__i2cr_fcam_8
+    228          		 I2C_0x8C = status;
+   \   0000011C   003080E5           STR      R3,[R0, #+0]
+   \                     ??__i2cr_fcam_4:
+   \   00000120   060054E1           CMP      R4,R6
+   \   00000124   0E0000AA           BGE      ??__i2cr_fcam_10
+   \   00000128   C0309FE5           LDR      R3,??__i2cr_fcam_11  ;; 0xfffffffff4b00010
+   \   0000012C   E980A0E3           MOV      R8,#+233
+   \   00000130   007093E5           LDR      R7,[R3, #+0]
+   \   00000134   C08F88E3           ORR      R8,R8,#0x300
+   \                     ??__i2cr_fcam_12:
+   \   00000138   0C30C0E3           BIC      R3,R0,#0xC
+   \   0000013C   003093E5           LDR      R3,[R3, #+0]
+   \   00000140   0F3013E2           ANDS     R3,R3,#0xF
+   \   00000144   E3FFFF1A           BNE      ??__i2cr_fcam_7
+   \   00000148   A0309FE5           LDR      R3,??__i2cr_fcam_11  ;; 0xfffffffff4b00010
+   \   0000014C   003093E5           LDR      R3,[R3, #+0]
+   \   00000150   073043E0           SUB      R3,R3,R7
+   \   00000154   080053E1           CMP      R3,R8
+   \   00000158   F6FFFF3A           BCC      ??__i2cr_fcam_12
+   \   0000015C   0D00A0E3           MOV      R0,#+13
+   \   00000160   F081BDE8           POP      {R4-R8,PC}
+    229          	 }
+    230             
+    231             while(!(I2C_STAT & 0x20));     // Wait  
+   \                     ??__i2cr_fcam_10:
+   \   00000164   0C30C0E3           BIC      R3,R0,#0xC
+   \   00000168   003093E5           LDR      R3,[R3, #+0]
+   \   0000016C   200013E3           TST      R3,#0x20
+   \   00000170   FBFFFF0A           BEQ      ??__i2cr_fcam_10
+    232             if((status =I2C_0x74) & 0x60)
+   \   00000174   183040E2           SUB      R3,R0,#+24
+   \   00000178   003093E5           LDR      R3,[R3, #+0]
+   \   0000017C   600013E3           TST      R3,#0x60
+   \   00000180   1400000A           BEQ      ??__i2cr_fcam_13
+    233             {
+    234                 I2C_0x78 = 0x20;
+   \   00000184   002081E5           STR      R2,[R1, #+0]
+    235                 I2C_0x14 |= 2;
+   \   00000188   783040E2           SUB      R3,R0,#+120
+   \   0000018C   004093E5           LDR      R4,[R3, #+0]
+   \   00000190   024084E3           ORR      R4,R4,#0x2
+   \   00000194   004083E5           STR      R4,[R3, #+0]
+    236                 I2C_0x78 = 0x40;		 
+   \   00000198   4030A0E3           MOV      R3,#+64
+   \   0000019C   003081E5           STR      R3,[R1, #+0]
+    237                 I2C_0x8C = 0x20;
+   \   000001A0   002080E5           STR      R2,[R0, #+0]
+    238             }
+    239          	 else if(status & 0x10) return 4;
+    240             else return 0xE;
+    241          	 
+    242             while(!(I2C_STAT & 0x20));     // Wait
+   \                     ??__i2cr_fcam_14:
+   \   000001A4   0C30C0E3           BIC      R3,R0,#0xC
+   \   000001A8   003093E5           LDR      R3,[R3, #+0]
+   \   000001AC   200013E3           TST      R3,#0x20
+   \   000001B0   FBFFFF0A           BEQ      ??__i2cr_fcam_14
+    243             if((status =I2C_0x74) & 0x20)
+   \   000001B4   183040E2           SUB      R3,R0,#+24
+   \   000001B8   003093E5           LDR      R3,[R3, #+0]
+   \   000001BC   200013E3           TST      R3,#0x20
+   \   000001C0   C1FFFF0A           BEQ      ??__i2cr_fcam_2
+    244             {
+    245                 I2C_0x78 = 0x20;	 
+   \   000001C4   002081E5           STR      R2,[R1, #+0]
+    246                 I2C_0x8C = 0x20;
+   \   000001C8   002080E5           STR      R2,[R0, #+0]
+    247             }
+    248          	 else if(status & 0x10) return 4;
+    249             else return 0xE; 
+    250          	 
+    251             stop();
+   \   000001CC   ........           BL       stop
+    252             return 0;
+   \   000001D0   0000A0E3           MOV      R0,#+0
+   \   000001D4   F081BDE8           POP      {R4-R8,PC}
+   \                     ??__i2cr_fcam_13:
+   \   000001D8   100013E3           TST      R3,#0x10
+   \   000001DC   0100000A           BEQ      ??__i2cr_fcam_5
+   \                     ??__i2cr_fcam_6:
+   \   000001E0   0400A0E3           MOV      R0,#+4
+   \   000001E4   F081BDE8           POP      {R4-R8,PC}
+   \                     ??__i2cr_fcam_5:
+   \   000001E8   0E00A0E3           MOV      R0,#+14
+   \   000001EC   F081BDE8           POP      {R4-R8,PC}
+   \                     ??__i2cr_fcam_11:
+   \   000001F0   1000B0F4           DC32     0xfffffffff4b00010
+    253          }
+    254          /*=============================================================================*/
+    255          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    256          int __i2cw_fm(int adr, unsigned char *data, int size)
+    257          { 
+   \                     __i2cw_fm:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0140A0E1           MOV      R4,R1
+   \   00000008   0250A0E1           MOV      R5,R2
+   \   0000000C   0070A0E1           MOV      R7,R0
+    258             int  status, tx, j=1;
+    259          
+    260             setConf();
+   \   00000010   ........           BL       setConf
+    261             disable_I2C_INT();
+   \   00000014   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000018   0160A0E3           MOV      R6,#+1
+   \   0000001C   001090E5           LDR      R1,[R0, #+0]
+   \   00000020   C020A0E3           MOV      R2,#+192
+   \   00000024   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000028   011002E0           AND      R1,R2,R1
+   \   0000002C   ........           STR      R1,[R0], #-80
+    262             I2C_WCNT = size + 1;
+   \   00000030   011085E2           ADD      R1,R5,#+1
+   \   00000034   001080E5           STR      R1,[R0, #+0]
+    263             tx = (adr & 0x7F);
+   \   00000038   7F0007E2           AND      R0,R7,#0x7F
+    264          	
+    265          	 while((status=I2C_STAT & 0xF) == 0);   // Wait
+   \                     ??__i2cw_fm_0:
+   \   0000003C   ........           LDR      R1,??DataTable23  ;; 0xfffffffff7600080
+   \   00000040   001091E5           LDR      R1,[R1, #+0]
+   \   00000044   0F1011E2           ANDS     R1,R1,#0xF
+   \   00000048   FBFFFF0A           BEQ      ??__i2cw_fm_0
+    266          	
+    267             for (int i=0; i < size;) {	   
+   \   0000004C   0020A0E3           MOV      R2,#+0
+   \   00000050   0D0000EA           B        ??__i2cw_fm_1
+    268               while (j < 4 && i < size) { tx |= data[i++] << (j++ << 3); }
+   \                     ??__i2cw_fm_2:
+   \   00000054   050052E1           CMP      R2,R5
+   \   00000058   070000AA           BGE      ??__i2cw_fm_3
+   \   0000005C   0430D2E7           LDRB     R3,[R2, +R4]
+   \   00000060   0670A0E1           MOV      R7,R6
+   \   00000064   8771A0E1           LSL      R7,R7,#+3
+   \   00000068   130780E1           ORR      R0,R0,R3, LSL R7
+   \   0000006C   016086E2           ADD      R6,R6,#+1
+   \   00000070   012082E2           ADD      R2,R2,#+1
+   \   00000074   040056E3           CMP      R6,#+4
+   \   00000078   F5FFFFBA           BLT      ??__i2cw_fm_2
+    269               I2C_TBUF = tx;
+   \                     ??__i2cw_fm_3:
+   \   0000007C   ........           LDR      R3,??DataTable24  ;; 0xfffffffff7608000
+    270                                 j = 0; tx = 0;
+   \   00000080   0060A0E3           MOV      R6,#+0
+   \   00000084   000083E5           STR      R0,[R3, #+0]
+   \   00000088   0000A0E3           MOV      R0,#+0
+    271             }
+   \                     ??__i2cw_fm_1:
+   \   0000008C   050052E1           CMP      R2,R5
+   \   00000090   EFFFFFBA           BLT      ??__i2cw_fm_2
+    272          	 
+    273             I2C_0x8C = status;
+   \   00000094   ........           LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+   \   00000098   001080E5           STR      R1,[R0, #+0]
+    274          	 
+    275             while(!(I2C_STAT & 0x20));     // Wait
+   \                     ??__i2cw_fm_4:
+   \   0000009C   0C10C0E3           BIC      R1,R0,#0xC
+   \   000000A0   001091E5           LDR      R1,[R1, #+0]
+   \   000000A4   200011E3           TST      R1,#0x20
+   \   000000A8   FBFFFF0A           BEQ      ??__i2cw_fm_4
+    276             if((status = I2C_0x74) & 0x20)
+   \   000000AC   181040E2           SUB      R1,R0,#+24
+   \   000000B0   001091E5           LDR      R1,[R1, #+0]
+   \   000000B4   200011E3           TST      R1,#0x20
+   \   000000B8   1000000A           BEQ      ??__i2cw_fm_5
+    277             {
+    278          	     I2C_0x14 |= 2;
+   \   000000BC   781040E2           SUB      R1,R0,#+120
+   \   000000C0   002091E5           LDR      R2,[R1, #+0]
+   \   000000C4   022082E3           ORR      R2,R2,#0x2
+   \   000000C8   002081E5           STR      R2,[R1, #+0]
+    279                 I2C_0x78 = 0x20;
+   \   000000CC   142040E2           SUB      R2,R0,#+20
+   \   000000D0   2010A0E3           MOV      R1,#+32
+   \   000000D4   001082E5           STR      R1,[R2, #+0]
+    280                 I2C_0x8C = 0x20;
+   \   000000D8   001080E5           STR      R1,[R0, #+0]
+    281             }
+    282          	 else if(status & 0x10) return 4;
+    283          	 else return 0xD;
+    284             
+    285             while(!(I2C_STAT & 0x20));     // Wait
+   \                     ??__i2cw_fm_6:
+   \   000000DC   0C10C0E3           BIC      R1,R0,#0xC
+   \   000000E0   001091E5           LDR      R1,[R1, #+0]
+   \   000000E4   200011E3           TST      R1,#0x20
+   \   000000E8   FBFFFF0A           BEQ      ??__i2cw_fm_6
+    286             if((status = I2C_0x74) & 0x10)	 return 0x4;
+   \   000000EC   181040E2           SUB      R1,R0,#+24
+   \   000000F0   001091E5           LDR      R1,[R1, #+0]
+   \   000000F4   100011E3           TST      R1,#0x10
+   \   000000F8   0400000A           BEQ      ??__i2cw_fm_7
+   \   000000FC   010000EA           B        ??__i2cw_fm_8
+   \                     ??__i2cw_fm_5:
+   \   00000100   100011E3           TST      R1,#0x10
+   \   00000104   0300000A           BEQ      ??__i2cw_fm_9
+   \                     ??__i2cw_fm_8:
+   \   00000108   0400A0E3           MOV      R0,#+4
+   \   0000010C   F080BDE8           POP      {R4-R7,PC}
+    287          	 if(!(status & 0x20)) return 0xD;
+   \                     ??__i2cw_fm_7:
+   \   00000110   200011E3           TST      R1,#0x20
+   \   00000114   0100001A           BNE      ??__i2cw_fm_10
+   \                     ??__i2cw_fm_9:
+   \   00000118   0D00A0E3           MOV      R0,#+13
+   \   0000011C   F080BDE8           POP      {R4-R7,PC}
+    288             I2C_0x78 = 0;
+   \                     ??__i2cw_fm_10:
+   \   00000120   0010A0E3           MOV      R1,#+0
+   \   00000124   001082E5           STR      R1,[R2, #+0]
+    289             I2C_0x8C = 0;   
+   \   00000128   001080E5           STR      R1,[R0, #+0]
+    290             stop();
+   \   0000012C   ........           BL       stop
+    291             return 0;
+   \   00000130   0000A0E3           MOV      R0,#+0
+   \   00000134   F080BDE8           POP      {R4-R7,PC}       ;; return
+    292          }   
+    293          
+    294          /*=============================================================================*/
+    295          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    296          int __i2cr_fm(int adr, unsigned char *data, int size)
+    297          { 
+   \                     __i2cr_fm:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0140A0E1           MOV      R4,R1
+   \   00000008   0250A0E1           MOV      R5,R2
+   \   0000000C   0060A0E1           MOV      R6,R0
+    298             int  status;
+    299          	
+    300             setConf();
+   \   00000010   ........           BL       setConf
+    301             disable_I2C_INT();
+   \   00000014   ........           LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+   \   00000018   C020A0E3           MOV      R2,#+192
+   \   0000001C   001090E5           LDR      R1,[R0, #+0]
+   \   00000020   FF2C82E3           ORR      R2,R2,#0xFF00
+   \   00000024   011002E0           AND      R1,R2,R1
+   \   00000028   ........           STR      R1,[R0], #-88
+    302             I2C_RCNT = size;
+   \   0000002C   ........           STR      R5,[R0], #+8
+    303             I2C_WCNT = 1;
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   001080E5           STR      R1,[R0, #+0]
+    304          
+    305             while((status=I2C_STAT & 0xF) == 0); 
+   \                     ??__i2cr_fm_0:
+   \   00000038   ........           LDR      R0,??DataTable23  ;; 0xfffffffff7600080
+   \   0000003C   000090E5           LDR      R0,[R0, #+0]
+   \   00000040   0F2000E2           AND      R2,R0,#0xF
+   \   00000044   000052E3           CMP      R2,#+0
+   \   00000048   FAFFFF0A           BEQ      ??__i2cr_fm_0
+    306             I2C_TBUF = (adr & 0x7F) | 1;
+   \   0000004C   ........           LDR      R0,??DataTable24  ;; 0xfffffffff7608000
+   \   00000050   7F2006E2           AND      R2,R6,#0x7F
+   \   00000054   012082E3           ORR      R2,R2,#0x1
+   \   00000058   002080E5           STR      R2,[R0, #+0]
+    307             I2C_0x8C = 1; 
+   \   0000005C   ........           LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+   \   00000060   001080E5           STR      R1,[R0, #+0]
+    308          	 
+    309             while((status=I2C_STAT & 0xF) == 0);   // Wait
+   \                     ??__i2cr_fm_1:
+   \   00000064   0C10C0E3           BIC      R1,R0,#0xC
+   \   00000068   001091E5           LDR      R1,[R1, #+0]
+   \   0000006C   0F2011E2           ANDS     R2,R1,#0xF
+   \   00000070   FBFFFF0A           BEQ      ??__i2cr_fm_1
+    310          	 
+    311             for( int i=0; i < size;) 
+   \   00000074   0010A0E3           MOV      R1,#+0
+   \   00000078   0B0000EA           B        ??__i2cr_fm_2
+    312          	 { 
+    313          		 int j = 0;
+    314          		 int rx = I2C_RBUF;
+   \                     ??__i2cr_fm_3:
+   \   0000007C   ........           LDR      R6,??DataTable26  ;; 0xfffffffff760c000
+   \   00000080   0030A0E3           MOV      R3,#+0
+   \   00000084   006096E5           LDR      R6,[R6, #+0]
+    315          		 while(j < 4 && i < size) data[i++] = rx >> (j++ << 3);
+   \                     ??__i2cr_fm_4:
+   \   00000088   03C0A0E1           MOV      R12,R3
+   \   0000008C   8CC1A0E1           LSL      R12,R12,#+3
+   \   00000090   56CCA0E1           ASR      R12,R6,R12
+   \   00000094   04C0C1E7           STRB     R12,[R1, +R4]
+   \   00000098   013083E2           ADD      R3,R3,#+1
+   \   0000009C   011081E2           ADD      R1,R1,#+1
+   \   000000A0   040053E3           CMP      R3,#+4
+   \   000000A4   050051B1           CMPLT    R1,R5
+   \   000000A8   F6FFFFBA           BLT      ??__i2cr_fm_4
+    316          	 }
+   \                     ??__i2cr_fm_2:
+   \   000000AC   050051E1           CMP      R1,R5
+   \   000000B0   F1FFFFBA           BLT      ??__i2cr_fm_3
+    317          	 
+    318             I2C_0x8C = status;
+   \   000000B4   002080E5           STR      R2,[R0, #+0]
+    319          	 
+    320          	 while(!(I2C_STAT & 0x20));     // Wait
+   \                     ??__i2cr_fm_5:
+   \   000000B8   0C10C0E3           BIC      R1,R0,#0xC
+   \   000000BC   001091E5           LDR      R1,[R1, #+0]
+   \   000000C0   200011E3           TST      R1,#0x20
+   \   000000C4   FBFFFF0A           BEQ      ??__i2cr_fm_5
+    321             if((status =I2C_0x74) & 0x60)
+   \   000000C8   181040E2           SUB      R1,R0,#+24
+   \   000000CC   001091E5           LDR      R1,[R1, #+0]
+   \   000000D0   600011E3           TST      R1,#0x60
+   \   000000D4   1000000A           BEQ      ??__i2cr_fm_6
+    322             {
+    323          	     I2C_0x14 |= 2;
+   \   000000D8   781040E2           SUB      R1,R0,#+120
+   \   000000DC   002091E5           LDR      R2,[R1, #+0]
+   \   000000E0   022082E3           ORR      R2,R2,#0x2
+   \   000000E4   002081E5           STR      R2,[R1, #+0]
+    324                 I2C_0x78 = 0x60;
+   \   000000E8   142040E2           SUB      R2,R0,#+20
+   \   000000EC   6010A0E3           MOV      R1,#+96
+   \   000000F0   001082E5           STR      R1,[R2, #+0]
+    325                 I2C_0x8C = 0x60;
+   \   000000F4   001080E5           STR      R1,[R0, #+0]
+    326             }
+    327          	 else if(status & 0x10) return 4;
+    328             else return 0xD;
+    329          	 
+    330             while(!(I2C_STAT & 0x20));     // Wait
+   \                     ??__i2cr_fm_7:
+   \   000000F8   0C10C0E3           BIC      R1,R0,#0xC
+   \   000000FC   001091E5           LDR      R1,[R1, #+0]
+   \   00000100   200011E3           TST      R1,#0x20
+   \   00000104   FBFFFF0A           BEQ      ??__i2cr_fm_7
+    331             if((status = I2C_0x74) & 0x10)	 return 0x4;
+   \   00000108   181040E2           SUB      R1,R0,#+24
+   \   0000010C   001091E5           LDR      R1,[R1, #+0]
+   \   00000110   100011E3           TST      R1,#0x10
+   \   00000114   0300000A           BEQ      ??__i2cr_fm_8
+   \   00000118   010000EA           B        ??__i2cr_fm_9
+   \                     ??__i2cr_fm_6:
+   \   0000011C   100011E3           TST      R1,#0x10
+   \   00000120   0200000A           BEQ      ??__i2cr_fm_10
+   \                     ??__i2cr_fm_9:
+   \   00000124   ........           B        ?Subroutine26
+    332          	 if(!(status & 0x20)) return 0xD;
+   \                     ??__i2cr_fm_8:
+   \   00000128   200011E3           TST      R1,#0x20
+   \   0000012C   0000001A           BNE      ??__i2cr_fm_11
+   \                     ??__i2cr_fm_10:
+   \   00000130   ........           B        ?Subroutine25
+    333             I2C_0x78 = 0;
+   \                     ??__i2cr_fm_11:
+   \   00000134   ........           B        ?Subroutine23
+    334             I2C_0x8C = 0;   
+    335             stop();
+    336             return 0;
+    337          }
+    338          
+    339          /*=============================================================================*/
+    340          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    341          int i2cw_pmu(int reg, unsigned char data)
+    342          {
+   \                     i2cw_pmu:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    343            int cpsr, err;
+    344                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    345                i2c_check_port_1();
+   \   00000010   ........           BL       i2c_check_port_1
+    346              __asm("SWI 4");
+   \   00000014   040000EF           SWI 4            
+    347                i2c_clk_on();
+   \   00000018   ........           BL       i2c_clk_on
+    348                err = __i2cw_pmu(MOZART, reg, data);
+   \   0000001C   0520A0E1           MOV      R2,R5
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   6200A0E3           MOV      R0,#+98
+   \   00000028   ........           B        ?Subroutine24
+    349                i2c_clk_off();
+    350              __set_CPSR(cpsr);
+    351                return err;		
+    352          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine24:
+   \   00000000   ........           BL       __i2cw_pmu
+   \                     ??Subroutine24_0:
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   ........           BL       i2c_clk_off
+   \   0000000C   06F029E1           MSR      CPSR,R6
+   \   00000010   0400A0E1           MOV      R0,R4
+   \   00000014   7080BDE8           POP      {R4-R6,PC}       ;; return
+    353          
+    354          /*=============================================================================*/
+    355          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    356          int i2cr_pmu(int reg, unsigned char *data)
+    357          {
+   \                     i2cr_pmu:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    358            int cpsr, err;
+    359                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    360                i2c_check_port_1();
+   \   00000010   ........           BL       i2c_check_port_1
+    361              __asm("SWI 4");
+   \   00000014   040000EF           SWI 4            
+    362                i2c_clk_on();	
+   \   00000018   ........           BL       i2c_clk_on
+    363                err = __i2cr_pmu(MOZART, reg, data);
+   \   0000001C   0520A0E1           MOV      R2,R5
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   6200A0E3           MOV      R0,#+98
+   \   00000028   ........           BL       __i2cr_pmu
+   \   0000002C   ........           B        ??Subroutine24_0
+    364                i2c_clk_off();
+    365              __set_CPSR(cpsr);
+    366                return err;	
+    367          }
+    368          
+    369          /*=============================================================================*/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    370          int i2cw_fm(unsigned char *data, int size)
+    371          {  
+   \                     i2cw_fm:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    372            int cpsr, err;
+    373                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    374                i2c_check_port_1();
+   \   00000010   ........           BL       i2c_check_port_1
+    375              __asm("SWI 4"); 
+   \   00000014   040000EF           SWI 4            
+    376                i2c_clk_on();	
+   \   00000018   ........           BL       i2c_clk_on
+    377                err = __i2cw_fm(FMRADIO, data, size);
+   \   0000001C   0520A0E1           MOV      R2,R5
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   2000A0E3           MOV      R0,#+32
+   \   00000028   ........           BL       __i2cw_fm
+   \   0000002C   ........           B        ??Subroutine24_0
+    378                i2c_clk_off();
+    379              __set_CPSR(cpsr);
+    380                return err;
+    381          }
+    382          /*=============================================================================*/
+
+   \                                 In segment CODE, align 4, keep-with-next
+    383          int i2cr_fm(int adr, unsigned char *data,int size)
+    384          {  
+   \                     i2cr_fm:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0140A0E1           MOV      R4,R1
+   \   00000008   0250B0E1           MOVS     R5,R2
+    385            int cpsr, err;
+    386                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    387                i2c_check_port_1();
+   \   00000010   ........           BL       i2c_check_port_1
+    388              __asm("SWI 4"); 
+   \   00000014   040000EF           SWI 4            
+    389                i2c_clk_on();	
+   \   00000018   ........           BL       i2c_clk_on
+    390                err = __i2cr_fm(FMRADIO, data, size);
+   \   0000001C   0520A0E1           MOV      R2,R5
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   2000A0E3           MOV      R0,#+32
+   \   00000028   ........           BL       __i2cr_fm
+   \   0000002C   ........           B        ??Subroutine24_0
+    391                i2c_clk_off();
+    392              __set_CPSR(cpsr);
+    393                return err;
+    394          }
+    395          /*=============================================================================*/
+    396          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    397          int i2cwx_cam(int reg, unsigned char data)
+    398          {
+   \                     i2cwx_cam:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150B0E1           MOVS     R5,R1
+    399            int cpsr, err;
+    400                cpsr = __get_CPSR();
+   \   0000000C   00600FE1           MRS      R6,CPSR
+    401                i2c_check_port_2();
+   \   00000010   ........           BL       i2c_check_port_2
+    402              __asm("SWI 4");
+   \   00000014   040000EF           SWI 4            
+    403                i2c_clk_on();		
+   \   00000018   ........           BL       i2c_clk_on
+    404                err = __i2cw_pmu(CAMERA, reg, data);
+   \   0000001C   0520A0E1           MOV      R2,R5
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   6000A0E3           MOV      R0,#+96
+   \   00000028                      REQUIRE ?Subroutine24
+   \   00000028                      ;; // Fall through to label ?Subroutine24
+    405                i2c_clk_off();
+    406              __set_CPSR(cpsr);
+    407                return err;	
+    408          }
+    409          
+    410          /*=============================================================================*/
+    411          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    412          int i2crx_cam(int reg, unsigned char *data, int size)
+    413          {
+   \                     i2crx_cam:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+   \   0000000C   0260B0E1           MOVS     R6,R2
+    414            int cpsr, err;
+    415                cpsr = __get_CPSR();
+   \   00000010   00700FE1           MRS      R7,CPSR
+    416                i2c_check_port_2();
+   \   00000014   ........           BL       i2c_check_port_2
+    417              __asm("SWI 4");
+   \   00000018   040000EF           SWI 4            
+    418                i2c_clk_on();	
+   \   0000001C   ........           BL       i2c_clk_on
+    419                err = __i2cr_fcam(CAMERA, reg, data, size);
+   \   00000020   0630A0E1           MOV      R3,R6
+   \   00000024   0520A0E1           MOV      R2,R5
+   \   00000028   0410A0E1           MOV      R1,R4
+   \   0000002C   6000A0E3           MOV      R0,#+96
+   \   00000030   ........           BL       __i2cr_fcam
+   \   00000034   0040A0E1           MOV      R4,R0
+    420                i2c_clk_off();
+   \   00000038   ........           BL       i2c_clk_off
+    421              __set_CPSR(cpsr);
+   \   0000003C   07F029E1           MSR      CPSR,R7
+    422                return err;	
+   \   00000040   0400A0E1           MOV      R0,R4
+   \   00000044   F080BDE8           POP      {R4-R7,PC}       ;; return
+    423          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   940030F4           DC32     0xfffffffff4300094
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   B40050F4           DC32     0xfffffffff45000b4
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable22:
+   \   00000000   840060F7           DC32     0xfffffffff7600084
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable23:
+   \   00000000   800060F7           DC32     0xfffffffff7600080
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable24:
+   \   00000000   008060F7           DC32     0xfffffffff7608000
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable25:
+   \   00000000   8C0060F7           DC32     0xfffffffff760008c
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable26:
+   \   00000000   00C060F7           DC32     0xfffffffff760c000
+    424          	
+    425          /*=============================================================================*/
+    426          
+
+   Maximum stack usage in bytes:
+
+     Function         CSTACK
+     --------         ------
+     __i2cr_fcam         24
+     __i2cr_fm           16
+     __i2cr_pmu          16
+     __i2cw_fm           20
+     __i2cw_pmu          16
+     disable_I2C_INT      0
+     enable_I2C_INT       0
+     i2c_check_port_1     0
+     i2c_check_port_2     0
+     i2c_clk_off          4
+     i2c_clk_on           4
+     i2c_scu_init         0
+     i2cr_fm             16
+     i2cr_pmu            16
+     i2crx_cam           20
+     i2cw_fm             16
+     i2cw_pmu            16
+     i2cwx_cam           16
+     setConf              0
+     stop                 0
+
+
+   Segment part sizes:
+
+     Function/Label   Bytes
+     --------------   -----
+     i2c_check_port_1   44
+     ?Subroutine20      12
+     i2c_check_port_2   44
+     i2c_clk_on         24
+     ?Subroutine22      12
+     i2c_clk_off        20
+     i2c_scu_init       32
+     ?Subroutine21       8
+     setConf           104
+     disable_I2C_INT    24
+     enable_I2C_INT     16
+     stop               44
+     __i2cw_pmu        228
+     ?Subroutine26       8
+     ?Subroutine25       8
+     ?Subroutine23      24
+     __i2cr_pmu        360
+     __i2cr_fcam       500
+     __i2cw_fm         312
+     __i2cr_fm         312
+     i2cw_pmu           44
+     ?Subroutine24      24
+     i2cr_pmu           48
+     i2cw_fm            48
+     i2cr_fm            48
+     i2cwx_cam          40
+     i2crx_cam          72
+     ??DataTable1        4
+     ??DataTable3        4
+     ??DataTable22       4
+     ??DataTable23       4
+     ??DataTable24       4
+     ??DataTable25       4
+     ??DataTable26       4
+      Others           104
+
+ 
+ 2 592 bytes in segment CODE
+ 
+ 2 488 bytes of CODE memory (+ 104 bytes shared)
+
+Errors: none
+Warnings: none

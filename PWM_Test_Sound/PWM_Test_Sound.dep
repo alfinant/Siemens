@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>4199536490</fileChecksum>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\PWM_Test_Sound.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\i2c.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pin_control.h</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\PWM_TestSound.map</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\PWM_TestSound.elf</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\capcom.h</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\nu_swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\interrupt.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\gpio.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.s79</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 6 36 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7 21 10 14 4 25 22 11 37 5 18 17 27 24 20 33 26 9 32 35 8 34 31 28 13</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7 21 10 14 4 25 22 11 37 5 18 17 27 24 20 33 26 12 9 32 35 8 34 31 28 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\PWM_Test_Sound.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 30</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 15 23</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\PWM_TestSound.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 16 1 6 29</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\i2c.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pin_control.h</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\PWM_Test_Sound.pbd</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\PWM_TestSound.map</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\PWM_TestSound.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.s79</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\capcom.h</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\nu_swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\interrupt.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\gpio.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 18</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20 23 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4 24 7 11 2 27 25 8 37 3 14 13 29 5 32 30</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4 24 7 11 2 27 25 8 37 3 14 13 29 26 19 34 28 9 6 33 36 5 35 32 30 10</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 22 17</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\PWM_Test_Sound.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\PWM_TestSound.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 17</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 12 18 20 31</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

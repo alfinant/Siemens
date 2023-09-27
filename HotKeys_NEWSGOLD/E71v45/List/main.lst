@@ -1,0 +1,493 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    30/Nov/2014  19:38:10 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKey #
+#                       s_NEWSGOLD\main.c                                    #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKey #
+#                       s_NEWSGOLD\main.c -D NEWSGOLD -D ELKA -D E71v45      #
+#                       -lCN C:\Users\alfin_000\Documents\Siemens\alfinant\H #
+#                       otKeys_NEWSGOLD\E71v45\List\ -o                      #
+#                       C:\Users\alfin_000\Documents\Siemens\alfinant\HotKey #
+#                       s_NEWSGOLD\E71v45\Obj\ -s9 --cpu_mode thumb          #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork -e --fpu None -I                         #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\    #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKey #
+#                       s_NEWSGOLD\E71v45\List\main.lst                      #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\HotKey #
+#                       s_NEWSGOLD\E71v45\Obj\main.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\main.c
+      1          #include "..\inc\swilib.h"
+      2          #include "def.h"
+      3          
+      4          #define FRDB  9
+      5          
+      6          typedef struct 
+      7          { CSM_RAM csm;
+      8            int unk28;
+      9            int unk2C;
+     10            int unk30;  
+     11            void *gui; 
+     12            int unk38[3]; 
+     13            int unk44; //pos
+     14            int unk48[8];  
+     15            char *appID;
+     16            int zero;
+     17          //----------------------------
+     18            NativeExplorerData expl;
+     19            int EXP_CSM_ID;
+     20            char entry[24];
+     21            WSHDR ws1;
+     22            WSHDR ws2;
+     23            WSHDR ws3;
+     24            unsigned short ws1_body[140];
+     25            unsigned short ws2_body[140];
+     26            unsigned short ws3_body[140];  
+     27          } MAIN_CSM;
+     28          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     29          static int my_handler (void *data) {return (1);}
+   \                     my_handler:
+   \   00000000   0120               MOVS     R0,#+1
+   \   00000002   7047               BX       LR               ;; return
+     30          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     31           int isJAR(WSHDR *fname)
+     32          {
+   \                     isJAR:
+   \   00000000   30B5               PUSH     {R4,R5,LR}
+   \   00000002   89B0               SUB      SP,SP,#+36
+   \   00000004   0400               MOVS     R4,R0
+     33            WSHDR ws;
+     34            unsigned short ws_body[8];
+     35            
+     36            j_CreateLocalWS(&ws, ws_body, 7);
+   \   00000006   0722               MOVS     R2,#+7
+   \   00000008   05A9               ADD      R1,SP,#+20
+   \   0000000A   6846               MOV      R0,SP
+   \   0000000C   ........           _BLF     -1605389733,??rT0xA04FB25B
+     37            j_wsprintf(&ws,"%s","jar");
+   \   00000010   09A2               ADR      R2,??isJAR_0     ;; "jar"
+   \   00000012   ....               ADR      R1,??DataTable4  ;; "%s"
+   \   00000014   6846               MOV      R0,SP
+   \   00000016   ........           _BLF     -1600918707,??rT0xA093EB4D
+     38            int jar=j_GetExtUid_ws(&ws);
+   \   0000001A   6846               MOV      R0,SP
+   \   0000001C   ........           _BLF     -1605360092,??rT0xA0502624
+   \   00000020   0500               MOVS     R5,R0
+     39            if(j_GetExtUidByFileName(fname) == jar) return 1;
+   \   00000022   2000               MOVS     R0,R4
+   \   00000024   ........           _BLF     -1605359880,??rT0xA05026F8
+   \   00000028   A842               CMP      R0,R5
+   \   0000002A   01D1               BNE      ??isJAR_1
+   \   0000002C   0120               MOVS     R0,#+1
+   \   0000002E   00E0               B        ??isJAR_2
+     40            return 0;
+   \                     ??isJAR_1:
+   \   00000030   0020               MOVS     R0,#+0
+   \                     ??isJAR_2:
+   \   00000032   09B0               ADD      SP,SP,#+36
+   \   00000034   30BD               POP      {R4,R5,PC}       ;; return
+   \   00000036   C046               Nop      
+   \                     ??isJAR_0:
+   \   00000038   6A617200           DC8      "jar"
+     41          }   
+     42          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     43          void _openExplorer(void *data)
+     44          { 
+   \                     _openExplorer:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+     45            MAIN_CSM *csm=(MAIN_CSM*)data;
+     46           
+     47            j_zeromem(&csm->expl, sizeof(NativeExplorerData)+4+24);
+     48            
+     49            csm->expl.mode=1;
+     50            csm->expl.path_to_file=j_CreateLocalWS(&csm->ws1,csm->ws1_body, 139);
+   \   00000004   ....               LDR      R6,??DataTable5  ;; 0xffffffffa04fb25b
+     51            j_wsprintf(csm->expl.path_to_file,"%s","0:");
+   \   00000006   ....               LDR      R7,??DataTable6  ;; 0xffffffffa093eb4d
+   \   00000008   2500               MOVS     R5,R4
+   \   0000000A   7035               ADDS     R5,R5,#+112
+   \   0000000C   8421               MOVS     R1,#+132
+   \   0000000E   2800               MOVS     R0,R5
+   \   00000010   ........           _BLF     -1594164224,??rT0xA0FAFC00
+   \   00000014   0120               MOVS     R0,#+1
+   \   00000016   2860               STR      R0,[R5, #+0]
+   \   00000018   8B22               MOVS     R2,#+139
+   \   0000001A   9820               MOVS     R0,#+152
+   \   0000001C   4000               LSLS     R0,R0,#+1
+   \   0000001E   2118               ADDS     R1,R4,R0
+   \   00000020   2000               MOVS     R0,R4
+   \   00000022   F430               ADDS     R0,R0,#+244
+   \   00000024   B047               BLX      R6
+   \   00000026   A860               STR      R0,[R5, #+8]
+   \   00000028   11A2               ADR      R2,??_openExplorer_0  ;; "0:"
+   \   0000002A   ....               ADR      R1,??DataTable4  ;; "%s"
+   \   0000002C   B847               BLX      R7
+     52            csm->expl.file_name=j_CreateLocalWS(&csm->ws2,csm->ws2_body, 139);
+   \   0000002E   8B22               MOVS     R2,#+139
+   \   00000030   9220               MOVS     R0,#+146
+   \   00000032   8000               LSLS     R0,R0,#+2
+   \   00000034   2118               ADDS     R1,R4,R0
+   \   00000036   8420               MOVS     R0,#+132
+   \   00000038   4000               LSLS     R0,R0,#+1
+   \   0000003A   2018               ADDS     R0,R4,R0
+   \   0000003C   B047               BLX      R6
+   \   0000003E   E860               STR      R0,[R5, #+12]
+     53            csm->expl.full_filename=j_CreateLocalWS(&csm->ws3,csm->ws3_body, 139);
+   \   00000040   8B22               MOVS     R2,#+139
+   \   00000042   D820               MOVS     R0,#+216
+   \   00000044   8000               LSLS     R0,R0,#+2
+   \   00000046   2118               ADDS     R1,R4,R0
+   \   00000048   8E20               MOVS     R0,#+142
+   \   0000004A   4000               LSLS     R0,R0,#+1
+   \   0000004C   2018               ADDS     R0,R4,R0
+   \   0000004E   B047               BLX      R6
+     54            j_wsprintf(csm->expl.full_filename,"%s","None"); 
+   \   00000050   084A               LDR      R2,??_openExplorer_0+0x4  ;; `?<Constant "None">`
+   \   00000052   E862               STR      R0,[R5, #+44]
+   \   00000054   ....               ADR      R1,??DataTable4  ;; "%s"
+   \   00000056   B847               BLX      R7
+     55            csm->expl.user_handler=my_handler;
+   \   00000058   0748               LDR      R0,??_openExplorer_0+0x8  ;; my_handler
+     56          
+     57          /*  
+     58            //Проверяем текущий appID,если наш,то получаеи его путь
+     59            if(memcmp(csm->appID,"FIL_",4)!=0) goto _openExplorer;
+     60            strcpy(csm->entry,"ENTRY_");
+     61            strcat(csm->entry,csm->appID+4);
+     62            SettingsAE_Read_ws(csm->exp_data.full_filename,FRDB,csm->entry,"FILENAME");
+     63            if(isJAR(csm->exp_data.full_filename)==1) goto _openExplorer;
+     64            GetFileNameWithExt(csm->exp_data.full_filename,csm->exp_data.file_name);
+     65            GetFileDir(csm->exp_data.full_filename,csm->exp_data.path_to_file);
+     66           
+     67          */
+     68          /*_openExplorer: */
+     69            { //обнуляем первое полуслово wsbody,по нему будем определять выбран файл или нет.
+     70              csm->expl.full_filename->wsbody[0]=0;
+   \   0000005A   0021               MOVS     R1,#+0
+   \   0000005C   6863               STR      R0,[R5, #+52]
+   \   0000005E   E86A               LDR      R0,[R5, #+44]
+   \   00000060   0068               LDR      R0,[R0, #+0]
+   \   00000062   0180               STRH     R1,[R0, #+0]
+     71              csm->EXP_CSM_ID=j_StartNativeExplorer(&csm->expl);
+   \   00000064   2800               MOVS     R0,R5
+   \   00000066   ........           _BLF     -1603692252,??rT0xA0699924
+   \   0000006A   A866               STR      R0,[R5, #+104]
+     72            }
+     73          }
+   \   0000006C   F0BD               POP      {R4-R7,PC}       ;; return
+   \   0000006E   C046               Nop      
+   \                     ??_openExplorer_0:
+   \   00000070   303A0000           DC8      "0:",+0
+   \   00000074   ........           DC32     `?<Constant "None">`
+   \   00000078   ........           DC32     my_handler
+     74          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     75          int my_onmessage(CSM_RAM *data, GBS_MSG *msg)
+     76          {
+   \                     my_onmessage:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   CBB0               SUB      SP,SP,#+300
+   \   00000004   0400               MOVS     R4,R0
+     77            WSHDR ws;
+     78            unsigned short ws_body[140];
+     79            
+     80            MAIN_CSM *csm=(MAIN_CSM*)data;
+     81          
+     82            if(csm->appID != 0)
+   \   00000006   2500               MOVS     R5,R4
+   \   00000008   1035               ADDS     R5,R5,#+16
+   \   0000000A   A86D               LDR      R0,[R5, #+88]
+   \   0000000C   0028               CMP      R0,#+0
+   \   0000000E   ....               BNE      .+5
+   \   00000010   86E0               B        ??my_onmessage_0
+     83            { 
+     84              //устанавливаем имя для 3го пункта меню
+     85              if (msg->msg==0x1B3 && msg->submess==0x2 && (int)msg->data0==2) 
+   \   00000012   4A68               LDR      R2,[R1, #+4]
+   \   00000014   C868               LDR      R0,[R1, #+12]
+   \   00000016   454E               LDR      R6,??my_onmessage_1  ;; `?<Constant "<%t>">`
+   \   00000018   FF23               MOVS     R3,#+255
+   \   0000001A   B433               ADDS     R3,R3,#+180
+   \   0000001C   9A42               CMP      R2,R3
+   \   0000001E   16D1               BNE      ??my_onmessage_2
+   \   00000020   8A68               LDR      R2,[R1, #+8]
+   \   00000022   022A               CMP      R2,#+2
+   \   00000024   6ED1               BNE      ??my_onmessage_3
+   \   00000026   0228               CMP      R0,#+2
+   \   00000028   7AD1               BNE      ??my_onmessage_0
+     86              {
+     87                WSHDR *ws=j_AllocMenuWS(csm->gui, 32);
+   \   0000002A   686A               LDR      R0,[R5, #+36]
+   \   0000002C   2021               MOVS     R1,#+32
+   \   0000002E   ........           _BLF     -1600829795,??rT0xA095469D
+     88                j_wsprintf(ws,"<%t>", LGP_FILE);
+   \   00000032   3F4A               LDR      R2,??my_onmessage_1+0x4  ;; 0xda9
+   \   00000034   0700               MOVS     R7,R0
+   \   00000036   3100               MOVS     R1,R6
+   \   00000038   ........           _BLF     -1600918707,??rT0xA093EB4D
+     89                _SetItemName(csm, 2, ws);
+   \   0000003C   3A00               MOVS     R2,R7
+   \   0000003E   0221               MOVS     R1,#+2
+   \   00000040   2000               MOVS     R0,R4
+   \   00000042   ........           _BLF     -1604078431,??rT0xA063B4A1
+     90                csm->unk44=2;
+   \   00000046   0220               MOVS     R0,#+2
+   \   00000048   6863               STR      R0,[R5, #+52]
+     91                return 0;
+   \                     ??my_onmessage_4:
+   \   0000004A   0020               MOVS     R0,#+0
+   \   0000004C   6BE0               B        ??my_onmessage_5
+     92              }
+     93              
+     94            //при открытии 3го пункта меню
+     95            if (msg->msg==0x1B3 && msg->submess==0x1 && (int)msg->data0==2)  
+     96             {
+     97               csm->csm.state=4;
+     98               _openExplorer(csm);
+     99               return 0;
+    100             }
+    101            
+    102            if (msg->msg==MSG_CSM_DESTROYED && (int)msg->data0==csm->EXP_CSM_ID)  
+   \                     ??my_onmessage_2:
+   \   0000004E   C823               MOVS     R3,#+200
+   \   00000050   DB01               LSLS     R3,R3,#+7
+   \   00000052   9A42               CMP      R2,R3
+   \   00000054   64D1               BNE      ??my_onmessage_0
+   \   00000056   2200               MOVS     R2,R4
+   \   00000058   9C32               ADDS     R2,R2,#+156
+   \   0000005A   D26B               LDR      R2,[R2, #+60]
+   \   0000005C   9042               CMP      R0,R2
+   \   0000005E   5FD1               BNE      ??my_onmessage_0
+    103             {
+    104               if(csm->expl.full_filename->wsbody[0]!=0) 
+   \   00000060   9C20               MOVS     R0,#+156
+   \   00000062   2058               LDR      R0,[R4, R0]
+   \   00000064   0068               LDR      R0,[R0, #+0]
+   \   00000066   0088               LDRH     R0,[R0, #+0]
+   \   00000068   0028               CMP      R0,#+0
+   \   0000006A   55D0               BEQ      ??my_onmessage_6
+    105               {
+    106                 int index=j_FRDB_GetIndex(csm->expl.full_filename);
+   \   0000006C   9C20               MOVS     R0,#+156
+   \   0000006E   2058               LDR      R0,[R4, R0]
+   \   00000070   ........           _BLF     -1604102975,??rT0xA06354C1
+   \   00000074   0700               MOVS     R7,R0
+    107                 if( index==-1)
+   \   00000076   0020               MOVS     R0,#+0
+   \   00000078   C043               MVNS     R0,R0
+   \   0000007A   8742               CMP      R7,R0
+   \   0000007C   35D1               BNE      ??my_onmessage_7
+    108                 {
+    109                   j_CreateLocalWS(&ws, ws_body, 139);
+   \   0000007E   8B22               MOVS     R2,#+139
+   \   00000080   05A9               ADD      R1,SP,#+20
+   \   00000082   6846               MOV      R0,SP
+   \   00000084   ........           _BLF     -1605389733,??rT0xA04FB25B
+    110                   do {
+    111                     index++;
+   \                     ??my_onmessage_8:
+   \   00000088   7F1C               ADDS     R7,R7,#+1
+    112                     j_sprintf(csm->entry,"ENTRY_%.10lu",index);
+   \   0000008A   3A00               MOVS     R2,R7
+   \   0000008C   3100               MOVS     R1,R6
+   \   0000008E   0831               ADDS     R1,R1,#+8
+   \   00000090   2000               MOVS     R0,R4
+   \   00000092   DC30               ADDS     R0,R0,#+220
+   \   00000094   ........           _BLF     -1600918707,??rT0xA093EB4D
+    113                   } while(j_SettingsAE_Read_ws(&ws,FRDB,csm->entry,"FILENAME"));
+   \   00000098   3300               MOVS     R3,R6
+   \   0000009A   1833               ADDS     R3,R3,#+24
+   \   0000009C   2200               MOVS     R2,R4
+   \   0000009E   DC32               ADDS     R2,R2,#+220
+   \   000000A0   0921               MOVS     R1,#+9
+   \   000000A2   6846               MOV      R0,SP
+   \   000000A4   ........           _BLF     -1604661269,??rT0xA05ACFEB
+   \   000000A8   0028               CMP      R0,#+0
+   \   000000AA   EDD1               BNE      ??my_onmessage_8
+   \   000000AC   9C20               MOVS     R0,#+156
+   \   000000AE   2058               LDR      R0,[R4, R0]
+    114                   
+    115                   if(isJAR(csm->expl.full_filename)==1) j_SettingsAE_SetFlag(0,FRDB,csm->entry,"RESIDENTMIDLET");
+   \   000000B0   ........           BL       isJAR
+   \   000000B4   0128               CMP      R0,#+1
+   \   000000B6   07D1               BNE      ??my_onmessage_9
+   \   000000B8   3300               MOVS     R3,R6
+   \   000000BA   2433               ADDS     R3,R3,#+36
+   \   000000BC   2200               MOVS     R2,R4
+   \   000000BE   DC32               ADDS     R2,R2,#+220
+   \   000000C0   0921               MOVS     R1,#+9
+   \   000000C2   0020               MOVS     R0,#+0
+   \   000000C4   ........           _BLF     -1604661371,??rT0xA05ACF85
+    116                   j_SettingsAE_SetFlag(0,FRDB,csm->entry,"READONLY"); 
+   \                     ??my_onmessage_9:
+   \   000000C8   3300               MOVS     R3,R6
+   \   000000CA   3433               ADDS     R3,R3,#+52
+   \   000000CC   2200               MOVS     R2,R4
+   \   000000CE   DC32               ADDS     R2,R2,#+220
+   \   000000D0   0921               MOVS     R1,#+9
+   \   000000D2   0020               MOVS     R0,#+0
+   \   000000D4   ........           _BLF     -1604661371,??rT0xA05ACF85
+    117                   j_SettingsAE_Update_ws(csm->expl.full_filename,FRDB,csm->entry,"FILENAME");
+   \   000000D8   3300               MOVS     R3,R6
+   \   000000DA   1833               ADDS     R3,R3,#+24
+   \   000000DC   2200               MOVS     R2,R4
+   \   000000DE   DC32               ADDS     R2,R2,#+220
+   \   000000E0   0921               MOVS     R1,#+9
+   \   000000E2   9C34               ADDS     R4,R4,#+156
+   \   000000E4   2068               LDR      R0,[R4, #+0]
+   \   000000E6   ........           _BLF     -1604661203,??rT0xA05AD02D
+    118                 }
+    119                 j_sprintf(csm->appID,"FIL_%.10lu",index);
+   \                     ??my_onmessage_7:
+   \   000000EA   A86D               LDR      R0,[R5, #+88]
+   \   000000EC   3A00               MOVS     R2,R7
+   \   000000EE   4036               ADDS     R6,R6,#+64
+   \   000000F0   3100               MOVS     R1,R6
+   \   000000F2   ........           _BLF     -1600918707,??rT0xA093EB4D
+    120                 j_GBS_SendMessage(MMI_CEPID,0x01B3,3);
+   \   000000F6   0F48               LDR      R0,??my_onmessage_1+0x8  ;; 0x4209
+   \   000000F8   0322               MOVS     R2,#+3
+   \   000000FA   FF21               MOVS     R1,#+255
+   \   000000FC   B431               ADDS     R1,R1,#+180
+   \   000000FE   ........           _BLF     -1610015061,??rT0xA0091EAB
+   \   00000102   0BE0               B        ??my_onmessage_10
+    121               }
+   \                     ??my_onmessage_3:
+   \   00000104   012A               CMP      R2,#+1
+   \   00000106   0BD1               BNE      ??my_onmessage_0
+   \   00000108   0228               CMP      R0,#+2
+   \   0000010A   09D1               BNE      ??my_onmessage_0
+   \   0000010C   0420               MOVS     R0,#+4
+   \   0000010E   2860               STR      R0,[R5, #+0]
+   \   00000110   2000               MOVS     R0,R4
+   \   00000112   ........           BL       _openExplorer
+   \   00000116   98E7               B.N      ??my_onmessage_4
+    122               else csm->csm.state=1;
+   \                     ??my_onmessage_6:
+   \   00000118   0120               MOVS     R0,#+1
+   \   0000011A   2860               STR      R0,[R5, #+0]
+    123               return 0;
+   \                     ??my_onmessage_10:
+   \   0000011C   0020               MOVS     R0,#+0
+   \   0000011E   02E0               B        ??my_onmessage_5
+    124             }
+    125            }
+    126            return onmessage_hotkey_menu(data,msg); 
+   \                     ??my_onmessage_0:
+   \   00000120   2000               MOVS     R0,R4
+   \   00000122   ........           _BLF     -1604077449,??rT0xA063B877
+   \                     ??my_onmessage_5:
+   \   00000126   4BB0               ADD      SP,SP,#+300
+   \   00000128   F0BD               POP      {R4-R7,PC}       ;; return
+   \   0000012A   C046               Nop      
+   \                     ??my_onmessage_1:
+   \   0000012C   ........           DC32     `?<Constant "<%t>">`
+   \   00000130   A90D0000           DC32     0xda9
+   \   00000134   09420000           DC32     0x4209
+    127          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable4:
+   \   00000000   25730000           DC8      "%s",+0
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   5BB24FA0           DC32     0xffffffffa04fb25b
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   4DEB93A0           DC32     0xffffffffa093eb4d
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   257300             DC8 "%s"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   00000000   6A617200           DC8 "jar"
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   303A00             DC8 "0:"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "None">`:
+   \   00000000   4E6F6E6500         DC8 "None"
+   \   00000005   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "<%t>">`:
+   \   00000000   3C25743E00         DC8 "<%t>"
+   \   00000005   000000             DC8 0, 0, 0
+   \   00000008   454E5452595F       DC8 "ENTRY_%.10lu"
+   \              252E31306C75
+   \              00          
+   \   00000015   000000             DC8 0, 0, 0
+   \   00000018   46494C454E41       DC8 "FILENAME"
+   \              4D4500      
+   \   00000021   000000             DC8 0, 0, 0
+   \   00000024   524553494445       DC8 "RESIDENTMIDLET"
+   \              4E544D49444C
+   \              455400      
+   \   00000033   00                 DC8 0
+   \   00000034   524541444F4E       DC8 "READONLY"
+   \              4C5900      
+   \   0000003D   000000             DC8 0, 0, 0
+   \   00000040   46494C5F252E       DC8 "FIL_%.10lu"
+   \              31306C7500  
+   \   0000004B   00                 DC8 0
+    128          
+    129          
+
+   Maximum stack usage in bytes:
+
+     Function      CSTACK
+     --------      ------
+     _openExplorer    20
+     isJAR            48
+     my_handler        0
+     my_onmessage    320
+
+
+   Segment part sizes:
+
+     Function/Label     Bytes
+     --------------     -----
+     my_handler            4
+     isJAR                60
+     _openExplorer       124
+     my_onmessage        312
+     ??DataTable4          4
+     ??DataTable5          4
+     ??DataTable6          4
+     ?<Constant "%s">      3
+     ?<Constant "jar">     4
+     ?<Constant "0:">      3
+     ?<Constant "None">    8
+     ?<Constant "<%t>">   76
+      Others             174
+
+ 
+ 686 bytes in segment CODE
+  94 bytes in segment DATA_C
+ 
+ 512 bytes of CODE  memory (+ 174 bytes shared)
+  94 bytes of CONST memory
+
+Errors: none
+Warnings: none

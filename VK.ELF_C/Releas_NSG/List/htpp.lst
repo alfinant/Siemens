@@ -1,0 +1,1353 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:35 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \htpp.c                                              #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \htpp.c -D NEWSGOLD -D DEBUG -lCN                    #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\htpp.lst                            #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\htpp.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\htpp.c
+      1          #include "http.h"
+      2          
+      3          #include <siemens\swilib.h>
+      4          #include "string_util.h"
+      5          #include "cookie.h"
+      6          #include "socket_work.h"
+      7          #include "ssl_work.h"
+      8          #include "buffer.h"
+      9          #include "url_utils.h"
+     10          
+     11          static char host[64];
+     12          
+     13          int HTTP_HEADER_LENGTH;
+     14          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     15          int HTTP_VER_MAJOR;
+     16          int HTTP_VER_MINOR;
+     17          int HTTP_STATUS;
+   \                     HTTP_STATUS:
+   \   00000000                      DS8 4
+   \                     HTTP_VER_MAJOR:
+   \   00000004                      DS8 4
+   \                     HTTP_VER_MINOR:
+   \   00000008                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     18          int HTTP_CONTENT_LENGTH;
+   \                     HTTP_CONTENT_LENGTH:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     19          int HTTP_CONNECTION;
+   \                     HTTP_CONNECTION:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     20          char HTTP_CONTENT_TYPE[256];
+   \                     HTTP_CONTENT_TYPE:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     21          char HTTP_LOCATION[512];
+   \                     HTTP_LOCATION:
+   \   00000000                      DS8 512
+     22          char HTTP_URL[512];
+     23          
+     24          //******************************************************************************
+     25          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     26          int get_line_len(char *s)
+     27          {
+     28            int len=0;
+   \                     get_line_len:
+   \   00000000   0010A0E3           MOV      R1,#+0
+     29            
+     30            while(!(*s++=='\n'))
+     31              len++;
+   \                     ??get_line_len_0:
+   \   00000004   ........           LDRB     R2,[R0], #+1
+   \   00000008   011081E2           ADD      R1,R1,#+1
+   \   0000000C   0A0052E3           CMP      R2,#+10
+   \   00000010   FBFFFF1A           BNE      ??get_line_len_0
+     32          
+     33            return len+1; 
+   \   00000014   0100A0E1           MOV      R0,R1
+   \   00000018   1EFF2FE1           BX       LR               ;; return
+     34          }
+     35          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     36          int parse_line_HTTP(char *s, int *r)
+     37          {
+   \                     parse_line_HTTP:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     38            HTTP_STATUS=0;
+   \   00000008   48009FE5           LDR      R0,??parse_line_HTTP_0  ;; HTTP_STATUS
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0010A0E3           MOV      R1,#+0
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+     39            
+     40            if(sscanf(s, "HTTP/%d.%d %d", &HTTP_VER_MAJOR, &HTTP_VER_MINOR, &HTTP_STATUS) != 3)
+   \   00000018   0010A0E1           MOV      R1,R0
+   \   0000001C   02002DE9           PUSH     {R1}
+   \   00000020   083080E2           ADD      R3,R0,#+8
+   \   00000024   30109FE5           LDR      R1,??parse_line_HTTP_0+0x4  ;; `?<Constant "HTTP/%d.%d %d">`
+   \   00000028   042080E2           ADD      R2,R0,#+4
+   \   0000002C   0400A0E1           MOV      R0,R4
+   \   00000030   F50100EF           SWI      +501
+   \   00000034   030050E3           CMP      R0,#+3
+   \   00000038   04D08DE2           ADD      SP,SP,#+4
+     41              return 0;//это не http заголовок
+   \   0000003C   0000A013           MOVNE    R0,#+0
+   \   00000040   3080BD18           POPNE    {R4,R5,PC}
+     42            *r=1;
+   \   00000044   0100A0E3           MOV      R0,#+1
+   \   00000048   000085E5           STR      R0,[R5, #+0]
+     43            return get_line_len(s);
+   \   0000004C   0400A0E1           MOV      R0,R4
+   \   00000050   3040BDE8           POP      {R4,R5,LR}       ;; Pop
+   \   00000054   ........           B        get_line_len     ;; tailcall
+   \                     ??parse_line_HTTP_0:
+   \   00000058   ........           DC32     HTTP_STATUS
+   \   0000005C   ........           DC32     `?<Constant "HTTP/%d.%d %d">`
+     44          }
+     45          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     46          int parse_line_SERVER(char *s, int *r)
+     47          {
+     48            *r=1;
+   \                     parse_line_SERVER:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+     49            return get_line_len(s);
+   \   00000008   ........           B        get_line_len     ;; tailcall
+     50          }
+     51          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     52          int parse_line_DATE(char *s, int *r)
+     53          {
+     54            *r=1;
+   \                     parse_line_DATE:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+     55            return get_line_len(s);
+   \   00000008   ........           B        get_line_len     ;; tailcall
+     56          }
+     57          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     58          int parse_line_CONTENT_TYPE(char *s, int *r)
+     59          {
+   \                     parse_line_CONTENT_TYPE:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+     60            int len;
+     61            
+     62            len=get_line_len(s);
+   \   0000000C   ........           BL       get_line_len
+   \   00000010   0060A0E1           MOV      R6,R0
+     63            
+     64            if (s[len-2]=='\r')
+   \   00000014   040086E0           ADD      R0,R6,R4
+   \   00000018   022070E5           LDRB     R2,[R0, #-2]!
+   \   0000001C   0010A0E3           MOV      R1,#+0
+   \   00000020   0D0052E3           CMP      R2,#+13
+     65              s[len-2]='\0';
+   \   00000024   0010C005           STRBEQ   R1,[R0, #+0]
+     66            else
+     67              s[len-1]='\0';
+   \   00000028   0110C015           STRBNE   R1,[R0, #+1]
+     68          
+     69            strncpy(HTTP_CONTENT_TYPE, s + 14, 127);
+   \   0000002C   18009FE5           LDR      R0,??parse_line_CONTENT_TYPE_0  ;; HTTP_CONTENT_TYPE
+   \   00000030   7F20A0E3           MOV      R2,#+127
+   \   00000034   0E1084E2           ADD      R1,R4,#+14
+   \   00000038   160100EF           SWI      +278
+     70            *r=1;
+   \   0000003C   0100A0E3           MOV      R0,#+1
+   \   00000040   000085E5           STR      R0,[R5, #+0]
+     71            return len; 
+   \   00000044   0600A0E1           MOV      R0,R6
+   \   00000048   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??parse_line_CONTENT_TYPE_0:
+   \   0000004C   ........           DC32     HTTP_CONTENT_TYPE
+     72          }
+     73          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     74          int parse_line_CONTENT_LENGTH(char *s, int *r)
+     75          { 
+   \                     parse_line_CONTENT_LENGTH:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+     76            int len;
+     77            HTTP_CONTENT_LENGTH=0;
+   \   00000004   48609FE5           LDR      R6,??parse_line_CONTENT_LENGTH_0  ;; HTTP_CONTENT_LENGTH
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \   00000014   000086E5           STR      R0,[R6, #+0]
+     78            
+     79            len=get_line_len(s); 
+   \   00000018   0400A0E1           MOV      R0,R4
+   \   0000001C   ........           BL       get_line_len
+   \   00000020   0070A0E1           MOV      R7,R0
+     80            s+=15;
+     81            HTTP_CONTENT_LENGTH=strtol(s, 0, 10);
+   \   00000024   0A20A0E3           MOV      R2,#+10
+   \   00000028   0010A0E3           MOV      R1,#+0
+   \   0000002C   0F0084E2           ADD      R0,R4,#+15
+   \   00000030   190100EF           SWI      +281
+   \   00000034   000086E5           STR      R0,[R6, #+0]
+     82            if(HTTP_CONTENT_LENGTH==0xFFFFFFFF)
+   \   00000038   010070E3           CMN      R0,#+1
+     83              return 0;
+   \   0000003C   0000A003           MOVEQ    R0,#+0
+   \   00000040   F080BD08           POPEQ    {R4-R7,PC}
+     84            *r=1;
+   \   00000044   0100A0E3           MOV      R0,#+1
+   \   00000048   000085E5           STR      R0,[R5, #+0]
+     85            return len;
+   \   0000004C   0700A0E1           MOV      R0,R7
+   \   00000050   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??parse_line_CONTENT_LENGTH_0:
+   \   00000054   ........           DC32     HTTP_CONTENT_LENGTH
+     86          }
+     87          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     88          int parse_line_CONNECTION(char *s, int  *r)
+     89          {
+   \                     parse_line_CONNECTION:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0140A0E1           MOV      R4,R1
+   \   00000008   0060A0E1           MOV      R6,R0
+     90            int len;
+     91            
+     92            len=get_line_len(s);
+   \   0000000C   ........           BL       get_line_len
+   \   00000010   0050A0E1           MOV      R5,R0
+     93            
+     94            if (s[len-2]=='\r')
+   \   00000014   060085E0           ADD      R0,R5,R6
+   \   00000018   022070E5           LDRB     R2,[R0, #-2]!
+   \   0000001C   0010A0E3           MOV      R1,#+0
+   \   00000020   0D0052E3           CMP      R2,#+13
+     95              s[len-2]='\0';
+   \   00000024   0010C005           STRBEQ   R1,[R0, #+0]
+     96            else
+     97              s[len-1]='\0';
+   \   00000028   0110C015           STRBNE   R1,[R0, #+1]
+     98            
+     99            s+=12;//sizeof("Connection: ");
+    100            
+    101            if(strcmp(s, "keep-alive")==0)
+   \   0000002C   28109FE5           LDR      R1,??parse_line_CONNECTION_0  ;; `?<Constant "keep-alive">`
+   \   00000030   0C0086E2           ADD      R0,R6,#+12
+   \   00000034   190000EF           SWI      +25
+    102              HTTP_CONNECTION=1;
+    103            else
+    104              HTTP_CONNECTION=0;
+   \   00000038   20109FE5           LDR      R1,??parse_line_CONNECTION_0+0x4  ;; HTTP_CONNECTION
+   \   0000003C   000050E3           CMP      R0,#+0
+   \   00000040   0100A003           MOVEQ    R0,#+1
+   \   00000044   0000A013           MOVNE    R0,#+0
+   \   00000048   000081E5           STR      R0,[R1, #+0]
+    105            
+    106            *r=1;
+   \   0000004C   0100A0E3           MOV      R0,#+1
+   \   00000050   000084E5           STR      R0,[R4, #+0]
+    107            
+    108            return len;
+   \   00000054   0500A0E1           MOV      R0,R5
+   \   00000058   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??parse_line_CONNECTION_0:
+   \   0000005C   ........           DC32     `?<Constant "keep-alive">`
+   \   00000060   ........           DC32     HTTP_CONNECTION
+    109          }
+    110          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    111          int parse_line_X_POWERED_BY(char *s, int *r)
+    112          {
+    113            *r=1;
+   \                     parse_line_X_POWERED_BY:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+    114            return get_line_len(s);
+   \   00000008   ........           B        get_line_len     ;; tailcall
+    115          }
+    116          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    117          int parse_line_SET_COOKIE(char *s, int *r)
+    118          {
+   \                     parse_line_SET_COOKIE:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    119            int len;
+    120            int len2;
+    121            char *s1;
+    122            char c[256];
+    123            char d[64]; 
+    124            
+    125            len=get_line_len(s);
+    126            
+    127            if (sscanf(s, "Set-Cookie: %s", c )==1)
+   \   00000004   7C609FE5           LDR      R6,??parse_line_SET_COOKIE_0  ;; `?<Constant "domain=%s">`
+   \   00000008   50DF4DE2           SUB      SP,SP,#+320
+   \   0000000C   0040A0E1           MOV      R4,R0
+   \   00000010   ........           BL       get_line_len
+   \   00000014   0050A0E1           MOV      R5,R0
+   \   00000018   0D20A0E1           MOV      R2,SP
+   \   0000001C   141086E2           ADD      R1,R6,#+20
+   \   00000020   0400A0E1           MOV      R0,R4
+   \   00000024   F50100EF           SWI      +501
+   \   00000028   010050E3           CMP      R0,#+1
+   \   0000002C   1200001A           BNE      ??parse_line_SET_COOKIE_1
+    128            {
+    129              if ((s1=strstr(s, "domain")))
+   \   00000030   0C1086E2           ADD      R1,R6,#+12
+   \   00000034   0400A0E1           MOV      R0,R4
+   \   00000038   180100EF           SWI      +280
+   \   0000003C   000050E3           CMP      R0,#+0
+   \   00000040   0200000A           BEQ      ??parse_line_SET_COOKIE_2
+    130                sscanf(s1, "domain=%s", d);
+   \   00000044   402F8DE2           ADD      R2,SP,#+256
+   \   00000048   0610A0E1           MOV      R1,R6
+   \   0000004C   F50100EF           SWI      +501
+    131              
+    132              len2=strlen(d);
+   \                     ??parse_line_SET_COOKIE_2:
+   \   00000050   400F8DE2           ADD      R0,SP,#+256
+   \   00000054   1B0000EF           SWI      +27
+    133              
+    134              if (d[len2-1]==';')
+   \   00000058   401F8DE2           ADD      R1,SP,#+256
+   \   0000005C   010080E0           ADD      R0,R0,R1
+   \   00000060   011050E5           LDRB     R1,[R0, #-1]
+   \   00000064   3B0051E3           CMP      R1,#+59
+    135                d[len2-1]='\0';
+   \   00000068   0010A003           MOVEQ    R1,#+0
+   \   0000006C   01104005           STRBEQ   R1,[R0, #-1]
+    136                   
+    137              Cookies_Add(c, d);
+   \   00000070   401F8DE2           ADD      R1,SP,#+256
+   \   00000074   0D00A0E1           MOV      R0,SP
+   \   00000078   ........           _BLF     Cookies_Add,??Cookies_Add??rA
+    138            }
+    139            return len;
+   \                     ??parse_line_SET_COOKIE_1:
+   \   0000007C   0500A0E1           MOV      R0,R5
+   \   00000080   50DF8DE2           ADD      SP,SP,#+320
+   \   00000084   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??parse_line_SET_COOKIE_0:
+   \   00000088   ........           DC32     `?<Constant "domain=%s">`
+    140          }
+    141          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    142          int parse_line_PRAGMA(char *s, int *r)
+    143          {
+    144            *r=1;
+   \                     parse_line_PRAGMA:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+    145            return get_line_len(s); 
+   \   00000008   ........           B        get_line_len     ;; tailcall
+    146          }
+    147          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    148          int parse_line_CACHE_CONTROL(char *s, int *r)
+    149          {
+    150            *r=1;
+   \                     parse_line_CACHE_CONTROL:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+    151            return get_line_len(s); 
+   \   00000008   ........           B        get_line_len     ;; tailcall
+    152          }
+    153          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    154          int parse_line_X_FRAME_OPTIONS(char *s, int *r)
+    155          {
+    156            *r=1;
+   \                     parse_line_X_FRAME_OPTIONS:
+   \   00000000   0120A0E3           MOV      R2,#+1
+   \   00000004   002081E5           STR      R2,[R1, #+0]
+    157            return get_line_len(s); 
+   \   00000008   ........           B        get_line_len     ;; tailcall
+    158          }
+    159          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    160          int parse_line_Location(char *s, int *r)
+    161          {
+   \                     parse_line_Location:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+    162            int len;
+    163            
+    164            len=get_line_len(s);
+   \   0000000C   ........           BL       get_line_len
+   \   00000010   0060A0E1           MOV      R6,R0
+    165            
+    166            if (s[len-2]=='\r')
+   \   00000014   040086E0           ADD      R0,R6,R4
+   \   00000018   022070E5           LDRB     R2,[R0, #-2]!
+   \   0000001C   0010A0E3           MOV      R1,#+0
+   \   00000020   0D0052E3           CMP      R2,#+13
+    167              s[len-2]='\0';
+   \   00000024   0010C005           STRBEQ   R1,[R0, #+0]
+    168            else
+    169              s[len-1]='\0';
+   \   00000028   0110C015           STRBNE   R1,[R0, #+1]
+    170          
+    171            strncpy(HTTP_LOCATION, s + 10, 511);
+   \   0000002C   1C009FE5           LDR      R0,??parse_line_Location_0  ;; HTTP_LOCATION
+   \   00000030   FF20A0E3           MOV      R2,#+255
+   \   00000034   402F82E3           ORR      R2,R2,#0x100
+   \   00000038   0A1084E2           ADD      R1,R4,#+10
+   \   0000003C   160100EF           SWI      +278
+    172            
+    173            *r=1;
+   \   00000040   0100A0E3           MOV      R0,#+1
+   \   00000044   000085E5           STR      R0,[R5, #+0]
+    174            
+    175            return len;  
+   \   00000048   0600A0E1           MOV      R0,R6
+   \   0000004C   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??parse_line_Location_0:
+   \   00000050   ........           DC32     HTTP_LOCATION
+    176          }
+    177          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    178          int parse_line_RN(char *s, int *r)
+    179          {
+    180            *r=1;
+   \                     parse_line_RN:
+   \   00000000   0100A0E3           MOV      R0,#+1
+   \   00000004   000081E5           STR      R0,[R1, #+0]
+    181            return 0;
+   \   00000008   0000A0E3           MOV      R0,#+0
+   \   0000000C   1EFF2FE1           BX       LR               ;; return
+    182          }
+    183          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    184          int parse_line_UNKNOWN(char *s)
+    185          {
+    186            return get_line_len(s);
+   \                     parse_line_UNKNOWN:
+   \   00000000   ........           B        get_line_len     ;; tailcall
+    187          }
+
+   \                                 In segment DATA_I, align 4, align-sorted
+    188          
+    189            void *response_headers[]=
+   \                     response_headers:
+   \   00000000                      DS8 168
+   \   000000A8                      REQUIRE `?<Initializer for response_headers>`
+   \                     HTTP_HEADER_LENGTH:
+   \   000000A8                      DS8 4
+   \   000000AC                      REQUIRE `?<Initializer for HTTP_HEADER_LENGTH>`
+   \   000000AC                      DS8 64
+   \   000000EC                      REQUIRE `?<Initializer for host>`
+   \                     HTTP_URL:
+   \   000000EC                      DS8 512
+   \   000002EC                      REQUIRE `?<Initializer for HTTP_URL>`
+    190            {
+    191              0, "HTTP/",           (void*)parse_line_HTTP,
+    192              0, "Server:",         (void*)parse_line_SERVER,
+    193              0, "Date:",           (void*)parse_line_DATE,
+    194              0, "Content-Type:",   (void*)parse_line_CONTENT_TYPE,
+    195              0, "Content-Length:", (void*)parse_line_CONTENT_LENGTH,
+    196              0, "Connection:",     (void*)parse_line_CONNECTION,
+    197              0, "X-Powered-By:",   (void*)parse_line_X_POWERED_BY,
+    198              0, "Set-Cookie:",     (void*)parse_line_SET_COOKIE,
+    199              0, "Pragma:",         (void*)parse_line_PRAGMA,
+    200              0, "Cache-control:",  (void*)parse_line_CACHE_CONTROL,
+    201              0, "X-Frame-Options:",(void*)parse_line_X_FRAME_OPTIONS,
+    202              0, "Location:",       (void*)parse_line_Location,    
+    203              0, "\r\n",            (void*)parse_line_RN,
+    204              0, NULL,              NULL,
+    205          };
+    206          
+    207          //******************************************************************************
+    208          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    209          int parseLine(char *s, void *pointer[])
+    210          {
+   \                     parseLine:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+    211            int (*f)(char *, void *[]);
+    212            
+    213            for(int i=0; pointer[i+1]; i+=3)
+   \   0000000C   0060A0E3           MOV      R6,#+0
+   \   00000010   000000EA           B        ??parseLine_0
+   \                     ??parseLine_1:
+   \   00000014   036086E2           ADD      R6,R6,#+3
+   \                     ??parseLine_0:
+   \   00000018   040085E2           ADD      R0,R5,#+4
+   \   0000001C   060190E7           LDR      R0,[R0, +R6, LSL #+2]
+   \   00000020   000050E3           CMP      R0,#+0
+   \   00000024   1000000A           BEQ      ??parseLine_2
+    214            {
+    215              if(pointer[i]==0)
+   \   00000028   060195E7           LDR      R0,[R5, +R6, LSL #+2]
+   \   0000002C   000050E3           CMP      R0,#+0
+   \   00000030   F7FFFF1A           BNE      ??parseLine_1
+    216              {
+    217                if(strncmp(s, pointer[i+1], strlen(pointer[i+1]))==0)
+   \   00000034   067185E0           ADD      R7,R5,R6, LSL #+2
+   \   00000038   040097E5           LDR      R0,[R7, #+4]
+   \   0000003C   1B0000EF           SWI      +27
+   \   00000040   041097E5           LDR      R1,[R7, #+4]
+   \   00000044   0020A0E1           MOV      R2,R0
+   \   00000048   0400A0E1           MOV      R0,R4
+   \   0000004C   150100EF           SWI      +277
+   \   00000050   000050E3           CMP      R0,#+0
+   \   00000054   EEFFFF1A           BNE      ??parseLine_1
+    218                {
+    219                  f=(int(*)(char *, void *[]))pointer[i+2];
+    220                  return f(s, pointer+i);  
+   \   00000058   082097E5           LDR      R2,[R7, #+8]
+   \   0000005C   0710A0E1           MOV      R1,R7
+   \   00000060   0400A0E1           MOV      R0,R4
+   \   00000064   32FF2FE1           BLX      R2
+   \   00000068   F080BDE8           POP      {R4-R7,PC}
+    221                }
+    222              }
+    223            }
+    224              return
+    225                parse_line_UNKNOWN(s);
+   \                     ??parseLine_2:
+   \   0000006C   0400A0E1           MOV      R0,R4
+   \   00000070   ........           BL       get_line_len
+   \   00000074   F080BDE8           POP      {R4-R7,PC}       ;; return
+    226          }
+    227          
+    228          //******************************************************************************
+    229          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    230          int ParseHeader()
+    231          {
+    232            int len=0;
+    233            int len_line;
+    234            char *buf=recv_buf;
+   \                     ParseHeader:
+   \   00000000   88009FE5           LDR      R0,??ParseHeader_0  ;; recv_buf
+   \   00000004   70402DE9           PUSH     {R4-R6,LR}
+   \   00000008   005090E5           LDR      R5,[R0, #+0]
+    235            
+    236            
+    237            HTTP_HEADER_LENGTH=0;
+   \   0000000C   80609FE5           LDR      R6,??ParseHeader_0+0x4  ;; response_headers
+   \   00000010   0040A0E3           MOV      R4,#+0
+   \   00000014   0000A0E3           MOV      R0,#+0
+   \   00000018   A80086E5           STR      R0,[R6, #+168]
+    238            
+    239            if(!buf)
+   \   0000001C   000055E3           CMP      R5,#+0
+    240              return 0;
+   \   00000020   7080BD08           POPEQ    {R4-R6,PC}
+    241          
+    242             // for(int i=0; i < sizeof(response_headers); i+=3)
+    243              //  response_headers[i]=0;
+    244              response_headers[0]=0;
+   \   00000024   000086E5           STR      R0,[R6, #+0]
+    245              response_headers[3]=0;
+   \   00000028   0C0086E5           STR      R0,[R6, #+12]
+    246              response_headers[6]=0;
+   \   0000002C   180086E5           STR      R0,[R6, #+24]
+    247              response_headers[9]=0;
+   \   00000030   240086E5           STR      R0,[R6, #+36]
+    248              response_headers[12]=0;
+   \   00000034   300086E5           STR      R0,[R6, #+48]
+    249              response_headers[15]=0;
+   \   00000038   3C0086E5           STR      R0,[R6, #+60]
+    250              response_headers[18]=0;
+   \   0000003C   480086E5           STR      R0,[R6, #+72]
+    251              response_headers[21]=0;
+   \   00000040   540086E5           STR      R0,[R6, #+84]
+    252              response_headers[24]=0;
+   \   00000044   600086E5           STR      R0,[R6, #+96]
+    253              response_headers[27]=0;
+   \   00000048   6C0086E5           STR      R0,[R6, #+108]
+    254              response_headers[30]=0;
+   \   0000004C   780086E5           STR      R0,[R6, #+120]
+    255              response_headers[33]=0;
+   \   00000050   840086E5           STR      R0,[R6, #+132]
+    256              response_headers[36]=0;
+   \   00000054   900086E5           STR      R0,[R6, #+144]
+    257              response_headers[39]=0;
+   \   00000058   9C0086E5           STR      R0,[R6, #+156]
+   \   0000005C   010000EA           B        ??ParseHeader_1
+    258              
+    259            while(len_line=parseLine(buf, response_headers))
+    260            {
+    261              len+=len_line;
+   \                     ??ParseHeader_2:
+   \   00000060   044080E0           ADD      R4,R0,R4
+    262              buf+=len_line;
+   \   00000064   055080E0           ADD      R5,R0,R5
+    263            }
+   \                     ??ParseHeader_1:
+   \   00000068   0610A0E1           MOV      R1,R6
+   \   0000006C   0500A0E1           MOV      R0,R5
+   \   00000070   ........           BL       parseLine
+   \   00000074   000050E3           CMP      R0,#+0
+   \   00000078   F8FFFF1A           BNE      ??ParseHeader_2
+    264            if(len > 0)
+   \   0000007C   010054E3           CMP      R4,#+1
+    265            {
+    266              HTTP_HEADER_LENGTH=len+2;
+   \   00000080   020084A2           ADDGE    R0,R4,#+2
+   \   00000084   A80086A5           STRGE    R0,[R6, #+168]
+    267              //HTTP_CONTENT=recv_buf+HTTP_HEADER_LENGTH;//плохая идея, ибо recv_buf выделяется через realloc
+    268            }
+    269            return HTTP_HEADER_LENGTH;
+   \   00000088   A80096E5           LDR      R0,[R6, #+168]
+   \   0000008C   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??ParseHeader_0:
+   \   00000090   ........           DC32     recv_buf
+   \   00000094   ........           DC32     response_headers
+    270          }
+    271          
+    272          //******************************************************************************
+    273          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    274          int get_path_from_url(char *dest, const char *source)
+    275          {
+   \                     get_path_from_url:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+    276            char *s1;
+    277            int c;
+    278            int len=0;
+   \   0000000C   0060A0E3           MOV      R6,#+0
+    279            const char *s2=source;
+    280            
+    281            if ((s1=strchr(source, '.')))//by alfinant 10.10.2016
+   \   00000010   2E10A0E3           MOV      R1,#+46
+   \   00000014   0500A0E1           MOV      R0,R5
+   \   00000018   180000EF           SWI      +24
+   \   0000001C   0070A0E3           MOV      R7,#+0
+   \   00000020   000050E3           CMP      R0,#+0
+   \   00000024   0900000A           BEQ      ??get_path_from_url_0
+    282            {
+    283              if (strchr(s1, '/')==0)
+   \   00000028   2F10A0E3           MOV      R1,#+47
+   \   0000002C   180000EF           SWI      +24
+   \   00000030   000050E3           CMP      R0,#+0
+   \   00000034   0500001A           BNE      ??get_path_from_url_0
+    284              {
+    285                dest[0]='/';
+   \   00000038   2F00A0E3           MOV      R0,#+47
+   \   0000003C   0000C4E5           STRB     R0,[R4, #+0]
+    286                dest[1]='\0';
+   \   00000040   0170C4E5           STRB     R7,[R4, #+1]
+    287                return 1;
+   \   00000044   0100A0E3           MOV      R0,#+1
+   \   00000048   F080BDE8           POP      {R4-R7,PC}
+    288              }
+    289            }  
+    290            
+    291            while((s1=strchr(s2, '/')))
+    292            {
+    293              s2=s1;
+    294              if (*(s2+1)!='/') break;
+    295              s2+=2;
+   \                     ??get_path_from_url_1:
+   \   0000004C   025085E2           ADD      R5,R5,#+2
+   \                     ??get_path_from_url_0:
+   \   00000050   2F10A0E3           MOV      R1,#+47
+   \   00000054   0500A0E1           MOV      R0,R5
+   \   00000058   180000EF           SWI      +24
+   \   0000005C   000050E3           CMP      R0,#+0
+   \   00000060   0300000A           BEQ      ??get_path_from_url_2
+   \   00000064   0050A0E1           MOV      R5,R0
+   \   00000068   0100D5E5           LDRB     R0,[R5, #+1]
+   \   0000006C   2F0050E3           CMP      R0,#+47
+   \   00000070   F5FFFF0A           BEQ      ??get_path_from_url_1
+    296            }   
+    297            while((c=*s2++))
+   \                     ??get_path_from_url_2:
+   \   00000074   ........           LDRB     R0,[R5], #+1
+   \   00000078   000050E3           CMP      R0,#+0
+    298            {
+    299              *dest++=c;
+   \   0000007C   ........           STRBNE   R0,[R4], #+1
+    300              len++;
+   \   00000080   01608612           ADDNE    R6,R6,#+1
+   \   00000084   FAFFFF1A           BNE      ??get_path_from_url_2
+    301            }
+    302            *dest=0;
+   \   00000088   0070C4E5           STRB     R7,[R4, #+0]
+    303            return (len);   
+   \   0000008C   0600A0E1           MOV      R0,R6
+   \   00000090   F080BDE8           POP      {R4-R7,PC}       ;; return
+    304          }
+    305          
+    306          //******************************************************************************
+    307          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    308          static char* __create_http_req(const char *url, const char *postdata, int *res_len, int flag)
+    309          { 
+   \                     __create_http_req:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    310            char *cookies;
+    311            char path[512];
+    312            char req_buf[4096];
+    313            
+    314            HTTP_HEADER_LENGTH=0;
+   \   00000004   7C819FE5           LDR      R8,??__create_http_req_0+0x4  ;; response_headers
+   \   00000008   48DD4DE2           SUB      SP,SP,#+4608
+   \   0000000C   0060A0E1           MOV      R6,R0
+   \   00000010   0140A0E1           MOV      R4,R1
+   \   00000014   0250A0E1           MOV      R5,R2
+   \   00000018   0370A0E1           MOV      R7,R3
+   \   0000001C   0000A0E3           MOV      R0,#+0
+   \   00000020   A80088E5           STR      R0,[R8, #+168]
+    315          
+    316            get_host_from_url(host, url);
+   \   00000024   0610A0E1           MOV      R1,R6
+   \   00000028   AC0088E2           ADD      R0,R8,#+172
+   \   0000002C   ........           _BLF     get_host_from_url,??get_host_from_url??rA
+    317            get_path_from_url(path, url);
+   \   00000030   0610A0E1           MOV      R1,R6
+   \   00000034   400D8DE2           ADD      R0,SP,#+4096
+   \   00000038   ........           BL       get_path_from_url
+    318            
+    319            strncpy(HTTP_URL, url, 511);
+   \   0000003C   FF20A0E3           MOV      R2,#+255
+   \   00000040   402F82E3           ORR      R2,R2,#0x100
+   \   00000044   0610A0E1           MOV      R1,R6
+    320            
+    321            if (postdata)
+   \   00000048   3C619FE5           LDR      R6,??__create_http_req_0+0x8  ;; `?<Constant "POST %s HTTP/1.0\\r\\nHos...">`
+   \   0000004C   EC0088E2           ADD      R0,R8,#+236
+   \   00000050   160100EF           SWI      +278
+   \   00000054   AC0088E2           ADD      R0,R8,#+172
+   \   00000058   01002DE9           PUSH     {R0}
+   \   0000005C   FF10A0E3           MOV      R1,#+255
+   \   00000060   C01F81E3           ORR      R1,R1,#0x300
+   \   00000064   000054E3           CMP      R4,#+0
+   \   00000068   04308DE2           ADD      R3,SP,#+4
+   \   0000006C   403D83E2           ADD      R3,R3,#+4096
+    322              snprintf(req_buf, 1023, "POST %s"
+    323                           " HTTP/1.0\r\nHost: %s"
+    324                             "\r\n", path, host);
+   \   00000070   0620A011           MOVNE    R2,R6
+    325            else
+    326              snprintf(req_buf, 1023, "GET %s"
+    327                           " HTTP/1.0\r\nHost: %s"
+    328                             "\r\n", path, host);
+   \   00000074   20208602           ADDEQ    R2,R6,#+32
+   \   00000078   04008DE2           ADD      R0,SP,#+4
+   \   0000007C   1B0100EF           SWI      +283
+   \   00000080   04D08DE2           ADD      SP,SP,#+4
+    329            
+    330            if (flag)
+   \   00000084   000057E3           CMP      R7,#+0
+   \   00000088   0200000A           BEQ      ??__create_http_req_1
+    331              strcat(req_buf, "Connection: keep-alive\r\n");
+   \   0000008C   3C1086E2           ADD      R1,R6,#+60
+   \   00000090   0D00A0E1           MOV      R0,SP
+   \   00000094   170000EF           SWI      +23
+    332            
+    333            //if(postdata)
+    334             // strcat(req_buf, "Content-Type: application/x-www-form-urlencoded; charset=utf-8\r\n");
+    335            
+    336          //куки добавим
+    337            if((cookies=Cookies_GetByHost(host)))
+   \                     ??__create_http_req_1:
+   \   00000098   AC0088E2           ADD      R0,R8,#+172
+   \   0000009C   ........           _BLF     Cookies_GetByHost,??Cookies_GetByHost??rA
+   \   000000A0   0070B0E1           MOVS     R7,R0
+   \   000000A4   0800000A           BEQ      ??__create_http_req_2
+    338            {
+    339              sprintf(req_buf + strlen(req_buf), "Cookie: %s\r\n", cookies);
+   \   000000A8   0D00A0E1           MOV      R0,SP
+   \   000000AC   1B0000EF           SWI      +27
+   \   000000B0   0720A0E1           MOV      R2,R7
+   \   000000B4   581086E2           ADD      R1,R6,#+88
+   \   000000B8   0D30A0E1           MOV      R3,SP
+   \   000000BC   030080E0           ADD      R0,R0,R3
+   \   000000C0   160000EF           SWI      +22
+    340              if(cookies)
+    341                mfree(cookies);
+   \   000000C4   0700A0E1           MOV      R0,R7
+   \   000000C8   150000EF           SWI      +21
+    342            }
+    343            
+    344            if (postdata)
+   \                     ??__create_http_req_2:
+   \   000000CC   000054E3           CMP      R4,#+0
+   \   000000D0   0900000A           BEQ      ??__create_http_req_3
+    345              sprintf(req_buf+strlen(req_buf), "Content-Length: %d\r\n", strlen(postdata));
+   \   000000D4   0400A0E1           MOV      R0,R4
+   \   000000D8   1B0000EF           SWI      +27
+   \   000000DC   0070A0E1           MOV      R7,R0
+   \   000000E0   0D00A0E1           MOV      R0,SP
+   \   000000E4   1B0000EF           SWI      +27
+   \   000000E8   0720A0E1           MOV      R2,R7
+   \   000000EC   681086E2           ADD      R1,R6,#+104
+   \   000000F0   0D30A0E1           MOV      R3,SP
+   \   000000F4   030080E0           ADD      R0,R0,R3
+   \   000000F8   160000EF           SWI      +22
+    346          
+    347            sprintf(req_buf+strlen(req_buf), "User-Agent: %s %s;\r\n", Get_Phone_Info(8), Get_Phone_Info(9));
+   \                     ??__create_http_req_3:
+   \   000000FC   0900A0E3           MOV      R0,#+9
+   \   00000100   D50100EF           SWI      +469
+   \   00000104   0070A0E1           MOV      R7,R0
+   \   00000108   0800A0E3           MOV      R0,#+8
+   \   0000010C   D50100EF           SWI      +469
+   \   00000110   0080A0E1           MOV      R8,R0
+   \   00000114   0D00A0E1           MOV      R0,SP
+   \   00000118   1B0000EF           SWI      +27
+   \   0000011C   0730A0E1           MOV      R3,R7
+   \   00000120   0820A0E1           MOV      R2,R8
+   \   00000124   801086E2           ADD      R1,R6,#+128
+   \   00000128   0D60A0E1           MOV      R6,SP
+   \   0000012C   060080E0           ADD      R0,R0,R6
+   \   00000130   160000EF           SWI      +22
+    348            
+    349            strcat(req_buf, "\r\n");
+   \   00000134   121F8FE2           ADR      R1,??__create_http_req_0  ;; "\r\n"
+   \   00000138   0D00A0E1           MOV      R0,SP
+   \   0000013C   170000EF           SWI      +23
+    350            
+    351            if (postdata)
+   \   00000140   000054E3           CMP      R4,#+0
+   \   00000144   0200000A           BEQ      ??__create_http_req_4
+    352              strcat(req_buf, postdata);
+   \   00000148   0410A0E1           MOV      R1,R4
+   \   0000014C   0D00A0E1           MOV      R0,SP
+   \   00000150   170000EF           SWI      +23
+    353            
+    354            int len = strlen(req_buf);
+   \                     ??__create_http_req_4:
+   \   00000154   0D00A0E1           MOV      R0,SP
+   \   00000158   1B0000EF           SWI      +27
+   \   0000015C   0040A0E1           MOV      R4,R0
+    355            char *buf = malloc(len);
+   \   00000160   140000EF           SWI      +20
+   \   00000164   0060A0E1           MOV      R6,R0
+    356            memcpy(buf, req_buf, len);
+   \   00000168   0420A0E1           MOV      R2,R4
+   \   0000016C   0D10A0E1           MOV      R1,SP
+   \   00000170   1E0100EF           SWI      +286
+    357            *res_len = len;
+   \   00000174   004085E5           STR      R4,[R5, #+0]
+    358            
+    359            return buf;
+   \   00000178   0600A0E1           MOV      R0,R6
+   \   0000017C   48DD8DE2           ADD      SP,SP,#+4608
+   \   00000180   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??__create_http_req_0:
+   \   00000184   0D0A0000           DC8      "\r\n",+0
+   \   00000188   ........           DC32     response_headers
+   \   0000018C   ........           DC32     `?<Constant "POST %s HTTP/1.0\\r\\nHos...">`
+    360          }
+    361          
+    362          //******************************************************************************
+    363          
+    364          static void __http_send(const char *url, char *data, int len, int flag)
+    365          {
+    366            if (strncmp(url, "https://", 8) == 0)
+    367              ssl_send_answer(url, data, len, flag);
+    368            else
+    369              send_answer(url, data, len, flag);   
+    370          }
+    371          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    372          void HttpSendReq(const char *url, int flag)
+    373          {
+   \                     HttpSendReq:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   04D04DE2           SUB      SP,SP,#+4
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   0150A0E1           MOV      R5,R1
+    374            int len; 
+    375            char *req = __create_http_req(url, NULL, &len, flag);
+   \   00000010   0530A0E1           MOV      R3,R5
+   \   00000014   0D20A0E1           MOV      R2,SP
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   ........           BL       __create_http_req
+    376            __http_send(url, req, len, flag); 
+   \   00000020   00709DE5           LDR      R7,[SP, #+0]
+   \   00000024   ........           LDR      R1,??DataTable1  ;; `?<Constant "https://">`
+   \   00000028   0060A0E1           MOV      R6,R0
+   \   0000002C   0820A0E3           MOV      R2,#+8
+   \   00000030   0400A0E1           MOV      R0,R4
+   \   00000034   150100EF           SWI      +277
+   \   00000038   000050E3           CMP      R0,#+0
+   \   0000003C   0530A0E1           MOV      R3,R5
+   \   00000040   0720A0E1           MOV      R2,R7
+   \   00000044   0610A0E1           MOV      R1,R6
+   \   00000048   0400A0E1           MOV      R0,R4
+   \   0000004C   0100001A           BNE      ??HttpSendReq_0
+   \   00000050   ........           _BLF     ssl_send_answer,??ssl_send_answer??rA
+   \   00000054   F180BDE8           POP      {R0,R4-R7,PC}
+   \                     ??HttpSendReq_0:
+   \   00000058   ........           _BLF     send_answer,??send_answer??rA
+    377          }
+   \   0000005C   F180BDE8           POP      {R0,R4-R7,PC}    ;; return
+    378          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    379          void HttpSendReqPost(const char *url, const char *postdata)
+    380          {
+   \                     HttpSendReqPost:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   04D04DE2           SUB      SP,SP,#+4
+   \   00000008   0040A0E1           MOV      R4,R0
+    381            int len;  
+    382            char *req = __create_http_req(url, postdata, &len, NULL);
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0D20A0E1           MOV      R2,SP
+   \   00000014   ........           BL       __create_http_req
+    383            __http_send(url, req, len, NULL);
+   \   00000018   00609DE5           LDR      R6,[SP, #+0]
+   \   0000001C   ........           LDR      R1,??DataTable1  ;; `?<Constant "https://">`
+   \   00000020   0050A0E1           MOV      R5,R0
+   \   00000024   0820A0E3           MOV      R2,#+8
+   \   00000028   0400A0E1           MOV      R0,R4
+   \   0000002C   150100EF           SWI      +277
+   \   00000030   000050E3           CMP      R0,#+0
+   \   00000034   0030A0E3           MOV      R3,#+0
+   \   00000038   0620A0E1           MOV      R2,R6
+   \   0000003C   0510A0E1           MOV      R1,R5
+   \   00000040   0400A0E1           MOV      R0,R4
+   \   00000044   0100001A           BNE      ??HttpSendReqPost_0
+   \   00000048   ........           _BLF     ssl_send_answer,??ssl_send_answer??rA
+   \   0000004C   7180BDE8           POP      {R0,R4-R6,PC}
+   \                     ??HttpSendReqPost_0:
+   \   00000050   ........           _BLF     send_answer,??send_answer??rA
+    384          }
+   \   00000054   7180BDE8           POP      {R0,R4-R6,PC}    ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     `?<Constant "https://">`
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for response_headers>`:
+   \   00000000   00000000....       DC32 0H, `?<Constant "HTTP/">`, parse_line_HTTP, 0H
+   \              ............
+   \              00000000    
+   \   00000010   ............       DC32 `?<Constant "Server:">`, parse_line_SERVER, 0H
+   \              ....00000000
+   \   0000001C   ............       DC32 `?<Constant "Date:">`, parse_line_DATE, 0H
+   \              ....00000000
+   \   00000028   ............       DC32 `?<Constant "Content-Type:">`, parse_line_CONTENT_TYPE, 0H
+   \              ....00000000
+   \   00000034   ............       DC32 `?<Constant "Content-Length:">`, parse_line_CONTENT_LENGTH, 0H
+   \              ....00000000
+   \   00000040   ............       DC32 `?<Constant "Connection:">`, parse_line_CONNECTION, 0H
+   \              ....00000000
+   \   0000004C   ............       DC32 `?<Constant "X-Powered-By:">`, parse_line_X_POWERED_BY, 0H
+   \              ....00000000
+   \   00000058   ............       DC32 `?<Constant "Set-Cookie:">`, parse_line_SET_COOKIE, 0H
+   \              ....00000000
+   \   00000064   ............       DC32 `?<Constant "Pragma:">`, parse_line_PRAGMA, 0H
+   \              ....00000000
+   \   00000070   ............       DC32 `?<Constant "Cache-control:">`, parse_line_CACHE_CONTROL, 0H
+   \              ....00000000
+   \   0000007C   ............       DC32 `?<Constant "X-Frame-Options:">`, parse_line_X_FRAME_OPTIONS, 0H
+   \              ....00000000
+   \   00000088   ............       DC32 `?<Constant "Location:">`, parse_line_Location, 0H
+   \              ....00000000
+   \   00000094   ............       DC32 `?<Constant "\\r\\n">`, parse_line_RN, 0H, 0H, 0H
+   \              ....00000000
+   \              000000000000
+   \              0000        
+   \                     `?<Initializer for HTTP_HEADER_LENGTH>`:
+   \   000000A8   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for host>`:
+   \   000000AC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000000BC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000000CC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000000DC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \                     `?<Initializer for HTTP_URL>`:
+   \   000000EC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000000FC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000010C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000011C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000012C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000013C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000014C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000015C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000016C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000017C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000018C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000019C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001AC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001BC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001CC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001DC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001EC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000001FC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000020C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000021C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000022C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000023C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000024C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000025C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000026C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000027C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000028C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000029C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000002AC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000002BC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000002CC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   000002DC   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Set-Cookie:">`:
+   \   00000000   5365742D436F       DC8 "Set-Cookie:"
+   \              6F6B69653A00
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "keep-alive">`:
+   \   00000000   6B6565702D61       DC8 "keep-alive"
+   \              6C69766500  
+   \   0000000B   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "domain=%s">`:
+   \   00000000   646F6D61696E       DC8 "domain=%s"
+   \              3D257300    
+   \   0000000A   0000               DC8 0, 0
+   \   0000000C   646F6D61696E       DC8 "domain"
+   \              00          
+   \   00000013   00                 DC8 0
+   \   00000014   5365742D436F       DC8 "Set-Cookie: %s"
+   \              6F6B69653A20
+   \              257300      
+   \   00000023   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "POST %s HTTP/1.0\\r\\nHos...">`:
+   \   00000000   504F53542025       DC8 "POST %s HTTP/1.0\015\012Host: %s\015\012"
+   \              732048545450
+   \              2F312E300D0A
+   \              486F73743A20
+   \              25730D0A00  
+   \   0000001D   000000             DC8 0, 0, 0
+   \   00000020   474554202573       DC8 "GET %s HTTP/1.0\015\012Host: %s\015\012"
+   \              20485454502F
+   \              312E300D0A48
+   \              6F73743A2025
+   \              730D0A00    
+   \   0000003C   436F6E6E6563       DC8 "Connection: keep-alive\015\012"
+   \              74696F6E3A20
+   \              6B6565702D61
+   \              6C6976650D0A
+   \              00          
+   \   00000055   000000             DC8 0, 0, 0
+   \   00000058   436F6F6B6965       DC8 "Cookie: %s\015\012"
+   \              3A2025730D0A
+   \              00          
+   \   00000065   000000             DC8 0, 0, 0
+   \   00000068   436F6E74656E       DC8 "Content-Length: %d\015\012"
+   \              742D4C656E67
+   \              74683A202564
+   \              0D0A00      
+   \   0000007D   000000             DC8 0, 0, 0
+   \   00000080   557365722D41       DC8 "User-Agent: %s %s;\015\012"
+   \              67656E743A20
+   \              25732025733B
+   \              0D0A00      
+   \   00000095   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "HTTP/">`:
+   \   00000000   485454502F00       DC8 "HTTP/"
+   \   00000006   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Server:">`:
+   \   00000000   536572766572       DC8 "Server:"
+   \              3A00        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Date:">`:
+   \   00000000   446174653A00       DC8 "Date:"
+   \   00000006   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Content-Type:">`:
+   \   00000000   436F6E74656E       DC8 "Content-Type:"
+   \              742D54797065
+   \              3A00        
+   \   0000000E   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Content-Length:">`:
+   \   00000000   436F6E74656E       DC8 "Content-Length:"
+   \              742D4C656E67
+   \              74683A00    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Connection:">`:
+   \   00000000   436F6E6E6563       DC8 "Connection:"
+   \              74696F6E3A00
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "X-Powered-By:">`:
+   \   00000000   582D506F7765       DC8 "X-Powered-By:"
+   \              7265642D4279
+   \              3A00        
+   \   0000000E   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "https://">`:
+   \   00000000   68747470733A       DC8 "https://"
+   \              2F2F00      
+   \   00000009   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Pragma:">`:
+   \   00000000   507261676D61       DC8 "Pragma:"
+   \              3A00        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Cache-control:">`:
+   \   00000000   43616368652D       DC8 "Cache-control:"
+   \              636F6E74726F
+   \              6C3A00      
+   \   0000000F   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "X-Frame-Options:">`:
+   \   00000000   582D4672616D       DC8 "X-Frame-Options:"
+   \              652D4F707469
+   \              6F6E733A00  
+   \   00000011   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Location:">`:
+   \   00000000   4C6F63617469       DC8 "Location:"
+   \              6F6E3A00    
+   \   0000000A   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \                     `?<Constant "\\r\\n">`:
+   \   00000000   0D0A00             DC8 "\015\012"
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "HTTP/%d.%d %d">`:
+   \   00000000   485454502F25       DC8 "HTTP/%d.%d %d"
+   \              642E25642025
+   \              6400        
+   \   0000000E   0000               DC8 0, 0
+
+   Maximum stack usage in bytes:
+
+     Function                   CSTACK
+     --------                   ------
+     HttpSendReq                   24
+     HttpSendReqPost               20
+     ParseHeader                   16
+     __create_http_req           4636
+     get_line_len                   0
+     get_path_from_url             20
+     parseLine                     20
+     parse_line_CACHE_CONTROL       4
+     parse_line_CONNECTION         16
+     parse_line_CONTENT_LENGTH     20
+     parse_line_CONTENT_TYPE       16
+     parse_line_DATE                4
+     parse_line_HTTP               16
+     parse_line_Location           16
+     parse_line_PRAGMA              4
+     parse_line_RN                  0
+     parse_line_SERVER              4
+     parse_line_SET_COOKIE        336
+     parse_line_UNKNOWN             4
+     parse_line_X_FRAME_OPTIONS     4
+     parse_line_X_POWERED_BY        4
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     HTTP_STATUS                      12
+     HTTP_CONTENT_LENGTH               4
+     HTTP_CONNECTION                   4
+     HTTP_CONTENT_TYPE               256
+     HTTP_LOCATION                   512
+     get_line_len                     28
+     parse_line_HTTP                  96
+     parse_line_SERVER                12
+     parse_line_DATE                  12
+     parse_line_CONTENT_TYPE          80
+     parse_line_CONTENT_LENGTH        88
+     parse_line_CONNECTION           100
+     parse_line_X_POWERED_BY          12
+     parse_line_SET_COOKIE           140
+     parse_line_PRAGMA                12
+     parse_line_CACHE_CONTROL         12
+     parse_line_X_FRAME_OPTIONS       12
+     parse_line_Location              84
+     parse_line_RN                    16
+     parse_line_UNKNOWN                4
+     response_headers                748
+     parseLine                       120
+     ParseHeader                     152
+     get_path_from_url               148
+     __create_http_req               400
+     HttpSendReq                      96
+     HttpSendReqPost                  88
+     ??DataTable1                      4
+     ?<Initializer for response_headers>
+                                     748
+     ?<Constant "Set-Cookie:">        12
+     ?<Constant "keep-alive">         12
+     ?<Constant "domain=%s">          36
+     ?<Constant "POST %s HTTP/1.0\r\nHos...">
+                                     152
+     ?<Constant "HTTP/">               8
+     ?<Constant "Server:">             8
+     ?<Constant "Date:">               8
+     ?<Constant "Content-Type:">      16
+     ?<Constant "Content-Length:">    16
+     ?<Constant "Connection:">        12
+     ?<Constant "X-Powered-By:">      16
+     ?<Constant "https://">           12
+     ?<Constant "Pragma:">             8
+     ?<Constant "Cache-control:">     16
+     ?<Constant "X-Frame-Options:">   20
+     ?<Constant "Location:">          12
+     ?<Constant "\r\n">                3
+     ?<Constant "HTTP/%d.%d %d">      16
+      Others                         168
+
+ 
+ 1 860 bytes in segment CODE
+   383 bytes in segment DATA_C
+   748 bytes in segment DATA_I
+   748 bytes in segment DATA_ID
+   788 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 716 bytes of CODE  memory (+ 168 bytes shared)
+ 1 131 bytes of CONST memory
+ 1 536 bytes of DATA  memory
+
+Errors: none
+Warnings: none

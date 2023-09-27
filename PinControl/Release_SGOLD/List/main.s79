@@ -1,0 +1,553 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   09/Oct/2014  23:03:31 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\main.c                                /
+//    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\main.c -D SGOLD -D LUMBERG -lCN       /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\Release_SGOLD\List\ -la               /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\Release_SGOLD\List\ -o                /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\Release_SGOLD\Obj\ -z9 --cpu_mode     /
+//                       arm --endian little --cpu ARM926EJ-S --stack_align  /
+//                       4 --interwork -e --fpu None --dlib_config           /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl /
+//                       5tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens /
+//                       \IAR\ARM\INC\ --inline_threshold=2                  /
+//    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfina /
+//                       nt\PinControl\Release_SGOLD\List\main.s79           /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        PUBWEAK `?*?DATA_ID`
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable2 EQU 0
+        MULTWEAK ??ElfKiller??rT
+        MULTWEAK ??InitPin??rT
+        MULTWEAK ??SaveRegMap??rT
+        MULTWEAK ??digitalRead??rT
+        MULTWEAK ??digitalWrite??rT
+        MULTWEAK ??i2cr_pmu??rA
+        MULTWEAK ??kill_data??rA
+        MULTWEAK ??main??rT
+        MULTWEAK ??pinMode??rT
+        PUBWEAK ?init?tab?DATA_I
+        PUBWEAK CCU0
+        PUBWEAK CCU1
+        PUBLIC ElfKiller
+        FUNCTION ElfKiller,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC InitPin
+        FUNCTION InitPin,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC SaveRegMap
+        FUNCTION SaveRegMap,0201H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC connector
+        PUBLIC `data`
+        PUBLIC digitalRead
+        FUNCTION digitalRead,0203H
+        PUBLIC digitalWrite
+        FUNCTION digitalWrite,0203H
+        PUBLIC main
+        FUNCTION main,0a03H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC map
+        PUBLIC pinMode
+        FUNCTION pinMode,0203H
+        PUBLIC save_connector
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+i2cr_pmu            SYMBOL "i2cr_pmu"
+kill_data           SYMBOL "kill_data"
+ElfKiller           SYMBOL "ElfKiller"
+??ElfKiller??rT     SYMBOL "??rT", ElfKiller
+InitPin             SYMBOL "InitPin"
+??InitPin??rT       SYMBOL "??rT", InitPin
+SaveRegMap          SYMBOL "SaveRegMap"
+??SaveRegMap??rT    SYMBOL "??rT", SaveRegMap
+digitalRead         SYMBOL "digitalRead"
+??digitalRead??rT   SYMBOL "??rT", digitalRead
+digitalWrite        SYMBOL "digitalWrite"
+??digitalWrite??rT  SYMBOL "??rT", digitalWrite
+??i2cr_pmu??rA      SYMBOL "??rA", i2cr_pmu
+??kill_data??rA     SYMBOL "??rA", kill_data
+main                SYMBOL "main"
+??main??rT          SYMBOL "??rT", main
+pinMode             SYMBOL "pinMode"
+??pinMode??rT       SYMBOL "??rT", pinMode
+
+        EXTERN i2cr_pmu
+        FUNCTION i2cr_pmu,0202H
+        EXTERN kill_data
+        FUNCTION kill_data,0202H
+
+
+        ASEGN DATA_AN:DATA:NOROOT,0f4000000H
+// CAPCOM_TypeDef __data CCU0
+CCU0:
+        DS8 256
+
+        ASEGN DATA_AN:DATA:NOROOT,0f4100000H
+// CAPCOM_TypeDef __data CCU1
+CCU1:
+        DS8 256
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+// uint32_t __data connector[13]
+connector:
+        DS8 52
+        REQUIRE `?<Initializer for connector>`
+// uint32_t __data save_connector[13]
+save_connector:
+        DS8 52
+        REQUIRE `?<Initializer for save_connector>`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??InitPin??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE InitPin
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function InitPin
+        ARM
+// __??Code32?? __code __interwork __atpcs void InitPin(uint8_t)
+InitPin:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        CMP      R0,#+13
+        POPCS    {PC}
+        LDR      R1,??DataTable3  ;; connector
+        LDR      R2,[R1, +R0, LSL #+2]
+        MOVS     R3,R2
+        POPEQ    {PC}
+        ADD      R0,R1,R0, LSL #+2
+        CMP      R2,#+1
+        BNE      ??InitPin_0
+        MOV      R2,#+0
+        ADD      R1,R0,#+52
+        MOV      R0,#+16
+        _BLF     i2cr_pmu,??i2cr_pmu??rA
+        POP      {PC}
+??InitPin_0:
+        MOV      R1,#-201326592
+        MOV      R2,#+0
+        STR      R2,[R1, #+0]
+        ORR      R12,R1,#0x100000
+        STR      R2,[R12, #+0]
+        LDR      LR,[R3, #+0]
+        STR      LR,[R0, #+52]
+        STR      R2,[R3, #+0]
+        MOV      R0,#+256
+        STR      R0,[R1, #+0]
+        STR      R0,[R12, #+0]
+        POP      {PC}             ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??pinMode??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE pinMode
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function pinMode
+        ARM
+// __??Code32?? __code __interwork __atpcs void pinMode(uint8_t, uint8_t)
+pinMode:
+        LDR      R2,??DataTable3  ;; connector
+        LDR      R0,[R2, +R0, LSL #+2]
+        CMP      R0,#+0
+        BXEQ     LR
+        CMP      R1,#+0
+        MOVEQ    R1,#+256
+        BEQ      ??pinMode_0
+        CMP      R1,#+1
+        BNE      ??pinMode_1
+        MOV      R1,#+1280
+??pinMode_0:
+        STR      R1,[R0, #+0]
+        BX       LR
+??pinMode_1:
+        CMP      R1,#+2
+        MOVEQ    R1,#+4352
+        BEQ      ??pinMode_0
+        CMP      R1,#+3
+        MOVEQ    R1,#+5376
+        BEQ      ??pinMode_0
+        CMP      R1,#+4
+        MOVEQ    R1,#+8448
+        B        ?Subroutine7
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??digitalWrite??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE digitalWrite
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function digitalWrite
+        ARM
+// __??Code32?? __code __interwork __atpcs void digitalWrite(uint8_t, uint8_t)
+digitalWrite:
+        LDR      R2,??DataTable3  ;; connector
+        LDR      R0,[R2, +R0, LSL #+2]
+        CMP      R0,#+0
+        BXEQ     LR
+        CMP      R1,#+1
+        LDREQ    R1,[R0, #+0]
+        ORREQ    R1,R1,#0x200
+        STREQ    R1,[R0, #+0]
+        BXEQ     LR
+        CMP      R1,#+0
+        LDREQ    R1,[R0, #+0]
+        BICEQ    R1,R1,#0x200
+        CFI EndBlock cfiBlock5
+        REQUIRE ?Subroutine7
+        ;; // Fall through to label ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI NoFunction
+        ARM
+?Subroutine7:
+        STREQ    R1,[R0, #+0]
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock6
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??digitalRead??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock7
+        REQUIRE digitalRead
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI Function digitalRead
+        ARM
+// __??Code32?? __code __interwork __atpcs int digitalRead(uint8_t)
+digitalRead:
+        LDR      R2,??DataTable3  ;; connector
+        MOV      R1,#+0
+        LDR      R0,[R2, +R0, LSL #+2]
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+0]
+        ANDNE    R1,R0,#0x200
+        MOV      R0,R1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock8
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     connector
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??ElfKiller??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock9
+        REQUIRE ElfKiller
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon1
+        CFI Function ElfKiller
+        ARM
+ElfKiller:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        SWI      +32789
+        MOV      R1,R0
+        LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+        POP      {LR}             ;; Pop
+        CFI ?RET R14
+        CFI CFA R13+0
+        _BF      kill_data,??kill_data??rA  ;; tailcall
+        DATA
+??ElfKiller_0:
+        DC32     SFB(ELFBEGIN)
+        CFI EndBlock cfiBlock10
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??SaveRegMap??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock11
+        REQUIRE SaveRegMap
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+`data`:
+        DS8 24
+        REQUIRE `?<Initializer for data>`
+map:
+        DS8 4
+        REQUIRE `?<Initializer for map>`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon1
+        CFI Function SaveRegMap
+        ARM
+SaveRegMap:
+        PUSH     {R0,R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+16
+        MOV      R1,#+0
+        LDR      R4,??SaveRegMap_0  ;; `data`
+        STR      R1,[SP, #+0]
+        MOV      R0,#+0
+??SaveRegMap_1:
+        LDR      R1,[R4, #+24]
+        LDR      R2,[R1], #+4
+        STR      R1,[R4, #+24]
+        STR      R2,[R4, +R0, LSL #+2]
+        ADD      R0,R0,#+1
+        CMP      R0,#+6
+        BLT      ??SaveRegMap_1
+        LDR      R0,??SaveRegMap_0+0x4  ;; `?<Constant "0:\\\\gpio.bin">`
+        MOV      R3,SP
+        MOV      R2,#+384
+        MOV      R1,#+2
+        ORR      R1,R1,#0x8300
+        SWI      +10
+        MOV      R5,R0
+        MOV      R3,SP
+        MOV      R2,#+24
+        MOV      R1,R4
+        SWI      +12
+        MOV      R1,SP
+        MOV      R0,R5
+        SWI      +13
+        POP      {R0,R4,R5,PC}    ;; return
+        DATA
+??SaveRegMap_0:
+        DC32     `data`
+        DC32     `?<Constant "0:\\\\gpio.bin">`
+        CFI EndBlock cfiBlock12
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??main??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock13
+        REQUIRE main
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon1
+        CFI Function main
+        ARM
+main:
+        LDR      R1,??main_0      ;; `?<Constant "ELF started!">`
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R0,#+1
+        SWI      +328
+        MOV      R0,#+3
+        BL       InitPin
+        MOV      R0,#+7
+        BL       InitPin
+        MOV      R1,#+1
+        MOV      R0,#+7
+        BL       pinMode
+        MOV      R1,#+1
+        MOV      R0,#+3
+        BL       pinMode
+        MOV      R1,#+1
+        MOV      R0,#+3
+        BL       digitalWrite
+        LDR      R0,??main_0+0x4  ;; ElfKiller
+        SWI      +369
+        MOV      R0,#+0
+        POP      {PC}             ;; return
+        DATA
+??main_0:
+        DC32     `?<Constant "ELF started!">`
+        DC32     ElfKiller
+        CFI EndBlock cfiBlock14
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??i2cr_pmu??rA:
+        LDR      R12,??Subroutine8_0  ;; i2cr_pmu
+        BX       R12
+        DATA
+??Subroutine8_0:
+        DC32     i2cr_pmu
+        CFI EndBlock cfiBlock15
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??kill_data??rA:
+        LDR      R12,??Subroutine9_0  ;; kill_data
+        BX       R12
+        DATA
+??Subroutine9_0:
+        DC32     kill_data
+        CFI EndBlock cfiBlock16
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for connector>`:
+        DATA
+        DC32 0, 1, 0, 4096786512, 4096786508, 4096786520, 4096786516
+        DC32 4096786524, 0, 0, 0, 0, 0
+`?<Initializer for save_connector>`:
+        DC32 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for data>`:
+        DATA
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+`?<Initializer for map>`:
+        DC32 0F430004CH
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "0:\\\\gpio.bin">`:
+        DATA
+        DC8 "0:\\gpio.bin"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "ELF started!">`:
+        DATA
+        DC8 "ELF started!"
+        DC8 0, 0, 0
+
+        END
+// 
+// 572 bytes in segment CODE
+// 512 bytes in segment DATA_AN
+//  28 bytes in segment DATA_C
+// 132 bytes in segment DATA_I
+// 132 bytes in segment DATA_ID
+//  12 bytes in segment INITTAB
+// 
+// 520 bytes of CODE  memory (+  64 bytes shared)
+// 160 bytes of CONST memory
+// 132 bytes of DATA  memory (+ 512 bytes shared)
+//
+//Errors: none
+//Warnings: none

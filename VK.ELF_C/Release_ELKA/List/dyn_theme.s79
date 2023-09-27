@@ -1,0 +1,878 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   16/Feb/2023  22:41:12 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\dyn_theme.c                                       /
+//    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\dyn_theme.c -D NEWSGOLD -D ELKA -D DEBUG -lCN     /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -la                            /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -o D:\Users\alfinant\Documents /
+//                       \Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\Obj\ -z9     /
+//                       --cpu_mode arm --endian little --cpu ARM926EJ-S     /
+//                       --stack_align 4 --interwork --diag_suppress Pe301   /
+//                       -e --fpu None --dlib_config                         /
+//                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I D:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\dyn_theme.s79                   /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME dyn_theme
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable2 EQU 0
+??DataTable3 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+        MULTWEAK ??DisableDynTheme??rT
+        MULTWEAK ??EnableDynTheme??rT
+        MULTWEAK ??FreeDynTheme??rT
+        MULTWEAK ??LoadDynTheme??rT
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC DisableDynTheme
+        FUNCTION DisableDynTheme,0201H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC EnableDynTheme
+        FUNCTION EnableDynTheme,0201H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC FreeDynTheme
+        FUNCTION FreeDynTheme,0201H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC LoadDynTheme
+        FUNCTION LoadDynTheme,0201H
+        LOCFRAME CSTACK, 144, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+DisableDynTheme     SYMBOL "DisableDynTheme"
+??DisableDynTheme??rT SYMBOL "??rT", DisableDynTheme
+EnableDynTheme      SYMBOL "EnableDynTheme"
+??EnableDynTheme??rT SYMBOL "??rT", EnableDynTheme
+FreeDynTheme        SYMBOL "FreeDynTheme"
+??FreeDynTheme??rT  SYMBOL "??rT", FreeDynTheme
+LoadDynTheme        SYMBOL "LoadDynTheme"
+??LoadDynTheme??rT  SYMBOL "??rT", LoadDynTheme
+
+        EXTERN APP_DIR
+        EXTERN CFG_ENA_THEME
+
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+my_statusbar_st:
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 12
+        DS8 12
+        DS8 12
+        DS8 12
+        DS8 12
+        DS8 12
+        DS8 12
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+        DS8 4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??LoadDynTheme??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE LoadDynTheme
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function LoadDynTheme
+        ARM
+LoadDynTheme:
+        LDR      R0,??DataTable6  ;; CFG_ENA_THEME
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        SUB      SP,SP,#+128
+        CFI CFA R13+144
+        LDR      R0,[R0, #+0]
+        CMP      R0,#+0
+        BEQ      ??LoadDynTheme_0
+        LDR      R4,??DataTable7  ;; my_statusbar_st
+        LDR      R5,??LoadDynTheme_1  ;; `?<Constant "%stheme\\\\sel_1line.png">`
+        LDR      R0,[R4, #+0]
+        LDR      R6,??LoadDynTheme_1+0x4  ;; APP_DIR
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_2
+        MOV      R0,#+17
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+56
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+112
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+0]
+??LoadDynTheme_2:
+        LDR      R0,[R4, #+4]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_3
+        SWI      +736
+        MOV      R1,R0
+        MOV      R2,#+12
+        ADD      R0,R4,#+68
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+80
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+4]
+??LoadDynTheme_3:
+        LDR      R0,[R4, #+8]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_4
+        MOV      R0,#+2
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+80
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+52
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+8]
+??LoadDynTheme_4:
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_5
+        MOV      R0,#+4
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+92
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+24
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+12]
+??LoadDynTheme_5:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_6
+        MOV      R0,#+7
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+104
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+168
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+16]
+??LoadDynTheme_6:
+        LDR      R0,[R4, #+20]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_7
+        MOV      R0,#+9
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+116
+        SWI      +286
+        MOV      R3,R6
+        ADD      R2,R5,#+144
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+20]
+??LoadDynTheme_7:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_8
+        MOV      R0,#+8
+        SWI      +736
+        MOV      R2,#+12
+        MOV      R1,R0
+        ADD      R0,R4,#+128
+        SWI      +286
+        MOV      R3,R6
+        MOV      R2,R5
+        MOV      R1,#+127
+        MOV      R0,SP
+        SWI      +283
+        MOV      R1,#+2
+        MOV      R0,SP
+        SWI      +489
+        STR      R0,[R4, #+24]
+??LoadDynTheme_8:
+        LDR      R0,[R4, #+40]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_9
+        LDR      R0,??LoadDynTheme_1+0x8  ;; 0x64808080
+        STR      R0,[R4, #+40]
+        MOV      R0,#+155
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+152
+        SWI      +286
+??LoadDynTheme_9:
+        LDR      R0,[R4, #+44]
+        MOV      R5,#+1677721600
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_10
+        STR      R5,[R4, #+44]
+        MOV      R0,#+156
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+156
+        SWI      +286
+??LoadDynTheme_10:
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_11
+        STR      R5,[R4, #+32]
+        MOV      R0,#+129
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+144
+        SWI      +286
+??LoadDynTheme_11:
+        LDR      R0,[R4, #+28]
+        MVN      R5,#-1694498816
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_12
+        STR      R5,[R4, #+28]
+        MOV      R0,#+102
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+140
+        SWI      +286
+??LoadDynTheme_12:
+        LDR      R0,[R4, #+36]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_13
+        STR      R5,[R4, #+36]
+        MOV      R0,#+105
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+148
+        SWI      +286
+??LoadDynTheme_13:
+        LDR      R0,[R4, #+52]
+        LDR      R5,??LoadDynTheme_1+0xC  ;; 0x64a6805d
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_14
+        STR      R5,[R4, #+52]
+        MOV      R0,#+119
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+164
+        SWI      +286
+??LoadDynTheme_14:
+        LDR      R0,[R4, #+48]
+        CMP      R0,#+0
+        BNE      ??LoadDynTheme_0
+        STR      R5,[R4, #+48]
+        MOV      R0,#+115
+        SWI      +302
+        MOV      R2,#+4
+        MOV      R1,R0
+        ADD      R0,R4,#+160
+        SWI      +286
+??LoadDynTheme_0:
+        ADD      SP,SP,#+128      ;; stack cleaning
+        CFI CFA R13+16
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??LoadDynTheme_1:
+        DC32     `?<Constant "%stheme\\\\sel_1line.png">`
+        DC32     APP_DIR
+        DC32     0x64808080
+        DC32     0x64a6805d
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??EnableDynTheme??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE EnableDynTheme
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function EnableDynTheme
+        ARM
+EnableDynTheme:
+        LDR      R0,??DataTable6  ;; CFG_ENA_THEME
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        LDR      R0,[R0, #+0]
+        CMP      R0,#+0
+        POPEQ    {R4,PC}
+        LDR      R4,??DataTable7  ;; my_statusbar_st
+        LDR      R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_0
+        MOV      R0,#+17
+        SWI      +736
+        LDR      R1,[R4, #+0]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_0:
+        LDR      R0,[R4, #+4]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_1
+        MOV      R0,#+0
+        SWI      +736
+        LDR      R1,[R4, #+4]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_1:
+        LDR      R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_2
+        MOV      R0,#+2
+        SWI      +736
+        LDR      R1,[R4, #+8]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_2:
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_3
+        MOV      R0,#+4
+        SWI      +736
+        LDR      R1,[R4, #+12]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_3:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_4
+        MOV      R0,#+7
+        SWI      +736
+        LDR      R1,[R4, #+16]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_4:
+        LDR      R0,[R4, #+20]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_5
+        MOV      R0,#+9
+        SWI      +736
+        LDR      R1,[R4, #+20]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_5:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_6
+        MOV      R0,#+8
+        SWI      +736
+        LDR      R1,[R4, #+24]
+        MOV      R2,#+12
+        SWI      +286
+??EnableDynTheme_6:
+        LDR      R0,[R4, #+40]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_7
+        MOV      R0,#+155
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+40
+        SWI      +286
+??EnableDynTheme_7:
+        LDR      R0,[R4, #+44]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_8
+        MOV      R0,#+156
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+44
+        SWI      +286
+??EnableDynTheme_8:
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_9
+        MOV      R0,#+129
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+32
+        SWI      +286
+??EnableDynTheme_9:
+        LDR      R0,[R4, #+28]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_10
+        MOV      R0,#+102
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+28
+        SWI      +286
+??EnableDynTheme_10:
+        LDR      R0,[R4, #+36]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_11
+        MOV      R0,#+105
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+36
+        SWI      +286
+??EnableDynTheme_11:
+        LDR      R0,[R4, #+52]
+        CMP      R0,#+0
+        BEQ      ??EnableDynTheme_12
+        MOV      R0,#+119
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+52
+        SWI      +286
+??EnableDynTheme_12:
+        LDR      R0,[R4, #+48]
+        CMP      R0,#+0
+        POPEQ    {R4,PC}
+        MOV      R0,#+115
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+48
+        B        ?Subroutine4
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??DisableDynTheme??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE DisableDynTheme
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function DisableDynTheme
+        ARM
+DisableDynTheme:
+        LDR      R0,??DataTable6  ;; CFG_ENA_THEME
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        LDR      R0,[R0, #+0]
+        CMP      R0,#+0
+        POPEQ    {R4,PC}
+        LDR      R4,??DataTable7  ;; my_statusbar_st
+        LDR      R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_0
+        MOV      R0,#+17
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+56
+        SWI      +286
+??DisableDynTheme_0:
+        LDR      R0,[R4, #+4]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_1
+        MOV      R0,#+0
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+68
+        SWI      +286
+??DisableDynTheme_1:
+        LDR      R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_2
+        MOV      R0,#+2
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+80
+        SWI      +286
+??DisableDynTheme_2:
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_3
+        MOV      R0,#+4
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+92
+        SWI      +286
+??DisableDynTheme_3:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_4
+        MOV      R0,#+7
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+104
+        SWI      +286
+??DisableDynTheme_4:
+        LDR      R0,[R4, #+20]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_5
+        MOV      R0,#+9
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+116
+        SWI      +286
+??DisableDynTheme_5:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_6
+        MOV      R0,#+8
+        SWI      +736
+        MOV      R2,#+12
+        ADD      R1,R4,#+128
+        SWI      +286
+??DisableDynTheme_6:
+        LDR      R0,[R4, #+40]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_7
+        MOV      R0,#+155
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+152
+        SWI      +286
+??DisableDynTheme_7:
+        LDR      R0,[R4, #+44]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_8
+        MOV      R0,#+156
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+156
+        SWI      +286
+??DisableDynTheme_8:
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_9
+        MOV      R0,#+129
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+144
+        SWI      +286
+??DisableDynTheme_9:
+        LDR      R0,[R4, #+28]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_10
+        MOV      R0,#+102
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+140
+        SWI      +286
+??DisableDynTheme_10:
+        LDR      R0,[R4, #+36]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_11
+        MOV      R0,#+105
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+148
+        SWI      +286
+??DisableDynTheme_11:
+        LDR      R0,[R4, #+52]
+        CMP      R0,#+0
+        BEQ      ??DisableDynTheme_12
+        MOV      R0,#+119
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+164
+        SWI      +286
+??DisableDynTheme_12:
+        LDR      R0,[R4, #+48]
+        CMP      R0,#+0
+        POPEQ    {R4,PC}
+        MOV      R0,#+115
+        SWI      +302
+        MOV      R2,#+4
+        ADD      R1,R4,#+160
+        CFI EndBlock cfiBlock5
+        REQUIRE ?Subroutine4
+        ;; // Fall through to label ?Subroutine4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+8
+        CFI R4 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine4:
+        SWI      +286
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock6
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??FreeDynTheme??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock7
+        REQUIRE FreeDynTheme
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI Function FreeDynTheme
+        ARM
+FreeDynTheme:
+        LDR      R0,??DataTable6  ;; CFG_ENA_THEME
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R0,[R0, #+0]
+        CMP      R0,#+0
+        POPEQ    {R4,R5,PC}
+        LDR      R4,??DataTable7  ;; my_statusbar_st
+        MOV      R5,#+0
+        LDR      R0,[R4, #+0]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_0
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+0]
+        SWI      +21
+        STR      R5,[R4, #+0]
+??FreeDynTheme_0:
+        LDR      R0,[R4, #+4]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_1
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+4]
+        SWI      +21
+        STR      R5,[R4, #+4]
+??FreeDynTheme_1:
+        LDR      R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_2
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+8]
+        SWI      +21
+        STR      R5,[R4, #+8]
+??FreeDynTheme_2:
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_3
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+12]
+        SWI      +21
+        STR      R5,[R4, #+12]
+??FreeDynTheme_3:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_4
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+16]
+        SWI      +21
+        STR      R5,[R4, #+16]
+??FreeDynTheme_4:
+        LDR      R0,[R4, #+20]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_5
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+20]
+        SWI      +21
+        STR      R5,[R4, #+20]
+??FreeDynTheme_5:
+        LDR      R0,[R4, #+24]
+        CMP      R0,#+0
+        BEQ      ??FreeDynTheme_6
+        LDR      R0,[R0, #+8]
+        SWI      +21
+        LDR      R0,[R4, #+24]
+        SWI      +21
+        STR      R5,[R4, #+24]
+??FreeDynTheme_6:
+        STR      R5,[R4, #+40]
+        STR      R5,[R4, #+44]
+        STR      R5,[R4, #+32]
+        STR      R5,[R4, #+28]
+        STR      R5,[R4, #+36]
+        STR      R5,[R4, #+52]
+        STR      R5,[R4, #+48]
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock8
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     CFG_ENA_THEME
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     my_statusbar_st
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "%stheme\\\\sel_1line.png">`:
+        DATA
+        DC8 "%stheme\\sel_1line.png"
+        DC8 0, 0
+        DC8 "%stheme\\bottom_standart.png"
+        DC8 "%stheme\\body_standart.png"
+        DC8 0, 0
+        DC8 "%stheme\\headline_standart.png"
+        DC8 0, 0
+        DC8 "%stheme\\statusbar_standart.png"
+        DC8 0
+        DC8 "%stheme\\sel_2line.png"
+        DC8 0, 0
+        DC8 "%stheme\\popup_feedback.png"
+        DC8 0
+
+        END
+// 
+// 2 112 bytes in segment CODE
+//   196 bytes in segment DATA_C
+//   168 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 2 096 bytes of CODE  memory (+ 28 bytes shared)
+//   196 bytes of CONST memory
+//   168 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

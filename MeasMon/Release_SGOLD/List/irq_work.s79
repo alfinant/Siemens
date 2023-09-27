@@ -1,0 +1,302 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   06/May/2018  20:17:15 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\irq_work.c                                        /
+//    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\irq_work.c -D SGOLD -lCN                          /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\List\ -la                           /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\List\ -o                            /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\Obj\ -z9 --cpu_mode arm --endian    /
+//                       little --cpu ARM926EJ-S --stack_align 4             /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I E:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\List\irq_work.s79                   /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME irq_work
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??disable_interrupts??rT
+        MULTWEAK ??enable_interrupts??rT
+        MULTWEAK ??irq_get_prio??rT
+        MULTWEAK ??irq_req??rT
+        MULTWEAK ??irq_set_prio??rT
+        PUBLIC disable_interrupts
+        FUNCTION disable_interrupts,080203H
+        PUBLIC enable_interrupts
+        FUNCTION enable_interrupts,080203H
+        PUBLIC irq_get_prio
+        FUNCTION irq_get_prio,0203H
+        PUBLIC irq_req
+        FUNCTION irq_req,0203H
+        LOCFRAME CSTACK, 24, STACK
+        PUBLIC irq_set_prio
+        FUNCTION irq_set_prio,0203H
+        LOCFRAME CSTACK, 12, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+disable_interrupts  SYMBOL "disable_interrupts"
+??disable_interrupts??rT SYMBOL "??rT", disable_interrupts
+enable_interrupts   SYMBOL "enable_interrupts"
+??enable_interrupts??rT SYMBOL "??rT", enable_interrupts
+irq_get_prio        SYMBOL "irq_get_prio"
+??irq_get_prio??rT  SYMBOL "??rT", irq_get_prio
+irq_req             SYMBOL "irq_req"
+??irq_req??rT       SYMBOL "??rT", irq_req
+irq_set_prio        SYMBOL "irq_set_prio"
+??irq_set_prio??rT  SYMBOL "??rT", irq_set_prio
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??disable_interrupts??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE disable_interrupts
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function disable_interrupts
+        ARM
+// __??Code32?? __code __interwork __atpcs int disable_interrupts(void)
+disable_interrupts:
+        MRS      R0,CPSR
+        AND      R1,R0,#0x1F
+        CMP      R1,#+16
+        BNE      ??disable_interrupts_0
+        SWI 0            
+??disable_interrupts_0:
+        ORRS     R1,R0,#0xC0
+        MSR      CPSR,R1
+        AND      R0,R0,#0xC0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??enable_interrupts??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE enable_interrupts
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function enable_interrupts
+        ARM
+// __??Code32?? __code __interwork __atpcs void enable_interrupts(int)
+enable_interrupts:
+        MRS      R1,CPSR
+        AND      R2,R1,#0x1F
+        CMP      R2,#+16
+        BNE      ??enable_interrupts_0
+        SWI 0            
+??enable_interrupts_0:
+        BIC      R1,R1,#0xC0
+        ORRS     R0,R0,R1
+        MSR      CPSR,R0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??irq_set_prio??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE irq_set_prio
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function irq_set_prio
+        ARM
+irq_set_prio:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R5,R1
+        BL       disable_interrupts
+        MOV      R1,#-1073741776
+        ORR      R1,R1,#0x32800000
+        ADD      R1,R1,R4, LSL #+2
+        LDR      R2,[R1, #+0]
+        AND      R4,R2,#0xF
+        AND      R2,R5,#0xF
+        STR      R2,[R1, #+0]
+        BL       enable_interrupts
+        MOV      R0,R4
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??irq_get_prio??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock6
+        REQUIRE irq_get_prio
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI Function irq_get_prio
+        ARM
+irq_get_prio:
+        MOV      R1,#-1073741776
+        ORR      R1,R1,#0x32800000
+        LDR      R0,[R1, +R0, LSL #+2]
+        AND      R0,R0,#0xF
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??irq_req??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock8
+        REQUIRE irq_req
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI Function irq_req
+        ARM
+irq_req:
+        PUSH     {R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+24
+        LDR      R8,[SP, #+24]
+        MOV      R4,R0
+        MOV      R0,#+38
+        ORR      R0,R0,#0x2400
+        LDRB     R0,[R0, #+0]
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R7,R3
+        STRB     R0,[R8, #+0]
+        MOV      R0,#+70
+        BL       irq_get_prio
+        STRB     R0,[R8, #+1]
+        MOV      R0,#+116
+        ORR      R0,R0,#0x2500
+        LDR      R0,[R0, #+0]
+        STR      R0,[R8, #+4]
+        BL       disable_interrupts
+        MOV      R1,#+92
+        ORR      R1,R1,#0x2400
+        STR      R7,[R1, +R4, LSL #+2]
+        BL       enable_interrupts
+        BL       disable_interrupts
+        MOV      R1,#+224
+        ORR      R1,R1,#0x2300
+        STRB     R5,[R1, +R4]
+        BL       enable_interrupts
+        MOV      R1,R6
+        MOV      R0,R4
+        BL       irq_set_prio
+        POP      {R4-R8,PC}       ;; return
+        CFI EndBlock cfiBlock9
+
+        END
+// 
+// 292 bytes in segment CODE
+// 
+// 272 bytes of CODE memory (+ 20 bytes shared)
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,193 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  28/Jan/2015  19:15:47                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\List\I2cSwLib.map             #
+#           Output file 1 =  C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\Exe\I2cSwLib.elf              #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\Obj\I2cSwLib.r79              #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\Obj\func.r79                  #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\Obj\main.r79                  #
+#                            -o                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\Exe\I2cSwLib.elf              #
+#                            -Felf -l                                          #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\Release_SGOLD\List\I2cSwLib.map             #
+#                            -xm -f                                            #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\I2c #
+#                            SwLib\test.xcl                                    #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\ #
+#                            dl5tpainl8n.r79                                   #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000124  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\alfinant\I2cSwLib\Release_SGOLD\Obj\I2cSwLib.r79
+  PROGRAM MODULE, NAME : I2cSwLib
+
+  SEGMENTS IN THE MODULE
+  ======================
+DATA_Z
+  Relative segment, address: CODE_AREA 000001D8 - 000001DB (0x4 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 11
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           I2c_Queue               000001D8 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 000000AB (0xac bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           I2cSwInit               00000000        main (main)
+               stack 1 = 00000000 ( 0000009C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000AC - 000000D3 (0x28 bytes), align: 2
+  Segment part 9.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           I2cSwRead               000000AC        main (main)
+               stack 1 = 00000000 ( 0000001C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000D4 - 000000FF (0x2c bytes), align: 2
+  Segment part 10.            Intra module refs:   I2cSwRead
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000100 - 00000103 (0x4 bytes), align: 2
+  Segment part 11.            Intra module refs:   I2cSwInit
+                                                   I2cSwRead
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 000001CC - 000001D7 (0xc bytes), align: 2
+  Segment part 12. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        000001CC 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000190 - 0000019B (0xc bytes), align: 2
+  Segment part 2.             Intra module refs:   I2cSwInit
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\alfinant\I2cSwLib\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000104 - 00000107 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000104        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\alfinant\I2cSwLib\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000108 - 00000123 (0x1c bytes), align: 2
+  Segment part 6.             Intra module refs:   Segment part 11
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000108 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000124 - 0000017F (0x5c bytes), align: 2
+  Segment part 10.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000124        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000028 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000180 - 0000018F (0x10 bytes), align: 2
+  Segment part 11.            Intra module refs:   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 0000019C - 000001CB (0x30 bytes), align: 2
+  Segment part 3.             Intra module refs:   Segment part 11
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 476 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

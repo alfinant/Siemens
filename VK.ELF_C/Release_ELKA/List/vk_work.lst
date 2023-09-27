@@ -1,0 +1,1550 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    16/Feb/2023  22:41:14 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \vk_work.c                                           #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \vk_work.c -D NEWSGOLD -D ELKA -D DEBUG -lCN         #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\ -la D:\Users\alfinant\Documents\ #
+#                       Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\List\ -o       #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\ -z9 --cpu_mode arm --endian       #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\vk_work.lst                       #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\vk_work.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\vk_work.c
+      1          #include "vk_work.h"
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code32?? __code __interwork __atpcs void list_del(struct list_head *)
+   \                     list_del:
+   \   00000000   001090E5           LDR      R1,[R0, #+0]
+   \   00000004   042090E5           LDR      R2,[R0, #+4]
+   \   00000008   042081E5           STR      R2,[R1, #+4]
+   \   0000000C   001082E5           STR      R1,[R2, #+0]
+   \   00000010   0010A0E3           MOV      R1,#+0
+   \   00000014   001080E5           STR      R1,[R0, #+0]
+   \   00000018   041080E5           STR      R1,[R0, #+4]
+   \   0000001C   1EFF2FE1           BX       LR               ;; return
+      2          
+      3          #include <siemens\swilib.h>
+      4          #include "string_util.h"
+      5          
+      6          //Инициализируем головы списков
+
+   \                                 In segment DATA_I, align 4, align-sorted
+      7          LIST_HEAD(dialogs);
+   \                     dialogs:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for dialogs>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+      8          LIST_HEAD(my_groups);
+   \                     my_groups:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for my_groups>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+      9          LIST_HEAD(friends);
+   \                     friends:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for friends>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     10          LIST_HEAD(profiles);//в этом списке будут пользователи
+   \                     profiles:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for profiles>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     11          LIST_HEAD(groups);//в этом списке группы
+   \                     groups:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for groups>`
+     12          
+     13          static int dialogs_cout = 0;//кол-во диалогов на сервере
+     14          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     15          static const char percent_d[]="%d,";
+   \                     percent_d:
+   \   00000000   25642C00           DC8 "%d,"
+     16          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     17          WSHDR * CreateWS_emoji(char *utf8_str)
+     18          {//подмена в utf8 тексте символов эмоджи и перевод в WSHDR
+   \                     CreateWS_emoji:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040B0E1           MOVS     R4,R0
+     19            if (utf8_str == 0 || *utf8_str == 0)//Если указатель нулевой или строка пуста
+   \   00000008   0000D415           LDRBNE   R0,[R4, #+0]
+   \   0000000C   00005013           CMPNE    R0,#+0
+   \   00000010   0200001A           BNE      ??CreateWS_emoji_0
+     20              return AllocWS(4);
+   \   00000014   0400A0E3           MOV      R0,#+4
+   \   00000018   250100EF           SWI      +293
+   \   0000001C   7080BDE8           POP      {R4-R6,PC}
+     21          
+     22            int len = strlen(utf8_str);
+   \                     ??CreateWS_emoji_0:
+   \   00000020   0400A0E1           MOV      R0,R4
+   \   00000024   1B0000EF           SWI      +27
+     23            char* __utf8_str = malloc(len + 1);
+   \   00000028   010080E2           ADD      R0,R0,#+1
+   \   0000002C   140000EF           SWI      +20
+   \   00000030   0050A0E1           MOV      R5,R0
+     24            strcpy(__utf8_str, utf8_str);
+   \   00000034   0410A0E1           MOV      R1,R4
+   \   00000038   1A0000EF           SWI      +26
+     25            len = Replace_Smiles_Syms(__utf8_str);
+   \   0000003C   0500A0E1           MOV      R0,R5
+   \   00000040   ........           _BLF     Replace_Smiles_Syms,??Replace_Smiles_Syms??rA
+   \   00000044   0040A0E1           MOV      R4,R0
+     26            WSHDR *ws = AllocWS(utf8_syms_n(__utf8_str, len));
+   \   00000048   0410A0E1           MOV      R1,R4
+   \   0000004C   0500A0E1           MOV      R0,R5
+   \   00000050   ........           _BLF     utf8_syms_n,??utf8_syms_n??rA
+   \   00000054   250100EF           SWI      +293
+   \   00000058   0060A0E1           MOV      R6,R0
+     27            utf8_2ws(ws, __utf8_str, len);
+   \   0000005C   0420A0E1           MOV      R2,R4
+   \   00000060   0510A0E1           MOV      R1,R5
+   \   00000064   E30100EF           SWI      +483
+     28            mfree(__utf8_str);
+   \   00000068   0500A0E1           MOV      R0,R5
+   \   0000006C   150000EF           SWI      +21
+     29            
+     30            return ws;
+   \   00000070   0600A0E1           MOV      R0,R6
+   \   00000074   7080BDE8           POP      {R4-R6,PC}       ;; return
+     31          }
+     32          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     33          int utf8_2ws_emoji(WSHDR *ws, char *utf8_str, unsigned int maxLen)
+     34          {
+   \                     utf8_2ws_emoji:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+     35            //подмена в utf8 тексте символов эмоджи на сименсовские и перевод в WSHDR
+     36            //char* s = malloc(strlen(utf8_str) + 1);
+     37            int len = Replace_Smiles_Syms(utf8_str);
+   \   0000000C   0500A0E1           MOV      R0,R5
+   \   00000010   ........           _BLF     Replace_Smiles_Syms,??Replace_Smiles_Syms??rA
+     38            return utf8_2ws(ws, utf8_str, len);
+   \   00000014   0020A0E1           MOV      R2,R0
+   \   00000018   0510A0E1           MOV      R1,R5
+   \   0000001C   0400A0E1           MOV      R0,R4
+   \   00000020   E30100EF           SWI      +483
+   \   00000024   3080BDE8           POP      {R4,R5,PC}       ;; return
+     39            //mfree(s);
+     40          }
+     41          
+     42          /******************************************************************************/
+     43          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     44          VkUser *new_User(struct user_args *args)
+     45          { 
+   \                     new_User:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0050A0E1           MOV      R5,R0
+     46            VkUser *user = malloc(sizeof(VkUser));
+   \   00000008   2C00A0E3           MOV      R0,#+44
+   \   0000000C   140000EF           SWI      +20
+   \   00000010   0040A0E1           MOV      R4,R0
+     47            INIT_LIST_HEAD(&user->list); 
+   \   00000014   004084E5           STR      R4,[R4, #+0]
+   \   00000018   044084E5           STR      R4,[R4, #+4]
+     48            user->id = args->id;
+   \   0000001C   000095E5           LDR      R0,[R5, #+0]
+   \   00000020   080084E5           STR      R0,[R4, #+8]
+     49            user->first_name = CreateWS_emoji(args->first_name);
+   \   00000024   040095E5           LDR      R0,[R5, #+4]
+   \   00000028   ........           BL       CreateWS_emoji
+   \   0000002C   0C0084E5           STR      R0,[R4, #+12]
+     50            user->last_name = CreateWS_emoji(args->last_name); 
+   \   00000030   080095E5           LDR      R0,[R5, #+8]
+   \   00000034   ........           BL       CreateWS_emoji
+   \   00000038   100084E5           STR      R0,[R4, #+16]
+     51            //CreateLocalWS(&user->first_name, user->first_name_body, 63);
+     52            //CreateLocalWS(&user->last_name, user->last_name_body, 63);
+     53            //utf8_2ws_emoji(&user->first_name, args->first_name, 31);
+     54            //utf8_2ws_emoji(&user->last_name, args->last_name, 31);
+     55            user->deactivated = args->deactivated;
+   \   0000003C   0C0095E5           LDR      R0,[R5, #+12]
+   \   00000040   140084E5           STR      R0,[R4, #+20]
+     56            user->friend_status = args->friend_status;
+   \   00000044   1C0095E5           LDR      R0,[R5, #+28]
+   \   00000048   180084E5           STR      R0,[R4, #+24]
+     57            user->online = args->online;
+   \   0000004C   180095E5           LDR      R0,[R5, #+24]
+   \   00000050   280084E5           STR      R0,[R4, #+40]
+     58            user->has_photo = args->has_photo;
+   \   00000054   240095E5           LDR      R0,[R5, #+36]
+   \   00000058   1C0084E5           STR      R0,[R4, #+28]
+     59            if (args->photo_50)
+   \   0000005C   200095E5           LDR      R0,[R5, #+32]
+   \   00000060   000050E3           CMP      R0,#+0
+   \   00000064   0600000A           BEQ      ??new_User_0
+     60            {
+     61              user->photo_50 = malloc(strlen(args->photo_50) + 1);
+   \   00000068   1B0000EF           SWI      +27
+   \   0000006C   010080E2           ADD      R0,R0,#+1
+   \   00000070   140000EF           SWI      +20
+   \   00000074   200084E5           STR      R0,[R4, #+32]
+     62              strcpy(user->photo_50, args->photo_50);
+   \   00000078   201095E5           LDR      R1,[R5, #+32]
+   \   0000007C   1A0000EF           SWI      +26
+     63            }
+     64            user->photo_50_img = NULL;
+   \   00000080   0000A0E3           MOV      R0,#+0
+   \                     ??new_User_0:
+   \   00000084   240084E5           STR      R0,[R4, #+36]
+     65            return user;
+   \   00000088   0400A0E1           MOV      R0,R4
+   \   0000008C   3080BDE8           POP      {R4,R5,PC}       ;; return
+     66          }
+     67          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     68          VkUser *find_User(struct list_head *head, int id)
+     69          { 
+     70            LIST_HEAD *iter;
+     71            
+     72            list_for_each(iter, head)
+   \                     find_User:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   000000EA           B        ??find_User_0
+   \                     ??find_User_1:
+   \   00000008   002092E5           LDR      R2,[R2, #+0]
+   \                     ??find_User_0:
+   \   0000000C   000052E1           CMP      R2,R0
+   \   00000010   0300000A           BEQ      ??find_User_2
+     73            {
+     74              VkUser *entry = list_entry(iter, VkUser, list);
+     75              if (entry->id == id)
+   \   00000014   083092E5           LDR      R3,[R2, #+8]
+   \   00000018   010053E1           CMP      R3,R1
+   \   0000001C   F9FFFF1A           BNE      ??find_User_1
+     76                return entry;
+   \   00000020   ........           B        ?Subroutine23
+     77            }
+     78            return NULL;
+   \                     ??find_User_2:
+   \   00000024   ........           B        ?Subroutine22
+     79          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine23:
+   \   00000000   0200A0E1           MOV      R0,R2
+   \   00000004   1EFF2FE1           BX       LR
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine22:
+   \   00000000   0000A0E3           MOV      R0,#+0
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+     80          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     81          void del_User(VkUser *user)
+   \                     del_User:
+   \   00000000   ........           B        ?Subroutine26
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine26:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0C0094E5           LDR      R0,[R4, #+12]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   0000000A           BEQ      ??Subroutine26_1
+   \   00000014   290100EF           SWI      +297
+   \                     ??Subroutine26_1:
+   \   00000018   100094E5           LDR      R0,[R4, #+16]
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   0000000A           BEQ      ??Subroutine26_2
+   \   00000024   290100EF           SWI      +297
+   \                     ??Subroutine26_2:
+   \   00000028   200094E5           LDR      R0,[R4, #+32]
+   \   0000002C   000050E3           CMP      R0,#+0
+   \   00000030   0000000A           BEQ      ??Subroutine26_3
+   \   00000034   150000EF           SWI      +21
+   \                     ??Subroutine26_3:
+   \   00000038   240094E5           LDR      R0,[R4, #+36]
+   \   0000003C   000050E3           CMP      R0,#+0
+   \   00000040   0300000A           BEQ      ??Subroutine26_4
+   \   00000044   080090E5           LDR      R0,[R0, #+8]
+   \   00000048   150000EF           SWI      +21
+   \   0000004C   240094E5           LDR      R0,[R4, #+36]
+   \   00000050   150000EF           SWI      +21
+   \                     ??Subroutine26_4:
+   \   00000054   0400A0E1           MOV      R0,R4
+   \   00000058   ........           BL       list_del
+   \                     ??Subroutine26_0:
+   \   0000005C   0400A0E1           MOV      R0,R4
+   \   00000060   150000EF           SWI      +21
+   \   00000064   1080BDE8           POP      {R4,PC}          ;; return
+     82          {
+     83            if (user->first_name)
+     84              FreeWS(user->first_name); 
+     85            
+     86            if (user->last_name)
+     87              FreeWS(user->last_name); 
+     88            
+     89            if (user->photo_50)
+     90              mfree(user->photo_50);
+     91            
+     92            if (user->photo_50_img)
+     93            {
+     94              mfree(user->photo_50_img->bitmap);
+     95              mfree(user->photo_50_img);    
+     96            }
+     97            
+     98            list_del(&user->list);
+     99            mfree(user);
+    100          }  
+    101          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    102          void del_Profiles()
+    103          { 
+   \                     del_Profiles:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    104            struct list_head *iter, *n;
+    105              
+    106            list_for_each_safe(iter, n, &profiles)
+   \   00000004   1C409FE5           LDR      R4,??del_Profiles_0  ;; profiles
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   010000EA           B        ??del_Profiles_1
+    107            {
+    108              VkUser *entry = list_entry(iter, VkUser, list);
+    109              del_User(entry);
+   \                     ??del_Profiles_2:
+   \   00000010   ........           BL       del_User
+    110            }
+   \   00000014   0500A0E1           MOV      R0,R5
+   \                     ??del_Profiles_1:
+   \   00000018   005090E5           LDR      R5,[R0, #+0]
+   \   0000001C   040050E1           CMP      R0,R4
+   \   00000020   FAFFFF1A           BNE      ??del_Profiles_2
+    111            INIT_LIST_HEAD(&profiles);
+   \   00000024   ........           B        ?Subroutine25
+   \                     ??del_Profiles_0:
+   \   00000028   ........           DC32     profiles
+    112          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine25:
+   \   00000000   004084E5           STR      R4,[R4, #+0]
+   \   00000004   044084E5           STR      R4,[R4, #+4]
+   \   00000008   3080BDE8           POP      {R4,R5,PC}       ;; return
+    113          
+    114          /******************************************************************************/
+    115          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    116          void del_attachments(LIST_HEAD *head)
+    117          {
+   \                     del_attachments:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    118            struct list_head *iter, *n;
+    119            
+    120            list_for_each_safe(iter, n, head)
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   010000EA           B        ??del_attachments_0
+    121            {
+    122              //VkAttach *a = list_entry(iter, VkAttach, list);
+    123              mfree(iter);
+   \                     ??del_attachments_1:
+   \   00000010   150000EF           SWI      +21
+    124            }
+   \   00000014   0500A0E1           MOV      R0,R5
+   \                     ??del_attachments_0:
+   \   00000018   005090E5           LDR      R5,[R0, #+0]
+   \   0000001C   040050E1           CMP      R0,R4
+   \   00000020   FAFFFF1A           BNE      ??del_attachments_1
+    125            INIT_LIST_HEAD(head);
+   \   00000024                      REQUIRE ?Subroutine25
+   \   00000024                      ;; // Fall through to label ?Subroutine25
+    126          }
+    127          
+    128          /******************************************************************************/
+    129          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    130          VkMsg *new_Message(struct message_args *args, struct list_head *attachments)
+    131          {
+   \                     new_Message:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0060A0E1           MOV      R6,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+    132            VkMsg *message = malloc(sizeof(VkMsg));
+   \   0000000C   2800A0E3           MOV      R0,#+40
+   \   00000010   140000EF           SWI      +20
+   \   00000014   0040A0E1           MOV      R4,R0
+    133            INIT_LIST_HEAD(&message->list);  
+   \   00000018   004084E5           STR      R4,[R4, #+0]
+   \   0000001C   044084E5           STR      R4,[R4, #+4]
+    134            message->id = args->id;
+   \   00000020   000096E5           LDR      R0,[R6, #+0]
+   \   00000024   080084E5           STR      R0,[R4, #+8]
+    135            message->date = args->date;
+   \   00000028   040096E5           LDR      R0,[R6, #+4]
+   \   0000002C   0C0084E5           STR      R0,[R4, #+12]
+    136            message->from_id = args->from_id;
+   \   00000030   080096E5           LDR      R0,[R6, #+8]
+   \   00000034   100084E5           STR      R0,[R4, #+16]
+    137            message->peer_id = args->peer_id;
+   \   00000038   0C0096E5           LDR      R0,[R6, #+12]
+   \   0000003C   140084E5           STR      R0,[R4, #+20]
+    138            message->out = args->out;
+   \   00000040   140096E5           LDR      R0,[R6, #+20]
+   \   00000044   1C0084E5           STR      R0,[R4, #+28]
+    139            message->text = CreateWS_emoji(args->text);
+   \   00000048   100096E5           LDR      R0,[R6, #+16]
+   \   0000004C   ........           BL       CreateWS_emoji
+   \   00000050   180084E5           STR      R0,[R4, #+24]
+    140            INIT_LIST_HEAD(&message->attachments);
+   \   00000054   200084E2           ADD      R0,R4,#+32
+   \   00000058   200084E5           STR      R0,[R4, #+32]
+   \   0000005C   240084E5           STR      R0,[R4, #+36]
+    141            if (!list_empty(attachments))
+   \   00000060   000095E5           LDR      R0,[R5, #+0]
+   \   00000064   050050E1           CMP      R0,R5
+   \   00000068   0600000A           BEQ      ??new_Message_0
+    142              list_splice(attachments, &message->attachments);
+   \   0000006C   042095E5           LDR      R2,[R5, #+4]
+   \   00000070   201084E2           ADD      R1,R4,#+32
+   \   00000074   0130A0E1           MOV      R3,R1
+   \   00000078   041080E5           STR      R1,[R0, #+4]
+   \   0000007C   000081E5           STR      R0,[R1, #+0]
+   \   00000080   003082E5           STR      R3,[R2, #+0]
+   \   00000084   042083E5           STR      R2,[R3, #+4]
+    143            return message;
+   \                     ??new_Message_0:
+   \   00000088   0400A0E1           MOV      R0,R4
+   \   0000008C   7080BDE8           POP      {R4-R6,PC}       ;; return
+    144          }
+    145          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    146          void del_Message(VkMsg *msg)
+    147          {
+   \                     del_Message:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    148            list_del(&msg->list);
+   \   00000008   ........           BL       list_del
+    149            FreeWS(msg->text);
+   \   0000000C   180094E5           LDR      R0,[R4, #+24]
+   \   00000010   290100EF           SWI      +297
+    150            del_attachments(&msg->attachments);
+   \   00000014   200084E2           ADD      R0,R4,#+32
+   \   00000018   ........           BL       del_attachments
+    151            mfree(msg);
+   \   0000001C   ........           B        ??Subroutine26_0
+    152          }
+    153          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    154          void del_Messages(LIST_HEAD *head)
+    155          { 
+   \                     del_Messages:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    156            struct list_head *iter, *n;
+    157            
+    158            list_for_each_safe(iter, n, head)
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   010000EA           B        ??del_Messages_0
+    159            {
+    160              VkMsg *msg = list_entry(iter, VkMsg, list);
+    161              del_Message(msg);
+   \                     ??del_Messages_1:
+   \   00000010   ........           BL       del_Message
+    162            }
+   \   00000014   0500A0E1           MOV      R0,R5
+   \                     ??del_Messages_0:
+   \   00000018   005090E5           LDR      R5,[R0, #+0]
+   \   0000001C   040050E1           CMP      R0,R4
+   \   00000020   FAFFFF1A           BNE      ??del_Messages_1
+    163            INIT_LIST_HEAD(head);
+   \   00000024   ........           B        ?Subroutine25
+    164          }
+    165          
+    166          /******************************************************************************/
+    167          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    168          VkGroup *new_Group(struct group_args *args)
+    169          { 
+   \                     new_Group:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    170            VkGroup *group = malloc(sizeof(VkGroup));
+   \   00000008   3000A0E3           MOV      R0,#+48
+   \   0000000C   140000EF           SWI      +20
+   \   00000010   0050A0E1           MOV      R5,R0
+    171            INIT_LIST_HEAD(&group->list); 
+   \   00000014   005085E5           STR      R5,[R5, #+0]
+   \   00000018   045085E5           STR      R5,[R5, #+4]
+    172            group->id = args->id;
+   \   0000001C   080094E5           LDR      R0,[R4, #+8]
+   \   00000020   080085E5           STR      R0,[R5, #+8]
+    173            group->name = CreateWS_emoji(args->name);
+   \   00000024   0C0094E5           LDR      R0,[R4, #+12]
+   \   00000028   ........           BL       CreateWS_emoji
+   \   0000002C   0C0085E5           STR      R0,[R5, #+12]
+    174            group->screen_name = CreateWS_emoji(args->screen_name); 
+   \   00000030   100094E5           LDR      R0,[R4, #+16]
+   \   00000034   ........           BL       CreateWS_emoji
+   \   00000038   100085E5           STR      R0,[R5, #+16]
+    175            //CreateLocalWS(&group->name, group->name_body, 63);
+    176            //CreateLocalWS(&group->screen_name, group->screen_name_body, 63);
+    177            //utf8_2ws_emoji(&group->name, args->name, 31);
+    178            //utf8_2ws_emoji(&group->screen_name, args->screen_name, 31);
+    179            group->is_closed = args->is_closed;
+   \   0000003C   140094E5           LDR      R0,[R4, #+20]
+   \   00000040   280085E5           STR      R0,[R5, #+40]
+    180            group->deactivated = args->deactivated;
+   \   00000044   180094E5           LDR      R0,[R4, #+24]
+   \   00000048   140085E5           STR      R0,[R5, #+20]
+    181            group->is_member = args->is_member;
+   \   0000004C   200094E5           LDR      R0,[R4, #+32]
+   \   00000050   180085E5           STR      R0,[R5, #+24]
+    182            group->type = args->type;
+   \   00000054   1C0094E5           LDR      R0,[R4, #+28]
+   \   00000058   2C0085E5           STR      R0,[R5, #+44]
+    183            group->has_photo = args->has_photo;  
+   \   0000005C   240094E5           LDR      R0,[R4, #+36]
+   \   00000060   1C0085E5           STR      R0,[R5, #+28]
+    184            if (args->photo_50)
+   \   00000064   280094E5           LDR      R0,[R4, #+40]
+   \   00000068   000050E3           CMP      R0,#+0
+   \   0000006C   0600000A           BEQ      ??new_Group_0
+    185            {
+    186              group->photo_50 = malloc(strlen(args->photo_50) + 1);
+   \   00000070   1B0000EF           SWI      +27
+   \   00000074   010080E2           ADD      R0,R0,#+1
+   \   00000078   140000EF           SWI      +20
+   \   0000007C   200085E5           STR      R0,[R5, #+32]
+    187              strcpy(group->photo_50, args->photo_50);
+   \   00000080   281094E5           LDR      R1,[R4, #+40]
+   \   00000084   1A0000EF           SWI      +26
+    188            }
+    189            group->photo_50_img = NULL;
+   \   00000088   0000A0E3           MOV      R0,#+0
+   \                     ??new_Group_0:
+   \   0000008C   240085E5           STR      R0,[R5, #+36]
+    190            return group;
+   \   00000090   0500A0E1           MOV      R0,R5
+   \   00000094   3080BDE8           POP      {R4,R5,PC}       ;; return
+    191          }  
+    192            
+
+   \                                 In segment CODE, align 4, keep-with-next
+    193          VkGroup *find_Group(struct list_head *head, int id)
+    194          { 
+    195            LIST_HEAD *iter;
+    196            
+    197            list_for_each(iter, head)
+   \                     find_Group:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   000000EA           B        ??find_Group_0
+   \                     ??find_Group_1:
+   \   00000008   002092E5           LDR      R2,[R2, #+0]
+   \                     ??find_Group_0:
+   \   0000000C   000052E1           CMP      R2,R0
+   \   00000010   0300000A           BEQ      ??find_Group_2
+    198            {
+    199              VkGroup *entry = list_entry(iter, VkGroup, list);
+    200              if (entry->id == id)
+   \   00000014   083092E5           LDR      R3,[R2, #+8]
+   \   00000018   010053E1           CMP      R3,R1
+   \   0000001C   F9FFFF1A           BNE      ??find_Group_1
+    201                return entry;
+   \   00000020   ........           B        ?Subroutine23
+    202            }
+    203            return NULL;
+   \                     ??find_Group_2:
+   \   00000024   ........           B        ?Subroutine22
+    204          }
+    205          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    206          void del_Group(VkGroup *group)
+   \                     del_Group:
+   \   00000000                      REQUIRE ?Subroutine26
+   \   00000000                      ;; // Fall through to label ?Subroutine26
+    207          {
+    208            if (group->name)
+    209              FreeWS(group->name); 
+    210            
+    211            if (group->screen_name)
+    212              FreeWS(group->screen_name); 
+    213            
+    214            if (group->photo_50)
+    215              mfree(group->photo_50);
+    216            
+    217            if (group->photo_50_img)
+    218            {
+    219              mfree(group->photo_50_img->bitmap);
+    220              mfree(group->photo_50_img);    
+    221            }
+    222            
+    223            list_del(&group->list);
+    224            mfree(group);
+    225          }
+    226          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    227          void del_Groups()
+    228          { 
+   \                     del_Groups:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    229            struct list_head *iter, *n;
+    230              
+    231            list_for_each_safe(iter, n, &groups)
+   \   00000004   1C409FE5           LDR      R4,??del_Groups_0  ;; groups
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   010000EA           B        ??del_Groups_1
+    232            {
+    233              VkGroup *entry = list_entry(iter, VkGroup, list);
+    234              del_Group(entry);
+   \                     ??del_Groups_2:
+   \   00000010   ........           BL       del_Group
+    235            }
+   \   00000014   0500A0E1           MOV      R0,R5
+   \                     ??del_Groups_1:
+   \   00000018   005090E5           LDR      R5,[R0, #+0]
+   \   0000001C   040050E1           CMP      R0,R4
+   \   00000020   FAFFFF1A           BNE      ??del_Groups_2
+    236            INIT_LIST_HEAD(&groups);
+   \   00000024   ........           B        ?Subroutine25
+   \                     ??del_Groups_0:
+   \   00000028   ........           DC32     groups
+    237          }
+    238          /******************************************************************************/
+    239          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    240          VkDialog *new_Dialog(VkMsg *msg, int from_id, int unread, int out_read)
+    241          {
+   \                     new_Dialog:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0250A0E1           MOV      R5,R2
+   \   0000000C   0360A0E1           MOV      R6,R3
+    242            VkDialog *dialog = malloc(sizeof(VkDialog));
+   \   00000010   2400A0E3           MOV      R0,#+36
+   \   00000014   140000EF           SWI      +20
+    243            INIT_LIST_HEAD(&dialog->list);
+   \   00000018   000080E5           STR      R0,[R0, #+0]
+   \   0000001C   040080E5           STR      R0,[R0, #+4]
+    244            if (msg->out)
+   \   00000020   1C1094E5           LDR      R1,[R4, #+28]
+   \   00000024   000051E3           CMP      R1,#+0
+    245              dialog->from_id = msg->peer_id;
+   \   00000028   14109415           LDRNE    R1,[R4, #+20]
+    246            else
+    247              dialog->from_id = msg->from_id;  
+   \   0000002C   10109405           LDREQ    R1,[R4, #+16]
+   \   00000030   081080E5           STR      R1,[R0, #+8]
+    248            dialog->unread_count = unread;
+   \   00000034   0C5080E5           STR      R5,[R0, #+12]
+    249            dialog->out_read = out_read;
+   \   00000038   106080E5           STR      R6,[R0, #+16]
+    250            INIT_LIST_HEAD(&dialog->messages);
+   \   0000003C   141080E2           ADD      R1,R0,#+20
+   \   00000040   141080E5           STR      R1,[R0, #+20]
+   \   00000044   181080E5           STR      R1,[R0, #+24]
+    251            list_add(&msg->list, &dialog->messages);
+   \   00000048   0120A0E1           MOV      R2,R1
+   \   0000004C   044082E5           STR      R4,[R2, #+4]
+   \   00000050   002084E5           STR      R2,[R4, #+0]
+   \   00000054   041084E5           STR      R1,[R4, #+4]
+   \   00000058   004081E5           STR      R4,[R1, #+0]
+    252            dialog->user = NULL;
+   \   0000005C   0010A0E3           MOV      R1,#+0
+   \   00000060   1C1080E5           STR      R1,[R0, #+28]
+    253            dialog->group =NULL;
+   \   00000064   201080E5           STR      R1,[R0, #+32]
+    254            return dialog;
+   \   00000068   7080BDE8           POP      {R4-R6,PC}       ;; return
+    255          }
+    256          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    257          VkDialog *FindDialog(LIST_HEAD *head, int from_id)
+    258          { 
+    259            LIST_HEAD *iter;
+    260            
+    261            list_for_each(iter, head)
+   \                     FindDialog:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   030000EA           B        ??FindDialog_0
+    262            {
+    263              VkDialog *entry = list_entry(iter, VkDialog, list);
+    264              
+    265              if (!list_empty(&entry->messages))
+    266              {
+    267                VkMsg *msg = list_entry(entry->messages.next, VkMsg, list);
+    268                if (msg->out)
+    269                {
+    270                  if (msg->peer_id == from_id)
+    271                    return entry;
+    272                }
+    273                else
+    274                  if (msg->from_id == from_id)
+   \                     ??FindDialog_1:
+   \   00000008   103093E5           LDR      R3,[R3, #+16]
+   \   0000000C   010053E1           CMP      R3,R1
+   \   00000010   0D00000A           BEQ      ??FindDialog_2
+   \                     ??FindDialog_3:
+   \   00000014   002092E5           LDR      R2,[R2, #+0]
+   \                     ??FindDialog_0:
+   \   00000018   000052E1           CMP      R2,R0
+   \   0000001C   0B00000A           BEQ      ??FindDialog_4
+   \   00000020   143082E2           ADD      R3,R2,#+20
+   \   00000024   00C093E5           LDR      R12,[R3, #+0]
+   \   00000028   03005CE1           CMP      R12,R3
+   \   0000002C   F8FFFF0A           BEQ      ??FindDialog_3
+   \   00000030   0C30A0E1           MOV      R3,R12
+   \   00000034   1CC093E5           LDR      R12,[R3, #+28]
+   \   00000038   00005CE3           CMP      R12,#+0
+   \   0000003C   F1FFFF0A           BEQ      ??FindDialog_1
+   \   00000040   143093E5           LDR      R3,[R3, #+20]
+   \   00000044   010053E1           CMP      R3,R1
+   \   00000048   F1FFFF1A           BNE      ??FindDialog_3
+   \                     ??FindDialog_2:
+   \   0000004C   ........           B        ?Subroutine23
+    275                    return entry;
+    276              }     
+    277            }
+    278            return NULL;
+   \                     ??FindDialog_4:
+   \   00000050   ........           B        ?Subroutine22
+    279          }
+    280          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    281          VkMsg *get_DialogMsg(VkDialog *dialog)
+    282          {
+    283            VkMsg *msg = NULL;
+    284            
+    285            if (!list_empty(&dialog->messages))
+   \                     get_DialogMsg:
+   \   00000000   142080E2           ADD      R2,R0,#+20
+   \   00000004   003092E5           LDR      R3,[R2, #+0]
+   \   00000008   0010A0E3           MOV      R1,#+0
+   \   0000000C   020053E1           CMP      R3,R2
+    286              msg = list_entry(dialog->messages.next, VkMsg, list);
+   \   00000010   0310A011           MOVNE    R1,R3
+    287            
+    288            return msg;
+   \   00000014   ........           B        ?Subroutine24
+    289          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine24:
+   \   00000000   0100A0E1           MOV      R0,R1
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+    290          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    291          void del_Dialogs()
+    292          { 
+   \                     del_Dialogs:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    293            struct list_head *iter, *n;
+    294              
+    295            list_for_each_safe(iter, n, &dialogs)
+   \   00000004   64409FE5           LDR      R4,??del_Dialogs_0  ;; dialogs
+   \   00000008   005094E5           LDR      R5,[R4, #+0]
+   \   0000000C   110000EA           B        ??del_Dialogs_1
+    296            {
+    297              VkDialog *entry = list_entry(iter, VkDialog, list);
+    298              
+    299              if (!list_empty(&entry->messages))
+   \                     ??del_Dialogs_2:
+   \   00000010   140085E2           ADD      R0,R5,#+20
+   \   00000014   001090E5           LDR      R1,[R0, #+0]
+   \   00000018   000051E1           CMP      R1,R0
+   \   0000001C   0000000A           BEQ      ??del_Dialogs_3
+    300                del_Messages(&entry->messages);
+   \   00000020   ........           BL       del_Messages
+    301              
+    302              if (entry->user)
+   \                     ??del_Dialogs_3:
+   \   00000024   1C0095E5           LDR      R0,[R5, #+28]
+   \   00000028   000050E3           CMP      R0,#+0
+   \   0000002C   0000000A           BEQ      ??del_Dialogs_4
+    303                del_User(entry->user);
+   \   00000030   ........           BL       del_User
+    304              
+    305              if (entry->group)
+   \                     ??del_Dialogs_4:
+   \   00000034   200095E5           LDR      R0,[R5, #+32]
+   \   00000038   000050E3           CMP      R0,#+0
+   \   0000003C   0000000A           BEQ      ??del_Dialogs_5
+    306                del_Group(entry->group);
+   \   00000040   ........           BL       del_Group
+    307              
+    308              list_del(iter);
+   \                     ??del_Dialogs_5:
+   \   00000044   0500A0E1           MOV      R0,R5
+   \   00000048   ........           BL       list_del
+    309              mfree(entry);
+   \   0000004C   0500A0E1           MOV      R0,R5
+   \   00000050   150000EF           SWI      +21
+    310            }
+   \   00000054   0650A0E1           MOV      R5,R6
+   \                     ??del_Dialogs_1:
+   \   00000058   006095E5           LDR      R6,[R5, #+0]
+   \   0000005C   040055E1           CMP      R5,R4
+   \   00000060   EAFFFF1A           BNE      ??del_Dialogs_2
+    311            INIT_LIST_HEAD(&dialogs);
+   \   00000064   004084E5           STR      R4,[R4, #+0]
+   \   00000068   044084E5           STR      R4,[R4, #+4]
+    312          }
+   \   0000006C   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??del_Dialogs_0:
+   \   00000070   ........           DC32     dialogs
+    313          
+    314          /******************************************************************************/
+    315          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    316          int count_ListElements(LIST_HEAD *head)
+    317          {
+    318            struct list_head *iter;
+    319            int i = 0;
+    320            
+    321            list_for_each(iter, head)
+   \                     count_ListElements:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   0010A0E3           MOV      R1,#+0
+   \   00000008   010000EA           B        ??count_ListElements_0
+    322              i++;
+   \                     ??count_ListElements_1:
+   \   0000000C   002092E5           LDR      R2,[R2, #+0]
+   \   00000010   011081E2           ADD      R1,R1,#+1
+   \                     ??count_ListElements_0:
+   \   00000014   000052E1           CMP      R2,R0
+   \   00000018   FBFFFF1A           BNE      ??count_ListElements_1
+    323            
+    324            return i;
+   \   0000001C                      REQUIRE ?Subroutine24
+   \   0000001C                      ;; // Fall through to label ?Subroutine24
+    325          }
+    326          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    327          struct list_head *get_ListByIndex(LIST_HEAD *head, int index)
+    328          {
+    329            struct list_head *iter;
+    330            int i = 0;
+    331            
+    332            list_for_each(iter, head)
+   \                     get_ListByIndex:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   0030A0E3           MOV      R3,#+0
+   \   00000008   010000EA           B        ??get_ListByIndex_0
+    333            {
+    334              if (i == index)
+    335                return iter;
+    336              i++;
+   \                     ??get_ListByIndex_1:
+   \   0000000C   002092E5           LDR      R2,[R2, #+0]
+   \   00000010   013083E2           ADD      R3,R3,#+1
+   \                     ??get_ListByIndex_0:
+   \   00000014   000052E1           CMP      R2,R0
+   \   00000018   0200000A           BEQ      ??get_ListByIndex_2
+   \   0000001C   010053E1           CMP      R3,R1
+   \   00000020   F9FFFF1A           BNE      ??get_ListByIndex_1
+   \   00000024   ........           B        ?Subroutine23
+    337            }
+    338            
+    339            return 0;
+   \                     ??get_ListByIndex_2:
+   \   00000028   ........           B        ?Subroutine22
+    340          }
+    341          
+    342          
+    343          /*
+    344          int AddMsg2Dialog(PRS_MSG* msg)
+    345          {
+    346            DIALOG* d = FindDialog(msg->from_id);
+    347            
+    348            if (d == NULL)//если диалога нет, то создаем
+    349              d = new_Dialog(from_id, NULL);
+    350            
+    351            PRS_MSG* msg = FindMsgById(id);
+    352            
+    353            if (msg)//если сообщение уже есть в списке
+    354              return 1;
+    355            
+    356            list_add(&d->message, &msg->list); 
+    357            return 0;
+    358          }
+    359          
+    360          void FreeAtachments(ATTACH* a)
+    361          {
+    362            while (a)
+    363            {
+    364              if (a->url)
+    365                mfree(a->url);
+    366              void* next=a->next;
+    367              mfree(a);
+    368              a=next;
+    369            }
+    370          }
+    371          
+    372          WALL_ATTACH* FindAttachByIndex(WALL_MSG* msg, int i)
+    373          {
+    374            WALL_ATTACH* attach=msg->attach_list;
+    375            int n=0;
+    376            
+    377            while(attach)
+    378            {
+    379              if (i == n)
+    380                break;
+    381              n++;
+    382              attach=attach->next;
+    383            }
+    384            return attach;  
+    385          }
+    386          
+    387          PERSONAL_MSG* AllocMSG()
+    388          {
+    389            PERSONAL_MSG* msg;
+    390            
+    391            msg=malloc(sizeof(PERSONAL_MSG));
+    392            msg->prev=0;  
+    393            msg->next=0;
+    394            msg->body=NULL;  
+    395            msg->id=0;
+    396            msg->date=0;  
+    397            msg->user_id=0;
+    398            msg->read_state=0;
+    399            msg->out=0;
+    400            msg->emoji=0;
+    401            msg->attach=0;
+    402            
+    403            return msg;
+    404          };
+    405          
+    406          void FreeWALLMSG(CLIST* c)
+    407          {
+    408            WALL_MSG* msg=(WALL_MSG*)c->wall_msglist;
+    409            c->wall_msglist=NULL;
+    410            
+    411            while (msg)
+    412            {
+    413              if (msg->text)
+    414                FreeWS(msg->text);
+    415              if (msg->attach_list)
+    416                FreeAtachments(msg->attach_list);
+    417              if (msg->profiles)
+    418                CLIST_Free(&msg->profiles);
+    419              void* next=msg->next;
+    420              mfree(msg);
+    421              msg=next;
+    422            }
+    423          }
+    424          
+    425          void FreeMSGLIST(CLIST* c)
+    426          {
+    427            PERSONAL_MSG* msg=c->msglist;
+    428            
+    429            while (msg)
+    430            {
+    431              void* next=msg->next;
+    432              if (msg->body)
+    433                FreeWS(msg->body);
+    434              mfree(msg);
+    435              msg=next;
+    436            }
+    437            c->msglist=NULL;
+    438          }
+    439          
+    440          PERSONAL_MSG* FindMsgById(CLIST* c, int id)
+    441          {
+    442            PERSONAL_MSG* msg;
+    443            
+    444            if (c==NULL)
+    445              return(0);
+    446            
+    447            msg=c->msglist;
+    448            
+    449            while(msg)
+    450            {
+    451              if (msg->id==id)
+    452                return msg;
+    453              msg=msg->next;
+    454            }
+    455            return(0);  
+    456          }
+    457          
+    458          void AddMsg(CLIST* c, PERSONAL_MSG* msg)
+    459          {
+    460            PERSONAL_MSG* msg_i; 
+    461            PERSONAL_MSG* msg_prev;
+    462            
+    463            c->msg_count++;//счетчик сообщений
+    464            
+    465            if (msg->out==0 && msg->read_state==0)//если не прочитано
+    466              c->unread++;
+    467            
+    468            if (c->msglist==NULL)//добавляем первое сообщение
+    469            {
+    470               c->msglist=msg;
+    471              return;
+    472            }
+    473            
+    474            msg_i=c->msglist;
+    475            
+    476            while (msg_i)
+    477            {
+    478              if (msg->id > msg_i->id)//ищем мессагу с id мньше нашего
+    479              {
+    480                msg_prev=msg_i->prev;
+    481                if (msg_prev==0)//значит топ
+    482                  c->msglist=msg;
+    483                else
+    484                  msg_prev->next=msg;
+    485                msg->next=msg_i;
+    486                msg->prev=msg_prev;
+    487                msg_i->prev=msg;
+    488                break;
+    489              }
+    490              else
+    491                if (msg_i->next==NULL)//не нашли,вставляем в конец списка
+    492                {
+    493                  msg->next=0;
+    494                  msg->prev=msg_i;
+    495                  msg_i->next=msg;     
+    496                  break;
+    497                }
+    498              msg_i=msg_i->next;
+    499            }  
+    500          }
+    501          
+    502          
+    503          void AddUserInfo(int id, int deactivated, char* first_name, char* last_name, char* photo_50)
+    504          {
+    505            if (id == my_id)//свои данные пока не обновляем
+    506              return;
+    507            
+    508            CLIST* c = FindContactById(csm->dialogs_list, id);
+    509            
+    510            if (c == NULL)//если контакта нет в списке
+    511              return;
+    512               
+    513            if (first_name)
+    514            {
+    515              if (c->first_name == NULL)
+    516                c->first_name = AllocWS(65);     
+    517              utf8_2ws(c->first_name, first_name, strlen(first_name));
+    518          
+    519            }
+    520            
+    521            if (last_name)
+    522            {
+    523              if (c->last_name == NULL)
+    524                c->last_name = AllocWS(65);     
+    525              utf8_2ws(c->last_name, last_name, strlen(last_name));
+    526            }
+    527            
+    528            if (photo_50)
+    529            {
+    530              if (c->photo_url == NULL)
+    531                c->photo_url = malloc(strlen(photo_50));
+    532              c->photo_url = photo_50;
+    533            }
+    534           
+    535          }
+    536          
+    537          
+    538          CLIST* CreateContact(int id)
+    539          {
+    540            CLIST* c;
+    541            
+    542            c=malloc(sizeof(CLIST));
+    543            c->next=NULL;
+    544            c->prev=NULL;
+    545            c->msglist=NULL;
+    546            c->wall_msglist=NULL;
+    547            c->user_id=id;
+    548            c->first_name=NULL;
+    549            c->last_name=NULL;
+    550            c->photo=NULL;
+    551            c->photo_url=NULL;
+    552            c->flag_load_photo=0;
+    553            c->deactivated=0;
+    554            c->msg_count=0;  
+    555            c->unread=0;
+    556            return c;
+    557          }
+    558          
+    559          static void FreeContact(CLIST* c)
+    560          {
+    561            if (c->first_name)
+    562              FreeWS(c->first_name);
+    563            
+    564            if (c->last_name)
+    565              FreeWS(c->last_name);
+    566            
+    567            if (c->msglist)
+    568              FreeMSGLIST(c);
+    569          
+    570            if (c->wall_msglist)
+    571              FreeWALLMSG(c);
+    572            
+    573            if (c->photo_url)
+    574              mfree(c->photo_url);
+    575            
+    576            if (c->photo)
+    577            {
+    578              mfree(c->photo->bitmap);
+    579              mfree(c->photo);
+    580            }
+    581            mfree(c);
+    582          }
+    583          
+    584          void CLIST_Free(CLIST** cl)
+    585          {
+    586            CLIST* c=*cl;
+    587          
+    588            while(c)
+    589            {
+    590              CLIST* c_next=c->next;
+    591              FreeContact(c);
+    592              c=c_next;
+    593            }
+    594            *cl=NULL;
+    595          }
+    596          
+    597          static int FindContact(CLIST* cl, CLIST* c)
+    598          {
+    599            CLIST* c_next=cl;
+    600            
+    601            while(c_next)
+    602            {
+    603              if (c_next == c)
+    604                return (1);
+    605              c_next=c_next->next;
+    606            }
+    607            return(0);
+    608          }
+    609          
+    610          CLIST* FindContactById(CLIST* cl, int user_id)
+    611          {
+    612            CLIST* c=cl;
+    613            
+    614            while(c)
+    615            {
+    616              if (c->user_id==user_id)
+    617                return c;
+    618              c=c->next;
+    619            }
+    620            return(0);
+    621          }
+    622          
+    623          static void CutContactFromList(CLIST** cl, CLIST* c)
+    624          { 
+    625            CLIST* c_prev=c->prev;
+    626            CLIST* c_next=c->next;
+    627            c->prev=0;
+    628            c->next=0;
+    629            if (c_prev)
+    630              c_prev->next=c_next;
+    631            else//если контакт был в топе
+    632              *cl=c_next;
+    633            if (c_next)
+    634              c_next->prev=c_prev;
+    635          }
+    636          
+    637          void DeleteContact(CLIST** cl, int user_id)
+    638          {
+    639            CLIST* c;
+    640            
+    641            if (c=FindContactById(*cl, user_id))
+    642            {
+    643              CutContactFromList(cl, c);
+    644              FreeContact(c);
+    645            }
+    646          }
+    647          
+    648          void AddContactToList(CLIST** cl, CLIST* c)//добавление с сортировкой по дате
+    649          {
+    650            CLIST* c_next;
+    651            CLIST* c_prev;
+    652            
+    653            if (*cl==NULL)
+    654            {
+    655              *cl=c;
+    656              return;
+    657            }
+    658            
+    659            if (FindContact(*cl, c))
+    660            {
+    661              if (c->next==NULL && c->prev==0)//если в списке только наш контакт
+    662                return;
+    663              else 
+    664                CutContactFromList(cl, c);  
+    665            }
+    666            
+    667            c_next=*cl;
+    668            
+    669            while (c_next)
+    670            {
+    671              if (c->msglist->date > c_next->msglist->date)//ищем сообщение с date меньше нашего
+    672              {
+    673                c_prev=c_next->prev;
+    674                
+    675                if (c_prev == 0)//непорядок-контакт с меньшим id сообщения в топе.
+    676                  *cl=c;
+    677                else
+    678                  c_prev->next=c;
+    679                c->next=c_next;
+    680                c->prev=c_prev;
+    681                c_next->prev=c;
+    682                break;
+    683              }
+    684              else
+    685                if (c_next->next==NULL)//не нашли,вставляем в конец списка
+    686                {
+    687                  c->next=0;
+    688                  c->prev=c_next;
+    689                  c_next->next=c;
+    690                  break;
+    691                }
+    692              
+    693              c_next=c_next->next;
+    694            } 
+    695          }
+    696          
+    697          
+    698          CLIST* FindContactByN(CLIST* cl, int n)
+    699          {
+    700            CLIST* c;
+    701            int i=0;
+    702            
+    703            c=cl;
+    704            
+    705            while(c)
+    706            {
+    707              if (i == n)
+    708                break;
+    709              i++;
+    710              c=c->next;
+    711            }
+    712            return c;
+    713          }
+    714          
+    715          int GetContactN(CLIST* cl, CLIST* c)
+    716          {
+    717            CLIST* c_next;
+    718            int i=0;
+    719            
+    720            c_next=cl;
+    721            
+    722            while(c_next)
+    723            {
+    724              if (c_next == c)
+    725                break;
+    726              i++;
+    727              c_next=c->next;
+    728            }
+    729            return i;
+    730          }
+    731          
+    732          CLIST* FindLastContact(CLIST* cl)
+    733          {
+    734            CLIST* c=cl;
+    735            
+    736            if(c==NULL)
+    737              return(0);
+    738            
+    739            while(c)
+    740            {
+    741              if (c->next == NULL)
+    742                break;
+    743              c=c->next;
+    744            }
+    745            
+    746            return c;     
+    747          }
+    748          
+    749          int CLIST_GetCount(CLIST* cl)
+    750          {
+    751            CLIST* c=cl;
+    752            int count=0;
+    753            
+    754            if(c==NULL)
+    755              return(0);
+    756            
+    757            while(c)
+    758            {
+    759              count++;
+    760              c=c->next;
+    761            }
+    762            
+    763            return count;  
+    764          }
+    765          
+    766          
+    767          char* create_noninfo_users_ids(CLIST* cl) 
+    768          {
+    769            int len_c=0;
+    770            int len_s=0;
+    771            char* s=NULL;
+    772            char c[32];
+    773            
+    774            CLIST* user=cl;
+    775            
+    776            while (user)
+    777            {
+    778              if (user->first_name==NULL && user->user_id > 0)
+    779              {
+    780                sprintf(c, percent_d, user_id);
+    781                len_c=strlen(c);
+    782                if (s)
+    783                  len_s=strlen(s);
+    784                s=realloc(s, len_s+len_c+2);
+    785                if (len_s)
+    786                {
+    787                  s[len_s]=',';
+    788                  s[len_s+1]='\0';
+    789                }
+    790                strcat(s, c);
+    791              }
+    792              user=user->next;
+    793            }
+    794            
+    795            return s;
+    796          }
+    797          */
+    798          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    799          char* create_noninfo_dialog_users_ids(LIST_HEAD *head) 
+    800          {
+   \                     create_noninfo_dialog_users_ids:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    801            char* s;
+    802            char* s1;
+    803            int i=0;
+    804            
+    805            struct list_head *iter;
+    806            
+    807            list_for_each(iter, head)
+   \   00000008   005094E5           LDR      R5,[R4, #+0]
+   \   0000000C   0000A0E3           MOV      R0,#+0
+   \   00000010   030000EA           B        ??create_noninfo_dialog_users_ids_0
+    808            {
+    809              VkDialog *dialog = list_entry(iter, VkDialog, list);
+    810              if (dialog->user == NULL)
+   \                     ??create_noninfo_dialog_users_ids_1:
+   \   00000014   1C1095E5           LDR      R1,[R5, #+28]
+    811                i++;
+    812            }
+   \   00000018   005095E5           LDR      R5,[R5, #+0]
+   \   0000001C   000051E3           CMP      R1,#+0
+   \   00000020   01008002           ADDEQ    R0,R0,#+1
+   \                     ??create_noninfo_dialog_users_ids_0:
+   \   00000024   040055E1           CMP      R5,R4
+   \   00000028   F9FFFF1A           BNE      ??create_noninfo_dialog_users_ids_1
+    813           
+    814            if (i == 0)
+   \   0000002C   000050E3           CMP      R0,#+0
+    815              return NULL;
+   \   00000030   F080BD08           POPEQ    {R4-R7,PC}
+    816            
+    817            s=malloc(16 * i);
+   \   00000034   0002A0E1           LSL      R0,R0,#+4
+   \   00000038   140000EF           SWI      +20
+    818            s1=s;
+    819            
+    820            list_for_each(iter, head)
+   \   0000003C   005094E5           LDR      R5,[R4, #+0]
+   \   00000040   0060A0E1           MOV      R6,R0
+   \   00000044   0670A0E1           MOV      R7,R6
+   \   00000048   040000EA           B        ??create_noninfo_dialog_users_ids_2
+    821            {
+    822              VkDialog *dialog = list_entry(iter, VkDialog, list);
+    823              if (dialog->user == NULL)
+    824              {
+    825                VkMsg *msg = get_DialogMsg(dialog);
+    826                int user_id;
+    827                if (msg->out == 0)
+    828                  user_id = msg->from_id;
+    829                else
+    830                  user_id = msg->peer_id;
+    831                s1 += sprintf(s1, percent_d, user_id);
+   \                     ??create_noninfo_dialog_users_ids_3:
+   \   0000004C   44109FE5           LDR      R1,??create_noninfo_dialog_users_ids_4  ;; percent_d
+   \   00000050   0700A0E1           MOV      R0,R7
+   \   00000054   160000EF           SWI      +22
+   \   00000058   077080E0           ADD      R7,R0,R7
+   \                     ??create_noninfo_dialog_users_ids_5:
+   \   0000005C   005095E5           LDR      R5,[R5, #+0]
+   \                     ??create_noninfo_dialog_users_ids_2:
+   \   00000060   040055E1           CMP      R5,R4
+   \   00000064   0900000A           BEQ      ??create_noninfo_dialog_users_ids_6
+   \   00000068   1C0095E5           LDR      R0,[R5, #+28]
+   \   0000006C   000050E3           CMP      R0,#+0
+   \   00000070   F9FFFF1A           BNE      ??create_noninfo_dialog_users_ids_5
+   \   00000074   0500A0E1           MOV      R0,R5
+   \   00000078   ........           BL       get_DialogMsg
+   \   0000007C   1C1090E5           LDR      R1,[R0, #+28]
+   \   00000080   000051E3           CMP      R1,#+0
+   \   00000084   14209015           LDRNE    R2,[R0, #+20]
+   \   00000088   10209005           LDREQ    R2,[R0, #+16]
+   \   0000008C   EEFFFFEA           B        ??create_noninfo_dialog_users_ids_3
+    832              }    
+    833            }
+    834            
+    835            return s;
+   \                     ??create_noninfo_dialog_users_ids_6:
+   \   00000090   0600A0E1           MOV      R0,R6
+   \   00000094   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??create_noninfo_dialog_users_ids_4:
+   \   00000098   ........           DC32     percent_d
+    836          }
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for dialogs>`:
+   \   00000000   ............       DC32 dialogs, dialogs
+   \              ....        
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for my_groups>`:
+   \   00000000   ............       DC32 my_groups, my_groups
+   \              ....        
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for friends>`:
+   \   00000000   ............       DC32 friends, friends
+   \              ....        
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for profiles>`:
+   \   00000000   ............       DC32 profiles, profiles
+   \              ....        
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for groups>`:
+   \   00000000   ............       DC32 groups, groups
+   \              ....        
+    837          //******************************************************************************
+    838          
+
+   Maximum stack usage in bytes:
+
+     Function                       CSTACK
+     --------                       ------
+     CreateWS_emoji                    16
+     FindDialog                         0
+     count_ListElements                 0
+     create_noninfo_dialog_users_ids
+                                       20
+     del_Dialogs                       16
+     del_Group                          8
+     del_Groups                        12
+     del_Message                        8
+     del_Messages                      12
+     del_Profiles                      12
+     del_User                           8
+     del_attachments                   12
+     find_Group                         0
+     find_User                          0
+     get_DialogMsg                      0
+     get_ListByIndex                    0
+     list_del                           0
+     new_Dialog                        16
+     new_Group                         12
+     new_Message                       16
+     new_User                          12
+     utf8_2ws_emoji                    12
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     list_del                         32
+     dialogs                           8
+     my_groups                         8
+     friends                           8
+     profiles                          8
+     groups                            8
+     percent_d                         4
+     CreateWS_emoji                  120
+     utf8_2ws_emoji                   40
+     new_User                        144
+     find_User                        40
+     ?Subroutine23                     8
+     ?Subroutine22                     8
+     del_User                          4
+     ?Subroutine26                   104
+     del_Profiles                     44
+     ?Subroutine25                    12
+     del_attachments                  36
+     new_Message                     144
+     del_Message                      32
+     del_Messages                     40
+     new_Group                       152
+     find_Group                       40
+     del_Group                         0
+     del_Groups                       44
+     new_Dialog                      108
+     FindDialog                       84
+     get_DialogMsg                    24
+     ?Subroutine24                     8
+     del_Dialogs                     116
+     count_ListElements               28
+     get_ListByIndex                  44
+     create_noninfo_dialog_users_ids
+                                     156
+     ?<Initializer for dialogs>        8
+     ?<Initializer for my_groups>      8
+     ?<Initializer for friends>        8
+     ?<Initializer for profiles>       8
+     ?<Initializer for groups>         8
+      Others                         124
+
+ 
+ 1 724 bytes in segment CODE
+     4 bytes in segment DATA_C
+    40 bytes in segment DATA_I
+    40 bytes in segment DATA_ID
+    12 bytes in segment INITTAB
+ 
+ 1 612 bytes of CODE  memory (+ 124 bytes shared)
+    44 bytes of CONST memory
+    40 bytes of DATA  memory
+
+Errors: none
+Warnings: 1

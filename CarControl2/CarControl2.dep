@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2830324388</fileChecksum>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\i2c.h</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\sms.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\strings.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\connector.h</file>
+      <file>$PROJ_DIR$\interrupt.h</file>
+      <file>$PROJ_DIR$\meas.h</file>
+      <file>$PROJ_DIR$\irq_work.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\config.pbi</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\CarControl2.pbd</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\irq_work.c</file>
+      <file>$PROJ_DIR$\i2c.c</file>
+      <file>$PROJ_DIR$\config.c</file>
+      <file>$PROJ_DIR$\sms.c</file>
+      <file>$PROJ_DIR$\meas.c</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\sms.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\i2c.pbi</file>
+      <file>$PROJ_DIR$\carcontrol_ipc.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\meas.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\irq_work.pbi</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\CarControl2.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 4 13 30 35 32 34 29 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\irq_work.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 10 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\sms.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\meas.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 3 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 26 37</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27 38 8 0 17 6 1 40 14 33 36 16 7 37 31 9 2 11 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\i2c.h</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\sms.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\strings.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\connector.h</file>
+      <file>$PROJ_DIR$\interrupt.h</file>
+      <file>$PROJ_DIR$\meas.h</file>
+      <file>$PROJ_DIR$\irq_work.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\irq_work.pbi</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\meas.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\config.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\sms.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\CarControl2.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\reg8875.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\i2c.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\conf_loader.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\irq_work.c</file>
+      <file>$PROJ_DIR$\i2c.c</file>
+      <file>$PROJ_DIR$\config.c</file>
+      <file>$PROJ_DIR$\sms.c</file>
+      <file>$PROJ_DIR$\meas.c</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\carcontrol_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\CarControl2.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 29 19 28 15 4 17 20 21</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\irq_work.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12 10 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\sms.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\meas.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 3 12 26 30 25 18 24 23 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 39 44</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 45 8 0 16 6 1 47 13 42 43 14 7 44 41 9 2 26 30 25 18 24 23 27 11 5</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLDX75</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$PROJ_DIR$\i2c.h</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\sms.h</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$PROJ_DIR$\..\inc\strings.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\connector.h</file>
+      <file>$PROJ_DIR$\interrupt.h</file>
+      <file>$PROJ_DIR$\meas.h</file>
+      <file>$PROJ_DIR$\irq_work.h</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\strings.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\config.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\i2c.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\conf_loader.pbi</file>
+      <file>$PROJ_DIR$\reg8875.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\irq_work.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\CarControl2.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\sms.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\conf_loader.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\func.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\strings.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\CarControl2_SGOLDX75.map</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\sms.lst</file>
+      <file>$TOOLKIT_DIR$\NATICQ\main.c</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\config.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\irq_work.lst</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\i2c.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\List\meas.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\meas.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\sms.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\config.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\conf_loader.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\i2c.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Exe\CarControl2_SGOLDX75.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\irq_work.r79</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\irq_work.c</file>
+      <file>$PROJ_DIR$\i2c.c</file>
+      <file>$PROJ_DIR$\Release_SGOLDX75\Obj\meas.pbi</file>
+      <file>$PROJ_DIR$\config.c</file>
+      <file>$PROJ_DIR$\sms.c</file>
+      <file>$PROJ_DIR$\meas.c</file>
+      <file>$PROJ_DIR$\conf_loader.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\inc\cfg_items.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\carcontrol_ipc.h</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\conf_loader.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 49 33</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLDX75\Obj\CarControl2.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 22 17 20 24 28 56 29 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLDX75\Exe\CarControl2_SGOLDX75.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 33</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 38 47 46 44 48 51 42 43 45 50</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 50 32</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 6</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 44 31</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\irq_work.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 9 69</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 11 9 69</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 48 39</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 2</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 2</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\config.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 46 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 62</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 62</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\sms.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 45 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\meas.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 56</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 43 41</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 3 11 23 27 21 15 19 18 25</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 3 11 23 27 21 15 19 18 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\conf_loader.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 47 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 62 67</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 62 67</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 42 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 6 67 64 8 2 23 27 21 15 19 18 25 10 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 63 68 7 0 14 5 1 70 12 65 66 13 6 67 64 8 2 23 27 21 15 19 18 25 10 4</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

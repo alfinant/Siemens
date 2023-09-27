@@ -1,0 +1,345 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   17/Nov/2019  22:06:55 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\openssl\crypto\aes\aes_cbc.c                     /
+//    Command line    =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\openssl\crypto\aes\aes_cbc.c -D NEWSGOLD -D      /
+//                       DEBUG -lCN E:\Users\alfinant7\Documents\Siemens\alf /
+//                       inant\src_iar\VK.ELF_C\Releas_NSG\List\ -la         /
+//                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\List\ -o                     /
+//                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\Obj\ -z9 --cpu_mode arm      /
+//                       --endian little --cpu ARM926EJ-S --stack_align 4    /
+//                       --interwork --diag_suppress Pe301 -e --fpu None     /
+//                       --dlib_config E:\Users\alfinant7\Documents\Siemens\ /
+//                       IAR\ARM\LIB\dl5tpainl8n.h -I                        /
+//                       E:\Users\alfinant7\Documents\Siemens\IAR\ARM\INC\   /
+//                       --inline_threshold=2                                /
+//    List file       =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_i /
+//                       ar\VK.ELF_C\Releas_NSG\List\aes_cbc.s79             /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME aes_cbc
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        MULTWEAK ??AES_cbc_encrypt??rT
+        MULTWEAK ??AES_decrypt??rA
+        MULTWEAK ??AES_encrypt??rA
+        PUBLIC AES_cbc_encrypt
+        FUNCTION AES_cbc_encrypt,0203H
+        LOCFRAME CSTACK, 44, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+AES_decrypt         SYMBOL "AES_decrypt"
+AES_encrypt         SYMBOL "AES_encrypt"
+AES_cbc_encrypt     SYMBOL "AES_cbc_encrypt"
+??AES_cbc_encrypt??rT SYMBOL "??rT", AES_cbc_encrypt
+??AES_decrypt??rA   SYMBOL "??rA", AES_decrypt
+??AES_encrypt??rA   SYMBOL "??rA", AES_encrypt
+
+        EXTERN AES_decrypt
+        FUNCTION AES_decrypt,0202H
+        EXTERN AES_encrypt
+        FUNCTION AES_encrypt,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??AES_cbc_encrypt??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE AES_cbc_encrypt
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function AES_cbc_encrypt
+        ARM
+AES_cbc_encrypt:
+        PUSH     {R0-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+44
+        LDR      R5,[SP, #+44]
+        MOV      R7,R0
+        LDR      R0,[SP, #+48]
+        MOV      R8,R1
+        MOV      R9,R2
+        MOV      R4,R3
+        MOV      R6,R5
+        CMP      R0,#+1
+        BEQ      ??AES_cbc_encrypt_0
+        CMP      R7,R8
+        BEQ      ??AES_cbc_encrypt_1
+        B        ??AES_cbc_encrypt_2
+??AES_cbc_encrypt_3:
+        MOV      R0,#+0
+??AES_cbc_encrypt_4:
+        LDRB     R1,[R0, +R7]
+        LDRB     R2,[R0, +R6]
+        EOR      R1,R2,R1
+        STRB     R1,[R0, +R8]
+        ADD      R0,R0,#+1
+        CMP      R0,#+16
+        BCC      ??AES_cbc_encrypt_4
+        MOV      R2,R4
+        MOV      R1,R8
+        MOV      R0,R8
+        _BLF     AES_encrypt,??AES_encrypt??rA
+        MOV      R6,R8
+        SUB      R9,R9,#+16
+        ADD      R7,R7,#+16
+        ADD      R8,R8,#+16
+??AES_cbc_encrypt_0:
+        CMP      R9,#+16
+        BCS      ??AES_cbc_encrypt_3
+        CMP      R9,#+0
+        BEQ      ??AES_cbc_encrypt_5
+        MOV      R0,#+0
+        B        ??AES_cbc_encrypt_6
+??AES_cbc_encrypt_7:
+        LDRB     R1,[R0, +R7]
+        LDRB     R2,[R0, +R6]
+        EOR      R1,R2,R1
+        STRB     R1,[R0, +R8]
+        ADD      R0,R0,#+1
+??AES_cbc_encrypt_6:
+        CMP      R0,R9
+        BCC      ??AES_cbc_encrypt_7
+        MOV      R0,R9
+??AES_cbc_encrypt_8:
+        LDRB     R1,[R0, +R6]
+        STRB     R1,[R0, +R8]
+        ADD      R0,R0,#+1
+        CMP      R0,#+16
+        BCC      ??AES_cbc_encrypt_8
+        MOV      R2,R4
+        MOV      R1,R8
+        MOV      R0,R8
+        _BLF     AES_encrypt,??AES_encrypt??rA
+        MOV      R6,R8
+??AES_cbc_encrypt_5:
+        MOV      R2,#+16
+        MOV      R1,R6
+        B        ??AES_cbc_encrypt_9
+??AES_cbc_encrypt_10:
+        MOV      R2,R4
+        MOV      R1,R8
+        MOV      R0,R7
+        _BLF     AES_decrypt,??AES_decrypt??rA
+        MOV      R0,#+0
+??AES_cbc_encrypt_11:
+        LDRB     R3,[R0, +R6]
+        ADD      R1,R0,R8
+        LDRB     R2,[R1, #+0]
+        ADD      R0,R0,#+1
+        CMP      R0,#+16
+        EOR      R2,R3,R2
+        STRB     R2,[R1, #+0]
+        BCC      ??AES_cbc_encrypt_11
+        MOV      R6,R7
+        SUB      R9,R9,#+16
+        ADD      R7,R7,#+16
+        ADD      R8,R8,#+16
+??AES_cbc_encrypt_2:
+        CMP      R9,#+16
+        BCS      ??AES_cbc_encrypt_10
+        CMP      R9,#+0
+        BEQ      ??AES_cbc_encrypt_5
+        MOV      R2,R4
+        MOV      R1,SP
+        MOV      R0,R7
+        _BLF     AES_decrypt,??AES_decrypt??rA
+        MOV      R0,#+0
+        B        ??AES_cbc_encrypt_12
+??AES_cbc_encrypt_13:
+        LDRB     R2,[R0, +R6]
+        MOV      R1,SP
+        LDRB     R1,[R0, +R1]
+        EOR      R1,R2,R1
+        STRB     R1,[R0, +R8]
+        ADD      R0,R0,#+1
+??AES_cbc_encrypt_12:
+        CMP      R0,R9
+        BCC      ??AES_cbc_encrypt_13
+        MOV      R6,R7
+        B        ??AES_cbc_encrypt_5
+??AES_cbc_encrypt_14:
+        MOV      R2,#+16
+        MOV      R1,R7
+        MOV      R0,SP
+        SWI      +286
+        MOV      R2,R4
+        MOV      R1,R8
+        MOV      R0,R7
+        _BLF     AES_decrypt,??AES_decrypt??rA
+        MOV      R0,#+0
+??AES_cbc_encrypt_15:
+        LDRB     R3,[R0, +R5]
+        ADD      R1,R0,R8
+        LDRB     R2,[R1, #+0]
+        ADD      R0,R0,#+1
+        CMP      R0,#+16
+        EOR      R2,R3,R2
+        STRB     R2,[R1, #+0]
+        BCC      ??AES_cbc_encrypt_15
+        MOV      R2,#+16
+        MOV      R1,SP
+        MOV      R0,R5
+        SWI      +286
+        SUB      R9,R9,#+16
+        ADD      R7,R7,#+16
+        ADD      R8,R8,#+16
+??AES_cbc_encrypt_1:
+        CMP      R9,#+16
+        BCS      ??AES_cbc_encrypt_14
+        CMP      R9,#+0
+        POPEQ    {R0-R9,PC}
+        MOV      R2,#+16
+        MOV      R1,R7
+        MOV      R0,SP
+        SWI      +286
+        MOV      R2,R4
+        MOV      R1,R8
+        MOV      R0,SP
+        _BLF     AES_decrypt,??AES_decrypt??rA
+        MOV      R0,#+0
+        B        ??AES_cbc_encrypt_16
+??AES_cbc_encrypt_17:
+        LDRB     R3,[R0, +R5]
+        ADD      R1,R0,R8
+        LDRB     R2,[R1, #+0]
+        ADD      R0,R0,#+1
+        EOR      R2,R3,R2
+        STRB     R2,[R1, #+0]
+??AES_cbc_encrypt_16:
+        CMP      R0,R9
+        BCC      ??AES_cbc_encrypt_17
+        MOV      R0,R9
+??AES_cbc_encrypt_18:
+        MOV      R1,SP
+        LDRB     R1,[R0, +R1]
+        STRB     R1,[R0, +R8]
+        ADD      R0,R0,#+1
+        CMP      R0,#+16
+        BCC      ??AES_cbc_encrypt_18
+        MOV      R2,#+16
+        MOV      R1,SP
+??AES_cbc_encrypt_9:
+        MOV      R0,R5
+        SWI      +286
+        POP      {R0-R9,PC}       ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??AES_encrypt??rA:
+        LDR      R12,??Subroutine1_0  ;; AES_encrypt
+        BX       R12
+        DATA
+??Subroutine1_0:
+        DC32     AES_encrypt
+        CFI EndBlock cfiBlock2
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??AES_decrypt??rA:
+        LDR      R12,??Subroutine2_0  ;; AES_decrypt
+        BX       R12
+        DATA
+??Subroutine2_0:
+        DC32     AES_decrypt
+        CFI EndBlock cfiBlock3
+
+        END
+// 
+// 632 bytes in segment CODE
+// 
+// 604 bytes of CODE memory (+ 28 bytes shared)
+//
+//Errors: none
+//Warnings: none

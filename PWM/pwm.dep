@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>402096326</fileChecksum>
+  <configuration>
+    <name>Release_ELKA</name>
+    <outputs>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\i2clib.s79</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.s79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\e_os2.h</file>
+      <file>$TOOLKIT_DIR$\INC\stddef.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\stack.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\ysizet.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rand.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\safestack.h</file>
+      <file>$TOOLKIT_DIR$\INC\time.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslv.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\symhacks.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\buffer.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdio.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\opensslconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\lhash.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\tls1.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ossl_typ.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bio.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\evp.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\md4.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\gpio.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\clkman.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\i2clib.lst</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\i2clib.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2clib.r79</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\List\PWM_ELKA.map</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\func.r79</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\pwm.pbd</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+      <file>$PROJ_DIR$\i2clib.c</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$PROJ_DIR$\Release_ELKA\Exe\PWM_ELKA.elf</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\i2clib.pbi</file>
+      <file>$PROJ_DIR$\Release_ELKA\Obj\main.r79</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ripemd.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\aes.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\des.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\objects.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc5.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\blowfish.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\obj_mac.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\mdc2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\rc4.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\cast.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509_vfy.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dh.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\x509.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pem2.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\dsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\asn1.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\pkcs7.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl3.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\undifined_functions.h</file>
+      <file>$TOOLKIT_DIR$\INC\openssl\ssl23.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 63 50</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 65 2 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36 30 40 48 58 39 45 28 31 60 29 43 51 11 8 62 4 54 32 9 5 10 6 7 13 12 14 3 17 18 15 25 16 24 26 23 21 27 22 19 66 70 77 72 73 74 78 76 68 67 69 84 81 71 75 85 82 79 86 83 80 87 20 89 88 56</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 36 30 40 48 58 34 39 45 28 31 60 29 43 51 62 59 33 41 44 42 54 32 56</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Obj\pwm.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 64 61</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\i2clib.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 46 1 35</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_ELKA\Exe\PWM_ELKA.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 37 52 46 65 47</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$PROJ_DIR$\I2C.asm</file>
+      <file>$PROJ_DIR$\gpio_nsg.h</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\pwm.pbd</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C.pbd</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.s79</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\test.elf</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\test.map</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\rect_patcher.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 19 17</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2C.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\pwm.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\I2C.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 16</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\test.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 25 9 8 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8 15 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5 1 11 4 22 14 24 13 10 21 18 23 28 3</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 5 1 11 4 22 14 24 13 10 21 18 23 28 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

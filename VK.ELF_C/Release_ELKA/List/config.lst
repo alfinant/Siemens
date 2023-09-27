@@ -1,0 +1,228 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    16/Feb/2023  22:41:14 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \config.c                                            #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \config.c -D NEWSGOLD -D ELKA -D E71 -lCN            #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\ -la D:\Users\alfinant\Documents\ #
+#                       Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\List\ -o       #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\ -z9 --cpu_mode arm --endian       #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h --segment code=CONFIG --segment            #
+#                       data=CONFIG -I D:\Users\alfinant\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\config.lst                        #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\config.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\config.c
+      1          #include <siemens\cfg_items.h>
+      2          #include <siemens\swilib.h>
+      3          
+      4          #ifdef NEWSGOLD
+      5          #define DEFAULT_DISK "4"
+      6          #else
+      7          #define DEFAULT_DISK "0"
+      8          #endif
+      9          
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     10          __root const CFG_HDR cfghdr0={CFG_STR_UTF8,"Папка приложения",0,127};
+   \                     cfghdr0:
+   \   00000000   02000000           DC32 2
+   \   00000004   CFE0EFEAE020       DC8 "\317\340\357\352\340 \357\360\350\353\356\346\345\355\350\377"
+   \              EFF0E8EBEEE6
+   \              E5EDE8FF00  
+   \   00000015   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000      
+   \   00000024   000000007F00       DC32 0, 127
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     11          __root const char APP_DIR[128]="0:\\Zbin\\Vk\\";
+   \                     APP_DIR:
+   \   00000000   303A5C5A6269       DC8 "0:\\Zbin\\Vk\\"
+   \              6E5C566B5C00
+   \   0000000C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000001C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000002C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000003C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000004C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000005C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   0000006C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000        
+     12          
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     13          __root const CFG_HDR cfghdr1={CFG_CHECKBOX, "VK Theme", 0, 3};
+   \                     cfghdr1:
+   \   00000000   0B000000           DC32 11
+   \   00000004   564B20546865       DC8 "VK Theme"
+   \              6D6500      
+   \   0000000D   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000000000  
+   \   00000024   000000000300       DC32 0, 3
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     14          __root const int CFG_ENA_THEME = 0;
+   \                     CFG_ENA_THEME:
+   \   00000000   00000000           DC32 0
+     15          
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     16          __root const CFG_HDR cfghdr2={CFG_UINT,"Reconnect timeout",0,65535};
+   \                     cfghdr2:
+   \   00000000   01000000           DC32 1
+   \   00000004   5265636F6E6E       DC8 "Reconnect timeout"
+   \              656374207469
+   \              6D656F757400
+   \   00000016   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              0000        
+   \   00000024   00000000FFFF       DC32 0, 65535
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     17          __root const unsigned int RECONNECT_TIME=60;
+   \                     RECONNECT_TIME:
+   \   00000000   3C000000           DC32 60
+     18          
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     19          __root const CFG_HDR cfghdr3={CFG_TIME,"Часовой пояс",0,12};
+   \                     cfghdr3:
+   \   00000000   0C000000           DC32 12
+   \   00000004   D7E0F1EEE2EE       DC8 "\327\340\361\356\342\356\351 \357\356\377\361"
+   \              E920EFEEFFF1
+   \              00          
+   \   00000011   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              00          
+   \   00000024   000000000C00       DC32 0, 12
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     20          __root const TTime GMT={3,0,0,0};
+   \                     GMT:
+   \   00000000   03000000           DC8 3, 0, 0, 0
+   \   00000004   00000000           DC32 0
+     21          
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     22          __root const CFG_HDR cfghdr4={CFG_CBOX,"Включить звук",0,2};
+   \                     cfghdr4:
+   \   00000000   05000000           DC32 5
+   \   00000004   C2EAEBFEF7E8       DC8 "\302\352\353\376\367\350\362\374 \347\342\363\352"
+   \              F2FC20E7E2F3
+   \              EA00        
+   \   00000012   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \   00000024   000000000200       DC32 0, 2
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     23          __root const int soundEnabled = 1;
+   \                     soundEnabled:
+   \   00000000   01000000           DC32 1
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     24          __root const CFG_CBOX_ITEM cfgcbox4_2[2]={"Нет","Да"};
+   \                     cfgcbox4_2:
+   \   00000000   CDE5F200           DC8 "\315\345\362"
+   \   00000004   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000014   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \   00000020   C4E000             DC8 "\304\340"
+   \   00000023   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000033   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00          
+     25          
+     26          #ifdef NEWSGOLD  
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     27          __root const CFG_HDR cfghdr5={CFG_UINT,"Громкость(0-5)",0,5};
+   \                     cfghdr5:
+   \   00000000   01000000           DC32 1
+   \   00000004   C3F0EEECEAEE       DC8 "\303\360\356\354\352\356\361\362\374(0-5)"
+   \              F1F2FC28302D
+   \              352900      
+   \   00000013   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              0000000000  
+   \   00000024   000000000500       DC32 0, 5
+   \              0000        
+
+   \                                 In segment CONFIG_C, align 4, align-sorted, root
+     28          __root const int sndVolume=5;
+   \                     sndVolume:
+   \   00000000   05000000           DC32 5
+     29          #else
+     30          __root const CFG_HDR cfghdr6={CFG_UINT,"Громкость(0-15)",0,15};
+     31          __root const int sndVolume=15; 
+     32          #endif
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     cfghdr0          44
+     APP_DIR         128
+     cfghdr1          44
+     CFG_ENA_THEME     4
+     cfghdr2          44
+     RECONNECT_TIME    4
+     cfghdr3          44
+     GMT               8
+     cfghdr4          44
+     soundEnabled      4
+     cfgcbox4_2       64
+     cfghdr5          44
+     sndVolume         4
+
+ 
+ 480 bytes in segment CONFIG_C
+ 
+ 480 bytes of CONST memory
+
+Errors: none
+Warnings: 4

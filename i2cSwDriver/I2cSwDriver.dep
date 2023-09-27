@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>569264722</fileChecksum>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.r79</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\I2C_SW.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\I2cSwDrv_NSG.elf</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\delay.lst</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\I2CSW_TS.H</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2cSwDriver.pbd</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2CSW_TS.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C_SW.pbi</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\func.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C_SW.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2CSW_TS.r79</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\I2C_SW.H</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\delay.r79</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\..\inc\reg8876.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\task.r79</file>
+      <file>$PROJ_DIR$\task.c</file>
+      <file>$PROJ_DIR$\I2CSW_TS.C</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_NSG\List\I2CSW_TS.lst</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\task.pbi</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\delay.asm</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\task.lst</file>
+      <file>$PROJ_DIR$\I2C_SW.C</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\I2cSwDrv_NSG.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 38 24 21 30 18 16 35 0</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\I2cSwDriver.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 14 15 27 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8 1 17 12 23 41 25 32 29 10 2 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\task.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35 47</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8 1 17 12 23 41 25 32 29 10 2 11 44 9</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2CSW_TS.C</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24 39</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 28</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 18 20</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\delay.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 30 7</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2C_SW.C</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 33 6 31 3 42 19 26 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release_SGOLD</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.r79</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\delay.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\I2C_SW.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\I2cSwDriver.pbd</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\task.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\I2CSW_TS.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\func.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\I2cSwDrv_SGOLD.elf</file>
+      <file>$PROJ_DIR$\..\inc\reg8875.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\I2C_SW.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\task.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\I2CSW_TS.pbi</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Exe\I2cSwDrv.elf</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\I2C_SW.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\task.lst</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\I2CSW_TS.H</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\I2C_SW.H</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\I2CSW_TS.r79</file>
+      <file>$PROJ_DIR$\Release_SGOLD\List\main.lst</file>
+      <file>$PROJ_DIR$\Release_SGOLD\Obj\i2c_sw_task.pbd</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\task.c</file>
+      <file>$PROJ_DIR$\I2CSW_TS.C</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.h</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\..\inc\nu_swilib.h</file>
+      <file>$PROJ_DIR$\delay.asm</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\I2C_SW.C</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\I2cSwDriver.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 14 4 12 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\I2cSwDrv_SGOLD.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 41 35 16 2 8 3 6 0</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Exe\I2cSwDrv.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 41 35 16 2 8 3 6 0</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_SGOLD\Obj\i2c_sw_task.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 14 4 12 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 3 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21 1 26 25 28 42 29 34 32 23 18 24</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21 1 26 25 28 42 29 34 32 23 18 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\task.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 6 17</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21 1 26 25 28 42 29 34 32 23 18 24 45 22</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 21 1 26 25 28 42 29 34 32 23 18 24 45 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2CSW_TS.C</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 14</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\delay.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2C_SW.C</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 16 11</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10 20 33 19 27 30 47</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 10 20 33 19 43 27 30 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

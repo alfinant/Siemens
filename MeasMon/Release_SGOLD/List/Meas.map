@@ -1,0 +1,333 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  23/Apr/2018  18:54:05                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\List\Meas.map                  #
+#           Output file 1 =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\Exe\Meas.elf                   #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\Obj\func.r79                   #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\Obj\irq_work.r79               #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\Obj\main.r79                   #
+#                            -o                                                #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\Exe\Meas.elf                   #
+#                            -Felf -l                                          #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\Release_SGOLD\List\Meas.map                  #
+#                            -xm -f                                            #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\Meas #
+#                            Moon\test.xcl                                     #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\d #
+#                            l5tpainl8n.r79                                    #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000E94  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\MeasMoon\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000        ElfKiller (main)
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000A34 - 00000A37 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000A34        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\MeasMoon\Release_SGOLD\Obj\irq_work.r79
+  PROGRAM MODULE, NAME : irq_work
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000A38 - 00000A5B (0x24 bytes), align: 2
+  Segment part 3.             Intra module refs:   irq_req
+                                                   irq_set_prio
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           disable_interrupts      00000A38 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000A5C - 00000A7F (0x24 bytes), align: 2
+  Segment part 5.             Intra module refs:   irq_req
+                                                   irq_set_prio
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           enable_interrupts       00000A5C 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000A80 - 00000AB7 (0x38 bytes), align: 2
+  Segment part 7.             Intra module refs:   irq_req
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           irq_set_prio            00000A80        meas_rdyirq (main)
+                                                   start_measuring_M2 (main)
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000AB8 - 00000ACB (0x14 bytes), align: 2
+  Segment part 9.             Intra module refs:   irq_req
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           irq_get_prio            00000AB8 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000ACC - 00000B47 (0x7c bytes), align: 2
+  Segment part 11.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           irq_req                 00000ACC        main (main)
+               stack 1 = 00000000 ( 00000018 )
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\MeasMoon\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000B48 - 00000B77 (0x30 bytes), align: 2
+  Segment part 18.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           patch_header            00000B48 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000B78 - 00000B93 (0x1c bytes), align: 2
+  Segment part 20.            Intra module refs:   Segment part 38
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000B78 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000B94 - 00000BDB (0x48 bytes), align: 2
+  Segment part 22.            Intra module refs:   H_MEAS_RDY_M2_entry
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           show_res                00000B94 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000BDC - 00000C8B (0xb0 bytes), align: 2
+  Segment part 24.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           H_MEAS_RDY_M2_entry     00000BDC 
+               stack 1 = 00000000 ( 0000000C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000C8C - 00000D37 (0xac bytes), align: 2
+  Segment part 26.            Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           meas_rdyirq             00000C8C 
+               stack 1 = 00000000 ( 00000008 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000D38 - 00000DB7 (0x80 bytes), align: 2
+  Segment part 28.            Intra module refs:   onKey
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           start_measuring_M2      00000D38 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001004 - 00001063 (0x60 bytes), align: 2
+  Segment part 4.             Intra module refs:   main
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001064 - 0000106B (0x8 bytes), align: 2
+  Segment part 5.             Intra module refs:   Segment part 15
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001090 - 00001090 (0x1 bytes), align: 0
+  Segment part 6.             Intra module refs:   Segment part 15
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 0000106C - 00001073 (0x8 bytes), align: 2
+  Segment part 7.             Intra module refs:   show_res
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001074 - 00001083 (0x10 bytes), align: 2
+  Segment part 12.            Intra module refs:   gHook
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00001084 - 0000108F (0xc bytes), align: 2
+  Segment part 13.            Intra module refs:   Segment part 9
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000DB8 - 00000DBB (0x4 bytes), align: 2
+  Segment part 30.            Intra module refs:   Segment part 9
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           proc3                   00000DB8 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000DBC - 00000E2F (0x74 bytes), align: 2
+  Segment part 32.            Intra module refs:   Segment part 9
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           onKey                   00000DBC 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000E30 - 00000E93 (0x64 bytes), align: 2
+  Segment part 34.            Intra module refs:   Segment part 9
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           gHook                   00000E30 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: DATA_AREA 00000000 - 00000A13 (0xa14 bytes), align: 2
+  Segment part 8.             Intra module refs:   H_MEAS_RDY_M2_entry
+                                                   Segment part 37
+                                                   onKey
+                                                   start_measuring_M2
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           VMAX                    00000004 
+           VREF                    00000000 
+           adata                   0000000C 
+           adata0                  00000010 
+           adata1                  00000014 
+           adata2                  00000018 
+           adata3                  0000001C 
+           adata4                  00000020 
+           adata5                  00000024 
+           adata6                  00000028 
+           hisr                    00000834 
+           hisr_stack              00000034 
+           irq_desc                000009C4 
+           saved_meas_ctrl2        0000002C 
+           tvgui                   00000030 
+           voltage                 00000008 
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: DATA_AREA 00000A14 - 00000A2B (0x18 bytes), align: 2
+  Segment part 14.            Intra module refs:   Segment part 17
+    -------------------------------------------------------------------------
+DATA_I
+  Relative segment, address: DATA_AREA 00000A2C - 00000A33 (0x8 bytes), align: 2
+  Segment part 16.            Intra module refs:   Segment part 9
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000E94 - 00000FFB (0x168 bytes), align: 2
+  Segment part 36.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000E94        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000018 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000FFC - 00000FFF (0x4 bytes), align: 2
+  Segment part 37.            Intra module refs:   main
+                                                   meas_rdyirq
+                                                   show_res
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00001000 - 00001003 (0x4 bytes), align: 2
+  Segment part 38.            Intra module refs:   main
+                                                   onKey
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000000 - 00000A13 (0xa14 bytes), align: 2
+  Segment part 9.             Intra module refs:   Segment part 8
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000A14 - 00000A2B (0x18 bytes), align: 2
+  Segment part 15.            Intra module refs:   Segment part 14
+    -------------------------------------------------------------------------
+DATA_ID
+  Relative segment, address: CODE_AREA 00000A2C - 00000A33 (0x8 bytes), align: 2
+  Segment part 17.            Intra module refs:   Segment part 16
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00001094 - 0000109F (0xc bytes), align: 2
+  Segment part 44. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_I        00001094 
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 4 253 bytes of CODE memory
+ 2 612 bytes of DATA memory
+
+Errors: none
+Warnings: none
+

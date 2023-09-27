@@ -1,0 +1,2379 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Dec/2015  15:07:03 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\main.c                                           #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\main.c -D SGOLD -lC E:\Users\alfinant\Documents\ #
+#                       Siemens\alfinant\CarControl\Release_SGOLD\List\ -o   #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLD\Obj\ -s9 --no_unroll --cpu_mode    #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None -I                       #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLD\List\main.lst                      #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\CarCont #
+#                       rol\Release_SGOLD\Obj\main.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\CarControl\main.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/strings.h"
+      3          #include "conf_loader.h"
+      4          #include "carcontrol_ipc.h"
+      5          #include "../inc/connector.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 216
+
+   \                                 In segment DATA_AN, at 0xf4000000
+   \   CAPCOM_TypeDef __data CCU0
+   \                     CCU0:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_AN, at 0xf4100000
+   \   CAPCOM_TypeDef __data CCU1
+   \                     CCU1:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \   uint32_t __data connector[8]
+   \                     connector:
+   \   00000000                      DS8 32
+   \   uint32_t __data save_connector[7]
+   \                     save_connector:
+   \   00000020                      DS8 28
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void InitConnectorMap()
+   \                     InitConnectorMap:
+   \   00000000   ........           LDR      R0,??DataTable6  ;; connector
+   \   00000004   F014A0E3           MOV      R1,#-268435456
+   \   00000008   431681E3           ORR      R1,R1,#0x4300000
+   \   0000000C   502081E2           ADD      R2,R1,#+80
+   \   00000010   042080E5           STR      R2,[R0, #+4]
+   \   00000014   4C2081E2           ADD      R2,R1,#+76
+   \   00000018   082080E5           STR      R2,[R0, #+8]
+   \   0000001C   582081E2           ADD      R2,R1,#+88
+   \   00000020   0C2080E5           STR      R2,[R0, #+12]
+   \   00000024   542081E2           ADD      R2,R1,#+84
+   \   00000028   102080E5           STR      R2,[R0, #+16]
+   \   0000002C   5C1081E2           ADD      R1,R1,#+92
+   \   00000030   141080E5           STR      R1,[R0, #+20]
+   \   00000034   0610A0E3           MOV      R1,#+6
+   \   00000038   181080E5           STR      R1,[R0, #+24]
+   \   0000003C   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void InitPinSafe(uint8_t, int)
+   \                     InitPinSafe:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   080050E3           CMP      R0,#+8
+   \   00000008   7080BD28           POPCS    {R4-R6,PC}
+   \   0000000C   ........           LDR      R12,??DataTable6  ;; connector
+   \   00000010   0030A0E1           MOV      R3,R0
+   \   00000014   03419CE7           LDR      R4,[R12, +R3, LSL #+2]
+   \   00000018   0420B0E1           MOVS     R2,R4
+   \   0000001C   7080BD08           POPEQ    {R4-R6,PC}
+   \   00000020   03C18CE0           ADD      R12,R12,R3, LSL #+2
+   \   00000024   060054E3           CMP      R4,#+6
+   \   00000028   0700001A           BNE      ??InitPinSafe_0
+   \   0000002C   000051E3           CMP      R1,#+0
+   \   00000030   7080BD08           POPEQ    {R4-R6,PC}
+   \   00000034   20109CE5           LDR      R1,[R12, #+32]
+   \   00000038   0030A0E3           MOV      R3,#+0
+   \   0000003C   0020A0E3           MOV      R2,#+0
+   \   00000040   1000A0E3           MOV      R0,#+16
+   \   00000044   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+   \   00000048   7080BDE8           POP      {R4-R6,PC}
+   \                     ??InitPinSafe_0:
+   \   0000004C   F434A0E3           MOV      R3,#-201326592
+   \   00000050   404DE0E3           MVN      R4,#+4096
+   \   00000054   405983E3           ORR      R5,R3,#0x100000
+   \   00000058   406FA0E3           MOV      R6,#+256
+   \   0000005C   010050E2           SUBS     R0,R0,#+1
+   \   00000060   0600000A           BEQ      ??InitPinSafe_1
+   \   00000064   020050E2           SUBS     R0,R0,#+2
+   \   00000068   0900000A           BEQ      ??InitPinSafe_2
+   \   0000006C   010050E2           SUBS     R0,R0,#+1
+   \   00000070   0C00000A           BEQ      ??InitPinSafe_3
+   \   00000074   010050E2           SUBS     R0,R0,#+1
+   \   00000078   0F00000A           BEQ      ??InitPinSafe_4
+   \   0000007C   120000EA           B        ??InitPinSafe_5
+   \                     ??InitPinSafe_1:
+   \   00000080   006083E5           STR      R6,[R3, #+0]
+   \   00000084   EC0093E5           LDR      R0,[R3, #+236]
+   \   00000088   000004E0           AND      R0,R4,R0
+   \   0000008C   EC0083E5           STR      R0,[R3, #+236]
+   \   00000090   0D0000EA           B        ??InitPinSafe_5
+   \                     ??InitPinSafe_2:
+   \   00000094   006085E5           STR      R6,[R5, #+0]
+   \   00000098   EC0095E5           LDR      R0,[R5, #+236]
+   \   0000009C   000004E0           AND      R0,R4,R0
+   \   000000A0   EC0085E5           STR      R0,[R5, #+236]
+   \   000000A4   080000EA           B        ??InitPinSafe_5
+   \                     ??InitPinSafe_3:
+   \   000000A8   006083E5           STR      R6,[R3, #+0]
+   \   000000AC   DC0093E5           LDR      R0,[R3, #+220]
+   \   000000B0   000004E0           AND      R0,R4,R0
+   \   000000B4   DC0083E5           STR      R0,[R3, #+220]
+   \   000000B8   030000EA           B        ??InitPinSafe_5
+   \                     ??InitPinSafe_4:
+   \   000000BC   006085E5           STR      R6,[R5, #+0]
+   \   000000C0   DC0095E5           LDR      R0,[R5, #+220]
+   \   000000C4   000004E0           AND      R0,R4,R0
+   \   000000C8   DC0085E5           STR      R0,[R5, #+220]
+   \                     ??InitPinSafe_5:
+   \   000000CC   000051E3           CMP      R1,#+0
+   \   000000D0   00009215           LDRNE    R0,[R2, #+0]
+   \   000000D4   20008C15           STRNE    R0,[R12, #+32]
+   \   000000D8   000092E5           LDR      R0,[R2, #+0]
+   \   000000DC   800C80E3           ORR      R0,R0,#0x8000
+   \   000000E0   000082E5           STR      R0,[R2, #+0]
+   \   000000E4   810CA0E3           MOV      R0,#+33024
+   \   000000E8   000082E5           STR      R0,[R2, #+0]
+   \   000000EC   7080BDE8           POP      {R4-R6,PC}       ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void RestorePin(uint8_t)
+   \                     RestorePin:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   013192E7           LDR      R3,[R2, +R1, LSL #+2]
+   \   00000010   011182E0           ADD      R1,R2,R1, LSL #+2
+   \   00000014   201091E5           LDR      R1,[R1, #+32]
+   \   00000018   000051E3           CMP      R1,#+0
+   \   0000001C   0080BD08           POPEQ    {PC}
+   \   00000020   060053E3           CMP      R3,#+6
+   \   00000024   0400001A           BNE      ??RestorePin_0
+   \   00000028   0030A0E3           MOV      R3,#+0
+   \   0000002C   0020A0E3           MOV      R2,#+0
+   \   00000030   1000A0E3           MOV      R0,#+16
+   \   00000034   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+   \   00000038   0080BDE8           POP      {PC}
+   \                     ??RestorePin_0:
+   \   0000003C   001083E5           STR      R1,[R3, #+0]
+   \   00000040   F414A0E3           MOV      R1,#-201326592
+   \   00000044   402981E3           ORR      R2,R1,#0x100000
+   \   00000048   403FA0E3           MOV      R3,#+256
+   \   0000004C   010050E2           SUBS     R0,R0,#+1
+   \   00000050   0600000A           BEQ      ??RestorePin_1
+   \   00000054   020050E2           SUBS     R0,R0,#+2
+   \   00000058   0C00000A           BEQ      ??RestorePin_2
+   \   0000005C   010050E2           SUBS     R0,R0,#+1
+   \   00000060   1200000A           BEQ      ??RestorePin_3
+   \   00000064   010050E2           SUBS     R0,R0,#+1
+   \   00000068   1800000A           BEQ      ??RestorePin_4
+   \   0000006C   0080BDE8           POP      {PC}
+   \                     ??RestorePin_1:
+   \   00000070   003081E5           STR      R3,[R1, #+0]
+   \   00000074   EC0091E5           LDR      R0,[R1, #+236]
+   \   00000078   400C80E3           ORR      R0,R0,#0x4000
+   \   0000007C   EC0081E5           STR      R0,[R1, #+236]
+   \   00000080   EC0091E5           LDR      R0,[R1, #+236]
+   \   00000084   400D80E3           ORR      R0,R0,#0x1000
+   \   00000088   EC0081E5           STR      R0,[R1, #+236]
+   \   0000008C   0080BDE8           POP      {PC}
+   \                     ??RestorePin_2:
+   \   00000090   003082E5           STR      R3,[R2, #+0]
+   \   00000094   EC0092E5           LDR      R0,[R2, #+236]
+   \   00000098   400C80E3           ORR      R0,R0,#0x4000
+   \   0000009C   EC0082E5           STR      R0,[R2, #+236]
+   \   000000A0   EC0092E5           LDR      R0,[R2, #+236]
+   \   000000A4   400D80E3           ORR      R0,R0,#0x1000
+   \   000000A8   EC0082E5           STR      R0,[R2, #+236]
+   \   000000AC   0080BDE8           POP      {PC}
+   \                     ??RestorePin_3:
+   \   000000B0   003081E5           STR      R3,[R1, #+0]
+   \   000000B4   DC0091E5           LDR      R0,[R1, #+220]
+   \   000000B8   400C80E3           ORR      R0,R0,#0x4000
+   \   000000BC   DC0081E5           STR      R0,[R1, #+220]
+   \   000000C0   DC0091E5           LDR      R0,[R1, #+220]
+   \   000000C4   400D80E3           ORR      R0,R0,#0x1000
+   \   000000C8   DC0081E5           STR      R0,[R1, #+220]
+   \   000000CC   0080BDE8           POP      {PC}
+   \                     ??RestorePin_4:
+   \   000000D0   003082E5           STR      R3,[R2, #+0]
+   \   000000D4   DC0092E5           LDR      R0,[R2, #+220]
+   \   000000D8   400C80E3           ORR      R0,R0,#0x4000
+   \   000000DC   DC0082E5           STR      R0,[R2, #+220]
+   \   000000E0   DC0092E5           LDR      R0,[R2, #+220]
+   \   000000E4   400D80E3           ORR      R0,R0,#0x1000
+   \   000000E8   DC0082E5           STR      R0,[R2, #+220]
+   \   000000EC   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void pinSetIO(uint8_t, int, int)
+   \                     pinSetIO:
+   \   00000000   ........           LDR      R3,??DataTable6  ;; connector
+   \   00000004   00C193E7           LDR      R12,[R3, +R0, LSL #+2]
+   \   00000008   000183E0           ADD      R0,R3,R0, LSL #+2
+   \   0000000C   200090E5           LDR      R0,[R0, #+32]
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   1EFF2F01           BXEQ     LR
+   \   00000018   00009CE5           LDR      R0,[R12, #+0]
+   \   0000001C   011282E1           ORR      R1,R2,R1, LSL #+4
+   \   00000020   800C80E3           ORR      R0,R0,#0x8000
+   \   00000024   00008CE5           STR      R0,[R12, #+0]
+   \   00000028   00009CE5           LDR      R0,[R12, #+0]
+   \   0000002C   000081E1           ORR      R0,R1,R0
+   \   00000030   00008CE5           STR      R0,[R12, #+0]
+   \   00000034   00009CE5           LDR      R0,[R12, #+0]
+   \   00000038   800CC0E3           BIC      R0,R0,#0x8000
+   \   0000003C   00008CE5           STR      R0,[R12, #+0]
+   \   00000040   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void pinMode(uint8_t, uint8_t)
+   \                     pinMode:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   000051E3           CMP      R1,#+0
+   \   00000014   0500001A           BNE      ??pinMode_0
+   \   00000018   001090E5           LDR      R1,[R0, #+0]
+   \   0000001C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+   \   00000028   841CC1E3           BIC      R1,R1,#0x8400
+   \   0000002C   090000EA           B        ??pinMode_1
+   \                     ??pinMode_0:
+   \   00000030   010051E3           CMP      R1,#+1
+   \   00000034   1EFF2F11           BXNE     LR
+   \   00000038   001090E5           LDR      R1,[R0, #+0]
+   \   0000003C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000040   001080E5           STR      R1,[R0, #+0]
+   \   00000044   001090E5           LDR      R1,[R0, #+0]
+   \   00000048   401E81E3           ORR      R1,R1,#0x400
+   \   0000004C   001080E5           STR      R1,[R0, #+0]
+   \   00000050   001090E5           LDR      R1,[R0, #+0]
+   \   00000054   801CC1E3           BIC      R1,R1,#0x8000
+   \                     ??pinMode_1:
+   \   00000058   001080E5           STR      R1,[R0, #+0]
+   \   0000005C   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void digitalWrite(uint8_t, uint8_t)
+   \                     digitalWrite:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   010051E3           CMP      R1,#+1
+   \   00000014   0800001A           BNE      ??digitalWrite_0
+   \   00000018   001090E5           LDR      R1,[R0, #+0]
+   \   0000001C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+   \   00000028   801F81E3           ORR      R1,R1,#0x200
+   \   0000002C   001080E5           STR      R1,[R0, #+0]
+   \   00000030   001090E5           LDR      R1,[R0, #+0]
+   \   00000034   801CC1E3           BIC      R1,R1,#0x8000
+   \   00000038   060000EA           B        ??digitalWrite_1
+   \                     ??digitalWrite_0:
+   \   0000003C   000051E3           CMP      R1,#+0
+   \   00000040   1EFF2F11           BXNE     LR
+   \   00000044   001090E5           LDR      R1,[R0, #+0]
+   \   00000048   801C81E3           ORR      R1,R1,#0x8000
+   \   0000004C   001080E5           STR      R1,[R0, #+0]
+   \   00000050   001090E5           LDR      R1,[R0, #+0]
+   \   00000054   821CC1E3           BIC      R1,R1,#0x8200
+   \                     ??digitalWrite_1:
+   \   00000058   001080E5           STR      R1,[R0, #+0]
+   \   0000005C   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int digitalRead(uint8_t)
+   \                     digitalRead:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   0010A0E3           MOV      R1,#+0
+   \   00000008   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   00009015           LDRNE    R0,[R0, #+0]
+   \   00000014   800F0012           ANDNE    R0,R0,#0x200
+   \   00000018   A014A011           LSRNE    R1,R0,#+9
+   \   0000001C   0100A0E1           MOV      R0,R1
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+      6          #include "../inc/sms.h"
+      7          
+      8          extern const char MYNUMBER[];
+      9          extern const char MAGICWORD[];
+     10          
+     11          //здесь можем перехватить вх. sms сообщение
+
+   \                                 In segment CODE, align 4, keep-with-next
+     12          void my_sms_simif_sm(void)  
+     13          {
+   \                     my_sms_simif_sm:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   10D04DE2           SUB      SP,SP,#+16
+     14            SMS *mysms=NULL; 
+     15            char *s;
+     16            GBS_MSG msg;
+     17            
+     18            GBS_ReceiveMessage(&msg);
+   \   00000008   0D00A0E1           MOV      R0,SP
+   \   0000000C   010100EF           SWI      +257
+     19            
+     20            if(msg.msg==0x69)
+   \   00000010   F200DDE1           LDRSH    R0,[SP, #+2]
+   \   00000014   690050E3           CMP      R0,#+105
+   \   00000018   2900001A           BNE      ??my_sms_simif_sm_0
+     21            {
+     22              if(mysms=UnpackTPDU((TPDU*)((char*)msg.data0 + 0x28)))
+   \   0000001C   08009DE5           LDR      R0,[SP, #+8]
+   \   00000020   280080E2           ADD      R0,R0,#+40
+   \   00000024   ........           _BLF     UnpackTPDU,??UnpackTPDU??rA
+   \   00000028   0040B0E1           MOVS     R4,R0
+   \   0000002C   2400000A           BEQ      ??my_sms_simif_sm_0
+     23              { 
+     24                if (strcmp_nocase(mysms->number, MYNUMBER)==0) s=mysms->text;
+   \   00000030   ........           LDR      R1,??DataTable23  ;; MYNUMBER
+   \   00000034   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   00000038   000050E3           CMP      R0,#+0
+   \   0000003C   1000001A           BNE      ??my_sms_simif_sm_1
+   \   00000040   3C5084E2           ADD      R5,R4,#+60
+     25                else
+     26                { //если номер левый, проверяем наличие волшебного слова
+     27                  if(s=strchr(mysms->text, ' '))
+     28                  {
+     29                    *s=0;
+     30                    s++;
+     31                    if(strcmp_nocase(mysms->text, MAGICWORD) !=0) s=NULL;
+     32                  }
+     33                     if(!s)
+     34                     {
+     35                       mfree(mysms);
+     36                       mysms=NULL;
+     37                     }
+     38                }
+     39                if(mysms)
+     40                { extern void CheckCmd(char *cmd, SMS *sms);
+     41                  SUBPROC((void *)CheckCmd, s, mysms);
+   \                     ??my_sms_simif_sm_2:
+   \   00000044   8C009FE5           LDR      R0,??my_sms_simif_sm_3  ;; CheckCmd
+   \   00000048   0420A0E1           MOV      R2,R4
+   \   0000004C   0510A0E1           MOV      R1,R5
+   \   00000050   710100EF           SWI      +369
+     42                  //подтвержаем что сообщение успешно получено       
+     43                  GBS_AcceptMessage();
+   \   00000054   020100EF           SWI      +258
+     44                  GBS_SendMessage(SMS_TLT_SM, 0x66, 0, 0, 0);
+   \   00000058   0000A0E3           MOV      R0,#+0
+   \   0000005C   01002DE9           PUSH     {R0}
+   \   00000060   0030A0E3           MOV      R3,#+0
+   \   00000064   0020A0E1           MOV      R2,R0
+   \   00000068   6610A0E3           MOV      R1,#+102
+   \   0000006C   7300A0E3           MOV      R0,#+115
+   \   00000070   400C80E3           ORR      R0,R0,#0x4000
+   \   00000074   000100EF           SWI      +256
+   \   00000078   04D08DE2           ADD      SP,SP,#+4
+   \   0000007C   0000A0E1           NOP              
+   \   00000080   3F80BDE8           POP      {R0-R5,PC}
+     45                }
+   \                     ??my_sms_simif_sm_1:
+   \   00000084   2010A0E3           MOV      R1,#+32
+   \   00000088   3C0084E2           ADD      R0,R4,#+60
+   \   0000008C   180000EF           SWI      +24
+   \   00000090   0050B0E1           MOVS     R5,R0
+   \   00000094   0600000A           BEQ      ??my_sms_simif_sm_4
+   \   00000098   3C109FE5           LDR      R1,??my_sms_simif_sm_3+0x4  ;; MAGICWORD
+   \   0000009C   0000A0E3           MOV      R0,#+0
+   \   000000A0   ........           STRB     R0,[R5], #+1
+   \   000000A4   3C0084E2           ADD      R0,R4,#+60
+   \   000000A8   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   000000AC   000050E3           CMP      R0,#+0
+   \   000000B0   0100001A           BNE      ??my_sms_simif_sm_5
+   \                     ??my_sms_simif_sm_4:
+   \   000000B4   000055E3           CMP      R5,#+0
+   \   000000B8   E1FFFF1A           BNE      ??my_sms_simif_sm_2
+   \                     ??my_sms_simif_sm_5:
+   \   000000BC   0400A0E1           MOV      R0,R4
+   \   000000C0   150000EF           SWI      +21
+     46              }
+     47            }
+     48            if(!mysms) sms_simif_sm();
+   \                     ??my_sms_simif_sm_0:
+   \   000000C4   ........           LDR      R0,??DataTable30  ;; sms_simif_sm
+   \   000000C8   000090E5           LDR      R0,[R0, #+0]
+   \   000000CC   30FF2FE1           BLX      R0
+     49            __asm("NOP"); // во избежании генерации инструкции MOV PC,Rn
+   \   000000D0   0000A0E1           NOP              
+     50          }
+   \   000000D4   3F80BDE8           POP      {R0-R5,PC}       ;; return
+   \                     ??my_sms_simif_sm_3:
+   \   000000D8   ........           DC32     CheckCmd
+   \   000000DC   ........           DC32     MAGICWORD
+     51          
+     52          /******************************************************************************/
+     53          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     54          const int minus11=-11;
+   \                     minus11:
+   \   00000000   F5FFFFFF           DC32 -11
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "CarControl:\\n\\355\\340\\361\\362\\360\\`:
+   \   00000000   436172436F6E       DC8 "CarControl:\012\355\340\361\362\360\356\351\352\350 \356\341\355\356\342\353\345\355\373!"
+   \              74726F6C3A0A
+   \              EDE0F1F2F0EE
+   \              E9EAE820EEE1
+   \              EDEEE2EBE5ED
+   \              FB2100      
+   \   00000021   000000             DC8 0, 0, 0
+     55          const char ipc_my_name[32]=IPC_CARCONTROL_NAME;
+   \                     ipc_my_name:
+   \   00000024   434152434F4E       DC8 "CARCONTROL"
+   \              54524F4C00  
+   \   0000002F   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              000000      
+     56          IPC_REQ ipc;
+     57          
+     58          extern const char LOGFILE[];
+     59          
+     60          typedef struct
+     61          {
+     62            CSM_RAM csm;
+     63          }MAIN_CSM;
+     64          
+     65          int maincsm_id;
+     66          
+     67          //Illumination by BoBa 19.04.2007
+     68          ///////////
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     69          /*extern*/ const unsigned int ILL_DISP_RECV=30;
+   \                     ILL_DISP_RECV:
+   \   00000000   1E000000           DC32 30
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     70          /*extern*/ const unsigned int ILL_KEYS_RECV=30;
+   \                     ILL_KEYS_RECV:
+   \   00000000   1E000000           DC32 30
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     71          /*extern*/ const unsigned int ILL_DYNL_RECV=100;
+   \                     ILL_DYNL_RECV:
+   \   00000000   64000000           DC32 100
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     72          /*extern*/ const unsigned int ILL_DISP_SEND;
+   \                     ILL_DISP_SEND:
+   \   00000000   00000000           DC8 0, 0, 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     73          /*extern*/ const unsigned int ILL_RECV_TMR=3;
+   \                     ILL_RECV_TMR:
+   \   00000000   03000000           DC32 3
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     74          /*extern*/ const unsigned int ILL_RECV_FADE=256;
+   \                     ILL_RECV_FADE:
+   \   00000000   00010000           DC32 256
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     75          /*extern*/ const unsigned int ILL_OFF_FADE=256;
+   \                     ILL_OFF_FADE:
+   \   00000000   00010000           DC32 256
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     76          /*extern*/ const int SLI_State=1;
+   \                     SLI_State:
+   \   00000000   01000000           DC32 1
+     77          
+     78          GBSTMR tmr_illumination;
+     79           
+     80          #pragma swi_number=0x0036
+     81          __swi __arm void SLI_SetState(unsigned char state);
+     82          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     83          void IlluminationOff(){
+   \                     IlluminationOff:
+   \   00000000   00402DE9           PUSH     {LR}
+     84            SetIllumination(0,1,0,ILL_OFF_FADE);
+   \   00000004   403FA0E3           MOV      R3,#+256
+   \   00000008   0020A0E3           MOV      R2,#+0
+   \   0000000C   0110A0E3           MOV      R1,#+1
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \   00000014   080000EF           SWI      +8
+     85            SetIllumination(1,1,0,ILL_OFF_FADE);
+   \   00000018   403FA0E3           MOV      R3,#+256
+   \   0000001C   0020A0E3           MOV      R2,#+0
+   \   00000020   0110A0E3           MOV      R1,#+1
+   \   00000024   0100A0E1           MOV      R0,R1
+   \   00000028   080000EF           SWI      +8
+     86            SetIllumination(2,1,0,ILL_OFF_FADE);
+   \   0000002C   403FA0E3           MOV      R3,#+256
+   \   00000030   0020A0E3           MOV      R2,#+0
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   0200A0E3           MOV      R0,#+2
+   \   0000003C   080000EF           SWI      +8
+     87            #ifdef ELKA
+     88            if(SLI_State) SLI_SetState(0);
+     89            #endif
+     90          }
+   \   00000040   0080BDE8           POP      {PC}             ;; return
+     91          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     92          void IlluminationOn(const int disp, const int key, int dynlight,const int tmr, const int fade){
+   \                     IlluminationOn:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   1C809DE5           LDR      R8,[SP, #+28]
+   \   0000000C   0150A0E1           MOV      R5,R1
+   \   00000010   0260A0E1           MOV      R6,R2
+   \   00000014   0370B0E1           MOVS     R7,R3
+     93            if(!tmr) return;
+   \   00000018   F083BD08           POPEQ    {R4-R9,PC}
+     94            GBS_DelTimer(&tmr_illumination);
+   \   0000001C   ........           LDR      R9,??DataTable33  ;; ipc
+   \   00000020   3C0089E2           ADD      R0,R9,#+60
+   \   00000024   8C0100EF           SWI      +396
+     95            SetIllumination(0,1,disp,fade);
+   \   00000028   0830A0E1           MOV      R3,R8
+   \   0000002C   0428A0E1           MOV      R2,R4, LSL #+16
+   \   00000030   2228A0E1           MOV      R2,R2, LSR #+16
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   0000A0E3           MOV      R0,#+0
+   \   0000003C   080000EF           SWI      +8
+     96            SetIllumination(1,1,key,fade);
+   \   00000040   0830A0E1           MOV      R3,R8
+   \   00000044   0528A0E1           MOV      R2,R5, LSL #+16
+   \   00000048   2228A0E1           MOV      R2,R2, LSR #+16
+   \   0000004C   0110A0E3           MOV      R1,#+1
+   \   00000050   0100A0E3           MOV      R0,#+1
+   \   00000054   080000EF           SWI      +8
+     97            SetIllumination(2,1,dynlight,fade);
+   \   00000058   0830A0E1           MOV      R3,R8
+   \   0000005C   0628A0E1           MOV      R2,R6, LSL #+16
+   \   00000060   2228A0E1           MOV      R2,R2, LSR #+16
+   \   00000064   0110A0E3           MOV      R1,#+1
+   \   00000068   0200A0E3           MOV      R0,#+2
+   \   0000006C   080000EF           SWI      +8
+     98            #ifdef ELKA
+     99            if(SLI_State) SLI_SetState(SLI_State);
+    100            #endif 
+    101            GBS_StartTimerProc(&tmr_illumination,tmr*225,IlluminationOff);
+   \   00000070   10209FE5           LDR      R2,??IlluminationOn_0  ;; IlluminationOff
+   \   00000074   E100A0E3           MOV      R0,#+225
+   \   00000078   900701E0           MUL      R1,R0,R7
+   \   0000007C   3C0089E2           ADD      R0,R9,#+60
+   \   00000080   4D0000EF           SWI      +77
+    102          }
+   \   00000084   F083BDE8           POP      {R4-R9,PC}       ;; return
+   \                     ??IlluminationOn_0:
+   \   00000088   ........           DC32     IlluminationOff
+    103          //==============================================================================
+    104          
+    105          GBSTMR tmr_blink;
+    106          int blink_n;
+    107          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    108          void tmr_blink_proc()
+    109          {
+   \                     tmr_blink_proc:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    110            if(blink_n & 1)
+   \   00000004   ........           LDR      R4,??DataTable33  ;; ipc
+   \   00000008   100094E5           LDR      R0,[R4, #+16]
+   \   0000000C   010010E3           TST      R0,#0x1
+   \   00000010   1100000A           BEQ      ??tmr_blink_proc_0
+    111            {
+    112              GBS_DelTimer(&tmr_blink);
+   \   00000014   4C0084E2           ADD      R0,R4,#+76
+   \   00000018   8C0100EF           SWI      +396
+    113              if(blink_n > 1) SetIllumination(0,1,0,0);
+   \   0000001C   100094E5           LDR      R0,[R4, #+16]
+   \   00000020   020050E3           CMP      R0,#+2
+   \   00000024   040000BA           BLT      ??tmr_blink_proc_1
+   \   00000028   0030A0E3           MOV      R3,#+0
+   \   0000002C   0020A0E3           MOV      R2,#+0
+   \   00000030   0110A0E3           MOV      R1,#+1
+   \   00000034   0200A0E1           MOV      R0,R2
+   \   00000038   080000EF           SWI      +8
+    114              SetIllumination(1,1,0,0);
+   \                     ??tmr_blink_proc_1:
+   \   0000003C   0030A0E3           MOV      R3,#+0
+   \   00000040   0020A0E3           MOV      R2,#+0
+   \   00000044   0110A0E3           MOV      R1,#+1
+   \   00000048   0100A0E1           MOV      R0,R1
+   \   0000004C   080000EF           SWI      +8
+    115              SetIllumination(2,1,0,0);
+   \   00000050   0030A0E3           MOV      R3,#+0
+   \   00000054   0320A0E1           MOV      R2,R3
+   \   00000058   0B0000EA           B        ??tmr_blink_proc_2
+    116              #ifdef ELKA
+    117              if(SLI_State) SLI_SetState(0);
+    118              #endif
+    119            }
+    120            else
+    121            {
+    122              SetIllumination(0,1,50,0);
+   \                     ??tmr_blink_proc_0:
+   \   0000005C   0030A0E3           MOV      R3,#+0
+   \   00000060   3220A0E3           MOV      R2,#+50
+   \   00000064   0110A0E3           MOV      R1,#+1
+   \   00000068   0000A0E3           MOV      R0,#+0
+   \   0000006C   080000EF           SWI      +8
+    123              SetIllumination(1,1,50,0);
+   \   00000070   0030A0E3           MOV      R3,#+0
+   \   00000074   3220A0E3           MOV      R2,#+50
+   \   00000078   0110A0E3           MOV      R1,#+1
+   \   0000007C   0100A0E1           MOV      R0,R1
+   \   00000080   080000EF           SWI      +8
+    124              SetIllumination(2,1,100,0);
+   \   00000084   0030A0E3           MOV      R3,#+0
+   \   00000088   6420A0E3           MOV      R2,#+100
+   \                     ??tmr_blink_proc_2:
+   \   0000008C   0110A0E3           MOV      R1,#+1
+   \   00000090   0200A0E3           MOV      R0,#+2
+   \   00000094   080000EF           SWI      +8
+    125              #ifdef ELKA
+    126              if(SLI_State) SLI_SetState(1);
+    127              #endif  
+    128            }
+    129          
+    130            blink_n--;
+   \   00000098   100094E5           LDR      R0,[R4, #+16]
+   \   0000009C   010040E2           SUB      R0,R0,#+1
+   \   000000A0   100084E5           STR      R0,[R4, #+16]
+    131            if(blink_n > 0)
+   \   000000A4   010050E3           CMP      R0,#+1
+   \   000000A8   1080BDB8           POPLT    {R4,PC}
+    132            {
+    133              if(blink_n & 1) GBS_StartTimerProc(&tmr_blink, 125, tmr_blink_proc);
+   \   000000AC   ........           LDR      R2,??DataTable13  ;; tmr_blink_proc
+   \   000000B0   010010E3           TST      R0,#0x1
+   \   000000B4   0100000A           BEQ      ??tmr_blink_proc_3
+   \   000000B8   7D10A0E3           MOV      R1,#+125
+   \   000000BC   000000EA           B        ??tmr_blink_proc_4
+    134              else GBS_StartTimerProc(&tmr_blink, 50, tmr_blink_proc);
+   \                     ??tmr_blink_proc_3:
+   \   000000C0   3210A0E3           MOV      R1,#+50
+   \                     ??tmr_blink_proc_4:
+   \   000000C4   4C0084E2           ADD      R0,R4,#+76
+   \   000000C8   4D0000EF           SWI      +77
+    135            }
+    136            
+    137          }
+   \   000000CC   1080BDE8           POP      {R4,PC}          ;; return
+    138          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    139          void Blink(int n)
+    140          {
+   \                     Blink:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    141            blink_n=n+(n-1);
+   \   00000004   ........           LDR      R4,??DataTable33  ;; ipc
+   \   00000008   8000A0E1           LSL      R0,R0,#+1
+   \   0000000C   010040E2           SUB      R0,R0,#+1
+   \   00000010   100084E5           STR      R0,[R4, #+16]
+    142            GBS_DelTimer(&tmr_blink);
+   \   00000014   4C0084E2           ADD      R0,R4,#+76
+   \   00000018   8C0100EF           SWI      +396
+    143            SetIllumination(0,1,50,0); //display
+   \   0000001C   0030A0E3           MOV      R3,#+0
+   \   00000020   3220A0E3           MOV      R2,#+50
+   \   00000024   0110A0E3           MOV      R1,#+1
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   080000EF           SWI      +8
+    144            SetIllumination(1,1,50,0); //key
+   \   00000030   0030A0E3           MOV      R3,#+0
+   \   00000034   3220A0E3           MOV      R2,#+50
+   \   00000038   0110A0E3           MOV      R1,#+1
+   \   0000003C   0100A0E1           MOV      R0,R1
+   \   00000040   080000EF           SWI      +8
+    145            SetIllumination(2,1,100,0); //dynlight
+   \   00000044   0030A0E3           MOV      R3,#+0
+   \   00000048   6420A0E3           MOV      R2,#+100
+   \   0000004C   0110A0E3           MOV      R1,#+1
+   \   00000050   0200A0E3           MOV      R0,#+2
+   \   00000054   080000EF           SWI      +8
+    146            #ifdef ELKA
+    147            if(SLI_State) SLI_SetState(1);
+    148            #endif
+    149            GBS_StartTimerProc(&tmr_blink, 50, tmr_blink_proc);
+   \   00000058   ........           LDR      R2,??DataTable13  ;; tmr_blink_proc
+   \   0000005C   3210A0E3           MOV      R1,#+50
+   \   00000060   4C0084E2           ADD      R0,R4,#+76
+   \   00000064   4D0000EF           SWI      +77
+    150          }
+   \   00000068   1080BDE8           POP      {R4,PC}          ;; return
+    151          
+    152          //by KreN 27.09.2007
+    153          //============================ воспроизведение звука ===========================
+    154          extern const char DIR[];
+    155          extern const int soundEnabled;
+    156          extern const int sndVolume;
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    157          char *sndLock;
+   \                     sndLock:
+   \   00000000                      DS8 4
+    158          char *sndUnlock;
+   \                     sndUnlock:
+   \   00000004                      DS8 4
+    159          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    160          int Play(const char *fname)
+    161          {
+   \                     Play:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000004   C4D04DE2           SUB      SP,SP,#+196
+   \   00000008   0060A0E1           MOV      R6,R0
+    162            if (!IsCalling() && soundEnabled)
+   \   0000000C   6E0000EF           SWI      +110
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   4300001A           BNE      ??Play_0
+   \   00000018   14019FE5           LDR      R0,??Play_1      ;; soundEnabled
+   \   0000001C   000090E5           LDR      R0,[R0, #+0]
+   \   00000020   000050E3           CMP      R0,#+0
+   \   00000024   3F00000A           BEQ      ??Play_0
+    163            {
+    164              FSTATS fstats;
+    165              unsigned int err;
+    166              if (GetFileStats(fname,&fstats,&err)!=-1)
+   \   00000028   0D20A0E1           MOV      R2,SP
+   \   0000002C   9C108DE2           ADD      R1,SP,#+156
+   \   00000030   0600A0E1           MOV      R0,R6
+   \   00000034   840000EF           SWI      +132
+   \   00000038   010070E3           CMN      R0,#+1
+   \   0000003C   3600000A           BEQ      ??Play_2
+    167              {
+    168                PLAYFILE_OPT _sfo1;
+    169                WSHDR* sndPath=AllocWS(128);
+   \   00000040   8000A0E3           MOV      R0,#+128
+   \   00000044   250100EF           SWI      +293
+   \   00000048   0040A0E1           MOV      R4,R0
+    170                WSHDR* sndFName=AllocWS(128);
+   \   0000004C   8000A0E3           MOV      R0,#+128
+   \   00000050   250100EF           SWI      +293
+   \   00000054   0050A0E1           MOV      R5,R0
+    171                char s[128];
+    172                const char *p=strrchr(fname,'\\')+1;
+   \   00000058   5C10A0E3           MOV      R1,#+92
+   \   0000005C   0600A0E1           MOV      R0,R6
+   \   00000060   170100EF           SWI      +279
+   \   00000064   017080E2           ADD      R7,R0,#+1
+    173                str_2ws(sndFName,p,128);
+   \   00000068   8020A0E3           MOV      R2,#+128
+   \   0000006C   0710A0E1           MOV      R1,R7
+   \   00000070   0500A0E1           MOV      R0,R5
+   \   00000074   6C0100EF           SWI      +364
+    174                strncpy(s,fname,p-fname);
+   \   00000078   067047E0           SUB      R7,R7,R6
+   \   0000007C   0720A0E1           MOV      R2,R7
+   \   00000080   0610A0E1           MOV      R1,R6
+   \   00000084   1C008DE2           ADD      R0,SP,#+28
+   \   00000088   160100EF           SWI      +278
+    175                s[p-fname]='\0';
+   \   0000008C   0060A0E3           MOV      R6,#+0
+   \   00000090   1C008DE2           ADD      R0,SP,#+28
+   \   00000094   0060C7E7           STRB     R6,[R7, +R0]
+    176                str_2ws(sndPath,s,128);
+   \   00000098   8020A0E3           MOV      R2,#+128
+   \   0000009C   1C108DE2           ADD      R1,SP,#+28
+   \   000000A0   0400A0E1           MOV      R0,R4
+   \   000000A4   6C0100EF           SWI      +364
+    177          
+    178                zeromem(&_sfo1,sizeof(PLAYFILE_OPT));
+   \   000000A8   1810A0E3           MOV      R1,#+24
+   \   000000AC   04008DE2           ADD      R0,SP,#+4
+   \   000000B0   1D0100EF           SWI      +285
+    179                _sfo1.repeat_num=1;
+    180                _sfo1.time_between_play=0;
+    181                _sfo1.play_first=0;
+    182                _sfo1.volume=sndVolume;
+   \   000000B4   7C209FE5           LDR      R2,??Play_1+0x4  ;; sndVolume
+   \   000000B8   0100A0E3           MOV      R0,#+1
+   \   000000BC   B400CDE1           STRH     R0,[SP, #+4]
+   \   000000C0   08608DE5           STR      R6,[SP, #+8]
+   \   000000C4   0C608DE5           STR      R6,[SP, #+12]
+   \   000000C8   002092E5           LDR      R2,[R2, #+0]
+   \   000000CC   10208DE5           STR      R2,[SP, #+16]
+    183          #ifdef NEWSGOLD
+    184                _sfo1.unk6=1;
+    185                _sfo1.unk7=1;
+    186                _sfo1.unk9=2;
+    187                PlayFile(0x10, sndPath, sndFName, GBS_GetCurCepid(), MSG_PLAYFILE_REPORT, &_sfo1);
+    188          #else
+    189          #ifdef X75
+    190                _sfo1.unk4=0x80000000;
+    191                _sfo1.unk5=1;
+    192                PlayFile(0xC, sndPath, sndFName, 0,GBS_GetCurCepid(), MSG_PLAYFILE_REPORT, &_sfo1);
+    193          #else
+    194                _sfo1.unk5=1;
+   \   000000D0   14008DE5           STR      R0,[SP, #+20]
+    195                PlayFile(0xC, sndPath, sndFName, GBS_GetCurCepid(), MSG_PLAYFILE_REPORT, &_sfo1);
+   \   000000D4   450100EF           SWI      +325
+   \   000000D8   04108DE2           ADD      R1,SP,#+4
+   \   000000DC   02002DE9           PUSH     {R1}
+   \   000000E0   0030A0E1           MOV      R3,R0
+   \   000000E4   0520A0E1           MOV      R2,R5
+   \   000000E8   0C00A0E3           MOV      R0,#+12
+   \   000000EC   6710A0E3           MOV      R1,#+103
+   \   000000F0   401F81E3           ORR      R1,R1,#0x100
+   \   000000F4   02002DE9           PUSH     {R1}
+   \   000000F8   0410A0E1           MOV      R1,R4
+   \   000000FC   4A0000EF           SWI      +74
+    196          #endif
+    197          #endif
+    198                FreeWS(sndPath);
+   \   00000100   0400A0E1           MOV      R0,R4
+   \   00000104   290100EF           SWI      +297
+    199                FreeWS(sndFName);
+   \   00000108   0500A0E1           MOV      R0,R5
+   \   0000010C   290100EF           SWI      +297
+    200                return 1;
+   \   00000110   0100A0E3           MOV      R0,#+1
+   \   00000114   08D08DE2           ADD      SP,SP,#+8
+   \   00000118   000000EA           B        ??Play_3
+    201              }else return 0;
+   \                     ??Play_2:
+   \   0000011C   0000A0E3           MOV      R0,#+0
+   \                     ??Play_3:
+   \   00000120   C4D08DE2           ADD      SP,SP,#+196
+   \   00000124   F080BDE8           POP      {R4-R7,PC}
+    202            }else return 2; 
+   \                     ??Play_0:
+   \   00000128   0200A0E3           MOV      R0,#+2
+   \   0000012C   C4D08DE2           ADD      SP,SP,#+196
+   \   00000130   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??Play_1:
+   \   00000134   ........           DC32     soundEnabled
+   \   00000138   ........           DC32     sndVolume
+    203          }
+    204          //==============================================================================
+    205          #define  SHORT 0
+    206          #define  LONG  1
+    207          #define  DOUBLESHORT 2
+    208          #define  LONG_AND_SHORT 3
+    209          
+    210          extern const char lock_word[];
+    211          extern const char unlock_word[];
+    212          extern const char start_word[];
+    213          extern const char stop_word[];
+    214          extern const char trunk_word[];
+    215          extern const char search_word[];
+    216          extern const char panicOn_word[];
+    217          extern const char panicOff_word[];
+    218          
+    219          extern const int lock_t;
+    220          extern const int lock_key1;
+    221          extern const int lock_key2;
+    222          extern const int lock_delay;
+    223          
+    224          extern const int unlock_t;
+    225          extern const int unlock_key1;
+    226          extern const int unlock_key2;
+    227          extern const int unlock_delay;
+    228          
+    229          extern const int start_t;
+    230          extern const int start_key1;
+    231          extern const int start_key2;
+    232          extern const int start_delay;
+    233          
+    234          extern const int stop_t;
+    235          extern const int stop_key1;
+    236          extern const int stop_key2;
+    237          extern const int stop_delay;
+    238          
+    239          extern const int trunk_t;
+    240          extern const int trunk_key1;
+    241          extern const int trunk_key2;
+    242          extern const int trunk_delay;
+    243          
+    244          extern const int search_t;
+    245          extern const int search_key1;
+    246          extern const int search_key2;
+    247          extern const int search_delay;
+    248          
+    249          extern const int panicOn_t;
+    250          extern const int panicOn_key1;
+    251          extern const int panicOn_key2;
+    252          extern const int panicOn_delay;
+    253          
+    254          extern const int panicOff_t;
+    255          extern const int panicOff_key1;
+    256          extern const int panicOff_key2;
+    257          extern const int panicOff_delay;
+    258          
+    259          int keytab[]={0, TX, RX, CTS, RTS};
+    260          
+    261          GBSTMR tmr_key;
+    262          int type,pin1,pin2,n,delay;
+    263          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    264          void tmr_key_proc()
+    265          {
+   \                     tmr_key_proc:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    266            if(digitalRead(pin1) || digitalRead(pin2))
+   \   00000004   ........           LDR      R4,??DataTable33  ;; ipc
+   \   00000008   2C5094E5           LDR      R5,[R4, #+44]
+   \   0000000C   FF0005E2           AND      R0,R5,#0xFF
+   \   00000010   ........           BL       digitalRead
+   \   00000014   000050E3           CMP      R0,#+0
+   \   00000018   0400001A           BNE      ??tmr_key_proc_0
+   \   0000001C   300094E5           LDR      R0,[R4, #+48]
+   \   00000020   FF0000E2           AND      R0,R0,#0xFF
+   \   00000024   ........           BL       digitalRead
+   \   00000028   000050E3           CMP      R0,#+0
+   \   0000002C   0700000A           BEQ      ??tmr_key_proc_1
+    267            {
+    268              pinMode(pin1, INPUT);
+   \                     ??tmr_key_proc_0:
+   \   00000030   0010A0E3           MOV      R1,#+0
+   \   00000034   FF0005E2           AND      R0,R5,#0xFF
+   \   00000038   ........           BL       pinMode
+    269              pinMode(pin2, INPUT);
+   \   0000003C   300094E5           LDR      R0,[R4, #+48]
+   \   00000040   0010A0E3           MOV      R1,#+0
+   \   00000044   FF0000E2           AND      R0,R0,#0xFF
+   \   00000048   ........           BL       pinMode
+   \   0000004C   0E0000EA           B        ??tmr_key_proc_2
+    270            }
+    271            else
+    272            {
+    273              pinMode(pin1, OUTPUT);
+   \                     ??tmr_key_proc_1:
+   \   00000050   0110A0E3           MOV      R1,#+1
+   \   00000054   FF0005E2           AND      R0,R5,#0xFF
+   \   00000058   ........           BL       pinMode
+    274              digitalWrite(pin1, HIGH);
+   \   0000005C   2C0094E5           LDR      R0,[R4, #+44]
+   \   00000060   0110A0E3           MOV      R1,#+1
+   \   00000064   FF0000E2           AND      R0,R0,#0xFF
+   \   00000068   ........           BL       digitalWrite
+    275              pinMode(pin2, OUTPUT);
+   \   0000006C   300094E5           LDR      R0,[R4, #+48]
+   \   00000070   0110A0E3           MOV      R1,#+1
+   \   00000074   FF0000E2           AND      R0,R0,#0xFF
+   \   00000078   ........           BL       pinMode
+    276              digitalWrite(pin2, HIGH);
+   \   0000007C   300094E5           LDR      R0,[R4, #+48]
+   \   00000080   0110A0E3           MOV      R1,#+1
+   \   00000084   FF0000E2           AND      R0,R0,#0xFF
+   \   00000088   ........           BL       digitalWrite
+    277            }
+    278             
+    279            if(type==LONG_AND_SHORT)
+   \                     ??tmr_key_proc_2:
+   \   0000008C   280094E5           LDR      R0,[R4, #+40]
+   \   00000090   305094E5           LDR      R5,[R4, #+48]
+   \   00000094   030050E3           CMP      R0,#+3
+   \   00000098   0200001A           BNE      ??tmr_key_proc_3
+    280            {
+    281              if(pin2) pin1=0;   
+   \   0000009C   000055E3           CMP      R5,#+0
+   \   000000A0   0000A013           MOVNE    R0,#+0
+   \   000000A4   2C008415           STRNE    R0,[R4, #+44]
+    282            }
+    283            
+    284            n--;
+   \                     ??tmr_key_proc_3:
+   \   000000A8   340094E5           LDR      R0,[R4, #+52]
+   \   000000AC   010040E2           SUB      R0,R0,#+1
+   \   000000B0   340084E5           STR      R0,[R4, #+52]
+    285            if(n > 0)
+   \   000000B4   010050E3           CMP      R0,#+1
+   \   000000B8   7080BDB8           POPLT    {R4-R6,PC}
+    286            {  
+    287              if(digitalRead(pin1) == 0 && digitalRead(pin2) == 0 ) GBS_StartTimerProc(&tmr_key, (delay*225)/2, tmr_key_proc);//пауза
+   \   000000BC   2C0094E5           LDR      R0,[R4, #+44]
+   \   000000C0   ........           LDR      R6,??DataTable17  ;; tmr_key_proc
+   \   000000C4   FF0000E2           AND      R0,R0,#0xFF
+   \   000000C8   ........           BL       digitalRead
+   \   000000CC   000050E3           CMP      R0,#+0
+   \   000000D0   0A00001A           BNE      ??tmr_key_proc_4
+   \   000000D4   FF0005E2           AND      R0,R5,#0xFF
+   \   000000D8   ........           BL       digitalRead
+   \   000000DC   000050E3           CMP      R0,#+0
+   \   000000E0   0600001A           BNE      ??tmr_key_proc_4
+   \   000000E4   380094E5           LDR      R0,[R4, #+56]
+   \   000000E8   E110A0E3           MOV      R1,#+225
+   \   000000EC   910000E0           MUL      R0,R1,R0
+   \   000000F0   0620A0E1           MOV      R2,R6
+   \   000000F4   A00F80E0           ADD      R0,R0,R0, LSR #+31
+   \   000000F8   C010A0E1           ASR      R1,R0,#+1
+   \   000000FC   010000EA           B        ??tmr_key_proc_5
+    288              else
+    289                GBS_StartTimerProc(&tmr_key, 10, tmr_key_proc);
+   \                     ??tmr_key_proc_4:
+   \   00000100   0620A0E1           MOV      R2,R6
+   \   00000104   0A10A0E3           MOV      R1,#+10
+   \                     ??tmr_key_proc_5:
+   \   00000108   5C0084E2           ADD      R0,R4,#+92
+   \   0000010C   4D0000EF           SWI      +77
+    290            }
+    291          }
+   \   00000110   7080BDE8           POP      {R4-R6,PC}       ;; return
+    292          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    293          void keyPress(int _type, int _key1, int _key2, int _delay)
+    294          {
+   \                     keyPress:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    295            type=_type;
+   \   00000004   ........           LDR      R4,??DataTable33  ;; ipc
+   \   00000008   280084E5           STR      R0,[R4, #+40]
+    296            pin1=keytab[_key1];
+   \   0000000C   010184E0           ADD      R0,R4,R1, LSL #+2
+   \   00000010   140090E5           LDR      R0,[R0, #+20]
+    297            pin2=keytab[_key2];  
+   \   00000014   021184E0           ADD      R1,R4,R2, LSL #+2
+    298            delay=_delay;
+    299            n=1;
+    300            if(type==DOUBLESHORT || type==LONG_AND_SHORT) n=2;
+   \   00000018   282094E5           LDR      R2,[R4, #+40]
+   \   0000001C   2C0084E5           STR      R0,[R4, #+44]
+   \   00000020   141091E5           LDR      R1,[R1, #+20]
+   \   00000024   383084E5           STR      R3,[R4, #+56]
+   \   00000028   301084E5           STR      R1,[R4, #+48]
+   \   0000002C   0110A0E3           MOV      R1,#+1
+   \   00000030   020052E3           CMP      R2,#+2
+   \   00000034   03005213           CMPNE    R2,#+3
+   \   00000038   0210A003           MOVEQ    R1,#+2
+    301              
+    302            n=n+(n-1);
+   \   0000003C   8110A0E1           LSL      R1,R1,#+1
+   \   00000040   011041E2           SUB      R1,R1,#+1
+   \   00000044   341084E5           STR      R1,[R4, #+52]
+    303            
+    304            if(n > 0)
+   \   00000048   010051E3           CMP      R1,#+1
+   \   0000004C   3080BDB8           POPLT    {R4,R5,PC}
+    305            {
+    306              if(type==LONG_AND_SHORT)
+   \   00000050   ........           LDR      R5,??DataTable17  ;; tmr_key_proc
+   \   00000054   030052E3           CMP      R2,#+3
+   \   00000058   0D00001A           BNE      ??keyPress_0
+    307              {
+    308                pinMode(pin1, OUTPUT);
+   \   0000005C   0110A0E3           MOV      R1,#+1
+   \   00000060   FF0000E2           AND      R0,R0,#0xFF
+   \   00000064   ........           BL       pinMode
+    309                digitalWrite(pin1, HIGH);
+   \   00000068   2C0094E5           LDR      R0,[R4, #+44]
+   \   0000006C   0110A0E3           MOV      R1,#+1
+   \   00000070   FF0000E2           AND      R0,R0,#0xFF
+   \   00000074   ........           BL       digitalWrite
+    310                GBS_StartTimerProc(&tmr_key, delay*225, tmr_key_proc);
+   \   00000078   380094E5           LDR      R0,[R4, #+56]
+   \   0000007C   0520A0E1           MOV      R2,R5
+   \   00000080   E130A0E3           MOV      R3,#+225
+   \   00000084   930001E0           MUL      R1,R3,R0
+   \   00000088   5C0084E2           ADD      R0,R4,#+92
+   \   0000008C   4D0000EF           SWI      +77
+   \   00000090   3080BDE8           POP      {R4,R5,PC}
+    311              }
+    312              else if(type==DOUBLESHORT)
+   \                     ??keyPress_0:
+   \   00000094   020052E3           CMP      R2,#+2
+   \   00000098   0400001A           BNE      ??keyPress_1
+    313                {
+    314                  pinMode(pin1, OUTPUT);
+   \   0000009C   0110A0E3           MOV      R1,#+1
+   \   000000A0   FF0000E2           AND      R0,R0,#0xFF
+   \   000000A4   ........           BL       pinMode
+    315                  digitalWrite(pin1, HIGH);
+   \   000000A8   2C0094E5           LDR      R0,[R4, #+44]
+   \   000000AC   0D0000EA           B        ??keyPress_2
+    316                  GBS_StartTimerProc(&tmr_key, 10, tmr_key_proc);        
+    317                }
+    318              else if(type==SHORT)
+   \                     ??keyPress_1:
+   \   000000B0   000052E3           CMP      R2,#+0
+   \   000000B4   1100001A           BNE      ??keyPress_3
+    319                {
+    320                  pinMode(pin1, OUTPUT);
+   \   000000B8   0110A0E3           MOV      R1,#+1
+   \   000000BC   FF0000E2           AND      R0,R0,#0xFF
+   \   000000C0   ........           BL       pinMode
+    321                  digitalWrite(pin1, HIGH);
+   \   000000C4   2C0094E5           LDR      R0,[R4, #+44]
+   \   000000C8   0110A0E3           MOV      R1,#+1
+   \   000000CC   FF0000E2           AND      R0,R0,#0xFF
+   \   000000D0   ........           BL       digitalWrite
+    322                  pinMode(pin2, OUTPUT);
+   \   000000D4   300094E5           LDR      R0,[R4, #+48]
+   \   000000D8   0110A0E3           MOV      R1,#+1
+   \   000000DC   FF0000E2           AND      R0,R0,#0xFF
+   \   000000E0   ........           BL       pinMode
+    323                  digitalWrite(pin2, HIGH);
+   \   000000E4   300094E5           LDR      R0,[R4, #+48]
+   \                     ??keyPress_2:
+   \   000000E8   0110A0E3           MOV      R1,#+1
+   \   000000EC   FF0000E2           AND      R0,R0,#0xFF
+   \   000000F0   ........           BL       digitalWrite
+    324                  GBS_StartTimerProc(&tmr_key, 10, tmr_key_proc);
+   \   000000F4   0520A0E1           MOV      R2,R5
+   \   000000F8   0A10A0E3           MOV      R1,#+10
+   \   000000FC   140000EA           B        ??keyPress_4
+    325                }
+    326              else if(type==LONG)
+   \                     ??keyPress_3:
+   \   00000100   010052E3           CMP      R2,#+1
+   \   00000104   3080BD18           POPNE    {R4,R5,PC}
+    327                {
+    328                  pinMode(pin1, OUTPUT);
+   \   00000108   0110A0E3           MOV      R1,#+1
+   \   0000010C   FF0000E2           AND      R0,R0,#0xFF
+   \   00000110   ........           BL       pinMode
+    329                  digitalWrite(pin1, HIGH);
+   \   00000114   2C0094E5           LDR      R0,[R4, #+44]
+   \   00000118   0110A0E3           MOV      R1,#+1
+   \   0000011C   FF0000E2           AND      R0,R0,#0xFF
+   \   00000120   ........           BL       digitalWrite
+    330                  pinMode(pin2, OUTPUT);
+   \   00000124   300094E5           LDR      R0,[R4, #+48]
+   \   00000128   0110A0E3           MOV      R1,#+1
+   \   0000012C   FF0000E2           AND      R0,R0,#0xFF
+   \   00000130   ........           BL       pinMode
+    331                  digitalWrite(pin2, HIGH);
+   \   00000134   300094E5           LDR      R0,[R4, #+48]
+   \   00000138   0110A0E3           MOV      R1,#+1
+   \   0000013C   FF0000E2           AND      R0,R0,#0xFF
+   \   00000140   ........           BL       digitalWrite
+    332                  GBS_StartTimerProc(&tmr_key, delay * 225, tmr_key_proc);
+   \   00000144   380094E5           LDR      R0,[R4, #+56]
+   \   00000148   0520A0E1           MOV      R2,R5
+   \   0000014C   E130A0E3           MOV      R3,#+225
+   \   00000150   930001E0           MUL      R1,R3,R0
+   \                     ??keyPress_4:
+   \   00000154   5C0084E2           ADD      R0,R4,#+92
+   \   00000158   4D0000EF           SWI      +77
+    333                }
+    334            }
+    335          }
+   \   0000015C   3080BDE8           POP      {R4,R5,PC}       ;; return
+    336          /******************************************************************************/
+    337          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    338          void CheckCmd(char *cmd, SMS *sms)
+    339          {
+   \                     CheckCmd:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   20D04DE2           SUB      SP,SP,#+32
+   \   00000008   0040A0E1           MOV      R4,R0
+    340            char s[32];
+    341            const char *snd;
+    342            
+    343            if(strcmp_nocase(cmd, start_word)==0)
+   \   0000000C   ........           LDR      R6,??DataTable29  ;; sndLock
+   \   00000010   0150A0E1           MOV      R5,R1
+   \   00000014   10129FE5           LDR      R1,??CheckCmd_0  ;; start_word
+   \   00000018   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   0000001C   000050E3           CMP      R0,#+0
+   \   00000020   0A00001A           BNE      ??CheckCmd_1
+    344            {
+    345              keyPress(start_t, start_key1, start_key2, start_delay);
+   \   00000024   ........           LDR      R0,??DataTable24  ;; start_delay
+   \   00000028   003090E5           LDR      R3,[R0, #+0]
+   \   0000002C   ........           LDR      R0,??DataTable25  ;; start_key2
+   \   00000030   002090E5           LDR      R2,[R0, #+0]
+   \   00000034   ........           LDR      R0,??DataTable26  ;; start_key1
+   \   00000038   001090E5           LDR      R1,[R0, #+0]
+   \   0000003C   ........           LDR      R0,??DataTable27  ;; start_t
+   \                     ??CheckCmd_2:
+   \   00000040   000090E5           LDR      R0,[R0, #+0]
+   \   00000044   ........           BL       keyPress
+    346              snd=sndUnlock;
+   \   00000048   046096E5           LDR      R6,[R6, #+4]
+   \   0000004C   5E0000EA           B        ??CheckCmd_3
+    347            }
+    348            else if(strcmp_nocase(cmd, stop_word)==0)
+   \                     ??CheckCmd_1:
+   \   00000050   D8119FE5           LDR      R1,??CheckCmd_0+0x4  ;; stop_word
+   \   00000054   0400A0E1           MOV      R0,R4
+   \   00000058   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   0000005C   000050E3           CMP      R0,#+0
+   \   00000060   0900001A           BNE      ??CheckCmd_4
+    349            {
+    350              keyPress(stop_t, stop_key1, stop_key2, stop_delay);
+   \   00000064   C8019FE5           LDR      R0,??CheckCmd_0+0x8  ;; stop_delay
+   \   00000068   003090E5           LDR      R3,[R0, #+0]
+   \   0000006C   C4019FE5           LDR      R0,??CheckCmd_0+0xC  ;; stop_key2
+   \   00000070   002090E5           LDR      R2,[R0, #+0]
+   \   00000074   C0019FE5           LDR      R0,??CheckCmd_0+0x10  ;; stop_key1
+   \   00000078   001090E5           LDR      R1,[R0, #+0]
+   \   0000007C   BC019FE5           LDR      R0,??CheckCmd_0+0x14  ;; stop_t
+   \                     ??CheckCmd_5:
+   \   00000080   000090E5           LDR      R0,[R0, #+0]
+   \   00000084   ........           BL       keyPress
+    351              snd=sndLock;
+   \   00000088   4E0000EA           B        ??CheckCmd_6
+    352            }
+    353            else if(strcmp_nocase(cmd, unlock_word)==0)
+   \                     ??CheckCmd_4:
+   \   0000008C   B0119FE5           LDR      R1,??CheckCmd_0+0x18  ;; unlock_word
+   \   00000090   0400A0E1           MOV      R0,R4
+   \   00000094   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   00000098   000050E3           CMP      R0,#+0
+   \   0000009C   0600001A           BNE      ??CheckCmd_7
+    354            {
+    355              keyPress(unlock_t, unlock_key1, unlock_key2, 0);
+   \   000000A0   A0019FE5           LDR      R0,??CheckCmd_0+0x1C  ;; unlock_key2
+   \   000000A4   0030A0E3           MOV      R3,#+0
+   \   000000A8   002090E5           LDR      R2,[R0, #+0]
+   \   000000AC   98019FE5           LDR      R0,??CheckCmd_0+0x20  ;; unlock_key1
+   \   000000B0   001090E5           LDR      R1,[R0, #+0]
+   \   000000B4   94019FE5           LDR      R0,??CheckCmd_0+0x24  ;; unlock_t
+   \   000000B8   E0FFFFEA           B        ??CheckCmd_2
+    356              snd=sndUnlock;
+    357            }
+    358            else if(strcmp_nocase(cmd, lock_word)==0)
+   \                     ??CheckCmd_7:
+   \   000000BC   90119FE5           LDR      R1,??CheckCmd_0+0x28  ;; lock_word
+   \   000000C0   0400A0E1           MOV      R0,R4
+   \   000000C4   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   000000C8   000050E3           CMP      R0,#+0
+   \   000000CC   0600001A           BNE      ??CheckCmd_8
+    359            {
+    360              keyPress(lock_t, lock_key1, lock_key2, 0);
+   \   000000D0   80019FE5           LDR      R0,??CheckCmd_0+0x2C  ;; lock_key2
+   \   000000D4   0030A0E3           MOV      R3,#+0
+   \   000000D8   002090E5           LDR      R2,[R0, #+0]
+   \   000000DC   78019FE5           LDR      R0,??CheckCmd_0+0x30  ;; lock_key1
+   \   000000E0   001090E5           LDR      R1,[R0, #+0]
+   \   000000E4   74019FE5           LDR      R0,??CheckCmd_0+0x34  ;; lock_t
+   \   000000E8   E4FFFFEA           B        ??CheckCmd_5
+    361              snd=sndLock;
+    362            }
+    363            else if(strcmp_nocase(cmd, trunk_word)==0)
+   \                     ??CheckCmd_8:
+   \   000000EC   70119FE5           LDR      R1,??CheckCmd_0+0x38  ;; trunk_word
+   \   000000F0   0400A0E1           MOV      R0,R4
+   \   000000F4   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   000000F8   000050E3           CMP      R0,#+0
+   \   000000FC   0700001A           BNE      ??CheckCmd_9
+    364            {
+    365              keyPress(trunk_t, trunk_key1, trunk_key2, trunk_delay);
+   \   00000100   60019FE5           LDR      R0,??CheckCmd_0+0x3C  ;; trunk_delay
+   \   00000104   003090E5           LDR      R3,[R0, #+0]
+   \   00000108   5C019FE5           LDR      R0,??CheckCmd_0+0x40  ;; trunk_key2
+   \   0000010C   002090E5           LDR      R2,[R0, #+0]
+   \   00000110   58019FE5           LDR      R0,??CheckCmd_0+0x44  ;; trunk_key1
+   \   00000114   001090E5           LDR      R1,[R0, #+0]
+   \   00000118   54019FE5           LDR      R0,??CheckCmd_0+0x48  ;; trunk_t
+   \   0000011C   C7FFFFEA           B        ??CheckCmd_2
+    366              snd=sndUnlock;
+    367            }
+    368            else if(strcmp_nocase(cmd, search_word)==0)
+   \                     ??CheckCmd_9:
+   \   00000120   50119FE5           LDR      R1,??CheckCmd_0+0x4C  ;; search_word
+   \   00000124   0400A0E1           MOV      R0,R4
+   \   00000128   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   0000012C   000050E3           CMP      R0,#+0
+   \   00000130   0700001A           BNE      ??CheckCmd_10
+    369            {
+    370              keyPress(search_t, search_key1, search_key2, search_delay);
+   \   00000134   40019FE5           LDR      R0,??CheckCmd_0+0x50  ;; search_delay
+   \   00000138   003090E5           LDR      R3,[R0, #+0]
+   \   0000013C   3C019FE5           LDR      R0,??CheckCmd_0+0x54  ;; search_key2
+   \   00000140   002090E5           LDR      R2,[R0, #+0]
+   \   00000144   38019FE5           LDR      R0,??CheckCmd_0+0x58  ;; search_key1
+   \   00000148   001090E5           LDR      R1,[R0, #+0]
+   \   0000014C   34019FE5           LDR      R0,??CheckCmd_0+0x5C  ;; search_t
+   \   00000150   BAFFFFEA           B        ??CheckCmd_2
+    371              snd=sndUnlock;
+    372            }  
+    373            else if(strcmp_nocase(cmd, panicOn_word)==0)
+   \                     ??CheckCmd_10:
+   \   00000154   30119FE5           LDR      R1,??CheckCmd_0+0x60  ;; panicOn_word
+   \   00000158   0400A0E1           MOV      R0,R4
+   \   0000015C   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   00000160   000050E3           CMP      R0,#+0
+   \   00000164   0900001A           BNE      ??CheckCmd_11
+    374            {
+    375              keyPress(panicOn_t, panicOn_key1, panicOn_key2, panicOn_delay);
+   \   00000168   20019FE5           LDR      R0,??CheckCmd_0+0x64  ;; panicOn_delay
+   \   0000016C   003090E5           LDR      R3,[R0, #+0]
+   \   00000170   1C019FE5           LDR      R0,??CheckCmd_0+0x68  ;; panicOn_key2
+   \   00000174   002090E5           LDR      R2,[R0, #+0]
+   \   00000178   18019FE5           LDR      R0,??CheckCmd_0+0x6C  ;; panicOn_key1
+   \   0000017C   001090E5           LDR      R1,[R0, #+0]
+   \   00000180   14019FE5           LDR      R0,??CheckCmd_0+0x70  ;; panicOn_t
+   \   00000184   000090E5           LDR      R0,[R0, #+0]
+   \   00000188   ........           BL       keyPress
+    376              snd=sndLock;
+   \   0000018C   0D0000EA           B        ??CheckCmd_6
+    377            }
+    378            else if(strcmp_nocase(cmd, panicOff_word)==0)
+   \                     ??CheckCmd_11:
+   \   00000190   08119FE5           LDR      R1,??CheckCmd_0+0x74  ;; panicOff_word
+   \   00000194   0400A0E1           MOV      R0,R4
+   \   00000198   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   0000019C   000050E3           CMP      R0,#+0
+   \   000001A0   0700001A           BNE      ??CheckCmd_12
+    379            {
+    380              keyPress(panicOff_t, panicOff_key1, panicOff_key2, panicOff_delay);
+   \   000001A4   F8009FE5           LDR      R0,??CheckCmd_0+0x78  ;; panicOff_delay
+   \   000001A8   003090E5           LDR      R3,[R0, #+0]
+   \   000001AC   F4009FE5           LDR      R0,??CheckCmd_0+0x7C  ;; panicOff_key2
+   \   000001B0   002090E5           LDR      R2,[R0, #+0]
+   \   000001B4   F0009FE5           LDR      R0,??CheckCmd_0+0x80  ;; panicOff_key1
+   \   000001B8   001090E5           LDR      R1,[R0, #+0]
+   \   000001BC   EC009FE5           LDR      R0,??CheckCmd_0+0x84  ;; panicOff_t
+   \   000001C0   AEFFFFEA           B        ??CheckCmd_5
+    381              snd=sndLock;
+    382            }  
+    383            else
+    384            {
+    385              cmd=NULL;
+   \                     ??CheckCmd_12:
+   \   000001C4   0040A0E3           MOV      R4,#+0
+    386              snd=sndLock;
+   \                     ??CheckCmd_6:
+   \   000001C8   006096E5           LDR      R6,[R6, #+0]
+    387            }
+    388              
+    389            IlluminationOn(ILL_DISP_RECV,ILL_KEYS_RECV,ILL_DYNL_RECV,ILL_RECV_TMR,ILL_RECV_FADE);
+   \                     ??CheckCmd_3:
+   \   000001CC   400FA0E3           MOV      R0,#+256
+   \   000001D0   01002DE9           PUSH     {R0}
+   \   000001D4   0330A0E3           MOV      R3,#+3
+   \   000001D8   6420A0E3           MOV      R2,#+100
+   \   000001DC   1E10A0E3           MOV      R1,#+30
+   \   000001E0   1E00A0E3           MOV      R0,#+30
+   \   000001E4   ........           BL       IlluminationOn
+    390            Play(snd);
+   \   000001E8   0600A0E1           MOV      R0,R6
+   \   000001EC   ........           BL       Play
+    391            
+    392            if(cmd)
+   \   000001F0   BC109FE5           LDR      R1,??CheckCmd_0+0x88  ;; `?<Constant "CarControl:\\n\\315\\345\\350\\347\\342\\`
+   \   000001F4   000054E3           CMP      R4,#+0
+   \   000001F8   04D08DE2           ADD      SP,SP,#+4
+   \   000001FC   0400000A           BEQ      ??CheckCmd_13
+    393            {
+    394              sprintf(s,"CarControl:\n%s", cmd);
+   \   00000200   0420A0E1           MOV      R2,R4
+   \   00000204   241081E2           ADD      R1,R1,#+36
+   \   00000208   0D00A0E1           MOV      R0,SP
+   \   0000020C   160000EF           SWI      +22
+    395              ShowMSG(0x11,(int)s);
+   \   00000210   0D10A0E1           MOV      R1,SP
+    396            }
+    397            else
+    398              ShowMSG(0x11,(int)"CarControl:\nНеизвестная команда!");
+   \                     ??CheckCmd_13:
+   \   00000214   1100A0E3           MOV      R0,#+17
+   \   00000218   480100EF           SWI      +328
+    399          
+    400            mfree(sms);
+   \   0000021C   0500A0E1           MOV      R0,R5
+   \   00000220   150000EF           SWI      +21
+    401          }
+   \   00000224   20D08DE2           ADD      SP,SP,#+32
+   \   00000228   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??CheckCmd_0:
+   \   0000022C   ........           DC32     start_word
+   \   00000230   ........           DC32     stop_word
+   \   00000234   ........           DC32     stop_delay
+   \   00000238   ........           DC32     stop_key2
+   \   0000023C   ........           DC32     stop_key1
+   \   00000240   ........           DC32     stop_t
+   \   00000244   ........           DC32     unlock_word
+   \   00000248   ........           DC32     unlock_key2
+   \   0000024C   ........           DC32     unlock_key1
+   \   00000250   ........           DC32     unlock_t
+   \   00000254   ........           DC32     lock_word
+   \   00000258   ........           DC32     lock_key2
+   \   0000025C   ........           DC32     lock_key1
+   \   00000260   ........           DC32     lock_t
+   \   00000264   ........           DC32     trunk_word
+   \   00000268   ........           DC32     trunk_delay
+   \   0000026C   ........           DC32     trunk_key2
+   \   00000270   ........           DC32     trunk_key1
+   \   00000274   ........           DC32     trunk_t
+   \   00000278   ........           DC32     search_word
+   \   0000027C   ........           DC32     search_delay
+   \   00000280   ........           DC32     search_key2
+   \   00000284   ........           DC32     search_key1
+   \   00000288   ........           DC32     search_t
+   \   0000028C   ........           DC32     panicOn_word
+   \   00000290   ........           DC32     panicOn_delay
+   \   00000294   ........           DC32     panicOn_key2
+   \   00000298   ........           DC32     panicOn_key1
+   \   0000029C   ........           DC32     panicOn_t
+   \   000002A0   ........           DC32     panicOff_word
+   \   000002A4   ........           DC32     panicOff_delay
+   \   000002A8   ........           DC32     panicOff_key2
+   \   000002AC   ........           DC32     panicOff_key1
+   \   000002B0   ........           DC32     panicOff_t
+   \   000002B4   ........           DC32     `?<Constant "CarControl:\\n\\315\\345\\350\\347\\342\\`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \                     ipc:
+   \   00000000                      DS8 12
+   \   0000000C                      REQUIRE `?<Initializer for ipc>`
+   \                     maincsm_id:
+   \   0000000C                      DS8 4
+   \   00000010                      REQUIRE `?<Initializer for maincsm_id>`
+   \                     blink_n:
+   \   00000010                      DS8 4
+   \   00000014                      REQUIRE `?<Initializer for blink_n>`
+   \                     keytab:
+   \   00000014                      DS8 20
+   \   00000028                      REQUIRE `?<Initializer for keytab>`
+   \                     type:
+   \   00000028                      DS8 4
+   \   0000002C                      REQUIRE `?<Initializer for type>`
+   \                     pin1:
+   \   0000002C                      DS8 4
+   \   00000030                      REQUIRE `?<Initializer for pin1>`
+   \                     pin2:
+   \   00000030                      DS8 4
+   \   00000034                      REQUIRE `?<Initializer for pin2>`
+   \                     n:
+   \   00000034                      DS8 4
+   \   00000038                      REQUIRE `?<Initializer for n>`
+   \                     delay:
+   \   00000038                      DS8 4
+   \   0000003C                      REQUIRE `?<Initializer for delay>`
+   \                     tmr_illumination:
+   \   0000003C                      DS8 16
+   \   0000004C                      REQUIRE `?<Initializer for tmr_illumination>`
+   \                     tmr_blink:
+   \   0000004C                      DS8 16
+   \   0000005C                      REQUIRE `?<Initializer for tmr_blink>`
+   \                     tmr_key:
+   \   0000005C                      DS8 16
+   \   0000006C                      REQUIRE `?<Initializer for tmr_key>`
+    402          
+    403          GBSTMR tmr_call;
+   \                     tmr_call:
+   \   0000006C                      DS8 16
+   \   0000007C                      REQUIRE `?<Initializer for tmr_call>`
+    404          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    405          void UnpackIncomingNumber(char *s)
+    406          {
+   \                     UnpackIncomingNumber:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    407            char *p=RamCallState()+ 0x5A;
+   \   00000008   908200EF           SWI      +33424
+   \   0000000C   5A0080E2           ADD      R0,R0,#+90
+    408            //Длина номера в байтах
+    409            int i=*p++;
+   \   00000010   ........           LDRB     R1,[R0], #+1
+    410            //Длина номера в ниблах
+    411            i=s[i]&0x0F?(i-1)*8/4-1:(i-1)*8/4;
+    412            //Если номер в международном формате добавляем '+'
+    413            if (*p++==0x91) {*s='+'; s++;};  
+    414            unsigned int m=0;
+    415            char c=0;
+   \   00000014   0030A0E3           MOV      R3,#+0
+   \   00000018   0420D1E7           LDRB     R2,[R1, +R4]
+   \   0000001C   011041E2           SUB      R1,R1,#+1
+   \   00000020   8111A0E1           LSL      R1,R1,#+3
+   \   00000024   0F0012E3           TST      R2,#0xF
+   \   00000028   C120A0E1           ASR      R2,R1,#+1
+   \   0000002C   221F81E0           ADD      R1,R1,R2, LSR #+30
+   \   00000030   ........           LDRB     R2,[R0], #+1
+   \   00000034   4111A0E1           ASR      R1,R1,#+2
+   \   00000038   01104112           SUBNE    R1,R1,#+1
+   \   0000003C   910052E3           CMP      R2,#+145
+   \   00000040   2B20A003           MOVEQ    R2,#+43
+   \   00000044   ........           STRBEQ   R2,[R4], #+1
+   \   00000048   0020A0E3           MOV      R2,#+0
+   \   0000004C   02C0A0E1           MOV      R12,R2
+   \   00000050   000051E3           CMP      R1,#+0
+   \   00000054   0400001A           BNE      ??UnpackIncomingNumber_0
+    416            char c1;
+    417            while(m<i)
+    418            {
+    419              if (m&1) c1=c>>4;
+    420              else c1=(c=*p++)&0x0F;
+    421              *s=c1+0x30; 
+    422              s++;
+    423              m++;
+    424            }
+    425            *s=0;   
+   \                     ??UnpackIncomingNumber_1:
+   \   00000058   0030C4E5           STRB     R3,[R4, #+0]
+    426          }
+   \   0000005C   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??UnpackIncomingNumber_2:
+   \   00000060   30E08EE2           ADD      LR,LR,#+48
+   \   00000064   ........           STRB     LR,[R4], #+1
+   \   00000068   012082E2           ADD      R2,R2,#+1
+   \                     ??UnpackIncomingNumber_0:
+   \   0000006C   010052E1           CMP      R2,R1
+   \   00000070   F8FFFF2A           BCS      ??UnpackIncomingNumber_1
+   \   00000074   010012E3           TST      R2,#0x1
+   \   00000078   ........           LDRBEQ   R12,[R0], #+1
+   \   0000007C   0FE00C02           ANDEQ    LR,R12,#0xF
+   \   00000080   2CE2A011           LSRNE    LR,R12,#+4
+   \   00000084   F5FFFFEA           B        ??UnpackIncomingNumber_2
+    427          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    428          void tmr_call_proc()
+    429          {
+   \                     tmr_call_proc:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   14D04DE2           SUB      SP,SP,#+20
+    430            char s[20];
+    431            
+    432            if(*RamCallState()==3)// 1-исходящий вызов;2-исходящий вызов,идут гудки;3-входящий вызов;4-трубка взята
+   \   00000008   908200EF           SWI      +33424
+   \   0000000C   0000D0E5           LDRB     R0,[R0, #+0]
+   \   00000010   030050E3           CMP      R0,#+3
+   \   00000014   1000001A           BNE      ??tmr_call_proc_0
+    433            {
+    434              UnpackIncomingNumber(s);
+   \   00000018   0D00A0E1           MOV      R0,SP
+   \   0000001C   ........           BL       UnpackIncomingNumber
+    435              
+    436              if (strcmp_nocase(s, MYNUMBER)==0)
+   \   00000020   ........           LDR      R1,??DataTable23  ;; MYNUMBER
+   \   00000024   0D00A0E1           MOV      R0,SP
+   \   00000028   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   0000002C   000050E3           CMP      R0,#+0
+   \   00000030   0900001A           BNE      ??tmr_call_proc_0
+    437              {
+    438                keyPress(start_t, start_key1, start_key2, start_delay); // автозапуск двигателя
+   \   00000034   ........           LDR      R0,??DataTable24  ;; start_delay
+   \   00000038   003090E5           LDR      R3,[R0, #+0]
+   \   0000003C   ........           LDR      R0,??DataTable25  ;; start_key2
+   \   00000040   002090E5           LDR      R2,[R0, #+0]
+   \   00000044   ........           LDR      R0,??DataTable26  ;; start_key1
+   \   00000048   001090E5           LDR      R1,[R0, #+0]
+   \   0000004C   ........           LDR      R0,??DataTable27  ;; start_t
+   \   00000050   000090E5           LDR      R0,[R0, #+0]
+   \   00000054   ........           BL       keyPress
+    439                EndCall();
+   \   00000058   650000EF           SWI      +101
+    440              }
+    441            }
+    442          }
+   \                     ??tmr_call_proc_0:
+   \   0000005C   14D08DE2           ADD      SP,SP,#+20       ;; stack cleaning
+   \   00000060   0080BDE8           POP      {PC}             ;; return
+    443          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    444          void InitPath()
+    445          {
+   \                     InitPath:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    446            sndLock=malloc(strlen(DIR)+32);
+   \   00000004   50409FE5           LDR      R4,??InitPath_0  ;; DIR
+   \   00000008   ........           LDR      R5,??DataTable29  ;; sndLock
+    447            sprintf(sndLock, "%s%s", DIR, "Sounds\\lock.wav");
+   \   0000000C   4C609FE5           LDR      R6,??InitPath_0+0x4  ;; `?<Constant "%s%s">`
+   \   00000010   0400A0E1           MOV      R0,R4
+   \   00000014   1B0000EF           SWI      +27
+   \   00000018   200080E2           ADD      R0,R0,#+32
+   \   0000001C   140000EF           SWI      +20
+   \   00000020   000085E5           STR      R0,[R5, #+0]
+   \   00000024   1C3086E2           ADD      R3,R6,#+28
+   \   00000028   0420A0E1           MOV      R2,R4
+   \   0000002C   0610A0E1           MOV      R1,R6
+   \   00000030   160000EF           SWI      +22
+    448            
+    449            sndUnlock=malloc(strlen(DIR)+32);
+   \   00000034   0400A0E1           MOV      R0,R4
+   \   00000038   1B0000EF           SWI      +27
+   \   0000003C   200080E2           ADD      R0,R0,#+32
+   \   00000040   140000EF           SWI      +20
+   \   00000044   040085E5           STR      R0,[R5, #+4]
+    450            sprintf(sndUnlock, "%s%s", DIR, "Sounds\\unlock.wav"); 
+   \   00000048   083086E2           ADD      R3,R6,#+8
+   \   0000004C   0420A0E1           MOV      R2,R4
+   \   00000050   0610A0E1           MOV      R1,R6
+   \   00000054   160000EF           SWI      +22
+    451          }
+   \   00000058   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??InitPath_0:
+   \   0000005C   ........           DC32     DIR
+   \   00000060   ........           DC32     `?<Constant "%s%s">`
+    452          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    453          void DeInitPath()
+    454          {
+   \                     DeInitPath:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    455            mfree(sndLock);
+   \   00000004   ........           LDR      R4,??DataTable29  ;; sndLock
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   150000EF           SWI      +21
+    456            mfree(sndUnlock);
+   \   00000010   040094E5           LDR      R0,[R4, #+4]
+   \   00000014   150000EF           SWI      +21
+    457          }
+   \   00000018   1080BDE8           POP      {R4,PC}          ;; return
+    458          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    459          void destroyApp()
+    460          {
+    461            if(sms_simif_sm) DeleteSMSListener();
+   \                     destroyApp:
+   \   00000000   ........           LDR      R0,??DataTable30  ;; sms_simif_sm
+   \   00000004   10402DE9           PUSH     {R4,LR}
+   \   00000008   000090E5           LDR      R0,[R0, #+0]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   0000000A           BEQ      ??destroyApp_0
+   \   00000014   ........           _BLF     DeleteSMSListener,??DeleteSMSListener??rA
+    462            if(IsTimerProc(&tmr_illumination)) GBS_DelTimer(&tmr_illumination);
+   \                     ??destroyApp_0:
+   \   00000018   ........           LDR      R4,??DataTable33  ;; ipc
+   \   0000001C   3C0084E2           ADD      R0,R4,#+60
+   \   00000020   A60100EF           SWI      +422
+   \   00000024   000050E3           CMP      R0,#+0
+   \   00000028   0100000A           BEQ      ??destroyApp_1
+   \   0000002C   3C0084E2           ADD      R0,R4,#+60
+   \   00000030   8C0100EF           SWI      +396
+    463            if(IsTimerProc(&tmr_key)) GBS_DelTimer(&tmr_key);
+   \                     ??destroyApp_1:
+   \   00000034   5C0084E2           ADD      R0,R4,#+92
+   \   00000038   A60100EF           SWI      +422
+   \   0000003C   000050E3           CMP      R0,#+0
+   \   00000040   0100000A           BEQ      ??destroyApp_2
+   \   00000044   5C0084E2           ADD      R0,R4,#+92
+   \   00000048   8C0100EF           SWI      +396
+    464            if(IsTimerProc(&tmr_call)) GBS_DelTimer(&tmr_call);
+   \                     ??destroyApp_2:
+   \   0000004C   6C0084E2           ADD      R0,R4,#+108
+   \   00000050   A60100EF           SWI      +422
+   \   00000054   000050E3           CMP      R0,#+0
+   \   00000058   0100000A           BEQ      ??destroyApp_3
+   \   0000005C   6C0084E2           ADD      R0,R4,#+108
+   \   00000060   8C0100EF           SWI      +396
+    465            if(IsTimerProc(&tmr_blink)) GBS_DelTimer(&tmr_blink);
+   \                     ??destroyApp_3:
+   \   00000064   4C0084E2           ADD      R0,R4,#+76
+   \   00000068   A60100EF           SWI      +422
+   \   0000006C   000050E3           CMP      R0,#+0
+   \   00000070   0100000A           BEQ      ??destroyApp_4
+   \   00000074   4C0084E2           ADD      R0,R4,#+76
+   \   00000078   8C0100EF           SWI      +396
+    466            DeInitPath();
+   \                     ??destroyApp_4:
+   \   0000007C   ........           BL       DeInitPath
+    467            RestorePin(TX);
+   \   00000080   0100A0E3           MOV      R0,#+1
+   \   00000084   ........           BL       RestorePin
+    468            RestorePin(RX);
+   \   00000088   0200A0E3           MOV      R0,#+2
+   \   0000008C   ........           BL       RestorePin
+    469            RestorePin(CTS);
+   \   00000090   0300A0E3           MOV      R0,#+3
+   \   00000094   ........           BL       RestorePin
+    470            RestorePin(RTS);
+   \   00000098   0400A0E3           MOV      R0,#+4
+   \   0000009C   ........           BL       RestorePin
+    471          }
+   \   000000A0   1080BDE8           POP      {R4,PC}          ;; return
+    472          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    473          void startApp()
+    474          {
+    475            SetSMSListener((void*)my_sms_simif_sm);
+   \                     startApp:
+   \   00000000   60009FE5           LDR      R0,??startApp_0  ;; my_sms_simif_sm
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   ........           _BLF     SetSMSListener,??SetSMSListener??rA
+    476            InitConnectorMap();
+   \   0000000C   ........           BL       InitConnectorMap
+    477            InitPinSafe(TX,1); 
+   \   00000010   0110A0E3           MOV      R1,#+1
+   \   00000014   0100A0E3           MOV      R0,#+1
+   \   00000018   ........           BL       InitPinSafe
+    478            InitPinSafe(RX,1);
+   \   0000001C   0110A0E3           MOV      R1,#+1
+   \   00000020   0200A0E3           MOV      R0,#+2
+   \   00000024   ........           BL       InitPinSafe
+    479            InitPinSafe(RTS,1);
+   \   00000028   0110A0E3           MOV      R1,#+1
+   \   0000002C   0400A0E3           MOV      R0,#+4
+   \   00000030   ........           BL       InitPinSafe
+    480            InitPinSafe(CTS,1);
+   \   00000034   0110A0E3           MOV      R1,#+1
+   \   00000038   0300A0E3           MOV      R0,#+3
+   \   0000003C   ........           BL       InitPinSafe
+    481            InitPath();
+   \   00000040   ........           BL       InitPath
+    482            Play(sndUnlock);
+   \   00000044   20009FE5           LDR      R0,??startApp_0+0x4  ;; sndLock + 4
+   \   00000048   000090E5           LDR      R0,[R0, #+0]
+   \   0000004C   ........           BL       Play
+    483            Blink(2);
+   \   00000050   0200A0E3           MOV      R0,#+2
+   \   00000054   ........           BL       Blink
+    484            ShowMSG(0x11,(int)"CarControl запущен!");  
+   \   00000058   10109FE5           LDR      R1,??startApp_0+0x8  ;; `?<Constant "CarControl \\347\\340\\357\\363\\371\\34`
+   \   0000005C   1100A0E3           MOV      R0,#+17
+   \   00000060   480100EF           SWI      +328
+    485          }
+   \   00000064   0080BDE8           POP      {PC}             ;; return
+   \                     ??startApp_0:
+   \   00000068   ........           DC32     my_sms_simif_sm
+   \   0000006C   ........           DC32     sndLock + 4
+   \   00000070   ........           DC32     `?<Constant "CarControl \\347\\340\\357\\363\\371\\34`
+    486          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    487          void CheckDoubleRun(void)
+    488          {
+   \                     CheckDoubleRun:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    489            if ((int)ipc.data !=-1)
+   \   00000004   ........           LDR      R4,??DataTable35  ;; ipc
+   \   00000008   080094E5           LDR      R0,[R4, #+8]
+   \   0000000C   010070E3           CMN      R0,#+1
+   \   00000010   0700000A           BEQ      ??CheckDoubleRun_0
+    490            {
+    491              LockSched();
+   \   00000014   460100EF           SWI      +326
+    492              CloseCSM(maincsm_id);
+   \   00000018   0C0094E5           LDR      R0,[R4, #+12]
+   \   0000001C   FC0100EF           SWI      +508
+    493              UnlockSched();
+   \   00000020   470100EF           SWI      +327
+    494              ShowMSG(0x11,(int)"CarControl был уже запущен!");   
+   \   00000024   14109FE5           LDR      R1,??CheckDoubleRun_1  ;; `?<Constant "CarControl \\341\\373\\353 \\363\\346\\3`
+   \   00000028   1100A0E3           MOV      R0,#+17
+   \   0000002C   480100EF           SWI      +328
+   \   00000030   1080BDE8           POP      {R4,PC}
+    495            }
+    496            else
+    497            {
+    498              SUBPROC((void *) startApp );
+   \                     ??CheckDoubleRun_0:
+   \   00000034   08009FE5           LDR      R0,??CheckDoubleRun_1+0x4  ;; startApp
+   \   00000038   710100EF           SWI      +369
+    499            }
+    500          }
+   \   0000003C   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??CheckDoubleRun_1:
+   \   00000040   ........           DC32     `?<Constant "CarControl \\341\\373\\353 \\363\\346\\3`
+   \   00000044   ........           DC32     startApp
+    501          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    502          int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
+    503          { /* имеет смысл только если CTS замкнут на землю
+   \                     maincsm_onmessage:
+   \   00000000   F0402DE9           PUSH     {R4-R7,LR}
+    504            if(msg->msg == 0x6161)//при вкл/выкл. зарядки, сообщение от AKKU_ANZEIGE(0x4e00)
+    505            {
+    506              InitPinSafe(TX,0); 
+    507              InitPinSafe(RX,0);
+    508              InitPinSafe(RTS,0);
+    509              InitPinSafe(CTS,0); 
+    510            }
+    511          */  
+    512            if((short)msg->pid_from==0x420E)/* && msg->msg == 0x5A)*/  // вызов, сообщение от AOC_AL_P(0x420E) 
+   \   00000004   ........           LDR      R5,??DataTable33  ;; ipc
+   \   00000008   0140A0E1           MOV      R4,R1
+   \   0000000C   F000D4E1           LDRSH    R0,[R4, #+0]
+   \   00000010   0E10A0E3           MOV      R1,#+14
+   \   00000014   421C81E3           ORR      R1,R1,#0x4200
+   \   00000018   010050E1           CMP      R0,R1
+   \   0000001C   0300001A           BNE      ??maincsm_onmessage_0
+    513            {
+    514              GBS_StartTimerProc(&tmr_call, 225*4, tmr_call_proc);
+   \   00000020   C4209FE5           LDR      R2,??maincsm_onmessage_1  ;; tmr_call_proc
+   \   00000024   E11FA0E3           MOV      R1,#+900
+   \   00000028   6C0085E2           ADD      R0,R5,#+108
+   \   0000002C   4D0000EF           SWI      +77
+    515            }
+    516            
+    517            if(msg->msg == MSG_RECONFIGURE_REQ) 
+   \                     ??maincsm_onmessage_0:
+   \   00000030   F200D4E1           LDRSH    R0,[R4, #+2]
+   \   00000034   ........           LDR      R6,??DataTable36  ;; `?<Constant "CarControl:\\n\\355\\340\\361\\362\\360\\`
+   \   00000038   F110A0E3           MOV      R1,#+241
+   \   0000003C   C01F81E3           ORR      R1,R1,#0x300
+   \   00000040   010050E1           CMP      R0,R1
+   \   00000044   0A00001A           BNE      ??maincsm_onmessage_2
+    518            {
+    519              extern const char *successed_config_filename;
+    520              if (strcmp_nocase(successed_config_filename,(char *)msg->data0)==0)
+   \   00000048   A0009FE5           LDR      R0,??maincsm_onmessage_1+0x4  ;; successed_config_filename
+   \   0000004C   081094E5           LDR      R1,[R4, #+8]
+   \   00000050   000090E5           LDR      R0,[R0, #+0]
+   \   00000054   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   00000058   000050E3           CMP      R0,#+0
+   \   0000005C   0400001A           BNE      ??maincsm_onmessage_2
+    521              {
+    522                InitConfig();
+   \   00000060   ........           _BLF     InitConfig,??InitConfig??rA
+    523                InitPath();
+   \   00000064   ........           BL       InitPath
+    524                ShowMSG(0x11,(int)"CarControl:\nнастройки обновлены!");
+   \   00000068   0610A0E1           MOV      R1,R6
+   \   0000006C   1100A0E3           MOV      R0,#+17
+   \   00000070   480100EF           SWI      +328
+    525              }
+    526            }  
+    527          //IPC
+    528              if (msg->msg==MSG_IPC)
+   \                     ??maincsm_onmessage_2:
+   \   00000074   F200D4E1           LDRSH    R0,[R4, #+2]
+   \   00000078   F210A0E3           MOV      R1,#+242
+   \   0000007C   C01F81E3           ORR      R1,R1,#0x300
+   \   00000080   010050E1           CMP      R0,R1
+   \   00000084   1600001A           BNE      ??maincsm_onmessage_3
+    529              {
+    530                if (msg->submess!=392305998)
+   \   00000088   040094E5           LDR      R0,[R4, #+4]
+   \   0000008C   60109FE5           LDR      R1,??maincsm_onmessage_1+0x8  ;; 0x17621d4e
+   \   00000090   010050E1           CMP      R0,R1
+    531                {
+    532                  IPC_REQ *ipc;
+    533                  if ((ipc=(IPC_REQ*)msg->data0))
+   \   00000094   08709415           LDRNE    R7,[R4, #+8]
+   \   00000098   00005713           CMPNE    R7,#+0
+   \   0000009C   1000000A           BEQ      ??maincsm_onmessage_3
+    534                  {
+    535                    if (strcmp_nocase(ipc->name_to,ipc_my_name)==0)
+   \   000000A0   000097E5           LDR      R0,[R7, #+0]
+   \   000000A4   241086E2           ADD      R1,R6,#+36
+   \   000000A8   ........           _BLF     strcmp_nocase,??strcmp_nocase??rA
+   \   000000AC   000050E3           CMP      R0,#+0
+    536                    {
+    537                      switch (msg->submess)
+   \   000000B0   04009405           LDREQ    R0,[R4, #+4]
+   \   000000B4   01005003           CMPEQ    R0,#+1
+   \   000000B8   0900001A           BNE      ??maincsm_onmessage_3
+    538                      {
+    539                      case IPC_CHECK_DOUBLERUN:
+    540          	    //Если приняли свое собственное сообщение, значит запускаем чекер
+    541          	    if (ipc->name_from==ipc_my_name) SUBPROC((void *)CheckDoubleRun);
+   \   000000BC   040097E5           LDR      R0,[R7, #+4]
+   \   000000C0   241086E2           ADD      R1,R6,#+36
+   \   000000C4   010050E1           CMP      R0,R1
+   \   000000C8   0300001A           BNE      ??maincsm_onmessage_4
+   \   000000CC   24009FE5           LDR      R0,??maincsm_onmessage_1+0xC  ;; CheckDoubleRun
+   \   000000D0   710100EF           SWI      +369
+   \   000000D4   0100A0E3           MOV      R0,#+1
+   \   000000D8   F080BDE8           POP      {R4-R7,PC}
+    542                      else ipc->data=(void *)maincsm_id;
+   \                     ??maincsm_onmessage_4:
+   \   000000DC   0C0095E5           LDR      R0,[R5, #+12]
+   \   000000E0   080087E5           STR      R0,[R7, #+8]
+    543          	    break;
+    544                      }
+    545                    }
+    546                  }
+    547                }
+    548              }
+    549            
+    550            return (1);  
+   \                     ??maincsm_onmessage_3:
+   \   000000E4   0100A0E3           MOV      R0,#+1
+   \   000000E8   F080BDE8           POP      {R4-R7,PC}       ;; return
+   \                     ??maincsm_onmessage_1:
+   \   000000EC   ........           DC32     tmr_call_proc
+   \   000000F0   ........           DC32     successed_config_filename
+   \   000000F4   4E1D6217           DC32     0x17621d4e
+   \   000000F8   ........           DC32     CheckDoubleRun
+    551          }
+    552          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    553          static void maincsm_oncreate(CSM_RAM *data)
+    554          {
+    555            ipc.name_to=ipc_my_name;
+   \                     maincsm_oncreate:
+   \   00000000   ........           LDR      R3,??DataTable35  ;; ipc
+   \   00000004   ........           LDR      R0,??DataTable36  ;; `?<Constant "CarControl:\\n\\355\\340\\361\\362\\360\\`
+   \   00000008   00402DE9           PUSH     {LR}
+   \   0000000C   241080E2           ADD      R1,R0,#+36
+   \   00000010   001083E5           STR      R1,[R3, #+0]
+    556            ipc.name_from=ipc_my_name;
+   \   00000014   240080E2           ADD      R0,R0,#+36
+   \   00000018   040083E5           STR      R0,[R3, #+4]
+    557            ipc.data=(void *)-1;
+   \   0000001C   0000E0E3           MVN      R0,#+0
+   \   00000020   080083E5           STR      R0,[R3, #+8]
+    558            GBS_SendMessage(MMI_CEPID,MSG_IPC,IPC_CHECK_DOUBLERUN,&ipc);
+   \   00000024   0120A0E3           MOV      R2,#+1
+   \   00000028   F210A0E3           MOV      R1,#+242
+   \   0000002C   C01F81E3           ORR      R1,R1,#0x300
+   \   00000030   0900A0E3           MOV      R0,#+9
+   \   00000034   420C80E3           ORR      R0,R0,#0x4200
+   \   00000038   000100EF           SWI      +256
+    559          }
+   \   0000003C   0080BDE8           POP      {PC}             ;; return
+    560          
+    561          extern void kill_data(void *p, void (*func_p)(void *));
+
+   \                                 In segment CODE, align 4, keep-with-next
+    562          void ElfKiller(void)
+    563          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+    564            extern void *ELF_BEGIN;
+    565            kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; ELF_BEGIN
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     ELF_BEGIN
+    566          }
+    567          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    568          static void maincsm_onclose(CSM_RAM *csm)
+    569          {
+   \                     maincsm_onclose:
+   \   00000000   00402DE9           PUSH     {LR}
+    570            destroyApp();
+   \   00000004   ........           BL       destroyApp
+    571            SUBPROC((void *)ElfKiller);
+   \   00000008   04009FE5           LDR      R0,??maincsm_onclose_0  ;; ElfKiller
+   \   0000000C   710100EF           SWI      +369
+    572          }
+   \   00000010   0080BDE8           POP      {PC}             ;; return
+   \                     ??maincsm_onclose_0:
+   \   00000014   ........           DC32     ElfKiller
+    573          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    574          static unsigned short maincsm_name_body[140];
+   \                     maincsm_name_body:
+   \   00000000                      DS8 280
+    575          
+    576          static const struct
+    577          {
+    578            CSM_DESC maincsm;
+    579            WSHDR maincsm_name;
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "CarControl">`:
+   \   00000000   436172436F6E       DC8 "CarControl"
+   \              74726F6C00  
+   \   0000000B   00                 DC8 0
+   \   0000000C   ............       DC32 maincsm_onmessage, maincsm_oncreate, maincsm_onclose, 40, 1
+   \              ............
+   \              280000000100
+   \              0000        
+   \   00000020   ............       DC32 minus11, maincsm_name_body, 55AACCCCH, 3333AA55H, 0
+   \              ....CCCCAA55
+   \              55AA33330000
+   \              0000        
+   \   00000034   8B00               DC16 139
+   \   00000036   0000               DC8 0, 0
+    580          }MAINCSM =
+    581          {
+    582            {
+    583            maincsm_onmessage,
+    584            maincsm_oncreate,
+    585          #ifdef NEWSGOLD
+    586            0,
+    587            0,
+    588            0,
+    589            0,
+    590          #endif
+    591            maincsm_onclose,
+    592            sizeof(MAIN_CSM),
+    593            1,
+    594            &minus11
+    595            },
+    596            {
+    597              maincsm_name_body,
+    598              NAMECSM_MAGIC1,
+    599              NAMECSM_MAGIC2,
+    600              0x0,
+    601              139
+    602            }
+    603          };
+    604          
+    605          
+    606          static void UpdateCSMname(void)
+    607          {
+    608            wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"CarControl");
+    609          }
+    610          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    611          void WriteLog(char *text)
+    612          {
+   \                     WriteLog:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   04D04DE2           SUB      SP,SP,#+4
+   \   00000008   0040B0E1           MOVS     R4,R0
+    613            unsigned int ul;
+    614            if (!text) return;
+   \   0000000C   3180BD08           POPEQ    {R0,R4,R5,PC}
+    615            int f=fopen(LOGFILE,A_ReadWrite+A_Create+A_Append+A_BIN,P_READ+P_WRITE,&ul);
+   \   00000010   50009FE5           LDR      R0,??WriteLog_0  ;; LOGFILE
+   \   00000014   0D30A0E1           MOV      R3,SP
+   \   00000018   602FA0E3           MOV      R2,#+384
+   \   0000001C   0A10A0E3           MOV      R1,#+10
+   \   00000020   811C81E3           ORR      R1,R1,#0x8100
+   \   00000024   0A0000EF           SWI      +10
+   \   00000028   0050A0E1           MOV      R5,R0
+    616            if (f!=-1)
+   \   0000002C   010075E3           CMN      R5,#+1
+   \   00000030   0900000A           BEQ      ??WriteLog_1
+    617            {    
+    618              fwrite(f,text,strlen(text),&ul);
+   \   00000034   0400A0E1           MOV      R0,R4
+   \   00000038   1B0000EF           SWI      +27
+   \   0000003C   0D30A0E1           MOV      R3,SP
+   \   00000040   0020A0E1           MOV      R2,R0
+   \   00000044   0410A0E1           MOV      R1,R4
+   \   00000048   0500A0E1           MOV      R0,R5
+   \   0000004C   0C0000EF           SWI      +12
+    619              fclose(f,&ul);
+   \   00000050   0D10A0E1           MOV      R1,SP
+   \   00000054   0500A0E1           MOV      R0,R5
+   \   00000058   0D0000EF           SWI      +13
+    620            }
+    621            mfree(text);
+   \                     ??WriteLog_1:
+   \   0000005C   0400A0E1           MOV      R0,R4
+   \   00000060   150000EF           SWI      +21
+    622          }
+   \   00000064   3180BDE8           POP      {R0,R4,R5,PC}    ;; return
+   \                     ??WriteLog_0:
+   \   00000068   ........           DC32     LOGFILE
+    623          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    624          int main(void)
+    625          {
+   \                     main:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    626            InitConfig();
+    627            CSM_RAM *save_cmpc;
+    628            char dummy[sizeof(MAIN_CSM)];
+    629            UpdateCSMname();  
+   \   00000004   70409FE5           LDR      R4,??main_0      ;; `?<Constant "CarControl">`
+   \   00000008   28D04DE2           SUB      SP,SP,#+40
+   \   0000000C   ........           _BLF     InitConfig,??InitConfig??rA
+   \   00000010   0410A0E1           MOV      R1,R4
+   \   00000014   240084E2           ADD      R0,R4,#+36
+   \   00000018   240100EF           SWI      +292
+    630            LockSched();
+   \   0000001C   460100EF           SWI      +326
+    631            save_cmpc=CSM_root()->csm_q->current_msg_processing_csm;
+   \   00000020   068100EF           SWI      +33030
+   \   00000024   080090E5           LDR      R0,[R0, #+8]
+   \   00000028   045090E5           LDR      R5,[R0, #+4]
+    632            CSM_root()->csm_q->current_msg_processing_csm=CSM_root()->csm_q->csm.first;
+   \   0000002C   068100EF           SWI      +33030
+   \   00000030   0060A0E1           MOV      R6,R0
+   \   00000034   068100EF           SWI      +33030
+   \   00000038   080090E5           LDR      R0,[R0, #+8]
+   \   0000003C   081096E5           LDR      R1,[R6, #+8]
+   \   00000040   080090E5           LDR      R0,[R0, #+8]
+    633            maincsm_id=CreateCSM(&MAINCSM.maincsm,dummy,0);
+   \   00000044   0020A0E3           MOV      R2,#+0
+   \   00000048   040081E5           STR      R0,[R1, #+4]
+   \   0000004C   0D10A0E1           MOV      R1,SP
+   \   00000050   0C0084E2           ADD      R0,R4,#+12
+   \   00000054   070100EF           SWI      +263
+   \   00000058   20109FE5           LDR      R1,??main_0+0x4  ;; ipc + 12
+   \   0000005C   000081E5           STR      R0,[R1, #+0]
+    634            CSM_root()->csm_q->current_msg_processing_csm=save_cmpc;
+   \   00000060   068100EF           SWI      +33030
+   \   00000064   080090E5           LDR      R0,[R0, #+8]
+   \   00000068   045080E5           STR      R5,[R0, #+4]
+    635            UnlockSched();
+   \   0000006C   470100EF           SWI      +327
+    636          
+    637            return 0;
+   \   00000070   0000A0E3           MOV      R0,#+0
+   \   00000074   28D08DE2           ADD      SP,SP,#+40
+   \   00000078   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??main_0:
+   \   0000007C   ........           DC32     `?<Constant "CarControl">`
+   \   00000080   ........           DC32     ipc + 12
+    638          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   ........           DC32     connector
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable13:
+   \   00000000   ........           DC32     tmr_blink_proc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable17:
+   \   00000000   ........           DC32     tmr_key_proc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable23:
+   \   00000000   ........           DC32     MYNUMBER
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable24:
+   \   00000000   ........           DC32     start_delay
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable25:
+   \   00000000   ........           DC32     start_key2
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable26:
+   \   00000000   ........           DC32     start_key1
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable27:
+   \   00000000   ........           DC32     start_t
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable29:
+   \   00000000   ........           DC32     sndLock
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable30:
+   \   00000000   ........           DC32     sms_simif_sm
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable33:
+   \   00000000   ........           DC32     ipc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable35:
+   \   00000000   ........           DC32     ipc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable36:
+   \   00000000   ........           DC32     `?<Constant "CarControl:\\n\\355\\340\\361\\362\\360\\`
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for ipc>`:
+   \   00000000   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \                     `?<Initializer for maincsm_id>`:
+   \   0000000C   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for blink_n>`:
+   \   00000010   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for keytab>`:
+   \   00000014   000000000100       DC32 0, 1, 2, 3, 4
+   \              000002000000
+   \              030000000400
+   \              0000        
+   \                     `?<Initializer for type>`:
+   \   00000028   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for pin1>`:
+   \   0000002C   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for pin2>`:
+   \   00000030   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for n>`:
+   \   00000034   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for delay>`:
+   \   00000038   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for tmr_illumination>`:
+   \   0000003C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \                     `?<Initializer for tmr_blink>`:
+   \   0000004C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \                     `?<Initializer for tmr_key>`:
+   \   0000005C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \                     `?<Initializer for tmr_call>`:
+   \   0000006C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "%s%s">`:
+   \   00000000   2573257300         DC8 "%s%s"
+   \   00000005   000000             DC8 0, 0, 0
+   \   00000008   536F756E6473       DC8 "Sounds\\unlock.wav"
+   \              5C756E6C6F63
+   \              6B2E77617600
+   \   0000001A   0000               DC8 0, 0
+   \   0000001C   536F756E6473       DC8 "Sounds\\lock.wav"
+   \              5C6C6F636B2E
+   \              77617600    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "CarControl:\\n\\315\\345\\350\\347\\342\\`:
+   \   00000000   436172436F6E       DC8 "CarControl:\012\315\345\350\347\342\345\361\362\355\340\377 \352\356\354\340\355\344\340!"
+   \              74726F6C3A0A
+   \              CDE5E8E7E2E5
+   \              F1F2EDE0FF20
+   \              EAEEECE0EDE4
+   \              E02100      
+   \   00000021   000000             DC8 0, 0, 0
+   \   00000024   436172436F6E       DC8 "CarControl:\012%s"
+   \              74726F6C3A0A
+   \              257300      
+   \   00000033   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "CarControl \\341\\373\\353 \\363\\346\\3`:
+   \   00000000   436172436F6E       DC8 "CarControl \341\373\353 \363\346\345 \347\340\357\363\371\345\355!"
+   \              74726F6C20E1
+   \              FBEB20F3E6E5
+   \              20E7E0EFF3F9
+   \              E5ED2100    
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "CarControl \\347\\340\\357\\363\\371\\34`:
+   \   00000000   436172436F6E       DC8 "CarControl \347\340\357\363\371\345\355!"
+   \              74726F6C20E7
+   \              E0EFF3F9E5ED
+   \              2100        
+
+   Maximum stack usage in bytes:
+
+     Function             CSTACK
+     --------             ------
+     Blink                    8
+     CheckCmd                52
+     CheckDoubleRun           8
+     DeInitPath               8
+     ElfKiller                4
+     IlluminationOff          4
+     IlluminationOn          28
+     InitConnectorMap         0
+     InitPath                16
+     InitPinSafe             16
+     Play                   224
+     RestorePin               4
+     UnpackIncomingNumber     8
+     WriteLog                16
+     destroyApp               8
+     digitalRead              0
+     digitalWrite             0
+     keyPress                12
+     main                    56
+     maincsm_onclose          4
+     maincsm_oncreate         4
+     maincsm_onmessage       20
+     my_sms_simif_sm         32
+     pinMode                  0
+     pinSetIO                 0
+     startApp                 4
+     tmr_blink_proc           8
+     tmr_call_proc           24
+     tmr_key_proc            16
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     GPIO                            216
+     CCU0                            256
+     CCU1                            256
+     connector                        60
+     InitConnectorMap                 64
+     InitPinSafe                     240
+     RestorePin                      240
+     pinSetIO                         68
+     pinMode                          96
+     digitalWrite                     96
+     digitalRead                      36
+     my_sms_simif_sm                 224
+     minus11                           4
+     ?<Constant "CarControl:\n\355\340\361\362\360\
+                                      68
+     ILL_DISP_RECV                     4
+     ILL_KEYS_RECV                     4
+     ILL_DYNL_RECV                     4
+     ILL_DISP_SEND                     4
+     ILL_RECV_TMR                      4
+     ILL_RECV_FADE                     4
+     ILL_OFF_FADE                      4
+     SLI_State                         4
+     IlluminationOff                  68
+     IlluminationOn                  140
+     tmr_blink_proc                  208
+     Blink                           108
+     sndLock                           8
+     Play                            316
+     tmr_key_proc                    276
+     keyPress                        352
+     CheckCmd                        696
+     ipc                             124
+     UnpackIncomingNumber            136
+     tmr_call_proc                   100
+     InitPath                        100
+     DeInitPath                       28
+     destroyApp                      164
+     startApp                        116
+     CheckDoubleRun                   72
+     maincsm_onmessage               252
+     maincsm_oncreate                 64
+     ElfKiller                        28
+     maincsm_onclose                  24
+     maincsm_name_body               280
+     ?<Constant "CarControl">         56
+     WriteLog                        108
+     main                            132
+     ??DataTable6                      4
+     ??DataTable13                     4
+     ??DataTable17                     4
+     ??DataTable23                     4
+     ??DataTable24                     4
+     ??DataTable25                     4
+     ??DataTable26                     4
+     ??DataTable27                     4
+     ??DataTable29                     4
+     ??DataTable30                     4
+     ??DataTable33                     4
+     ??DataTable35                     4
+     ??DataTable36                     4
+     ?<Initializer for ipc>          124
+     ?<Constant "%s%s">               44
+     ?<Constant "CarControl:\n\315\345\350\347\342\
+                                      52
+     ?<Constant "CarControl \341\373\353 \363\346\3
+                                      28
+     ?<Constant "CarControl \347\340\357\363\371\34
+                                      20
+      Others                         236
+
+ 
+ 4 816 bytes in segment CODE
+   728 bytes in segment DATA_AN
+   304 bytes in segment DATA_C
+   124 bytes in segment DATA_I
+   124 bytes in segment DATA_ID
+   348 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 4 604 bytes of CODE  memory (+ 236 bytes shared)
+   428 bytes of CONST memory
+   472 bytes of DATA  memory (+ 728 bytes shared)
+
+Errors: none
+Warnings: none

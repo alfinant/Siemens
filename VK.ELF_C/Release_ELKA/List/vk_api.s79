@@ -1,0 +1,2893 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   16/Feb/2023  22:41:18 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\vk_api.c                                          /
+//    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\vk_api.c -D NEWSGOLD -D ELKA -D DEBUG -lCN        /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -la                            /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\ -o D:\Users\alfinant\Documents /
+//                       \Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\Obj\ -z9     /
+//                       --cpu_mode arm --endian little --cpu ARM926EJ-S     /
+//                       --stack_align 4 --interwork --diag_suppress Pe301   /
+//                       -e --fpu None --dlib_config                         /
+//                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I D:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Release_ELKA\List\vk_api.s79                      /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME vk_api
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable16 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable19 EQU 0
+??DataTable2 EQU 0
+??DataTable20 EQU 0
+??DataTable21 EQU 0
+??DataTable22 EQU 0
+??DataTable23 EQU 0
+??DataTable24 EQU 0
+??DataTable25 EQU 0
+??DataTable26 EQU 0
+??DataTable27 EQU 0
+??DataTable28 EQU 0
+??DataTable29 EQU 0
+??DataTable3 EQU 0
+??DataTable31 EQU 0
+??DataTable32 EQU 0
+??DataTable33 EQU 0
+??DataTable34 EQU 0
+??DataTable35 EQU 0
+??DataTable37 EQU 0
+??DataTable38 EQU 0
+??DataTable39 EQU 0
+??DataTable4 EQU 0
+??DataTable40 EQU 0
+??DataTable41 EQU 0
+??DataTable42 EQU 0
+??DataTable44 EQU 0
+??DataTable45 EQU 0
+??DataTable46 EQU 0
+??DataTable47 EQU 0
+??DataTable48 EQU 0
+??DataTable49 EQU 0
+??DataTable5 EQU 0
+??DataTable50 EQU 0
+??DataTable55 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??FindDialog??rA
+        MULTWEAK ??URL_reencode_escapes??rA
+        MULTWEAK ??__parse_answer_friends_get??rT
+        MULTWEAK ??__parse_answer_users_get??rT
+        MULTWEAK ??cJSON_Delete??rA
+        MULTWEAK ??cJSON_GetArraySize??rA
+        MULTWEAK ??cJSON_GetObjectItem??rA
+        MULTWEAK ??cJSON_Parse??rA
+        MULTWEAK ??cJSON_ParseWithOpts??rA
+        MULTWEAK ??del_Group??rA
+        MULTWEAK ??del_Messages??rA
+        MULTWEAK ??find_Group??rA
+        MULTWEAK ??find_User??rA
+        MULTWEAK ??new_Dialog??rA
+        MULTWEAK ??new_Group??rA
+        MULTWEAK ??new_Message??rA
+        MULTWEAK ??new_User??rA
+        MULTWEAK ??parse_answer_auth_direct??rT
+        MULTWEAK ??parse_answer_groups_get??rT
+        MULTWEAK ??parse_answer_messages_getConversations??rT
+        MULTWEAK ??parse_answer_messages_getLongPollHistory??rT
+        MULTWEAK ??parse_answer_messages_getLongPollServer??rT
+        MULTWEAK ??parse_answer_users_get??rA
+        MULTWEAK ??stricmp??rA
+        MULTWEAK ??url_auth_direct??rT
+        MULTWEAK ??url_execute_getHistory??rT
+        MULTWEAK ??url_execute_sendAndGet??rT
+        MULTWEAK ??url_friends_get??rT
+        MULTWEAK ??url_groups_get??rT
+        MULTWEAK ??url_groups_getById??rT
+        MULTWEAK ??url_messages_deleteDialog??rT
+        MULTWEAK ??url_messages_getConversations??rT
+        MULTWEAK ??url_messages_getHistory??rT
+        MULTWEAK ??url_messages_getLongPollHistory??rT
+        MULTWEAK ??url_messages_getLongPollServer??rT
+        MULTWEAK ??url_messages_markAsRead??rT
+        MULTWEAK ??url_messages_send??rT
+        MULTWEAK ??url_stats_track_visitor??rT
+        MULTWEAK ??url_users_get??rT
+        MULTWEAK ??url_wall_get??rT
+        MULTWEAK ??utf82win??rA
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC ACCESS_TOKEN
+APP_ID  EQU 0
+        PUBLIC __parse_answer_friends_get
+        FUNCTION __parse_answer_friends_get,0201H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC __parse_answer_users_get
+        FUNCTION __parse_answer_users_get,0201H
+        LOCFRAME CSTACK, 60, STACK
+        FUNCTION __parse_obj_Error,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION __parse_obj_Group,0203H
+        LOCFRAME CSTACK, 28, STACK
+        FUNCTION __parse_obj_Message,0203H
+        LOCFRAME CSTACK, 28, STACK
+        FUNCTION __parse_obj_User,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION __parse_obj_groups,0203H
+        LOCFRAME CSTACK, 60, STACK
+        FUNCTION __parse_obj_profiles,0203H
+        LOCFRAME CSTACK, 56, STACK
+        PUBLIC captcha_img
+        PUBLIC captcha_seed
+        PUBLIC err_msg
+        PUBLIC lp_ts
+        PUBLIC my_id
+        PUBLIC parse_answer_auth_direct
+        FUNCTION parse_answer_auth_direct,0201H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC parse_answer_groups_get
+        FUNCTION parse_answer_groups_get,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC parse_answer_messages_getConversations
+        FUNCTION parse_answer_messages_getConversations,0203H
+        LOCFRAME CSTACK, 80, STACK
+        PUBLIC parse_answer_messages_getLongPollHistory
+        FUNCTION parse_answer_messages_getLongPollHistory,0203H
+        LOCFRAME CSTACK, 60, STACK
+        PUBLIC parse_answer_messages_getLongPollServer
+        FUNCTION parse_answer_messages_getLongPollServer,0201H
+        LOCFRAME CSTACK, 24, STACK
+        PUBLIC pts
+        PUBLIC url_auth_direct
+        FUNCTION url_auth_direct,0203H
+        LOCFRAME CSTACK, 32, STACK
+        PUBLIC url_execute_getHistory
+        FUNCTION url_execute_getHistory,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_execute_sendAndGet
+        FUNCTION url_execute_sendAndGet,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_friends_get
+        FUNCTION url_friends_get,0203H
+        LOCFRAME CSTACK, 36, STACK
+        PUBLIC url_groups_get
+        FUNCTION url_groups_get,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_groups_getById
+        FUNCTION url_groups_getById,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_messages_deleteDialog
+        FUNCTION url_messages_deleteDialog,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_messages_getConversations
+        FUNCTION url_messages_getConversations,0203H
+        LOCFRAME CSTACK, 36, STACK
+        PUBLIC url_messages_getHistory
+        FUNCTION url_messages_getHistory,0203H
+        LOCFRAME CSTACK, 32, STACK
+        PUBLIC url_messages_getLongPollHistory
+        FUNCTION url_messages_getLongPollHistory,0203H
+        LOCFRAME CSTACK, 36, STACK
+        PUBLIC url_messages_getLongPollServer
+        FUNCTION url_messages_getLongPollServer,0203H
+        LOCFRAME CSTACK, 32, STACK
+        PUBLIC url_messages_markAsRead
+        FUNCTION url_messages_markAsRead,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_messages_send
+        FUNCTION url_messages_send,0203H
+        LOCFRAME CSTACK, 32, STACK
+        PUBLIC url_stats_track_visitor
+        FUNCTION url_stats_track_visitor,0201H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC url_users_get
+        FUNCTION url_users_get,0203H
+        LOCFRAME CSTACK, 28, STACK
+        PUBLIC url_wall_get
+        FUNCTION url_wall_get,0203H
+        LOCFRAME CSTACK, 32, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+FindDialog          SYMBOL "FindDialog"
+URL_reencode_escapes SYMBOL "URL_reencode_escapes"
+cJSON_Delete        SYMBOL "cJSON_Delete"
+cJSON_GetArraySize  SYMBOL "cJSON_GetArraySize"
+cJSON_GetObjectItem SYMBOL "cJSON_GetObjectItem"
+cJSON_Parse         SYMBOL "cJSON_Parse"
+cJSON_ParseWithOpts SYMBOL "cJSON_ParseWithOpts"
+del_Group           SYMBOL "del_Group"
+del_Messages        SYMBOL "del_Messages"
+find_Group          SYMBOL "find_Group"
+find_User           SYMBOL "find_User"
+new_Dialog          SYMBOL "new_Dialog"
+new_Group           SYMBOL "new_Group"
+new_Message         SYMBOL "new_Message"
+new_User            SYMBOL "new_User"
+parse_answer_users_get SYMBOL "parse_answer_users_get"
+stricmp             SYMBOL "stricmp"
+utf82win            SYMBOL "utf82win"
+??FindDialog??rA    SYMBOL "??rA", FindDialog
+??URL_reencode_escapes??rA SYMBOL "??rA", URL_reencode_escapes
+__parse_answer_friends_get SYMBOL "__parse_answer_friends_get"
+??__parse_answer_friends_get??rT SYMBOL "??rT", __parse_answer_friends_get
+__parse_answer_users_get SYMBOL "__parse_answer_users_get"
+??__parse_answer_users_get??rT SYMBOL "??rT", __parse_answer_users_get
+??cJSON_Delete??rA  SYMBOL "??rA", cJSON_Delete
+??cJSON_GetArraySize??rA SYMBOL "??rA", cJSON_GetArraySize
+??cJSON_GetObjectItem??rA SYMBOL "??rA", cJSON_GetObjectItem
+??cJSON_Parse??rA   SYMBOL "??rA", cJSON_Parse
+??cJSON_ParseWithOpts??rA SYMBOL "??rA", cJSON_ParseWithOpts
+??del_Group??rA     SYMBOL "??rA", del_Group
+??del_Messages??rA  SYMBOL "??rA", del_Messages
+??find_Group??rA    SYMBOL "??rA", find_Group
+??find_User??rA     SYMBOL "??rA", find_User
+??new_Dialog??rA    SYMBOL "??rA", new_Dialog
+??new_Group??rA     SYMBOL "??rA", new_Group
+??new_Message??rA   SYMBOL "??rA", new_Message
+??new_User??rA      SYMBOL "??rA", new_User
+parse_answer_auth_direct SYMBOL "parse_answer_auth_direct"
+??parse_answer_auth_direct??rT SYMBOL "??rT", parse_answer_auth_direct
+parse_answer_groups_get SYMBOL "parse_answer_groups_get"
+??parse_answer_groups_get??rT SYMBOL "??rT", parse_answer_groups_get
+parse_answer_messages_getConversations SYMBOL "parse_answer_messages_getConversations"
+??parse_answer_messages_getConversations??rT SYMBOL "??rT", parse_answer_messages_getConversations
+parse_answer_messages_getLongPollHistory SYMBOL "parse_answer_messages_getLongPollHistory"
+??parse_answer_messages_getLongPollHistory??rT SYMBOL "??rT", parse_answer_messages_getLongPollHistory
+parse_answer_messages_getLongPollServer SYMBOL "parse_answer_messages_getLongPollServer"
+??parse_answer_messages_getLongPollServer??rT SYMBOL "??rT", parse_answer_messages_getLongPollServer
+??parse_answer_users_get??rA SYMBOL "??rA", parse_answer_users_get
+??stricmp??rA       SYMBOL "??rA", stricmp
+url_auth_direct     SYMBOL "url_auth_direct"
+??url_auth_direct??rT SYMBOL "??rT", url_auth_direct
+url_execute_getHistory SYMBOL "url_execute_getHistory"
+??url_execute_getHistory??rT SYMBOL "??rT", url_execute_getHistory
+url_execute_sendAndGet SYMBOL "url_execute_sendAndGet"
+??url_execute_sendAndGet??rT SYMBOL "??rT", url_execute_sendAndGet
+url_friends_get     SYMBOL "url_friends_get"
+??url_friends_get??rT SYMBOL "??rT", url_friends_get
+url_groups_get      SYMBOL "url_groups_get"
+??url_groups_get??rT SYMBOL "??rT", url_groups_get
+url_groups_getById  SYMBOL "url_groups_getById"
+??url_groups_getById??rT SYMBOL "??rT", url_groups_getById
+url_messages_deleteDialog SYMBOL "url_messages_deleteDialog"
+??url_messages_deleteDialog??rT SYMBOL "??rT", url_messages_deleteDialog
+url_messages_getConversations SYMBOL "url_messages_getConversations"
+??url_messages_getConversations??rT SYMBOL "??rT", url_messages_getConversations
+url_messages_getHistory SYMBOL "url_messages_getHistory"
+??url_messages_getHistory??rT SYMBOL "??rT", url_messages_getHistory
+url_messages_getLongPollHistory SYMBOL "url_messages_getLongPollHistory"
+??url_messages_getLongPollHistory??rT SYMBOL "??rT", url_messages_getLongPollHistory
+url_messages_getLongPollServer SYMBOL "url_messages_getLongPollServer"
+??url_messages_getLongPollServer??rT SYMBOL "??rT", url_messages_getLongPollServer
+url_messages_markAsRead SYMBOL "url_messages_markAsRead"
+??url_messages_markAsRead??rT SYMBOL "??rT", url_messages_markAsRead
+url_messages_send   SYMBOL "url_messages_send"
+??url_messages_send??rT SYMBOL "??rT", url_messages_send
+url_stats_track_visitor SYMBOL "url_stats_track_visitor"
+??url_stats_track_visitor??rT SYMBOL "??rT", url_stats_track_visitor
+url_users_get       SYMBOL "url_users_get"
+??url_users_get??rT SYMBOL "??rT", url_users_get
+url_wall_get        SYMBOL "url_wall_get"
+??url_wall_get??rT  SYMBOL "??rT", url_wall_get
+??utf82win??rA      SYMBOL "??rA", utf82win
+
+        EXTERN FindDialog
+        FUNCTION FindDialog,0202H
+        EXTERN HTTP_CONTENT_LENGTH
+        EXTERN HTTP_HEADER_LENGTH
+        EXTERN URL_reencode_escapes
+        FUNCTION URL_reencode_escapes,0202H
+        EXTERN cJSON_Delete
+        FUNCTION cJSON_Delete,0202H
+        EXTERN cJSON_GetArraySize
+        FUNCTION cJSON_GetArraySize,0202H
+        EXTERN cJSON_GetObjectItem
+        FUNCTION cJSON_GetObjectItem,0202H
+        EXTERN cJSON_Parse
+        FUNCTION cJSON_Parse,0202H
+        EXTERN cJSON_ParseWithOpts
+        FUNCTION cJSON_ParseWithOpts,0202H
+        EXTERN del_Group
+        FUNCTION del_Group,0202H
+        EXTERN del_Messages
+        FUNCTION del_Messages,0202H
+        EXTERN dialogs
+        EXTERN find_Group
+        FUNCTION find_Group,0202H
+        EXTERN find_User
+        FUNCTION find_User,0202H
+        EXTERN friends
+        EXTERN groups
+        EXTERN my_groups
+        EXTERN new_Dialog
+        FUNCTION new_Dialog,0202H
+        EXTERN new_Group
+        FUNCTION new_Group,0202H
+        EXTERN new_Message
+        FUNCTION new_Message,0202H
+        EXTERN new_User
+        FUNCTION new_User,0202H
+        EXTERN parse_answer_users_get
+        FUNCTION parse_answer_users_get,0200H
+        EXTERN profiles
+        EXTERN recv_buf
+        EXTERN stricmp
+        FUNCTION stricmp,0202H
+        EXTERN utf82win
+        FUNCTION utf82win,0202H
+
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+t_id:
+        DATA
+        DC8 "id"
+        DC8 0
+        DC8 "online"
+        DC8 0
+        DC8 "name"
+        DC8 0, 0, 0
+        DC8 "screen_name"
+        DC8 "is_closed"
+        DC8 0, 0
+        DC8 "event"
+        DC8 0, 0
+        DC8 "page"
+        DC8 0, 0, 0
+        DC8 "group"
+        DC8 0, 0
+        DC8 "is_member"
+        DC8 0, 0
+        DC8 "photo"
+        DC8 0, 0
+        DC8 "date"
+        DC8 0, 0, 0
+        DC8 "from_id"
+        DC8 "peer_id"
+        DC8 "text"
+        DC8 0, 0, 0
+        DC8 "attachments"
+        DC8 "first_name"
+        DC8 0
+        DC8 "last_name"
+        DC8 0, 0
+        DC8 "friend_status"
+        DC8 0, 0
+        DC8 "deactivated"
+        DC8 "has_photo"
+        DC8 0, 0
+        DC8 "photo_50"
+        DC8 0, 0, 0
+        DC8 "type"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "access_token">`:
+        DATA
+        DC8 "access_token"
+        DC8 0, 0, 0
+        DC8 "user_id"
+        DC8 "error_description"
+        DC8 0, 0
+        DC8 "need_validation"
+        DC8 "need_captcha"
+        DC8 0, 0, 0
+        DC8 "messages"
+        DC8 0, 0, 0
+        DC8 "new_pts"
+        DC8 "conversation"
+        DC8 0, 0, 0
+        DC8 "out_read"
+        DC8 0, 0, 0
+        DC8 "unread_count"
+        DC8 0, 0, 0
+        DC8 "last_message"
+        DC8 0, 0, 0
+        DC8 "groups"
+        DC8 0
+        DC8 "server"
+        DC8 0
+        DC8 "error"
+        DC8 0, 0
+        DC8 "response"
+        DC8 0, 0, 0
+        DC8 "count"
+        DC8 0, 0
+        DC8 "items"
+        DC8 0, 0
+        DC8 "profiles"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "%s/execute.getHistory...">`:
+        DATA
+        DC8 25H, 73H, 2FH, 65H, 78H, 65H, 63H, 75H
+        DC8 74H, 65H, 2EH, 67H, 65H, 74H, 48H, 69H
+        DC8 73H, 74H, 6FH, 72H, 79H, 2EH, 78H, 6DH
+        DC8 6CH, 3FH, 61H, 63H, 63H, 65H, 73H, 73H
+        DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+        DC8 73H, 26H, 76H, 3DH, 25H, 73H, 26H, 75H
+        DC8 73H, 65H, 72H, 5FH, 69H, 64H, 3DH, 25H
+        DC8 64H, 26H, 63H, 6FH, 75H, 6EH, 74H, 3DH
+        DC8 25H, 64H, 26H, 66H, 75H, 6EH, 63H, 5FH
+        DC8 76H, 3DH, 31H, 0
+        DC8 68H, 74H, 74H, 70H, 73H, 3AH, 2FH, 2FH
+        DC8 6FH, 61H, 75H, 74H, 68H, 2EH, 76H, 6BH
+        DC8 2EH, 63H, 6FH, 6DH, 2FH, 74H, 6FH, 6BH
+        DC8 65H, 6EH, 3FH, 67H, 72H, 61H, 6EH, 74H
+        DC8 5FH, 74H, 79H, 70H, 65H, 3DH, 70H, 61H
+        DC8 73H, 73H, 77H, 6FH, 72H, 64H, 26H, 63H
+        DC8 6CH, 69H, 65H, 6EH, 74H, 5FH, 69H, 64H
+        DC8 3DH, 25H, 64H, 26H, 63H, 6CH, 69H, 65H
+        DC8 6EH, 74H, 5FH, 73H, 65H, 63H, 72H, 65H
+        DC8 74H, 3DH, 25H, 73H, 26H, 75H, 73H, 65H
+        DC8 72H, 6EH, 61H, 6DH, 65H, 3DH, 25H, 73H
+        DC8 26H, 70H, 61H, 73H, 73H, 77H, 6FH, 72H
+        DC8 64H, 3DH, 25H, 73H, 26H, 73H, 63H, 6FH
+        DC8 70H, 65H, 3DH, 25H, 64H, 26H, 76H, 3DH
+        DC8 25H, 73H, 26H, 32H, 66H, 61H, 5FH, 73H
+        DC8 75H, 70H, 70H, 6FH, 72H, 74H, 65H, 64H
+        DC8 3DH, 30H, 0
+        DC8 0
+        DC8 "%s/stats.trackVisitor?v=%s&access_token=%s"
+        DC8 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 4CH
+        DC8 6FH, 6EH, 67H, 50H, 6FH, 6CH, 6CH, 53H
+        DC8 65H, 72H, 76H, 65H, 72H, 3FH, 76H, 3DH
+        DC8 25H, 73H, 26H, 61H, 63H, 63H, 65H, 73H
+        DC8 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH
+        DC8 25H, 73H, 26H, 6EH, 65H, 65H, 64H, 5FH
+        DC8 70H, 74H, 73H, 3DH, 25H, 64H, 26H, 67H
+        DC8 72H, 6FH, 75H, 70H, 5FH, 69H, 64H, 3DH
+        DC8 25H, 64H, 26H, 6CH, 70H, 5FH, 76H, 65H
+        DC8 72H, 73H, 69H, 6FH, 6EH, 3DH, 25H, 64H
+        DC8 0
+        DC8 0, 0, 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 4CH
+        DC8 6FH, 6EH, 67H, 50H, 6FH, 6CH, 6CH, 48H
+        DC8 69H, 73H, 74H, 6FH, 72H, 79H, 3FH, 76H
+        DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+        DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+        DC8 3DH, 25H, 73H, 26H, 74H, 73H, 3DH, 25H
+        DC8 64H, 26H, 70H, 74H, 73H, 3DH, 25H, 64H
+        DC8 26H, 66H, 69H, 65H, 6CH, 64H, 73H, 3DH
+        DC8 25H, 73H, 26H, 6CH, 70H, 5FH, 76H, 65H
+        DC8 72H, 73H, 69H, 6FH, 6EH, 3DH, 25H, 64H
+        DC8 0
+        DC8 0, 0, 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 43H
+        DC8 6FH, 6EH, 76H, 65H, 72H, 73H, 61H, 74H
+        DC8 69H, 6FH, 6EH, 73H, 3FH, 76H, 3DH, 25H
+        DC8 73H, 26H, 61H, 63H, 63H, 65H, 73H, 73H
+        DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+        DC8 73H, 26H, 6FH, 66H, 66H, 73H, 65H, 74H
+        DC8 3DH, 25H, 64H, 26H, 63H, 6FH, 75H, 6EH
+        DC8 74H, 3DH, 25H, 64H, 26H, 65H, 78H, 74H
+        DC8 65H, 6EH, 64H, 65H, 64H, 3DH, 25H, 64H
+        DC8 26H, 66H, 69H, 65H, 6CH, 64H, 73H, 3DH
+        DC8 25H, 73H, 0
+        DC8 0
+        DC8 25H, 73H, 2FH, 75H, 73H, 65H, 72H, 73H
+        DC8 2EH, 67H, 65H, 74H, 3FH, 76H, 3DH, 25H
+        DC8 73H, 26H, 61H, 63H, 63H, 65H, 73H, 73H
+        DC8 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H
+        DC8 73H, 26H, 75H, 73H, 65H, 72H, 5FH, 69H
+        DC8 64H, 73H, 3DH, 25H, 73H, 26H, 66H, 69H
+        DC8 65H, 6CH, 64H, 73H, 3DH, 25H, 73H, 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 67H, 65H, 74H, 48H
+        DC8 69H, 73H, 74H, 6FH, 72H, 79H, 3FH, 61H
+        DC8 63H, 63H, 65H, 73H, 73H, 5FH, 74H, 6FH
+        DC8 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H, 76H
+        DC8 3DH, 25H, 73H, 26H, 75H, 73H, 65H, 72H
+        DC8 5FH, 69H, 64H, 3DH, 25H, 64H, 26H, 63H
+        DC8 6FH, 75H, 6EH, 74H, 3DH, 25H, 64H, 26H
+        DC8 73H, 74H, 61H, 72H, 74H, 5FH, 6DH, 65H
+        DC8 73H, 73H, 61H, 67H, 65H, 5FH, 69H, 64H
+        DC8 3DH, 25H, 64H, 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 64H, 65H, 6CH, 65H
+        DC8 74H, 65H, 44H, 69H, 61H, 6CH, 6FH, 67H
+        DC8 3FH, 61H, 63H, 63H, 65H, 73H, 73H, 5FH
+        DC8 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H
+        DC8 26H, 76H, 3DH, 25H, 73H, 26H, 75H, 73H
+        DC8 65H, 72H, 5FH, 69H, 64H, 3DH, 25H, 64H
+        DC8 26H, 63H, 6FH, 75H, 6EH, 74H, 3DH, 25H
+        DC8 64H, 0
+        DC8 0, 0
+        DC8 25H, 73H, 2FH, 6DH, 65H, 73H, 73H, 61H
+        DC8 67H, 65H, 73H, 2EH, 6DH, 61H, 72H, 6BH
+        DC8 41H, 73H, 52H, 65H, 61H, 64H, 3FH, 76H
+        DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+        DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+        DC8 3DH, 25H, 73H, 26H, 6DH, 65H, 73H, 73H
+        DC8 61H, 67H, 65H, 5FH, 69H, 64H, 73H, 3DH
+        DC8 25H, 73H, 26H, 70H, 65H, 65H, 72H, 5FH
+        DC8 69H, 64H, 3DH, 25H, 64H, 0
+        DC8 0, 0
+        DC8 25H, 73H, 2FH, 66H, 72H, 69H, 65H, 6EH
+        DC8 64H, 73H, 2EH, 67H, 65H, 74H, 3FH, 76H
+        DC8 3DH, 25H, 73H, 26H, 61H, 63H, 63H, 65H
+        DC8 73H, 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH
+        DC8 3DH, 25H, 73H, 26H, 63H, 6FH, 75H, 6EH
+        DC8 74H, 3DH, 25H, 64H, 26H, 6FH, 66H, 66H
+        DC8 73H, 65H, 74H, 3DH, 25H, 64H, 26H, 6FH
+        DC8 72H, 64H, 65H, 72H, 3DH, 25H, 73H, 26H
+        DC8 66H, 69H, 65H, 6CH, 64H, 73H, 3DH, 25H
+        DC8 73H, 0
+        DC8 0, 0
+        DC8 "v=%s&access_token=%s&user_id=%d&message=%s"
+        DC8 0
+        DC8 25H, 73H, 2FH, 67H, 72H, 6FH, 75H, 70H
+        DC8 73H, 2EH, 67H, 65H, 74H, 3FH, 76H, 3DH
+        DC8 25H, 73H, 26H, 61H, 63H, 63H, 65H, 73H
+        DC8 73H, 5FH, 74H, 6FH, 6BH, 65H, 6EH, 3DH
+        DC8 25H, 73H, 26H, 6FH, 66H, 66H, 73H, 65H
+        DC8 74H, 3DH, 25H, 64H, 26H, 63H, 6FH, 75H
+        DC8 6EH, 74H, 3DH, 25H, 64H, 26H, 65H, 78H
+        DC8 74H, 65H, 6EH, 64H, 65H, 64H, 3DH, 31H
+        DC8 0
+        DC8 0, 0, 0
+        DC8 25H, 73H, 2FH, 67H, 72H, 6FH, 75H, 70H
+        DC8 73H, 2EH, 67H, 65H, 74H, 42H, 79H, 49H
+        DC8 64H, 3FH, 76H, 3DH, 25H, 73H, 26H, 61H
+        DC8 63H, 63H, 65H, 73H, 73H, 5FH, 74H, 6FH
+        DC8 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H, 67H
+        DC8 72H, 6FH, 75H, 70H, 5FH, 69H, 64H, 73H
+        DC8 3DH, 25H, 73H, 26H, 66H, 69H, 65H, 6CH
+        DC8 64H, 73H, 3DH, 25H, 73H, 0
+        DC8 0, 0
+        DC8 25H, 73H, 2FH, 77H, 61H, 6CH, 6CH, 2EH
+        DC8 67H, 65H, 74H, 3FH, 76H, 3DH, 25H, 73H
+        DC8 26H, 61H, 63H, 63H, 65H, 73H, 73H, 5FH
+        DC8 74H, 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H
+        DC8 26H, 6FH, 77H, 6EH, 65H, 72H, 5FH, 69H
+        DC8 64H, 3DH, 25H, 64H, 26H, 63H, 6FH, 75H
+        DC8 6EH, 74H, 3DH, 31H, 26H, 6FH, 66H, 66H
+        DC8 73H, 65H, 74H, 3DH, 25H, 64H, 26H, 65H
+        DC8 78H, 74H, 65H, 6EH, 64H, 65H, 64H, 3DH
+        DC8 25H, 64H, 0
+        DC8 0
+        DC8 61H, 63H, 63H, 65H, 73H, 73H, 5FH, 74H
+        DC8 6FH, 6BH, 65H, 6EH, 3DH, 25H, 73H, 26H
+        DC8 76H, 3DH, 25H, 73H, 26H, 66H, 75H, 6EH
+        DC8 63H, 5FH, 76H, 3DH, 31H, 26H, 75H, 73H
+        DC8 65H, 72H, 5FH, 69H, 64H, 3DH, 25H, 64H
+        DC8 26H, 6CH, 61H, 73H, 74H, 5FH, 6DH, 65H
+        DC8 73H, 73H, 61H, 67H, 65H, 5FH, 69H, 64H
+        DC8 3DH, 25H, 64H, 26H, 6DH, 65H, 73H, 73H
+        DC8 61H, 67H, 65H, 3DH, 25H, 73H, 0
+        DC8 0
+        DC8 "yJVDQi2ry8J1hWS5MlYH"
+        DC8 0, 0, 0
+        DC8 "https://api.vk.com/method"
+        DC8 0, 0
+        DC8 "5.92"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "key"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "ts"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "pts"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "error_code">`:
+        DATA
+        DC8 "error_code"
+        DC8 0
+        DC8 "error_msg"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "out"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+captcha_img:
+        DATA
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+my_id:
+        DS8 4
+lp_ts:
+        DS8 4
+pts:
+        DS8 4
+ACCESS_TOKEN:
+        DS8 256
+err_msg:
+        DS8 256
+        DS8 1024
+        DS8 64
+        DS8 32
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+captcha_seed:
+        DS8 4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_auth_direct??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE url_auth_direct
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function url_auth_direct
+        ARM
+url_auth_direct:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        MOV      R4,#+524
+        ADD      R3,R4,#+736
+        ADD      R3,R3,R12
+        PUSH     {R3}
+        CFI CFA R13+16
+        LDR      R3,??url_auth_direct_0  ;; 0x553059
+        PUSH     {R2}
+        CFI CFA R13+20
+        PUSH     {R1}
+        CFI CFA R13+24
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R12,#+76
+        SUB      R1,R4,#+13
+        ADD      R0,R4,#+684
+        ADD      R0,R0,R12
+        B        ?Subroutine31
+        DATA
+??url_auth_direct_0:
+        DC32     0x553059
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_stats_track_visitor??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE url_stats_track_visitor
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function url_stats_track_visitor
+        ARM
+url_stats_track_visitor:
+        LDR      R0,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        MOV      R4,#+524
+        ADD      R1,R5,#+12
+        PUSH     {R1}
+        CFI CFA R13+16
+        ADD      R3,R0,#+1232
+        ADD      R2,R0,#+208
+        ADD      R1,R4,#+736
+        ADD      R1,R1,R0
+        PUSH     {R1}
+        CFI CFA R13+20
+        ADD      R0,R4,R5
+        SUB      R1,R4,#+13
+        SWI      +283
+        ADD      R0,R4,R5
+        POP      {R1,R2,R4,R5,PC}  ;; return
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_getLongPollServer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE url_messages_getLongPollServer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function url_messages_getLongPollServer
+        ARM
+url_messages_getLongPollServer:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        LDR      R5,??DataTable51  ;; my_id
+        MOV      R3,#+3
+        PUSH     {R3}
+        CFI CFA R13+16
+        PUSH     {R1}
+        CFI CFA R13+20
+        PUSH     {R0}
+        CFI CFA R13+24
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+32
+        ADD      R2,R2,#+252
+        B        ??Subroutine31_0
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_getLongPollHistory??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock6
+        REQUIRE url_messages_getLongPollHistory
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI Function url_messages_getLongPollHistory
+        ARM
+url_messages_getLongPollHistory:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R1,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        LDR      R5,??DataTable51  ;; my_id
+        MOV      R2,#+3
+        PUSH     {R2}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        LDR      R0,[R5, #+8]
+        MOV      R4,#+524
+        PUSH     {R0}
+        CFI CFA R13+24
+        LDR      R0,[R5, #+4]
+        ADD      R3,R1,#+1232
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R1,#+344
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+32
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R1
+        PUSH     {R0}
+        CFI CFA R13+36
+        SUB      R1,R4,#+13
+        B        ??Subroutine29_0
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_getConversations??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock8
+        REQUIRE url_messages_getConversations
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI Function url_messages_getConversations
+        ARM
+url_messages_getConversations:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R3}
+        CFI CFA R13+16
+        PUSH     {R2}
+        CFI CFA R13+20
+        PUSH     {R1}
+        CFI CFA R13+24
+        PUSH     {R0}
+        CFI CFA R13+28
+        MOV      R4,#+524
+        ADD      R3,R12,#+1232
+        ADD      R2,R12,#+436
+        B        ?Subroutine29
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_users_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock10
+        REQUIRE url_users_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI Function url_users_get
+        ARM
+url_users_get:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        MOV      R1,#+255
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+24
+        ORR      R1,R1,#0x300
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R2,#+528
+        B        ??Subroutine30_0
+        CFI EndBlock cfiBlock11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_getHistory??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock12
+        REQUIRE url_messages_getHistory
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI Function url_messages_getHistory
+        ARM
+url_messages_getHistory:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R2}
+        CFI CFA R13+16
+        PUSH     {R1}
+        CFI CFA R13+20
+        PUSH     {R0}
+        CFI CFA R13+24
+        MOV      R4,#+524
+        ADD      R3,R12,#+1232
+        ADD      R2,R12,#+584
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R12
+        PUSH     {R0}
+        CFI CFA R13+28
+        SUB      R1,R4,#+13
+        ADD      R0,R5,#+12
+        CFI EndBlock cfiBlock13
+        REQUIRE ?Subroutine31
+        ;; // Fall through to label ?Subroutine31
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+28
+        CFI R4 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine31:
+        PUSH     {R0}
+        CFI CFA R13+32
+??Subroutine31_0:
+        ADD      R0,R4,R5
+        SWI      +283
+        ADD      R0,R4,R5
+        ADD      SP,SP,#+20
+        CFI CFA R13+12
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock14
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_deleteDialog??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock15
+        REQUIRE url_messages_deleteDialog
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon1
+        CFI Function url_messages_deleteDialog
+        ARM
+url_messages_deleteDialog:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+24
+        ADD      R2,R2,#+668
+        B        ?Subroutine30
+        CFI EndBlock cfiBlock16
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_markAsRead??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock17
+        REQUIRE url_messages_markAsRead
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon1
+        CFI Function url_messages_markAsRead
+        ARM
+url_messages_markAsRead:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        MOV      R1,#+255
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+24
+        ORR      R1,R1,#0x300
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R2,#+736
+        B        ??Subroutine30_0
+        CFI EndBlock cfiBlock18
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_friends_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock19
+        REQUIRE url_friends_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon1
+        CFI Function url_friends_get
+        ARM
+url_friends_get:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R3}
+        CFI CFA R13+16
+        PUSH     {R2}
+        CFI CFA R13+20
+        PUSH     {R1}
+        CFI CFA R13+24
+        PUSH     {R0}
+        CFI CFA R13+28
+        MOV      R4,#+524
+        ADD      R3,R12,#+1232
+        ADD      R2,R12,#+808
+        CFI EndBlock cfiBlock20
+        REQUIRE ?Subroutine29
+        ;; // Fall through to label ?Subroutine29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+28
+        CFI R4 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine29:
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+32
+        SUB      R1,R4,#+13
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R12
+        PUSH     {R0}
+        CFI CFA R13+36
+??Subroutine29_0:
+        ADD      R0,R4,R5
+        SWI      +283
+        ADD      R0,R4,R5
+        ADD      SP,SP,#+24
+        CFI CFA R13+12
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock21
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_messages_send??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock22
+        REQUIRE url_messages_send
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon1
+        CFI Function url_messages_send
+        ARM
+url_messages_send:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        LDR      R7,??DataTable51  ;; my_id
+        MOV      R4,R0
+        MOV      R0,R1
+        _BLF     URL_reencode_escapes,??URL_reencode_escapes??rA
+        MOV      R5,R0
+        LDR      R0,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        MOV      R1,R5
+        PUSH     {R1}
+        CFI CFA R13+24
+        PUSH     {R4}
+        CFI CFA R13+28
+        MOV      R6,#+524
+        ADD      R1,R7,#+12
+        PUSH     {R1}
+        CFI CFA R13+32
+        ADD      R2,R0,#+884
+        ADD      R1,R6,#+736
+        ADD      R3,R1,R0
+        SUB      R1,R6,#+13
+        ADD      R0,R6,R7
+        SWI      +283
+        MOV      R0,R5
+        SWI      +21
+        ADD      R0,R6,R7
+        POP      {R1-R7,PC}       ;; return
+        CFI EndBlock cfiBlock23
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_groups_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock24
+        REQUIRE url_groups_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon1
+        CFI Function url_groups_get
+        ARM
+url_groups_get:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+24
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R2,#+928
+        B        ??Subroutine30_0
+        CFI EndBlock cfiBlock25
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_groups_getById??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock26
+        REQUIRE url_groups_getById
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon1
+        CFI Function url_groups_getById
+        ARM
+url_groups_getById:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+24
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R2,R2,#+996
+        B        ??Subroutine30_0
+        CFI EndBlock cfiBlock27
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_wall_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock28
+        REQUIRE url_wall_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon1
+        CFI Function url_wall_get
+        ARM
+url_wall_get:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R2}
+        CFI CFA R13+16
+        PUSH     {R1}
+        CFI CFA R13+20
+        PUSH     {R0}
+        CFI CFA R13+24
+        MOV      R4,#+524
+        ADD      R3,R12,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+28
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R12
+        PUSH     {R0}
+        CFI CFA R13+32
+        ADD      R0,R4,#+536
+        ADD      R2,R0,R12
+        B        ??Subroutine31_0
+        CFI EndBlock cfiBlock29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_execute_getHistory??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock30
+        REQUIRE url_execute_getHistory
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock31 Using cfiCommon1
+        CFI Function url_execute_getHistory
+        ARM
+url_execute_getHistory:
+        LDR      R2,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R4,#+524
+        ADD      R3,R2,#+1232
+        SUB      R1,R4,#+13
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R2
+        PUSH     {R0}
+        CFI EndBlock cfiBlock31
+        REQUIRE ?Subroutine30
+        ;; // Fall through to label ?Subroutine30
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock32 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+24
+        CFI R4 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine30:
+        ADD      R0,R5,#+12
+        PUSH     {R0}
+        CFI CFA R13+28
+??Subroutine30_0:
+        ADD      R0,R4,R5
+        SWI      +283
+        ADD      R0,R4,R5
+        ADD      SP,SP,#+16
+        CFI CFA R13+12
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock32
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock33 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??url_execute_sendAndGet??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock33
+        REQUIRE url_execute_sendAndGet
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock34 Using cfiCommon1
+        CFI Function url_execute_sendAndGet
+        ARM
+url_execute_sendAndGet:
+        LDR      R12,??DataTable30  ;; `?<Constant "%s/execute.getHistory...">`
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R5,??DataTable51  ;; my_id
+        PUSH     {R1}
+        CFI CFA R13+16
+        PUSH     {R2}
+        CFI CFA R13+20
+        PUSH     {R0}
+        CFI CFA R13+24
+        MOV      R4,#+524
+        ADD      R3,R5,#+12
+        ADD      R2,R12,#+1136
+        ADD      R0,R4,#+736
+        ADD      R0,R0,R12
+        PUSH     {R0}
+        CFI CFA R13+28
+        SUB      R1,R4,#+13
+        B        ??Subroutine30_0
+        CFI EndBlock cfiBlock34
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable30:
+        DC32     `?<Constant "%s/execute.getHistory...">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock35 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_Error??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock35
+        REQUIRE __parse_obj_Error
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock36 Using cfiCommon1
+        CFI Function __parse_obj_Error
+        ARM
+__parse_obj_Error:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R6,??__parse_obj_Error_0  ;; `?<Constant "error_code">`
+        MOV      R4,R0
+        MOV      R5,#+0
+        MOV      R1,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R5,[R0, #+20]
+        ADD      R1,R6,#+12
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??__parse_obj_Error_1
+        LDR      R1,[R0, #+16]
+        LDR      R0,??__parse_obj_Error_0+0x4  ;; my_id + 268
+        MOV      R2,#+255
+        SWI      +278
+??__parse_obj_Error_1:
+        MOV      R0,R5
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??__parse_obj_Error_0:
+        DC32     `?<Constant "error_code">`
+        DC32     my_id + 268
+        CFI EndBlock cfiBlock36
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock37 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_Message??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock37
+        REQUIRE __parse_obj_Message
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock38 Using cfiCommon1
+        CFI Function __parse_obj_Message
+        ARM
+__parse_obj_Message:
+        PUSH     {R4-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+28
+        LDR      R8,??DataTable36  ;; t_id
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R7,#+0
+        STR      R7,[R5, #+4]
+        STR      R7,[R5, #+8]
+        STR      R7,[R5, #+12]
+        STR      R7,[R5, #+0]
+        STR      R7,[R5, #+20]
+        STR      R7,[R5, #+16]
+        ADD      R1,R8,#+88
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R8,#+96
+        STRNE    R0,[R5, #+4]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R8,#+104
+        STRNE    R0,[R5, #+8]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        MOV      R1,R8
+        STRNE    R0,[R5, #+12]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R8,#+112
+        STRNE    R0,[R5, #+0]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADR      R1,??__parse_obj_Message_0  ;; "out"
+        STRNE    R0,[R5, #+16]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R8,#+120
+        STRNE    R0,[R5, #+20]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R4,R0
+        POPEQ    {R4-R9,PC}
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        POPLT    {R4-R9,PC}
+        LDR      R4,[R4, #+8]
+        B        ??__parse_obj_Message_1
+??__parse_obj_Message_2:
+        ADD      R1,R8,#+208
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R5,R0
+        BEQ      ??__parse_obj_Message_3
+        MOV      R0,#+12
+        SWI      +20
+        MOV      R9,R0
+        STR      R9,[R9, #+0]
+        STR      R9,[R9, #+4]
+        STR      R7,[R9, #+8]
+        LDR      R0,[R5, #+16]
+        ADD      R1,R8,#+80
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R0,#+1
+        STREQ    R0,[R9, #+8]
+        LDR      R0,[R6, #+4]
+        STR      R9,[R6, #+4]
+        STR      R6,[R9, #+0]
+        STR      R0,[R9, #+4]
+        STR      R9,[R0, #+0]
+??__parse_obj_Message_3:
+        LDR      R4,[R4, #+0]
+??__parse_obj_Message_1:
+        CMP      R4,#+0
+        BNE      ??__parse_obj_Message_2
+        POP      {R4-R9,PC}       ;; return
+        DATA
+??__parse_obj_Message_0:
+        DC8      "out"
+        CFI EndBlock cfiBlock38
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock39 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_User??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock39
+        REQUIRE __parse_obj_User
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock40 Using cfiCommon1
+        CFI Function __parse_obj_User
+        ARM
+__parse_obj_User:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R6,??DataTable36  ;; t_id
+        MOV      R5,R0
+        MOV      R4,R1
+        MOV      R0,#+0
+        STR      R0,[R4, #+0]
+        STR      R0,[R4, #+4]
+        STR      R0,[R4, #+8]
+        STR      R0,[R4, #+12]
+        STR      R0,[R4, #+16]
+        STR      R0,[R4, #+20]
+        STR      R0,[R4, #+24]
+        STR      R0,[R4, #+36]
+        STR      R0,[R4, #+32]
+        MOV      R1,R6
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+132
+        STRNE    R0,[R4, #+0]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADD      R1,R6,#+144
+        STRNE    R0,[R4, #+4]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADD      R1,R6,#+172
+        STRNE    R0,[R4, #+8]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        MOVNE    R0,#+1
+        STRNE    R0,[R4, #+12]
+        ADD      R1,R6,#+196
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADD      R1,R6,#+184
+        STRNE    R0,[R4, #+32]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+156
+        STRNE    R0,[R4, #+36]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+4
+        STRNE    R0,[R4, #+28]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        STRNE    R0,[R4, #+24]
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock40
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock41 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_profiles??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock41
+        REQUIRE __parse_obj_profiles
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock42 Using cfiCommon1
+        CFI Function __parse_obj_profiles
+        ARM
+__parse_obj_profiles:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        SUB      SP,SP,#+40
+        CFI CFA R13+56
+        MOV      R4,R0
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        BLT      ??__parse_obj_profiles_0
+        CMP      R4,#+0
+        BEQ      ??__parse_obj_profiles_0
+        LDR      R4,[R4, #+8]
+        B        ??__parse_obj_profiles_1
+??__parse_obj_profiles_2:
+        LDR      R1,[SP, #+0]
+        MOV      R0,R5
+        _BLF     find_User,??find_User??rA
+        CMP      R0,#+0
+        BNE      ??__parse_obj_profiles_3
+        MOV      R0,SP
+        _BLF     new_User,??new_User??rA
+        MOV      R6,R0
+        LDR      R0,[R5, #+0]
+        STR      R6,[R0, #+4]
+        STR      R0,[R6, #+0]
+        LDR      R0,??DataTable57  ;; dialogs
+        STR      R5,[R6, #+4]
+        STR      R6,[R5, #+0]
+        LDR      R1,[R6, #+8]
+        _BLF     FindDialog,??FindDialog??rA
+        CMP      R0,#+0
+        STRNE    R6,[R0, #+28]
+??__parse_obj_profiles_3:
+        LDR      R4,[R4, #+0]
+??__parse_obj_profiles_1:
+        CMP      R4,#+0
+        BEQ      ??__parse_obj_profiles_0
+        MOV      R1,SP
+        MOV      R0,R4
+        BL       __parse_obj_User
+        LDR      R0,[SP, #+28]
+        CMP      R0,#+3
+        LDRNE    R5,??DataTable43  ;; profiles
+        LDREQ    R5,??__parse_obj_profiles_4  ;; friends
+        B        ??__parse_obj_profiles_2
+??__parse_obj_profiles_0:
+        ADD      SP,SP,#+40       ;; stack cleaning
+        CFI CFA R13+16
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??__parse_obj_profiles_4:
+        DC32     friends
+        CFI EndBlock cfiBlock42
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock43 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_Group??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock43
+        REQUIRE __parse_obj_Group
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock44 Using cfiCommon1
+        CFI Function __parse_obj_Group
+        ARM
+__parse_obj_Group:
+        PUSH     {R4-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+28
+        LDR      R6,??DataTable36  ;; t_id
+        MOV      R5,R0
+        MOV      R4,R1
+        MOV      R7,#+0
+        STR      R7,[R4, #+8]
+        STR      R7,[R4, #+12]
+        STR      R7,[R4, #+16]
+        STR      R7,[R4, #+20]
+        STR      R7,[R4, #+24]
+        STR      R7,[R4, #+32]
+        STR      R7,[R4, #+28]
+        STR      R7,[R4, #+36]
+        STR      R7,[R4, #+40]
+        MOV      R1,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+12
+        RSBNE    R0,R0,#+0
+        STRNE    R0,[R4, #+8]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADD      R1,R6,#+20
+        STRNE    R0,[R4, #+12]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        ADD      R1,R6,#+32
+        STRNE    R0,[R4, #+16]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        MOV      R8,#+1
+        STRNE    R0,[R4, #+20]
+        ADD      R1,R6,#+172
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        STRNE    R8,[R4, #+24]
+        ADD      R1,R6,#+208
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R9,R0
+        BEQ      ??__parse_obj_Group_0
+        LDR      R0,[R9, #+16]
+        ADD      R1,R6,#+60
+        SWI      +25
+        CMP      R0,#+0
+        STREQ    R7,[R4, #+28]
+        BEQ      ??__parse_obj_Group_0
+        LDR      R0,[R9, #+16]
+        ADD      R1,R6,#+52
+        SWI      +25
+        CMP      R0,#+0
+        STREQ    R8,[R4, #+28]
+        BEQ      ??__parse_obj_Group_0
+        LDR      R0,[R9, #+16]
+        ADD      R1,R6,#+44
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R0,#+2
+        STREQ    R0,[R4, #+28]
+??__parse_obj_Group_0:
+        ADD      R1,R6,#+68
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+184
+        STRNE    R0,[R4, #+32]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R6,#+196
+        STRNE    R0,[R4, #+36]
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+16]
+        STRNE    R0,[R4, #+40]
+        POP      {R4-R9,PC}       ;; return
+        CFI EndBlock cfiBlock44
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable36:
+        DC32     t_id
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock45 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_obj_groups??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock45
+        REQUIRE __parse_obj_groups
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock46 Using cfiCommon1
+        CFI Function __parse_obj_groups
+        ARM
+__parse_obj_groups:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        SUB      SP,SP,#+44
+        CFI CFA R13+60
+        MOV      R4,R0
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        BLT      ??__parse_obj_groups_0
+        CMP      R4,#+0
+        BEQ      ??__parse_obj_groups_0
+        LDR      R4,[R4, #+8]
+        B        ??__parse_obj_groups_1
+??__parse_obj_groups_2:
+        LDR      R1,[SP, #+8]
+        MOV      R0,R5
+        _BLF     find_Group,??find_Group??rA
+        CMP      R0,#+0
+        BNE      ??__parse_obj_groups_3
+        MOV      R0,SP
+        _BLF     new_Group,??new_Group??rA
+        MOV      R6,R0
+        LDR      R0,[R5, #+4]
+        STR      R6,[R5, #+4]
+        STR      R5,[R6, #+0]
+        STR      R0,[R6, #+4]
+        STR      R6,[R0, #+0]
+        LDR      R0,??DataTable57  ;; dialogs
+        LDR      R1,[R6, #+8]
+        _BLF     FindDialog,??FindDialog??rA
+        MOVS     R5,R0
+        BEQ      ??__parse_obj_groups_3
+        LDR      R0,[R5, #+32]
+        CMP      R0,#+0
+        BEQ      ??__parse_obj_groups_4
+        _BLF     del_Group,??del_Group??rA
+??__parse_obj_groups_4:
+        STR      R6,[R5, #+32]
+??__parse_obj_groups_3:
+        LDR      R4,[R4, #+0]
+??__parse_obj_groups_1:
+        CMP      R4,#+0
+        BEQ      ??__parse_obj_groups_0
+        MOV      R1,SP
+        MOV      R0,R4
+        BL       __parse_obj_Group
+        LDR      R0,[SP, #+32]
+        CMP      R0,#+1
+        LDRNE    R5,??__parse_obj_groups_5  ;; groups
+        LDREQ    R5,??__parse_obj_groups_5+0x4  ;; my_groups
+        B        ??__parse_obj_groups_2
+??__parse_obj_groups_0:
+        ADD      SP,SP,#+44       ;; stack cleaning
+        CFI CFA R13+16
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??__parse_obj_groups_5:
+        DC32     groups
+        DC32     my_groups
+        CFI EndBlock cfiBlock46
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock47 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_answer_groups_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock47
+        REQUIRE parse_answer_groups_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock48 Using cfiCommon1
+        CFI Function parse_answer_groups_get
+        ARM
+parse_answer_groups_get:
+        PUSH     {R0,R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+28
+        MOV      R5,R1
+        MOV      R4,#+0
+        MOV      R2,#+0
+        STR      R2,[SP, #+0]
+        MOV      R1,SP
+        _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+        MOVS     R6,R0
+        MVNEQ    R0,R4
+        POPEQ    {R1,R4-R8,PC}
+        LDR      R7,??DataTable56  ;; `?<Constant "access_token">`
+        ADD      R1,R7,#+180
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_groups_get_0
+        ADD      R1,R7,#+192
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R7,#+200
+        STRNE    R0,[R5, #+0]
+        MOV      R0,R8
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_groups_get_1
+        BL       __parse_obj_groups
+        B        ??parse_answer_groups_get_1
+??parse_answer_groups_get_0:
+        ADD      R1,R7,#+172
+        MOV      R0,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_groups_get_1
+        BL       __parse_obj_Error
+        MOV      R4,R0
+??parse_answer_groups_get_1:
+        MOV      R0,R6
+        B        ?Subroutine32
+        CFI EndBlock cfiBlock48
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock49 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_answer_users_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock49
+        REQUIRE __parse_answer_users_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock50 Using cfiCommon1
+        CFI Function __parse_answer_users_get
+        ARM
+__parse_answer_users_get:
+        LDR      R0,??DataTable54  ;; HTTP_HEADER_LENGTH
+        LDR      R1,??DataTable52  ;; recv_buf
+        LDR      R2,??DataTable53  ;; HTTP_CONTENT_LENGTH
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        SUB      SP,SP,#+40
+        CFI CFA R13+60
+        LDR      R2,[R2, #+0]
+        LDR      R3,[R0, #+0]
+        LDR      R5,[R1, #+0]
+        MOV      R4,#+0
+        ADD      R3,R3,R5
+        MOV      R5,#+0
+        STRB     R5,[R2, +R3]
+        LDR      R0,[R0, #+0]
+        LDR      R1,[R1, #+0]
+        ADD      R0,R0,R1
+        _BLF     cJSON_Parse,??cJSON_Parse??rA
+        MOVS     R5,R0
+        BEQ      ??__parse_answer_users_get_0
+        LDR      R6,??DataTable56  ;; `?<Constant "access_token">`
+        ADD      R1,R6,#+180
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R7,R0
+        BEQ      ??__parse_answer_users_get_1
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        BLT      ??__parse_answer_users_get_2
+        LDR      R6,[R7, #+8]
+        LDR      R7,??DataTable43  ;; profiles
+??__parse_answer_users_get_3:
+        CMP      R6,#+0
+        BEQ      ??__parse_answer_users_get_2
+        MOV      R1,SP
+        MOV      R0,R6
+        BL       __parse_obj_User
+        LDR      R1,[SP, #+0]
+        MOV      R0,R7
+        _BLF     find_User,??find_User??rA
+        CMP      R0,#+0
+        BNE      ??__parse_answer_users_get_4
+        MOV      R0,SP
+        _BLF     new_User,??new_User??rA
+        LDR      R1,[R7, #+0]
+        STR      R0,[R1, #+4]
+        STR      R1,[R0, #+0]
+        STR      R7,[R0, #+4]
+        STR      R0,[R7, #+0]
+??__parse_answer_users_get_4:
+        LDR      R6,[R6, #+0]
+        B        ??__parse_answer_users_get_3
+??__parse_answer_users_get_1:
+        ADD      R1,R6,#+172
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R7,R0
+        BEQ      ??__parse_answer_users_get_2
+        BL       __parse_obj_Error
+        MOV      R4,R0
+??__parse_answer_users_get_2:
+        MOV      R0,R5
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+??__parse_answer_users_get_0:
+        MOV      R0,R4
+        ADD      SP,SP,#+40
+        CFI CFA R13+20
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock50
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable43:
+        DC32     profiles
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock51 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__parse_answer_friends_get??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock51
+        REQUIRE __parse_answer_friends_get
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock52 Using cfiCommon1
+        CFI Function __parse_answer_friends_get
+        ARM
+__parse_answer_friends_get:
+        _BF      parse_answer_users_get,??parse_answer_users_get??rA  ;; tailcall
+        CFI EndBlock cfiBlock52
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock53 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_answer_auth_direct??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock53
+        REQUIRE parse_answer_auth_direct
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock54 Using cfiCommon1
+        CFI Function parse_answer_auth_direct
+        ARM
+parse_answer_auth_direct:
+        LDR      R3,??DataTable52  ;; recv_buf
+        PUSH     {R0,R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+28
+        LDR      R0,??DataTable54  ;; HTTP_HEADER_LENGTH
+        LDR      R3,[R3, #+0]
+        LDR      R0,[R0, #+0]
+        MOV      R4,#+0
+        MOV      R2,#+0
+        MOV      R1,SP
+        ADD      R0,R0,R3
+        _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+        MOVS     R5,R0
+        MVNEQ    R0,R4
+        POPEQ    {R1,R4-R8,PC}
+        LDR      R6,??DataTable56  ;; `?<Constant "access_token">`
+        LDR      R7,??Subroutine32_0  ;; my_id
+        MOV      R1,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_auth_direct_0
+        LDR      R1,[R0, #+16]
+        MOV      R2,#+255
+        ADD      R0,R7,#+12
+        SWI      +278
+        ADD      R1,R6,#+16
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_auth_direct_1
+        LDR      R0,[R0, #+20]
+        STR      R0,[R7, #+0]
+        B        ??parse_answer_auth_direct_1
+??parse_answer_auth_direct_0:
+        ADD      R1,R6,#+172
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_auth_direct_1
+        LDR      R0,[R8, #+16]
+        MOV      R4,#+268
+        ADD      R1,R6,#+60
+        SWI      +25
+        CMP      R0,#+0
+        BNE      ??parse_answer_auth_direct_2
+        LDR      R1,[R8, #+16]
+        MOV      R2,#+255
+        ADD      R0,R4,R7
+        SWI      +278
+        MOV      R4,#+14
+        B        ??parse_answer_auth_direct_1
+??parse_answer_auth_direct_2:
+        LDR      R0,[R8, #+16]
+        ADD      R1,R6,#+44
+        _BLF     stricmp,??stricmp??rA
+        CMP      R0,#+0
+        BNE      ??parse_answer_auth_direct_3
+        LDR      R1,[R8, #+16]
+        MOV      R2,#+255
+        ADD      R0,R4,R7
+        SWI      +278
+        MOV      R4,#+17
+        B        ??parse_answer_auth_direct_1
+??parse_answer_auth_direct_3:
+        ADD      R1,R6,#+24
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_auth_direct_4
+        LDR      R1,[R0, #+16]
+        ADD      R0,R4,R7
+        _BLF     utf82win,??utf82win??rA
+        B        ??parse_answer_auth_direct_5
+??parse_answer_auth_direct_4:
+        LDR      R1,[R0, #+16]
+        MOV      R2,#+255
+        ADD      R0,R4,R7
+        SWI      +278
+??parse_answer_auth_direct_5:
+        MOV      R4,#+1
+??parse_answer_auth_direct_1:
+        MOV      R0,R5
+        CFI EndBlock cfiBlock54
+        REQUIRE ?Subroutine32
+        ;; // Fall through to label ?Subroutine32
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock55 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+28
+        CFI R4 Frame(CFA, -24)
+        CFI R5 Frame(CFA, -20)
+        CFI R6 Frame(CFA, -16)
+        CFI R7 Frame(CFA, -12)
+        CFI R8 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine32:
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        MOV      R0,R4
+        POP      {R1,R4-R8,PC}    ;; return
+        DATA
+??Subroutine32_0:
+        DC32     my_id
+        CFI EndBlock cfiBlock55
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock56 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_answer_messages_getLongPollServer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock56
+        REQUIRE parse_answer_messages_getLongPollServer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock57 Using cfiCommon1
+        CFI Function parse_answer_messages_getLongPollServer
+        ARM
+parse_answer_messages_getLongPollServer:
+        LDR      R0,??DataTable54  ;; HTTP_HEADER_LENGTH
+        LDR      R1,??DataTable52  ;; recv_buf
+        LDR      R2,??DataTable53  ;; HTTP_CONTENT_LENGTH
+        PUSH     {R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+24
+        LDR      R2,[R2, #+0]
+        LDR      R3,[R0, #+0]
+        LDR      R5,[R1, #+0]
+        MOV      R4,#+0
+        ADD      R3,R3,R5
+        MOV      R5,#+0
+        STRB     R5,[R2, +R3]
+        LDR      R0,[R0, #+0]
+        LDR      R1,[R1, #+0]
+        ADD      R0,R0,R1
+        _BLF     cJSON_Parse,??cJSON_Parse??rA
+        MOVS     R5,R0
+        BEQ      ??parse_answer_messages_getLongPollServer_0
+        LDR      R8,??DataTable56  ;; `?<Constant "access_token">`
+        ADD      R1,R8,#+180
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R7,R0
+        BEQ      ??parse_answer_messages_getLongPollServer_1
+        LDR      R6,??DataTable51  ;; my_id
+        ADR      R1,??parse_answer_messages_getLongPollServer_2  ;; "key"
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getLongPollServer_3
+        LDR      R1,[R0, #+16]
+        MOV      R2,#+63
+        MOV      R0,#+12
+        ORR      R0,R0,#0x600
+        ADD      R0,R0,R6
+        SWI      +278
+??parse_answer_messages_getLongPollServer_3:
+        ADD      R1,R8,#+164
+        MOV      R0,R7
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getLongPollServer_4
+        LDR      R1,[R0, #+16]
+        MOV      R2,#+31
+        MOV      R0,#+76
+        ORR      R0,R0,#0x600
+        ADD      R0,R0,R6
+        SWI      +278
+??parse_answer_messages_getLongPollServer_4:
+        ADR      R1,??parse_answer_messages_getLongPollServer_2+0x4  ;; "ts"
+        MOV      R0,R7
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADR      R1,??parse_answer_messages_getLongPollServer_2+0x8  ;; "pts"
+        STRNE    R0,[R6, #+4]
+        MOV      R0,R7
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getLongPollServer_5
+        LDR      R0,[R0, #+20]
+        STR      R0,[R6, #+8]
+        B        ??parse_answer_messages_getLongPollServer_5
+??parse_answer_messages_getLongPollServer_1:
+        ADD      R1,R8,#+172
+        MOV      R0,R5
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R7,R0
+        BEQ      ??parse_answer_messages_getLongPollServer_5
+        BL       __parse_obj_Error
+        MOV      R4,R0
+??parse_answer_messages_getLongPollServer_5:
+        MOV      R0,R5
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+??parse_answer_messages_getLongPollServer_0:
+        MOV      R0,R4
+        POP      {R4-R8,PC}       ;; return
+        DATA
+??parse_answer_messages_getLongPollServer_2:
+        DC8      "key"
+        DC8      "ts",+0
+        DC8      "pts"
+        CFI EndBlock cfiBlock57
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable51:
+        DC32     my_id
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock58 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_answer_messages_getLongPollHistory??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock58
+        REQUIRE parse_answer_messages_getLongPollHistory
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock59 Using cfiCommon1
+        CFI Function parse_answer_messages_getLongPollHistory
+        ARM
+parse_answer_messages_getLongPollHistory:
+        LDR      R1,??DataTable52  ;; recv_buf
+        LDR      R2,??DataTable53  ;; HTTP_CONTENT_LENGTH
+        PUSH     {R4-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+28
+        MOV      R5,R0
+        LDR      R0,??DataTable54  ;; HTTP_HEADER_LENGTH
+        SUB      SP,SP,#+32
+        CFI CFA R13+60
+        LDR      R2,[R2, #+0]
+        LDR      R3,[R0, #+0]
+        LDR      R6,[R1, #+0]
+        MOV      R4,#+0
+        ADD      R3,R3,R6
+        MOV      R6,#+0
+        STRB     R6,[R2, +R3]
+        LDR      R0,[R0, #+0]
+        LDR      R1,[R1, #+0]
+        ADD      R0,R0,R1
+        _BLF     cJSON_Parse,??cJSON_Parse??rA
+        MOVS     R6,R0
+        BEQ      ??parse_answer_messages_getLongPollHistory_0
+        LDR      R7,??DataTable56  ;; `?<Constant "access_token">`
+        ADD      R1,R7,#+180
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_messages_getLongPollHistory_1
+        ADD      R1,R7,#+76
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R9,R0
+        BEQ      ??parse_answer_messages_getLongPollHistory_2
+        ADD      R1,R7,#+192
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        ADD      R1,R7,#+200
+        MOV      R0,R9
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R9,R0
+        BEQ      ??parse_answer_messages_getLongPollHistory_2
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        BLT      ??parse_answer_messages_getLongPollHistory_2
+        LDR      R9,[R9, #+8]
+        B        ??parse_answer_messages_getLongPollHistory_3
+??parse_answer_messages_getLongPollHistory_4:
+        MOV      R1,SP
+        STR      R1,[SP, #+0]
+        STR      R1,[SP, #+4]
+        MOV      R2,SP
+        ADD      R1,SP,#+8
+        MOV      R0,R9
+        BL       __parse_obj_Message
+        MOV      R1,SP
+        ADD      R0,SP,#+8
+        _BLF     new_Message,??new_Message??rA
+        LDR      R1,[R5, #+0]
+        STR      R0,[R1, #+4]
+        STR      R1,[R0, #+0]
+        STR      R5,[R0, #+4]
+        STR      R0,[R5, #+0]
+        LDR      R9,[R9, #+0]
+??parse_answer_messages_getLongPollHistory_3:
+        CMP      R9,#+0
+        BNE      ??parse_answer_messages_getLongPollHistory_4
+??parse_answer_messages_getLongPollHistory_2:
+        ADD      R1,R7,#+88
+        MOV      R0,R8
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R1,??parse_answer_messages_getLongPollHistory_5  ;; my_id + 8
+        LDRNE    R0,[R0, #+20]
+        STRNE    R0,[R1, #+0]
+        ADD      R1,R7,#+208
+        MOV      R0,R8
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getLongPollHistory_6
+        BL       __parse_obj_profiles
+        B        ??parse_answer_messages_getLongPollHistory_6
+??parse_answer_messages_getLongPollHistory_1:
+        ADD      R1,R7,#+172
+        MOV      R0,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R8,R0
+        BEQ      ??parse_answer_messages_getLongPollHistory_6
+        BL       __parse_obj_Error
+        MOV      R4,R0
+??parse_answer_messages_getLongPollHistory_6:
+        MOV      R0,R6
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+??parse_answer_messages_getLongPollHistory_0:
+        MOV      R0,R4
+        ADD      SP,SP,#+32
+        CFI CFA R13+28
+        POP      {R4-R9,PC}       ;; return
+        DATA
+??parse_answer_messages_getLongPollHistory_5:
+        DC32     my_id + 8
+        CFI EndBlock cfiBlock59
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable52:
+        DC32     recv_buf
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable53:
+        DC32     HTTP_CONTENT_LENGTH
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable54:
+        DC32     HTTP_HEADER_LENGTH
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock60 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_answer_messages_getConversations??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock60
+        REQUIRE parse_answer_messages_getConversations
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock61 Using cfiCommon1
+        CFI Function parse_answer_messages_getConversations
+        ARM
+parse_answer_messages_getConversations:
+        PUSH     {R4-R11,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R11 Frame(CFA, -8)
+        CFI R10 Frame(CFA, -12)
+        CFI R9 Frame(CFA, -16)
+        CFI R8 Frame(CFA, -20)
+        CFI R7 Frame(CFA, -24)
+        CFI R6 Frame(CFA, -28)
+        CFI R5 Frame(CFA, -32)
+        CFI R4 Frame(CFA, -36)
+        CFI CFA R13+36
+        SUB      SP,SP,#+44
+        CFI CFA R13+80
+        MOV      R6,R1
+        MOV      R2,#+0
+        STR      R2,[SP, #+12]
+        STR      R2,[SP, #+16]
+        ADD      R1,SP,#+16
+        _BLF     cJSON_ParseWithOpts,??cJSON_ParseWithOpts??rA
+        STR      R0,[SP, #+0]
+        CMP      R0,#+0
+        MVNEQ    R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_0
+        LDR      R5,??DataTable56  ;; `?<Constant "access_token">`
+        ADD      R1,R5,#+180
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R4,R0
+        BEQ      ??parse_answer_messages_getConversations_1
+        ADD      R1,R5,#+192
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R0,[R0, #+20]
+        ADD      R1,R5,#+200
+        STRNE    R0,[R6, #+0]
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R6,R0
+        BEQ      ??parse_answer_messages_getConversations_2
+        _BLF     cJSON_GetArraySize,??cJSON_GetArraySize??rA
+        CMP      R0,#+1
+        BLT      ??parse_answer_messages_getConversations_2
+        LDR      R6,[R6, #+8]
+        LDR      R9,??DataTable57  ;; dialogs
+        B        ??parse_answer_messages_getConversations_3
+??parse_answer_messages_getConversations_4:
+        MOV      R3,R7
+        MOV      R2,R8
+        MOV      R1,R11
+        MOV      R0,R10
+        _BLF     new_Dialog,??new_Dialog??rA
+        LDR      R1,[R9, #+4]
+        STR      R0,[R9, #+4]
+        STR      R9,[R0, #+0]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+??parse_answer_messages_getConversations_5:
+        LDR      R6,[R6, #+0]
+??parse_answer_messages_getConversations_3:
+        CMP      R6,#+0
+        BEQ      ??parse_answer_messages_getConversations_2
+        MOV      R8,#+0
+        MOV      R7,#+0
+        ADD      R1,R5,#+96
+        MOV      R0,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_6
+        ADD      R1,R5,#+112
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R7,[R0, #+20]
+        ADD      R1,R5,#+124
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        LDRNE    R8,[R0, #+20]
+??parse_answer_messages_getConversations_6:
+        ADD      R1,R5,#+140
+        MOV      R0,R6
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_5
+        ADD      R2,SP,#+4
+        STR      R2,[SP, #+4]
+        STR      R2,[SP, #+8]
+        ADD      R1,SP,#+20
+        BL       __parse_obj_Message
+        ADD      R1,SP,#+4
+        ADD      R0,SP,#+20
+        _BLF     new_Message,??new_Message??rA
+        MOV      R10,R0
+        LDR      R0,[SP, #+40]
+        CMP      R0,#+0
+        LDRNE    R11,[SP, #+32]
+        MOV      R0,R9
+        LDREQ    R11,[SP, #+28]
+        MOV      R1,R11
+        _BLF     FindDialog,??FindDialog??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_4
+        ADD      R7,R0,#+20
+        MOV      R0,R7
+        _BLF     del_Messages,??del_Messages??rA
+        LDR      R0,[R7, #+4]
+        STR      R10,[R7, #+4]
+        STR      R7,[R10, #+0]
+        STR      R0,[R10, #+4]
+        STR      R10,[R0, #+0]
+        B        ??parse_answer_messages_getConversations_5
+??parse_answer_messages_getConversations_2:
+        ADD      R1,R5,#+208
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_7
+        BL       __parse_obj_profiles
+??parse_answer_messages_getConversations_7:
+        ADD      R1,R5,#+156
+        MOV      R0,R4
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        CMP      R0,#+0
+        BEQ      ??parse_answer_messages_getConversations_8
+        BL       __parse_obj_groups
+        B        ??parse_answer_messages_getConversations_8
+??parse_answer_messages_getConversations_1:
+        LDR      R0,[SP, #+0]
+        ADD      R1,R5,#+172
+        _BLF     cJSON_GetObjectItem,??cJSON_GetObjectItem??rA
+        MOVS     R4,R0
+        BEQ      ??parse_answer_messages_getConversations_8
+        BL       __parse_obj_Error
+        STR      R0,[SP, #+12]
+??parse_answer_messages_getConversations_8:
+        LDR      R0,[SP, #+0]
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        LDR      R0,[SP, #+12]
+??parse_answer_messages_getConversations_0:
+        ADD      SP,SP,#+44       ;; stack cleaning
+        CFI CFA R13+36
+        POP      {R4-R11,PC}      ;; return
+        CFI EndBlock cfiBlock61
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable56:
+        DC32     `?<Constant "access_token">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable57:
+        DC32     dialogs
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock62 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??URL_reencode_escapes??rA:
+        LDR      R12,??Subroutine33_0  ;; URL_reencode_escapes
+        BX       R12
+        DATA
+??Subroutine33_0:
+        DC32     URL_reencode_escapes
+        CFI EndBlock cfiBlock62
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock63 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??cJSON_GetObjectItem??rA:
+        LDR      R12,??Subroutine34_0  ;; cJSON_GetObjectItem
+        BX       R12
+        DATA
+??Subroutine34_0:
+        DC32     cJSON_GetObjectItem
+        CFI EndBlock cfiBlock63
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock64 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??cJSON_GetArraySize??rA:
+        LDR      R12,??Subroutine35_0  ;; cJSON_GetArraySize
+        BX       R12
+        DATA
+??Subroutine35_0:
+        DC32     cJSON_GetArraySize
+        CFI EndBlock cfiBlock64
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock65 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??find_User??rA:
+        LDR      R12,??Subroutine36_0  ;; find_User
+        BX       R12
+        DATA
+??Subroutine36_0:
+        DC32     find_User
+        CFI EndBlock cfiBlock65
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock66 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??new_User??rA:
+        LDR      R12,??Subroutine37_0  ;; new_User
+        BX       R12
+        DATA
+??Subroutine37_0:
+        DC32     new_User
+        CFI EndBlock cfiBlock66
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock67 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??FindDialog??rA:
+        LDR      R12,??Subroutine38_0  ;; FindDialog
+        BX       R12
+        DATA
+??Subroutine38_0:
+        DC32     FindDialog
+        CFI EndBlock cfiBlock67
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock68 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??find_Group??rA:
+        LDR      R12,??Subroutine39_0  ;; find_Group
+        BX       R12
+        DATA
+??Subroutine39_0:
+        DC32     find_Group
+        CFI EndBlock cfiBlock68
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock69 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??new_Group??rA:
+        LDR      R12,??Subroutine40_0  ;; new_Group
+        BX       R12
+        DATA
+??Subroutine40_0:
+        DC32     new_Group
+        CFI EndBlock cfiBlock69
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock70 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??del_Group??rA:
+        LDR      R12,??Subroutine41_0  ;; del_Group
+        BX       R12
+        DATA
+??Subroutine41_0:
+        DC32     del_Group
+        CFI EndBlock cfiBlock70
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock71 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??cJSON_ParseWithOpts??rA:
+        LDR      R12,??Subroutine42_0  ;; cJSON_ParseWithOpts
+        BX       R12
+        DATA
+??Subroutine42_0:
+        DC32     cJSON_ParseWithOpts
+        CFI EndBlock cfiBlock71
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock72 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??cJSON_Delete??rA:
+        LDR      R12,??Subroutine43_0  ;; cJSON_Delete
+        BX       R12
+        DATA
+??Subroutine43_0:
+        DC32     cJSON_Delete
+        CFI EndBlock cfiBlock72
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock73 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??cJSON_Parse??rA:
+        LDR      R12,??Subroutine44_0  ;; cJSON_Parse
+        BX       R12
+        DATA
+??Subroutine44_0:
+        DC32     cJSON_Parse
+        CFI EndBlock cfiBlock73
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock74 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??parse_answer_users_get??rA:
+        LDR      R12,??Subroutine45_0  ;; parse_answer_users_get
+        BX       R12
+        DATA
+??Subroutine45_0:
+        DC32     parse_answer_users_get
+        CFI EndBlock cfiBlock74
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock75 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??stricmp??rA:
+        LDR      R12,??Subroutine46_0  ;; stricmp
+        BX       R12
+        DATA
+??Subroutine46_0:
+        DC32     stricmp
+        CFI EndBlock cfiBlock75
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock76 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??utf82win??rA:
+        LDR      R12,??Subroutine47_0  ;; utf82win
+        BX       R12
+        DATA
+??Subroutine47_0:
+        DC32     utf82win
+        CFI EndBlock cfiBlock76
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock77 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??new_Message??rA:
+        LDR      R12,??Subroutine48_0  ;; new_Message
+        BX       R12
+        DATA
+??Subroutine48_0:
+        DC32     new_Message
+        CFI EndBlock cfiBlock77
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock78 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??new_Dialog??rA:
+        LDR      R12,??Subroutine49_0  ;; new_Dialog
+        BX       R12
+        DATA
+??Subroutine49_0:
+        DC32     new_Dialog
+        CFI EndBlock cfiBlock78
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock79 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??del_Messages??rA:
+        LDR      R12,??Subroutine50_0  ;; del_Messages
+        BX       R12
+        DATA
+??Subroutine50_0:
+        DC32     del_Messages
+        CFI EndBlock cfiBlock79
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        END
+// 
+// 4 616 bytes in segment CODE
+// 1 871 bytes in segment DATA_C
+// 1 648 bytes in segment DATA_Z
+//    12 bytes in segment INITTAB
+// 
+// 4 284 bytes of CODE  memory (+ 344 bytes shared)
+// 1 871 bytes of CONST memory
+// 1 648 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: 1

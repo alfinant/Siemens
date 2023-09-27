@@ -1,0 +1,773 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    17/Feb/2014  09:39:43 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\main.c                              #
+#    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\main.c -D SGOLD -lCN                #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\Release_SGOLD\List\ -la             #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\Release_SGOLD\List\ -o              #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\Release_SGOLD\Obj\ -z9 --cpu_mode   #
+#                       arm --endian little --cpu ARM926EJ-S --stack_align   #
+#                       4 --interwork -e --fpu None --dlib_config            #
+#                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl5 #
+#                       tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens\I #
+#                       AR\ARM\INC\ --inline_threshold=2                     #
+#    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\Release_SGOLD\List\main.lst         #
+#    Object file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinan #
+#                       t\PWM_Test_Sound\Release_SGOLD\Obj\main.r79          #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\PWM_Test_Sound\main.c
+      1          #include <swilib.h>
+      2          #include <siemens/nu_swilib.h>
+      3          #include <siemens/capcom.h>
+      4          #include <siemens/i2c.h>
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cw_pmu(I2C_MSG *, short, char *)
+   \                     i2cw_pmu:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   3130A0E3           MOV      R3,#+49
+   \   00000008   0030C0E5           STRB     R3,[R0, #+0]
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0130C0E5           STRB     R3,[R0, #+1]
+   \   00000014   0530C0E5           STRB     R3,[R0, #+5]
+   \   00000018   0430C0E5           STRB     R3,[R0, #+4]
+   \   0000001C   B210C0E1           STRH     R1,[R0, #+2]
+   \   00000020   B630C0E1           STRH     R3,[R0, #+6]
+   \   00000024   0C2080E5           STR      R2,[R0, #+12]
+   \   00000028   083080E5           STR      R3,[R0, #+8]
+   \   0000002C   0110A0E3           MOV      R1,#+1
+   \   00000030   101080E5           STR      R1,[R0, #+16]
+   \   00000034   EC0200EF           SWI      +748
+   \   00000038   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int i2cr_pmu(I2C_MSG *, short, char *)
+   \                     i2cr_pmu:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   3130A0E3           MOV      R3,#+49
+   \   00000008   0030C0E5           STRB     R3,[R0, #+0]
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0130C0E5           STRB     R3,[R0, #+1]
+   \   00000014   0530C0E5           STRB     R3,[R0, #+5]
+   \   00000018   0430C0E5           STRB     R3,[R0, #+4]
+   \   0000001C   B210C0E1           STRH     R1,[R0, #+2]
+   \   00000020   B630C0E1           STRH     R3,[R0, #+6]
+   \   00000024   0C2080E5           STR      R2,[R0, #+12]
+   \   00000028   083080E5           STR      R3,[R0, #+8]
+   \   0000002C   0110A0E3           MOV      R1,#+1
+   \   00000030   101080E5           STR      R1,[R0, #+16]
+   \   00000034   ED0200EF           SWI      +749
+   \   00000038   0080BDE8           POP      {PC}             ;; return
+      5          #include <siemens/gpio.h>
+      6          #include <siemens/interrupt.h>
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int disable_interrupts(void)
+   \                     disable_interrupts:
+   \   00000000   00000FE1           MRS      R0,CPSR
+   \   00000004   1F1000E2           AND      R1,R0,#0x1F
+   \   00000008   100051E3           CMP      R1,#+16
+   \   0000000C   0000001A           BNE      ??disable_interrupts_0
+   \   00000010   000000EF           SWI 0            
+   \                     ??disable_interrupts_0:
+   \   00000014   C01090E3           ORRS     R1,R0,#0xC0
+   \   00000018   01F029E1           MSR      CPSR,R1
+   \   0000001C   C00000E2           AND      R0,R0,#0xC0
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void enable_interrupts(int)
+   \                     enable_interrupts:
+   \   00000000   00100FE1           MRS      R1,CPSR
+   \   00000004   1F2001E2           AND      R2,R1,#0x1F
+   \   00000008   100052E3           CMP      R2,#+16
+   \   0000000C   0000001A           BNE      ??enable_interrupts_0
+   \   00000010   000000EF           SWI 0            
+   \                     ??enable_interrupts_0:
+   \   00000014   C010C1E3           BIC      R1,R1,#0xC0
+   \   00000018   010090E1           ORRS     R0,R0,R1
+   \   0000001C   00F029E1           MSR      CPSR,R0
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+      7          #include <siemens/pin_control.h>
+
+   \                                 In segment DATA_I, align 4, align-sorted
+   \   uint32_t __data connector[13]
+   \                     connector:
+   \   00000000                      DS8 52
+   \   00000034                      REQUIRE `?<Initializer for connector>`
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void pinMode(uint8_t, uint8_t)
+   \                     pinMode:
+   \   00000000   ........           LDR      R2,??DataTable2  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   020051E3           CMP      R1,#+2
+   \   00000014   501EA003           MOVEQ    R1,#+1280
+   \   00000018   0200000A           BEQ      ??pinMode_0
+   \   0000001C   000051E3           CMP      R1,#+0
+   \   00000020   0100001A           BNE      ??pinMode_1
+   \   00000024   401FA0E3           MOV      R1,#+256
+   \                     ??pinMode_0:
+   \   00000028   ........           B        ?Subroutine16
+   \                     ??pinMode_1:
+   \   0000002C   010051E3           CMP      R1,#+1
+   \   00000030   841DA003           MOVEQ    R1,#+8448
+   \   00000034   ........           B        ?Subroutine15
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine15:
+   \   00000000   00108005           STREQ    R1,[R0, #+0]
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine16:
+   \   00000000   001080E5           STR      R1,[R0, #+0]
+   \   00000004   1EFF2FE1           BX       LR
+   \                     ??Subroutine16_0:
+   \   00000008   100010F4           DC32     0xfffffffff4100010
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void digitalWrite(uint8_t, uint8_t)
+   \                     digitalWrite:
+   \   00000000   ........           LDR      R2,??DataTable2  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   010051E3           CMP      R1,#+1
+   \   00000014   00109005           LDREQ    R1,[R0, #+0]
+   \   00000018   801F8103           ORREQ    R1,R1,#0x200
+   \   0000001C   00108005           STREQ    R1,[R0, #+0]
+   \   00000020   1EFF2F01           BXEQ     LR
+   \   00000024   000051E3           CMP      R1,#+0
+   \   00000028   00109005           LDREQ    R1,[R0, #+0]
+   \   0000002C   801FC103           BICEQ    R1,R1,#0x200
+   \   00000030                      REQUIRE ?Subroutine15
+   \   00000030                      ;; // Fall through to label ?Subroutine15
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int digitalRead(uint8_t)
+   \                     digitalRead:
+   \   00000000   ........           LDR      R2,??DataTable2  ;; connector
+   \   00000004   0010A0E3           MOV      R1,#+0
+   \   00000008   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   00009015           LDRNE    R0,[R0, #+0]
+   \   00000014   801F0012           ANDNE    R1,R0,#0x200
+   \   00000018   0100A0E1           MOV      R0,R1
+   \   0000001C   1EFF2FE1           BX       LR               ;; return
+      8          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+      9          int Prescaler = 1;
+   \                     Prescaler:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for Prescaler>`
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     10          int Frequency = 1000;
+   \                     Frequency:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for Frequency>`
+     11          int Dutycycle = 50; 
+   \                     Dutycycle:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for Dutycycle>`
+     12          
+     13          I2C_MSG msg_40; char dat_40 = 0x26;
+   \                     dat_40:
+   \   00000008                      DS8 1
+   \   00000009                      REQUIRE `?<Initializer for dat_40>`
+     14          I2C_MSG msg_42; char dat_42 = 0x04;
+   \                     dat_42:
+   \   00000009                      DS8 1
+   \   0000000A                      REQUIRE `?<Initializer for dat_42>`
+   \   0000000A                      DS8 2
+   \                     msg_40:
+   \   0000000C                      DS8 20
+   \   00000020                      REQUIRE `?<Initializer for msg_40>`
+   \                     msg_42:
+   \   00000020                      DS8 20
+   \   00000034                      REQUIRE `?<Initializer for msg_42>`
+     15          
+     16          #ifdef  NEWSGOLD
+     17          #define PM_RINGIN   GPIO_RF_STR1
+     18          #else
+     19          #define PM_RINGIN   GPIO_CC_VZ
+     20          #endif
+     21          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     22          void pwm_test_sound()
+     23          {
+   \                     pwm_test_sound:
+   \   00000000   31402DE9           PUSH     {R0,R4,R5,LR}
+     24            int period;
+     25          
+     26             PM_RINGIN = (ALT2 << OS); 
+   \   00000004   5C019FE5           LDR      R0,??pwm_test_sound_0  ;; 0xfffffffff4300098
+     27             int input_clk = hw_clk;
+     28             int saved = disable_interrupts();
+     29             period = divide(Frequency << 10, input_clk) << 10;
+   \   00000008   ........           LDR      R5,??DataTable5  ;; Frequency
+   \   0000000C   3010A0E3           MOV      R1,#+48
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+   \   00000014   ........           BL       disable_interrupts
+   \   00000018   ........           LDR      R1,??DataTable6  ;; 0x18cba80
+   \   0000001C   0040A0E1           MOV      R4,R0
+   \   00000020   000095E5           LDR      R0,[R5, #+0]
+   \   00000024   0005A0E1           LSL      R0,R0,#+10
+   \   00000028   BC0000EF           SWI      +188
+     30             CCU1->CLK = 0x100;
+   \   0000002C   F014A0E3           MOV      R1,#-268435456
+   \   00000030   411681E3           ORR      R1,R1,#0x4100000
+   \   00000034   402FA0E3           MOV      R2,#+256
+   \   00000038   002081E5           STR      R2,[R1, #+0]
+     31             CCU1->T0REL = 65536 - period;
+   \   0000003C   28219FE5           LDR      R2,??pwm_test_sound_0+0x4  ;; 0xfffffffff4100044
+   \   00000040   0005A0E1           LSL      R0,R0,#+10
+   \   00000044   401B60E2           RSB      R1,R0,#+65536
+   \   00000048   001082E5           STR      R1,[R2, #+0]
+     32             CCU1->T0 = 65536 - period; 
+   \   0000004C   0420C2E3           BIC      R2,R2,#0x4
+   \   00000050   001082E5           STR      R1,[R2, #+0]
+     33             CCU1->CC5 = 65536 - divide(1000, Dutycycle * period * 10);
+   \   00000054   041095E5           LDR      R1,[R5, #+4]
+   \   00000058   900101E0           MUL      R1,R0,R1
+   \   0000005C   0A00A0E3           MOV      R0,#+10
+   \   00000060   900101E0           MUL      R1,R0,R1
+   \   00000064   FA0FA0E3           MOV      R0,#+1000
+   \   00000068   BC0000EF           SWI      +188
+   \   0000006C   FC109FE5           LDR      R1,??pwm_test_sound_0+0x8  ;; 0xfffffffff4100064
+   \   00000070   400B60E2           RSB      R0,R0,#+65536
+   \   00000074   ........           STR      R0,[R1], #-52
+     34             
+     35             CCU1->CCSEM &= ~ _BV(CCSEM5);    //отключаем режим одного события
+   \   00000078   002091E5           LDR      R2,[R1, #+0]
+   \   0000007C   2000E0E3           MVN      R0,#+32
+   \   00000080   022000E0           AND      R2,R0,R2
+   \   00000084   ........           STR      R2,[R1], #-4
+     36             CCU1->CCSEE &= ~ _BV(CCSEE5);     
+   \   00000088   002091E5           LDR      R2,[R1, #+0]
+   \   0000008C   020000E0           AND      R0,R0,R2
+   \   00000090   000081E5           STR      R0,[R1, #+0]
+     37             CCU1->CCM1  |=  (MODE_7 << CCM1_MOD5); /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   00000094   140041E2           SUB      R0,R1,#+20
+   \   00000098   001090E5           LDR      R1,[R0, #+0]
+   \   0000009C   701081E3           ORR      R1,R1,#0x70
+   \   000000A0   001080E5           STR      R1,[R0, #+0]
+     38             CCU1->CCM1  &= ~ _BV(CCM1_ACC5);    /* Обнуляем  бит,регистр захвата/сравнения CC5 будет привязан к таймеру T0 */
+   \   000000A4   001090E5           LDR      R1,[R0, #+0]
+   \   000000A8   8010C1E3           BIC      R1,R1,#0x80
+   \   000000AC   001080E5           STR      R1,[R0, #+0]
+     39          
+     40             CCU1->CCIOC &= ~ _BV(PL);
+   \   000000B0   101080E2           ADD      R1,R0,#+16
+   \   000000B4   000091E5           LDR      R0,[R1, #+0]
+   \   000000B8   0200C0E3           BIC      R0,R0,#0x2
+   \   000000BC   000081E5           STR      R0,[R1, #+0]
+     41             CCU1->CCIOC |= _BV(STAG);      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз */
+   \   000000C0   000091E5           LDR      R0,[R1, #+0]
+   \   000000C4   040080E3           ORR      R0,R0,#0x4
+   \   000000C8   000081E5           STR      R0,[R1, #+0]
+     42             CCU1->CCIOC &= ~ _BV(PDS);
+   \   000000CC   002091E5           LDR      R2,[R1, #+0]
+   \   000000D0   0800E0E3           MVN      R0,#+8
+   \   000000D4   022000E0           AND      R2,R0,R2
+   \   000000D8   002081E5           STR      R2,[R1, #+0]
+     43          
+     44             CCU1->T0IC |= _BV(IC_AC);
+   \   000000DC   D41081E3           ORR      R1,R1,#0xD4
+   \   000000E0   002091E5           LDR      R2,[R1, #+0]
+   \   000000E4   402C82E3           ORR      R2,R2,#0x4000
+   \   000000E8   002081E5           STR      R2,[R1, #+0]
+     45             CCU1->T0IC  &= ~ _BV(IC_IE);     /* отключаем прерывание при переполнении таймера T0 */
+   \   000000EC   003091E5           LDR      R3,[R1, #+0]
+   \   000000F0   402DE0E3           MVN      R2,#+4096
+   \   000000F4   033002E0           AND      R3,R2,R3
+   \   000000F8   003081E5           STR      R3,[R1, #+0]
+     46             CCU1->CC5IC |= _BV(IC_AC); 
+   \   000000FC   1C10C1E3           BIC      R1,R1,#0x1C
+   \   00000100   003091E5           LDR      R3,[R1, #+0]
+   \   00000104   403C83E3           ORR      R3,R3,#0x4000
+   \   00000108   003081E5           STR      R3,[R1, #+0]
+     47             CCU1->CC5IC &= ~ _BV(IC_IE);     /* отключаем прерывание при совпадении */
+   \   0000010C   003091E5           LDR      R3,[R1, #+0]
+   \   00000110   032002E0           AND      R2,R2,R3
+   \   00000114   ........           STR      R2,[R1], #-208
+     48             
+     49             CCU1->T01CON  &= ~ _BV(T0I);  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   00000118   002091E5           LDR      R2,[R1, #+0]
+   \   0000011C   0120C2E3           BIC      R2,R2,#0x1
+   \   00000120   002081E5           STR      R2,[R1, #+0]
+     50             CCU1->T01CON  &= ~ _BV(T0M);  /* обнуляем бит-режим таймера */
+   \   00000124   002091E5           LDR      R2,[R1, #+0]
+   \   00000128   020000E0           AND      R0,R0,R2
+   \   0000012C   000081E5           STR      R0,[R1, #+0]
+     51             CCU1->T01CON  |= _BV(T0R);    /* установка этого бита запускает таймер */
+   \   00000130   000091E5           LDR      R0,[R1, #+0]
+   \   00000134   400080E3           ORR      R0,R0,#0x40
+   \   00000138   000081E5           STR      R0,[R1, #+0]
+     52             enable_interrupts(saved);
+   \   0000013C   0400A0E1           MOV      R0,R4
+   \   00000140   ........           BL       enable_interrupts
+     53          
+     54             i2cw_pmu(&msg_42, 0x42, &dat_42); //устанавливаем PM_RINGIN источником входного сигнала на Dialog
+   \   00000144   092085E2           ADD      R2,R5,#+9
+   \   00000148   4210A0E3           MOV      R1,#+66
+   \   0000014C   200085E2           ADD      R0,R5,#+32
+   \   00000150   ........           BL       i2cw_pmu
+     55             i2cw_pmu(&msg_40, 0x40, &dat_40); //громкость
+   \   00000154   082085E2           ADD      R2,R5,#+8
+   \   00000158   4010A0E3           MOV      R1,#+64
+   \   0000015C   0C0085E2           ADD      R0,R5,#+12
+   \   00000160   ........           BL       i2cw_pmu
+     56          }
+   \   00000164   3180BDE8           POP      {R0,R4,R5,PC}    ;; return
+   \                     ??pwm_test_sound_0:
+   \   00000168   980030F4           DC32     0xfffffffff4300098
+   \   0000016C   440010F4           DC32     0xfffffffff4100044
+   \   00000170   640010F4           DC32     0xfffffffff4100064
+     57          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     58          void pwm_disable()
+     59          {
+     60            CCU1->T01CON &= ~ _BV(T0R);
+   \                     pwm_disable:
+   \   00000000   ........           LDR      R0,??Subroutine16_0  ;; 0xfffffffff4100010
+   \   00000004   001090E5           LDR      R1,[R0, #+0]
+   \   00000008   4010C1E3           BIC      R1,R1,#0x40
+   \   0000000C   ........           STR      R1,[R0], #+24
+     61            CCU1->CCIOC &= ~ _BV(STAG);  //
+   \   00000010   001090E5           LDR      R1,[R0, #+0]
+   \   00000014   0410C1E3           BIC      R1,R1,#0x4
+   \   00000018   ........           STR      R1,[R0], #-16
+     62            CCU1->CCM1 &= ~ (MODE_7 << CCM1_MOD5);  
+   \   0000001C   001090E5           LDR      R1,[R0, #+0]
+   \   00000020   7010C1E3           BIC      R1,R1,#0x70
+   \   00000024                      REQUIRE ?Subroutine16
+   \   00000024                      ;; // Fall through to label ?Subroutine16
+     63          }
+     64          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     65          void test_led_blink()
+     66          {
+     67            int period;
+     68            
+     69             GPIO_USART0_RXD = (ALT2 << OS);
+   \                     test_led_blink:
+   \   00000000   10019FE5           LDR      R0,??test_led_blink_0  ;; 0xfffffffff430004c
+   \   00000004   10402DE9           PUSH     {R4,LR}
+     70             
+     71             period = divide(Frequency << 10, hw_clk) << 10;
+   \   00000008   ........           LDR      R4,??DataTable5  ;; Frequency
+   \   0000000C   3010A0E3           MOV      R1,#+48
+   \   00000010   001080E5           STR      R1,[R0, #+0]
+   \   00000014   ........           LDR      R1,??DataTable6  ;; 0x18cba80
+   \   00000018   000094E5           LDR      R0,[R4, #+0]
+   \   0000001C   0005A0E1           LSL      R0,R0,#+10
+   \   00000020   BC0000EF           SWI      +188
+   \   00000024   0005A0E1           LSL      R0,R0,#+10
+     72             CCU0->T0REL = 65536 - period;
+   \   00000028   4410A0E3           MOV      R1,#+68
+   \   0000002C   F41481E3           ORR      R1,R1,#0xF4000000
+   \   00000030   402B60E2           RSB      R2,R0,#+65536
+   \   00000034   002081E5           STR      R2,[R1, #+0]
+     73             CCU0->T0 = CCU0->T0REL;
+   \   00000038   0410C1E3           BIC      R1,R1,#0x4
+   \   0000003C   042081E3           ORR      R2,R1,#0x4
+   \   00000040   002092E5           LDR      R2,[R2, #+0]
+   \   00000044   002081E5           STR      R2,[R1, #+0]
+     74             CCU0->CC2 = 65536 - divide(1000, Dutycycle * period *10);
+   \   00000048   041094E5           LDR      R1,[R4, #+4]
+   \   0000004C   900101E0           MUL      R1,R0,R1
+   \   00000050   0A00A0E3           MOV      R0,#+10
+   \   00000054   900101E0           MUL      R1,R0,R1
+   \   00000058   FA0FA0E3           MOV      R0,#+1000
+   \   0000005C   BC0000EF           SWI      +188
+   \   00000060   400B60E2           RSB      R0,R0,#+65536
+   \   00000064   5810A0E3           MOV      R1,#+88
+   \   00000068   F41481E3           ORR      R1,R1,#0xF4000000
+   \   0000006C   ........           STR      R0,[R1], #-40
+     75             
+     76             CCU0->CCSEM &= ~ _BV(CCSEM2);    //отключаем режим одного события
+   \   00000070   002091E5           LDR      R2,[R1, #+0]
+   \   00000074   0400E0E3           MVN      R0,#+4
+   \   00000078   022000E0           AND      R2,R0,R2
+   \   0000007C   ........           STR      R2,[R1], #-4
+     77             CCU0->CCSEE &= ~ _BV(CCSEE2);     
+   \   00000080   002091E5           LDR      R2,[R1, #+0]
+   \   00000084   020000E0           AND      R0,R0,R2
+   \   00000088   000081E5           STR      R0,[R1, #+0]
+     78             CCU0->CCM0  |=   (MODE_7 << CCM0_MOD2) ; /* Режим сравнения 3: Выходной контакт устанавливается на каждое совпадение.При переполнение таймера выходной контакт сбрасывается.Только одно прерывание за период таймера */
+   \   0000008C   180041E2           SUB      R0,R1,#+24
+   \   00000090   001090E5           LDR      R1,[R0, #+0]
+   \   00000094   701E81E3           ORR      R1,R1,#0x700
+   \   00000098   001080E5           STR      R1,[R0, #+0]
+     79             CCU0->CCM0  &= ~ _BV(CCM0_ACC2);  /* Обнуляем  бит,регистр захвата/сравнения CC5 будет привязан к таймеру T0 */
+   \   0000009C   001090E5           LDR      R1,[R0, #+0]
+   \   000000A0   801EC1E3           BIC      R1,R1,#0x800
+   \   000000A4   ........           STR      R1,[R0], #+20
+     80             
+     81             CCU0->CCIOC |= _BV(STAG);      /* Если не установлен этот бит,значение пределителя увеличится в 8 раз.Отключаем.. */
+   \   000000A8   001090E5           LDR      R1,[R0, #+0]
+   \   000000AC   041081E3           ORR      R1,R1,#0x4
+   \   000000B0   001080E5           STR      R1,[R0, #+0]
+     82                   
+     83             CCU0->T0IC  |= _BV(IC_AC);   
+   \   000000B4   D40080E3           ORR      R0,R0,#0xD4
+   \   000000B8   001090E5           LDR      R1,[R0, #+0]
+   \   000000BC   401C81E3           ORR      R1,R1,#0x4000
+   \   000000C0   001080E5           STR      R1,[R0, #+0]
+     84             CCU0->T0IC  &= ~ _BV(IC_IE);   /* отключаем прерывание при переполнении таймера T0 */ 
+   \   000000C4   002090E5           LDR      R2,[R0, #+0]
+   \   000000C8   401DE0E3           MVN      R1,#+4096
+   \   000000CC   022001E0           AND      R2,R1,R2
+   \   000000D0   002080E5           STR      R2,[R0, #+0]
+     85             CCU0->CC2IC |= _BV(IC_AC);
+   \   000000D4   1000C0E3           BIC      R0,R0,#0x10
+   \   000000D8   002090E5           LDR      R2,[R0, #+0]
+   \   000000DC   402C82E3           ORR      R2,R2,#0x4000
+   \   000000E0   002080E5           STR      R2,[R0, #+0]
+     86             CCU0->CC2IC &= ~ _BV(IC_IE);    /* отключаем прерывание при совпадении */
+   \   000000E4   002090E5           LDR      R2,[R0, #+0]
+   \   000000E8   021001E0           AND      R1,R1,R2
+   \   000000EC   ........           STR      R1,[R0], #-220
+     87             
+     88             CCU0->T01CON  &= ~ _BV(T0I);  /* пределитель 1, входная частота для таймера 26 Мгц */
+   \   000000F0   001090E5           LDR      R1,[R0, #+0]
+   \   000000F4   0110C1E3           BIC      R1,R1,#0x1
+   \   000000F8   001080E5           STR      R1,[R0, #+0]
+     89             CCU0->T01CON  &= ~ _BV(T0M);  /* режим таймера */
+   \   000000FC   001090E5           LDR      R1,[R0, #+0]
+   \   00000100   0810C1E3           BIC      R1,R1,#0x8
+   \   00000104   001080E5           STR      R1,[R0, #+0]
+     90             CCU0->T01CON  |= _BV(T0R);    /* cтарт таймера */  
+   \   00000108   001090E5           LDR      R1,[R0, #+0]
+   \   0000010C   401081E3           ORR      R1,R1,#0x40
+   \   00000110   001080E5           STR      R1,[R0, #+0]
+     91          }
+   \   00000114   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??test_led_blink_0:
+   \   00000118   4C0030F4           DC32     0xfffffffff430004c
+     92          
+     93          
+
+   \                                 In segment DATA_C, align 4, align-sorted
+     94          const int minus11=-11;
+   \                     minus11:
+   \   00000000   F5FFFFFF           DC32 -11
+     95          
+     96          typedef struct
+     97          {
+     98            CSM_RAM csm;
+     99          }MAIN_CSM;
+    100          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    101          int maincsm_id;
+   \                     maincsm_id:
+   \   00000000                      DS8 4
+    102          
+    103          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    104          int maincsm_onmessage(CSM_RAM* data,GBS_MSG* msg)
+    105          {
+    106            return (1);  
+   \                     maincsm_onmessage:
+   \   00000000   0100A0E3           MOV      R0,#+1
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+    107          }
+    108          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    109          static void maincsm_oncreate(CSM_RAM *data)
+    110          {
+    111            pwm_test_sound();
+   \                     maincsm_oncreate:
+   \   00000000   ........           B        pwm_test_sound   ;; tailcall
+    112          }
+    113          
+    114          extern void kill_data(void *p, void (*func_p)(void *));
+
+   \                                 In segment CODE, align 4, keep-with-next
+    115          void ElfKiller(void)
+    116          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+    117            extern void *ELF_BEGIN;
+    118            kill_data(&ELF_BEGIN,(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; ELF_BEGIN
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     ELF_BEGIN
+    119          }
+    120          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    121          static void maincsm_onclose(CSM_RAM *csm)
+    122          {
+   \                     maincsm_onclose:
+   \   00000000   00402DE9           PUSH     {LR}
+    123              pwm_disable();
+   \   00000004   ........           BL       pwm_disable
+    124              SUBPROC((void *)ElfKiller);
+   \   00000008   04009FE5           LDR      R0,??maincsm_onclose_0  ;; ElfKiller
+   \   0000000C   710100EF           SWI      +369
+    125          }
+   \   00000010   0080BDE8           POP      {PC}             ;; return
+   \                     ??maincsm_onclose_0:
+   \   00000014   ........           DC32     ElfKiller
+    126          
+    127          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    128          static unsigned short maincsm_name_body[140];
+   \                     maincsm_name_body:
+   \   00000000                      DS8 280
+    129          
+    130          static const struct
+    131          {
+    132            CSM_DESC maincsm;
+    133            WSHDR maincsm_name;
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "PWM_TestSound">`:
+   \   00000000   50574D5F5465       DC8 "PWM_TestSound"
+   \              7374536F756E
+   \              6400        
+   \   0000000E   0000               DC8 0, 0
+   \   00000010   ............       DC32 maincsm_onmessage, maincsm_oncreate, maincsm_onclose, 40, 1
+   \              ............
+   \              280000000100
+   \              0000        
+   \   00000024   ............       DC32 minus11, maincsm_name_body, 55AACCCCH, 3333AA55H, 0
+   \              ....CCCCAA55
+   \              55AA33330000
+   \              0000        
+   \   00000038   8B00               DC16 139
+   \   0000003A   0000               DC8 0, 0
+    134          }MAINCSM =
+    135          {
+    136            {
+    137            maincsm_onmessage,
+    138            maincsm_oncreate,
+    139          #ifdef NEWSGOLD
+    140            0,
+    141            0,
+    142            0,
+    143            0,
+    144          #endif
+    145            maincsm_onclose,
+    146            sizeof(MAIN_CSM),
+    147            1,
+    148            &minus11
+    149            },
+    150            {
+    151              maincsm_name_body,
+    152              NAMECSM_MAGIC1,
+    153              NAMECSM_MAGIC2,
+    154              0x0,
+    155              139
+    156            }
+    157          };
+    158          
+    159          
+    160          static void UpdateCSMname(void)
+    161          {
+    162            wsprintf((WSHDR *)(&MAINCSM.maincsm_name),"PWM_TestSound");
+    163          }
+    164          
+    165          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    166          int main(void)
+    167          {  
+   \                     main:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    168             CSM_RAM *save_cmpc;
+    169             char dummy[sizeof(MAIN_CSM)];
+    170             UpdateCSMname();  
+   \   00000004   6C409FE5           LDR      R4,??main_0      ;; `?<Constant "PWM_TestSound">`
+   \   00000008   28D04DE2           SUB      SP,SP,#+40
+   \   0000000C   0410A0E1           MOV      R1,R4
+   \   00000010   280084E2           ADD      R0,R4,#+40
+   \   00000014   240100EF           SWI      +292
+    171             LockSched();
+   \   00000018   460100EF           SWI      +326
+    172             save_cmpc=CSM_root()->csm_q->current_msg_processing_csm;
+   \   0000001C   068100EF           SWI      +33030
+   \   00000020   080090E5           LDR      R0,[R0, #+8]
+   \   00000024   045090E5           LDR      R5,[R0, #+4]
+    173             CSM_root()->csm_q->current_msg_processing_csm=CSM_root()->csm_q->csm.first;
+   \   00000028   068100EF           SWI      +33030
+   \   0000002C   0060A0E1           MOV      R6,R0
+   \   00000030   068100EF           SWI      +33030
+   \   00000034   080090E5           LDR      R0,[R0, #+8]
+   \   00000038   081096E5           LDR      R1,[R6, #+8]
+   \   0000003C   080090E5           LDR      R0,[R0, #+8]
+    174             maincsm_id=CreateCSM(&MAINCSM.maincsm,dummy,0);
+   \   00000040   0020A0E3           MOV      R2,#+0
+   \   00000044   040081E5           STR      R0,[R1, #+4]
+   \   00000048   0D10A0E1           MOV      R1,SP
+   \   0000004C   100084E2           ADD      R0,R4,#+16
+   \   00000050   070100EF           SWI      +263
+   \   00000054   20109FE5           LDR      R1,??main_0+0x4  ;; maincsm_id
+   \   00000058   000081E5           STR      R0,[R1, #+0]
+    175             CSM_root()->csm_q->current_msg_processing_csm=save_cmpc;
+   \   0000005C   068100EF           SWI      +33030
+   \   00000060   080090E5           LDR      R0,[R0, #+8]
+   \   00000064   045080E5           STR      R5,[R0, #+4]
+    176             UnlockSched();
+   \   00000068   470100EF           SWI      +327
+    177             return 0;
+   \   0000006C   0000A0E3           MOV      R0,#+0
+   \   00000070   28D08DE2           ADD      SP,SP,#+40
+   \   00000074   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??main_0:
+   \   00000078   ........           DC32     `?<Constant "PWM_TestSound">`
+   \   0000007C   ........           DC32     maincsm_id
+    178          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   ........           DC32     connector
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   ........           DC32     Frequency
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   80BA8C01           DC32     0x18cba80
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for connector>`:
+   \   00000000   000000000000       DC32 0, 0, 0, 4096786512, 4096786508, 4096786520, 4096786516
+   \              000000000000
+   \              500030F44C00
+   \              30F4580030F4
+   \              540030F4    
+   \   0000001C   5C0030F40000       DC32 4096786524, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              000000000000
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for Prescaler>`:
+   \   00000000   01000000           DC32 1
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for Frequency>`:
+   \   00000000   E8030000           DC32 1000
+   \                     `?<Initializer for Dutycycle>`:
+   \   00000004   32000000           DC32 50
+   \                     `?<Initializer for dat_40>`:
+   \   00000008   26                 DC8 38
+   \                     `?<Initializer for dat_42>`:
+   \   00000009   04                 DC8 4
+   \   0000000A   0000               DC8 0, 0
+   \                     `?<Initializer for msg_40>`:
+   \   0000000C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000        
+   \                     `?<Initializer for msg_42>`:
+   \   00000020   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000        
+    179          
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     ElfKiller              4
+     digitalRead            0
+     digitalWrite           0
+     disable_interrupts     0
+     enable_interrupts      0
+     i2cr_pmu               4
+     i2cw_pmu               4
+     main                  56
+     maincsm_onclose        4
+     maincsm_oncreate       4
+     maincsm_onmessage      0
+     pinMode                0
+     pwm_disable            0
+     pwm_test_sound        16
+     test_led_blink         8
+
+
+   Segment part sizes:
+
+     Function/Label               Bytes
+     --------------               -----
+     i2cw_pmu                       60
+     i2cr_pmu                       60
+     disable_interrupts             36
+     enable_interrupts              36
+     connector                      52
+     pinMode                        56
+     ?Subroutine15                   8
+     ?Subroutine16                  12
+     digitalWrite                   48
+     digitalRead                    32
+     Prescaler                       4
+     Frequency                      52
+     pwm_test_sound                372
+     pwm_disable                    36
+     test_led_blink                284
+     minus11                         4
+     maincsm_id                      4
+     maincsm_onmessage               8
+     maincsm_oncreate                4
+     ElfKiller                      28
+     maincsm_onclose                24
+     maincsm_name_body             280
+     ?<Constant "PWM_TestSound">    60
+     main                          128
+     ??DataTable2                    4
+     ??DataTable5                    4
+     ??DataTable6                    4
+     ?<Initializer for connector>   52
+     ?<Initializer for Prescaler>    4
+     ?<Initializer for Frequency>   52
+      Others                        96
+
+ 
+ 1 316 bytes in segment CODE
+    64 bytes in segment DATA_C
+   108 bytes in segment DATA_I
+   108 bytes in segment DATA_ID
+   284 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 244 bytes of CODE  memory (+ 96 bytes shared)
+   172 bytes of CONST memory
+   392 bytes of DATA  memory
+
+Errors: none
+Warnings: none

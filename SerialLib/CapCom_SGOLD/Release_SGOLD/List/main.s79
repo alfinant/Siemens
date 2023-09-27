@@ -1,0 +1,230 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   12/Jul/2013  20:59:07 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\main.c                             /
+//    Command line    =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\main.c -D NEWSGOLD -lCN            /
+//                       S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\Release_SGOLD\List\ -la            /
+//                       S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\Release_SGOLD\List\ -o             /
+//                       S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\Release_SGOLD\Obj\ -z9 --cpu_mode  /
+//                       arm --endian little --cpu ARM926EJ-S --stack_align  /
+//                       4 --interwork -e --fpu None --dlib_config           /
+//                       S:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl /
+//                       5tpainl8n.h -I S:\Users\alfin_000\Documents\Siemens /
+//                       \IAR\ARM\INC\ --inline_threshold=2                  /
+//    List file       =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interf /
+//                       ace\CapCom_SGOLD\Release_SGOLD\List\main.s79        /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        MULTWEAK ??ElfKiller??rT
+        MULTWEAK ??kill_data??rA
+        MULTWEAK ??main??rT
+        PUBLIC ElfKiller
+        FUNCTION ElfKiller,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC main
+        FUNCTION main,0a03H
+        LOCFRAME CSTACK, 4, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+kill_data           SYMBOL "kill_data"
+ElfKiller           SYMBOL "ElfKiller"
+??ElfKiller??rT     SYMBOL "??rT", ElfKiller
+??kill_data??rA     SYMBOL "??rA", kill_data
+main                SYMBOL "main"
+??main??rT          SYMBOL "??rT", main
+
+        EXTERN kill_data
+        FUNCTION kill_data,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??ElfKiller??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE ElfKiller
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function ElfKiller
+        ARM
+ElfKiller:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        SWI      +32789
+        MOV      R1,R0
+        LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+        POP      {LR}             ;; Pop
+        CFI ?RET R14
+        CFI CFA R13+0
+        _BF      kill_data,??kill_data??rA  ;; tailcall
+        DATA
+??ElfKiller_0:
+        DC32     SFB(ELFBEGIN)
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??main??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE main
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function main
+        ARM
+main:
+        LDR      R1,??main_0      ;; 0xffffffffa11697e8
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R0,#+8
+        BLX      R1
+        LDR      R1,??main_0+0x4  ;; 0xffffffffa116a2b4
+        MOV      R0,#+8
+        BLX      R1
+        LDR      R2,??main_0+0x8  ;; 0xffffffffa116a478
+        MOV      R1,#+1
+        MOV      R0,#+8
+        BLX      R2
+        LDR      R1,??main_0      ;; 0xffffffffa11697e8
+        MOV      R0,#+9
+        BLX      R1
+        LDR      R2,??main_0+0xC  ;; 0xffffffffa116a920
+        MOV      R1,#+50
+        MOV      R0,#+9
+        BLX      R2
+        LDR      R1,??main_0+0x10  ;; `?<Constant "\\304\\350\\355.\\361\\342\\345\\362 \\342`
+        MOV      R0,#+1
+        SWI      +328
+        LDR      R0,??main_0+0x14  ;; ElfKiller
+        SWI      +369
+        MOV      R0,#+0
+        POP      {PC}             ;; return
+        DATA
+??main_0:
+        DC32     0xffffffffa11697e8
+        DC32     0xffffffffa116a2b4
+        DC32     0xffffffffa116a478
+        DC32     0xffffffffa116a920
+        DC32     `?<Constant "\\304\\350\\355.\\361\\342\\345\\362 \\342`
+        DC32     ElfKiller
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??kill_data??rA:
+        LDR      R12,??Subroutine2_0  ;; kill_data
+        BX       R12
+        DATA
+??Subroutine2_0:
+        DC32     kill_data
+        CFI EndBlock cfiBlock4
+
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\304\\350\\355.\\361\\342\\345\\362 \\342`:
+        DATA
+        DC8 "\304\350\355.\361\342\345\362 \342\352\353\376\367\345\355!"
+        DC8 0, 0
+
+        END
+// 
+// 172 bytes in segment CODE
+//  20 bytes in segment DATA_C
+// 
+// 152 bytes of CODE  memory (+ 20 bytes shared)
+//  20 bytes of CONST memory
+//
+//Errors: none
+//Warnings: none

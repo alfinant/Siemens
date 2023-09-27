@@ -1,0 +1,10 @@
+#ifdef CX70v56
+
+#endif
+
+#ifdef CX75v25
+
+#define PhyWAS_ExtPower_Process_Entry   (*(void(*)(void*))0xA0A911B4)
+#define ProcSendMSG            (*(void(*)(short cepid, int msg))0xA0204F40)
+
+#endif

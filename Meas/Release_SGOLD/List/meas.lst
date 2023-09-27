@@ -1,0 +1,375 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    26/Apr/2018  15:02:22 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\me #
+#                       as.c                                                 #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\me #
+#                       as.c -D SGOLD -lCN E:\Users\alfinant\Documents\Sieme #
+#                       ns\alfinant\Meas\Release_SGOLD\List\ -la             #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\ -o E:\Users\alfinant\Documents\Sie #
+#                       mens\alfinant\Meas\Release_SGOLD\Obj\ -z9            #
+#                       --cpu_mode arm --endian little --cpu ARM926EJ-S      #
+#                       --stack_align 4 --interwork -e --fpu None            #
+#                       --dlib_config E:\Users\alfinant\Documents\Siemens\IA #
+#                       R\ARM\LIB\dl5tpainl8n.h -I                           #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\List\meas.lst                            #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Meas\Re #
+#                       lease_SGOLD\Obj\meas.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\Meas\meas.c
+      1          #include "../inc/swilib.h"
+      2          #include "../inc/nu_swilib.h"
+      3          #include "clkman.h"
+      4          #include "irq_work.h"
+      5          
+      6          #ifdef NEWSGOLD
+      7          #include "../inc/reg8876.h"
+      8          #else
+      9          #include "../inc/reg8875.h"
+
+   \                                 In segment DATA_AN, at 0xf4c00000
+   \   MEAS_TypeDef __data MEAS
+   \                     MEAS:
+   \   00000000                      DS8 248
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 212
+     10          #endif
+     11          
+     12          #define PM_CHARGE_UC   GPIO.TOUT1
+     13          #define HISR_STACK_SIZE 512
+     14          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     15          int adata=0, adata0, adata1, adata2, adata3, adata4, adata5, adata6;
+   \                     adata:
+   \   00000000                      DS8 4
+   \                     adata0:
+   \   00000004                      DS8 4
+   \                     adata1:
+   \   00000008                      DS8 4
+   \                     adata2:
+   \   0000000C                      DS8 4
+   \                     adata3:
+   \   00000010                      DS8 4
+   \                     adata4:
+   \   00000014                      DS8 4
+   \                     adata5:
+   \   00000018                      DS8 4
+   \                     adata6:
+   \   0000001C                      DS8 4
+   \   00000020                      DS8 4
+     16          static void (*callback)(void)=NULL;
+     17          
+     18          NU_HISR hisr;
+     19          unsigned long hisr_stack[HISR_STACK_SIZE];
+     20          
+     21          IRQ_DESC irq_desc;
+     22          int saved_meas_ctrl2;
+   \                     saved_meas_ctrl2:
+   \   00000024                      DS8 4
+   \                     hisr:
+   \   00000028                      DS8 400
+   \                     hisr_stack:
+   \   000001B8                      DS8 2048
+   \                     irq_desc:
+   \   000009B8                      DS8 8
+     23          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     24          static void meas_rdyirq(int vector)//vector==0x46
+     25          {
+   \                     meas_rdyirq:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+     26            MEAS.RDYIRQ = 0x4000;//сбросили флаг
+   \   00000004   C004A0E3           MOV      R0,#-1073741824
+   \   00000008   D30580E3           ORR      R0,R0,#0x34C00000
+   \   0000000C   401CA0E3           MOV      R1,#+16384
+   \   00000010   F01080E5           STR      R1,[R0, #+240]
+     27            
+     28            if (MEAS.STAT & MEAS_READY)
+   \   00000014   1C1090E5           LDR      R1,[R0, #+28]
+   \   00000018   800411E3           TST      R1,#0x80000000
+   \   0000001C   1080BD08           POPEQ    {R4,PC}
+     29            {
+     30              MEAS.RDYIRQ = 0;//вообще отключили 
+     31              MEAS.CTRL2 &=~ MEAS_ENTRIG;
+     32              
+     33              adata0=MEAS.DATA0;
+   \   00000020   ........           LDR      R4,??DataTable2  ;; adata
+   \   00000024   0010A0E3           MOV      R1,#+0
+   \   00000028   F01080E5           STR      R1,[R0, #+240]
+   \   0000002C   181090E5           LDR      R1,[R0, #+24]
+   \   00000030   4015C1E3           BIC      R1,R1,#0x10000000
+   \   00000034   181080E5           STR      R1,[R0, #+24]
+   \   00000038   201090E5           LDR      R1,[R0, #+32]
+   \   0000003C   041084E5           STR      R1,[R4, #+4]
+     34              adata1=MEAS.DATA1;
+   \   00000040   241090E5           LDR      R1,[R0, #+36]
+   \   00000044   081084E5           STR      R1,[R4, #+8]
+     35              adata2=MEAS.DATA2;
+   \   00000048   281090E5           LDR      R1,[R0, #+40]
+   \   0000004C   0C1084E5           STR      R1,[R4, #+12]
+     36              adata3=MEAS.DATA3;
+   \   00000050   2C1090E5           LDR      R1,[R0, #+44]
+   \   00000054   101084E5           STR      R1,[R4, #+16]
+     37              adata4=MEAS.DATA4;
+   \   00000058   301090E5           LDR      R1,[R0, #+48]
+   \   0000005C   141084E5           STR      R1,[R4, #+20]
+     38              adata5=MEAS.DATA5;
+   \   00000060   341090E5           LDR      R1,[R0, #+52]
+   \   00000064   181084E5           STR      R1,[R4, #+24]
+     39              adata6=MEAS.DATA6;
+   \   00000068   381090E5           LDR      R1,[R0, #+56]
+   \   0000006C   1C1084E5           STR      R1,[R4, #+28]
+     40              
+     41              MEAS.CTRL2=saved_meas_ctrl2;//восстанавливаем
+   \   00000070   241094E5           LDR      R1,[R4, #+36]
+   \   00000074   181080E5           STR      R1,[R0, #+24]
+     42              irq_set_prio(0x72, 8);//разблокируем прерывание gsm_tpu_measur
+   \   00000078   0810A0E3           MOV      R1,#+8
+   \   0000007C   7200A0E3           MOV      R0,#+114
+   \   00000080   ........           _BLF     irq_set_prio,??irq_set_prio??rA
+     43              //irq_set_prio(0x46, 0);//блокируем. необязательно
+     44              
+     45              PM_CHARGE_UC &= ~ GPIO_ENAQ;//включаем зарядку
+   \   00000084   F004A0E3           MOV      R0,#-268435456
+   \   00000088   430680E3           ORR      R0,R0,#0x4300000
+   \   0000008C   D01090E5           LDR      R1,[R0, #+208]
+   \   00000090   801CC1E3           BIC      R1,R1,#0x8000
+   \   00000094   D01080E5           STR      R1,[R0, #+208]
+     46              NU_Activate_HISR(&hisr);
+   \   00000098   280084E2           ADD      R0,R4,#+40
+   \   0000009C   530300EF           SWI      +851
+     47            }
+     48          }
+   \   000000A0   1080BDE8           POP      {R4,PC}          ;; return
+     49          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     50          static void H_MEAS_RDY_M2_entry()
+     51          {
+   \                     H_MEAS_RDY_M2_entry:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+     52            //MEAS.DATAX: 0x800-значение при нуле, 0xFFF-макс. значение
+     53            adata = divide(7, adata0+adata1+adata2+adata3+adata4+adata5+adata6);
+   \   00000004   50409FE5           LDR      R4,??H_MEAS_RDY_M2_entry_0  ;; adata
+   \   00000008   040094E5           LDR      R0,[R4, #+4]
+   \   0000000C   081094E5           LDR      R1,[R4, #+8]
+   \   00000010   000081E0           ADD      R0,R1,R0
+   \   00000014   0C1094E5           LDR      R1,[R4, #+12]
+   \   00000018   000081E0           ADD      R0,R1,R0
+   \   0000001C   101094E5           LDR      R1,[R4, #+16]
+   \   00000020   000081E0           ADD      R0,R1,R0
+   \   00000024   141094E5           LDR      R1,[R4, #+20]
+   \   00000028   000081E0           ADD      R0,R1,R0
+   \   0000002C   181094E5           LDR      R1,[R4, #+24]
+   \   00000030   000081E0           ADD      R0,R1,R0
+   \   00000034   1C1094E5           LDR      R1,[R4, #+28]
+   \   00000038   001081E0           ADD      R1,R1,R0
+   \   0000003C   0700A0E3           MOV      R0,#+7
+   \   00000040   BC0000EF           SWI      +188
+   \   00000044   000084E5           STR      R0,[R4, #+0]
+     54            
+     55            if (callback)
+   \   00000048   200094E5           LDR      R0,[R4, #+32]
+   \   0000004C   000050E3           CMP      R0,#+0
+   \   00000050   1080BD08           POPEQ    {R4,PC}
+     56              callback();
+   \   00000054   30FF2FE1           BLX      R0
+     57          }
+   \   00000058   1080BDE8           POP      {R4,PC}          ;; return
+   \                     ??H_MEAS_RDY_M2_entry_0:
+   \   0000005C   ........           DC32     adata
+     58          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     59          int MEAS_Init(void callback_func())
+     60          {
+     61            STATUS status=NU_Create_HISR(&hisr, "H_MEAS_RDY_M2", H_MEAS_RDY_M2_entry, 0, (void*)hisr_stack, HISR_STACK_SIZE);
+     62            
+     63            if (status==NU_SUCCESS)
+   \                     MEAS_Init:
+   \   00000000   70209FE5           LDR      R2,??MEAS_Init_0  ;; H_MEAS_RDY_M2_entry
+   \   00000004   70109FE5           LDR      R1,??MEAS_Init_0+0x4  ;; `?<Constant "H_MEAS_RDY_M2">`
+   \   00000008   30402DE9           PUSH     {R4,R5,LR}
+   \   0000000C   ........           LDR      R5,??DataTable2  ;; adata
+   \   00000010   0040A0E1           MOV      R4,R0
+   \   00000014   800FA0E3           MOV      R0,#+512
+   \   00000018   01002DE9           PUSH     {R0}
+   \   0000001C   0030A0E3           MOV      R3,#+0
+   \   00000020   6E0F85E2           ADD      R0,R5,#+440
+   \   00000024   01002DE9           PUSH     {R0}
+   \   00000028   280085E2           ADD      R0,R5,#+40
+   \   0000002C   540300EF           SWI      +852
+   \   00000030   000050E3           CMP      R0,#+0
+   \   00000034   08D08DE2           ADD      SP,SP,#+8
+   \   00000038   0C00001A           BNE      ??MEAS_Init_1
+     64            {
+     65              callback=callback_func;
+   \   0000003C   204085E5           STR      R4,[R5, #+32]
+     66              irq_req(0x46, 3, 8, meas_rdyirq, &irq_desc);
+   \   00000040   38309FE5           LDR      R3,??MEAS_Init_0+0x8  ;; meas_rdyirq
+   \   00000044   B800A0E3           MOV      R0,#+184
+   \   00000048   900E80E3           ORR      R0,R0,#0x900
+   \   0000004C   050080E0           ADD      R0,R0,R5
+   \   00000050   01002DE9           PUSH     {R0}
+   \   00000054   0820A0E3           MOV      R2,#+8
+   \   00000058   0310A0E3           MOV      R1,#+3
+   \   0000005C   4600A0E3           MOV      R0,#+70
+   \   00000060   ........           _BLF     irq_req,??irq_req??rA
+     67              return 1;
+   \   00000064   0100A0E3           MOV      R0,#+1
+   \   00000068   04D08DE2           ADD      SP,SP,#+4
+   \   0000006C   3080BDE8           POP      {R4,R5,PC}
+     68            }
+     69            else return 0;
+   \                     ??MEAS_Init_1:
+   \   00000070   0000A0E3           MOV      R0,#+0
+   \   00000074   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??MEAS_Init_0:
+   \   00000078   ........           DC32     H_MEAS_RDY_M2_entry
+   \   0000007C   ........           DC32     `?<Constant "H_MEAS_RDY_M2">`
+   \   00000080   ........           DC32     meas_rdyirq
+     70          }
+     71          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     72          void MEAS_Delete()
+     73          {
+     74            callback=NULL;
+   \                     MEAS_Delete:
+   \   00000000   ........           LDR      R0,??DataTable2  ;; adata
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   0010A0E3           MOV      R1,#+0
+   \   0000000C   201080E5           STR      R1,[R0, #+32]
+     75            NU_Delete_HISR(&hisr); 
+   \   00000010   280080E2           ADD      R0,R0,#+40
+   \   00000014   550300EF           SWI      +853
+     76          }
+   \   00000018   0080BDE8           POP      {PC}             ;; return
+     77          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     78          void MEAS_Start()
+     79          {
+   \                     MEAS_Start:
+   \   00000000   00402DE9           PUSH     {LR}
+     80             PM_CHARGE_UC |= GPIO_ENAQ;//отключаем зарядку(иначе измерения будут неверными)
+   \   00000004   F004A0E3           MOV      R0,#-268435456
+   \   00000008   430680E3           ORR      R0,R0,#0x4300000
+   \   0000000C   D01090E5           LDR      R1,[R0, #+208]
+   \   00000010   801C81E3           ORR      R1,R1,#0x8000
+   \   00000014   D01080E5           STR      R1,[R0, #+208]
+     81             irq_set_prio(0x72, 0);//блокируем прерывание GSM таймера, irq_n==0x72
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   7200A0E3           MOV      R0,#+114
+   \   00000020   ........           _BLF     irq_set_prio,??irq_set_prio??rA
+     82             
+     83             //ClkStateOn(MEASIF_MASK);//желательно вызывать
+     84             MEAS.CLK &= ~ 1;
+   \   00000024   C004A0E3           MOV      R0,#-1073741824
+   \   00000028   D30580E3           ORR      R0,R0,#0x34C00000
+   \   0000002C   001090E5           LDR      R1,[R0, #+0]
+   \   00000030   0110C1E3           BIC      R1,R1,#0x1
+   \   00000034   001080E5           STR      R1,[R0, #+0]
+     85             MEAS.CLK &= 0x114;
+   \   00000038   001090E5           LDR      R1,[R0, #+0]
+   \   0000003C   451F01E2           AND      R1,R1,#0x114
+   \   00000040   001080E5           STR      R1,[R0, #+0]
+     86             saved_meas_ctrl2 = MEAS.CTRL2;//сохраняемся
+   \   00000044   30109FE5           LDR      R1,??MEAS_Start_0  ;; adata + 36
+   \   00000048   182090E5           LDR      R2,[R0, #+24]
+   \   0000004C   002081E5           STR      R2,[R1, #+0]
+     87             MEAS.CTRL2 &=~ MEAS_ENTRIG;
+   \   00000050   181090E5           LDR      R1,[R0, #+24]
+   \   00000054   4015C1E3           BIC      R1,R1,#0x10000000
+   \   00000058   181080E5           STR      R1,[R0, #+24]
+     88          
+     89             MEAS.RDYIRQ = 0x4000;//сброс флага прерывания
+   \   0000005C   401CA0E3           MOV      R1,#+16384
+   \   00000060   F01080E5           STR      R1,[R0, #+240]
+     90             MEAS.RDYIRQ = 0x1000;//активируем прерывание 
+   \   00000064   401DA0E3           MOV      R1,#+4096
+   \   00000068   F01080E5           STR      R1,[R0, #+240]
+     91             
+     92             //while (MEAS.STAT & MEAS_BUSY);//ждемс...//только если не используешь прерывание
+     93             MEAS.CTRL2=0x30300003; //конфиг-я для чтения напряжения с M2
+   \   0000006C   CC13A0E3           MOV      R1,#+805306371
+   \   00000070   C01981E3           ORR      R1,R1,#0x300000
+   \   00000074   181080E5           STR      R1,[R0, #+24]
+     94             //while ((MEAS.STAT & MEAS_READY) == 0);//только если не используешь прерывание
+     95          }
+   \   00000078   0080BDE8           POP      {PC}             ;; return
+   \                     ??MEAS_Start_0:
+   \   0000007C   ........           DC32     adata + 36
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable2:
+   \   00000000   ........           DC32     adata
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "H_MEAS_RDY_M2">`:
+   \   00000000   485F4D454153       DC8 "H_MEAS_RDY_M2"
+   \              5F5244595F4D
+   \              3200        
+   \   0000000E   0000               DC8 0, 0
+     96          
+     97          
+     98          
+     99          
+
+   Maximum stack usage in bytes:
+
+     Function            CSTACK
+     --------            ------
+     H_MEAS_RDY_M2_entry     8
+     MEAS_Delete             4
+     MEAS_Init              20
+     MEAS_Start              4
+     meas_rdyirq             8
+
+
+   Segment part sizes:
+
+     Function/Label              Bytes
+     --------------              -----
+     MEAS                         248
+     GPIO                         212
+     adata                       2496
+     meas_rdyirq                  164
+     H_MEAS_RDY_M2_entry           96
+     MEAS_Init                    132
+     MEAS_Delete                   28
+     MEAS_Start                   128
+     ??DataTable2                   4
+     ?<Constant "H_MEAS_RDY_M2">   16
+      Others                       56
+
+ 
+   596 bytes in segment CODE
+   460 bytes in segment DATA_AN
+    16 bytes in segment DATA_C
+ 2 496 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+   552 bytes of CODE  memory (+  56 bytes shared)
+    16 bytes of CONST memory
+ 2 496 bytes of DATA  memory (+ 460 bytes shared)
+
+Errors: none
+Warnings: 4

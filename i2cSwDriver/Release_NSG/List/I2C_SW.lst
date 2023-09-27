@@ -1,0 +1,851 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Dec/2015  20:13:52 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  arm                                                  #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\I2C_SW.C                                        #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\I2C_SW.C -D NEWSGOLD -lCN                       #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\ -o                            #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\ -s9 --cpu_mode arm --endian    #
+#                       little --cpu ARM926EJ-S --stack_align 4 -e --fpu     #
+#                       None --dlib_config E:\Users\alfinant\Documents\Sieme #
+#                       ns\IAR\ARM\LIB\dl5tpannl8n.h -I                      #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\I2C_SW.lst                     #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\I2C_SW.r79                      #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDriver\I2C_SW.C
+      1          #ifdef NEWSGOLD
+      2          #include "..\inc\reg8876.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 488
+
+   \                                 In segment DATA_AN, at 0xf4000000
+   \   CAPCOM_TypeDef __data CCU0
+   \                     CCU0:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_AN, at 0xf4100000
+   \   CAPCOM_TypeDef __data CCU1
+   \                     CCU1:
+   \   00000000                      DS8 256
+      3          #else
+      4          #include "..\inc\reg8875.h"
+      5          #endif
+      6          
+      7          #define SDA   GPIO.USART0_RTS
+      8          #define SCL   GPIO.USART0_CTS
+      9          
+     10          void Delay(unsigned int count);
+     11          unsigned Check_SCL();
+     12          unsigned I2cInit();
+     13          void I2cStart();
+     14          unsigned I2cMasterWrite(unsigned char input_byte);
+     15          unsigned I2cMasterRead(unsigned char ack);
+     16          unsigned I2cStop();
+     17          
+     18          #define period 10000		/* 10 ms time out for bus faulty */
+     19          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     20          unsigned int time_out;
+   \                     time_out:
+   \   00000000                      DS8 4
+     21          
+     22          
+     23          /******************************************************************************/
+     24          /*      Subroutine:	Delay	  					      */
+     25          /*                                                                            */
+     26          /*      Description:    Формирует программную задержку.В качестве счетчика    */
+     27          /*                      использует системный таймер.Оригинальный код привиден */
+     28          /*                      в delay.asm.Желательно чтобы код функции распологался */
+     29          /*                      в быстрой памяти.Адрес оригинальной функции можно     */
+     30          /*                      найти по паттерну в INTRAM2.                          */
+     31          /*			                                                      */     															
+     32          /*      Input:	        Время в микросекундах	   		              */
+     33          /*                                                                            */
+     34          /*      Return:		Нет						      */
+     35          /*                                                                            */
+     36          /******************************************************************************/
+     37          
+     38          extern void Delay(unsigned us);
+     39          
+     40          /******************************************************************************/
+     41          /*	Subroutine:	Check_SCL 				    	      */
+     42          /*			                             			      */
+     43          /*	Description:	Send HIGH and read the SCL line. It will wait until   */
+     44          /* 			the line has been released from slave device with the */
+     45          /* 			time out of 10 ms.				      */	
+     46          /*                                                                            */
+     47          /*      Input:	    	None						      */
+     48          /*                       	                                              */
+     49          /*      Return:		"0" - SCL line is OK			       	      */
+     50          /*			"1" - SCL line is faulty			      */
+     51          /*                                                                            */
+     52          /******************************************************************************/
+     53          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     54          unsigned int Check_SCL()
+     55          {
+     56          
+     57          	time_out = period;
+   \                     Check_SCL:
+   \   00000000   ........           LDR      R0,??DataTable3  ;; time_out
+   \   00000004   1010A0E3           MOV      R1,#+16
+   \   00000008   9C1D81E3           ORR      R1,R1,#0x2700
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+     58                  unsigned t0;
+     59                  unsigned endTime;
+     60                  
+     61                  SCL |= GPIO_ENAQ;
+   \   00000010   F004A0E3           MOV      R0,#-268435456
+   \   00000014   430680E3           ORR      R0,R0,#0x4300000
+   \   00000018   542090E5           LDR      R2,[R0, #+84]
+   \   0000001C   802C82E3           ORR      R2,R2,#0x8000
+   \   00000020   542080E5           STR      R2,[R0, #+84]
+     62           	SCL = 0x1100;      		/* configure SCL as an input */ 
+   \   00000024   442DA0E3           MOV      R2,#+4352
+   \   00000028   542080E5           STR      R2,[R0, #+84]
+     63                  
+     64                  t0 = STM_TIM0;
+   \   0000002C   ........           LDR      R2,??DataTable5  ;; 0xfffffffff4b00010
+   \   00000030   002092E5           LDR      R2,[R2, #+0]
+     65                  endTime = t0 + time_out;
+   \   00000034   021081E0           ADD      R1,R1,R2
+     66                  
+     67                  while(endTime > STM_TIM0)
+   \                     ??Check_SCL_0:
+   \   00000038   ........           LDR      R2,??DataTable5  ;; 0xfffffffff4b00010
+   \   0000003C   002092E5           LDR      R2,[R2, #+0]
+   \   00000040   010052E1           CMP      R2,R1
+   \   00000044   0A00002A           BCS      ??Check_SCL_1
+     68          	{
+     69           	   if ((SCL & GPIO_DAT) >> 9)      	/* wait if SCL is pulled down to LOW by slave device */
+   \   00000048   542090E5           LDR      R2,[R0, #+84]
+   \   0000004C   802F02E2           AND      R2,R2,#0x200
+   \   00000050   A224B0E1           LSRS     R2,R2,#+9
+   \   00000054   F7FFFF0A           BEQ      ??Check_SCL_0
+     70          	   {
+     71                        SCL |= GPIO_ENAQ;
+   \   00000058   541090E5           LDR      R1,[R0, #+84]
+   \   0000005C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000060   541080E5           STR      R1,[R0, #+84]
+     72                        SCL = 0x1700;          /* set clock to high */
+   \   00000064   5C1DA0E3           MOV      R1,#+5888
+   \   00000068   541080E5           STR      R1,[R0, #+84]
+     73           	      return (0);
+   \   0000006C   0000A0E3           MOV      R0,#+0
+   \   00000070   0EF0A0E1           MOV      PC,LR
+     74          	   }
+     75                 	}
+     76          
+     77          	return (1);   		/* ERROR: SCL line is stuck to low */
+   \                     ??Check_SCL_1:
+   \   00000074   0100A0E3           MOV      R0,#+1
+   \   00000078   0EF0A0E1           MOV      PC,LR            ;; return
+     78          
+     79          }
+     80          
+     81          
+     82          /******************************************************************************/
+     83          /*	Subroutine:	I2cInit 				    	      */
+     84          /*			                             			      */
+     85          /*	Description:	Initialize the I2C bus 			              */	
+     86          /*                                                                            */
+     87          /*      Input:	    	None						      */
+     88          /*                       	                                              */
+     89          /*      Return:		"0" - bus line is OK   			       	      */
+     90          /*			"1" - bus line is faulty			      */
+     91          /*                                                                            */
+     92          /******************************************************************************/
+     93          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     94          unsigned int I2cInit()
+     95          {
+   \                     I2cInit:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+     96          #ifdef NEWSGOLD
+     97            CCU0.CLC = 0x100; CCU0.CC6IC &= ~ICR_IEN; //CTS
+   \   00000004   F404A0E3           MOV      R0,#-201326592
+   \   00000008   401FA0E3           MOV      R1,#+256
+   \   0000000C   001080E5           STR      R1,[R0, #+0]
+   \   00000010   DC3090E5           LDR      R3,[R0, #+220]
+   \   00000014   402DE0E3           MVN      R2,#+4096
+   \   00000018   033002E0           AND      R3,R2,R3
+   \   0000001C   DC3080E5           STR      R3,[R0, #+220]
+     98            CCU1.CLC = 0x100; CCU1.CC2IC &= ~ICR_IEN; //RTS
+   \   00000020   400980E3           ORR      R0,R0,#0x100000
+   \   00000024   001080E5           STR      R1,[R0, #+0]
+   \   00000028   EC1090E5           LDR      R1,[R0, #+236]
+     99          #else
+    100            CCU1.CLC = 0x100; CCU1.CC2IC &= ~ICR_IEN; //CTS
+    101            CCU0.CLC = 0x100; CCU0.CC6IC &= ~ICR_IEN; //RTS  
+    102          #endif
+    103                  SDA |= GPIO_ENAQ;
+   \   0000002C   804980E3           ORR      R4,R0,#0x200000
+   \   00000030   011002E0           AND      R1,R2,R1
+   \   00000034   EC1080E5           STR      R1,[R0, #+236]
+   \   00000038   580094E5           LDR      R0,[R4, #+88]
+   \   0000003C   800C80E3           ORR      R0,R0,#0x8000
+   \   00000040   580084E5           STR      R0,[R4, #+88]
+    104          	SDA = 0x1100;    		/* configure SDA and SCL as an input */
+   \   00000044   440DA0E3           MOV      R0,#+4352
+   \   00000048   580084E5           STR      R0,[R4, #+88]
+    105                  
+    106                  SCL |= GPIO_ENAQ;
+   \   0000004C   541094E5           LDR      R1,[R4, #+84]
+   \   00000050   801C81E3           ORR      R1,R1,#0x8000
+   \   00000054   541084E5           STR      R1,[R4, #+84]
+    107          	SCL = 0x1100;
+   \   00000058   540084E5           STR      R0,[R4, #+84]
+    108          
+    109          	if (!((SDA & GPIO_DAT) >> 9))  /* if lines are low, set them to high */
+   \   0000005C   580094E5           LDR      R0,[R4, #+88]
+   \   00000060   800F00E2           AND      R0,R0,#0x200
+   \   00000064   A004B0E1           LSRS     R0,R0,#+9
+   \   00000068   0300001A           BNE      ??I2cInit_0
+    110          	  if (I2cStop())
+   \   0000006C   ........           BL       I2cStop
+   \   00000070   000050E3           CMP      R0,#+0
+    111          		return (1);
+   \   00000074   0100A013           MOVNE    R0,#+1
+   \   00000078   1080BD18           POPNE    {R4,PC}
+    112          
+    113              	if (!(SCL & GPIO_DAT) >> 9) 
+   \                     ??I2cInit_0:
+   \   0000007C   540094E5           LDR      R0,[R4, #+84]
+    114          	  if (I2cStop())
+    115          		return (1);
+    116          	
+    117          	return (0);
+   \   00000080   0000A0E3           MOV      R0,#+0
+   \   00000084   1080BDE8           POP      {R4,PC}          ;; return
+    118          
+    119          }
+    120          		
+    121          /******************************************************************************/
+    122          /*	Subroutine:	I2cStart     					      */
+    123          /*			                              			      */
+    124          /*	Description:	Generate a START condition on I2C bus		      */	
+    125          /*                                                                            */
+    126          /*      Input:	    	None						      */
+    127          /*                                                                            */
+    128          /*      Return:		None						      */
+    129          /*                                                                            */
+    130          /******************************************************************************/
+    131          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    132          void I2cStart()
+    133          {
+   \                     I2cStart:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+    134                  SDA |= GPIO_ENAQ;
+   \   00000004   F044A0E3           MOV      R4,#-268435456
+   \   00000008   434684E3           ORR      R4,R4,#0x4300000
+   \   0000000C   580094E5           LDR      R0,[R4, #+88]
+    135          	SDA = 0x1700;        /* to make sure the SDA and SCL are both high */
+    136                  
+    137                  SCL |= GPIO_ENAQ;
+    138          	SCL = 0x1700;
+    139          	
+    140                  Delay(6);
+    141                  
+    142                  SDA |= GPIO_ENAQ;
+    143          	SDA = 0x1500;        /* SDA line go LOW first */
+   \   00000010   545DA0E3           MOV      R5,#+5376
+   \   00000014   800C80E3           ORR      R0,R0,#0x8000
+   \   00000018   580084E5           STR      R0,[R4, #+88]
+   \   0000001C   5C0DA0E3           MOV      R0,#+5888
+   \   00000020   580084E5           STR      R0,[R4, #+88]
+   \   00000024   541094E5           LDR      R1,[R4, #+84]
+   \   00000028   801C81E3           ORR      R1,R1,#0x8000
+   \   0000002C   541084E5           STR      R1,[R4, #+84]
+   \   00000030   540084E5           STR      R0,[R4, #+84]
+   \   00000034   0600A0E3           MOV      R0,#+6
+   \   00000038   ........           _BLF     Delay,??Delay??rA
+   \   0000003C   580094E5           LDR      R0,[R4, #+88]
+   \   00000040   800C80E3           ORR      R0,R0,#0x8000
+   \   00000044   580084E5           STR      R0,[R4, #+88]
+   \   00000048   585084E5           STR      R5,[R4, #+88]
+    144                  
+    145          	Delay(6);
+   \   0000004C   0600A0E3           MOV      R0,#+6
+   \   00000050   ........           _BLF     Delay,??Delay??rA
+    146                  
+    147                  SCL |= GPIO_ENAQ;
+   \   00000054   540094E5           LDR      R0,[R4, #+84]
+   \   00000058   800C80E3           ORR      R0,R0,#0x8000
+   \   0000005C   540084E5           STR      R0,[R4, #+84]
+    148          	SCL = 0x1500;        /* then followed by SCL line with time delay */        
+   \   00000060   545084E5           STR      R5,[R4, #+84]
+    149          }
+   \   00000064   3080BDE8           POP      {R4,R5,PC}       ;; return
+    150          
+    151          
+    152          /******************************************************************************/
+    153          /*	Subroutine:	I2cMasterWrite			 		      */
+    154          /*			                                 		      */
+    155          /*	Description:	Output one byte of data to slave device. Check for    */
+    156          /* 			WAIT condition before every bit is sent.	      */ 
+    157          /*                                                                            */
+    158          /*      Input:	    	one byte of data to be sent to slave device.	      */
+    159          /*                                                                            */
+    160          /*      Return:		acknowledgement from slave:         		      */
+    161          /*		        0 = acknowledge is received			      */
+    162          /*	       	 	1 = no acknowledge is received			      */                       
+    163          /*                                                                    	      */
+    164          /******************************************************************************/
+    165          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    166          unsigned int I2cMasterWrite(unsigned char input_byte)
+    167          {
+   \                     I2cMasterWrite:
+   \   00000000   F0432DE9           PUSH     {R4-R9,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    168          	unsigned int mask,i;
+    169          
+    170                  mask = 0x80;       
+   \   00000008   8050A0E3           MOV      R5,#+128
+    171                  
+    172          	for (i=0; i<8; i++)		/* send one byte of data */
+   \   0000000C   0060A0E3           MOV      R6,#+0
+   \   00000010   547DA0E3           MOV      R7,#+5376
+   \   00000014   5C8DA0E3           MOV      R8,#+5888
+   \   00000018   F094A0E3           MOV      R9,#-268435456
+   \   0000001C   439689E3           ORR      R9,R9,#0x4300000
+    173          	{          
+    174              	   if (mask & input_byte) 	/* send bit according to data */
+   \                     ??I2cMasterWrite_0:
+   \   00000020   580099E5           LDR      R0,[R9, #+88]
+   \   00000024   050014E1           TST      R4,R5
+   \   00000028   800C80E3           ORR      R0,R0,#0x8000
+   \   0000002C   580089E5           STR      R0,[R9, #+88]
+    175                     {
+    176                       SDA |= GPIO_ENAQ;
+    177                       SDA = 0x1700;
+   \   00000030   58808915           STRNE    R8,[R9, #+88]
+    178                     }
+    179                     else
+    180                     {
+    181                       SDA |= GPIO_ENAQ;
+    182                       SDA = 0x1500;
+   \   00000034   58708905           STREQ    R7,[R9, #+88]
+    183                     }
+    184          	
+    185          	   mask = mask >> 1;		/* shift right for the next bit */
+   \   00000038   A550A0E1           LSR      R5,R5,#+1
+    186          
+    187          	   Delay(5);
+   \   0000003C   0500A0E3           MOV      R0,#+5
+   \   00000040   ........           _BLF     Delay,??Delay??rA
+    188                     
+    189                     if(i==0)
+   \   00000044   000056E3           CMP      R6,#+0
+   \   00000048   0400001A           BNE      ??I2cMasterWrite_1
+    190                     {
+    191                       if(Check_SCL())      /* check SCL line */
+   \   0000004C   ........           BL       Check_SCL
+   \   00000050   000050E3           CMP      R0,#+0
+   \   00000054   0500000A           BEQ      ??I2cMasterWrite_2
+    192                         return (1);        /* ERROR: SCL line is stuck to low */
+   \   00000058   0100A0E3           MOV      R0,#+1
+   \   0000005C   F083BDE8           POP      {R4-R9,PC}
+    193                     }
+    194                     else
+    195                     {
+    196                       SCL |= GPIO_ENAQ;
+   \                     ??I2cMasterWrite_1:
+   \   00000060   540099E5           LDR      R0,[R9, #+84]
+   \   00000064   800C80E3           ORR      R0,R0,#0x8000
+   \   00000068   540089E5           STR      R0,[R9, #+84]
+    197                       SCL = 0x1700;
+   \   0000006C   548089E5           STR      R8,[R9, #+84]
+    198                     }
+    199          
+    200                     Delay (5);
+   \                     ??I2cMasterWrite_2:
+   \   00000070   0500A0E3           MOV      R0,#+5
+   \   00000074   ........           _BLF     Delay,??Delay??rA
+    201                     
+    202                     SCL |= GPIO_ENAQ;
+   \   00000078   540099E5           LDR      R0,[R9, #+84]
+    203          	   SCL = 0x1500;                     /* clock is low */           
+    204                  }
+   \   0000007C   016086E2           ADD      R6,R6,#+1
+   \   00000080   800C80E3           ORR      R0,R0,#0x8000
+   \   00000084   540089E5           STR      R0,[R9, #+84]
+   \   00000088   547089E5           STR      R7,[R9, #+84]
+   \   0000008C   080056E3           CMP      R6,#+8
+   \   00000090   E2FFFF3A           BCC      ??I2cMasterWrite_0
+    205                  
+    206                  SDA |= GPIO_ENAQ;
+   \   00000094   580099E5           LDR      R0,[R9, #+88]
+   \   00000098   800C80E3           ORR      R0,R0,#0x8000
+   \   0000009C   580089E5           STR      R0,[R9, #+88]
+    207             	SDA = 0x1100;      		/* configure SDA as an input */
+   \   000000A0   440DA0E3           MOV      R0,#+4352
+   \   000000A4   580089E5           STR      R0,[R9, #+88]
+    208                  
+    209                	Delay(5);
+   \   000000A8   0500A0E3           MOV      R0,#+5
+   \   000000AC   ........           _BLF     Delay,??Delay??rA
+    210                  
+    211                  SCL |= GPIO_ENAQ;
+   \   000000B0   540099E5           LDR      R0,[R9, #+84]
+   \   000000B4   800C80E3           ORR      R0,R0,#0x8000
+   \   000000B8   540089E5           STR      R0,[R9, #+84]
+    212                  SCL = 0x1700;		/* generate 9th clock pulse */
+   \   000000BC   548089E5           STR      R8,[R9, #+84]
+    213                  
+    214                  Delay(3);
+   \   000000C0   0300A0E3           MOV      R0,#+3
+   \   000000C4   ........           _BLF     Delay,??Delay??rA
+    215                  
+    216                	mask = (SDA & GPIO_DAT) >> 9;		/* read acknowledge */
+   \   000000C8   580099E5           LDR      R0,[R9, #+88]
+   \   000000CC   800F00E2           AND      R0,R0,#0x200
+   \   000000D0   A054A0E1           LSR      R5,R0,#+9
+    217          	Delay(2);
+   \   000000D4   0200A0E3           MOV      R0,#+2
+   \   000000D8   ........           _BLF     Delay,??Delay??rA
+    218                  
+    219                  SCL |= GPIO_ENAQ;
+   \   000000DC   540099E5           LDR      R0,[R9, #+84]
+   \   000000E0   800C80E3           ORR      R0,R0,#0x8000
+   \   000000E4   540089E5           STR      R0,[R9, #+84]
+    220          	SCL = 0x1500;                /* clock is low */
+   \   000000E8   547089E5           STR      R7,[R9, #+84]
+    221          	
+    222          	Delay(5);		/* to avoid short pulse transition on SDA line */
+   \   000000EC   0500A0E3           MOV      R0,#+5
+   \   000000F0   ........           _BLF     Delay,??Delay??rA
+    223          	
+    224          	return (mask);          /* return acknowledge bit */
+   \   000000F4   0500A0E1           MOV      R0,R5
+   \   000000F8   F083BDE8           POP      {R4-R9,PC}       ;; return
+    225          }	
+    226          						     			
+    227          
+    228          
+    229          /******************************************************************************/
+    230          /*	Subroutine:	I2cMasterRead			 		      */
+    231          /*			                                 		      */
+    232          /*	Description:	Read one byte of data from the slave device. Check    */
+    233          /*			for WAIT condition before every bit is received.      */	
+    234          /*                                                                            */
+    235          /*      Input:	     	Acknowledge require:				      */
+    236          /*			0 - generate LOW output after a byte is received      */
+    237          /*			1 - generate HIGH output after a byte is received     */
+    238          /*                                                                            */
+    239          /*      Return:  	received one byte of data from slave device	      */
+    240          /*		        						      */                       
+    241          /*                                                                    	      */
+    242          /******************************************************************************/
+    243          				
+
+   \                                 In segment CODE, align 4, keep-with-next
+    244          unsigned int I2cMasterRead(unsigned char ack)
+    245          {
+   \                     I2cMasterRead:
+   \   00000000   F0472DE9           PUSH     {R4-R10,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    246          
+    247          	unsigned int mask,i,rec_data;
+    248              
+    249          
+    250          	rec_data = 0;	
+    251          	mask = 0x80;       
+    252                  
+    253                  SDA |= GPIO_ENAQ;
+   \   00000008   F074A0E3           MOV      R7,#-268435456
+   \   0000000C   437687E3           ORR      R7,R7,#0x4300000
+   \   00000010   580097E5           LDR      R0,[R7, #+88]
+   \   00000014   0050A0E3           MOV      R5,#+0
+   \   00000018   8060A0E3           MOV      R6,#+128
+   \   0000001C   800C80E3           ORR      R0,R0,#0x8000
+   \   00000020   580087E5           STR      R0,[R7, #+88]
+    254          	SDA = 0x1100;			/* configure SDA as an input */  
+   \   00000024   440DA0E3           MOV      R0,#+4352
+   \   00000028   580087E5           STR      R0,[R7, #+88]
+    255          	
+    256          	for (i=0; i<8; i++)
+   \   0000002C   0080A0E3           MOV      R8,#+0
+   \   00000030   5C9DA0E3           MOV      R9,#+5888
+   \   00000034   54ADA0E3           MOV      R10,#+5376
+    257          	{
+    258                      Delay(5);
+   \                     ??I2cMasterRead_0:
+   \   00000038   0500A0E3           MOV      R0,#+5
+   \   0000003C   ........           _BLF     Delay,??Delay??rA
+    259                      
+    260                     if(i==0)
+   \   00000040   000058E3           CMP      R8,#+0
+   \   00000044   0400001A           BNE      ??I2cMasterRead_1
+    261                     {
+    262                       if(Check_SCL())      /* check SCL line */
+   \   00000048   ........           BL       Check_SCL
+   \   0000004C   000050E3           CMP      R0,#+0
+   \   00000050   0500000A           BEQ      ??I2cMasterRead_2
+    263                         return (1);        /* ERROR: SCL line is stuck to low */
+   \   00000054   0100A0E3           MOV      R0,#+1
+   \   00000058   F087BDE8           POP      {R4-R10,PC}
+    264                     }
+    265                     else
+    266                     {
+    267                       SCL |= GPIO_ENAQ;
+   \                     ??I2cMasterRead_1:
+   \   0000005C   540097E5           LDR      R0,[R7, #+84]
+   \   00000060   800C80E3           ORR      R0,R0,#0x8000
+   \   00000064   540087E5           STR      R0,[R7, #+84]
+    268                       SCL = 0x1700;
+   \   00000068   549087E5           STR      R9,[R7, #+84]
+    269                     }
+    270          
+    271          	    Delay(3);
+   \                     ??I2cMasterRead_2:
+   \   0000006C   0300A0E3           MOV      R0,#+3
+   \   00000070   ........           _BLF     Delay,??Delay??rA
+    272          
+    273                      if ((SDA & GPIO_DAT) >> 9)     /* read data while clock is high */
+   \   00000074   580097E5           LDR      R0,[R7, #+88]
+    274          	    	rec_data |= mask;
+    275                      Delay(2);
+    276                      
+    277                      SCL |= GPIO_ENAQ;
+    278          	    SCL = 0x1500;                    /* clock is low */           
+    279          	    
+    280                      mask = mask >> 1;
+    281                  } 
+   \   00000078   018088E2           ADD      R8,R8,#+1
+   \   0000007C   800F00E2           AND      R0,R0,#0x200
+   \   00000080   A004B0E1           LSRS     R0,R0,#+9
+   \   00000084   05508611           ORRNE    R5,R6,R5
+   \   00000088   0200A0E3           MOV      R0,#+2
+   \   0000008C   ........           _BLF     Delay,??Delay??rA
+   \   00000090   540097E5           LDR      R0,[R7, #+84]
+   \   00000094   A660A0E1           LSR      R6,R6,#+1
+   \   00000098   800C80E3           ORR      R0,R0,#0x8000
+   \   0000009C   540087E5           STR      R0,[R7, #+84]
+   \   000000A0   54A087E5           STR      R10,[R7, #+84]
+   \   000000A4   080058E3           CMP      R8,#+8
+   \   000000A8   E2FFFF3A           BCC      ??I2cMasterRead_0
+    282          
+    283          	if (ack)               	/* set SDA data first before port direction */
+   \   000000AC   580097E5           LDR      R0,[R7, #+88]
+   \   000000B0   000054E3           CMP      R4,#+0
+   \   000000B4   800C80E3           ORR      R0,R0,#0x8000
+   \   000000B8   580087E5           STR      R0,[R7, #+88]
+    284                  {
+    285                    SDA |= GPIO_ENAQ;
+    286                    SDA = 0x1700;        /* send acknowledge */
+   \   000000BC   58908715           STRNE    R9,[R7, #+88]
+    287                  }
+    288                  else
+    289                  {
+    290                    SDA |= GPIO_ENAQ;
+    291                    SDA = 0x1500;
+   \   000000C0   58A08705           STREQ    R10,[R7, #+88]
+    292                  }
+    293                 
+    294          	Delay(5);
+   \   000000C4   0500A0E3           MOV      R0,#+5
+   \   000000C8   ........           _BLF     Delay,??Delay??rA
+    295                  
+    296                  SCL |= GPIO_ENAQ;
+   \   000000CC   540097E5           LDR      R0,[R7, #+84]
+   \   000000D0   800C80E3           ORR      R0,R0,#0x8000
+   \   000000D4   540087E5           STR      R0,[R7, #+84]
+    297           	SCL = 0x1700;    	/* clock is high */
+   \   000000D8   549087E5           STR      R9,[R7, #+84]
+    298          
+    299          	Delay(5);
+   \   000000DC   0500A0E3           MOV      R0,#+5
+   \   000000E0   ........           _BLF     Delay,??Delay??rA
+    300                  
+    301                  SCL |= GPIO_ENAQ;
+   \   000000E4   540097E5           LDR      R0,[R7, #+84]
+   \   000000E8   800C80E3           ORR      R0,R0,#0x8000
+   \   000000EC   540087E5           STR      R0,[R7, #+84]
+    302          	SCL = 0x1500;            /* clock is low */
+   \   000000F0   54A087E5           STR      R10,[R7, #+84]
+    303          	
+    304          	Delay(5);		/* to avoid short pulse transition on SDA line */
+   \   000000F4   0500A0E3           MOV      R0,#+5
+   \   000000F8   ........           _BLF     Delay,??Delay??rA
+    305          	
+    306          
+    307          	return (rec_data);
+   \   000000FC   0500A0E1           MOV      R0,R5
+   \   00000100   F087BDE8           POP      {R4-R10,PC}      ;; return
+    308          }	
+    309          
+    310          
+    311          /******************************************************************************/
+    312          /*	Subroutine:	I2cStop				 		      */
+    313          /*			                                 		      */
+    314          /*	Description:	generate stop condition on the I2C bus	     	      */	
+    315          /*                                                                            */
+    316          /*      Input:	     	none                                                  */
+    317          /*                                                                            */
+    318          /*      Return:  	"0" - the bus line is OK		              */
+    319          /*		        "1" - the bus line has been pulled down to low for    */                       
+    320          /*			more than 10ms					      */
+    321          /*                                                                    	      */
+    322          /******************************************************************************/
+    323          				
+
+   \                                 In segment CODE, align 4, keep-with-next
+    324          unsigned I2cStop()
+    325          {
+    326            
+    327          	time_out = period;
+   \                     I2cStop:
+   \   00000000   ........           LDR      R1,??DataTable3  ;; time_out
+   \   00000004   F0402DE9           PUSH     {R4-R7,LR}
+   \   00000008   1000A0E3           MOV      R0,#+16
+   \   0000000C   9C0D80E3           ORR      R0,R0,#0x2700
+   \   00000010   000081E5           STR      R0,[R1, #+0]
+    328                  unsigned endTime;
+    329                  
+    330                  SDA |= GPIO_ENAQ;
+   \   00000014   F044A0E3           MOV      R4,#-268435456
+   \   00000018   434684E3           ORR      R4,R4,#0x4300000
+   \   0000001C   581094E5           LDR      R1,[R4, #+88]
+    331          	SDA = 0x1100;        		/* configure SDA as an input */
+    332                  
+    333                  endTime = STM_TIM0 + time_out;
+   \   00000020   546DA0E3           MOV      R6,#+5376
+   \   00000024   801C81E3           ORR      R1,R1,#0x8000
+   \   00000028   581084E5           STR      R1,[R4, #+88]
+   \   0000002C   441DA0E3           MOV      R1,#+4352
+   \   00000030   581084E5           STR      R1,[R4, #+88]
+   \   00000034   ........           LDR      R1,??DataTable5  ;; 0xfffffffff4b00010
+   \   00000038   5C7DA0E3           MOV      R7,#+5888
+   \   0000003C   001091E5           LDR      R1,[R1, #+0]
+   \   00000040   015080E0           ADD      R5,R0,R1
+   \   00000044   0B0000EA           B        ??I2cStop_0
+    334                  
+    335                  while(endTime > STM_TIM0)
+    336          	{
+    337          	   if (!((SDA & GPIO_DAT) >> 9))    /* check SDA line */
+    338          	   {    
+    339                          SCL |= GPIO_ENAQ;
+   \                     ??I2cStop_1:
+   \   00000048   540094E5           LDR      R0,[R4, #+84]
+   \   0000004C   800C80E3           ORR      R0,R0,#0x8000
+   \   00000050   540084E5           STR      R0,[R4, #+84]
+    340          	       	SCL = 0x1700;                /* generate a clock pulse if SDA is pull */
+   \   00000054   547084E5           STR      R7,[R4, #+84]
+    341                          
+    342          		Delay(6);		/* down to low */
+   \   00000058   0600A0E3           MOV      R0,#+6
+   \   0000005C   ........           _BLF     Delay,??Delay??rA
+    343                          
+    344                          SCL |= GPIO_ENAQ;
+   \   00000060   540094E5           LDR      R0,[R4, #+84]
+   \   00000064   800C80E3           ORR      R0,R0,#0x8000
+   \   00000068   540084E5           STR      R0,[R4, #+84]
+    345          	    	SCL = 0x1500;
+   \   0000006C   546084E5           STR      R6,[R4, #+84]
+    346                          
+    347          	    	Delay(6);
+   \   00000070   0600A0E3           MOV      R0,#+6
+   \   00000074   ........           _BLF     Delay,??Delay??rA
+    348          	   }
+   \                     ??I2cStop_0:
+   \   00000078   ........           LDR      R0,??DataTable5  ;; 0xfffffffff4b00010
+   \   0000007C   000090E5           LDR      R0,[R0, #+0]
+   \   00000080   050050E1           CMP      R0,R5
+   \   00000084   1400002A           BCS      ??I2cStop_2
+   \   00000088   580094E5           LDR      R0,[R4, #+88]
+   \   0000008C   800F00E2           AND      R0,R0,#0x200
+   \   00000090   A004B0E1           LSRS     R0,R0,#+9
+   \   00000094   EBFFFF0A           BEQ      ??I2cStop_1
+    349          	   else                 	/* check SCL line */
+    350                     {
+    351                          SDA |= GPIO_ENAQ;
+   \   00000098   580094E5           LDR      R0,[R4, #+88]
+   \   0000009C   800C80E3           ORR      R0,R0,#0x8000
+   \   000000A0   580084E5           STR      R0,[R4, #+88]
+    352          	       	SDA  = 0x1500;
+   \   000000A4   586084E5           STR      R6,[R4, #+88]
+    353                          
+    354                          Delay(6);
+   \   000000A8   0600A0E3           MOV      R0,#+6
+   \   000000AC   ........           _BLF     Delay,??Delay??rA
+    355          
+    356                  	if (Check_SCL())     	/* to generate STOP condition */
+   \   000000B0   ........           BL       Check_SCL
+   \   000000B4   000050E3           CMP      R0,#+0
+   \   000000B8   0700001A           BNE      ??I2cStop_2
+    357          	   	   return (1);     	/* ERROR: SCL line is stuck to low */
+    358          
+    359                 	   	Delay(6);
+   \   000000BC   0600A0E3           MOV      R0,#+6
+   \   000000C0   ........           _BLF     Delay,??Delay??rA
+    360                          
+    361          		SDA |= GPIO_ENAQ;
+   \   000000C4   580094E5           LDR      R0,[R4, #+88]
+   \   000000C8   800C80E3           ORR      R0,R0,#0x8000
+   \   000000CC   580084E5           STR      R0,[R4, #+88]
+    362          		SDA = 0x1700;
+   \   000000D0   587084E5           STR      R7,[R4, #+88]
+    363                          
+    364          		return (0);
+   \   000000D4   0000A0E3           MOV      R0,#+0
+   \   000000D8   F080BDE8           POP      {R4-R7,PC}
+    365          	  }
+    366                  }
+    367          
+    368                  return (1);   	       		/* ERROR: SDA line is stuck to low */
+   \                     ??I2cStop_2:
+   \   000000DC   0100A0E3           MOV      R0,#+1
+   \   000000E0   F080BDE8           POP      {R4-R7,PC}       ;; return
+    369          
+    370          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     time_out
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   1000B0F4           DC32     0xfffffffff4b00010
+    371          
+    372          
+    373          
+    374              	
+    375          
+    376          
+    377          
+    378          
+    379          
+    380          
+    381          
+    382          
+    383          
+    384          
+    385          
+    386          
+    387          
+    388          
+    389          
+    390          
+    391          
+    392          
+    393          
+    394          
+    395          
+    396          
+    397          
+    398          
+    399          
+    400          
+    401          
+    402          
+    403          
+    404          
+    405          
+    406          
+    407          
+    408          
+    409          
+    410          
+    411          
+    412          
+    413          
+    414          
+    415          
+    416          
+    417          
+    418          
+    419          
+    420          
+    421          
+    422          
+    423          
+    424          
+    425          
+    426          
+    427          
+    428          
+    429          
+    430          
+    431          
+    432          
+    433          
+    434          
+    435          
+    436          
+    437          
+    438          
+    439          
+    440          
+    441          
+    442          
+    443          
+    444          
+    445          
+    446          		 
+
+   Maximum stack usage in bytes:
+
+     Function       CSTACK
+     --------       ------
+     Check_SCL          0
+     I2cInit            8
+     I2cMasterRead     32
+     I2cMasterWrite    28
+     I2cStart          12
+     I2cStop           20
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     GPIO            488
+     CCU0            256
+     CCU1            256
+     time_out          4
+     Check_SCL       124
+     I2cInit         136
+     I2cStart        104
+     I2cMasterWrite  252
+     I2cMasterRead   260
+     I2cStop         228
+     ??DataTable3      4
+     ??DataTable5      4
+      Others          24
+
+ 
+ 1 124 bytes in segment CODE
+ 1 000 bytes in segment DATA_AN
+     4 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 1 112 bytes of CODE memory (+    24 bytes shared)
+     4 bytes of DATA memory (+ 1 000 bytes shared)
+
+Errors: none
+Warnings: none

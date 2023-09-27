@@ -1,0 +1,137 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  12/Jul/2013  20:59:07                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\List\test.map    #
+#           Output file 1 =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\Exe\test.elf     #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\Obj\func.r79     #
+#                            S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\Obj\main.r79     #
+#                            -o                                                #
+#                            S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\Exe\test.elf     #
+#                            -Felf -l                                          #
+#                            S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\Release_SGOLD\List\test.map    #
+#                            -xm -f                                            #
+#                            S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Inte #
+#                            rface\CapCom_SGOLD\test.xcl                       #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            S:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\ #
+#                            dl5tpainl8n.r79                                   #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000020  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interface\CapCom_SGOLD\Release_SGOLD\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000000        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : S:\Users\alfin_000\Documents\Siemens\IAR\ARM\Interface\CapCom_SGOLD\Release_SGOLD\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000004 - 0000001F (0x1c bytes), align: 2
+  Segment part 4.             Intra module refs:   main
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000004 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000020 - 0000009B (0x7c bytes), align: 2
+  Segment part 6.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000020        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 0000009C - 000000AF (0x14 bytes), align: 2
+  Segment part 2.             Intra module refs:   main
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 176 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

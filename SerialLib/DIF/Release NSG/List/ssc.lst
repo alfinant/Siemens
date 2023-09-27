@@ -1,0 +1,269 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 04/Apr/2014  14:20:36              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\ssc.asm#
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\Release NSG\List\ssc.lst#
+#           Object file   =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\Release NSG\Obj\ssc.r79#
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\ssc.asm #
+#                            -OC:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\Release NSG\Obj\ #
+#                            -s+ -M<> -w+                                     #
+#                            -LC:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\SerialLib\DIF\Release NSG\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None                  #
+#                            -IC:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\ #
+#                                                                             #
+###############################################################################
+
+    1    00000000              ; SSC for sgold2
+    2    00000000              ; PHILIPS_TOSHIBA_JBT6K71
+    3    00000000              
+    4    00000000              #define      SSC0        0xF0000000
+    5    00000000              #define      CAMIF       0xF7000000
+    6    00000000              #define      DIF         0xF7100000
+    7    00000000              
+    8    00000000                               RSEG CODE:CODE         
+                                
+    9    00000000                               CODE32                
+                                
+   10    00000000              
+   11    00000000                    PUBLIC    SSC2_Write16
+   12    00000000                               
+   13    00000000              SSC2_Write16
+   14    00000000              
+   15    00000000              ; int SSC2_Write16(short reg,short data)
+   16    00000000                              
+   17    00000000 70402DE9                      STMFD  SP!, {R4-R6,LR}
+   18    00000004 0040A0E1                      MOV    R4, R0
+   19    00000008 0150A0E1                      MOV    R5, R1
+   20    0000000C 00600FE1                      MRS    R6, CPSR
+   21    00000010 040000EF                      SWI    4
+   22    00000014 0000A0E3                      MOV    R0, #0
+   23    00000018 3E0000EB                      BL     set_access
+   24    0000001C 360000EB                      BL     initDIF
+   25    00000020 2004A0E1                      MOV    R0, R0,LSR#8
+   26    00000024 070000EB                      BL     sel_reg 
+   27    00000028 FF0004E2                      AND    R0, R4, #0xFF
+   28    0000002C 050000EB                      BL     sel_reg
+   29    00000030 2504A0E1                      MOV    R0, R5,LSR#8            
+                                                               
+   30    00000034 120000EB                      BL     write_data
+   31    00000038 FF0005E2                      AND    R0, R5, #0xFF 
+   32    0000003C 100000EB                      BL     write_data
+   33    00000040 06F021E1                      MSR    CPSR_c, R6
+   34    00000044 7040BDE8                      LDMFD  SP!, {R4-R6,LR}
+   35    00000048              
+   36    00000048              ; =============== S U B R O U T I N E ==========
+                               =============================
+   37    00000048              
+   38    00000048 0020A0E3     sel_reg          MOV    R2, #0
+   39    0000004C EF0640E2                      SUB    R0, R0, #0xEF00000
+                                                            ;F1100000
+   40    00000050 102081E5                      STR    R2, [R1,#0x10]
+   41    00000054 282091E5                      LDR    R2, [R1,#0x28]
+   42    00000058 012082E3                      ORR    R2, R2, #1
+   43    0000005C 282081E5                      STR    R2, [R1,#0x28]
+   44    00000060 0120A0E3                      MOV    R2, #1
+   45    00000064 102081E5                      STR    R2, [R1,#0x10]
+   46    00000068 802C81E2                      ADD    R2, R1, #0x8000
+   47    0000006C 000082E5                      STR    R0, [R2]
+   48    00000070 380091E5     loc_A06089FC     LDR    R0, [R1,#0x38]
+   49    00000074 010010E3                      TST    R0, #1
+   50    00000078 FCFFFF1A                      BNE    loc_A06089FC
+   51    0000007C 0000A0E3                      MOV    R0, #0
+   52    00000080 1EFF2FE1                      BX     LR
+   53    00000084                              
+   54    00000084              ; =============== S U B R O U T I N E ==========
+                               =============================
+   55    00000084              
+   56    00000084              write_data
+   57    00000084 0020A0E3                      MOV    R2, #0               
+                                                            
+   58    00000088 8F1642E2                      SUB    R1, R2, #0x8F00000
+   59    0000008C 102081E5                      STR    R2, [R1,#0x10]
+   60    00000090 282091E5                      LDR    R2, [R1,#0x28]
+   61    00000094 012082E3                      ORR    R2, R2, #1
+   62    00000098 282081E5                      STR    R2, [R1,#0x28]
+   63    0000009C 0120A0E3                      MOV    R2, #1
+   64    000000A0 102081E5                      STR    R2, [R1,#0x10]
+   65    000000A4 802C81E2                      ADD    R2, R1, #0x8000
+   66    000000A8 000082E5                      STR    R0, [R2]        
+                                                            ;SSC1_TB
+   67    000000AC              loc_A0606ED8
+   68    000000AC 380091E5                      LDR    R0, [R1,#0x38]
+                                                            
+   69    000000B0 010010E3                      TST    R0, #1
+   70    000000B4 FCFFFF1A                      BNE    loc_A0606ED8
+   71    000000B8 0000A0E3                      MOV    R0, #0
+   72    000000BC 1EFF2FE1                      BX     LR
+   73    000000C0                             
+   74    000000C0              ; =============== S U B R O U T I N E ==========
+                               =============================
+   75    000000C0              
+   76    000000C0              read_data
+   77    000000C0 0020A0E3                      MOV    R2, #0
+   78    000000C4 8F1642E2                      SUB    R1, R2, #0x8F00000
+   79    000000C8 102081E5                      STR    R2, [R1,#0x10]
+   80    000000CC 0320A0E3                      MOV    R2, #3
+   81    000000D0 342081E5                      STR    R2, [R1,#0x34]
+   82    000000D4 0120A0E3                      MOV    R2, #1
+   83    000000D8 102081E5                      STR    R2, [R1,#0x10]          
+                                                                  
+   84    000000DC              l_A0608A2C:
+   85    000000DC 382091E5                      LDR    R2, [R1,#0x38]
+   86    000000E0 010012E3                      TST    R2, #1
+   87    000000E4 FCFFFF1A                      BNE    l_A0608A2C
+   88    000000E8 A0109FE5                      LDR    R1, =0xF710C000 
+                                                            ;SSC1_TB
+   89    000000EC 001091E5                      LDR    R1, [R1]
+   90    000000F0 001080E5                      STR    R1, [R0]
+   91    000000F4 0000A0E3                      MOV    R0, #0
+   92    000000F8 1EFF2FE1                      BX     LR
+   93    000000FC                               
+   94    000000FC              ; =============== S U B R O U T I N E ==========
+                               =============================
+   95    000000FC              
+   96    00000000                    PUBLIC     ssc_read               
+                                                                         
+   97    000000FC                               
+   98    000000FC              ssc_read
+   99    000000FC              
+  100    000000FC              ; int ssc_read(char adr,char reg,char *data)
+  101    000000FC              
+  102    000000FC              
+  103    000000FC              
+  104    000000FC              ; =============== S U B R O U T I N E ==========
+                               =============================
+  105    000000FC              
+  106    00000000                     PUBLIC    initDIF
+  107    000000FC              
+  108    000000FC              initDIF
+  109    000000FC 90109FE5                      LDR    R1, =0xF7100000
+  110    00000100 400FA0E3                      MOV    R0, #0x100
+  111    00000104 000081E5                      STR    R0, [R1]
+  112    00000108 100091E5                      LDR    R0, [R1,#0x10]
+  113    0000010C 010080E3                      ORR    R0, R0, #1
+  114    00000110 100081E5                      STR    R0, [R1,#0x10]
+  115    00000114 1EFF2FE1                      BX     LR  
+  116    00000118                               
+  117    00000118              ; =============== S U B R O U T I N E ==========
+                               =============================
+  118    00000118              
+  119    00000000                    PUBLIC     set_access
+  120    00000118              
+  121    00000118              set_access
+  122    00000118              
+  123    00000118              ; int set_access(r0=0/1)
+  124    00000118               
+  125    00000118 04E02DE5                      STR     LR, [SP,#-4]!
+  126    0000011C 0030A0E1                      MOV     R3, R0
+  127    00000120 070000EB                      BL      disadle_INT            
+       
+  128    00000124 6C109FE5                      LDR     R1, =0xF4500000
+  129    00000128 B42091E5                      LDR     R2, [R1, #0xB4]
+  130    0000012C 3320C2E3                      BIC     R2, R2, #0x33
+  131    00000130 020083E2                      ADD     R0, R3, #2
+  132    00000134 002082E1                      ORR     R2, R2,R0
+  133    00000138 B42081E5                      STR     R2, [R1, #0xB4]        
+                                                                      
+                                                             
+  134    0000013C 070000EB                      BL      enable_INT
+  135    00000140 04F09DE4                      LDR     PC, [SP],#4         
+                                                             
+  136    00000144                               
+  137    00000144              ; =============== S U B R O U T I N E ==========
+                               ============================= 
+  138    00000144                               
+  139    00000000                    PUBLIC     disadle_INT               
+  
+  140    00000144                   
+  141    00000144              disadle_INT
+  142    00000144              
+  143    00000144              ; void disadle_INT(void)
+  144    00000144              
+  145    00000144 00000FE1                      MRS    R0, CPSR
+  146    00000148 C01080E3                      ORR    R1, R0, #0xC0
+  147    0000014C 1F2000E2                      AND    R2, R0, #0x1F
+  148    00000150 100052E3                      CMP    R2, #0x10
+  149    00000154 0400000F                      SWIEQ  4
+  150    00000158 01F021E1                      MSR    CPSR_c, R1
+  151    0000015C 1EFF2FE1                      BX     LR
+  152    00000160                               
+  153    00000160              ; =============== S U B R O U T I N E ==========
+                               =============================
+  154    00000160              
+  155    00000000                    PUBLIC     enable_INT  
+  156    00000160                    
+  157    00000160              enable_INT 
+  158    00000160              
+  159    00000160              ; void enable_INT(void)
+  160    00000160              
+  161    00000160 00000FE1                      MRS    R0, CPSR
+  162    00000164 C010C0E3                      BIC    R1, R0, #0xC0
+  163    00000168 1F2000E2                      AND    R2, R0, #0x1F
+  164    0000016C 100052E3                      CMP    R2, #0x10
+  165    00000170 0400000F                      SWIEQ  4
+  166    00000174 01F021E1                      MSR    CPSR_c, R1              
+                                                                 
+  167    00000178 1EFF2FE1                      BX     LR 
+  168    0000017C                               
+  169    0000017C              ; =============== S U B R O U T I N E ==========
+                               =============================  
+  170    0000017C              
+  171    00000000                    PUBLIC     BFC_L2_SwitchOffDisplay
+  172    0000017C              
+  173    0000017C              BFC_L2_SwitchOffDisplay
+  174    0000017C              
+  175    0000017C 18F09FE5                     LDR PC, =0xA05161B0
+  176    00000180              ; ----------------------------------------------
+                               -----------------------------
+  177    00000000                    PUBLIC     LCD_SwitchOff
+  178    00000180              
+  179    00000180              LCD_SwitchOff
+  180    00000180              
+  181    00000180 18F09FE5                     LDR PC, =0xA076AF74
+  182    00000184              ; ----------------------------------------------
+                               ----------------------------- 
+  183    00000000                    PUBLIC     BFC_L2_RestoreDisplay
+  184    00000184                    
+  185    00000184              BFC_L2_RestoreDisplay  
+  186    00000184              
+  187    00000184 18F09FE5                     LDR PC, =0xA0516250
+  188    00000188              ; ----------------------------------------------
+                               ----------------------------- 
+  189    00000000                    PUBLIC     BFC_L2_ForceDisplayUpdate
+  190    00000188                    
+  191    00000188              BFC_L2_ForceDisplayUpdate
+  192    00000188              
+  193    00000188 18F09FE5                     LDR PC, =0xA05161FC   
+  194    0000018C              ; ----------------------------------------------
+                               ----------------------------- 
+  195    0000018C              
+  196    00000000                    PUBLIC    BFC_L2_Display_0xC
+  197    0000018C                    
+  198    0000018C              BFC_L2_Display_0xC
+  199    0000018C              
+  200    0000018C 18F09FE5                    LDR PC, =0xA0515FEC
+  201    00000190              ; ----------------------------------------------
+                               ----------------------------- 
+  202    00000190                       END
+  202.1  00000190                       TABLE
+  202.2  00000190 00C010F7             Reference on line 88 
+  202.3  00000194 000010F7             Reference on line 109 
+  202.4  00000198 000050F4             Reference on line 128 
+  202.5  0000019C B06151A0             Reference on line 175 
+  202.6  000001A0 74AF76A0             Reference on line 181 
+  202.7  000001A4 506251A0             Reference on line 187 
+  202.8  000001A8 FC6151A0             Reference on line 193 
+  202.9  000001AC EC5F51A0             Reference on line 200 
+  202.10 000001B0                      END (including table)
+##############################
+#          CRC:E992          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 432         #
+##############################
+
+
+
+

@@ -1,0 +1,464 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    16/Feb/2023  22:41:13 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \conndata.c                                          #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \conndata.c -D NEWSGOLD -D ELKA -D DEBUG -lCN        #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\ -la D:\Users\alfinant\Documents\ #
+#                       Siemens\Dev\IAR\VK.ELF_C\Release_ELKA\List\ -o       #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\ -z9 --cpu_mode arm --endian       #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\List\conndata.lst                      #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Release_ELKA\Obj\conndata.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\conndata.c
+      1          #include "conndata.h"
+      2          #include "url_utils.h"
+      3          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+      4          static LIST_HEAD(connection_list);
+   \                     connection_list:
+   \   00000000                      DS8 8
+   \   00000008                      REQUIRE `?<Initializer for connection_list>`
+      5          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      6          int ALLTOTALCONNECTIONS=0;
+   \                     ALLTOTALCONNECTIONS:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      7          int ALLTOTALRECEIVED=0;
+   \                     ALLTOTALRECEIVED:
+   \   00000000                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      8          int ALLTOTALSENDED=0;
+   \                     ALLTOTALSENDED:
+   \   00000000                      DS8 4
+      9          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     10          CONNDATA *CONNDATA_new(const char *url, int flag)
+     11          {
+   \                     CONNDATA_new:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000004   0050A0E1           MOV      R5,R0
+   \   00000008   0160A0E1           MOV      R6,R1
+     12            CONNDATA *conn = malloc(sizeof(CONNDATA));
+   \   0000000C   9C00A0E3           MOV      R0,#+156
+   \   00000010   140000EF           SWI      +20
+   \   00000014   0040A0E1           MOV      R4,R0
+     13            INIT_LIST_HEAD(&conn->list);
+     14            list_add(&conn->list, &connection_list);
+   \   00000018   ........           LDR      R0,??DataTable7  ;; connection_list
+   \   0000001C   004084E5           STR      R4,[R4, #+0]
+   \   00000020   044084E5           STR      R4,[R4, #+4]
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+     15            get_host_from_url(conn->hostname, url);
+     16            conn->url = malloc(strlen(url)+1);
+     17            strcpy(conn->url, url);
+     18            conn->sock = -1;
+   \   00000028   0070E0E3           MVN      R7,#+0
+   \   0000002C   044081E5           STR      R4,[R1, #+4]
+   \   00000030   001084E5           STR      R1,[R4, #+0]
+   \   00000034   040084E5           STR      R0,[R4, #+4]
+   \   00000038   004080E5           STR      R4,[R0, #+0]
+   \   0000003C   0510A0E1           MOV      R1,R5
+   \   00000040   0C0084E2           ADD      R0,R4,#+12
+   \   00000044   ........           _BLF     get_host_from_url,??get_host_from_url??rA
+   \   00000048   0500A0E1           MOV      R0,R5
+   \   0000004C   1B0000EF           SWI      +27
+   \   00000050   010080E2           ADD      R0,R0,#+1
+   \   00000054   140000EF           SWI      +20
+   \   00000058   080084E5           STR      R0,[R4, #+8]
+   \   0000005C   0510A0E1           MOV      R1,R5
+   \   00000060   1A0000EF           SWI      +26
+     19            conn->sock_state = -1;
+     20            conn->recv_mode = 0;
+     21            
+     22            if (strncmp(url, "https://", 8)==0)
+   \   00000064   58109FE5           LDR      R1,??CONNDATA_new_0  ;; `?<Constant "https://">`
+   \   00000068   4C7084E5           STR      R7,[R4, #+76]
+   \   0000006C   547084E5           STR      R7,[R4, #+84]
+   \   00000070   0080A0E3           MOV      R8,#+0
+   \   00000074   588084E5           STR      R8,[R4, #+88]
+   \   00000078   0820A0E3           MOV      R2,#+8
+   \   0000007C   0500A0E1           MOV      R0,R5
+   \   00000080   150100EF           SWI      +277
+   \   00000084   000050E3           CMP      R0,#+0
+     23              conn->port=443;
+   \   00000088   BB00A003           MOVEQ    R0,#+187
+   \   0000008C   400F8003           ORREQ    R0,R0,#0x100
+     24            else
+     25              conn->port=80;
+   \   00000090   5000A013           MOVNE    R0,#+80
+   \   00000094   B005C4E1           STRH     R0,[R4, #+80]
+     26            
+     27            conn->flag = flag;
+   \   00000098   646084E5           STR      R6,[R4, #+100]
+     28            conn->DNR_ID=0;
+   \   0000009C   5C8084E5           STR      R8,[R4, #+92]
+     29            conn->DNR_TRIES=3;
+   \   000000A0   0300A0E3           MOV      R0,#+3
+   \   000000A4   600084E5           STR      R0,[R4, #+96]
+     30            
+     31            conn->TOTALSENDED=0;
+   \   000000A8   688084E5           STR      R8,[R4, #+104]
+     32            conn->TOTALRECEIVED=0;
+   \   000000AC   6C8084E5           STR      R8,[R4, #+108]
+     33            //conn->tmr_connect=NULL;
+     34            //conn->tmr_read=NULL;
+     35            
+     36            conn->ssl = NULL;
+   \   000000B0   908084E5           STR      R8,[R4, #+144]
+     37            conn->ssl_sess = NULL;
+   \   000000B4   988084E5           STR      R8,[R4, #+152]
+     38            conn->ssl_state = -1;
+   \   000000B8   947084E5           STR      R7,[R4, #+148]
+     39            return conn;
+   \   000000BC   0400A0E1           MOV      R0,R4
+   \   000000C0   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??CONNDATA_new_0:
+   \   000000C4   ........           DC32     `?<Constant "https://">`
+     40          }
+     41          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     42          void CONNDATA_free(CONNDATA *conn)
+     43          {
+   \                     CONNDATA_free:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     44            list_del(&conn->list);
+   \   00000008   000094E5           LDR      R0,[R4, #+0]
+   \   0000000C   041094E5           LDR      R1,[R4, #+4]
+   \   00000010   041080E5           STR      R1,[R0, #+4]
+   \   00000014   000081E5           STR      R0,[R1, #+0]
+   \   00000018   0000A0E3           MOV      R0,#+0
+   \   0000001C   000084E5           STR      R0,[R4, #+0]
+   \   00000020   040084E5           STR      R0,[R4, #+4]
+     45            mfree(conn->url);
+   \   00000024   080094E5           LDR      R0,[R4, #+8]
+   \   00000028   150000EF           SWI      +21
+     46            mfree(conn);
+   \   0000002C   0400A0E1           MOV      R0,R4
+   \   00000030   150000EF           SWI      +21
+     47          }
+   \   00000034   1080BDE8           POP      {R4,PC}          ;; return
+     48          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     49          CONNDATA *CONNDATA_getTop()
+     50          {
+     51            return list_empty(&connection_list) ? 0 : (CONNDATA*)connection_list.next;
+   \                     CONNDATA_getTop:
+   \   00000000   ........           LDR      R1,??DataTable7  ;; connection_list
+   \   00000004   000091E5           LDR      R0,[R1, #+0]
+   \   00000008   010050E1           CMP      R0,R1
+   \   0000000C   0000A003           MOVEQ    R0,#+0
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+     52          }
+     53          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     54          void CONNDATA_set2Top(CONNDATA *conn) 
+     55          {
+     56            list_move(&connection_list, (struct list_head*) conn);
+   \                     CONNDATA_set2Top:
+   \   00000000   ........           LDR      R1,??DataTable7  ;; connection_list
+   \   00000004   002091E5           LDR      R2,[R1, #+0]
+   \   00000008   043091E5           LDR      R3,[R1, #+4]
+   \   0000000C   043082E5           STR      R3,[R2, #+4]
+   \   00000010   002083E5           STR      R2,[R3, #+0]
+   \   00000014   002090E5           LDR      R2,[R0, #+0]
+   \   00000018   041082E5           STR      R1,[R2, #+4]
+   \   0000001C   002081E5           STR      R2,[R1, #+0]
+   \   00000020   040081E5           STR      R0,[R1, #+4]
+   \   00000024   001080E5           STR      R1,[R0, #+0]
+     57          }
+   \   00000028   1EFF2FE1           BX       LR               ;; return
+     58          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     59          CONNDATA *CONNDATA_findBySock(int sock)
+     60          {
+     61            struct list_head *iter;
+     62            
+     63            list_for_each(iter, &connection_list)
+   \                     CONNDATA_findBySock:
+   \   00000000   ........           LDR      R2,??DataTable7  ;; connection_list
+   \   00000004   001092E5           LDR      R1,[R2, #+0]
+   \   00000008   000000EA           B        ??CONNDATA_findBySock_0
+   \                     ??CONNDATA_findBySock_1:
+   \   0000000C   001091E5           LDR      R1,[R1, #+0]
+   \                     ??CONNDATA_findBySock_0:
+   \   00000010   020051E1           CMP      R1,R2
+   \   00000014   0300000A           BEQ      ??CONNDATA_findBySock_2
+     64            {
+     65              CONNDATA *entry = list_entry(iter, CONNDATA, list);
+     66              
+     67              if (entry->sock == sock)
+   \   00000018   4C3091E5           LDR      R3,[R1, #+76]
+   \   0000001C   000053E1           CMP      R3,R0
+   \   00000020   F9FFFF1A           BNE      ??CONNDATA_findBySock_1
+     68                return entry;
+   \   00000024   ........           B        ?Subroutine11
+     69            }
+     70            return(0);  
+   \                     ??CONNDATA_findBySock_2:
+   \   00000028   ........           B        ?Subroutine10
+     71          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine11:
+   \   00000000   0100A0E1           MOV      R0,R1
+   \   00000004   1EFF2FE1           BX       LR
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine10:
+   \   00000000   0000A0E3           MOV      R0,#+0
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+     72          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     73          CONNDATA *CONNDATA_findBySSL(SSL *ssl)
+     74          {
+     75            struct list_head *iter;
+     76            
+     77            list_for_each(iter, &connection_list)
+   \                     CONNDATA_findBySSL:
+   \   00000000   ........           LDR      R2,??DataTable7  ;; connection_list
+   \   00000004   001092E5           LDR      R1,[R2, #+0]
+   \   00000008   000000EA           B        ??CONNDATA_findBySSL_0
+   \                     ??CONNDATA_findBySSL_1:
+   \   0000000C   001091E5           LDR      R1,[R1, #+0]
+   \                     ??CONNDATA_findBySSL_0:
+   \   00000010   020051E1           CMP      R1,R2
+   \   00000014   0300000A           BEQ      ??CONNDATA_findBySSL_2
+     78            {
+     79              CONNDATA *entry = list_entry(iter, CONNDATA, list);
+     80              
+     81              if (entry->ssl == ssl)
+   \   00000018   903091E5           LDR      R3,[R1, #+144]
+   \   0000001C   000053E1           CMP      R3,R0
+   \   00000020   F9FFFF1A           BNE      ??CONNDATA_findBySSL_1
+     82                return entry;
+   \   00000024   ........           B        ?Subroutine11
+     83            }
+     84            return(0);  
+   \                     ??CONNDATA_findBySSL_2:
+   \   00000028   ........           B        ?Subroutine10
+     85          }
+     86          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     87          CONNDATA *CONNDATA_findBySession(SSL_SESSION *sess)
+     88          {
+     89            struct list_head *iter;
+     90            
+     91            list_for_each(iter, &connection_list)
+   \                     CONNDATA_findBySession:
+   \   00000000   ........           LDR      R2,??DataTable7  ;; connection_list
+   \   00000004   001092E5           LDR      R1,[R2, #+0]
+   \   00000008   000000EA           B        ??CONNDATA_findBySession_0
+   \                     ??CONNDATA_findBySession_1:
+   \   0000000C   001091E5           LDR      R1,[R1, #+0]
+   \                     ??CONNDATA_findBySession_0:
+   \   00000010   020051E1           CMP      R1,R2
+   \   00000014   0300000A           BEQ      ??CONNDATA_findBySession_2
+     92            {
+     93              CONNDATA *entry = list_entry(iter, CONNDATA, list);
+     94              
+     95              if (entry->ssl_sess == sess)
+   \   00000018   983091E5           LDR      R3,[R1, #+152]
+   \   0000001C   000053E1           CMP      R3,R0
+   \   00000020   F9FFFF1A           BNE      ??CONNDATA_findBySession_1
+     96                return entry;
+   \   00000024   ........           B        ?Subroutine11
+     97            }
+     98            return(0);  
+   \                     ??CONNDATA_findBySession_2:
+   \   00000028   ........           B        ?Subroutine10
+     99          }
+    100          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    101          CONNDATA *CONNDATA_findByHostname(const char *hostname)
+    102          {
+   \                     CONNDATA_findByHostname:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+    103            struct list_head *iter;
+    104            
+    105            list_for_each(iter, &connection_list)
+   \   00000004   ........           LDR      R5,??DataTable7  ;; connection_list
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   006095E5           LDR      R6,[R5, #+0]
+   \   00000010   000000EA           B        ??CONNDATA_findByHostname_0
+   \                     ??CONNDATA_findByHostname_1:
+   \   00000014   006096E5           LDR      R6,[R6, #+0]
+   \                     ??CONNDATA_findByHostname_0:
+   \   00000018   050056E1           CMP      R6,R5
+   \   0000001C   0600000A           BEQ      ??CONNDATA_findByHostname_2
+    106            {
+    107              CONNDATA *entry = list_entry(iter, CONNDATA, list);
+    108              if (strcmp(entry->hostname, hostname) == 0)
+   \   00000020   0410A0E1           MOV      R1,R4
+   \   00000024   0C0086E2           ADD      R0,R6,#+12
+   \   00000028   190000EF           SWI      +25
+   \   0000002C   000050E3           CMP      R0,#+0
+   \   00000030   F7FFFF1A           BNE      ??CONNDATA_findByHostname_1
+    109                return entry;
+   \   00000034   0600A0E1           MOV      R0,R6
+   \   00000038   7080BDE8           POP      {R4-R6,PC}
+    110            }
+    111            return(0);
+   \                     ??CONNDATA_findByHostname_2:
+   \   0000003C   0000A0E3           MOV      R0,#+0
+   \   00000040   7080BDE8           POP      {R4-R6,PC}       ;; return
+    112          }
+    113          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    114          CONNDATA *CONNDATA_findByURL(const char *url)
+    115          {
+   \                     CONNDATA_findByURL:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   40D04DE2           SUB      SP,SP,#+64
+    116            char hostname[64];
+    117            hostname[0]='\0';
+   \   00000008   0020A0E3           MOV      R2,#+0
+   \   0000000C   0020CDE5           STRB     R2,[SP, #+0]
+    118            get_host_from_url(hostname, url);
+   \   00000010   0010A0E1           MOV      R1,R0
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   ........           _BLF     get_host_from_url,??get_host_from_url??rA
+    119            return CONNDATA_findByHostname(hostname);
+   \   0000001C   0D00A0E1           MOV      R0,SP
+   \   00000020   ........           BL       CONNDATA_findByHostname
+   \   00000024   40D08DE2           ADD      SP,SP,#+64
+   \   00000028   0080BDE8           POP      {PC}             ;; return
+    120          }
+    121          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    122          CONNDATA *CONNDATA_findByDNR(int dnr)
+    123          {
+    124            struct list_head *iter;
+    125            
+    126            list_for_each(iter, &connection_list)
+   \                     CONNDATA_findByDNR:
+   \   00000000   ........           LDR      R2,??DataTable7  ;; connection_list
+   \   00000004   001092E5           LDR      R1,[R2, #+0]
+   \   00000008   000000EA           B        ??CONNDATA_findByDNR_0
+   \                     ??CONNDATA_findByDNR_1:
+   \   0000000C   001091E5           LDR      R1,[R1, #+0]
+   \                     ??CONNDATA_findByDNR_0:
+   \   00000010   020051E1           CMP      R1,R2
+   \   00000014   0300000A           BEQ      ??CONNDATA_findByDNR_2
+    127            {
+    128              CONNDATA *entry = list_entry(iter, CONNDATA, list);
+    129              
+    130              if (entry->DNR_ID == dnr)
+   \   00000018   5C3091E5           LDR      R3,[R1, #+92]
+   \   0000001C   000053E1           CMP      R3,R0
+   \   00000020   F9FFFF1A           BNE      ??CONNDATA_findByDNR_1
+    131                return entry;
+   \   00000024   ........           B        ?Subroutine11
+    132            }
+    133            return(0);  
+   \                     ??CONNDATA_findByDNR_2:
+   \   00000028   ........           B        ?Subroutine10
+    134          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable7:
+   \   00000000   ........           DC32     connection_list
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for connection_list>`:
+   \   00000000   ............       DC32 connection_list, connection_list
+   \              ....        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "https://">`:
+   \   00000000   68747470733A       DC8 "https://"
+   \              2F2F00      
+   \   00000009   000000             DC8 0, 0, 0
+    135          
+    136          
+
+   Maximum stack usage in bytes:
+
+     Function                CSTACK
+     --------                ------
+     CONNDATA_findByDNR          0
+     CONNDATA_findByHostname    16
+     CONNDATA_findBySSL          0
+     CONNDATA_findBySession      0
+     CONNDATA_findBySock         0
+     CONNDATA_findByURL         68
+     CONNDATA_free               8
+     CONNDATA_getTop             0
+     CONNDATA_new               24
+     CONNDATA_set2Top            0
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     connection_list                   8
+     ALLTOTALCONNECTIONS               4
+     ALLTOTALRECEIVED                  4
+     ALLTOTALSENDED                    4
+     CONNDATA_new                    200
+     CONNDATA_free                    56
+     CONNDATA_getTop                  20
+     CONNDATA_set2Top                 44
+     CONNDATA_findBySock              44
+     ?Subroutine11                     8
+     ?Subroutine10                     8
+     CONNDATA_findBySSL               44
+     CONNDATA_findBySession           44
+     CONNDATA_findByHostname          68
+     CONNDATA_findByURL               44
+     CONNDATA_findByDNR               44
+     ??DataTable7                      4
+     ?<Initializer for connection_list>
+                                       8
+     ?<Constant "https://">           12
+      Others                          76
+
+ 
+ 680 bytes in segment CODE
+  12 bytes in segment DATA_C
+   8 bytes in segment DATA_I
+   8 bytes in segment DATA_ID
+  12 bytes in segment DATA_Z
+  24 bytes in segment INITTAB
+ 
+ 628 bytes of CODE  memory (+ 76 bytes shared)
+  20 bytes of CONST memory
+  20 bytes of DATA  memory
+
+Errors: none
+Warnings: none

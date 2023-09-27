@@ -1,0 +1,157 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    07/Apr/2017  17:52:20 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\main.c                                     #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\main.c -D NEWSGOLD -D S75v52 -lCN          #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\S75v52\List\ -o                            #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\S75v52\Obj\ -s9 --cpu_mode thumb --endian  #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None -I E:\Users\alfinant\Documents\Siemens #
+#                       \IAR\ARM\INC\ --inline_threshold=2                   #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\S75v52\List\main.lst                       #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys #
+#                       _NEWSGOLD\S75v52\Obj\main.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\main.c
+      1          #include "..\inc\swilib.h"
+      2          #include "def.h"
+      3          
+      4          #define FRDB  9
+      5          
+      6          typedef struct 
+      7          { CSM_RAM csm;
+      8            int unk28;
+      9            int unk2C;
+     10            int unk30;  
+     11            void *gui; 
+     12            int unk38[3]; 
+     13            int unk44; //pos
+     14            int unk48[8];  
+     15            char *appID;
+     16            int zero;
+     17          //----------------------------
+     18            NativeExplorerData expl;
+     19            int EXP_CSM_ID;
+     20            char entry[24];
+     21            WSHDR ws1;
+     22            WSHDR ws2;
+     23            WSHDR ws3;
+     24            unsigned short ws1_body[140];
+     25            unsigned short ws2_body[140];
+     26            unsigned short ws3_body[140];  
+     27          } MAIN_CSM;
+     28          
+     29          static int my_handler (void *data) {return (1);}
+     30          
+     31           int isJAR(WSHDR *fname)
+     32          {
+     33          
+     34            j_wsprintf(&ws,"%s","jar");
+     35            int jar=j_GetExtUid_ws(&ws);
+     36            if(j_GetExtUidByFileName(fname) == jar) return 1;
+     37            return 0;
+     38          }   
+     39          
+     40          void _openExplorer(void *data)
+     41          { 
+     42            MAIN_CSM *csm=(MAIN_CSM*)data;
+     43           
+     44            j_zeromem(&csm->expl, sizeof(NativeExplorerData)+4+24);
+     45            
+     46            csm->expl.mode=1;
+     47            csm->expl.path_to_file=j_CreateLocalWS(&csm->ws1,csm->ws1_body, 139);
+     48            j_wsprintf(csm->expl.path_to_file,"%s","0:");
+     49            csm->expl.file_name=j_CreateLocalWS(&csm->ws2,csm->ws2_body, 139);
+     50            csm->expl.full_filename=j_CreateLocalWS(&csm->ws3,csm->ws3_body, 139);
+     51            j_wsprintf(csm->expl.full_filename,"%s","None"); 
+     52            csm->expl.user_handler=my_handler;
+     53          
+     54          /*  
+     55            //Проверяем текущий appID,если наш,то получаеи его путь
+     56            if(memcmp(csm->appID,"FIL_",4)!=0) goto _openExplorer;
+     57            strcpy(csm->entry,"ENTRY_");
+     58            strcat(csm->entry,csm->appID+4);
+     59            SettingsAE_Read_ws(csm->exp_data.full_filename,FRDB,csm->entry,"FILENAME");
+     60            if(isJAR(csm->exp_data.full_filename)==1) goto _openExplorer;
+     61            GetFileNameWithExt(csm->exp_data.full_filename,csm->exp_data.file_name);
+     62            GetFileDir(csm->exp_data.full_filename,csm->exp_data.path_to_file);
+     63          */
+     64            
+     65          /*_openExplorer: */
+     66            { //обнуляем первое полуслово wsbody,по нему будем определять выбран файл или нет.
+     67              csm->expl.full_filename->wsbody[0]=0;
+     68              csm->EXP_CSM_ID=j_StartNativeExplorer(&csm->expl);
+     69            }
+     70          }
+     71          
+     72          int my_onmessage(CSM_RAM *data, GBS_MSG *msg)
+     73          {
+     74            WSHDR ws;
+     75            unsigned short ws_body[140];
+     76            
+     77            MAIN_CSM *csm=(MAIN_CSM*)data;
+     78          
+     79            if(csm->appID != 0)
+     80            { 
+     81              //устанавливаем имя для 3го пункта меню
+     82              if (msg->msg==0x1B3 && msg->submess==0x2 && (int)msg->data0==2) 
+     83              {
+     84                WSHDR *ws=j_AllocMenuWS(csm->gui, 32);
+     85                j_wsprintf(ws,"<%t>", LGP_FILE);
+     86                _SetItemName(csm, 2, ws);
+     87                csm->unk44=2;
+     88                return 0;
+     89              }
+     90              
+     91            //при открытии 3го пункта меню
+     92            if (msg->msg==0x1B3 && msg->submess==0x1 && (int)msg->data0==2)  
+     93             {
+     94               csm->csm.state=4;
+     95               _openExplorer(csm);
+     96               return 0;
+     97             }
+     98            
+     99            if (msg->msg==MSG_CSM_DESTROYED && (int)msg->data0==csm->EXP_CSM_ID)  
+    100             {
+    101               if(csm->expl.full_filename->wsbody[0]!=0) 
+    102               {
+    103                 int index=j_FRDB_GetIndex(csm->expl.full_filename);
+    104                 if( index==-1)
+    105                 {
+    106                   j_CreateLocalWS(&ws, ws_body, 139);
+    107                   do {
+    108                     index++;
+    109                     j_sprintf(csm->entry,"ENTRY_%.10lu",index);
+    110                   } while(j_SettingsAE_Read_ws(&ws,FRDB,csm->entry,"FILENAME"));
+    111                   
+    112                   if(isJAR(csm->expl.full_filename)==1) j_SettingsAE_SetFlag(0,FRDB,csm->entry,"RESIDENTMIDLET");
+    113                   j_SettingsAE_SetFlag(0,FRDB,csm->entry,"READONLY"); 
+    114                   j_SettingsAE_Update_ws(csm->expl.full_filename,FRDB,csm->entry,"FILENAME");
+    115                 }
+    116                 j_sprintf(csm->appID,"FIL_%.10lu",index);
+    117                 j_GBS_SendMessage(MMI_CEPID,0x01B3,3);
+    118               }
+    119               else csm->csm.state=1;
+    120               return 0;
+    121             }
+    122            }
+    123            return onmessage_hotkey_menu(data,msg); 
+    124          }
+    125          
+    126          
+
+Errors: 1
+Warnings: 1

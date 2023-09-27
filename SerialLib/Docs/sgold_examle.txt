@@ -1,0 +1,52 @@
+ROM:A0002728 i2c_write
+ROM:A0002728                 CMP     R0, #0x7F
+ROM:A000272C                 MOVHI   R0, #6
+ROM:A0002730                 BXHI    LR
+ROM:A0002734                 LDR     R3, =0xF4800000
+ROM:A0002738                 LDR     R12, [R3,#0x10]
+ROM:A000273C                 MOV     R12, R12,LSL#11
+ROM:A0002740                 CMP     R12, #0
+ROM:A0002744                 MOVLT   R0, #7
+ROM:A0002748                 BXLT    LR
+ROM:A000274C                 LDR     R12, [R3,#0x20]
+ROM:A0002750                 ORR     R12, R12, #0x4000000
+ROM:A0002754                 STR     R12, [R3,#0x20]
+ROM:A0002758                 LDR     R2, [R2]
+ROM:A000275C                 MOV     R2, R2,LSL#16
+ROM:A0002760                 ORR     R1, R2, R1,LSL#8
+ROM:A0002764                 ORR     R0, R1, R0,LSL#1
+ROM:A0002768                 STR     R0, [R3,#0x18]
+ROM:A000276C                 LDR     R0, [R3,#0x10]
+ROM:A0002770                 BIC     R0, R0, #0xC000000
+ROM:A0002774                 ORR     R0, R0, #0x8000000
+ROM:A0002778                 STR     R0, [R3,#0x10]
+ROM:A000277C                 LDR     R0, [R3,#0x20]
+ROM:A0002780                 ORR     R0, R0, #0x100000
+ROM:A0002784                 STR     R0, [R3,#0x20]
+ROM:A0002788
+ROM:A0002788 loc_A0002788                            ; CODE XREF: i2c_write+68j
+ROM:A0002788                 LDR     R0, [R3,#0x10]
+ROM:A000278C                 MOVS    R0, R0,LSL#26
+ROM:A0002790                 BPL     loc_A0002788
+ROM:A0002794                 LDR     R0, [R3,#0x10]
+ROM:A0002798                 MOV     R0, R0,LSL#21
+ROM:A000279C                 LDR     R1, [R3,#0x20]
+ROM:A00027A0                 MOV     R0, R0,LSR#29
+ROM:A00027A4                 ORR     R1, R1, #0x20
+ROM:A00027A8                 STR     R1, [R3,#0x20]
+ROM:A00027AC                 LDR     R1, [R3,#0x20]
+ROM:A00027B0                 ORR     R1, R1, #0x80
+ROM:A00027B4                 STR     R1, [R3,#0x20]
+ROM:A00027B8                 CMP     R0, #0
+ROM:A00027BC                 MOVEQ   R0, #1
+ROM:A00027C0                 BXEQ    LR
+ROM:A00027C4                 CMP     R0, #1
+ROM:A00027C8                 MOVEQ   R0, #2
+ROM:A00027CC                 BXEQ    LR
+ROM:A00027D0                 CMP     R0, #2
+ROM:A00027D4                 MOVEQ   R0, #4
+ROM:A00027D8                 BXEQ    LR
+ROM:A00027DC                 SUBS    R0, R0, #3
+ROM:A00027E0                 MOVNE   R0, #8
+ROM:A00027E4                 BX      LR
+ROM:A00027E4 ; End of function i2c_write

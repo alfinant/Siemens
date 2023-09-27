@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3368690240</fileChecksum>
+  <configuration>
+    <name>CX70v56</name>
+    <outputs>
+      <file>$PROJ_DIR$\patch.asm</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\pngconf.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\CX70v56\Obj\patch.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\sha.h</file>
+      <file>$PROJ_DIR$\def.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\png.h</file>
+      <file>$PROJ_DIR$\CX70v56\List\main.lst</file>
+      <file>$PROJ_DIR$\config\CX70v56.xcl</file>
+      <file>$PROJ_DIR$\CX70v56\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\CX70v56\Exe\Hotkeys.elf</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\obs.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\md5.h</file>
+      <file>$PROJ_DIR$\CX70v56\List\patch.lst</file>
+      <file>$PROJ_DIR$\CX70v56\Obj\HotKeys_SGOLD.pbd</file>
+      <file>$PROJ_DIR$\CX70v56\Obj\main.r79</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\zconf.h</file>
+      <file>$PROJ_DIR$\CX70v56\List\Hotkeys.map</file>
+      <file>$TOOLKIT_DIR$\INC\siemens\rsa.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\patch.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 5 18</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 22 13</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 9 8 21 3 23 16 2 6 17 14 15 7</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 1 9 8 21 3 23 16 2 6 17 14 15 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CX70v56\Exe\Hotkeys.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 11 20 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CX70v56\Obj\HotKeys_SGOLD.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>CX75v25</name>
+    <outputs>
+      <file>$PROJ_DIR$\patch.asm</file>
+      <file>$PROJ_DIR$\CX75v25\List\USB_PowerExt.map</file>
+      <file>$PROJ_DIR$\CX75v25\Exe\USB_PowerExt.elf</file>
+      <file>$PROJ_DIR$\config\CX75v25.xcl</file>
+      <file>$PROJ_DIR$\CX75v25\List\patch.lst</file>
+      <file>$PROJ_DIR$\CX75v25\Obj\patch.r79</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\patch.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 5 4</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 1 2</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CX75v25\Exe\USB_PowerExt.elf</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 3 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

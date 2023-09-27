@@ -1,0 +1,102 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Dec/2015  20:13:52 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  arm                                                  #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\main.c                                          #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\main.c -D NEWSGOLD -lCN                         #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\ -o                            #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\ -s9 --cpu_mode arm --endian    #
+#                       little --cpu ARM926EJ-S --stack_align 4 -e --fpu     #
+#                       None --dlib_config E:\Users\alfinant\Documents\Sieme #
+#                       ns\IAR\ARM\LIB\dl5tpannl8n.h -I                      #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\main.lst                       #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\main.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDriver\main.c
+      1          #include "..\inc\swilib.h"
+      2          
+      3          extern void kill_data(void *p, void (*func_p)(void *));
+      4          #pragma segment="ELFBEGIN"
+
+   \                                 In segment CODE, align 4, keep-with-next
+      5          void ElfKiller(void)
+      6          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+      7            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+      8          }
+      9          
+     10          extern unsigned int initalize();
+     11          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     12          int main(char *exename, char *fname)
+     13          {
+   \                     main:
+   \   00000000   00402DE9           PUSH     {LR}
+     14            int status = initalize();
+   \   00000004   ........           _BLF     initalize,??initalize??rA
+     15            
+     16            if(status==1)
+   \   00000008   010050E3           CMP      R0,#+1
+   \   0000000C   0100001A           BNE      ??main_0
+     17              SUBPROC((void*)ElfKiller);
+   \   00000010   08009FE5           LDR      R0,??main_1      ;; ElfKiller
+   \   00000014   710100EF           SWI      +369
+     18            
+     19            return 0;  
+   \                     ??main_0:
+   \   00000018   0000A0E3           MOV      R0,#+0
+   \   0000001C   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_1:
+   \   00000020   ........           DC32     ElfKiller
+     20          }
+
+   \                                 In segment ELFBEGIN, align 1
+     21          
+
+   Maximum stack usage in bytes:
+
+     Function  CSTACK
+     --------  ------
+     ElfKiller     4
+     main          4
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     ElfKiller        28
+     main             36
+      Others          24
+
+ 
+ 88 bytes in segment CODE
+ 
+ 64 bytes of CODE memory (+ 24 bytes shared)
+
+Errors: none
+Warnings: none

@@ -1,0 +1,341 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    10/Dec/2015  20:13:53 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  arm                                                  #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\task.c                                          #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\task.c -D NEWSGOLD -lCN                         #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\ -o                            #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\ -s9 --cpu_mode arm --endian    #
+#                       little --cpu ARM926EJ-S --stack_align 4 -e --fpu     #
+#                       None --dlib_config E:\Users\alfinant\Documents\Sieme #
+#                       ns\IAR\ARM\LIB\dl5tpannl8n.h -I                      #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\List\task.lst                       #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDr #
+#                       iver\Release_NSG\Obj\task.r79                        #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\i2cSwDriver\task.c
+      1          #include "..\inc\swilib.h"
+      2          #include "..\inc\nu_swilib.h"
+      3          #include "I2CSW_TS.H"
+      4          
+      5          #define I2C_SW_QUEUE_NAME           "I2cSwQueue"
+      6          #define I2C_SW_QUEUE_STACK_SIZE     0xC8
+      7          #define I2C_SW_TASK_NAME            "I2cSwTask"
+      8          #define I2C_SW_TASK_STACK_SIZE      0x800
+      9          #define I2C_SW_TASK_PRIO            0x3C
+     10          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     11          UNSIGNED stack_i2c_sw_task[I2C_SW_TASK_STACK_SIZE];
+   \                     stack_i2c_sw_task:
+   \   00000000                      DS8 8192
+     12          UNSIGNED stack_i2c_sw_queue[I2C_SW_QUEUE_STACK_SIZE];
+   \                     stack_i2c_sw_queue:
+   \   00002000                      DS8 800
+     13          
+     14          NU_QUEUE i2c_queue;
+   \                     i2c_queue:
+   \   00002320                      DS8 72
+     15          NU_TASK i2c_task;
+   \                     i2c_task:
+   \   00002368                      DS8 180
+     16          
+     17          typedef struct {
+     18             char  addr;
+     19             char  mode;  // 0-sub_addr используетс€, 2-не используетс€
+     20          #ifdef NEWSGOLD
+     21             char tf;    // тип функции(1-запись, 2-чтении, 4-запись одного байта)
+     22             char unk;
+     23             short sub_addr; //sub address
+     24          #else
+     25             short sub_addr;
+     26             char  unk; 
+     27             char  tf;
+     28          #endif
+     29             short cdata; 
+     30             void (*callback)(void *i2c_msg, int err);
+     31             char *data; 
+     32             int size;
+     33          }I2C_MSG;
+     34          
+     35          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     36          void  i2c_sw_task_entry(UNSIGNED argc, VOID *argv)
+     37          {
+   \                     i2c_sw_task_entry:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   18D04DE2           SUB      SP,SP,#+24
+   \   00000008   030000EA           B        ??i2c_sw_task_entry_0
+     38            STATUS status;
+     39            I2C_MSG i2c_msg;
+     40            UNSIGNED received_size;
+     41              
+     42            while(1)
+     43            {   
+     44              status = NU_Receive_From_Queue(&i2c_queue, &i2c_msg, 5, &received_size, NU_SUSPEND);
+     45                
+     46              /* Determine if the message was received successfully.  */   
+     47              if (status == NU_SUCCESS)
+     48              {      
+     49                if(i2c_msg.tf==1)
+     50                  i2cWrite(i2c_msg.addr, i2c_msg.sub_addr, i2c_msg.data, i2c_msg.size);
+   \                     ??i2c_sw_task_entry_1:
+   \   0000000C   0400DDE5           LDRB     R0,[SP, #+4]
+   \   00000010   011CA0E1           MOV      R1,R1, LSL #+24
+   \   00000014   411CA0E1           MOV      R1,R1, ASR #+24
+   \   00000018   ........           _BLF     i2cWrite,??i2cWrite??rA
+   \                     ??i2c_sw_task_entry_0:
+   \   0000001C   0000E0E3           MVN      R0,#+0
+   \   00000020   01002DE9           PUSH     {R0}
+   \   00000024   4C009FE5           LDR      R0,??i2c_sw_task_entry_2  ;; stack_i2c_sw_task + 8992
+   \   00000028   04308DE2           ADD      R3,SP,#+4
+   \   0000002C   0520A0E3           MOV      R2,#+5
+   \   00000030   08108DE2           ADD      R1,SP,#+8
+   \   00000034   1F0300EF           SWI      +799
+   \   00000038   000050E3           CMP      R0,#+0
+   \   0000003C   04D08DE2           ADD      SP,SP,#+4
+   \   00000040   F5FFFF1A           BNE      ??i2c_sw_task_entry_0
+   \   00000044   0600DDE5           LDRB     R0,[SP, #+6]
+   \   00000048   F810DDE1           LDRSH    R1,[SP, #+8]
+   \   0000004C   10209DE5           LDR      R2,[SP, #+16]
+   \   00000050   14309DE5           LDR      R3,[SP, #+20]
+   \   00000054   010050E3           CMP      R0,#+1
+   \   00000058   EBFFFF0A           BEQ      ??i2c_sw_task_entry_1
+     51                else
+     52                  if(i2c_msg.tf==2)
+   \   0000005C   020050E3           CMP      R0,#+2
+   \   00000060   EDFFFF1A           BNE      ??i2c_sw_task_entry_0
+     53                    i2cRead(i2c_msg.addr, i2c_msg.sub_addr, i2c_msg.data, i2c_msg.size);
+   \   00000064   0400DDE5           LDRB     R0,[SP, #+4]
+   \   00000068   011CA0E1           MOV      R1,R1, LSL #+24
+   \   0000006C   411CA0E1           MOV      R1,R1, ASR #+24
+   \   00000070   ........           _BLF     i2cRead,??i2cRead??rA
+   \   00000074   E8FFFFEA           B        ??i2c_sw_task_entry_0
+   \                     ??i2c_sw_task_entry_2:
+   \   00000078   ........           DC32     stack_i2c_sw_task + 8992
+     54              }    
+     55            }
+     56          }
+     57          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     58          unsigned int initalize()
+     59          {
+   \                     initalize:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   78D04DE2           SUB      SP,SP,#+120
+     60            CHAR queue_name[8];
+     61            VOID *start_address;
+     62            UNSIGNED size;
+     63            UNSIGNED available;
+     64            UNSIGNED messages;
+     65            OPTION message_type;
+     66            UNSIGNED message_size;
+     67            OPTION suspend_type;
+     68            UNSIGNED tasks_suspended;
+     69            NU_TASK *first_task;
+     70            STATUS status;
+     71          
+     72            NU_QUEUE  *Pointer_Array[20];
+     73            UNSIGNED number;
+     74           
+     75            //«ащита от повторного запуска  
+     76            number = NU_Queue_Pointers(Pointer_Array, 20);
+   \   00000008   54419FE5           LDR      R4,??initalize_0  ;; `?<Constant "I2cSwDriver already l...">`
+   \   0000000C   1410A0E3           MOV      R1,#+20
+   \   00000010   28008DE2           ADD      R0,SP,#+40
+   \   00000014   220300EF           SWI      +802
+   \   00000018   0050A0E1           MOV      R5,R0
+     77            
+     78            while(--number)
+   \                     ??initalize_1:
+   \   0000001C   015055E2           SUBS     R5,R5,#+1
+   \   00000020   1C00000A           BEQ      ??initalize_2
+     79            {
+     80              NU_Queue_Information(Pointer_Array[number], queue_name, &start_address, &size, &available,
+     81                                          &messages, &message_type, &message_size, &suspend_type, &tasks_suspended, &first_task);
+   \   00000024   1C008DE2           ADD      R0,SP,#+28
+   \   00000028   01002DE9           PUSH     {R0}
+   \   0000002C   1C008DE2           ADD      R0,SP,#+28
+   \   00000030   01002DE9           PUSH     {R0}
+   \   00000034   09008DE2           ADD      R0,SP,#+9
+   \   00000038   01002DE9           PUSH     {R0}
+   \   0000003C   20008DE2           ADD      R0,SP,#+32
+   \   00000040   01002DE9           PUSH     {R0}
+   \   00000044   10008DE2           ADD      R0,SP,#+16
+   \   00000048   01002DE9           PUSH     {R0}
+   \   0000004C   24008DE2           ADD      R0,SP,#+36
+   \   00000050   01002DE9           PUSH     {R0}
+   \   00000054   24008DE2           ADD      R0,SP,#+36
+   \   00000058   01002DE9           PUSH     {R0}
+   \   0000005C   24308DE2           ADD      R3,SP,#+36
+   \   00000060   20208DE2           ADD      R2,SP,#+32
+   \   00000064   3C108DE2           ADD      R1,SP,#+60
+   \   00000068   44008DE2           ADD      R0,SP,#+68
+   \   0000006C   050190E7           LDR      R0,[R0, +R5, LSL #+2]
+   \   00000070   210300EF           SWI      +801
+     82              
+     83              if(strncmp(queue_name, I2C_SW_QUEUE_NAME, 8) == 0)
+   \   00000074   0820A0E3           MOV      R2,#+8
+   \   00000078   1C1084E2           ADD      R1,R4,#+28
+   \   0000007C   3C008DE2           ADD      R0,SP,#+60
+   \   00000080   150100EF           SWI      +277
+   \   00000084   000050E3           CMP      R0,#+0
+   \   00000088   1CD08DE2           ADD      SP,SP,#+28
+   \   0000008C   E2FFFF1A           BNE      ??initalize_1
+     84              {
+     85                ShowMSG(1,(int)"I2cSwDriver already loaded!");
+   \   00000090   0410A0E1           MOV      R1,R4
+   \                     ??initalize_3:
+   \   00000094   2A0000EA           B        ??initalize_4
+     86                return (1);
+     87              }
+     88            } 
+     89            //—оздадим очередь дл€ наших сообщений   
+     90            status = NU_Create_Queue(&i2c_queue, I2C_SW_QUEUE_NAME, stack_i2c_sw_queue, I2C_SW_QUEUE_STACK_SIZE, NU_FIXED_SIZE, 5, NU_FIFO); 
+     91            if (status != NU_SUCCESS)
+   \                     ??initalize_2:
+   \   00000098   C8509FE5           LDR      R5,??initalize_0+0x4  ;; stack_i2c_sw_task
+   \   0000009C   0600A0E3           MOV      R0,#+6
+   \   000000A0   01002DE9           PUSH     {R0}
+   \   000000A4   C830A0E3           MOV      R3,#+200
+   \   000000A8   802D85E2           ADD      R2,R5,#+8192
+   \   000000AC   1C1084E2           ADD      R1,R4,#+28
+   \   000000B0   0500A0E3           MOV      R0,#+5
+   \   000000B4   01002DE9           PUSH     {R0}
+   \   000000B8   0700A0E3           MOV      R0,#+7
+   \   000000BC   01002DE9           PUSH     {R0}
+   \   000000C0   2000A0E3           MOV      R0,#+32
+   \   000000C4   8C0D80E3           ORR      R0,R0,#0x2300
+   \   000000C8   050080E0           ADD      R0,R0,R5
+   \   000000CC   190300EF           SWI      +793
+   \   000000D0   000050E3           CMP      R0,#+0
+   \   000000D4   0CD08DE2           ADD      SP,SP,#+12
+     92            {
+     93              ShowMSG(1,(int)"I2cSwDRv: don`t create queue!");
+   \   000000D8   28108412           ADDNE    R1,R4,#+40
+   \   000000DC   1800001A           BNE      ??initalize_4
+     94              return 1;
+     95            }
+     96            //—оздадим задачу.ѕосле старта задача остановитс€ и возобновитс€ только после поступлени€ в очередь i2c_queue сообщени€
+     97            status = NU_Create_Task(&i2c_task, I2C_SW_TASK_NAME, i2c_sw_task_entry, 0, 0,(void *)stack_i2c_sw_task, I2C_SW_TASK_STACK_SIZE, I2C_SW_TASK_PRIO , 0x50, NU_PREEMPT, NU_START);
+     98            if (status != NU_SUCCESS)
+   \   000000E0   84209FE5           LDR      R2,??initalize_0+0x8  ;; i2c_sw_task_entry
+   \   000000E4   0C00A0E3           MOV      R0,#+12
+   \   000000E8   01002DE9           PUSH     {R0}
+   \   000000EC   0030A0E3           MOV      R3,#+0
+   \   000000F0   481084E2           ADD      R1,R4,#+72
+   \   000000F4   0A00A0E3           MOV      R0,#+10
+   \   000000F8   01002DE9           PUSH     {R0}
+   \   000000FC   5000A0E3           MOV      R0,#+80
+   \   00000100   01002DE9           PUSH     {R0}
+   \   00000104   3C00A0E3           MOV      R0,#+60
+   \   00000108   01002DE9           PUSH     {R0}
+   \   0000010C   800EA0E3           MOV      R0,#+2048
+   \   00000110   01002DE9           PUSH     {R0}
+   \   00000114   0500A0E1           MOV      R0,R5
+   \   00000118   01002DE9           PUSH     {R0}
+   \   0000011C   0000A0E3           MOV      R0,#+0
+   \   00000120   01002DE9           PUSH     {R0}
+   \   00000124   6800A0E3           MOV      R0,#+104
+   \   00000128   8C0D80E3           ORR      R0,R0,#0x2300
+   \   0000012C   050080E0           ADD      R0,R0,R5
+   \   00000130   000300EF           SWI      +768
+   \   00000134   000050E3           CMP      R0,#+0
+   \   00000138   1CD08DE2           ADD      SP,SP,#+28
+   \   0000013C   0500000A           BEQ      ??initalize_5
+     99            {
+    100              ShowMSG(1,(int)"I2cSwDRv: don`t create task!");
+   \   00000140   541084E2           ADD      R1,R4,#+84
+   \                     ??initalize_4:
+   \   00000144   0100A0E3           MOV      R0,#+1
+   \   00000148   480100EF           SWI      +328
+    101              return 1;
+   \   0000014C   0100A0E3           MOV      R0,#+1
+   \   00000150   78D08DE2           ADD      SP,SP,#+120
+   \   00000154   3080BDE8           POP      {R4,R5,PC}
+    102            }
+    103            
+    104            return 0;
+   \                     ??initalize_5:
+   \   00000158   0000A0E3           MOV      R0,#+0
+   \   0000015C   78D08DE2           ADD      SP,SP,#+120
+   \   00000160   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??initalize_0:
+   \   00000164   ........           DC32     `?<Constant "I2cSwDriver already l...">`
+   \   00000168   ........           DC32     stack_i2c_sw_task
+   \   0000016C   ........           DC32     i2c_sw_task_entry
+    105          }
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "I2cSwDriver already l...">`:
+   \   00000000   493263537744       DC8 "I2cSwDriver already loaded!"
+   \              726976657220
+   \              616C72656164
+   \              79206C6F6164
+   \              65642100    
+   \   0000001C   493263537751       DC8 "I2cSwQueue"
+   \              7565756500  
+   \   00000027   00                 DC8 0
+   \   00000028   493263537744       DC8 "I2cSwDRv: don`t create queue!"
+   \              52763A20646F
+   \              6E6074206372
+   \              656174652071
+   \              756575652100
+   \   00000046   0000               DC8 0, 0
+   \   00000048   493263537754       DC8 "I2cSwTask"
+   \              61736B00    
+   \   00000052   0000               DC8 0, 0
+   \   00000054   493263537744       DC8 "I2cSwDRv: don`t create task!"
+   \              52763A20646F
+   \              6E6074206372
+   \              656174652074
+   \              61736B2100  
+   \   00000071   000000             DC8 0, 0, 0
+
+   Maximum stack usage in bytes:
+
+     Function          CSTACK
+     --------          ------
+     i2c_sw_task_entry    32
+     initalize           160
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     stack_i2c_sw_task              9244
+     i2c_sw_task_entry               124
+     initalize                       368
+     ?<Constant "I2cSwDriver already l...">
+                                     116
+      Others                          36
+
+ 
+   516 bytes in segment CODE
+   116 bytes in segment DATA_C
+ 9 244 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+   492 bytes of CODE  memory (+ 36 bytes shared)
+   116 bytes of CONST memory
+ 9 244 bytes of DATA  memory
+
+Errors: none
+Warnings: none

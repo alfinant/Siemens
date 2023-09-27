@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>i2c_sw_task/Release_SGOLD</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>166</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1395</ColumnWidth1><ColumnWidth2>372</ColumnWidth2><ColumnWidth3>93</ColumnWidth3></Build>
+    </Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-5742-13899</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>i2c_sw_task</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-10740-14010</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\inc\reg8876.h</Filename><XPos>0</XPos><YPos>93</YPos><SelStart>8250</SelStart><SelEnd>8250</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2cSwDriver\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>279</SelStart><SelEnd>279</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2cSwDriver\task.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>301</SelStart><SelEnd>301</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2cSwDriver\I2C_SW.C</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>351</SelStart><SelEnd>351</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\i2cSwDriver\I2CSW_TS.C</Filename><XPos>0</XPos><YPos>12</YPos><SelStart>956</SelStart><SelEnd>956</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfin_000\Documents\Siemens\alfinant\inc\swilib.h</Filename><XPos>0</XPos><YPos>2701</YPos><SelStart>93865</SelStart><SelEnd>93884</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-021523d8><key>iaridepm.enu1</key></Toolbar-021523d8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>640</Bottom><Right>240</Right><x>-2</x><y>-2</y><xscreen>142</xscreen><yscreen>137</yscreen><sizeHorzCX>104412</sizeHorzCX><sizeHorzCY>200000</sizeHorzCY><sizeVertCX>177941</sizeVertCX><sizeVertCY>937226</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>640</Bottom><Right>379</Right><x>-2</x><y>-2</y><xscreen>1364</xscreen><yscreen>154</yscreen><sizeHorzCX>1002941</sizeHorzCX><sizeHorzCY>224818</sizeHorzCY><sizeVertCX>280147</sizeVertCX><sizeVertCY>937226</sizeVertCY></Rect></Wnd1></Sizes></Row0></Right><Bottom><Row0><Sizes/></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

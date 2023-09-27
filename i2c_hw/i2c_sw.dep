@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2960322243</fileChecksum>
+  <configuration>
+    <name>Release_NSG</name>
+    <outputs>
+      <file>$TOOLKIT_DIR$\INC\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Exe\i2c_sw.elf</file>
+      <file>$PROJ_DIR$\..\inc\reg8876.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\func.r79</file>
+      <file>$PROJ_DIR$\..\inc\crypto.h</file>
+      <file>$PROJ_DIR$\..\inc\pngconf.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.r79</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\i2c_sw.pbd</file>
+      <file>$PROJ_DIR$\..\inc\zlib.h</file>
+      <file>$TOOLKIT_DIR$\INC\intrinsics.h</file>
+      <file>$PROJ_DIR$\..\inc\strings.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\strings.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\yvals.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpannl8n.h</file>
+      <file>$PROJ_DIR$\..\inc\obs.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\strings.r79</file>
+      <file>$PROJ_DIR$\Release_NSG\List\strings.lst</file>
+      <file>$PROJ_DIR$\..\inc\md5.h</file>
+      <file>$PROJ_DIR$\..\inc\data_n.h</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\inc\sha.h</file>
+      <file>$PROJ_DIR$\..\inc\png.h</file>
+      <file>$PROJ_DIR$\strings.c</file>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C_SW.pbi</file>
+      <file>$PROJ_DIR$\I2C_SW.C</file>
+      <file>$PROJ_DIR$\..\inc\swilib.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\I2C_SW.r79</file>
+      <file>$PROJ_DIR$\..\inc\clkman.h</file>
+      <file>$PROJ_DIR$\..\inc\bn.h</file>
+      <file>$TOOLKIT_DIR$\INC\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Release_NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\I2C_SW.H</file>
+      <file>$TOOLKIT_DIR$\INC\stdint.h</file>
+      <file>$PROJ_DIR$\..\inc\zconf.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\I2C_SW.lst</file>
+      <file>$PROJ_DIR$\..\inc\interrupt.h</file>
+      <file>$PROJ_DIR$\Release_NSG\List\main.lst</file>
+      <file>$PROJ_DIR$\..\inc\rsa.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Exe\i2c_sw.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 21 31 3 35 17 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release_NSG\Obj\i2c_sw.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 28 22 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35 41</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 30 25 10 38 5 42 33 4 24 19 20 16 12 32 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\strings.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 17 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 30 25 10 38 5 42 33 4 24 19 20 16 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\I2C_SW.C</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31 39</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 2 37 14 34 15 8 0 6 32 40 11</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

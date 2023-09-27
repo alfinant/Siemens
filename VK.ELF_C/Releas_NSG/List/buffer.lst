@@ -1,0 +1,143 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:38 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \buffer.c                                            #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \buffer.c -D NEWSGOLD -D DEBUG -lCN                  #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\buffer.lst                          #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\buffer.r79                           #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\buffer.c
+      1          #include "buffer.h"
+      2          #include <siemens/swilib.h>
+      3          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+      4          char *send_buf=0;
+   \                     send_buf:
+   \   00000000                      DS8 4
+      5          char *recv_buf=0;
+      6          
+      7          int send_buf_len=0;
+   \                     send_buf_len:
+   \   00000004                      DS8 4
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \                     recv_buf:
+   \   00000000                      DS8 4
+      8          int recv_buf_len=0;
+   \                     recv_buf_len:
+   \   00000004                      DS8 4
+      9          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     10          void free_recv_buf()
+     11          {
+   \                     free_recv_buf:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     12            recv_buf_len=0;
+   \   00000004   1C409FE5           LDR      R4,??free_recv_buf_0  ;; recv_buf
+   \   00000008   0050A0E3           MOV      R5,#+0
+     13            if (recv_buf)
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   045084E5           STR      R5,[R4, #+4]
+   \   00000014   000050E3           CMP      R0,#+0
+   \   00000018   0000000A           BEQ      ??free_recv_buf_1
+     14              mfree(recv_buf);
+   \   0000001C   150000EF           SWI      +21
+     15            recv_buf=NULL;
+   \                     ??free_recv_buf_1:
+   \   00000020   005084E5           STR      R5,[R4, #+0]
+     16          }
+   \   00000024   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??free_recv_buf_0:
+   \   00000028   ........           DC32     recv_buf
+     17          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     18          void free_send_buf()
+     19          {
+   \                     free_send_buf:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+     20            send_buf_len=0;
+   \   00000004   1C409FE5           LDR      R4,??free_send_buf_0  ;; send_buf
+   \   00000008   0050A0E3           MOV      R5,#+0
+     21            if (send_buf)
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   045084E5           STR      R5,[R4, #+4]
+   \   00000014   000050E3           CMP      R0,#+0
+   \   00000018   0000000A           BEQ      ??free_send_buf_1
+     22              mfree(send_buf);
+   \   0000001C   150000EF           SWI      +21
+     23            send_buf=NULL;
+   \                     ??free_send_buf_1:
+   \   00000020   005084E5           STR      R5,[R4, #+0]
+     24          }
+   \   00000024   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??free_send_buf_0:
+   \   00000028   ........           DC32     send_buf
+     25          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     26          void free_buffers()
+     27          {
+   \                     free_buffers:
+   \   00000000   00402DE9           PUSH     {LR}
+     28            free_recv_buf();
+   \   00000004   ........           BL       free_recv_buf
+     29            free_send_buf();
+   \   00000008   0040BDE8           POP      {LR}             ;; Pop
+   \   0000000C   ........           B        free_send_buf    ;; tailcall
+     30          }
+
+   Maximum stack usage in bytes:
+
+     Function      CSTACK
+     --------      ------
+     free_buffers      4
+     free_recv_buf    12
+     free_send_buf    12
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     send_buf          8
+     recv_buf          8
+     free_recv_buf    44
+     free_send_buf    44
+     free_buffers     16
+      Others          24
+
+ 
+ 116 bytes in segment CODE
+  16 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+ 104 bytes of CODE memory (+ 24 bytes shared)
+  16 bytes of DATA memory
+
+Errors: none
+Warnings: none

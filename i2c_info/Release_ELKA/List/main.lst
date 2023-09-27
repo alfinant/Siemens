@@ -1,0 +1,318 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    14/Dec/2015  00:37:00 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\main.c                                             #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\main.c -D NEWSGOLD -D ELKA -D NANO -lCN            #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\Release_ELKA\List\ -la E:\Users\alfinant\Documents #
+#                       \Siemens\alfinant\i2c_info\Release_ELKA\List\ -o     #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\Release_ELKA\Obj\ -z9 --cpu_mode arm --endian      #
+#                       little --cpu ARM926EJ-S --stack_align 4 --interwork  #
+#                       -e --fpu None --dlib_config                          #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I E:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\Release_ELKA\List\main.lst                         #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_inf #
+#                       o\Release_ELKA\Obj\main.r79                          #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\main.c
+      1          #include "..\inc\swilib.h"
+      2          #include "..\inc\i2c.h"
+      3          
+      4          #ifdef NEWSGOLD
+      5          #include "..\inc\reg8876.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 488
+      6          #else
+      7          #include "..\inc\reg8875.h"
+      8          #endif
+      9          
+     10          extern void kill_data(void *p, void (*func_p)(void *));
+     11          #pragma segment="ELFBEGIN"
+
+   \                                 In segment CODE, align 4, keep-with-next
+     12          void ElfKiller(void)
+     13          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+     14            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+     15          }
+     16          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     17          unsigned data[0x6];
+   \                     `data`:
+   \   00000000                      DS8 24
+     18          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     19          void SaveRegMap()
+     20          { unsigned  err=0;
+   \                     SaveRegMap:
+   \   00000000   11402DE9           PUSH     {R0,R4,LR}
+     21          
+     22            int f=fopen("0:\\SCCU.bin",A_ReadWrite+A_Create+A_Truncate+A_BIN,P_WRITE+P_READ,&err);
+   \   00000004   3C009FE5           LDR      R0,??SaveRegMap_0  ;; `?<Constant "0:\\\\SCCU.bin">`
+   \   00000008   0010A0E3           MOV      R1,#+0
+   \   0000000C   00108DE5           STR      R1,[SP, #+0]
+   \   00000010   0D30A0E1           MOV      R3,SP
+   \   00000014   602FA0E3           MOV      R2,#+384
+   \   00000018   0210A0E3           MOV      R1,#+2
+   \   0000001C   831C81E3           ORR      R1,R1,#0x8300
+   \   00000020   0A0000EF           SWI      +10
+     23            fwrite(f,data,0x18,&err);
+   \   00000024   20109FE5           LDR      R1,??SaveRegMap_0+0x4  ;; `data`
+   \   00000028   0040A0E1           MOV      R4,R0
+   \   0000002C   0D30A0E1           MOV      R3,SP
+   \   00000030   1820A0E3           MOV      R2,#+24
+   \   00000034   0C0000EF           SWI      +12
+     24            fclose(f,&err);
+   \   00000038   0D10A0E1           MOV      R1,SP
+   \   0000003C   0400A0E1           MOV      R0,R4
+   \   00000040   0D0000EF           SWI      +13
+     25          }
+   \   00000044   1180BDE8           POP      {R0,R4,PC}       ;; return
+   \                     ??SaveRegMap_0:
+   \   00000048   ........           DC32     `?<Constant "0:\\\\SCCU.bin">`
+   \   0000004C   ........           DC32     `data`
+     26          
+     27          
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+     28          char dat=0;
+   \                     dat:
+   \   00000000                      DS8 1
+     29          char reg_0,reg_1,reg_2,reg_10h;
+   \                     reg_0:
+   \   00000001                      DS8 1
+   \                     reg_1:
+   \   00000002                      DS8 1
+   \                     reg_2:
+   \   00000003                      DS8 1
+   \                     reg_10h:
+   \   00000004                      DS8 1
+     30          
+     31          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     32          void showMess()
+     33          {
+   \                     showMess:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   80D04DE2           SUB      SP,SP,#+128
+     34            char s[127];
+     35            sprintf(s, "i2cReg0=%X\n"
+     36                       "i2cReg1=%X\n"
+     37                       "i2cReg2=%X\n"
+     38                       "i2cReg10h=%X\n"
+     39                       "pmCharge=%X\n", reg_0, reg_1, reg_2,reg_10h, GPIO.TOUT1);
+   \   00000008   ........           LDR      R0,??DataTable1  ;; dat
+   \   0000000C   D010A0E3           MOV      R1,#+208
+   \   00000010   BD1641E2           SUB      R1,R1,#+198180864
+   \   00000014   001091E5           LDR      R1,[R1, #+0]
+   \   00000018   02002DE9           PUSH     {R1}
+   \   0000001C   0410D0E5           LDRB     R1,[R0, #+4]
+   \   00000020   02002DE9           PUSH     {R1}
+   \   00000024   0310D0E5           LDRB     R1,[R0, #+3]
+   \   00000028   02002DE9           PUSH     {R1}
+   \   0000002C   0230D0E5           LDRB     R3,[R0, #+2]
+   \   00000030   0120D0E5           LDRB     R2,[R0, #+1]
+   \   00000034   20109FE5           LDR      R1,??showMess_0  ;; `?<Constant "i2cReg0=%X\\ni2cReg1=%X...">`
+   \   00000038   0C008DE2           ADD      R0,SP,#+12
+   \   0000003C   160000EF           SWI      +22
+     40            ShowMSG(0x1, (int)s);
+   \   00000040   0C108DE2           ADD      R1,SP,#+12
+   \   00000044   0100A0E3           MOV      R0,#+1
+   \   00000048   480100EF           SWI      +328
+     41            SUBPROC((void *)ElfKiller);
+   \   0000004C   0C009FE5           LDR      R0,??showMess_0+0x4  ;; ElfKiller
+   \   00000050   710100EF           SWI      +369
+     42          }
+   \   00000054   8CD08DE2           ADD      SP,SP,#+140
+   \   00000058   0080BDE8           POP      {PC}             ;; return
+   \                     ??showMess_0:
+   \   0000005C   ........           DC32     `?<Constant "i2cReg0=%X\\ni2cReg1=%X...">`
+   \   00000060   ........           DC32     ElfKiller
+     43          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     44          void callback(void *i2c_msg, int err)
+     45          {
+   \                     callback:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+     46            I2C_MSG *msg=(I2C_MSG*) i2c_msg;
+     47            
+     48            if(msg->cdata==0)i2cr_pmu(1, &reg_1, callback, 1);
+   \   00000004   ........           LDR      R5,??DataTable1  ;; dat
+   \   00000008   ........           LDR      R6,??DataTable3  ;; callback
+   \   0000000C   0040A0E1           MOV      R4,R0
+   \   00000010   F600D4E1           LDRSH    R0,[R4, #+6]
+   \   00000014   000050E3           CMP      R0,#+0
+   \   00000018   0400001A           BNE      ??callback_0
+   \   0000001C   0130A0E3           MOV      R3,#+1
+   \   00000020   0620A0E1           MOV      R2,R6
+   \   00000024   021085E2           ADD      R1,R5,#+2
+   \   00000028   0100A0E3           MOV      R0,#+1
+   \   0000002C   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+     49            if(msg->cdata==1)i2cr_pmu(2, &reg_2, callback, 2);
+   \                     ??callback_0:
+   \   00000030   F600D4E1           LDRSH    R0,[R4, #+6]
+   \   00000034   010050E3           CMP      R0,#+1
+   \   00000038   0400001A           BNE      ??callback_1
+   \   0000003C   0230A0E3           MOV      R3,#+2
+   \   00000040   0620A0E1           MOV      R2,R6
+   \   00000044   031085E2           ADD      R1,R5,#+3
+   \   00000048   0200A0E3           MOV      R0,#+2
+   \   0000004C   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+     50            if(msg->cdata==2)i2cr_pmu(0x10, &reg_10h, callback, 0xf);
+   \                     ??callback_1:
+   \   00000050   F600D4E1           LDRSH    R0,[R4, #+6]
+   \   00000054   020050E3           CMP      R0,#+2
+   \   00000058   0400001A           BNE      ??callback_2
+   \   0000005C   0F30A0E3           MOV      R3,#+15
+   \   00000060   0620A0E1           MOV      R2,R6
+   \   00000064   041085E2           ADD      R1,R5,#+4
+   \   00000068   1000A0E3           MOV      R0,#+16
+   \   0000006C   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+     51            
+     52            if(msg->cdata==0xf) SUBPROC((void*)showMess);
+   \                     ??callback_2:
+   \   00000070   F600D4E1           LDRSH    R0,[R4, #+6]
+   \   00000074   0F0050E3           CMP      R0,#+15
+   \   00000078   7080BD18           POPNE    {R4-R6,PC}
+   \   0000007C   04009FE5           LDR      R0,??callback_3  ;; showMess
+   \   00000080   710100EF           SWI      +369
+     53          }
+   \   00000084   7080BDE8           POP      {R4-R6,PC}       ;; return
+   \                     ??callback_3:
+   \   00000088   ........           DC32     showMess
+     54          
+     55          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     56          int main(char *exename, char *fname)
+     57          {
+     58            dat=0x93;
+   \                     main:
+   \   00000000   24009FE5           LDR      R0,??main_0      ;; dat
+     59            i2cr_pmu(0, &reg_0, callback, 0);
+   \   00000004   ........           LDR      R2,??DataTable3  ;; callback
+   \   00000008   00402DE9           PUSH     {LR}
+   \   0000000C   9310A0E3           MOV      R1,#+147
+   \   00000010   0010C0E5           STRB     R1,[R0, #+0]
+   \   00000014   0030A0E3           MOV      R3,#+0
+   \   00000018   011080E2           ADD      R1,R0,#+1
+   \   0000001C   0000A0E3           MOV      R0,#+0
+   \   00000020   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+     60            
+     61            return 0;
+   \   00000024   0000A0E3           MOV      R0,#+0
+   \   00000028   0080BDE8           POP      {PC}             ;; return
+   \                     ??main_0:
+   \   0000002C   ........           DC32     dat
+     62          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   ........           DC32     dat
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   ........           DC32     callback
+
+   \                                 In segment ELFBEGIN, align 1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "0:\\\\SCCU.bin">`:
+   \   00000000   303A5C534343       DC8 "0:\\SCCU.bin"
+   \              552E62696E00
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "i2cReg0=%X\\ni2cReg1=%X...">`:
+   \   00000000   693263526567       DC8 69H, 32H, 63H, 52H, 65H, 67H, 30H, 3DH
+   \              303D        
+   \   00000008   25580A693263       DC8 25H, 58H, 0AH, 69H, 32H, 63H, 52H, 65H
+   \              5265        
+   \   00000010   67313D25580A       DC8 67H, 31H, 3DH, 25H, 58H, 0AH, 69H, 32H
+   \              6932        
+   \   00000018   63526567323D       DC8 63H, 52H, 65H, 67H, 32H, 3DH, 25H, 58H
+   \              2558        
+   \   00000020   0A6932635265       DC8 0AH, 69H, 32H, 63H, 52H, 65H, 67H, 31H
+   \              6731        
+   \   00000028   30683D25580A       DC8 30H, 68H, 3DH, 25H, 58H, 0AH, 70H, 6DH
+   \              706D        
+   \   00000030   436861726765       DC8 43H, 68H, 61H, 72H, 67H, 65H, 3DH, 25H
+   \              3D25        
+   \   00000038   580A00             DC8 58H, 0AH, 0
+   \   0000003B   00                 DC8 0
+     63          
+     64          
+     65          
+     66          
+
+   Maximum stack usage in bytes:
+
+     Function   CSTACK
+     --------   ------
+     ElfKiller      4
+     SaveRegMap    12
+     callback      16
+     main           4
+     showMess     144
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     GPIO                            488
+     ElfKiller                        28
+     data                             24
+     SaveRegMap                       80
+     dat                               5
+     showMess                        100
+     callback                        140
+     main                             48
+     ??DataTable1                      4
+     ??DataTable3                      4
+     ?<Constant "0:\\SCCU.bin">       12
+     ?<Constant "i2cReg0=%X\ni2cReg1=%X...">
+                                      60
+      Others                          56
+
+ 
+ 448 bytes in segment CODE
+ 488 bytes in segment DATA_AN
+  72 bytes in segment DATA_C
+  29 bytes in segment DATA_Z
+  12 bytes in segment INITTAB
+ 
+ 404 bytes of CODE  memory (+  56 bytes shared)
+  72 bytes of CONST memory
+  29 bytes of DATA  memory (+ 488 bytes shared)
+
+Errors: none
+Warnings: none

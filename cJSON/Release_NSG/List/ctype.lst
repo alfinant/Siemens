@@ -1,0 +1,88 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    20/Oct/2018  20:59:19 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\j #
+#                       son\ctype.c                                          #
+#    Command line    =  C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\j #
+#                       son\ctype.c -D NEWSGOLD -lCN                         #
+#                       C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\R #
+#                       elease_NSG\List\ -la C:\Users\alfinant\Documents\Sie #
+#                       mens\alfinant\cJSON\Release_NSG\List\ -o             #
+#                       C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\R #
+#                       elease_NSG\Obj\ -z9 --cpu_mode arm --endian little   #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork -e      #
+#                       --fpu None --dlib_config C:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tpainl8n.h -I                #
+#                       C:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\R #
+#                       elease_NSG\List\ctype.lst                            #
+#    Object file     =  C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\R #
+#                       elease_NSG\Obj\ctype.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\alfinant\Documents\Siemens\alfinant\cJSON\json\ctype.c
+      1          #include "..\inc\swilib.h"
+      2          
+      3          inline void tolowerPtr(char *p) ; 
+      4          
+      5          inline void tolower(char* c)//обьявлен в ctype.h 
+      6          {
+      7            size_t l = strlen(c); 
+      8              for(char* c2=c; c2<c+l; c2++)tolowerPtr(c2); 
+      9          }; 
+     10          
+     11          inline void tolowerPtr(char *p) 
+     12          { 
+     13          switch(*p) 
+     14          { 
+     15              case 'A':*p='a'; return; 
+     16              case 'B':*p='b'; return; 
+     17              case 'C':*p='c'; return; 
+     18              case 'D':*p='d'; return; 
+     19              case 'E':*p='e'; return; 
+     20              case 'F':*p='f'; return; 
+     21              case 'G':*p='g'; return; 
+     22              case 'H':*p='h'; return; 
+     23              case 'I':*p='i'; return; 
+     24              case 'J':*p='j'; return; 
+     25              case 'K':*p='k'; return; 
+     26              case 'L':*p='l'; return; 
+     27              case 'M':*p='m'; return; 
+     28              case 'N':*p='n'; return; 
+     29              case 'O':*p='o'; return; 
+     30              case 'P':*p='p'; return; 
+     31              case 'Q':*p='q'; return; 
+     32              case 'R':*p='r'; return; 
+     33              case 'S':*p='s'; return; 
+     34              case 'T':*p='t'; return; 
+     35              case 'U':*p='u'; return; 
+     36              case 'V':*p='v'; return; 
+     37              case 'W':*p='w'; return; 
+     38              case 'X':*p='x'; return; 
+     39              case 'Y':*p='y'; return; 
+     40              case 'Z':*p='z'; return; 
+     41          }; 
+     42          return ; 
+     43          }
+     44          
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+
+ 
+ 
+ 0 bytes of memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,1439 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   05/Mar/2023  23:09:59 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\vk_work.c                                         /
+//    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\vk_work.c -D NEWSGOLD -D DEBUG -lCN               /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\List\ -la D:\Users\alfinant\Documents\ /
+//                       Siemens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o        /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\Obj\ -s9 --cpu_mode arm --endian       /
+//                       little --cpu ARM926EJ-S --stack_align 4             /
+//                       --interwork --diag_suppress Pe301 -e --fpu None     /
+//                       --dlib_config D:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\LIB\dl5tpainl8n.h -I                         /
+//                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\    /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\List\vk_work.s79                       /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME vk_work
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?DATA_ID`
+        MULTWEAK ??CreateWS_emoji??rT
+        MULTWEAK ??FindDialog??rT
+        MULTWEAK ??FreeWALL??rT
+        MULTWEAK ??Replace_Smiles_Syms??rA
+        MULTWEAK ??_del_Profiles??rT
+        MULTWEAK ??count_ListElements??rT
+        MULTWEAK ??create_noninfo_dialog_users_ids??rT
+        MULTWEAK ??del_Dialogs??rT
+        MULTWEAK ??del_Group??rT
+        MULTWEAK ??del_Groups??rT
+        MULTWEAK ??del_Message??rT
+        MULTWEAK ??del_Messages??rT
+        MULTWEAK ??del_Profiles??rT
+        MULTWEAK ??del_User??rT
+        MULTWEAK ??del_attachments??rT
+        MULTWEAK ??del_wall_attachments??rT
+        MULTWEAK ??find_Group??rT
+        MULTWEAK ??find_User??rT
+        MULTWEAK ??get_DialogMsg??rT
+        MULTWEAK ??get_ListByIndex??rT
+        MULTWEAK ??new_Dialog??rT
+        MULTWEAK ??new_Group??rT
+        MULTWEAK ??new_Message??rT
+        MULTWEAK ??new_User??rT
+        MULTWEAK ??utf8_2ws_emoji??rT
+        MULTWEAK ??utf8_syms_n??rA
+        PUBWEAK ?init?tab?DATA_I
+        PUBLIC CreateWS_emoji
+        FUNCTION CreateWS_emoji,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC FindDialog
+        FUNCTION FindDialog,0203H
+        PUBLIC FreeWALL
+        FUNCTION FreeWALL,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC _del_Profiles
+        FUNCTION _del_Profiles,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC count_ListElements
+        FUNCTION count_ListElements,0203H
+        PUBLIC create_noninfo_dialog_users_ids
+        FUNCTION create_noninfo_dialog_users_ids,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC del_Dialogs
+        FUNCTION del_Dialogs,0201H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC del_Group
+        FUNCTION del_Group,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC del_Groups
+        FUNCTION del_Groups,0201H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC del_Message
+        FUNCTION del_Message,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC del_Messages
+        FUNCTION del_Messages,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC del_Profiles
+        FUNCTION del_Profiles,0201H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC del_User
+        FUNCTION del_User,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC del_attachments
+        FUNCTION del_attachments,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC del_wall_attachments
+        FUNCTION del_wall_attachments,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC dialogs
+        PUBLIC find_Group
+        FUNCTION find_Group,0203H
+        PUBLIC find_User
+        FUNCTION find_User,0203H
+        PUBLIC friends
+        PUBLIC get_DialogMsg
+        FUNCTION get_DialogMsg,0203H
+        PUBLIC get_ListByIndex
+        FUNCTION get_ListByIndex,0203H
+        PUBLIC groups
+        PUBLIC my_groups
+        PUBLIC new_Dialog
+        FUNCTION new_Dialog,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC new_Group
+        FUNCTION new_Group,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC new_Message
+        FUNCTION new_Message,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC new_User
+        FUNCTION new_User,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC profiles
+        PUBLIC utf8_2ws_emoji
+        FUNCTION utf8_2ws_emoji,0203H
+        LOCFRAME CSTACK, 12, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+Replace_Smiles_Syms SYMBOL "Replace_Smiles_Syms"
+utf8_syms_n         SYMBOL "utf8_syms_n"
+CreateWS_emoji      SYMBOL "CreateWS_emoji"
+??CreateWS_emoji??rT SYMBOL "??rT", CreateWS_emoji
+FindDialog          SYMBOL "FindDialog"
+??FindDialog??rT    SYMBOL "??rT", FindDialog
+FreeWALL            SYMBOL "FreeWALL"
+??FreeWALL??rT      SYMBOL "??rT", FreeWALL
+??Replace_Smiles_Syms??rA SYMBOL "??rA", Replace_Smiles_Syms
+_del_Profiles       SYMBOL "_del_Profiles"
+??_del_Profiles??rT SYMBOL "??rT", _del_Profiles
+count_ListElements  SYMBOL "count_ListElements"
+??count_ListElements??rT SYMBOL "??rT", count_ListElements
+create_noninfo_dialog_users_ids SYMBOL "create_noninfo_dialog_users_ids"
+??create_noninfo_dialog_users_ids??rT SYMBOL "??rT", create_noninfo_dialog_users_ids
+del_Dialogs         SYMBOL "del_Dialogs"
+??del_Dialogs??rT   SYMBOL "??rT", del_Dialogs
+del_Group           SYMBOL "del_Group"
+??del_Group??rT     SYMBOL "??rT", del_Group
+del_Groups          SYMBOL "del_Groups"
+??del_Groups??rT    SYMBOL "??rT", del_Groups
+del_Message         SYMBOL "del_Message"
+??del_Message??rT   SYMBOL "??rT", del_Message
+del_Messages        SYMBOL "del_Messages"
+??del_Messages??rT  SYMBOL "??rT", del_Messages
+del_Profiles        SYMBOL "del_Profiles"
+??del_Profiles??rT  SYMBOL "??rT", del_Profiles
+del_User            SYMBOL "del_User"
+??del_User??rT      SYMBOL "??rT", del_User
+del_attachments     SYMBOL "del_attachments"
+??del_attachments??rT SYMBOL "??rT", del_attachments
+del_wall_attachments SYMBOL "del_wall_attachments"
+??del_wall_attachments??rT SYMBOL "??rT", del_wall_attachments
+find_Group          SYMBOL "find_Group"
+??find_Group??rT    SYMBOL "??rT", find_Group
+find_User           SYMBOL "find_User"
+??find_User??rT     SYMBOL "??rT", find_User
+get_DialogMsg       SYMBOL "get_DialogMsg"
+??get_DialogMsg??rT SYMBOL "??rT", get_DialogMsg
+get_ListByIndex     SYMBOL "get_ListByIndex"
+??get_ListByIndex??rT SYMBOL "??rT", get_ListByIndex
+new_Dialog          SYMBOL "new_Dialog"
+??new_Dialog??rT    SYMBOL "??rT", new_Dialog
+new_Group           SYMBOL "new_Group"
+??new_Group??rT     SYMBOL "??rT", new_Group
+new_Message         SYMBOL "new_Message"
+??new_Message??rT   SYMBOL "??rT", new_Message
+new_User            SYMBOL "new_User"
+??new_User??rT      SYMBOL "??rT", new_User
+utf8_2ws_emoji      SYMBOL "utf8_2ws_emoji"
+??utf8_2ws_emoji??rT SYMBOL "??rT", utf8_2ws_emoji
+??utf8_syms_n??rA   SYMBOL "??rA", utf8_syms_n
+
+        EXTERN Replace_Smiles_Syms
+        FUNCTION Replace_Smiles_Syms,0202H
+        EXTERN utf8_syms_n
+        FUNCTION utf8_syms_n,0202H
+
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+dialogs:
+        DS8 8
+        REQUIRE `?<Initializer for dialogs>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+my_groups:
+        DS8 8
+        REQUIRE `?<Initializer for my_groups>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+friends:
+        DS8 8
+        REQUIRE `?<Initializer for friends>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+profiles:
+        DS8 8
+        REQUIRE `?<Initializer for profiles>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+groups:
+        DS8 8
+        REQUIRE `?<Initializer for groups>`
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+percent_d:
+        DATA
+        DC8 "%d,"
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??CreateWS_emoji??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE CreateWS_emoji
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function CreateWS_emoji
+        ARM
+CreateWS_emoji:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOVS     R4,R0
+        LDRBNE   R0,[R4, #+0]
+        CMPNE    R0,#+0
+        BNE      ??CreateWS_emoji_0
+        MOV      R0,#+4
+        SWI      +293
+        POP      {R4-R6,PC}
+??CreateWS_emoji_0:
+        MOV      R0,R4
+        SWI      +27
+        ADD      R0,R0,#+1
+        SWI      +20
+        MOV      R5,R0
+        MOV      R1,R4
+        SWI      +26
+        MOV      R0,R5
+        _BLF     Replace_Smiles_Syms,??Replace_Smiles_Syms??rA
+        MOV      R4,R0
+        MOV      R1,R4
+        MOV      R0,R5
+        _BLF     utf8_syms_n,??utf8_syms_n??rA
+        SWI      +293
+        MOV      R6,R0
+        MOV      R2,R4
+        MOV      R1,R5
+        SWI      +483
+        MOV      R0,R5
+        SWI      +21
+        MOV      R0,R6
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??utf8_2ws_emoji??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE utf8_2ws_emoji
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function utf8_2ws_emoji
+        ARM
+utf8_2ws_emoji:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R0,R5
+        _BLF     Replace_Smiles_Syms,??Replace_Smiles_Syms??rA
+        MOV      R2,R0
+        MOV      R1,R5
+        MOV      R0,R4
+        SWI      +483
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??new_User??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE new_User
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function new_User
+        ARM
+new_User:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R5,R0
+        MOV      R0,#+44
+        SWI      +20
+        MOV      R4,R0
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        LDR      R0,[R5, #+0]
+        STR      R0,[R4, #+8]
+        LDR      R0,[R5, #+4]
+        BL       CreateWS_emoji
+        STR      R0,[R4, #+12]
+        LDR      R0,[R5, #+8]
+        BL       CreateWS_emoji
+        STR      R0,[R4, #+16]
+        LDR      R0,[R5, #+12]
+        STR      R0,[R4, #+20]
+        LDR      R0,[R5, #+28]
+        STR      R0,[R4, #+24]
+        LDR      R0,[R5, #+24]
+        STR      R0,[R4, #+40]
+        LDR      R0,[R5, #+36]
+        STR      R0,[R4, #+28]
+        LDR      R0,[R5, #+32]
+        CMP      R0,#+0
+        BEQ      ??new_User_0
+        SWI      +27
+        ADD      R0,R0,#+1
+        SWI      +20
+        STR      R0,[R4, #+32]
+        LDR      R1,[R5, #+32]
+        SWI      +26
+        MOV      R0,#+0
+??new_User_0:
+        STR      R0,[R4, #+36]
+        MOV      R0,R4
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??find_User??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock6
+        REQUIRE find_User
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI Function find_User
+        ARM
+find_User:
+        LDR      R2,[R0, #+0]
+        B        ??find_User_0
+??find_User_1:
+        LDR      R2,[R2, #+0]
+??find_User_0:
+        CMP      R2,R0
+        BEQ      ??find_User_2
+        LDR      R3,[R2, #+8]
+        CMP      R3,R1
+        BNE      ??find_User_1
+        MOV      R0,R2
+        BX       LR
+??find_User_2:
+        MOV      R0,#+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_User??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock8
+        REQUIRE del_User
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI Function del_User
+        ARM
+del_User:
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        MOV      R4,R0
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BEQ      ??del_User_0
+        SWI      +297
+??del_User_0:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??del_User_1
+        SWI      +297
+??del_User_1:
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??del_User_2
+        SWI      +21
+??del_User_2:
+        LDR      R0,[R4, #+36]
+        CMP      R0,#+0
+        BEQ      ??del_User_3
+        LDR      R0,[R0, #+4]
+        SWI      +21
+        LDR      R0,[R4, #+36]
+        SWI      +21
+??del_User_3:
+        LDR      R0,[R4, #+0]
+        LDR      R1,[R4, #+4]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        STR      R0,[R4, #+0]
+        STR      R0,[R4, #+4]
+        MOV      R0,R4
+        SWI      +21
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_wall_attachments??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock10
+        REQUIRE del_wall_attachments
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI Function del_wall_attachments
+        ARM
+del_wall_attachments:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        LDR      R5,[R4, #+0]
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        BEQ      ??del_wall_attachments_0
+??del_wall_attachments_1:
+        LDR      R0,[R5, #+12]
+        CMP      R0,#+0
+        BEQ      ??del_wall_attachments_2
+        SWI      +21
+??del_wall_attachments_2:
+        MOV      R0,R5
+        SWI      +21
+        MOV      R5,R6
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        BNE      ??del_wall_attachments_1
+??del_wall_attachments_0:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??_del_Profiles??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock12
+        REQUIRE _del_Profiles
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI Function _del_Profiles
+        ARM
+_del_Profiles:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        LDR      R0,[R4, #+0]
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        POPEQ    {R4,R5,PC}
+??_del_Profiles_0:
+        BL       del_User
+        MOV      R0,R5
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BNE      ??_del_Profiles_0
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock13
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??FreeWALL??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock14
+        REQUIRE FreeWALL
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon1
+        CFI Function FreeWALL
+        ARM
+FreeWALL:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOVS     R4,R0
+        POPEQ    {R4-R6,PC}
+        LDR      R5,[R4, #+0]
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        POPEQ    {R4-R6,PC}
+??FreeWALL_0:
+        LDR      R0,[R5, #+28]
+        CMP      R0,#+0
+        BEQ      ??FreeWALL_1
+        SWI      +297
+??FreeWALL_1:
+        ADD      R0,R5,#+52
+        LDR      R1,[R0, #+0]
+        CMP      R1,R0
+        BEQ      ??FreeWALL_2
+        BL       del_wall_attachments
+??FreeWALL_2:
+        ADD      R0,R5,#+60
+        LDR      R1,[R0, #+0]
+        CMP      R1,R0
+        BEQ      ??FreeWALL_3
+        BL       _del_Profiles
+??FreeWALL_3:
+        LDR      R0,[R5, #+0]
+        LDR      R1,[R5, #+4]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        STR      R0,[R5, #+0]
+        STR      R0,[R5, #+4]
+        MOV      R0,R5
+        SWI      +21
+        MOV      R5,R6
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        BNE      ??FreeWALL_0
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock15
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Profiles??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock16
+        REQUIRE del_Profiles
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon1
+        CFI Function del_Profiles
+        ARM
+del_Profiles:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R4,??del_Profiles_0  ;; profiles
+        LDR      R0,[R4, #+0]
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BEQ      ??del_Profiles_1
+??del_Profiles_2:
+        BL       del_User
+        MOV      R0,R5
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BNE      ??del_Profiles_2
+??del_Profiles_1:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4,R5,PC}       ;; return
+        DATA
+??del_Profiles_0:
+        DC32     profiles
+        CFI EndBlock cfiBlock17
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_attachments??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock18
+        REQUIRE del_attachments
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon1
+        CFI Function del_attachments
+        ARM
+del_attachments:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        LDR      R0,[R4, #+0]
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BEQ      ??del_attachments_0
+??del_attachments_1:
+        SWI      +21
+        MOV      R0,R5
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BNE      ??del_attachments_1
+??del_attachments_0:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock19
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??new_Message??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock20
+        REQUIRE new_Message
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon1
+        CFI Function new_Message
+        ARM
+new_Message:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R6,R0
+        MOV      R5,R1
+        MOV      R0,#+40
+        SWI      +20
+        MOV      R4,R0
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        LDR      R0,[R6, #+0]
+        STR      R0,[R4, #+8]
+        LDR      R0,[R6, #+4]
+        STR      R0,[R4, #+12]
+        LDR      R0,[R6, #+8]
+        STR      R0,[R4, #+16]
+        LDR      R0,[R6, #+12]
+        STR      R0,[R4, #+20]
+        LDR      R0,[R6, #+20]
+        STR      R0,[R4, #+28]
+        LDR      R0,[R6, #+16]
+        BL       CreateWS_emoji
+        STR      R0,[R4, #+24]
+        ADD      R0,R4,#+32
+        STR      R0,[R4, #+32]
+        STR      R0,[R4, #+36]
+        LDR      R0,[R5, #+0]
+        CMP      R0,R5
+        BEQ      ??new_Message_0
+        LDR      R2,[R5, #+4]
+        ADD      R1,R4,#+32
+        MOV      R3,R1
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        STR      R3,[R2, #+0]
+        STR      R2,[R3, #+4]
+??new_Message_0:
+        MOV      R0,R4
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock21
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Message??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock22
+        REQUIRE del_Message
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon1
+        CFI Function del_Message
+        ARM
+del_Message:
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        MOV      R4,R0
+        LDR      R0,[R4, #+0]
+        LDR      R1,[R4, #+4]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        STR      R0,[R4, #+0]
+        STR      R0,[R4, #+4]
+        LDR      R0,[R4, #+24]
+        SWI      +297
+        ADD      R0,R4,#+32
+        BL       del_attachments
+        MOV      R0,R4
+        SWI      +21
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock23
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Messages??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock24
+        REQUIRE del_Messages
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon1
+        CFI Function del_Messages
+        ARM
+del_Messages:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        LDR      R0,[R4, #+0]
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BEQ      ??del_Messages_0
+??del_Messages_1:
+        BL       del_Message
+        MOV      R0,R5
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BNE      ??del_Messages_1
+??del_Messages_0:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock25
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??new_Group??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock26
+        REQUIRE new_Group
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon1
+        CFI Function new_Group
+        ARM
+new_Group:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R0,#+48
+        SWI      +20
+        MOV      R5,R0
+        STR      R5,[R5, #+0]
+        STR      R5,[R5, #+4]
+        LDR      R0,[R4, #+0]
+        STR      R0,[R5, #+8]
+        LDR      R0,[R4, #+4]
+        BL       CreateWS_emoji
+        STR      R0,[R5, #+12]
+        LDR      R0,[R4, #+8]
+        BL       CreateWS_emoji
+        STR      R0,[R5, #+16]
+        LDR      R0,[R4, #+12]
+        STR      R0,[R5, #+40]
+        LDR      R0,[R4, #+16]
+        STR      R0,[R5, #+20]
+        LDR      R0,[R4, #+24]
+        STR      R0,[R5, #+24]
+        LDR      R0,[R4, #+20]
+        STR      R0,[R5, #+44]
+        LDR      R0,[R4, #+28]
+        STR      R0,[R5, #+28]
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??new_Group_0
+        SWI      +27
+        ADD      R0,R0,#+1
+        SWI      +20
+        STR      R0,[R5, #+32]
+        LDR      R1,[R4, #+32]
+        SWI      +26
+        MOV      R0,#+0
+??new_Group_0:
+        STR      R0,[R5, #+36]
+        MOV      R0,R5
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock27
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??find_Group??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock28
+        REQUIRE find_Group
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon1
+        CFI Function find_Group
+        ARM
+find_Group:
+        LDR      R2,[R0, #+0]
+        B        ??find_Group_0
+??find_Group_1:
+        LDR      R2,[R2, #+0]
+??find_Group_0:
+        CMP      R2,R0
+        BEQ      ??find_Group_2
+        LDR      R3,[R2, #+8]
+        CMP      R3,R1
+        BNE      ??find_Group_1
+        MOV      R0,R2
+        BX       LR
+??find_Group_2:
+        MOV      R0,#+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Group??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock30
+        REQUIRE del_Group
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock31 Using cfiCommon1
+        CFI Function del_Group
+        ARM
+del_Group:
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        MOV      R4,R0
+        LDR      R0,[R4, #+12]
+        CMP      R0,#+0
+        BEQ      ??del_Group_0
+        SWI      +297
+??del_Group_0:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??del_Group_1
+        SWI      +297
+??del_Group_1:
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??del_Group_2
+        SWI      +21
+??del_Group_2:
+        LDR      R0,[R4, #+36]
+        CMP      R0,#+0
+        BEQ      ??del_Group_3
+        LDR      R0,[R0, #+4]
+        SWI      +21
+        LDR      R0,[R4, #+36]
+        SWI      +21
+??del_Group_3:
+        LDR      R0,[R4, #+0]
+        LDR      R1,[R4, #+4]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        STR      R0,[R4, #+0]
+        STR      R0,[R4, #+4]
+        MOV      R0,R4
+        SWI      +21
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock31
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock32 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Groups??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock32
+        REQUIRE del_Groups
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock33 Using cfiCommon1
+        CFI Function del_Groups
+        ARM
+del_Groups:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R4,??del_Groups_0  ;; groups
+        LDR      R0,[R4, #+0]
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BEQ      ??del_Groups_1
+??del_Groups_2:
+        BL       del_Group
+        MOV      R0,R5
+        LDR      R5,[R0, #+0]
+        CMP      R0,R4
+        BNE      ??del_Groups_2
+??del_Groups_1:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4,R5,PC}       ;; return
+        DATA
+??del_Groups_0:
+        DC32     groups
+        CFI EndBlock cfiBlock33
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock34 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??new_Dialog??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock34
+        REQUIRE new_Dialog
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock35 Using cfiCommon1
+        CFI Function new_Dialog
+        ARM
+new_Dialog:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R2
+        MOV      R6,R3
+        MOV      R0,#+36
+        SWI      +20
+        STR      R0,[R0, #+0]
+        STR      R0,[R0, #+4]
+        LDR      R1,[R4, #+28]
+        CMP      R1,#+0
+        LDRNE    R1,[R4, #+20]
+        LDREQ    R1,[R4, #+16]
+        STR      R1,[R0, #+8]
+        STR      R5,[R0, #+12]
+        STR      R6,[R0, #+16]
+        ADD      R1,R0,#+20
+        STR      R1,[R0, #+20]
+        STR      R1,[R0, #+24]
+        MOV      R2,R1
+        STR      R4,[R2, #+4]
+        STR      R2,[R4, #+0]
+        STR      R1,[R4, #+4]
+        STR      R4,[R1, #+0]
+        MOV      R1,#+0
+        STR      R1,[R0, #+28]
+        STR      R1,[R0, #+32]
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock35
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock36 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??FindDialog??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock36
+        REQUIRE FindDialog
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock37 Using cfiCommon1
+        CFI Function FindDialog
+        ARM
+FindDialog:
+        LDR      R2,[R0, #+0]
+        B        ??FindDialog_0
+??FindDialog_1:
+        LDR      R3,[R3, #+16]
+        CMP      R3,R1
+        BEQ      ??FindDialog_2
+??FindDialog_3:
+        LDR      R2,[R2, #+0]
+??FindDialog_0:
+        CMP      R2,R0
+        BEQ      ??FindDialog_4
+        ADD      R3,R2,#+20
+        LDR      R12,[R3, #+0]
+        CMP      R12,R3
+        BEQ      ??FindDialog_3
+        MOV      R3,R12
+        LDR      R12,[R3, #+28]
+        CMP      R12,#+0
+        BEQ      ??FindDialog_1
+        LDR      R3,[R3, #+20]
+        CMP      R3,R1
+        BNE      ??FindDialog_3
+??FindDialog_2:
+        MOV      R0,R2
+        BX       LR
+??FindDialog_4:
+        MOV      R0,#+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock37
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock38 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??get_DialogMsg??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock38
+        REQUIRE get_DialogMsg
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock39 Using cfiCommon1
+        CFI Function get_DialogMsg
+        ARM
+get_DialogMsg:
+        ADD      R2,R0,#+20
+        LDR      R3,[R2, #+0]
+        MOV      R1,#+0
+        CMP      R3,R2
+        MOVNE    R1,R3
+        MOV      R0,R1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock39
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock40 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??del_Dialogs??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock40
+        REQUIRE del_Dialogs
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock41 Using cfiCommon1
+        CFI Function del_Dialogs
+        ARM
+del_Dialogs:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R4,??del_Dialogs_0  ;; dialogs
+        LDR      R5,[R4, #+0]
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        BEQ      ??del_Dialogs_1
+??del_Dialogs_2:
+        ADD      R0,R5,#+20
+        LDR      R1,[R0, #+0]
+        CMP      R1,R0
+        BEQ      ??del_Dialogs_3
+        BL       del_Messages
+??del_Dialogs_3:
+        LDR      R0,[R5, #+28]
+        CMP      R0,#+0
+        BEQ      ??del_Dialogs_4
+        BL       del_User
+??del_Dialogs_4:
+        LDR      R0,[R5, #+32]
+        CMP      R0,#+0
+        BEQ      ??del_Dialogs_5
+        BL       del_Group
+??del_Dialogs_5:
+        LDR      R0,[R5, #+0]
+        LDR      R1,[R5, #+4]
+        STR      R1,[R0, #+4]
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        STR      R0,[R5, #+0]
+        STR      R0,[R5, #+4]
+        MOV      R0,R5
+        SWI      +21
+        MOV      R5,R6
+        LDR      R6,[R5, #+0]
+        CMP      R5,R4
+        BNE      ??del_Dialogs_2
+??del_Dialogs_1:
+        STR      R4,[R4, #+0]
+        STR      R4,[R4, #+4]
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??del_Dialogs_0:
+        DC32     dialogs
+        CFI EndBlock cfiBlock41
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock42 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??count_ListElements??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock42
+        REQUIRE count_ListElements
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock43 Using cfiCommon1
+        CFI Function count_ListElements
+        ARM
+count_ListElements:
+        LDR      R2,[R0, #+0]
+        MOV      R1,#+0
+        CMP      R2,R0
+        BEQ      ??count_ListElements_0
+??count_ListElements_1:
+        LDR      R2,[R2, #+0]
+        ADD      R1,R1,#+1
+        CMP      R2,R0
+        BNE      ??count_ListElements_1
+??count_ListElements_0:
+        MOV      R0,R1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock43
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock44 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??get_ListByIndex??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock44
+        REQUIRE get_ListByIndex
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock45 Using cfiCommon1
+        CFI Function get_ListByIndex
+        ARM
+get_ListByIndex:
+        LDR      R2,[R0, #+0]
+        MOV      R3,#+0
+        B        ??get_ListByIndex_0
+??get_ListByIndex_1:
+        LDR      R2,[R2, #+0]
+        ADD      R3,R3,#+1
+??get_ListByIndex_0:
+        CMP      R2,R0
+        BEQ      ??get_ListByIndex_2
+        CMP      R3,R1
+        BNE      ??get_ListByIndex_1
+        MOV      R0,R2
+        BX       LR
+??get_ListByIndex_2:
+        MOV      R0,#+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock45
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock46 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??create_noninfo_dialog_users_ids??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock46
+        REQUIRE create_noninfo_dialog_users_ids
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock47 Using cfiCommon1
+        CFI Function create_noninfo_dialog_users_ids
+        ARM
+create_noninfo_dialog_users_ids:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        LDR      R5,[R4, #+0]
+        MOV      R0,#+0
+        CMP      R5,R4
+        BEQ      ??create_noninfo_dialog_users_ids_0
+??create_noninfo_dialog_users_ids_1:
+        LDR      R1,[R5, #+28]
+        LDR      R5,[R5, #+0]
+        CMP      R1,#+0
+        ADDEQ    R0,R0,#+1
+        CMP      R5,R4
+        BNE      ??create_noninfo_dialog_users_ids_1
+        CMP      R0,#+0
+        BNE      ??create_noninfo_dialog_users_ids_2
+??create_noninfo_dialog_users_ids_0:
+        MOV      R0,#+0
+        POP      {R4-R7,PC}
+??create_noninfo_dialog_users_ids_2:
+        LSL      R0,R0,#+4
+        SWI      +20
+        LDR      R5,[R4, #+0]
+        MOV      R6,R0
+        MOV      R7,R6
+        CMP      R5,R4
+        BEQ      ??create_noninfo_dialog_users_ids_3
+??create_noninfo_dialog_users_ids_4:
+        LDR      R0,[R5, #+28]
+        CMP      R0,#+0
+        BNE      ??create_noninfo_dialog_users_ids_5
+        MOV      R0,R5
+        BL       get_DialogMsg
+        LDR      R1,[R0, #+28]
+        CMP      R1,#+0
+        LDREQ    R2,[R0, #+16]
+        LDR      R1,??create_noninfo_dialog_users_ids_6  ;; percent_d
+        LDRNE    R2,[R0, #+20]
+        MOV      R0,R7
+        SWI      +22
+        ADD      R7,R0,R7
+??create_noninfo_dialog_users_ids_5:
+        LDR      R5,[R5, #+0]
+        CMP      R5,R4
+        BNE      ??create_noninfo_dialog_users_ids_4
+??create_noninfo_dialog_users_ids_3:
+        MOV      R0,R6
+        POP      {R4-R7,PC}       ;; return
+        DATA
+??create_noninfo_dialog_users_ids_6:
+        DC32     percent_d
+        CFI EndBlock cfiBlock47
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock48 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??Replace_Smiles_Syms??rA:
+        LDR      R12,??Subroutine24_0  ;; Replace_Smiles_Syms
+        BX       R12
+        DATA
+??Subroutine24_0:
+        DC32     Replace_Smiles_Syms
+        CFI EndBlock cfiBlock48
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock49 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??utf8_syms_n??rA:
+        LDR      R12,??Subroutine25_0  ;; utf8_syms_n
+        BX       R12
+        DATA
+??Subroutine25_0:
+        DC32     utf8_syms_n
+        CFI EndBlock cfiBlock49
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for dialogs>`:
+        DATA
+        DC32 dialogs, dialogs
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for my_groups>`:
+        DATA
+        DC32 my_groups, my_groups
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for friends>`:
+        DATA
+        DC32 friends, friends
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for profiles>`:
+        DATA
+        DC32 profiles, profiles
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for groups>`:
+        DATA
+        DC32 groups, groups
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        END
+// 
+// 2 256 bytes in segment CODE
+//     4 bytes in segment DATA_C
+//    40 bytes in segment DATA_I
+//    40 bytes in segment DATA_ID
+//    12 bytes in segment INITTAB
+// 
+// 2 136 bytes of CODE  memory (+ 132 bytes shared)
+//    44 bytes of CONST memory
+//    40 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: 1

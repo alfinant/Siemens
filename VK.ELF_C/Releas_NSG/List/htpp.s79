@@ -1,0 +1,1460 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   15/Mar/2023  22:35:35 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\htpp.c                                            /
+//    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\htpp.c -D NEWSGOLD -D DEBUG -lCN                  /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\List\ -la D:\Users\alfinant\Documents\ /
+//                       Siemens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o        /
+//                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\Obj\ -s9 --cpu_mode arm --endian       /
+//                       little --cpu ARM926EJ-S --stack_align 4             /
+//                       --interwork --diag_suppress Pe301 -e --fpu None     /
+//                       --dlib_config D:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\LIB\dl5tpainl8n.h -I                         /
+//                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\    /
+//                       --inline_threshold=2                                /
+//    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_ /
+//                       C\Releas_NSG\List\htpp.s79                          /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME htpp
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__dlib_file_descriptor", "0"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        PUBWEAK `?*?DATA_ID`
+        MULTWEAK ??Cookies_Add??rA
+        MULTWEAK ??Cookies_GetByHost??rA
+??DataTable0 EQU 0
+        MULTWEAK ??HttpSendReq??rT
+        MULTWEAK ??HttpSendReqPost??rT
+        MULTWEAK ??ParseHeader??rT
+        MULTWEAK ??get_host_from_url??rA
+        MULTWEAK ??get_line_len??rT
+        MULTWEAK ??get_path_from_url??rT
+        MULTWEAK ??parseLine??rT
+        MULTWEAK ??parse_line_CACHE_CONTROL??rT
+        MULTWEAK ??parse_line_CONNECTION??rT
+        MULTWEAK ??parse_line_CONTENT_LENGTH??rT
+        MULTWEAK ??parse_line_CONTENT_TYPE??rT
+        MULTWEAK ??parse_line_DATE??rT
+        MULTWEAK ??parse_line_HTTP??rT
+        MULTWEAK ??parse_line_Location??rT
+        MULTWEAK ??parse_line_PRAGMA??rT
+        MULTWEAK ??parse_line_RN??rT
+        MULTWEAK ??parse_line_SERVER??rT
+        MULTWEAK ??parse_line_SET_COOKIE??rT
+        MULTWEAK ??parse_line_UNKNOWN??rT
+        MULTWEAK ??parse_line_X_FRAME_OPTIONS??rT
+        MULTWEAK ??parse_line_X_POWERED_BY??rT
+        MULTWEAK ??send_answer??rA
+        MULTWEAK ??ssl_send_answer??rA
+        PUBWEAK ?init?tab?DATA_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC HTTP_CONNECTION
+        PUBLIC HTTP_CONTENT_LENGTH
+        PUBLIC HTTP_CONTENT_TYPE
+        PUBLIC HTTP_HEADER_LENGTH
+        PUBLIC HTTP_LOCATION
+        PUBLIC HTTP_STATUS
+        PUBLIC HTTP_URL
+        PUBLIC HTTP_VER_MAJOR
+        PUBLIC HTTP_VER_MINOR
+        PUBLIC HttpSendReq
+        FUNCTION HttpSendReq,0203H
+        LOCFRAME CSTACK, 24, STACK
+        PUBLIC HttpSendReqPost
+        FUNCTION HttpSendReqPost,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC ParseHeader
+        FUNCTION ParseHeader,0201H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION __create_http_req,0203H
+        LOCFRAME CSTACK, 4636, STACK
+        PUBLIC get_line_len
+        FUNCTION get_line_len,0203H
+        PUBLIC get_path_from_url
+        FUNCTION get_path_from_url,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC parseLine
+        FUNCTION parseLine,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC parse_line_CACHE_CONTROL
+        FUNCTION parse_line_CACHE_CONTROL,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_CONNECTION
+        FUNCTION parse_line_CONNECTION,0603H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC parse_line_CONTENT_LENGTH
+        FUNCTION parse_line_CONTENT_LENGTH,0603H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC parse_line_CONTENT_TYPE
+        FUNCTION parse_line_CONTENT_TYPE,0603H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC parse_line_DATE
+        FUNCTION parse_line_DATE,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_HTTP
+        FUNCTION parse_line_HTTP,0603H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC parse_line_Location
+        FUNCTION parse_line_Location,0603H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC parse_line_PRAGMA
+        FUNCTION parse_line_PRAGMA,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_RN
+        FUNCTION parse_line_RN,0603H
+        PUBLIC parse_line_SERVER
+        FUNCTION parse_line_SERVER,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_SET_COOKIE
+        FUNCTION parse_line_SET_COOKIE,0603H
+        LOCFRAME CSTACK, 336, STACK
+        PUBLIC parse_line_UNKNOWN
+        FUNCTION parse_line_UNKNOWN,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_X_FRAME_OPTIONS
+        FUNCTION parse_line_X_FRAME_OPTIONS,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC parse_line_X_POWERED_BY
+        FUNCTION parse_line_X_POWERED_BY,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC response_headers
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+Cookies_Add         SYMBOL "Cookies_Add"
+Cookies_GetByHost   SYMBOL "Cookies_GetByHost"
+get_host_from_url   SYMBOL "get_host_from_url"
+send_answer         SYMBOL "send_answer"
+ssl_send_answer     SYMBOL "ssl_send_answer"
+??Cookies_Add??rA   SYMBOL "??rA", Cookies_Add
+??Cookies_GetByHost??rA SYMBOL "??rA", Cookies_GetByHost
+HttpSendReq         SYMBOL "HttpSendReq"
+??HttpSendReq??rT   SYMBOL "??rT", HttpSendReq
+HttpSendReqPost     SYMBOL "HttpSendReqPost"
+??HttpSendReqPost??rT SYMBOL "??rT", HttpSendReqPost
+ParseHeader         SYMBOL "ParseHeader"
+??ParseHeader??rT   SYMBOL "??rT", ParseHeader
+??get_host_from_url??rA SYMBOL "??rA", get_host_from_url
+get_line_len        SYMBOL "get_line_len"
+??get_line_len??rT  SYMBOL "??rT", get_line_len
+get_path_from_url   SYMBOL "get_path_from_url"
+??get_path_from_url??rT SYMBOL "??rT", get_path_from_url
+parseLine           SYMBOL "parseLine"
+??parseLine??rT     SYMBOL "??rT", parseLine
+parse_line_CACHE_CONTROL SYMBOL "parse_line_CACHE_CONTROL"
+??parse_line_CACHE_CONTROL??rT SYMBOL "??rT", parse_line_CACHE_CONTROL
+parse_line_CONNECTION SYMBOL "parse_line_CONNECTION"
+??parse_line_CONNECTION??rT SYMBOL "??rT", parse_line_CONNECTION
+parse_line_CONTENT_LENGTH SYMBOL "parse_line_CONTENT_LENGTH"
+??parse_line_CONTENT_LENGTH??rT SYMBOL "??rT", parse_line_CONTENT_LENGTH
+parse_line_CONTENT_TYPE SYMBOL "parse_line_CONTENT_TYPE"
+??parse_line_CONTENT_TYPE??rT SYMBOL "??rT", parse_line_CONTENT_TYPE
+parse_line_DATE     SYMBOL "parse_line_DATE"
+??parse_line_DATE??rT SYMBOL "??rT", parse_line_DATE
+parse_line_HTTP     SYMBOL "parse_line_HTTP"
+??parse_line_HTTP??rT SYMBOL "??rT", parse_line_HTTP
+parse_line_Location SYMBOL "parse_line_Location"
+??parse_line_Location??rT SYMBOL "??rT", parse_line_Location
+parse_line_PRAGMA   SYMBOL "parse_line_PRAGMA"
+??parse_line_PRAGMA??rT SYMBOL "??rT", parse_line_PRAGMA
+parse_line_RN       SYMBOL "parse_line_RN"
+??parse_line_RN??rT SYMBOL "??rT", parse_line_RN
+parse_line_SERVER   SYMBOL "parse_line_SERVER"
+??parse_line_SERVER??rT SYMBOL "??rT", parse_line_SERVER
+parse_line_SET_COOKIE SYMBOL "parse_line_SET_COOKIE"
+??parse_line_SET_COOKIE??rT SYMBOL "??rT", parse_line_SET_COOKIE
+parse_line_UNKNOWN  SYMBOL "parse_line_UNKNOWN"
+??parse_line_UNKNOWN??rT SYMBOL "??rT", parse_line_UNKNOWN
+parse_line_X_FRAME_OPTIONS SYMBOL "parse_line_X_FRAME_OPTIONS"
+??parse_line_X_FRAME_OPTIONS??rT SYMBOL "??rT", parse_line_X_FRAME_OPTIONS
+parse_line_X_POWERED_BY SYMBOL "parse_line_X_POWERED_BY"
+??parse_line_X_POWERED_BY??rT SYMBOL "??rT", parse_line_X_POWERED_BY
+??send_answer??rA   SYMBOL "??rA", send_answer
+??ssl_send_answer??rA SYMBOL "??rA", ssl_send_answer
+
+        EXTERN Cookies_Add
+        FUNCTION Cookies_Add,0202H
+        EXTERN Cookies_GetByHost
+        FUNCTION Cookies_GetByHost,0202H
+        EXTERN get_host_from_url
+        FUNCTION get_host_from_url,0202H
+        EXTERN recv_buf
+        EXTERN send_answer
+        FUNCTION send_answer,0202H
+        EXTERN ssl_send_answer
+        FUNCTION ssl_send_answer,0202H
+
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+HTTP_STATUS:
+        DS8 4
+HTTP_VER_MAJOR:
+        DS8 4
+HTTP_VER_MINOR:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+HTTP_CONTENT_LENGTH:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+HTTP_CONNECTION:
+        DS8 4
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+HTTP_CONTENT_TYPE:
+        DS8 256
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+HTTP_LOCATION:
+        DS8 512
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??get_line_len??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE get_line_len
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function get_line_len
+        ARM
+get_line_len:
+        MOV      R1,#+0
+??get_line_len_0:
+        LDRB     R2,[R0], #+1
+        ADD      R1,R1,#+1
+        CMP      R2,#+10
+        BNE      ??get_line_len_0
+        MOV      R0,R1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_HTTP??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE parse_line_HTTP
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function parse_line_HTTP
+        ARM
+parse_line_HTTP:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        LDR      R0,??parse_line_HTTP_0  ;; HTTP_STATUS
+        MOV      R5,R1
+        MOV      R1,#+0
+        STR      R1,[R0, #+0]
+        MOV      R1,R0
+        PUSH     {R1}
+        CFI CFA R13+16
+        ADD      R3,R0,#+8
+        LDR      R1,??parse_line_HTTP_0+0x4  ;; `?<Constant "HTTP/%d.%d %d">`
+        ADD      R2,R0,#+4
+        MOV      R0,R4
+        SWI      +501
+        CMP      R0,#+3
+        ADD      SP,SP,#+4
+        CFI CFA R13+12
+        MOVNE    R0,#+0
+        POPNE    {R4,R5,PC}
+        MOV      R0,#+1
+        STR      R0,[R5, #+0]
+        MOV      R0,R4
+        POP      {R4,R5,LR}       ;; Pop
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI ?RET R14
+        CFI CFA R13+0
+        B        get_line_len     ;; tailcall
+        DATA
+??parse_line_HTTP_0:
+        DC32     HTTP_STATUS
+        DC32     `?<Constant "HTTP/%d.%d %d">`
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_SERVER??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE parse_line_SERVER
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI Function parse_line_SERVER
+        ARM
+parse_line_SERVER:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_DATE??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock6
+        REQUIRE parse_line_DATE
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI Function parse_line_DATE
+        ARM
+parse_line_DATE:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_CONTENT_TYPE??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock8
+        REQUIRE parse_line_CONTENT_TYPE
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI Function parse_line_CONTENT_TYPE
+        ARM
+parse_line_CONTENT_TYPE:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        BL       get_line_len
+        MOV      R6,R0
+        ADD      R0,R6,R4
+        LDRB     R2,[R0, #-2]!
+        MOV      R1,#+0
+        CMP      R2,#+13
+        STRBEQ   R1,[R0, #+0]
+        STRBNE   R1,[R0, #+1]
+        LDR      R0,??parse_line_CONTENT_TYPE_0  ;; HTTP_CONTENT_TYPE
+        MOV      R2,#+127
+        ADD      R1,R4,#+14
+        SWI      +278
+        MOV      R0,#+1
+        STR      R0,[R5, #+0]
+        MOV      R0,R6
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??parse_line_CONTENT_TYPE_0:
+        DC32     HTTP_CONTENT_TYPE
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_CONTENT_LENGTH??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock10
+        REQUIRE parse_line_CONTENT_LENGTH
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI Function parse_line_CONTENT_LENGTH
+        ARM
+parse_line_CONTENT_LENGTH:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        LDR      R6,??parse_line_CONTENT_LENGTH_0  ;; HTTP_CONTENT_LENGTH
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R0,#+0
+        STR      R0,[R6, #+0]
+        MOV      R0,R4
+        BL       get_line_len
+        MOV      R7,R0
+        MOV      R2,#+10
+        MOV      R1,#+0
+        ADD      R0,R4,#+15
+        SWI      +281
+        STR      R0,[R6, #+0]
+        CMN      R0,#+1
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R7,PC}
+        MOV      R0,#+1
+        STR      R0,[R5, #+0]
+        MOV      R0,R7
+        POP      {R4-R7,PC}       ;; return
+        DATA
+??parse_line_CONTENT_LENGTH_0:
+        DC32     HTTP_CONTENT_LENGTH
+        CFI EndBlock cfiBlock11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_CONNECTION??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock12
+        REQUIRE parse_line_CONNECTION
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI Function parse_line_CONNECTION
+        ARM
+parse_line_CONNECTION:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R1
+        MOV      R6,R0
+        BL       get_line_len
+        MOV      R5,R0
+        ADD      R0,R5,R6
+        LDRB     R2,[R0, #-2]!
+        MOV      R1,#+0
+        CMP      R2,#+13
+        STRBEQ   R1,[R0, #+0]
+        STRBNE   R1,[R0, #+1]
+        LDR      R1,??parse_line_CONNECTION_0  ;; `?<Constant "keep-alive">`
+        ADD      R0,R6,#+12
+        SWI      +25
+        LDR      R1,??parse_line_CONNECTION_0+0x4  ;; HTTP_CONNECTION
+        CMP      R0,#+0
+        MOVEQ    R0,#+1
+        MOVNE    R0,#+0
+        STR      R0,[R1, #+0]
+        MOV      R0,#+1
+        STR      R0,[R4, #+0]
+        MOV      R0,R5
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??parse_line_CONNECTION_0:
+        DC32     `?<Constant "keep-alive">`
+        DC32     HTTP_CONNECTION
+        CFI EndBlock cfiBlock13
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_X_POWERED_BY??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock14
+        REQUIRE parse_line_X_POWERED_BY
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon1
+        CFI Function parse_line_X_POWERED_BY
+        ARM
+parse_line_X_POWERED_BY:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock15
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_SET_COOKIE??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock16
+        REQUIRE parse_line_SET_COOKIE
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon1
+        CFI Function parse_line_SET_COOKIE
+        ARM
+parse_line_SET_COOKIE:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R6,??parse_line_SET_COOKIE_0  ;; `?<Constant "domain=%s">`
+        SUB      SP,SP,#+320
+        CFI CFA R13+336
+        MOV      R4,R0
+        BL       get_line_len
+        MOV      R5,R0
+        MOV      R2,SP
+        ADD      R1,R6,#+20
+        MOV      R0,R4
+        SWI      +501
+        CMP      R0,#+1
+        BNE      ??parse_line_SET_COOKIE_1
+        ADD      R1,R6,#+12
+        MOV      R0,R4
+        SWI      +280
+        CMP      R0,#+0
+        BEQ      ??parse_line_SET_COOKIE_2
+        ADD      R2,SP,#+256
+        MOV      R1,R6
+        SWI      +501
+??parse_line_SET_COOKIE_2:
+        ADD      R0,SP,#+256
+        SWI      +27
+        ADD      R1,SP,#+256
+        ADD      R0,R0,R1
+        LDRB     R1,[R0, #-1]
+        CMP      R1,#+59
+        MOVEQ    R1,#+0
+        STRBEQ   R1,[R0, #-1]
+        ADD      R1,SP,#+256
+        MOV      R0,SP
+        _BLF     Cookies_Add,??Cookies_Add??rA
+??parse_line_SET_COOKIE_1:
+        MOV      R0,R5
+        ADD      SP,SP,#+320
+        CFI CFA R13+16
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??parse_line_SET_COOKIE_0:
+        DC32     `?<Constant "domain=%s">`
+        CFI EndBlock cfiBlock17
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_PRAGMA??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock18
+        REQUIRE parse_line_PRAGMA
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon1
+        CFI Function parse_line_PRAGMA
+        ARM
+parse_line_PRAGMA:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock19
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_CACHE_CONTROL??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock20
+        REQUIRE parse_line_CACHE_CONTROL
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon1
+        CFI Function parse_line_CACHE_CONTROL
+        ARM
+parse_line_CACHE_CONTROL:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock21
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_X_FRAME_OPTIONS??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock22
+        REQUIRE parse_line_X_FRAME_OPTIONS
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon1
+        CFI Function parse_line_X_FRAME_OPTIONS
+        ARM
+parse_line_X_FRAME_OPTIONS:
+        MOV      R2,#+1
+        STR      R2,[R1, #+0]
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock23
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_Location??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock24
+        REQUIRE parse_line_Location
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon1
+        CFI Function parse_line_Location
+        ARM
+parse_line_Location:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        BL       get_line_len
+        MOV      R6,R0
+        ADD      R0,R6,R4
+        LDRB     R2,[R0, #-2]!
+        MOV      R1,#+0
+        CMP      R2,#+13
+        STRBEQ   R1,[R0, #+0]
+        STRBNE   R1,[R0, #+1]
+        LDR      R0,??parse_line_Location_0  ;; HTTP_LOCATION
+        MOV      R2,#+255
+        ORR      R2,R2,#0x100
+        ADD      R1,R4,#+10
+        SWI      +278
+        MOV      R0,#+1
+        STR      R0,[R5, #+0]
+        MOV      R0,R6
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??parse_line_Location_0:
+        DC32     HTTP_LOCATION
+        CFI EndBlock cfiBlock25
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_RN??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock26
+        REQUIRE parse_line_RN
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon1
+        CFI Function parse_line_RN
+        ARM
+parse_line_RN:
+        MOV      R0,#+1
+        STR      R0,[R1, #+0]
+        MOV      R0,#+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock27
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parse_line_UNKNOWN??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock28
+        REQUIRE parse_line_UNKNOWN
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon1
+        CFI Function parse_line_UNKNOWN
+        ARM
+parse_line_UNKNOWN:
+        B        get_line_len     ;; tailcall
+        CFI EndBlock cfiBlock29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??parseLine??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock30
+        REQUIRE parseLine
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+response_headers:
+        DS8 168
+        REQUIRE `?<Initializer for response_headers>`
+HTTP_HEADER_LENGTH:
+        DS8 4
+        REQUIRE `?<Initializer for HTTP_HEADER_LENGTH>`
+        DS8 64
+        REQUIRE `?<Initializer for host>`
+HTTP_URL:
+        DS8 512
+        REQUIRE `?<Initializer for HTTP_URL>`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock31 Using cfiCommon1
+        CFI Function parseLine
+        ARM
+parseLine:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,#+0
+        B        ??parseLine_0
+??parseLine_1:
+        ADD      R6,R6,#+3
+??parseLine_0:
+        ADD      R0,R5,#+4
+        LDR      R0,[R0, +R6, LSL #+2]
+        CMP      R0,#+0
+        BEQ      ??parseLine_2
+        LDR      R0,[R5, +R6, LSL #+2]
+        CMP      R0,#+0
+        BNE      ??parseLine_1
+        ADD      R7,R5,R6, LSL #+2
+        LDR      R0,[R7, #+4]
+        SWI      +27
+        LDR      R1,[R7, #+4]
+        MOV      R2,R0
+        MOV      R0,R4
+        SWI      +277
+        CMP      R0,#+0
+        BNE      ??parseLine_1
+        LDR      R2,[R7, #+8]
+        MOV      R1,R7
+        MOV      R0,R4
+        BLX      R2
+        POP      {R4-R7,PC}
+??parseLine_2:
+        MOV      R0,R4
+        BL       get_line_len
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock31
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock32 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??ParseHeader??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock32
+        REQUIRE ParseHeader
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock33 Using cfiCommon1
+        CFI Function ParseHeader
+        ARM
+ParseHeader:
+        LDR      R0,??ParseHeader_0  ;; recv_buf
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R5,[R0, #+0]
+        LDR      R6,??ParseHeader_0+0x4  ;; response_headers
+        MOV      R4,#+0
+        MOV      R0,#+0
+        STR      R0,[R6, #+168]
+        CMP      R5,#+0
+        POPEQ    {R4-R6,PC}
+        STR      R0,[R6, #+0]
+        STR      R0,[R6, #+12]
+        STR      R0,[R6, #+24]
+        STR      R0,[R6, #+36]
+        STR      R0,[R6, #+48]
+        STR      R0,[R6, #+60]
+        STR      R0,[R6, #+72]
+        STR      R0,[R6, #+84]
+        STR      R0,[R6, #+96]
+        STR      R0,[R6, #+108]
+        STR      R0,[R6, #+120]
+        STR      R0,[R6, #+132]
+        STR      R0,[R6, #+144]
+        STR      R0,[R6, #+156]
+        B        ??ParseHeader_1
+??ParseHeader_2:
+        ADD      R4,R0,R4
+        ADD      R5,R0,R5
+??ParseHeader_1:
+        MOV      R1,R6
+        MOV      R0,R5
+        BL       parseLine
+        CMP      R0,#+0
+        BNE      ??ParseHeader_2
+        CMP      R4,#+1
+        ADDGE    R0,R4,#+2
+        STRGE    R0,[R6, #+168]
+        LDR      R0,[R6, #+168]
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??ParseHeader_0:
+        DC32     recv_buf
+        DC32     response_headers
+        CFI EndBlock cfiBlock33
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock34 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??get_path_from_url??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock34
+        REQUIRE get_path_from_url
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock35 Using cfiCommon1
+        CFI Function get_path_from_url
+        ARM
+get_path_from_url:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,#+0
+        MOV      R1,#+46
+        MOV      R0,R5
+        SWI      +24
+        MOV      R7,#+0
+        CMP      R0,#+0
+        BEQ      ??get_path_from_url_0
+        MOV      R1,#+47
+        SWI      +24
+        CMP      R0,#+0
+        BNE      ??get_path_from_url_0
+        MOV      R0,#+47
+        STRB     R0,[R4, #+0]
+        STRB     R7,[R4, #+1]
+        MOV      R0,#+1
+        POP      {R4-R7,PC}
+??get_path_from_url_1:
+        ADD      R5,R5,#+2
+??get_path_from_url_0:
+        MOV      R1,#+47
+        MOV      R0,R5
+        SWI      +24
+        CMP      R0,#+0
+        BEQ      ??get_path_from_url_2
+        MOV      R5,R0
+        LDRB     R0,[R5, #+1]
+        CMP      R0,#+47
+        BEQ      ??get_path_from_url_1
+??get_path_from_url_2:
+        LDRB     R0,[R5], #+1
+        CMP      R0,#+0
+        STRBNE   R0,[R4], #+1
+        ADDNE    R6,R6,#+1
+        BNE      ??get_path_from_url_2
+        STRB     R7,[R4, #+0]
+        MOV      R0,R6
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock35
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock36 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__create_http_req??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock36
+        REQUIRE __create_http_req
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock37 Using cfiCommon1
+        CFI Function __create_http_req
+        ARM
+__create_http_req:
+        PUSH     {R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+24
+        LDR      R8,??__create_http_req_0+0x4  ;; response_headers
+        SUB      SP,SP,#+4608
+        CFI CFA R13+4632
+        MOV      R6,R0
+        MOV      R4,R1
+        MOV      R5,R2
+        MOV      R7,R3
+        MOV      R0,#+0
+        STR      R0,[R8, #+168]
+        MOV      R1,R6
+        ADD      R0,R8,#+172
+        _BLF     get_host_from_url,??get_host_from_url??rA
+        MOV      R1,R6
+        ADD      R0,SP,#+4096
+        BL       get_path_from_url
+        MOV      R2,#+255
+        ORR      R2,R2,#0x100
+        MOV      R1,R6
+        LDR      R6,??__create_http_req_0+0x8  ;; `?<Constant "POST %s HTTP/1.0\\r\\nHos...">`
+        ADD      R0,R8,#+236
+        SWI      +278
+        ADD      R0,R8,#+172
+        PUSH     {R0}
+        CFI CFA R13+4636
+        MOV      R1,#+255
+        ORR      R1,R1,#0x300
+        CMP      R4,#+0
+        ADD      R3,SP,#+4
+        ADD      R3,R3,#+4096
+        MOVNE    R2,R6
+        ADDEQ    R2,R6,#+32
+        ADD      R0,SP,#+4
+        SWI      +283
+        ADD      SP,SP,#+4
+        CFI CFA R13+4632
+        CMP      R7,#+0
+        BEQ      ??__create_http_req_1
+        ADD      R1,R6,#+60
+        MOV      R0,SP
+        SWI      +23
+??__create_http_req_1:
+        ADD      R0,R8,#+172
+        _BLF     Cookies_GetByHost,??Cookies_GetByHost??rA
+        MOVS     R7,R0
+        BEQ      ??__create_http_req_2
+        MOV      R0,SP
+        SWI      +27
+        MOV      R2,R7
+        ADD      R1,R6,#+88
+        MOV      R3,SP
+        ADD      R0,R0,R3
+        SWI      +22
+        MOV      R0,R7
+        SWI      +21
+??__create_http_req_2:
+        CMP      R4,#+0
+        BEQ      ??__create_http_req_3
+        MOV      R0,R4
+        SWI      +27
+        MOV      R7,R0
+        MOV      R0,SP
+        SWI      +27
+        MOV      R2,R7
+        ADD      R1,R6,#+104
+        MOV      R3,SP
+        ADD      R0,R0,R3
+        SWI      +22
+??__create_http_req_3:
+        MOV      R0,#+9
+        SWI      +469
+        MOV      R7,R0
+        MOV      R0,#+8
+        SWI      +469
+        MOV      R8,R0
+        MOV      R0,SP
+        SWI      +27
+        MOV      R3,R7
+        MOV      R2,R8
+        ADD      R1,R6,#+128
+        MOV      R6,SP
+        ADD      R0,R0,R6
+        SWI      +22
+        ADR      R1,??__create_http_req_0  ;; "\r\n"
+        MOV      R0,SP
+        SWI      +23
+        CMP      R4,#+0
+        BEQ      ??__create_http_req_4
+        MOV      R1,R4
+        MOV      R0,SP
+        SWI      +23
+??__create_http_req_4:
+        MOV      R0,SP
+        SWI      +27
+        MOV      R4,R0
+        SWI      +20
+        MOV      R6,R0
+        MOV      R2,R4
+        MOV      R1,SP
+        SWI      +286
+        STR      R4,[R5, #+0]
+        MOV      R0,R6
+        ADD      SP,SP,#+4608
+        CFI CFA R13+24
+        POP      {R4-R8,PC}       ;; return
+        DATA
+??__create_http_req_0:
+        DC8      "\r\n",+0
+        DC32     response_headers
+        DC32     `?<Constant "POST %s HTTP/1.0\\r\\nHos...">`
+        CFI EndBlock cfiBlock37
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock38 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??HttpSendReq??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock38
+        REQUIRE HttpSendReq
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock39 Using cfiCommon1
+        CFI Function HttpSendReq
+        ARM
+HttpSendReq:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        SUB      SP,SP,#+4
+        CFI CFA R13+24
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R3,R5
+        MOV      R2,SP
+        MOV      R1,#+0
+        BL       __create_http_req
+        LDR      R7,[SP, #+0]
+        LDR      R1,??DataTable1  ;; `?<Constant "https://">`
+        MOV      R6,R0
+        MOV      R2,#+8
+        MOV      R0,R4
+        SWI      +277
+        CMP      R0,#+0
+        MOV      R3,R5
+        MOV      R2,R7
+        MOV      R1,R6
+        MOV      R0,R4
+        BNE      ??HttpSendReq_0
+        _BLF     ssl_send_answer,??ssl_send_answer??rA
+        POP      {R0,R4-R7,PC}
+??HttpSendReq_0:
+        _BLF     send_answer,??send_answer??rA
+        POP      {R0,R4-R7,PC}    ;; return
+        CFI EndBlock cfiBlock39
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock40 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??HttpSendReqPost??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock40
+        REQUIRE HttpSendReqPost
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock41 Using cfiCommon1
+        CFI Function HttpSendReqPost
+        ARM
+HttpSendReqPost:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        SUB      SP,SP,#+4
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R3,#+0
+        MOV      R2,SP
+        BL       __create_http_req
+        LDR      R6,[SP, #+0]
+        LDR      R1,??DataTable1  ;; `?<Constant "https://">`
+        MOV      R5,R0
+        MOV      R2,#+8
+        MOV      R0,R4
+        SWI      +277
+        CMP      R0,#+0
+        MOV      R3,#+0
+        MOV      R2,R6
+        MOV      R1,R5
+        MOV      R0,R4
+        BNE      ??HttpSendReqPost_0
+        _BLF     ssl_send_answer,??ssl_send_answer??rA
+        POP      {R0,R4-R6,PC}
+??HttpSendReqPost_0:
+        _BLF     send_answer,??send_answer??rA
+        POP      {R0,R4-R6,PC}    ;; return
+        CFI EndBlock cfiBlock41
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     `?<Constant "https://">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock42 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??Cookies_Add??rA:
+        LDR      R12,??Subroutine21_0  ;; Cookies_Add
+        BX       R12
+        DATA
+??Subroutine21_0:
+        DC32     Cookies_Add
+        CFI EndBlock cfiBlock42
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock43 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??get_host_from_url??rA:
+        LDR      R12,??Subroutine22_0  ;; get_host_from_url
+        BX       R12
+        DATA
+??Subroutine22_0:
+        DC32     get_host_from_url
+        CFI EndBlock cfiBlock43
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock44 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??Cookies_GetByHost??rA:
+        LDR      R12,??Subroutine23_0  ;; Cookies_GetByHost
+        BX       R12
+        DATA
+??Subroutine23_0:
+        DC32     Cookies_GetByHost
+        CFI EndBlock cfiBlock44
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock45 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??ssl_send_answer??rA:
+        LDR      R12,??Subroutine24_0  ;; ssl_send_answer
+        BX       R12
+        DATA
+??Subroutine24_0:
+        DC32     ssl_send_answer
+        CFI EndBlock cfiBlock45
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock46 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??send_answer??rA:
+        LDR      R12,??Subroutine25_0  ;; send_answer
+        BX       R12
+        DATA
+??Subroutine25_0:
+        DC32     send_answer
+        CFI EndBlock cfiBlock46
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for response_headers>`:
+        DATA
+        DC32 0H, `?<Constant "HTTP/">`, parse_line_HTTP, 0H
+        DC32 `?<Constant "Server:">`, parse_line_SERVER, 0H
+        DC32 `?<Constant "Date:">`, parse_line_DATE, 0H
+        DC32 `?<Constant "Content-Type:">`, parse_line_CONTENT_TYPE, 0H
+        DC32 `?<Constant "Content-Length:">`, parse_line_CONTENT_LENGTH, 0H
+        DC32 `?<Constant "Connection:">`, parse_line_CONNECTION, 0H
+        DC32 `?<Constant "X-Powered-By:">`, parse_line_X_POWERED_BY, 0H
+        DC32 `?<Constant "Set-Cookie:">`, parse_line_SET_COOKIE, 0H
+        DC32 `?<Constant "Pragma:">`, parse_line_PRAGMA, 0H
+        DC32 `?<Constant "Cache-control:">`, parse_line_CACHE_CONTROL, 0H
+        DC32 `?<Constant "X-Frame-Options:">`, parse_line_X_FRAME_OPTIONS, 0H
+        DC32 `?<Constant "Location:">`, parse_line_Location, 0H
+        DC32 `?<Constant "\\r\\n">`, parse_line_RN, 0H, 0H, 0H
+`?<Initializer for HTTP_HEADER_LENGTH>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for host>`:
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+`?<Initializer for HTTP_URL>`:
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Set-Cookie:">`:
+        DATA
+        DC8 "Set-Cookie:"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "keep-alive">`:
+        DATA
+        DC8 "keep-alive"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "domain=%s">`:
+        DATA
+        DC8 "domain=%s"
+        DC8 0, 0
+        DC8 "domain"
+        DC8 0
+        DC8 "Set-Cookie: %s"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "POST %s HTTP/1.0\\r\\nHos...">`:
+        DATA
+        DC8 "POST %s HTTP/1.0\015\012Host: %s\015\012"
+        DC8 0, 0, 0
+        DC8 "GET %s HTTP/1.0\015\012Host: %s\015\012"
+        DC8 "Connection: keep-alive\015\012"
+        DC8 0, 0, 0
+        DC8 "Cookie: %s\015\012"
+        DC8 0, 0, 0
+        DC8 "Content-Length: %d\015\012"
+        DC8 0, 0, 0
+        DC8 "User-Agent: %s %s;\015\012"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "HTTP/">`:
+        DATA
+        DC8 "HTTP/"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Server:">`:
+        DATA
+        DC8 "Server:"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Date:">`:
+        DATA
+        DC8 "Date:"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Content-Type:">`:
+        DATA
+        DC8 "Content-Type:"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Content-Length:">`:
+        DATA
+        DC8 "Content-Length:"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Connection:">`:
+        DATA
+        DC8 "Connection:"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "X-Powered-By:">`:
+        DATA
+        DC8 "X-Powered-By:"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "https://">`:
+        DATA
+        DC8 "https://"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Pragma:">`:
+        DATA
+        DC8 "Pragma:"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Cache-control:">`:
+        DATA
+        DC8 "Cache-control:"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "X-Frame-Options:">`:
+        DATA
+        DC8 "X-Frame-Options:"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Location:">`:
+        DATA
+        DC8 "Location:"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+`?<Constant "\\r\\n">`:
+        DATA
+        DC8 "\015\012"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "HTTP/%d.%d %d">`:
+        DATA
+        DC8 "HTTP/%d.%d %d"
+        DC8 0, 0
+
+        END
+// 
+// 1 860 bytes in segment CODE
+//   383 bytes in segment DATA_C
+//   748 bytes in segment DATA_I
+//   748 bytes in segment DATA_ID
+//   788 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+// 1 716 bytes of CODE  memory (+ 168 bytes shared)
+// 1 131 bytes of CONST memory
+// 1 536 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: none

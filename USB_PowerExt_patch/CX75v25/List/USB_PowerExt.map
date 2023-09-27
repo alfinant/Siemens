@@ -1,0 +1,98 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  18/Nov/2014  17:13:13                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\CX75v25\List\USB_PowerExt.map               #
+#           Output file 1 =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\CX75v25\Exe\USB_PowerExt.elf                #
+#                            Format: elf, variant: -yas                        #
+#           Command line  =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\CX75v25\Obj\patch.r79                       #
+#                            -o                                                #
+#                            C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\CX75v25\Exe\USB_PowerExt.elf                #
+#                            -Felf -yas -l                                     #
+#                            C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\CX75v25\List\USB_PowerExt.map               #
+#                            -xms -f                                           #
+#                            C:\Users\Инсаф\Documents\Siemens\alfinant\USB_Pow #
+#                            erExt\config\CX75v25.xcl                          #
+#                            (-carm                                            #
+#                            -Z(CODE)ICODE,CODE,DATA_I,DATA_ID,INITTAB,DATA_C= #
+#                            A00A6890                                          #
+#                            -Z(CODE)PATCH_PhyWAS_ExtPower_Process_Entry=A0CF6 #
+#                            7A0                                               #
+#                            -Z(CODE)PATCH_Hisr_PhyWAS_ExtPower_Entry=A0A8EE9C) #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+                  There are no program entries.
+
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\CX75v25\Obj\patch.r79
+  PROGRAM MODULE, NAME : patch
+
+  SEGMENTS IN THE MODULE
+  ======================
+PATCH_Hisr_PhyWAS_ExtPower_Entry
+  Relative segment, address: A0A8EE9C - A0A8EE9F (0x4 bytes), align: 2
+  Segment part 0. ROOT.
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A00A6890 - A00A68DF (0x50 bytes), align: 2
+  Segment part 1. ROOT.       Intra module refs:   Segment part 0
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+ICODE                                   A00A6890                     dse    0
+CODE                               A00A6890 - A00A68DF          50   rel    2
+PATCH_Hisr_PhyWAS_ExtPower_Entry
+                                   A0A8EE9C - A0A8EE9F           4   rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 84 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

@@ -1,0 +1,1015 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    18/Dec/2015  01:32:03 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\ma #
+#                       in.c                                                 #
+#    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\ma #
+#                       in.c -D SGOLD -D LUMBERG -lCN                        #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_SGOLD\List\ -la E:\Users\alfinant\Documents\Si #
+#                       emens\alfinant\Test\Release_SGOLD\List\ -o           #
+#                       E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_SGOLD\Obj\ -z9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork -e      #
+#                       --fpu None --dlib_config E:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tpainl8n.h -I                #
+#                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_SGOLD\List\main.lst                            #
+#    Object file     =  E:\Users\alfinant\Documents\Siemens\alfinant\Test\Re #
+#                       lease_SGOLD\Obj\main.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant\Documents\Siemens\alfinant\Test\main.c
+      1          #include "..\inc\swilib.h"
+      2          #include "..\inc\nu_swilib.h"
+      3          #include "..\inc\connector.h"
+
+   \                                 In segment DATA_AN, at 0xf4300000
+   \   GPIO_TypeDef __data GPIO
+   \                     GPIO:
+   \   00000000                      DS8 212
+
+   \                                 In segment DATA_AN, at 0xf4000000
+   \   CAPCOM_TypeDef __data CCU0
+   \                     CCU0:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_AN, at 0xf4100000
+   \   CAPCOM_TypeDef __data CCU1
+   \                     CCU1:
+   \   00000000                      DS8 256
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+   \   uint32_t __data connector[8]
+   \                     connector:
+   \   00000000                      DS8 32
+   \   uint32_t __data save_connector[7]
+   \                     save_connector:
+   \   00000020                      DS8 28
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void InitConnectorMap()
+   \                     InitConnectorMap:
+   \   00000000   ........           LDR      R0,??DataTable6  ;; connector
+   \   00000004   F014A0E3           MOV      R1,#-268435456
+   \   00000008   431681E3           ORR      R1,R1,#0x4300000
+   \   0000000C   502081E2           ADD      R2,R1,#+80
+   \   00000010   042080E5           STR      R2,[R0, #+4]
+   \   00000014   4C2081E2           ADD      R2,R1,#+76
+   \   00000018   082080E5           STR      R2,[R0, #+8]
+   \   0000001C   582081E2           ADD      R2,R1,#+88
+   \   00000020   0C2080E5           STR      R2,[R0, #+12]
+   \   00000024   542081E2           ADD      R2,R1,#+84
+   \   00000028   102080E5           STR      R2,[R0, #+16]
+   \   0000002C   5C1081E2           ADD      R1,R1,#+92
+   \   00000030   141080E5           STR      R1,[R0, #+20]
+   \   00000034   0610A0E3           MOV      R1,#+6
+   \   00000038   181080E5           STR      R1,[R0, #+24]
+   \   0000003C   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void InitPinSafe(uint8_t, int)
+   \                     InitPinSafe:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   080050E3           CMP      R0,#+8
+   \   00000008   7080BD28           POPCS    {R4-R6,PC}
+   \   0000000C   ........           LDR      R12,??DataTable6  ;; connector
+   \   00000010   0030A0E1           MOV      R3,R0
+   \   00000014   03419CE7           LDR      R4,[R12, +R3, LSL #+2]
+   \   00000018   0420B0E1           MOVS     R2,R4
+   \   0000001C   7080BD08           POPEQ    {R4-R6,PC}
+   \   00000020   03C18CE0           ADD      R12,R12,R3, LSL #+2
+   \   00000024   060054E3           CMP      R4,#+6
+   \   00000028   0700001A           BNE      ??InitPinSafe_1
+   \   0000002C   000051E3           CMP      R1,#+0
+   \   00000030   7080BD08           POPEQ    {R4-R6,PC}
+   \   00000034   20109CE5           LDR      R1,[R12, #+32]
+   \   00000038   0030A0E3           MOV      R3,#+0
+   \   0000003C   0020A0E3           MOV      R2,#+0
+   \   00000040   1000A0E3           MOV      R0,#+16
+   \   00000044   ........           _BLF     i2cr_pmu,??i2cr_pmu??rA
+   \   00000048   7080BDE8           POP      {R4-R6,PC}
+   \                     ??InitPinSafe_1:
+   \   0000004C   F434A0E3           MOV      R3,#-201326592
+   \   00000050   404DE0E3           MVN      R4,#+4096
+   \   00000054   405983E3           ORR      R5,R3,#0x100000
+   \   00000058   406FA0E3           MOV      R6,#+256
+   \   0000005C   010040E2           SUB      R0,R0,#+1
+   \   00000060   040050E3           CMP      R0,#+4
+   \   00000064   1700008A           BHI      ??InitPinSafe_2
+   \   00000068   01EF8FE2           ADR      LR,??InitPinSafe_0
+   \   0000006C   00E0DEE7           LDRB     LR,[LR, R0]
+   \   00000070   0EF18FE0           ADD      PC,PC,LR, LSL #+2
+   \                     ??InitPinSafe_0:
+   \   00000074   0114060B           DC8      +1,+20,+6,+11
+   \   00000078   10000000           DC8      +16,+0,+0,+0
+   \                     ??InitPinSafe_3:
+   \   0000007C   006083E5           STR      R6,[R3, #+0]
+   \   00000080   EC0093E5           LDR      R0,[R3, #+236]
+   \   00000084   000004E0           AND      R0,R4,R0
+   \   00000088   EC0083E5           STR      R0,[R3, #+236]
+   \   0000008C   0D0000EA           B        ??InitPinSafe_2
+   \                     ??InitPinSafe_4:
+   \   00000090   006085E5           STR      R6,[R5, #+0]
+   \   00000094   EC0095E5           LDR      R0,[R5, #+236]
+   \   00000098   000004E0           AND      R0,R4,R0
+   \   0000009C   EC0085E5           STR      R0,[R5, #+236]
+   \   000000A0   080000EA           B        ??InitPinSafe_2
+   \                     ??InitPinSafe_5:
+   \   000000A4   006083E5           STR      R6,[R3, #+0]
+   \   000000A8   DC0093E5           LDR      R0,[R3, #+220]
+   \   000000AC   000004E0           AND      R0,R4,R0
+   \   000000B0   DC0083E5           STR      R0,[R3, #+220]
+   \   000000B4   030000EA           B        ??InitPinSafe_2
+   \                     ??InitPinSafe_6:
+   \   000000B8   006085E5           STR      R6,[R5, #+0]
+   \   000000BC   DC0095E5           LDR      R0,[R5, #+220]
+   \   000000C0   000004E0           AND      R0,R4,R0
+   \   000000C4   DC0085E5           STR      R0,[R5, #+220]
+   \                     ??InitPinSafe_2:
+   \   000000C8   000051E3           CMP      R1,#+0
+   \   000000CC   00009215           LDRNE    R0,[R2, #+0]
+   \   000000D0   20008C15           STRNE    R0,[R12, #+32]
+   \   000000D4   000092E5           LDR      R0,[R2, #+0]
+   \   000000D8   800C80E3           ORR      R0,R0,#0x8000
+   \   000000DC   000082E5           STR      R0,[R2, #+0]
+   \   000000E0   810CA0E3           MOV      R0,#+33024
+   \   000000E4   000082E5           STR      R0,[R2, #+0]
+   \   000000E8   7080BDE8           POP      {R4-R6,PC}       ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void RestorePin(uint8_t)
+   \                     RestorePin:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   00402DE9           PUSH     {LR}
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   013192E7           LDR      R3,[R2, +R1, LSL #+2]
+   \   00000010   011182E0           ADD      R1,R2,R1, LSL #+2
+   \   00000014   201091E5           LDR      R1,[R1, #+32]
+   \   00000018   000051E3           CMP      R1,#+0
+   \   0000001C   0080BD08           POPEQ    {PC}
+   \   00000020   060053E3           CMP      R3,#+6
+   \   00000024   0400001A           BNE      ??RestorePin_1
+   \   00000028   0030A0E3           MOV      R3,#+0
+   \   0000002C   0020A0E3           MOV      R2,#+0
+   \   00000030   1000A0E3           MOV      R0,#+16
+   \   00000034   ........           _BLF     i2cw_pmu,??i2cw_pmu??rA
+   \   00000038   0080BDE8           POP      {PC}
+   \                     ??RestorePin_1:
+   \   0000003C   001083E5           STR      R1,[R3, #+0]
+   \   00000040   F414A0E3           MOV      R1,#-201326592
+   \   00000044   402981E3           ORR      R2,R1,#0x100000
+   \   00000048   403FA0E3           MOV      R3,#+256
+   \   0000004C   010040E2           SUB      R0,R0,#+1
+   \   00000050   040050E3           CMP      R0,#+4
+   \   00000054   0080BD88           POPHI    {PC}
+   \   00000058   01CF8FE2           ADR      R12,??RestorePin_0
+   \   0000005C   00C0DCE7           LDRB     R12,[R12, R0]
+   \   00000060   0CF18FE0           ADD      PC,PC,R12, LSL #+2
+   \                     ??RestorePin_0:
+   \   00000064   01200911           DC8      +1,+32,+9,+17
+   \   00000068   19000000           DC8      +25,+0,+0,+0
+   \                     ??RestorePin_2:
+   \   0000006C   003081E5           STR      R3,[R1, #+0]
+   \   00000070   EC0091E5           LDR      R0,[R1, #+236]
+   \   00000074   400C80E3           ORR      R0,R0,#0x4000
+   \   00000078   EC0081E5           STR      R0,[R1, #+236]
+   \   0000007C   EC0091E5           LDR      R0,[R1, #+236]
+   \   00000080   400D80E3           ORR      R0,R0,#0x1000
+   \   00000084   EC0081E5           STR      R0,[R1, #+236]
+   \   00000088   0080BDE8           POP      {PC}
+   \                     ??RestorePin_3:
+   \   0000008C   003082E5           STR      R3,[R2, #+0]
+   \   00000090   EC0092E5           LDR      R0,[R2, #+236]
+   \   00000094   400C80E3           ORR      R0,R0,#0x4000
+   \   00000098   EC0082E5           STR      R0,[R2, #+236]
+   \   0000009C   EC0092E5           LDR      R0,[R2, #+236]
+   \   000000A0   400D80E3           ORR      R0,R0,#0x1000
+   \   000000A4   EC0082E5           STR      R0,[R2, #+236]
+   \   000000A8   0080BDE8           POP      {PC}
+   \                     ??RestorePin_4:
+   \   000000AC   003081E5           STR      R3,[R1, #+0]
+   \   000000B0   DC0091E5           LDR      R0,[R1, #+220]
+   \   000000B4   400C80E3           ORR      R0,R0,#0x4000
+   \   000000B8   DC0081E5           STR      R0,[R1, #+220]
+   \   000000BC   DC0091E5           LDR      R0,[R1, #+220]
+   \   000000C0   400D80E3           ORR      R0,R0,#0x1000
+   \   000000C4   DC0081E5           STR      R0,[R1, #+220]
+   \   000000C8   0080BDE8           POP      {PC}
+   \                     ??RestorePin_5:
+   \   000000CC   003082E5           STR      R3,[R2, #+0]
+   \   000000D0   DC0092E5           LDR      R0,[R2, #+220]
+   \   000000D4   400C80E3           ORR      R0,R0,#0x4000
+   \   000000D8   DC0082E5           STR      R0,[R2, #+220]
+   \   000000DC   DC0092E5           LDR      R0,[R2, #+220]
+   \   000000E0   400D80E3           ORR      R0,R0,#0x1000
+   \   000000E4   DC0082E5           STR      R0,[R2, #+220]
+   \                     ??RestorePin_6:
+   \   000000E8   0080BDE8           POP      {PC}             ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void pinSetIO(uint8_t, int, int)
+   \                     pinSetIO:
+   \   00000000   ........           LDR      R3,??DataTable6  ;; connector
+   \   00000004   00C193E7           LDR      R12,[R3, +R0, LSL #+2]
+   \   00000008   000183E0           ADD      R0,R3,R0, LSL #+2
+   \   0000000C   200090E5           LDR      R0,[R0, #+32]
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   1EFF2F01           BXEQ     LR
+   \   00000018   00009CE5           LDR      R0,[R12, #+0]
+   \   0000001C   011282E1           ORR      R1,R2,R1, LSL #+4
+   \   00000020   800C80E3           ORR      R0,R0,#0x8000
+   \   00000024   00008CE5           STR      R0,[R12, #+0]
+   \   00000028   00009CE5           LDR      R0,[R12, #+0]
+   \   0000002C   000081E1           ORR      R0,R1,R0
+   \   00000030   00008CE5           STR      R0,[R12, #+0]
+   \   00000034   00009CE5           LDR      R0,[R12, #+0]
+   \   00000038   800CC0E3           BIC      R0,R0,#0x8000
+   \   0000003C   00008CE5           STR      R0,[R12, #+0]
+   \   00000040   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void pinMode(uint8_t, uint8_t)
+   \                     pinMode:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   000051E3           CMP      R1,#+0
+   \   00000014   0500001A           BNE      ??pinMode_0
+   \   00000018   001090E5           LDR      R1,[R0, #+0]
+   \   0000001C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+   \   00000028   841CC1E3           BIC      R1,R1,#0x8400
+   \   0000002C   090000EA           B        ??pinMode_1
+   \                     ??pinMode_0:
+   \   00000030   010051E3           CMP      R1,#+1
+   \   00000034   1EFF2F11           BXNE     LR
+   \   00000038   001090E5           LDR      R1,[R0, #+0]
+   \   0000003C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000040   001080E5           STR      R1,[R0, #+0]
+   \   00000044   001090E5           LDR      R1,[R0, #+0]
+   \   00000048   401E81E3           ORR      R1,R1,#0x400
+   \   0000004C   001080E5           STR      R1,[R0, #+0]
+   \   00000050   001090E5           LDR      R1,[R0, #+0]
+   \   00000054   801CC1E3           BIC      R1,R1,#0x8000
+   \                     ??pinMode_1:
+   \   00000058   ........           B        ?Subroutine18
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine18:
+   \   00000000   001080E5           STR      R1,[R0, #+0]
+   \   00000004   1EFF2FE1           BX       LR               ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs void digitalWrite(uint8_t, uint8_t)
+   \                     digitalWrite:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   00000008   000050E3           CMP      R0,#+0
+   \   0000000C   1EFF2F01           BXEQ     LR
+   \   00000010   010051E3           CMP      R1,#+1
+   \   00000014   0800001A           BNE      ??digitalWrite_0
+   \   00000018   001090E5           LDR      R1,[R0, #+0]
+   \   0000001C   801C81E3           ORR      R1,R1,#0x8000
+   \   00000020   001080E5           STR      R1,[R0, #+0]
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+   \   00000028   801F81E3           ORR      R1,R1,#0x200
+   \   0000002C   001080E5           STR      R1,[R0, #+0]
+   \   00000030   001090E5           LDR      R1,[R0, #+0]
+   \   00000034   801CC1E3           BIC      R1,R1,#0x8000
+   \   00000038   060000EA           B        ??digitalWrite_1
+   \                     ??digitalWrite_0:
+   \   0000003C   000051E3           CMP      R1,#+0
+   \   00000040   1EFF2F11           BXNE     LR
+   \   00000044   001090E5           LDR      R1,[R0, #+0]
+   \   00000048   801C81E3           ORR      R1,R1,#0x8000
+   \   0000004C   001080E5           STR      R1,[R0, #+0]
+   \   00000050   001090E5           LDR      R1,[R0, #+0]
+   \   00000054   821CC1E3           BIC      R1,R1,#0x8200
+   \                     ??digitalWrite_1:
+   \   00000058                      REQUIRE ?Subroutine18
+   \   00000058                      ;; // Fall through to label ?Subroutine18
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code32?? __code __interwork __atpcs int digitalRead(uint8_t)
+   \                     digitalRead:
+   \   00000000   ........           LDR      R2,??DataTable6  ;; connector
+   \   00000004   0010A0E3           MOV      R1,#+0
+   \   00000008   000192E7           LDR      R0,[R2, +R0, LSL #+2]
+   \   0000000C   000050E3           CMP      R0,#+0
+   \   00000010   00009015           LDRNE    R0,[R0, #+0]
+   \   00000014   800F0012           ANDNE    R0,R0,#0x200
+   \   00000018   A014A011           LSRNE    R1,R0,#+9
+   \   0000001C   0100A0E1           MOV      R0,R1
+   \   00000020   1EFF2FE1           BX       LR               ;; return
+      4          #include "..\inc\i2c.h"
+      5          
+      6          #ifdef NEWSGOLD
+      7          #include "..\inc\reg8876.h"
+      8          #else
+      9          #include "..\inc\reg8875.h"
+     10          #endif
+     11          
+     12          #define EMSAL_PROCESS 0x4210
+     13          
+     14          
+     15          typedef struct
+     16          {
+     17            int zero0;
+     18            int zero1;
+     19            int one;
+     20            short pid;
+     21            short pid_from;
+     22            short msg;
+     23            short submess;
+     24          }SA_MSG;
+     25          
+     26          //#include <siemens/tbase_work/tbase.h>
+     27          
+     28          //#define C81
+     29          
+     30          typedef struct{ 
+     31            int word[26]; 
+     32          }GBSPROC;
+     33           
+     34          #pragma swi_number=0x385
+     35          __swi __arm GBSPROC *GBS_GetProcAddress(short cepid);
+     36          
+     37          #define    S0before              ((void(*)()) 0xA001788C)
+     38          #define    S0TxByte              ((int(*)(int ic, char data)) 0xA0017820)
+     39          #define    SV_STR                ((int(*)(unsigned addr, int data)) 0xA02324D4)
+     40          #define    DecodeBlock           ((int(*)(void *addr, int len, void *dest)) 0xA000A5A8)
+     41          
+     42          
+     43          extern void kill_data(void *p, void (*func_p)(void *));
+     44          #pragma segment="ELFBEGIN"
+
+   \                                 In segment CODE, align 4, keep-with-next
+     45          void ElfKiller(void)
+     46          {
+   \                     ElfKiller:
+   \   00000000   00402DE9           PUSH     {LR}
+     47            kill_data(__segment_begin("ELFBEGIN"),(void (*)(void *))mfree_adr());
+   \   00000004   158000EF           SWI      +32789
+   \   00000008   0010A0E1           MOV      R1,R0
+   \   0000000C   04009FE5           LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+   \   00000010   0040BDE8           POP      {LR}             ;; Pop
+   \   00000014   ........           _BF      kill_data,??kill_data??rA  ;; tailcall
+   \                     ??ElfKiller_0:
+   \   00000018   ........           DC32     SFB(ELFBEGIN)
+     48          }
+     49          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     50          unsigned data[0x6];
+   \                     `data`:
+   \   00000000                      DS8 24
+   \   00000018                      REQUIRE `?<Initializer for data>`
+     51          unsigned *map =(unsigned*)0xF45000A0;
+   \                     map:
+   \   00000018                      DS8 4
+   \   0000001C                      REQUIRE `?<Initializer for map>`
+     52          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     53          void SaveRegMap()
+     54          { unsigned  err=0;
+   \                     SaveRegMap:
+   \   00000000   31402DE9           PUSH     {R0,R4,R5,LR}
+   \   00000004   0010A0E3           MOV      R1,#+0
+     55          
+     56            for(int i=0; i<6;i++) data[i] = *(map++); 
+   \   00000008   5C409FE5           LDR      R4,??SaveRegMap_0  ;; `data`
+   \   0000000C   00108DE5           STR      R1,[SP, #+0]
+   \   00000010   0000A0E3           MOV      R0,#+0
+   \                     ??SaveRegMap_1:
+   \   00000014   181094E5           LDR      R1,[R4, #+24]
+   \   00000018   ........           LDR      R2,[R1], #+4
+   \   0000001C   181084E5           STR      R1,[R4, #+24]
+   \   00000020   002184E7           STR      R2,[R4, +R0, LSL #+2]
+   \   00000024   010080E2           ADD      R0,R0,#+1
+   \   00000028   060050E3           CMP      R0,#+6
+   \   0000002C   F8FFFFBA           BLT      ??SaveRegMap_1
+     57          
+     58            int f=fopen("0:\\SCCU.bin",A_ReadWrite+A_Create+A_Truncate+A_BIN,P_WRITE+P_READ,&err);
+   \   00000030   38009FE5           LDR      R0,??SaveRegMap_0+0x4  ;; `?<Constant "0:\\\\SCCU.bin">`
+   \   00000034   0D30A0E1           MOV      R3,SP
+   \   00000038   602FA0E3           MOV      R2,#+384
+   \   0000003C   0210A0E3           MOV      R1,#+2
+   \   00000040   831C81E3           ORR      R1,R1,#0x8300
+   \   00000044   0A0000EF           SWI      +10
+   \   00000048   0050A0E1           MOV      R5,R0
+     59            fwrite(f,data,0x18,&err);
+   \   0000004C   0D30A0E1           MOV      R3,SP
+   \   00000050   1820A0E3           MOV      R2,#+24
+   \   00000054   0410A0E1           MOV      R1,R4
+   \   00000058   0C0000EF           SWI      +12
+     60            fclose(f,&err);
+   \   0000005C   0D10A0E1           MOV      R1,SP
+   \   00000060   0500A0E1           MOV      R0,R5
+   \   00000064   0D0000EF           SWI      +13
+     61          }
+   \   00000068   3180BDE8           POP      {R0,R4,R5,PC}    ;; return
+   \                     ??SaveRegMap_0:
+   \   0000006C   ........           DC32     `data`
+   \   00000070   ........           DC32     `?<Constant "0:\\\\SCCU.bin">`
+     62          
+     63          
+     64          
+     65          
+     66          enum{FAK,MyMenu,VibraLight,UserProfiles,Setup,Developer_Menu,Apidc_Setup,MediaPlayer,Sound_Recorder,FRDB,Avatar,Radio,OrangeHome}; 
+     67          
+     68          #pragma swi_number=0x2E4
+     69          __swi __arm int SettingsAE_Update_ws(WSHDR *,int proc,char * entry,char *keyword);
+     70          
+     71          #pragma swi_number=0x2E6
+     72          __swi __arm int SettingsAE_SetFlag(int val,int set,char * entry,char *keyword);
+     73          
+     74          #pragma swi_number=0x2E8
+     75          __swi __arm int SettingsAE_Update(int val,int set,char * entry,char *keyword);
+     76          
+     77          
+     78          
+     79          
+     80          /*
+     81          void _delay_us(unsigned __us)
+     82          {
+     83            unsigned count = STM_TIM0 + __us;
+     84             while (STM_TIM0 < count);
+     85          }
+     86          
+     87          void _delay_ms(unsigned __ms) 
+     88          {
+     89            unsigned count = STM_TIM0 + ((__ms * 0x7D) << 3);
+     90             while (STM_TIM0 < count);
+     91          }
+     92          */
+     93          
+     94          #define    Kill_Browser            ((void(*)()) 0xA05FC3ED)
+     95          #define    Upp_Browser             ((void(*)()) 0xA05FC273)
+     96          #define    GBS_DeactSProc          ((void(*)()) 0xA00922AF)
+     97          #define    FL_GPTU0_Init           ((void(*)()) 0xA0521878)
+     98          #define    FL_GPTU0_Start          ((void(*)(int)) 0xA0521944)
+     99          #define    FL_Onoff                ((void(*)(int)) 0xA052160C)
+    100          #define    swProc                  ((void(*)(void*, int)) 0xA052160C)
+    101          #define    GPTU1_Init              ((void(*)(unsigned)) 0xA00A3CFC)
+    102          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    103          void* SetProcAddr(short cepid, void(*new_addr)())
+    104          { GBSPROC *p;
+   \                     SetProcAddr:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0140A0E1           MOV      R4,R1
+    105            void *old_addr;
+    106            if(p = GBS_GetProcAddress(cepid))
+   \   00000008   850300EF           SWI      +901
+   \   0000000C   000050E3           CMP      R0,#+0
+    107            {
+    108              old_addr = (void*) p->word[15];
+   \   00000010   3C109015           LDRNE    R1,[R0, #+60]
+    109              p->word[15] = (int) new_addr;
+   \   00000014   3C408015           STRNE    R4,[R0, #+60]
+    110              return old_addr;
+   \   00000018   0100A011           MOVNE    R0,R1
+    111            } else return 0;
+   \   0000001C   1080BDE8           POP      {R4,PC}          ;; return
+    112          }
+    113          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+    114          void(*old_addr)();
+   \                     old_addr:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for old_addr>`
+    115          GBS_MSG *msg=(GBS_MSG*)0xA80D0000;
+   \                     msg:
+   \   00000004                      DS8 4
+   \   00000008                      REQUIRE `?<Initializer for msg>`
+    116          unsigned ram=0xA80D0000;
+   \                     ram:
+   \   00000008                      DS8 4
+   \   0000000C                      REQUIRE `?<Initializer for ram>`
+    117          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    118          void my_smsif_sm_logger()
+    119          {
+   \                     my_smsif_sm_logger:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    120            GBS_ReceiveMessage(msg);
+   \   00000004   ........           LDR      R4,??DataTable8  ;; old_addr
+   \   00000008   040094E5           LDR      R0,[R4, #+4]
+   \   0000000C   010100EF           SWI      +257
+    121            msg++;
+   \   00000010   040094E5           LDR      R0,[R4, #+4]
+   \   00000014   100080E2           ADD      R0,R0,#+16
+   \   00000018   040084E5           STR      R0,[R4, #+4]
+    122            
+    123            old_addr();
+   \   0000001C   000094E5           LDR      R0,[R4, #+0]
+   \   00000020   30FF2FE1           BLX      R0
+    124            __asm("NOP"); 
+   \   00000024   0000A0E1           NOP              
+    125          }
+   \   00000028   1080BDE8           POP      {R4,PC}          ;; return
+    126          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    127          void my_smsif_sm()
+    128          { GBS_MSG msg;
+   \                     my_smsif_sm:
+   \   00000000   1F402DE9           PUSH     {R0-R4,LR}
+    129            zeromem(&msg,sizeof(GBS_MSG));
+   \   00000004   1010A0E3           MOV      R1,#+16
+    130            GBS_ReceiveMessage(&msg);
+    131            if(msg.pid_from==0x4073 &&  msg.msg==0x69) //a data0 oeacaoaeu ia PDU
+   \   00000008   ........           LDR      R4,??DataTable8  ;; old_addr
+   \   0000000C   0D00A0E1           MOV      R0,SP
+   \   00000010   1D0100EF           SWI      +285
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   010100EF           SWI      +257
+   \   0000001C   F000DDE1           LDRSH    R0,[SP, #+0]
+   \   00000020   7310A0E3           MOV      R1,#+115
+   \   00000024   401C81E3           ORR      R1,R1,#0x4000
+   \   00000028   010050E1           CMP      R0,R1
+   \   0000002C   F200DD01           LDRSHEQ  R0,[SP, #+2]
+   \   00000030   69005003           CMPEQ    R0,#+105
+   \   00000034   1100001A           BNE      ??my_smsif_sm_0
+    132            {
+    133              GBS_AcceptMessage();
+   \   00000038   020100EF           SWI      +258
+    134              memcpy((void*)ram, msg.data0, sizeof(PDU));
+   \   0000003C   08109DE5           LDR      R1,[SP, #+8]
+   \   00000040   080094E5           LDR      R0,[R4, #+8]
+   \   00000044   B220A0E3           MOV      R2,#+178
+   \   00000048   1E0100EF           SWI      +286
+    135              ram+=0xC0;
+   \   0000004C   080094E5           LDR      R0,[R4, #+8]
+    136              GBS_SendMessage(0x4077, 0x190, 0, 0, 0);
+   \   00000050   0030A0E3           MOV      R3,#+0
+   \   00000054   C00080E2           ADD      R0,R0,#+192
+   \   00000058   080084E5           STR      R0,[R4, #+8]
+   \   0000005C   0000A0E3           MOV      R0,#+0
+   \   00000060   01002DE9           PUSH     {R0}
+   \   00000064   0020A0E1           MOV      R2,R0
+   \   00000068   641FA0E3           MOV      R1,#+400
+   \   0000006C   7700A0E3           MOV      R0,#+119
+   \   00000070   400C80E3           ORR      R0,R0,#0x4000
+   \   00000074   000100EF           SWI      +256
+   \   00000078   04D08DE2           ADD      SP,SP,#+4
+   \   0000007C   010000EA           B        ??my_smsif_sm_1
+    137            }
+    138            else   old_addr();
+   \                     ??my_smsif_sm_0:
+   \   00000080   000094E5           LDR      R0,[R4, #+0]
+   \   00000084   30FF2FE1           BLX      R0
+    139            __asm("NOP"); 
+   \                     ??my_smsif_sm_1:
+   \   00000088   0000A0E1           NOP              
+    140          }
+   \   0000008C   1F80BDE8           POP      {R0-R4,PC}       ;; return
+    141          
+    142          
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+    143          char dat=0;
+   \                     dat:
+   \   00000000                      DS8 1
+
+   \                                 In segment DATA_Z, align 1, align-sorted
+    144          char reg_1,reg_2,reg_10;
+   \                     reg_1:
+   \   00000000                      DS8 1
+   \                     reg_2:
+   \   00000001                      DS8 1
+   \                     reg_10:
+   \   00000002                      DS8 1
+    145          
+    146          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    147          void showres()
+    148          {
+   \                     showres:
+   \   00000000   00402DE9           PUSH     {LR}
+   \   00000004   80D04DE2           SUB      SP,SP,#+128
+    149            char s[127];
+    150            sprintf(s, "i2cReg1=%X\n"
+    151                       "i2cReg2=%X\n"
+    152                       "i2cReg10=%X\n"
+    153                       "pmCharge=%X\n", reg_1, reg_2, reg_10, GPIO.TOUT1);
+   \   00000008   44009FE5           LDR      R0,??showres_0   ;; reg_1
+   \   0000000C   D010A0E3           MOV      R1,#+208
+   \   00000010   BD1641E2           SUB      R1,R1,#+198180864
+   \   00000014   001091E5           LDR      R1,[R1, #+0]
+   \   00000018   02002DE9           PUSH     {R1}
+   \   0000001C   0210D0E5           LDRB     R1,[R0, #+2]
+   \   00000020   02002DE9           PUSH     {R1}
+   \   00000024   0130D0E5           LDRB     R3,[R0, #+1]
+   \   00000028   0020D0E5           LDRB     R2,[R0, #+0]
+   \   0000002C   24109FE5           LDR      R1,??showres_0+0x4  ;; `?<Constant "i2cReg1=%X\\ni2cReg2=%X...">`
+   \   00000030   08008DE2           ADD      R0,SP,#+8
+   \   00000034   160000EF           SWI      +22
+    154            ShowMSG(0x1, (int)s);
+   \   00000038   08108DE2           ADD      R1,SP,#+8
+   \   0000003C   0100A0E3           MOV      R0,#+1
+   \   00000040   480100EF           SWI      +328
+    155            SUBPROC((void *)ElfKiller);
+   \   00000044   10009FE5           LDR      R0,??showres_0+0x8  ;; ElfKiller
+   \   00000048   710100EF           SWI      +369
+    156          }
+   \   0000004C   88D08DE2           ADD      SP,SP,#+136
+   \   00000050   0080BDE8           POP      {PC}             ;; return
+   \                     ??showres_0:
+   \   00000054   ........           DC32     reg_1
+   \   00000058   ........           DC32     `?<Constant "i2cReg1=%X\\ni2cReg2=%X...">`
+   \   0000005C   ........           DC32     ElfKiller
+    157          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    158          void callback(void *i2c_msg, int err)
+    159          {
+   \                     callback:
+   \   00000000   00402DE9           PUSH     {LR}
+    160            I2C_MSG *msg=(I2C_MSG*) i2c_msg;
+    161            if(msg->cdata==1) SUBPROC((void*)showres);
+   \   00000004   F600D0E1           LDRSH    R0,[R0, #+6]
+   \   00000008   010050E3           CMP      R0,#+1
+   \   0000000C   0080BD18           POPNE    {PC}
+   \   00000010   04009FE5           LDR      R0,??callback_0  ;; showres
+   \   00000014   710100EF           SWI      +369
+    162          }
+   \   00000018   0080BDE8           POP      {PC}             ;; return
+   \                     ??callback_0:
+   \   0000001C   ........           DC32     showres
+    163          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+    164          GBSTMR tmr;
+   \                     tmr:
+   \   00000000                      DS8 16
+    165          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    166          void tmr_proc()
+    167          {
+   \                     tmr_proc:
+   \   00000000   00402DE9           PUSH     {LR}
+    168            digitalWrite(RX, digitalRead(RX) ^ 1);
+   \   00000004   0200A0E3           MOV      R0,#+2
+   \   00000008   ........           BL       digitalRead
+   \   0000000C   011020E2           EOR      R1,R0,#0x1
+   \   00000010   FF1001E2           AND      R1,R1,#0xFF
+   \   00000014   0200A0E3           MOV      R0,#+2
+   \   00000018   ........           BL       digitalWrite
+    169            GBS_StartTimerProc(&tmr, 1, tmr_proc);
+   \   0000001C   0C209FE5           LDR      R2,??tmr_proc_0  ;; tmr_proc
+   \   00000020   0C009FE5           LDR      R0,??tmr_proc_0+0x4  ;; tmr
+   \   00000024   0110A0E3           MOV      R1,#+1
+   \   00000028   4D0000EF           SWI      +77
+    170          }
+   \   0000002C   0080BDE8           POP      {PC}             ;; return
+   \                     ??tmr_proc_0:
+   \   00000030   ........           DC32     tmr_proc
+   \   00000034   ........           DC32     tmr
+    171          
+    172          
+    173          typedef struct 
+    174          { CSM_RAM csm;
+    175            int unk28;
+    176            int unk2C;
+    177            int unk30;  
+    178            void *gui; //34 
+    179            int unk38[3]; 
+    180            int unk44;
+    181            int unk48[8];  
+    182            char *appID;
+    183            int zero;
+    184            /*
+    185            NativeExplorerData expl;
+    186            int EXP_CSM_ID;
+    187            char entry[24];
+    188            WSHDR ws1;
+    189            WSHDR ws2;
+    190            WSHDR ws3;
+    191            unsigned short ws1_body[140];
+    192            unsigned short ws2_body[140];
+    193            unsigned short ws3_body[140];  
+    194            */
+    195          } MAIN_CSM;
+    196          
+    197          #define SDA   GPIO.USART0_RTS
+    198          #define SCL   GPIO.USART0_CTS
+    199          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    200          void Delay(unsigned us)
+    201          {
+    202            unsigned endTime = STM_TIM0 + us;
+   \                     Delay:
+   \   00000000   18109FE5           LDR      R1,??Delay_0     ;; 0xfffffffff4b00010
+   \   00000004   001091E5           LDR      R1,[R1, #+0]
+   \   00000008   010080E0           ADD      R0,R0,R1
+    203            while(endTime > STM_TIM0);
+   \                     ??Delay_1:
+   \   0000000C   0C109FE5           LDR      R1,??Delay_0     ;; 0xfffffffff4b00010
+   \   00000010   001091E5           LDR      R1,[R1, #+0]
+   \   00000014   000051E1           CMP      R1,R0
+   \   00000018   FBFFFF3A           BCC      ??Delay_1
+    204          }
+   \   0000001C   1EFF2FE1           BX       LR               ;; return
+   \                     ??Delay_0:
+   \   00000020   1000B0F4           DC32     0xfffffffff4b00010
+    205          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    206          void USB_Charging()
+    207          { //STA: MAIN-заряжается, DONE, STBY-зарядка не требуется, WAIT-требуется зарядка
+   \                     USB_Charging:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+    208            //CTY: NONE, USB, STD
+    209            
+    210           // GBS_SendMessage(0x3F00,0x8,0,0,0);  //нужен после откл power ofom
+    211            GBS_SendMessage(0x3F00,0xB,0,0,0);  //from WAS_HISR to PhyWAS_ExtPower_Process
+   \   00000004   0000A0E3           MOV      R0,#+0
+   \   00000008   01002DE9           PUSH     {R0}
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0020A0E1           MOV      R2,R0
+   \   00000014   0B10A0E3           MOV      R1,#+11
+   \   00000018   FC0DA0E3           MOV      R0,#+16128
+   \   0000001C   000100EF           SWI      +256
+    212            GBS_SendMessage(0x3F00,0xA,0,0,0);  //from WAS_HISR to PhyWAS_ExtPower_Process
+   \   00000020   0000A0E3           MOV      R0,#+0
+   \   00000024   01002DE9           PUSH     {R0}
+   \   00000028   0030A0E1           MOV      R3,R0
+   \   0000002C   0020A0E1           MOV      R2,R0
+   \   00000030   0A10A0E3           MOV      R1,#+10
+   \   00000034   FC0DA0E3           MOV      R0,#+16128
+   \   00000038   000100EF           SWI      +256
+    213            GBS_SendMessage(0x6B03,0x15,0,0,0); //from WAS_Manager to WAS_ChargerController
+   \   0000003C   0000A0E3           MOV      R0,#+0
+   \   00000040   01002DE9           PUSH     {R0}
+   \   00000044   0340A0E3           MOV      R4,#+3
+   \   00000048   6B4C84E3           ORR      R4,R4,#0x6B00
+   \   0000004C   0030A0E1           MOV      R3,R0
+   \   00000050   0020A0E1           MOV      R2,R0
+   \   00000054   1510A0E3           MOV      R1,#+21
+   \   00000058   0400A0E1           MOV      R0,R4
+   \   0000005C   000100EF           SWI      +256
+    214            GBS_SendMessage(0x6B03,0x10,0,0,0); //from WAS_Manager to WAS_ChargerController
+   \   00000060   0000A0E3           MOV      R0,#+0
+   \   00000064   01002DE9           PUSH     {R0}
+   \   00000068   0030A0E1           MOV      R3,R0
+   \   0000006C   0020A0E1           MOV      R2,R0
+   \   00000070   1010A0E3           MOV      R1,#+16
+   \   00000074   0400A0E1           MOV      R0,R4
+   \   00000078   000100EF           SWI      +256
+    215            ShowMSG(0x11, (int)"PwrState: MAIN");
+   \   0000007C   08109FE5           LDR      R1,??USB_Charging_0  ;; `?<Constant "PwrState: MAIN">`
+   \   00000080   1100A0E3           MOV      R0,#+17
+   \   00000084   480100EF           SWI      +328
+    216          }
+   \   00000088   1F80BDE8           POP      {R0-R4,PC}       ;; return
+   \                     ??USB_Charging_0:
+   \   0000008C   ........           DC32     `?<Constant "PwrState: MAIN">`
+    217          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    218          int main(char *exename, char *fname)
+    219          {
+   \                     main:
+   \   00000000   00402DE9           PUSH     {LR}
+    220            char *s="                       ";
+    221          /*  NU_QUEUE *I2c_Queue;
+    222            NU_QUEUE  *Pointer_Array[20];
+    223            UNSIGNED number;
+    224            
+    225            number = NU_Queue_Pointers(&Pointer_Array[0],20);
+    226            
+    227            while(--number)
+    228            {
+    229              I2c_Queue = Pointer_Array[number];
+    230              
+    231              if(strncmp("i2c_queue", (char*)&I2c_Queue->words[4], 8) == 0)
+    232              {
+    233                sprintf(s,"n=%X\n0x%X", number, I2c_Queue);
+    234                ShowMSG(1,(int)s);
+    235              }
+    236            }
+    237          */
+    238          //unsigned pwm = clkman_requre(MAM, "PWM");456y  
+    239             //clkman_set_level(pwm, 6);  //0-Off, 1-Lowest(52MHz), 2-Low(52MHz), 3-standart(52MHz), 4-High(104MHz), 5-Highest(208MHz), 6-Standart(52MHz)
+    240          
+    241           // InitPinSafe(RX,1);
+    242           // pinMode(RX, OUTPUT);
+    243            //GBS_StartTimerProc(&tmr, 1, tmr_proc);
+    244            
+    245            //USB_Charging();
+    246            GBS_SendMessage(0x3F00,0x6,0,0,0); // CTY=NONE
+   \   00000004   0000A0E3           MOV      R0,#+0
+   \   00000008   01002DE9           PUSH     {R0}
+   \   0000000C   0030A0E3           MOV      R3,#+0
+   \   00000010   0020A0E1           MOV      R2,R0
+   \   00000014   0610A0E3           MOV      R1,#+6
+   \   00000018   FC0DA0E3           MOV      R0,#+16128
+   \   0000001C   000100EF           SWI      +256
+    247           
+    248          /*  GBS_SendMessage(0x3F00,0x6,0,0,0);
+    249           //// GBS_SendMessage(0x6B03,0xF,0,0,0);  // CTY=NONE
+    250            GBS_SendMessage(0x3F00,0xB,0,0,0);  
+    251            GBS_SendMessage(0x3F00,0xA,0,0,0);
+    252            GBS_SendMessage(0x6B03,0x15,0,0,0);    
+    253            //0xA,4
+    254          */
+    255          
+    256          /*  
+    257           char s[32];
+    258            
+    259            void *adr =GBS_GetProcAddress(0x420e);
+    260            sprintf(s, "=0x%X", adr);
+    261            ShowMSG(0x11, (int)s);
+    262          */
+    263            
+    264          
+    265          /*
+    266            dat=0x93;
+    267           // i2cw_pmu(0x10, &dat, 0);
+    268            i2cr_pmu(0x1, &reg_1, 0, 0);
+    269            i2cr_pmu(0x2, &reg_2, 0, 0); 
+    270            i2cr_pmu(0x10,&reg_10, callback, 1);
+    271          */  
+    272            //old_addr=(void(*)())SetProcAddr(0x4077, my_smsif_sm);
+    273          
+    274            //FL_Onoff(100);
+    275            //FL_GPTU0_Init();
+    276            //swProc((void*)0xA01D7EA4, 0x4025);
+    277            //GBS_SendMessage(0x4025, 0x1943,0,0,0); 
+    278           // asm("swi 4");
+    279           //GPTU1_Init(0x544D0000);
+    280          
+    281            return 0;
+   \   00000020   0000A0E3           MOV      R0,#+0
+   \   00000024   0280BDE8           POP      {R1,PC}          ;; return
+    282          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable6:
+   \   00000000   ........           DC32     connector
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable8:
+   \   00000000   ........           DC32     old_addr
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for data>`:
+   \   00000000   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000010   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0
+   \              0000        
+   \                     `?<Initializer for map>`:
+   \   00000018   A00050F4           DC32 0F45000A0H
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for old_addr>`:
+   \   00000000   00000000           DC8 0, 0, 0, 0
+   \                     `?<Initializer for msg>`:
+   \   00000004   00000DA8           DC32 0A80D0000H
+   \                     `?<Initializer for ram>`:
+   \   00000008   00000DA8           DC32 2819424256
+
+   \                                 In segment ELFBEGIN, align 1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "0:\\\\SCCU.bin">`:
+   \   00000000   303A5C534343       DC8 "0:\\SCCU.bin"
+   \              552E62696E00
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "i2cReg1=%X\\ni2cReg2=%X...">`:
+   \   00000000   693263526567       DC8 "i2cReg1=%X\012i2cReg2=%X\012i2cReg10=%X\012pmCharge=%X\012"
+   \              313D25580A69
+   \              326352656732
+   \              3D25580A6932
+   \              635265673130
+   \              3D25580A706D
+   \              436861726765
+   \              3D25580A00  
+   \   0000002F   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "PwrState: MAIN">`:
+   \   00000000   507772537461       DC8 "PwrState: MAIN"
+   \              74653A204D41
+   \              494E00      
+   \   0000000F   00                 DC8 0
+    283          
+    284            
+    285          /*
+    286          #define   SMSAL_PROCESS        0x420F
+    287          #define   EMSAL_PROCESS        0x4210
+    288          #define   SMS_SIMIF_SM         0x4077
+    289          
+    290           if ((msg->pid_from == EMSAL_PROCESS)&& (msg->msg == 0x3A)&&(msg->submess==0x4)&&((int)msg->data1) == 0x10) 
+    291            { 
+    292              char s[0x30];
+    293              sprintf(s, "msg=0x%X submess=0x%X data0=0x%X data1=0x%X", msg->msg, msg->submess,msg->data0, msg->data1);
+    294            }
+    295          */
+    296          
+    297          
+    298          
+
+   Maximum stack usage in bytes:
+
+     Function           CSTACK
+     --------           ------
+     Delay                  0
+     ElfKiller              4
+     InitConnectorMap       0
+     InitPinSafe           16
+     RestorePin             4
+     SaveRegMap            16
+     SetProcAddr            8
+     USB_Charging          24
+     callback               4
+     digitalRead            0
+     digitalWrite           0
+     main                   8
+     my_smsif_sm           28
+     my_smsif_sm_logger     8
+     pinMode                0
+     pinSetIO               0
+     showres              140
+     tmr_proc               4
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     GPIO                            212
+     CCU0                            256
+     CCU1                            256
+     connector                        60
+     InitConnectorMap                 64
+     InitPinSafe                     236
+     RestorePin                      236
+     pinSetIO                         68
+     pinMode                          92
+     ?Subroutine18                     8
+     digitalWrite                     88
+     digitalRead                      36
+     ElfKiller                        28
+     data                             28
+     SaveRegMap                      116
+     SetProcAddr                      32
+     old_addr                         12
+     my_smsif_sm_logger               44
+     my_smsif_sm                     144
+     dat                               1
+     reg_1                             3
+     showres                          96
+     callback                         32
+     tmr                              16
+     tmr_proc                         56
+     Delay                            36
+     USB_Charging                    144
+     main                             40
+     ??DataTable6                      4
+     ??DataTable8                      4
+     ?<Initializer for data>          28
+     ?<Initializer for old_addr>      12
+     ?<Constant "0:\\SCCU.bin">       12
+     ?<Constant "i2cReg1=%X\ni2cReg2=%X...">
+                                      48
+     ?<Constant "PwrState: MAIN">     16
+      Others                         132
+
+ 
+ 1 712 bytes in segment CODE
+   724 bytes in segment DATA_AN
+    76 bytes in segment DATA_C
+    40 bytes in segment DATA_I
+    40 bytes in segment DATA_ID
+    80 bytes in segment DATA_Z
+    24 bytes in segment INITTAB
+ 
+ 1 604 bytes of CODE  memory (+ 132 bytes shared)
+   116 bytes of CONST memory
+   120 bytes of DATA  memory (+ 724 bytes shared)
+
+Errors: none
+Warnings: 1

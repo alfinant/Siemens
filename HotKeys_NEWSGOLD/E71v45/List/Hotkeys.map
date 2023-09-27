@@ -1,0 +1,355 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  30/Nov/2014  19:38:10                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\List\Hotkeys.map             #
+#           Output file 1 =  C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\Exe\Hotkeys.elf              #
+#                            Format: elf, variant: -yas                        #
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\Obj\main.r79                 #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\Obj\patch.r79                #
+#                            -o                                                #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\Exe\Hotkeys.elf              #
+#                            -Felf -yas -l                                     #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\E71v45\List\Hotkeys.map             #
+#                            -xms -f                                           #
+#                            C:\Users\alfin_000\Documents\Siemens\alfinant\Hot #
+#                            Keys_NEWSGOLD\config\S75v52.xcl                   #
+#                            (-carm                                            #
+#                            -Z(CODE)ICODE,CODE,DATA_I,DATA_ID,INITTAB,DATA_C= #
+#                            A1448000                                          #
+#                            -Z(CODE)PATCH_ONMESSAGE=A042B85C                  #
+#                            -Z(CODE)PATCH_MAINCSMSIZE=A042B878                #
+#                            -Z(CODE)PATCH_PREDIAL_ENA1=A0332F8A               #
+#                            -Z(CODE)PATCH_PREDIAL_ENA2=A0332F8E               #
+#                            -Z(CODE)PATCH_APM_FRDB_GetInfo1=A02C8F7A          #
+#                            -Z(CODE)J_GetInfo1=A02C8FA0                       #
+#                            -Z(CODE)PATCH_APM_FRDB_GetInfo2=A03303F0          #
+#                            -Z(CODE)J_GetInfo2=A033040E                       #
+#                            -Z(CODE)PATCH_APM_FileRef_Run_UNKNOWN=A033066E    #
+#                            -Z(CODE)J_UNKNOWN=A03306A0                        #
+#                            -Z(CODE)PATCH_APM_FileRef_Run_SOUND=A0330726      #
+#                            -Z(CODE)J_SOUND=A0330750                          #
+#                            -Z(CODE)PATCH_APM_FileRef_Run_VIDEOIMAGE=A033075C #
+#                            -Z(CODE)ExecuteFile=A04D4898)                     #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+                  There are no program entries.
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: A1448000 - A1448003 (0x4 bytes), align: 2
+  Segment part 8.             Intra module refs:   _openExplorer
+           LOCAL                   ADDRESS         
+           =====                   =======         
+           my_handler              A1448001 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448004 - A144803F (0x3c bytes), align: 2
+  Segment part 10.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           isJAR                   A1448005 
+               stack 1 = 00000000 ( 00000030 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448040 - A14480BB (0x7c bytes), align: 2
+  Segment part 12.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           _openExplorer           A1448041 
+               stack 1 = 00000000 ( 00000014 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A14480BC - A14480BF (0x4 bytes), align: 2
+  Segment part 13.            Intra module refs:   _openExplorer
+                                                   isJAR
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A14480C0 - A14481F7 (0x138 bytes), align: 2
+  Segment part 15.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           my_onmessage            A14480C1        Segment part 0 (patch)
+               stack 1 = 00000000 ( 00000140 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A14481F8 - A14481FB (0x4 bytes), align: 2
+  Segment part 16.            Intra module refs:   isJAR
+                                                   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA04FB25B          A14481F9 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A14481FC - A14481FF (0x4 bytes), align: 2
+  Segment part 17.            Intra module refs:   ??rT0xA04FB25B
+                                                   _openExplorer
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448200 - A1448209 (0xa bytes), align: 2
+  Segment part 18.            Intra module refs:   isJAR
+                                                   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA093EB4D          A1448201 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A144820C - A144820F (0x4 bytes), align: 2
+  Segment part 19.            Intra module refs:   ??rT0xA093EB4D
+                                                   _openExplorer
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448210 - A1448217 (0x8 bytes), align: 2
+  Segment part 20.            Intra module refs:   isJAR
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA0502624          A1448211 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448218 - A144821F (0x8 bytes), align: 2
+  Segment part 21.            Intra module refs:   isJAR
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA05026F8          A1448219 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448220 - A1448227 (0x8 bytes), align: 2
+  Segment part 22.            Intra module refs:   _openExplorer
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA0FAFC00          A1448221 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448228 - A144822F (0x8 bytes), align: 2
+  Segment part 23.            Intra module refs:   _openExplorer
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA0699924          A1448229 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448230 - A1448237 (0x8 bytes), align: 2
+  Segment part 24.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA095469D          A1448231 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448238 - A144823F (0x8 bytes), align: 2
+  Segment part 25.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA063B4A1          A1448239 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448240 - A1448247 (0x8 bytes), align: 2
+  Segment part 26.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA06354C1          A1448241 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448248 - A1448257 (0x10 bytes), align: 2
+  Segment part 27.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA05ACFEB          A1448249 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448258 - A1448267 (0x10 bytes), align: 2
+  Segment part 28.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA05ACF85          A1448259 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448268 - A1448277 (0x10 bytes), align: 2
+  Segment part 29.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA05AD02D          A1448269 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448278 - A1448287 (0x10 bytes), align: 2
+  Segment part 30.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA0091EAB          A1448279 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: A1448288 - A144828F (0x8 bytes), align: 2
+  Segment part 31.            Intra module refs:   my_onmessage
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ??rT0xA063B877          A1448289 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: A1448290 - A1448297 (0x8 bytes), align: 2
+  Segment part 5.             Intra module refs:   _openExplorer
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: A1448298 - A14482E3 (0x4c bytes), align: 2
+  Segment part 6.             Intra module refs:   my_onmessage
+
+    *************************************************************************
+
+  FILE NAME : C:\Users\alfin_000\Documents\Siemens\alfinant\HotKeys_NEWSGOLD\E71v45\Obj\patch.r79
+  PROGRAM MODULE, NAME : patch
+
+  SEGMENTS IN THE MODULE
+  ======================
+PATCH_ONMESSAGE
+  Relative segment, address: A042B85C - A042B85F (0x4 bytes), align: 2
+  Segment part 0. ROOT.
+    -------------------------------------------------------------------------
+PATCH_MAINCSMSIZE
+  Relative segment, address: A042B878 - A042B87B (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+    -------------------------------------------------------------------------
+PATCH_PREDIAL_ENA1
+  Relative segment, address: A0332F8A - A0332F8B (0x2 bytes), align: 1
+  Segment part 2. ROOT.
+    -------------------------------------------------------------------------
+PATCH_PREDIAL_ENA2
+  Relative segment, address: A0332F8E - A0332F91 (0x4 bytes), align: 1
+  Segment part 3. ROOT.
+    -------------------------------------------------------------------------
+PATCH_APM_FRDB_GetInfo1
+  Relative segment, address: A02C8F7A - A02C8F7B (0x2 bytes), align: 1
+  Segment part 4. ROOT.
+    -------------------------------------------------------------------------
+J_GetInfo1
+  Relative segment, address: A02C8FA0, align: 1
+  Segment part 5. ROOT.       Intra module refs:   Segment part 4
+    -------------------------------------------------------------------------
+PATCH_APM_FRDB_GetInfo2
+  Relative segment, address: A03303F0 - A03303F1 (0x2 bytes), align: 1
+  Segment part 6. ROOT.
+    -------------------------------------------------------------------------
+J_GetInfo2
+  Relative segment, address: A033040E, align: 1
+  Segment part 7. ROOT.       Intra module refs:   Segment part 6
+    -------------------------------------------------------------------------
+PATCH_APM_FileRef_Run_UNKNOWN
+  Relative segment, address: A033066E - A033066F (0x2 bytes), align: 1
+  Segment part 8. ROOT.
+    -------------------------------------------------------------------------
+J_UNKNOWN
+  Relative segment, address: A03306A0, align: 1
+  Segment part 9. ROOT.       Intra module refs:   Segment part 8
+    -------------------------------------------------------------------------
+PATCH_APM_FileRef_Run_SOUND
+  Relative segment, address: A0330726 - A0330727 (0x2 bytes), align: 1
+  Segment part 10. ROOT.
+    -------------------------------------------------------------------------
+J_SOUND
+  Relative segment, address: A0330750, align: 1
+  Segment part 11. ROOT.      Intra module refs:   Segment part 10
+    -------------------------------------------------------------------------
+PATCH_APM_FileRef_Run_VIDEOIMAGE
+  Relative segment, address: A033075C - A0330765 (0xa bytes), align: 1
+  Segment part 12. ROOT.
+    -------------------------------------------------------------------------
+ExecuteFile
+  Relative segment, address: A04D4898, align: 1
+  Segment part 13. ROOT.      Intra module refs:   Segment part 12
+
+
+
+
+                ****************************************
+                *                                      *
+                *      SEGMENTS IN ADDRESS ORDER       *
+                *                                      *
+                ****************************************
+
+
+SEGMENT              SPACE    START ADDRESS   END ADDRESS     SIZE  TYPE  ALIGN
+=======              =====    =============   ===========     ====  ====  =====
+PATCH_APM_FRDB_GetInfo1
+                                   A02C8F7A - A02C8F7B           2   rel    1
+J_GetInfo1                              A02C8FA0                     rel    1
+PATCH_APM_FRDB_GetInfo2
+                                   A03303F0 - A03303F1           2   rel    1
+J_GetInfo2                              A033040E                     rel    1
+PATCH_APM_FileRef_Run_UNKNOWN
+                                   A033066E - A033066F           2   rel    1
+J_UNKNOWN                               A03306A0                     rel    1
+PATCH_APM_FileRef_Run_SOUND
+                                   A0330726 - A0330727           2   rel    1
+J_SOUND                                 A0330750                     rel    1
+PATCH_APM_FileRef_Run_VIDEOIMAGE
+                                   A033075C - A0330765           A   rel    1
+PATCH_PREDIAL_ENA1                 A0332F8A - A0332F8B           2   rel    1
+PATCH_PREDIAL_ENA2                 A0332F8E - A0332F91           4   rel    1
+PATCH_ONMESSAGE                    A042B85C - A042B85F           4   rel    2
+PATCH_MAINCSMSIZE                  A042B878 - A042B87B           4   rel    2
+ExecuteFile                             A04D4898                     rel    1
+ICODE                                   A1448000                     dse    0
+CODE                               A1448000 - A144828F         290   rel    2
+DATA_I                                  A1448290                     dse    0
+DATA_ID                                 A1448290                     dse    0
+INITTAB                                 A1448290                     dse    0
+DATA_C                             A1448290 - A14482E3          54   rel    2
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 772 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

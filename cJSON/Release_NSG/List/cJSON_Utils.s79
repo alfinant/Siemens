@@ -1,0 +1,2977 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   21/Oct/2018  18:38:07 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\json\cJSON_Utils.c                          /
+//    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\json\cJSON_Utils.c -D NEWSGOLD -lCN         /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\ -la                       /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\ --diag_suppress Pe301 -o  /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\Obj\ -z9 --cpu_mode arm         /
+//                       --endian little --cpu ARM926EJ-S --stack_align 4    /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I E:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\src_ia /
+//                       r\cJSON\Release_NSG\List\cJSON_Utils.s79            /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME cJSON_Utils
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+??DataTable2 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+??DataTable7 EQU 0
+        MULTWEAK ??__dNotEqual??rA
+        MULTWEAK ??cJSONUtils_AddPatchToArray??rT
+        MULTWEAK ??cJSONUtils_ApplyPatches??rT
+        MULTWEAK ??cJSONUtils_ApplyPatchesCaseSensitive??rT
+        MULTWEAK ??cJSONUtils_FindPointerFromObjectTo??rT
+        MULTWEAK ??cJSONUtils_GenerateMergePatch??rT
+        MULTWEAK ??cJSONUtils_GenerateMergePatchCaseSensitive??r
+        MULTWEAK ??cJSONUtils_GeneratePatches??rT
+        MULTWEAK ??cJSONUtils_GeneratePatchesCaseSensitive??rT
+        MULTWEAK ??cJSONUtils_GetPointer??rT
+        MULTWEAK ??cJSONUtils_GetPointerCaseSensitive??rT
+        MULTWEAK ??cJSONUtils_MergePatch??rT
+        MULTWEAK ??cJSONUtils_MergePatchCaseSensitive??rT
+        MULTWEAK ??cJSONUtils_SortObject??rT
+        MULTWEAK ??cJSONUtils_SortObjectCaseSensitive??rT
+        MULTWEAK ??cJSON_AddItemToArray??rA
+        MULTWEAK ??cJSON_AddItemToObject??rA
+        MULTWEAK ??cJSON_CreateArray??rA
+        MULTWEAK ??cJSON_CreateNull??rA
+        MULTWEAK ??cJSON_CreateObject??rA
+        MULTWEAK ??cJSON_CreateString??rA
+        MULTWEAK ??cJSON_Delete??rA
+        MULTWEAK ??cJSON_DeleteItemFromObject??rA
+        MULTWEAK ??cJSON_DeleteItemFromObjectCaseSensitive??rA
+        MULTWEAK ??cJSON_DetachItemFromObject??rA
+        MULTWEAK ??cJSON_DetachItemFromObjectCaseSensitive??rA
+        MULTWEAK ??cJSON_Duplicate??rA
+        MULTWEAK ??cJSON_GetObjectItem??rA
+        MULTWEAK ??cJSON_GetObjectItemCaseSensitive??rA
+        MULTWEAK ??cJSON_IsArray??rA
+        MULTWEAK ??cJSON_IsNull??rA
+        MULTWEAK ??cJSON_IsObject??rA
+        MULTWEAK ??cJSON_IsString??rA
+        MULTWEAK ??cJSON_free??rA
+        MULTWEAK ??cJSON_malloc??rA
+        MULTWEAK ??tolower??rA
+        FUNCTION apply_patch,0203H
+        LOCFRAME CSTACK, 76, STACK
+        PUBLIC cJSONUtils_AddPatchToArray
+        FUNCTION cJSONUtils_AddPatchToArray,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBLIC cJSONUtils_ApplyPatches
+        FUNCTION cJSONUtils_ApplyPatches,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC cJSONUtils_ApplyPatchesCaseSensitive
+        FUNCTION cJSONUtils_ApplyPatchesCaseSensitive,0203H
+        LOCFRAME CSTACK, 12, STACK
+        PUBLIC cJSONUtils_FindPointerFromObjectTo
+        FUNCTION cJSONUtils_FindPointerFromObjectTo,0203H
+        LOCFRAME CSTACK, 24, STACK
+        PUBLIC cJSONUtils_GenerateMergePatch
+        FUNCTION cJSONUtils_GenerateMergePatch,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_GenerateMergePatchCaseSensitive
+        FUNCTION cJSONUtils_GenerateMergePatchCaseSensitive,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_GeneratePatches
+        FUNCTION cJSONUtils_GeneratePatches,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC cJSONUtils_GeneratePatchesCaseSensitive
+        FUNCTION cJSONUtils_GeneratePatchesCaseSensitive,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC cJSONUtils_GetPointer
+        FUNCTION cJSONUtils_GetPointer,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_GetPointerCaseSensitive
+        FUNCTION cJSONUtils_GetPointerCaseSensitive,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_MergePatch
+        FUNCTION cJSONUtils_MergePatch,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_MergePatchCaseSensitive
+        FUNCTION cJSONUtils_MergePatchCaseSensitive,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_SortObject
+        FUNCTION cJSONUtils_SortObject,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC cJSONUtils_SortObjectCaseSensitive
+        FUNCTION cJSONUtils_SortObjectCaseSensitive,0203H
+        LOCFRAME CSTACK, 4, STACK
+        FUNCTION cJSONUtils_strdup,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION compare_json,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION compare_pointers,0203H
+        LOCFRAME CSTACK, 20, STACK
+        FUNCTION compare_strings,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION compose_patch,0203H
+        LOCFRAME CSTACK, 36, STACK
+        FUNCTION create_patches,0203H
+        LOCFRAME CSTACK, 40, STACK
+        FUNCTION decode_array_index_from_pointer,0203H
+        LOCFRAME CSTACK, 4, STACK
+        FUNCTION decode_pointer_inplace,0203H
+        FUNCTION detach_path,0203H
+        LOCFRAME CSTACK, 32, STACK
+        FUNCTION encode_string_as_pointer,0203H
+        FUNCTION generate_merge_patch,0203H
+        LOCFRAME CSTACK, 20, STACK
+        FUNCTION get_item_from_pointer,0203H
+        LOCFRAME CSTACK, 24, STACK
+        FUNCTION get_object_item,0203H
+        LOCFRAME CSTACK, 4, STACK
+        FUNCTION merge_patch,0203H
+        LOCFRAME CSTACK, 16, STACK
+        FUNCTION overwrite_item,0203H
+        LOCFRAME CSTACK, 8, STACK
+        FUNCTION pointer_encoded_length,0203H
+        FUNCTION sort_list,0203H
+        LOCFRAME CSTACK, 28, STACK
+        FUNCTION sort_object,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBWEAK tolower
+        FUNCTION tolower,010203H
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+__dNotEqual         SYMBOL "__dNotEqual"
+cJSON_AddItemToArray SYMBOL "cJSON_AddItemToArray"
+cJSON_AddItemToObject SYMBOL "cJSON_AddItemToObject"
+cJSON_CreateArray   SYMBOL "cJSON_CreateArray"
+cJSON_CreateNull    SYMBOL "cJSON_CreateNull"
+cJSON_CreateObject  SYMBOL "cJSON_CreateObject"
+cJSON_CreateString  SYMBOL "cJSON_CreateString"
+cJSON_Delete        SYMBOL "cJSON_Delete"
+cJSON_DeleteItemFromObject SYMBOL "cJSON_DeleteItemFromObject"
+cJSON_DeleteItemFromObjectCaseSensitive SYMBOL "cJSON_DeleteItemFromObjectCaseSensitive"
+cJSON_DetachItemFromObject SYMBOL "cJSON_DetachItemFromObject"
+cJSON_DetachItemFromObjectCaseSensitive SYMBOL "cJSON_DetachItemFromObjectCaseSensitive"
+cJSON_Duplicate     SYMBOL "cJSON_Duplicate"
+cJSON_GetObjectItem SYMBOL "cJSON_GetObjectItem"
+cJSON_GetObjectItemCaseSensitive SYMBOL "cJSON_GetObjectItemCaseSensitive"
+cJSON_IsArray       SYMBOL "cJSON_IsArray"
+cJSON_IsNull        SYMBOL "cJSON_IsNull"
+cJSON_IsObject      SYMBOL "cJSON_IsObject"
+cJSON_IsString      SYMBOL "cJSON_IsString"
+cJSON_free          SYMBOL "cJSON_free"
+cJSON_malloc        SYMBOL "cJSON_malloc"
+??__dNotEqual??rA   SYMBOL "??rA", __dNotEqual
+cJSONUtils_AddPatchToArray SYMBOL "cJSONUtils_AddPatchToArray"
+??cJSONUtils_AddPatchToArray??rT SYMBOL "??rT", cJSONUtils_AddPatchToArray
+cJSONUtils_ApplyPatches SYMBOL "cJSONUtils_ApplyPatches"
+??cJSONUtils_ApplyPatches??rT SYMBOL "??rT", cJSONUtils_ApplyPatches
+cJSONUtils_ApplyPatchesCaseSensitive SYMBOL "cJSONUtils_ApplyPatchesCaseSensitive"
+??cJSONUtils_ApplyPatchesCaseSensitive??rT SYMBOL "??rT", cJSONUtils_ApplyPatchesCaseSensitive
+cJSONUtils_FindPointerFromObjectTo SYMBOL "cJSONUtils_FindPointerFromObjectTo"
+??cJSONUtils_FindPointerFromObjectTo??rT SYMBOL "??rT", cJSONUtils_FindPointerFromObjectTo
+cJSONUtils_GenerateMergePatch SYMBOL "cJSONUtils_GenerateMergePatch"
+??cJSONUtils_GenerateMergePatch??rT SYMBOL "??rT", cJSONUtils_GenerateMergePatch
+cJSONUtils_GenerateMergePatchCaseSensitive SYMBOL "cJSONUtils_GenerateMergePatchCaseSensitive"
+??cJSONUtils_GenerateMergePatchCaseSensitive??r SYMBOL "??rT", cJSONUtils_GenerateMergePatchCaseSensitive
+cJSONUtils_GeneratePatches SYMBOL "cJSONUtils_GeneratePatches"
+??cJSONUtils_GeneratePatches??rT SYMBOL "??rT", cJSONUtils_GeneratePatches
+cJSONUtils_GeneratePatchesCaseSensitive SYMBOL "cJSONUtils_GeneratePatchesCaseSensitive"
+??cJSONUtils_GeneratePatchesCaseSensitive??rT SYMBOL "??rT", cJSONUtils_GeneratePatchesCaseSensitive
+cJSONUtils_GetPointer SYMBOL "cJSONUtils_GetPointer"
+??cJSONUtils_GetPointer??rT SYMBOL "??rT", cJSONUtils_GetPointer
+cJSONUtils_GetPointerCaseSensitive SYMBOL "cJSONUtils_GetPointerCaseSensitive"
+??cJSONUtils_GetPointerCaseSensitive??rT SYMBOL "??rT", cJSONUtils_GetPointerCaseSensitive
+cJSONUtils_MergePatch SYMBOL "cJSONUtils_MergePatch"
+??cJSONUtils_MergePatch??rT SYMBOL "??rT", cJSONUtils_MergePatch
+cJSONUtils_MergePatchCaseSensitive SYMBOL "cJSONUtils_MergePatchCaseSensitive"
+??cJSONUtils_MergePatchCaseSensitive??rT SYMBOL "??rT", cJSONUtils_MergePatchCaseSensitive
+cJSONUtils_SortObject SYMBOL "cJSONUtils_SortObject"
+??cJSONUtils_SortObject??rT SYMBOL "??rT", cJSONUtils_SortObject
+cJSONUtils_SortObjectCaseSensitive SYMBOL "cJSONUtils_SortObjectCaseSensitive"
+??cJSONUtils_SortObjectCaseSensitive??rT SYMBOL "??rT", cJSONUtils_SortObjectCaseSensitive
+??cJSON_AddItemToArray??rA SYMBOL "??rA", cJSON_AddItemToArray
+??cJSON_AddItemToObject??rA SYMBOL "??rA", cJSON_AddItemToObject
+??cJSON_CreateArray??rA SYMBOL "??rA", cJSON_CreateArray
+??cJSON_CreateNull??rA SYMBOL "??rA", cJSON_CreateNull
+??cJSON_CreateObject??rA SYMBOL "??rA", cJSON_CreateObject
+??cJSON_CreateString??rA SYMBOL "??rA", cJSON_CreateString
+??cJSON_Delete??rA  SYMBOL "??rA", cJSON_Delete
+??cJSON_DeleteItemFromObject??rA SYMBOL "??rA", cJSON_DeleteItemFromObject
+??cJSON_DeleteItemFromObjectCaseSensitive??rA SYMBOL "??rA", cJSON_DeleteItemFromObjectCaseSensitive
+??cJSON_DetachItemFromObject??rA SYMBOL "??rA", cJSON_DetachItemFromObject
+??cJSON_DetachItemFromObjectCaseSensitive??rA SYMBOL "??rA", cJSON_DetachItemFromObjectCaseSensitive
+??cJSON_Duplicate??rA SYMBOL "??rA", cJSON_Duplicate
+??cJSON_GetObjectItem??rA SYMBOL "??rA", cJSON_GetObjectItem
+??cJSON_GetObjectItemCaseSensitive??rA SYMBOL "??rA", cJSON_GetObjectItemCaseSensitive
+??cJSON_IsArray??rA SYMBOL "??rA", cJSON_IsArray
+??cJSON_IsNull??rA  SYMBOL "??rA", cJSON_IsNull
+??cJSON_IsObject??rA SYMBOL "??rA", cJSON_IsObject
+??cJSON_IsString??rA SYMBOL "??rA", cJSON_IsString
+??cJSON_free??rA    SYMBOL "??rA", cJSON_free
+??cJSON_malloc??rA  SYMBOL "??rA", cJSON_malloc
+tolower             SYMBOL "tolower"
+??tolower??rA       SYMBOL "??rA", tolower
+
+        EXTERN __dNotEqual
+        FUNCTION __dNotEqual,0202H
+        EXTERN cJSON_AddItemToArray
+        FUNCTION cJSON_AddItemToArray,0202H
+        EXTERN cJSON_AddItemToObject
+        FUNCTION cJSON_AddItemToObject,0202H
+        EXTERN cJSON_CreateArray
+        FUNCTION cJSON_CreateArray,0202H
+        EXTERN cJSON_CreateNull
+        FUNCTION cJSON_CreateNull,0202H
+        EXTERN cJSON_CreateObject
+        FUNCTION cJSON_CreateObject,0202H
+        EXTERN cJSON_CreateString
+        FUNCTION cJSON_CreateString,0202H
+        EXTERN cJSON_Delete
+        FUNCTION cJSON_Delete,0202H
+        EXTERN cJSON_DeleteItemFromObject
+        FUNCTION cJSON_DeleteItemFromObject,0202H
+        EXTERN cJSON_DeleteItemFromObjectCaseSensitive
+        FUNCTION cJSON_DeleteItemFromObjectCaseSensitive,0202H
+        EXTERN cJSON_DetachItemFromObject
+        FUNCTION cJSON_DetachItemFromObject,0202H
+        EXTERN cJSON_DetachItemFromObjectCaseSensitive
+        FUNCTION cJSON_DetachItemFromObjectCaseSensitive,0202H
+        EXTERN cJSON_Duplicate
+        FUNCTION cJSON_Duplicate,0202H
+        EXTERN cJSON_GetObjectItem
+        FUNCTION cJSON_GetObjectItem,0202H
+        EXTERN cJSON_GetObjectItemCaseSensitive
+        FUNCTION cJSON_GetObjectItemCaseSensitive,0202H
+        EXTERN cJSON_IsArray
+        FUNCTION cJSON_IsArray,0202H
+        EXTERN cJSON_IsNull
+        FUNCTION cJSON_IsNull,0202H
+        EXTERN cJSON_IsObject
+        FUNCTION cJSON_IsObject,0202H
+        EXTERN cJSON_IsString
+        FUNCTION cJSON_IsString,0202H
+        EXTERN cJSON_free
+        FUNCTION cJSON_free,0202H
+        EXTERN cJSON_malloc
+        FUNCTION cJSON_malloc,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function tolower
+        ARM
+// __??Code32?? __intrinsic __code __interwork __atpcs int tolower(int)
+tolower:
+        CMP      R0,#+65
+        BXLT     LR
+        CMP      R0,#+91
+        ADDLT    R0,R0,#+32
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_strdup??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock1
+        REQUIRE cJSONUtils_strdup
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function cJSONUtils_strdup
+        ARM
+cJSONUtils_strdup:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        SWI      +27
+        ADD      R5,R0,#+1
+        MOV      R0,R5
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        MOVS     R6,R0
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R6,PC}
+        MOV      R2,R5
+        MOV      R1,R4
+        SWI      +286
+        MOV      R0,R6
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock2
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??compare_strings??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock3
+        REQUIRE compare_strings
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function compare_strings
+        ARM
+compare_strings:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        CMP      R4,#+0
+        CMPNE    R5,#+0
+        MOVEQ    R0,#+1
+        POPEQ    {R4-R6,PC}
+        CMP      R4,R5
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R6,PC}
+        CMP      R2,#+0
+        BEQ      ??compare_strings_0
+        SWI      +25
+        POP      {R4-R6,PC}
+??compare_strings_1:
+        LDRB     R0,[R4], #+1
+        CMP      R0,#+0
+        POPEQ    {R4-R6,PC}
+        ADD      R5,R5,#+1
+??compare_strings_0:
+        LDRB     R0,[R4, #+0]
+        _BLF     tolower,??tolower??rA
+        MOV      R6,R0
+        LDRB     R0,[R5, #+0]
+        _BLF     tolower,??tolower??rA
+        CMP      R6,R0
+        BEQ      ??compare_strings_1
+        LDRB     R0,[R4, #+0]
+        _BLF     tolower,??tolower??rA
+        MOV      R4,R0
+        LDRB     R0,[R5, #+0]
+        _BLF     tolower,??tolower??rA
+        SUB      R0,R4,R0
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??compare_pointers??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock5
+        REQUIRE compare_pointers
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function compare_pointers
+        ARM
+compare_pointers:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R6,R1
+        MOV      R5,R2
+        CMP      R4,#+0
+        BEQ      ??compare_pointers_0
+        CMP      R6,#+0
+        BNE      ??compare_pointers_1
+        B        ??compare_pointers_0
+??compare_pointers_2:
+        LDRB     R1,[R6, #+1]
+        CMP      R1,#+48
+        CMPEQ    R0,#+126
+        BEQ      ??compare_pointers_3
+        CMP      R1,#+49
+        CMPEQ    R0,#+47
+        BEQ      ??compare_pointers_3
+??compare_pointers_0:
+        B        ?Subroutine34
+??compare_pointers_3:
+        ADD      R6,R6,#+1
+??compare_pointers_4:
+        ADD      R4,R4,#+1
+        ADD      R6,R6,#+1
+??compare_pointers_1:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        LDRBNE   R1,[R6, #+0]
+        CMPNE    R1,#+0
+        CMPNE    R1,#+47
+        BEQ      ??compare_pointers_5
+        CMP      R1,#+126
+        BEQ      ??compare_pointers_2
+        CMP      R5,#+0
+        BNE      ??compare_pointers_6
+        _BLF     tolower,??tolower??rA
+        MOV      R7,R0
+        LDRB     R0,[R6, #+0]
+        _BLF     tolower,??tolower??rA
+        CMP      R7,R0
+        BNE      ??compare_pointers_0
+        B        ??compare_pointers_4
+??compare_pointers_6:
+        CMP      R0,R1
+        BEQ      ??compare_pointers_4
+        B        ??compare_pointers_0
+??compare_pointers_5:
+        LDRB     R0,[R6, #+0]
+        LDRB     R3,[R4, #+0]
+        MOV      R1,#+1
+        CMP      R0,#+0
+        CMPNE    R0,#+47
+        MOVNE    R0,#+1
+        MOVEQ    R0,#+0
+        CMP      R3,#+0
+        MOVEQ    R1,#+0
+        CMP      R0,R1
+        BNE      ??compare_pointers_0
+        MOV      R0,#+1
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock6
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??pointer_encoded_length??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock7
+        REQUIRE pointer_encoded_length
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function pointer_encoded_length
+        ARM
+pointer_encoded_length:
+        MOV      R1,#+0
+        B        ??pointer_encoded_length_0
+??pointer_encoded_length_1:
+        CMP      R2,#+126
+        CMPNE    R2,#+47
+        ADDEQ    R1,R1,#+1
+        ADD      R0,R0,#+1
+        ADD      R1,R1,#+1
+??pointer_encoded_length_0:
+        LDRB     R2,[R0, #+0]
+        CMP      R2,#+0
+        BNE      ??pointer_encoded_length_1
+        MOV      R0,R1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock8
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??encode_string_as_pointer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock9
+        REQUIRE encode_string_as_pointer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function encode_string_as_pointer
+        ARM
+encode_string_as_pointer:
+        B        ??encode_string_as_pointer_0
+??encode_string_as_pointer_1:
+        ADD      R1,R1,#+1
+        ADD      R0,R0,#+1
+??encode_string_as_pointer_0:
+        LDRB     R2,[R1, #+0]
+        CMP      R2,#+0
+        BEQ      ??encode_string_as_pointer_2
+        CMP      R2,#+47
+        BNE      ??encode_string_as_pointer_3
+??encode_string_as_pointer_4:
+        MOV      R2,#+49
+        STRB     R2,[R0, #+1]
+        ADD      R0,R0,#+1
+        B        ??encode_string_as_pointer_1
+??encode_string_as_pointer_3:
+        CMP      R2,#+126
+        STRB     R2,[R0, #+0]
+        BNE      ??encode_string_as_pointer_1
+        B        ??encode_string_as_pointer_4
+??encode_string_as_pointer_2:
+        MOV      R1,#+0
+        STRB     R1,[R0, #+0]
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock10
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_FindPointerFromObjectTo??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock11
+        REQUIRE cJSONUtils_FindPointerFromObjectTo
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI Function cJSONUtils_FindPointerFromObjectTo
+        ARM
+cJSONUtils_FindPointerFromObjectTo:
+        PUSH     {R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+24
+        MOV      R6,R0
+        MOV      R7,R1
+        MOV      R8,#+0
+        CMP      R6,#+0
+        CMPNE    R7,#+0
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R8,PC}
+        CMP      R6,R7
+        BNE      ??cJSONUtils_FindPointerFromObjectTo_0
+        ADR      R0,??DataTable0  ;; ""
+        BL       cJSONUtils_strdup
+        POP      {R4-R8,PC}
+??cJSONUtils_FindPointerFromObjectTo_0:
+        LDR      R5,[R6, #+8]
+        B        ??cJSONUtils_FindPointerFromObjectTo_1
+??cJSONUtils_FindPointerFromObjectTo_2:
+        LDR      R5,[R5, #+0]
+        ADD      R8,R8,#+1
+??cJSONUtils_FindPointerFromObjectTo_1:
+        CMP      R5,#+0
+        BEQ      ??cJSONUtils_FindPointerFromObjectTo_3
+        MOV      R1,R7
+        MOV      R0,R5
+        BL       cJSONUtils_FindPointerFromObjectTo
+        MOVS     R4,R0
+        BEQ      ??cJSONUtils_FindPointerFromObjectTo_2
+        MOV      R0,R6
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        BEQ      ??cJSONUtils_FindPointerFromObjectTo_4
+        MOV      R0,R4
+        SWI      +27
+        ADD      R0,R0,#+22
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        LDR      R1,??cJSONUtils_FindPointerFromObjectTo_5  ;; `?<Constant "/%lu%s">`
+        MOV      R5,R0
+        MOV      R3,R4
+        MOV      R2,R8
+        SWI      +22
+        MOV      R0,R4
+        _BLF     cJSON_free,??cJSON_free??rA
+        MOV      R0,R5
+        POP      {R4-R8,PC}
+??cJSONUtils_FindPointerFromObjectTo_4:
+        MOV      R0,R6
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        MOV      R0,R4
+        BEQ      ??cJSONUtils_FindPointerFromObjectTo_6
+        SWI      +27
+        MOV      R6,R0
+        LDR      R0,[R5, #+32]
+        BL       pointer_encoded_length
+        ADD      R0,R0,R6
+        ADD      R0,R0,#+2
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        MOV      R6,R0
+        MOV      R0,#+47
+        STRB     R0,[R6, #+0]
+        LDR      R1,[R5, #+32]
+        ADD      R0,R6,#+1
+        BL       encode_string_as_pointer
+        MOV      R1,R4
+        MOV      R0,R6
+        SWI      +23
+        MOV      R0,R4
+        _BLF     cJSON_free,??cJSON_free??rA
+        MOV      R0,R6
+        POP      {R4-R8,PC}
+??cJSONUtils_FindPointerFromObjectTo_6:
+        _BLF     cJSON_free,??cJSON_free??rA
+??cJSONUtils_FindPointerFromObjectTo_3:
+        MOV      R0,#+0
+        POP      {R4-R8,PC}       ;; return
+        DATA
+??cJSONUtils_FindPointerFromObjectTo_5:
+        DC32     `?<Constant "/%lu%s">`
+        CFI EndBlock cfiBlock12
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable0:
+        DC8      "",+0,+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??decode_array_index_from_pointer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock13
+        REQUIRE decode_array_index_from_pointer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI Function decode_array_index_from_pointer
+        ARM
+decode_array_index_from_pointer:
+        PUSH     {R4}
+        CFI R4 Frame(CFA, -4)
+        CFI CFA R13+4
+        LDRB     R12,[R0, #+0]
+        MOV      R3,#+0
+        MOV      R2,#+0
+        CMP      R12,#+48
+        BNE      ??decode_array_index_from_pointer_0
+        LDRB     R12,[R0, #+1]
+        CMP      R12,#+0
+        CMPNE    R12,#+47
+        BEQ      ??decode_array_index_from_pointer_0
+??decode_array_index_from_pointer_1:
+        MOV      R0,#+0
+        B        ??decode_array_index_from_pointer_2
+??decode_array_index_from_pointer_3:
+        LDRB     R12,[R12, #+0]
+        MOV      R4,#+10
+        ADD      R3,R3,#+1
+        SUB      R12,R12,#+48
+        MLA      R2,R4,R2,R12
+??decode_array_index_from_pointer_0:
+        ADD      R12,R3,R0
+        LDRB     R4,[R12, #+0]
+        CMP      R4,#+48
+        BCC      ??decode_array_index_from_pointer_4
+        LDRB     R4,[R0, #+0]
+        CMP      R4,#+58
+        BCC      ??decode_array_index_from_pointer_3
+??decode_array_index_from_pointer_4:
+        LDRB     R0,[R12, #+0]
+        CMP      R0,#+0
+        CMPNE    R0,#+47
+        BNE      ??decode_array_index_from_pointer_1
+        STR      R2,[R1, #+0]
+        MOV      R0,#+1
+??decode_array_index_from_pointer_2:
+        POP      {R4}
+        CFI R4 SameValue
+        CFI CFA R13+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock14
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??get_item_from_pointer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock15
+        REQUIRE get_item_from_pointer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon0
+        CFI Function get_item_from_pointer
+        ARM
+get_item_from_pointer:
+        PUSH     {R0,R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+24
+        MOV      R4,R1
+        MOV      R6,R0
+        MOV      R5,R2
+        CMP      R4,#+0
+        MOV      R7,#+0
+        MOVEQ    R0,#+0
+        POPEQ    {R1,R4-R7,PC}
+??get_item_from_pointer_0:
+        LDRB     R0,[R4], #+1
+        CMP      R0,#+47
+        BNE      ??get_item_from_pointer_1
+        CMP      R6,#+0
+        BEQ      ??get_item_from_pointer_1
+        MOV      R0,R6
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        BEQ      ??get_item_from_pointer_2
+        STR      R7,[SP, #+0]
+        MOV      R1,SP
+        MOV      R0,R4
+        BL       decode_array_index_from_pointer
+        CMP      R0,#+0
+        POPEQ    {R1,R4-R7,PC}
+        LDR      R0,[SP, #+0]
+        CMP      R6,#+0
+        BEQ      ??get_item_from_pointer_3
+        LDR      R6,[R6, #+8]
+        B        ??get_item_from_pointer_4
+??get_item_from_pointer_5:
+        LDR      R6,[R6, #+0]
+        SUB      R0,R0,#+1
+??get_item_from_pointer_4:
+        CMP      R6,#+0
+        BEQ      ??get_item_from_pointer_3
+        CMP      R0,#+0
+        BNE      ??get_item_from_pointer_5
+        B        ??get_item_from_pointer_3
+??get_item_from_pointer_2:
+        MOV      R0,R6
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        POPEQ    {R1,R4-R7,PC}
+        LDR      R6,[R6, #+8]
+        B        ??get_item_from_pointer_6
+??get_item_from_pointer_7:
+        LDR      R6,[R6, #+0]
+??get_item_from_pointer_6:
+        CMP      R6,#+0
+        BEQ      ??get_item_from_pointer_3
+        LDR      R0,[R6, #+32]
+        MOV      R2,R5
+        MOV      R1,R4
+        BL       compare_pointers
+        CMP      R0,#+0
+        BEQ      ??get_item_from_pointer_7
+??get_item_from_pointer_3:
+        LDRB     R0,[R4, #+0]
+        CMP      R0,#+0
+        CMPNE    R0,#+47
+        BEQ      ??get_item_from_pointer_0
+        ADD      R4,R4,#+1
+        B        ??get_item_from_pointer_3
+??get_item_from_pointer_1:
+        MOV      R0,R6
+        POP      {R1,R4-R7,PC}    ;; return
+        CFI EndBlock cfiBlock16
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GetPointer??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock17
+        REQUIRE cJSONUtils_GetPointer
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI Function cJSONUtils_GetPointer
+        ARM
+cJSONUtils_GetPointer:
+        MOV      R2,#+0
+        B        get_item_from_pointer  ;; tailcall
+        CFI EndBlock cfiBlock18
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GetPointerCaseSensitive??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock19
+        REQUIRE cJSONUtils_GetPointerCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon0
+        CFI Function cJSONUtils_GetPointerCaseSensitive
+        ARM
+cJSONUtils_GetPointerCaseSensitive:
+        MOV      R2,#+1
+        B        get_item_from_pointer  ;; tailcall
+        CFI EndBlock cfiBlock20
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??decode_pointer_inplace??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock21
+        REQUIRE decode_pointer_inplace
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon0
+        CFI Function decode_pointer_inplace
+        ARM
+decode_pointer_inplace:
+        MOVS     R1,R0
+        BNE      ??decode_pointer_inplace_0
+        BX       LR
+??decode_pointer_inplace_1:
+        CMP      R2,#+49
+        BXNE     LR
+        MOV      R2,#+47
+        STRB     R2,[R1, #+1]
+??decode_pointer_inplace_2:
+        ADD      R0,R0,#+1
+??decode_pointer_inplace_3:
+        ADD      R1,R1,#+1
+        ADD      R0,R0,#+1
+??decode_pointer_inplace_0:
+        LDRB     R2,[R0, #+0]
+        CMP      R2,#+0
+        BEQ      ??decode_pointer_inplace_4
+        CMP      R2,#+126
+        BNE      ??decode_pointer_inplace_3
+        LDRB     R2,[R0, #+1]
+        CMP      R2,#+48
+        BNE      ??decode_pointer_inplace_1
+        MOV      R2,#+126
+        STRB     R2,[R1, #+0]
+        B        ??decode_pointer_inplace_2
+??decode_pointer_inplace_4:
+        MOV      R0,#+0
+        STRB     R0,[R1, #+0]
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock22
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??detach_path??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock23
+        REQUIRE detach_path
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon0
+        CFI Function detach_path
+        ARM
+detach_path:
+        PUSH     {R0,R4-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+32
+        MOV      R7,R0
+        MOV      R0,R1
+        MOV      R8,R2
+        MOV      R4,#+0
+        MOV      R5,#+0
+        BL       cJSONUtils_strdup
+        MOVS     R6,R0
+        BEQ      ??detach_path_0
+        MOV      R1,#+47
+        SWI      +279
+        MOVS     R9,R0
+        BEQ      ??detach_path_1
+        STRB     R4,[R9], #+1
+        MOV      R2,R8
+        MOV      R1,R6
+        MOV      R0,R7
+        BL       get_item_from_pointer
+        MOV      R7,R0
+        MOV      R0,R9
+        BL       decode_pointer_inplace
+        MOV      R0,R7
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        BEQ      ??detach_path_2
+        STR      R4,[SP, #+0]
+        MOV      R1,SP
+        MOV      R0,R9
+        BL       decode_array_index_from_pointer
+        CMP      R0,#+0
+        BEQ      ??detach_path_1
+        LDR      R0,[SP, #+0]
+        LDR      R1,[R7, #+8]
+        B        ??detach_path_3
+??detach_path_4:
+        LDR      R1,[R1, #+0]
+        SUB      R0,R0,#+1
+??detach_path_3:
+        CMP      R1,#+0
+        BEQ      ??detach_path_1
+        CMP      R0,#+0
+        BNE      ??detach_path_4
+        LDR      R0,[R1, #+4]
+        MOV      R5,R1
+        CMP      R0,#+0
+        LDRNE    R2,[R1, #+0]
+        STRNE    R2,[R0, #+0]
+        LDR      R0,[R1, #+0]
+        CMP      R0,#+0
+        LDRNE    R2,[R1, #+4]
+        STRNE    R2,[R0, #+4]
+        LDR      R0,[R7, #+8]
+        CMP      R1,R0
+        LDREQ    R0,[R1, #+0]
+        STREQ    R0,[R7, #+8]
+        STR      R4,[R1, #+0]
+        STR      R4,[R1, #+4]
+        B        ??detach_path_1
+??detach_path_2:
+        MOV      R0,R7
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        BEQ      ??detach_path_1
+        MOV      R1,R9
+        MOV      R0,R7
+        _BLF     cJSON_DetachItemFromObject,??cJSON_DetachItemFromObject??rA
+        MOV      R5,R0
+??detach_path_1:
+        MOV      R0,R6
+        _BLF     cJSON_free,??cJSON_free??rA
+??detach_path_0:
+        MOV      R0,R5
+        POP      {R1,R4-R9,PC}    ;; return
+        CFI EndBlock cfiBlock24
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??sort_list??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock25
+        REQUIRE sort_list
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI Function sort_list
+        ARM
+sort_list:
+        PUSH     {R4-R9,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R9 Frame(CFA, -8)
+        CFI R8 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -24)
+        CFI R4 Frame(CFA, -28)
+        CFI CFA R13+28
+        MOV      R4,R1
+        MOV      R8,R0
+        MOV      R7,R8
+        MOV      R9,R8
+        MOV      R5,#+0
+        MOV      R6,#+0
+        CMP      R8,#+0
+        BEQ      ??sort_list_0
+        LDR      R0,[R8, #+0]
+        CMP      R0,#+0
+        BNE      ??sort_list_1
+        B        ??sort_list_0
+??sort_list_2:
+        LDR      R9,[R9, #+0]
+        CMP      R9,#+0
+        BEQ      ??sort_list_0
+??sort_list_1:
+        LDR      R0,[R9, #+0]
+        CMP      R0,#+0
+        BEQ      ??sort_list_3
+        LDR      R1,[R0, #+32]
+        LDR      R0,[R9, #+32]
+        MOV      R2,R4
+        BL       compare_strings
+        CMP      R0,#+0
+        BMI      ??sort_list_2
+??sort_list_3:
+        LDR      R0,[R9, #+0]
+        CMP      R0,#+0
+        BEQ      ??sort_list_0
+        MOV      R9,R8
+??sort_list_4:
+        LDR      R9,[R9, #+0]
+        LDR      R7,[R7, #+0]
+        CMP      R9,#+0
+        LDRNE    R9,[R9, #+0]
+        CMP      R9,#+0
+        BNE      ??sort_list_4
+        CMP      R7,#+0
+        LDRNE    R0,[R7, #+4]
+        MOV      R1,R4
+        CMPNE    R0,#+0
+        STRNE    R5,[R0, #+0]
+        MOV      R0,R8
+        BL       sort_list
+        MOV      R8,R0
+        MOV      R1,R4
+        MOV      R0,R7
+        BL       sort_list
+        MOV      R7,R0
+        B        ??sort_list_5
+??sort_list_6:
+        CMP      R8,R0
+        BNE      ??sort_list_7
+        LDR      R8,[R8, #+0]
+??sort_list_5:
+        CMP      R8,#+0
+        BNE      ??sort_list_8
+        CMP      R7,#+0
+        BEQ      ??sort_list_9
+        CMP      R5,#+0
+        BNE      ??sort_list_10
+        MOV      R0,R7
+        POP      {R4-R9,PC}
+??sort_list_7:
+        LDR      R7,[R7, #+0]
+??sort_list_8:
+        CMP      R7,#+0
+        BEQ      ??sort_list_11
+        LDR      R0,[R8, #+32]
+        LDR      R1,[R7, #+32]
+        MOV      R2,#+0
+        BL       compare_strings
+        CMP      R0,#+0
+        MOVMI    R0,R8
+        MOVPL    R0,R7
+        CMP      R5,#+0
+        STRNE    R0,[R6, #+0]
+        STRNE    R6,[R0, #+4]
+        MOVNE    R6,R0
+        MOVEQ    R6,R0
+        MOVEQ    R5,R0
+        B        ??sort_list_6
+??sort_list_11:
+        CMP      R5,#+0
+        BNE      ??sort_list_12
+??sort_list_0:
+        MOV      R0,R8
+        POP      {R4-R9,PC}
+??sort_list_12:
+        STR      R8,[R6, #+0]
+        STR      R6,[R8, #+4]
+        B        ??sort_list_9
+??sort_list_10:
+        STR      R7,[R6, #+0]
+        STR      R6,[R7, #+4]
+??sort_list_9:
+        MOV      R0,R5
+        POP      {R4-R9,PC}       ;; return
+        CFI EndBlock cfiBlock26
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??sort_object??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock27
+        REQUIRE sort_object
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI Function sort_object
+        ARM
+sort_object:
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        MOVS     R4,R0
+        POPEQ    {R4,PC}
+        LDR      R0,[R4, #+8]
+        BL       sort_list
+        STR      R0,[R4, #+8]
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock28
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??compare_json??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock29
+        REQUIRE compare_json
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI Function compare_json
+        ARM
+compare_json:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R1
+        MOV      R5,R0
+        MOV      R6,R2
+        CMP      R5,#+0
+        CMPNE    R4,#+0
+        BEQ      ??compare_json_0
+        LDR      R0,[R5, #+12]
+        LDR      R2,[R4, #+12]
+        AND      R1,R0,#0xFF
+        AND      R2,R2,#0xFF
+        CMP      R1,R2
+        BNE      ??compare_json_0
+        AND      R0,R0,#0xFF
+        SUBS     R0,R0,#+8
+        BEQ      ??compare_json_1
+        SUBS     R0,R0,#+8
+        BEQ      ??compare_json_2
+        SUBS     R0,R0,#+16
+        BEQ      ??compare_json_3
+        SUBS     R0,R0,#+32
+        BEQ      ??compare_json_4
+        B        ??compare_json_5
+??compare_json_1:
+        LDR      R0,[R5, #+20]
+        LDR      R1,[R4, #+20]
+        CMP      R0,R1
+        BNE      ??compare_json_0
+        LDR      R0,[R5, #+24]
+        LDR      R1,[R5, #+28]
+        LDR      R2,[R4, #+24]
+        LDR      R3,[R4, #+28]
+        _BLF     __dNotEqual,??__dNotEqual??rA
+        CMP      R0,#+0
+        BEQ      ??compare_json_5
+??compare_json_0:
+        MOV      R0,#+0
+        POP      {R4-R6,PC}
+??compare_json_2:
+        LDR      R0,[R5, #+16]
+        LDR      R1,[R4, #+16]
+        SWI      +25
+        CMP      R0,#+0
+        BNE      ??compare_json_0
+??compare_json_5:
+        MOV      R0,#+1
+        POP      {R4-R6,PC}
+??compare_json_3:
+        LDR      R5,[R5, #+8]
+        LDR      R4,[R4, #+8]
+        B        ??compare_json_6
+??compare_json_7:
+        LDR      R5,[R5, #+0]
+        LDR      R4,[R4, #+0]
+??compare_json_6:
+        CMP      R5,#+0
+        BEQ      ??compare_json_8
+        CMP      R4,#+0
+        BEQ      ??compare_json_0
+        MOV      R2,R6
+        MOV      R1,R4
+        MOV      R0,R5
+        BL       compare_json
+        CMP      R0,#+0
+        BNE      ??compare_json_7
+        POP      {R4-R6,PC}
+??compare_json_8:
+        CMP      R4,#+0
+        BEQ      ??compare_json_5
+        B        ??compare_json_0
+??compare_json_4:
+        MOV      R1,R6
+        MOV      R0,R5
+        BL       sort_object
+        MOV      R1,R6
+        MOV      R0,R4
+        BL       sort_object
+        LDR      R5,[R5, #+8]
+        LDR      R4,[R4, #+8]
+        B        ??compare_json_9
+??compare_json_10:
+        LDR      R5,[R5, #+0]
+        LDR      R4,[R4, #+0]
+??compare_json_9:
+        CMP      R5,#+0
+        BEQ      ??compare_json_8
+        CMP      R4,#+0
+        BEQ      ??compare_json_0
+        LDR      R0,[R5, #+32]
+        LDR      R1,[R4, #+32]
+        MOV      R2,R6
+        BL       compare_strings
+        CMP      R0,#+0
+        BNE      ??compare_json_0
+        MOV      R2,R6
+        MOV      R1,R4
+        MOV      R0,R5
+        BL       compare_json
+        CMP      R0,#+0
+        BNE      ??compare_json_10
+        POP      {R4-R6,PC}
+        CFI EndBlock cfiBlock30
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock31 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??get_object_item??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock31
+        REQUIRE get_object_item
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock32 Using cfiCommon0
+        CFI Function get_object_item
+        ARM
+get_object_item:
+        CMP      R2,#+0
+        BEQ      ??get_object_item_0
+        _BF      cJSON_GetObjectItemCaseSensitive,??cJSON_GetObjectItemCaseSensitive??rA  ;; tailcall
+??get_object_item_0:
+        _BF      cJSON_GetObjectItem,??cJSON_GetObjectItem??rA  ;; tailcall
+        CFI EndBlock cfiBlock32
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock33 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??overwrite_item??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock33
+        REQUIRE overwrite_item
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock34 Using cfiCommon0
+        CFI Function overwrite_item
+        ARM
+overwrite_item:
+        PUSH     {R1-R3}
+        CFI CFA R13+12
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOVS     R4,R0
+        BEQ      ??overwrite_item_0
+        LDR      R0,[R4, #+32]
+        CMP      R0,#+0
+        BEQ      ??overwrite_item_1
+        _BLF     cJSON_free,??cJSON_free??rA
+??overwrite_item_1:
+        LDR      R0,[R4, #+16]
+        CMP      R0,#+0
+        BEQ      ??overwrite_item_2
+        _BLF     cJSON_free,??cJSON_free??rA
+??overwrite_item_2:
+        LDR      R0,[R4, #+8]
+        CMP      R0,#+0
+        BEQ      ??overwrite_item_3
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+??overwrite_item_3:
+        MOV      R2,#+36
+        ADD      R1,SP,#+8
+        MOV      R0,R4
+        SWI      +286
+??overwrite_item_0:
+        POP      {R4,LR}
+        CFI R4 SameValue
+        CFI ?RET R14
+        CFI CFA R13+12
+        ADD      SP,SP,#+12
+        CFI CFA R13+0
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock34
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock35 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??apply_patch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock35
+        REQUIRE apply_patch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock36 Using cfiCommon0
+        CFI Function apply_patch
+        ARM
+apply_patch:
+        PUSH     {R0,R4-R11,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R11 Frame(CFA, -8)
+        CFI R10 Frame(CFA, -12)
+        CFI R9 Frame(CFA, -16)
+        CFI R8 Frame(CFA, -20)
+        CFI R7 Frame(CFA, -24)
+        CFI R6 Frame(CFA, -28)
+        CFI R5 Frame(CFA, -32)
+        CFI R4 Frame(CFA, -36)
+        CFI CFA R13+40
+        LDR      R10,??DataTable10  ;; ??invalid
+        MOV      R5,R0
+        MOV      R6,R1
+        MOV      R7,R2
+        MOV      R8,#+0
+        MOV      R9,#+0
+        MOV      R4,R8
+        ADD      R1,R10,#+76
+        MOV      R0,R6
+        BL       get_object_item
+        STR      R0,[SP, #+0]
+        _BLF     cJSON_IsString,??cJSON_IsString??rA
+        CMP      R0,#+0
+        MOVEQ    R4,#+2
+        BEQ      ??apply_patch_0
+        MOV      R2,R7
+        ADR      R1,??apply_patch_1  ;; "op"
+        MOV      R0,R6
+        BL       get_object_item
+        MOV      R11,R0
+        _BLF     cJSON_IsString,??cJSON_IsString??rA
+        CMP      R0,#+0
+        BEQ      ??apply_patch_2
+        LDR      R0,[R11, #+16]
+        ADR      R1,??apply_patch_1+0x4  ;; "add"
+        SWI      +25
+        CMP      R0,#+0
+        BNE      ??apply_patch_3
+        MOV      R11,#+1
+??apply_patch_4:
+        LDR      R0,[SP, #+0]
+        LDR      R1,[R0, #+16]
+        LDRB     R0,[R1, #+0]
+        CMP      R0,#+0
+        BNE      ??apply_patch_5
+        CMP      R11,#+2
+        BNE      ??apply_patch_6
+        SUB      SP,SP,#+36
+        CFI CFA R13+76
+        MOV      R1,SP
+        MOV      R2,#+36
+??apply_patch_7:
+        SUBS     R2,R2,#+4
+        LDR      R0,[R10, R2]
+        STR      R0,[R1, R2]
+        BNE      ??apply_patch_7
+        POP      {R1-R3}
+        CFI CFA R13+64
+        MOV      R0,R5
+        BL       overwrite_item
+        ADD      SP,SP,#+24
+        CFI CFA R13+40
+        B        ??apply_patch_0
+??apply_patch_3:
+        LDR      R0,[R11, #+16]
+        ADD      R1,R10,#+36
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R11,#+2
+        BEQ      ??apply_patch_4
+        LDR      R0,[R11, #+16]
+        ADD      R1,R10,#+44
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R11,#+3
+        BEQ      ??apply_patch_4
+        LDR      R0,[R11, #+16]
+        ADD      R1,R10,#+52
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R11,#+4
+        BEQ      ??apply_patch_4
+        LDR      R0,[R11, #+16]
+        ADD      R1,R10,#+60
+        SWI      +25
+        CMP      R0,#+0
+        MOVEQ    R11,#+5
+        BEQ      ??apply_patch_4
+        LDR      R0,[R11, #+16]
+        ADD      R1,R10,#+68
+        SWI      +25
+        CMP      R0,#+0
+        BNE      ??apply_patch_2
+        MOV      R2,R7
+        ADD      R1,R10,#+84
+        MOV      R0,R6
+        BL       get_object_item
+        MOV      R6,R0
+        LDR      R0,[SP, #+0]
+        MOV      R2,R7
+        LDR      R1,[R0, #+16]
+        MOV      R0,R5
+        BL       get_item_from_pointer
+        MOV      R2,R7
+        MOV      R1,R6
+        BL       compare_json
+        CMP      R0,#+0
+        BNE      ??apply_patch_0
+        MOV      R4,#+1
+        B        ??apply_patch_0
+??apply_patch_2:
+        MOV      R4,#+3
+        B        ??apply_patch_0
+??apply_patch_6:
+        CMP      R11,#+3
+        CMPNE    R11,#+1
+        BNE      ??apply_patch_5
+        MOV      R2,R7
+        ADD      R1,R10,#+84
+        MOV      R0,R6
+        BL       get_object_item
+        MOVS     R8,R0
+        BNE      ??apply_patch_8
+??apply_patch_9:
+        MOV      R4,#+7
+??apply_patch_10:
+        CMP      R8,#+0
+        BEQ      ??apply_patch_11
+        MOV      R0,R8
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+??apply_patch_11:
+        CMP      R9,#+0
+        BEQ      ??apply_patch_0
+        MOV      R0,R9
+        _BLF     cJSON_free,??cJSON_free??rA
+??apply_patch_0:
+        MOV      R0,R4
+        POP      {R1,R4-R11,PC}   ;; return
+??apply_patch_8:
+        MOV      R1,#+1
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        MOVS     R8,R0
+        BNE      ??apply_patch_12
+??apply_patch_13:
+        MOV      R4,#+8
+        B        ??apply_patch_10
+??apply_patch_12:
+        SUB      SP,SP,#+36
+        CFI CFA R13+76
+        MOV      R1,SP
+        MOV      R2,#+36
+??apply_patch_14:
+        SUBS     R2,R2,#+4
+        LDR      R0,[R8, R2]
+        STR      R0,[R1, R2]
+        BNE      ??apply_patch_14
+        POP      {R1-R3}
+        CFI CFA R13+64
+        MOV      R0,R5
+        BL       overwrite_item
+        MOV      R0,R8
+        _BLF     cJSON_free,??cJSON_free??rA
+        LDR      R0,[R5, #+32]
+        ADD      SP,SP,#+24
+        CFI CFA R13+40
+        CMP      R0,#+0
+        BEQ      ??apply_patch_0
+        _BLF     cJSON_free,??cJSON_free??rA
+        MOV      R0,#+0
+        STR      R0,[R5, #+32]
+        B        ??apply_patch_0
+??apply_patch_5:
+        MOV      R0,R11
+        CMP      R0,#+2
+        CMPNE    R0,#+3
+        BNE      ??apply_patch_15
+        MOV      R2,R7
+        MOV      R0,R5
+        BL       detach_path
+        CMP      R0,#+0
+        MOVEQ    R4,#+13
+        BEQ      ??apply_patch_0
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        MOV      R0,R11
+        CMP      R0,#+2
+        BEQ      ??apply_patch_0
+??apply_patch_15:
+        CMP      R0,#+4
+        CMPNE    R0,#+5
+        BNE      ??apply_patch_16
+        MOV      R2,R7
+        ADD      R1,R10,#+92
+        MOV      R0,R6
+        BL       get_object_item
+        MOVS     R6,R0
+        MOVEQ    R4,#+4
+        BEQ      ??apply_patch_0
+        CMP      R11,#+4
+        BNE      ??apply_patch_17
+        LDR      R1,[R6, #+16]
+        MOV      R2,R7
+        MOV      R0,R5
+        BL       detach_path
+        MOV      R8,R0
+??apply_patch_17:
+        CMP      R11,#+5
+        BNE      ??apply_patch_18
+        LDR      R1,[R6, #+16]
+        MOV      R2,R7
+        MOV      R0,R5
+        BL       get_item_from_pointer
+        MOV      R8,R0
+??apply_patch_18:
+        CMP      R8,#+0
+        MOVEQ    R4,#+5
+        BEQ      ??apply_patch_0
+        CMP      R11,#+5
+        BNE      ??apply_patch_19
+        MOV      R1,#+1
+        MOV      R0,R8
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        MOVS     R8,R0
+        BNE      ??apply_patch_19
+        MOV      R4,#+6
+        B        ??apply_patch_0
+??apply_patch_16:
+        MOV      R2,R7
+        ADD      R1,R10,#+84
+        MOV      R0,R6
+        BL       get_object_item
+        MOVS     R8,R0
+        BEQ      ??apply_patch_9
+        MOV      R1,#+1
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        MOVS     R8,R0
+        BEQ      ??apply_patch_13
+??apply_patch_19:
+        LDR      R0,[SP, #+0]
+        LDR      R0,[R0, #+16]
+        BL       cJSONUtils_strdup
+        MOV      R9,R0
+        MOV      R1,#+47
+        SWI      +279
+        MOVS     R6,R0
+        MOVNE    R0,#+0
+        STRBNE   R0,[R6], #+1
+        MOV      R2,R7
+        MOV      R1,R9
+        MOV      R0,R5
+        BL       get_item_from_pointer
+        MOV      R5,R0
+        MOV      R0,R6
+        BL       decode_pointer_inplace
+        CMP      R5,#+0
+        CMPNE    R6,#+0
+        BNE      ??apply_patch_20
+??apply_patch_21:
+        MOV      R4,#+9
+        B        ??apply_patch_10
+??apply_patch_20:
+        MOV      R0,R5
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        BEQ      ??apply_patch_22
+        ADR      R1,??DataTable1  ;; "-"
+        MOV      R0,R6
+        SWI      +25
+        CMP      R0,#+0
+        BNE      ??apply_patch_23
+??apply_patch_24:
+        MOV      R1,R8
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToArray,??cJSON_AddItemToArray??rA
+        B        ??apply_patch_11
+??apply_patch_23:
+        MOV      R1,#+0
+        STR      R1,[SP, #+0]
+        MOV      R1,SP
+        MOV      R0,R6
+        BL       decode_array_index_from_pointer
+        CMP      R0,#+0
+        MOVEQ    R4,#+11
+        BEQ      ??apply_patch_10
+        LDR      R0,[SP, #+0]
+        LDR      R1,[R5, #+8]
+        B        ??apply_patch_25
+        DATA
+??apply_patch_1:
+        DC8      "op",+0
+        DC8      "add"
+        ARM
+??apply_patch_26:
+        LDR      R1,[R1, #+0]
+        SUB      R0,R0,#+1
+??apply_patch_25:
+        CMP      R1,#+0
+        CMPNE    R0,#+0
+        BNE      ??apply_patch_26
+        CMP      R0,#+0
+        MOVNE    R4,#+10
+        BNE      ??apply_patch_10
+        CMP      R1,#+0
+        BEQ      ??apply_patch_24
+        STR      R1,[R8, #+0]
+        LDR      R0,[R1, #+4]
+        STR      R0,[R8, #+4]
+        STR      R8,[R1, #+4]
+        LDR      R0,[R5, #+8]
+        CMP      R1,R0
+        LDRNE    R0,[R8, #+4]
+        STREQ    R8,[R5, #+8]
+        STRNE    R8,[R0, #+0]
+        B        ??apply_patch_11
+??apply_patch_22:
+        MOV      R0,R5
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        BEQ      ??apply_patch_21
+        CMP      R7,#+0
+        MOV      R1,R6
+        MOV      R0,R5
+        BEQ      ??apply_patch_27
+        _BLF     cJSON_DeleteItemFromObjectCaseSensitive,??cJSON_DeleteItemFromObjectCaseSensitive??rA
+        B        ??apply_patch_28
+??apply_patch_27:
+        _BLF     cJSON_DeleteItemFromObject,??cJSON_DeleteItemFromObject??rA
+??apply_patch_28:
+        MOV      R2,R8
+        MOV      R1,R6
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+        B        ??apply_patch_11
+        CFI EndBlock cfiBlock36
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC8      "-",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock37 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_ApplyPatches??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock37
+        REQUIRE cJSONUtils_ApplyPatches
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 ""
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "/%lu%s">`:
+        DATA
+        DC8 "/%lu%s"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "op"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "add"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+??invalid:
+        DATA
+        DC32 0H, 0H, 0H, 0, 0H, 0, 0H, 0H, 0H
+        DC8 "remove"
+        DC8 0
+        DC8 "replace"
+        DC8 "move"
+        DC8 0, 0, 0
+        DC8 "copy"
+        DC8 0, 0, 0
+        DC8 "test"
+        DC8 0, 0, 0
+        DC8 "path"
+        DC8 0, 0, 0
+        DC8 "value"
+        DC8 0, 0
+        DC8 "from"
+        DC8 0, 0, 0
+        DC8 "%s/%lu"
+        DC8 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+        DATA
+        DC8 "-"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%s/"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+        DATA
+        DC8 "%lu"
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock38 Using cfiCommon0
+        CFI Function cJSONUtils_ApplyPatches
+        ARM
+cJSONUtils_ApplyPatches:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R0,R5
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        MOVEQ    R0,#+1
+        POPEQ    {R4,R5,PC}
+        CMP      R5,#+0
+        BEQ      ??cJSONUtils_ApplyPatches_0
+        LDR      R5,[R5, #+8]
+        B        ??cJSONUtils_ApplyPatches_1
+??cJSONUtils_ApplyPatches_2:
+        LDR      R5,[R5, #+0]
+??cJSONUtils_ApplyPatches_1:
+        CMP      R5,#+0
+        BEQ      ??cJSONUtils_ApplyPatches_0
+        MOV      R2,#+0
+        MOV      R1,R5
+        MOV      R0,R4
+        BL       apply_patch
+        CMP      R0,#+0
+        BEQ      ??cJSONUtils_ApplyPatches_2
+        POP      {R4,R5,PC}
+??cJSONUtils_ApplyPatches_0:
+        B        ?Subroutine35
+        CFI EndBlock cfiBlock38
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock39 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_ApplyPatchesCaseSensitive??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock39
+        REQUIRE cJSONUtils_ApplyPatchesCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock40 Using cfiCommon0
+        CFI Function cJSONUtils_ApplyPatchesCaseSensitive
+        ARM
+cJSONUtils_ApplyPatchesCaseSensitive:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R0,R5
+        _BLF     cJSON_IsArray,??cJSON_IsArray??rA
+        CMP      R0,#+0
+        MOVEQ    R0,#+1
+        POPEQ    {R4,R5,PC}
+        CMP      R5,#+0
+        BEQ      ??cJSONUtils_ApplyPatchesCaseSensitive_0
+        LDR      R5,[R5, #+8]
+        B        ??cJSONUtils_ApplyPatchesCaseSensitive_1
+??cJSONUtils_ApplyPatchesCaseSensitive_2:
+        LDR      R5,[R5, #+0]
+??cJSONUtils_ApplyPatchesCaseSensitive_1:
+        CMP      R5,#+0
+        BEQ      ??cJSONUtils_ApplyPatchesCaseSensitive_0
+        MOV      R2,#+1
+        MOV      R1,R5
+        MOV      R0,R4
+        BL       apply_patch
+        CMP      R0,#+0
+        BEQ      ??cJSONUtils_ApplyPatchesCaseSensitive_2
+        POP      {R4,R5,PC}
+        CFI EndBlock cfiBlock40
+??cJSONUtils_ApplyPatchesCaseSensitive_0:
+        REQUIRE ?Subroutine35
+        ;; // Fall through to label ?Subroutine35
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock41 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA R13+12
+        CFI R4 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine35:
+        MOV      R0,#+0
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock41
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock42 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??compose_patch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock42
+        REQUIRE compose_patch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock43 Using cfiCommon0
+        CFI Function compose_patch
+        ARM
+compose_patch:
+        PUSH     {R4-R11,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R11 Frame(CFA, -8)
+        CFI R10 Frame(CFA, -12)
+        CFI R9 Frame(CFA, -16)
+        CFI R8 Frame(CFA, -20)
+        CFI R7 Frame(CFA, -24)
+        CFI R6 Frame(CFA, -28)
+        CFI R5 Frame(CFA, -32)
+        CFI R4 Frame(CFA, -36)
+        CFI CFA R13+36
+        LDR      R7,[SP, #+36]
+        MOV      R4,R0
+        MOV      R6,R1
+        MOV      R9,R2
+        MOV      R10,R3
+        CMP      R4,#+0
+        CMPNE    R6,#+0
+        CMPNE    R9,#+0
+        POPEQ    {R4-R11,PC}
+        _BLF     cJSON_CreateObject,??cJSON_CreateObject??rA
+        MOVS     R5,R0
+        POPEQ    {R4-R11,PC}
+        MOV      R0,R6
+        LDR      R6,??DataTable10  ;; ??invalid
+        _BLF     cJSON_CreateString,??cJSON_CreateString??rA
+        MOV      R2,R0
+        ADR      R1,??DataTable3  ;; "op"
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+        CMP      R10,#+0
+        BNE      ??compose_patch_0
+        MOV      R0,R9
+        _BLF     cJSON_CreateString,??cJSON_CreateString??rA
+        MOV      R2,R0
+        ADD      R1,R6,#+76
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+        B        ??compose_patch_1
+??compose_patch_0:
+        MOV      R0,R10
+        BL       pointer_encoded_length
+        MOV      R8,R0
+        MOV      R0,R9
+        SWI      +27
+        MOV      R11,R0
+        ADD      R0,R8,R11
+        ADD      R0,R0,#+2
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        MOV      R8,R0
+        MOV      R2,R9
+        ADR      R1,??DataTable8  ;; "%s/"
+        SWI      +22
+        MOV      R1,R10
+        ADD      R0,R11,R8
+        ADD      R0,R0,#+1
+        BL       encode_string_as_pointer
+        MOV      R0,R8
+        _BLF     cJSON_CreateString,??cJSON_CreateString??rA
+        MOV      R2,R0
+        ADD      R1,R6,#+76
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+        MOV      R0,R8
+        _BLF     cJSON_free,??cJSON_free??rA
+??compose_patch_1:
+        CMP      R7,#+0
+        BEQ      ??compose_patch_2
+        MOV      R1,#+1
+        MOV      R0,R7
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        MOV      R2,R0
+        ADD      R1,R6,#+84
+        MOV      R0,R5
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+??compose_patch_2:
+        MOV      R1,R5
+        MOV      R0,R4
+        _BLF     cJSON_AddItemToArray,??cJSON_AddItemToArray??rA
+        POP      {R4-R11,PC}      ;; return
+        CFI EndBlock cfiBlock43
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC8      "op",+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock44 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_AddPatchToArray??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock44
+        REQUIRE cJSONUtils_AddPatchToArray
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock45 Using cfiCommon0
+        CFI Function cJSONUtils_AddPatchToArray
+        ARM
+cJSONUtils_AddPatchToArray:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        PUSH     {R3}
+        CFI CFA R13+8
+        MOV      R3,#+0
+        BL       compose_patch
+        POP      {R0,PC}          ;; return
+        CFI EndBlock cfiBlock45
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock46 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??create_patches??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock46
+        REQUIRE create_patches
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock47 Using cfiCommon0
+        CFI Function create_patches
+        ARM
+create_patches:
+        PUSH     {R4-R11,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R11 Frame(CFA, -8)
+        CFI R10 Frame(CFA, -12)
+        CFI R9 Frame(CFA, -16)
+        CFI R8 Frame(CFA, -20)
+        CFI R7 Frame(CFA, -24)
+        CFI R6 Frame(CFA, -28)
+        CFI R5 Frame(CFA, -32)
+        CFI R4 Frame(CFA, -36)
+        CFI CFA R13+36
+        LDR      R8,[SP, #+36]
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R9,R2
+        MOV      R6,R3
+        CMP      R9,#+0
+        CMPNE    R6,#+0
+        POPEQ    {R4-R11,PC}
+        LDR      R0,[R9, #+12]
+        LDR      R2,[R6, #+12]
+        LDR      R7,??DataTable10  ;; ??invalid
+        AND      R1,R0,#0xFF
+        AND      R2,R2,#0xFF
+        CMP      R1,R2
+        BNE      ??create_patches_0
+??create_patches_1:
+        AND      R0,R0,#0xFF
+        SUBS     R0,R0,#+8
+        BEQ      ??create_patches_2
+        SUBS     R0,R0,#+8
+        BEQ      ??create_patches_3
+        SUBS     R0,R0,#+16
+        BEQ      ??create_patches_4
+        SUBS     R0,R0,#+32
+        BEQ      ??create_patches_5
+        POP      {R4-R11,PC}
+??create_patches_2:
+        LDR      R0,[R9, #+20]
+        LDR      R1,[R6, #+20]
+        CMP      R0,R1
+        BNE      ??create_patches_0
+        LDR      R0,[R9, #+24]
+        LDR      R1,[R9, #+28]
+        LDR      R2,[R6, #+24]
+        LDR      R3,[R6, #+28]
+        _BLF     __dNotEqual,??__dNotEqual??rA
+        B        ??create_patches_6
+??create_patches_3:
+        LDR      R0,[R9, #+16]
+        LDR      R1,[R6, #+16]
+        SWI      +25
+??create_patches_6:
+        CMP      R0,#+0
+        POPEQ    {R4-R11,PC}
+??create_patches_0:
+        PUSH     {R6}
+        CFI CFA R13+40
+        MOV      R3,#+0
+        MOV      R2,R5
+        ADD      R1,R7,#+44
+        MOV      R0,R4
+        BL       compose_patch
+        ADD      SP,SP,#+4
+        CFI CFA R13+36
+        POP      {R4-R11,PC}
+??create_patches_4:
+        LDR      R9,[R9, #+8]
+        LDR      R6,[R6, #+8]
+        MOV      R0,R5
+        SWI      +27
+        ADD      R0,R0,#+22
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        MOV      R10,R0
+        MOV      R11,#+0
+        B        ??create_patches_7
+??create_patches_8:
+        CMP      R6,#+0
+        BEQ      ??create_patches_9
+        MOV      R3,R11
+        MOV      R2,R5
+        ADD      R1,R7,#+100
+        MOV      R0,R10
+        SWI      +22
+        MOV      R0,R8
+        PUSH     {R0}
+        CFI CFA R13+40
+        MOV      R3,R6
+        MOV      R2,R9
+        MOV      R1,R10
+        MOV      R0,R4
+        BL       create_patches
+        LDR      R9,[R9, #+0]
+        LDR      R6,[R6, #+0]
+        ADD      R11,R11,#+1
+        ADD      SP,SP,#+4
+        CFI CFA R13+36
+??create_patches_7:
+        CMP      R9,#+0
+        BNE      ??create_patches_8
+??create_patches_10:
+        CMP      R9,#+0
+        BEQ      ??create_patches_11
+??create_patches_9:
+        MOV      R2,R11
+        ADR      R1,??create_patches_12  ;; "%lu"
+        MOV      R0,R10
+        SWI      +22
+        MOV      R0,#+0
+        PUSH     {R0}
+        CFI CFA R13+40
+        MOV      R3,R10
+        MOV      R2,R5
+        ADD      R1,R7,#+36
+        MOV      R0,R4
+        BL       compose_patch
+        LDR      R9,[R9, #+0]
+        ADD      SP,SP,#+4
+        CFI CFA R13+36
+        B        ??create_patches_10
+??create_patches_13:
+        MOV      R0,R6
+        PUSH     {R0}
+        CFI CFA R13+40
+        ADR      R3,??DataTable6  ;; "-"
+        MOV      R2,R5
+        ADR      R1,??DataTable9  ;; "add"
+        MOV      R0,R4
+        BL       compose_patch
+        LDR      R6,[R6, #+0]
+        ADD      SP,SP,#+4
+        CFI CFA R13+36
+??create_patches_11:
+        CMP      R6,#+0
+        BNE      ??create_patches_13
+        MOV      R0,R10
+        _BLF     cJSON_free,??cJSON_free??rA
+        POP      {R4-R11,PC}
+??create_patches_5:
+        MOV      R1,R8
+        MOV      R0,R9
+        BL       sort_object
+        MOV      R1,R8
+        MOV      R0,R6
+        BL       sort_object
+        LDR      R9,[R9, #+8]
+        LDR      R6,[R6, #+8]
+        B        ??create_patches_14
+??create_patches_15:
+        MOV      R0,R5
+        SWI      +27
+        MOV      R10,R0
+        LDR      R0,[R9, #+32]
+        BL       pointer_encoded_length
+        ADD      R0,R10,R0
+        ADD      R0,R0,#+2
+        _BLF     cJSON_malloc,??cJSON_malloc??rA
+        MOV      R11,R0
+        MOV      R2,R5
+        ADR      R1,??DataTable8  ;; "%s/"
+        SWI      +22
+        LDR      R1,[R9, #+32]
+        ADD      R0,R10,R11
+        ADD      R0,R0,#+1
+        BL       encode_string_as_pointer
+        MOV      R0,R8
+        PUSH     {R0}
+        CFI CFA R13+40
+        MOV      R3,R6
+        MOV      R2,R9
+        MOV      R1,R11
+        MOV      R0,R4
+        BL       create_patches
+        MOV      R0,R11
+        _BLF     cJSON_free,??cJSON_free??rA
+        LDR      R9,[R9, #+0]
+??create_patches_16:
+        LDR      R6,[R6, #+0]
+??create_patches_17:
+        ADD      SP,SP,#+4        ;; stack cleaning
+        CFI CFA R13+36
+??create_patches_14:
+        CMP      R9,#+0
+        BNE      ??create_patches_18
+        CMP      R6,#+0
+        POPEQ    {R4-R11,PC}
+??create_patches_19:
+        MOV      R0,R6
+        PUSH     {R0}
+        CFI CFA R13+40
+        LDR      R3,[R6, #+32]
+        MOV      R2,R5
+        ADR      R1,??DataTable9  ;; "add"
+        MOV      R0,R4
+        BL       compose_patch
+        B        ??create_patches_16
+        CFI CFA R13+36
+??create_patches_18:
+        CMP      R6,#+0
+        BEQ      ??create_patches_20
+        LDR      R0,[R9, #+32]
+        LDR      R1,[R6, #+32]
+        MOV      R2,R8
+        BL       compare_strings
+        CMP      R0,#+0
+        BEQ      ??create_patches_15
+        BPL      ??create_patches_19
+??create_patches_20:
+        MOV      R0,#+0
+        PUSH     {R0}
+        CFI CFA R13+40
+        LDR      R3,[R9, #+32]
+        MOV      R2,R5
+        ADD      R1,R7,#+36
+        MOV      R0,R4
+        BL       compose_patch
+        LDR      R9,[R9, #+0]
+        B        ??create_patches_17
+        DATA
+??create_patches_12:
+        DC8      "%lu"
+        CFI EndBlock cfiBlock47
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC8      "-",+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable8:
+        DC8      "%s/"
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable9:
+        DC8      "add"
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     ??invalid
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock48 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GeneratePatches??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock48
+        REQUIRE cJSONUtils_GeneratePatches
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock49 Using cfiCommon0
+        CFI Function cJSONUtils_GeneratePatches
+        ARM
+cJSONUtils_GeneratePatches:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        CMP      R4,#+0
+        CMPNE    R5,#+0
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R6,PC}
+        _BLF     cJSON_CreateArray,??cJSON_CreateArray??rA
+        MOV      R6,R0
+        MOV      R0,#+0
+        B        ?Subroutine33
+        CFI EndBlock cfiBlock49
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock50 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GeneratePatchesCaseSensitive??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock50
+        REQUIRE cJSONUtils_GeneratePatchesCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock51 Using cfiCommon0
+        CFI Function cJSONUtils_GeneratePatchesCaseSensitive
+        ARM
+cJSONUtils_GeneratePatchesCaseSensitive:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        CMP      R4,#+0
+        CMPNE    R5,#+0
+        MOVEQ    R0,#+0
+        POPEQ    {R4-R6,PC}
+        _BLF     cJSON_CreateArray,??cJSON_CreateArray??rA
+        MOV      R6,R0
+        MOV      R0,#+1
+        CFI EndBlock cfiBlock51
+        REQUIRE ?Subroutine33
+        ;; // Fall through to label ?Subroutine33
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock52 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA R13+16
+        CFI R4 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine33:
+        PUSH     {R0}
+        CFI CFA R13+20
+        MOV      R3,R5
+        MOV      R2,R4
+        ADR      R1,??DataTable11  ;; ""
+        MOV      R0,R6
+        BL       create_patches
+        MOV      R0,R6
+        ADD      SP,SP,#+4
+        CFI CFA R13+16
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock52
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC8      "",+0,+0,+0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock53 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_SortObject??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock53
+        REQUIRE cJSONUtils_SortObject
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock54 Using cfiCommon0
+        CFI Function cJSONUtils_SortObject
+        ARM
+cJSONUtils_SortObject:
+        MOV      R1,#+0
+        B        sort_object      ;; tailcall
+        CFI EndBlock cfiBlock54
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock55 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_SortObjectCaseSensitive??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock55
+        REQUIRE cJSONUtils_SortObjectCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock56 Using cfiCommon0
+        CFI Function cJSONUtils_SortObjectCaseSensitive
+        ARM
+cJSONUtils_SortObjectCaseSensitive:
+        MOV      R1,#+1
+        B        sort_object      ;; tailcall
+        CFI EndBlock cfiBlock56
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock57 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??merge_patch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock57
+        REQUIRE merge_patch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock58 Using cfiCommon0
+        CFI Function merge_patch
+        ARM
+merge_patch:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        MOV      R0,R5
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        MOV      R0,R4
+        BNE      ??merge_patch_0
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        MOV      R1,#+1
+        MOV      R0,R5
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        POP      {R4-R6,PC}
+??merge_patch_0:
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        BNE      ??merge_patch_1
+        MOV      R0,R4
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        _BLF     cJSON_CreateObject,??cJSON_CreateObject??rA
+        MOV      R4,R0
+??merge_patch_1:
+        LDR      R5,[R5, #+8]
+        B        ??merge_patch_2
+??merge_patch_3:
+        LDR      R1,[R5, #+32]
+        MOV      R2,R0
+        MOV      R0,R4
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+??merge_patch_4:
+        LDR      R5,[R5, #+0]
+??merge_patch_2:
+        CMP      R5,#+0
+        BEQ      ??merge_patch_5
+        MOV      R0,R5
+        _BLF     cJSON_IsNull,??cJSON_IsNull??rA
+        LDR      R1,[R5, #+32]
+        CMP      R0,#+0
+        BEQ      ??merge_patch_6
+        CMP      R6,#+0
+        MOV      R0,R4
+        BEQ      ??merge_patch_7
+        _BLF     cJSON_DeleteItemFromObjectCaseSensitive,??cJSON_DeleteItemFromObjectCaseSensitive??rA
+        B        ??merge_patch_4
+??merge_patch_7:
+        _BLF     cJSON_DeleteItemFromObject,??cJSON_DeleteItemFromObject??rA
+        B        ??merge_patch_4
+??merge_patch_6:
+        CMP      R6,#+0
+        MOV      R0,R4
+        BEQ      ??merge_patch_8
+        _BLF     cJSON_DetachItemFromObjectCaseSensitive,??cJSON_DetachItemFromObjectCaseSensitive??rA
+        B        ??merge_patch_9
+??merge_patch_8:
+        _BLF     cJSON_DetachItemFromObject,??cJSON_DetachItemFromObject??rA
+??merge_patch_9:
+        MOV      R2,R6
+        MOV      R1,R5
+        BL       merge_patch
+        CMP      R0,#+0
+        BNE      ??merge_patch_3
+        POP      {R4-R6,PC}
+??merge_patch_5:
+        MOV      R0,R4
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock58
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock59 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_MergePatch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock59
+        REQUIRE cJSONUtils_MergePatch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock60 Using cfiCommon0
+        CFI Function cJSONUtils_MergePatch
+        ARM
+cJSONUtils_MergePatch:
+        MOV      R2,#+0
+        B        merge_patch      ;; tailcall
+        CFI EndBlock cfiBlock60
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock61 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_MergePatchCaseSensitive??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock61
+        REQUIRE cJSONUtils_MergePatchCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock62 Using cfiCommon0
+        CFI Function cJSONUtils_MergePatchCaseSensitive
+        ARM
+cJSONUtils_MergePatchCaseSensitive:
+        MOV      R2,#+1
+        B        merge_patch      ;; tailcall
+        CFI EndBlock cfiBlock62
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock63 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??generate_merge_patch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock63
+        REQUIRE generate_merge_patch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock64 Using cfiCommon0
+        CFI Function generate_merge_patch
+        ARM
+generate_merge_patch:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        CMP      R5,#+0
+        BNE      ??generate_merge_patch_0
+        _BLF     cJSON_CreateNull,??cJSON_CreateNull??rA
+        POP      {R4-R7,PC}
+??generate_merge_patch_0:
+        MOV      R0,R5
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        BEQ      ??generate_merge_patch_1
+        MOV      R0,R4
+        _BLF     cJSON_IsObject,??cJSON_IsObject??rA
+        CMP      R0,#+0
+        BNE      ??generate_merge_patch_2
+??generate_merge_patch_1:
+        MOV      R1,#+1
+        MOV      R0,R5
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        POP      {R4-R7,PC}
+??generate_merge_patch_2:
+        MOV      R1,R6
+        MOV      R0,R4
+        BL       sort_object
+        MOV      R1,R6
+        MOV      R0,R5
+        BL       sort_object
+        LDR      R4,[R4, #+8]
+        LDR      R5,[R5, #+8]
+        _BLF     cJSON_CreateObject,??cJSON_CreateObject??rA
+        MOV      R7,R0
+        B        ??generate_merge_patch_3
+??generate_merge_patch_4:
+        _BLF     cJSON_CreateNull,??cJSON_CreateNull??rA
+        LDR      R1,[R4, #+32]
+        MOV      R2,R0
+        MOV      R0,R7
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+        LDR      R4,[R4, #+0]
+??generate_merge_patch_3:
+        CMP      R4,#+0
+        BNE      ??generate_merge_patch_5
+        CMP      R5,#+0
+        BNE      ??generate_merge_patch_6
+        LDR      R0,[R7, #+8]
+        CMP      R0,#+0
+        MOV      R0,R7
+        POPNE    {R4-R7,PC}
+        _BLF     cJSON_Delete,??cJSON_Delete??rA
+        B        ?Subroutine34
+??generate_merge_patch_5:
+        CMP      R5,#+0
+        BEQ      ??generate_merge_patch_4
+        LDR      R0,[R4, #+32]
+        LDR      R1,[R5, #+32]
+        SWI      +25
+        CMP      R0,#+0
+        BMI      ??generate_merge_patch_4
+        CMP      R0,#+1
+        BLT      ??generate_merge_patch_7
+??generate_merge_patch_6:
+        MOV      R1,#+1
+        MOV      R0,R5
+        _BLF     cJSON_Duplicate,??cJSON_Duplicate??rA
+        LDR      R1,[R5, #+32]
+        MOV      R2,R0
+        MOV      R0,R7
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+??generate_merge_patch_8:
+        LDR      R5,[R5, #+0]
+        B        ??generate_merge_patch_3
+??generate_merge_patch_7:
+        MOV      R2,R6
+        MOV      R1,R5
+        MOV      R0,R4
+        BL       compare_json
+        CMP      R0,#+0
+        BNE      ??generate_merge_patch_9
+        MOV      R1,R5
+        MOV      R0,R4
+        BL       cJSONUtils_GenerateMergePatch
+        LDR      R1,[R5, #+32]
+        MOV      R2,R0
+        MOV      R0,R7
+        _BLF     cJSON_AddItemToObject,??cJSON_AddItemToObject??rA
+??generate_merge_patch_9:
+        LDR      R4,[R4, #+0]
+        B        ??generate_merge_patch_8
+        CFI EndBlock cfiBlock64
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock65 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA R13+20
+        CFI R4 Frame(CFA, -20)
+        CFI R5 Frame(CFA, -16)
+        CFI R6 Frame(CFA, -12)
+        CFI R7 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine34:
+        MOV      R0,#+0
+        POP      {R4-R7,PC}
+        CFI EndBlock cfiBlock65
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock66 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GenerateMergePatch??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock66
+        REQUIRE cJSONUtils_GenerateMergePatch
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock67 Using cfiCommon0
+        CFI Function cJSONUtils_GenerateMergePatch
+        ARM
+cJSONUtils_GenerateMergePatch:
+        MOV      R2,#+0
+        B        generate_merge_patch  ;; tailcall
+        CFI EndBlock cfiBlock67
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock68 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??cJSONUtils_GenerateMergePatchCaseSensitive??r:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock68
+        REQUIRE cJSONUtils_GenerateMergePatchCaseSensitive
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock69 Using cfiCommon0
+        CFI Function cJSONUtils_GenerateMergePatchCaseSensitive
+        ARM
+cJSONUtils_GenerateMergePatchCaseSensitive:
+        MOV      R2,#+1
+        B        generate_merge_patch  ;; tailcall
+        CFI EndBlock cfiBlock69
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock70 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_malloc??rA:
+        LDR      R12,??Subroutine36_0  ;; cJSON_malloc
+        BX       R12
+        DATA
+??Subroutine36_0:
+        DC32     cJSON_malloc
+        CFI EndBlock cfiBlock70
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock71 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??tolower??rA:
+        LDR      R12,??Subroutine37_0  ;; tolower
+        BX       R12
+        DATA
+??Subroutine37_0:
+        DC32     tolower
+        CFI EndBlock cfiBlock71
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock72 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_IsArray??rA:
+        LDR      R12,??Subroutine38_0  ;; cJSON_IsArray
+        BX       R12
+        DATA
+??Subroutine38_0:
+        DC32     cJSON_IsArray
+        CFI EndBlock cfiBlock72
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock73 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_free??rA:
+        LDR      R12,??Subroutine39_0  ;; cJSON_free
+        BX       R12
+        DATA
+??Subroutine39_0:
+        DC32     cJSON_free
+        CFI EndBlock cfiBlock73
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock74 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_IsObject??rA:
+        LDR      R12,??Subroutine40_0  ;; cJSON_IsObject
+        BX       R12
+        DATA
+??Subroutine40_0:
+        DC32     cJSON_IsObject
+        CFI EndBlock cfiBlock74
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock75 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_DetachItemFromObject??rA:
+        LDR      R12,??Subroutine41_0  ;; cJSON_DetachItemFromObject
+        BX       R12
+        DATA
+??Subroutine41_0:
+        DC32     cJSON_DetachItemFromObject
+        CFI EndBlock cfiBlock75
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock76 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??__dNotEqual??rA:
+        LDR      R12,??Subroutine42_0  ;; __dNotEqual
+        BX       R12
+        DATA
+??Subroutine42_0:
+        DC32     __dNotEqual
+        CFI EndBlock cfiBlock76
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock77 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_GetObjectItemCaseSensitive??rA:
+        LDR      R12,??Subroutine43_0  ;; cJSON_GetObjectItemCaseSensitive
+        BX       R12
+        DATA
+??Subroutine43_0:
+        DC32     cJSON_GetObjectItemCaseSensitive
+        CFI EndBlock cfiBlock77
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock78 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_GetObjectItem??rA:
+        LDR      R12,??Subroutine44_0  ;; cJSON_GetObjectItem
+        BX       R12
+        DATA
+??Subroutine44_0:
+        DC32     cJSON_GetObjectItem
+        CFI EndBlock cfiBlock78
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock79 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_Delete??rA:
+        LDR      R12,??Subroutine45_0  ;; cJSON_Delete
+        BX       R12
+        DATA
+??Subroutine45_0:
+        DC32     cJSON_Delete
+        CFI EndBlock cfiBlock79
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock80 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_IsString??rA:
+        LDR      R12,??Subroutine46_0  ;; cJSON_IsString
+        BX       R12
+        DATA
+??Subroutine46_0:
+        DC32     cJSON_IsString
+        CFI EndBlock cfiBlock80
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock81 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_Duplicate??rA:
+        LDR      R12,??Subroutine47_0  ;; cJSON_Duplicate
+        BX       R12
+        DATA
+??Subroutine47_0:
+        DC32     cJSON_Duplicate
+        CFI EndBlock cfiBlock81
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock82 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_AddItemToArray??rA:
+        LDR      R12,??Subroutine48_0  ;; cJSON_AddItemToArray
+        BX       R12
+        DATA
+??Subroutine48_0:
+        DC32     cJSON_AddItemToArray
+        CFI EndBlock cfiBlock82
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock83 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_DeleteItemFromObjectCaseSensitive??rA:
+        LDR      R12,??Subroutine49_0  ;; cJSON_DeleteItemFromObjectCaseSensitive
+        BX       R12
+        DATA
+??Subroutine49_0:
+        DC32     cJSON_DeleteItemFromObjectCaseSensitive
+        CFI EndBlock cfiBlock83
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock84 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_DeleteItemFromObject??rA:
+        LDR      R12,??Subroutine50_0  ;; cJSON_DeleteItemFromObject
+        BX       R12
+        DATA
+??Subroutine50_0:
+        DC32     cJSON_DeleteItemFromObject
+        CFI EndBlock cfiBlock84
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock85 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_AddItemToObject??rA:
+        LDR      R12,??Subroutine51_0  ;; cJSON_AddItemToObject
+        BX       R12
+        DATA
+??Subroutine51_0:
+        DC32     cJSON_AddItemToObject
+        CFI EndBlock cfiBlock85
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock86 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_CreateObject??rA:
+        LDR      R12,??Subroutine52_0  ;; cJSON_CreateObject
+        BX       R12
+        DATA
+??Subroutine52_0:
+        DC32     cJSON_CreateObject
+        CFI EndBlock cfiBlock86
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock87 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_CreateString??rA:
+        LDR      R12,??Subroutine53_0  ;; cJSON_CreateString
+        BX       R12
+        DATA
+??Subroutine53_0:
+        DC32     cJSON_CreateString
+        CFI EndBlock cfiBlock87
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock88 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_CreateArray??rA:
+        LDR      R12,??Subroutine54_0  ;; cJSON_CreateArray
+        BX       R12
+        DATA
+??Subroutine54_0:
+        DC32     cJSON_CreateArray
+        CFI EndBlock cfiBlock88
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock89 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_IsNull??rA:
+        LDR      R12,??Subroutine55_0  ;; cJSON_IsNull
+        BX       R12
+        DATA
+??Subroutine55_0:
+        DC32     cJSON_IsNull
+        CFI EndBlock cfiBlock89
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock90 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_DetachItemFromObjectCaseSensitive??rA:
+        LDR      R12,??Subroutine56_0  ;; cJSON_DetachItemFromObjectCaseSensitive
+        BX       R12
+        DATA
+??Subroutine56_0:
+        DC32     cJSON_DetachItemFromObjectCaseSensitive
+        CFI EndBlock cfiBlock90
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock91 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??cJSON_CreateNull??rA:
+        LDR      R12,??Subroutine57_0  ;; cJSON_CreateNull
+        BX       R12
+        DATA
+??Subroutine57_0:
+        DC32     cJSON_CreateNull
+        CFI EndBlock cfiBlock91
+
+        END
+// 
+// 5 880 bytes in segment CODE
+//   134 bytes in segment DATA_C
+// 
+// 5 464 bytes of CODE  memory (+ 416 bytes shared)
+//   134 bytes of CONST memory
+//
+//Errors: none
+//Warnings: 3

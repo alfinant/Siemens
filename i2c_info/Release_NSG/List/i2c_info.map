@@ -1,0 +1,202 @@
+################################################################################
+#                                                                              #
+#      IAR Universal Linker V4.60I/386                                         #
+#                                                                              #
+#           Link time     =  28/Dec/2015  22:14:46                             #
+#           Target CPU    =  ARM                                               #
+#           List file     =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\List\i2c_info.map                #
+#           Output file 1 =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\Exe\i2c_info.elf                 #
+#                            Format: elf, variant: -ynpra                      #
+#           Command line  =  E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\Obj\func.r79                     #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\Obj\i2c.r79                      #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\Obj\main.r79                     #
+#                            -o                                                #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\Exe\i2c_info.elf                 #
+#                            -Felf -l                                          #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\Release_NSG\List\i2c_info.map                #
+#                            -xm -f                                            #
+#                            E:\Users\alfinant\Documents\Siemens\alfinant\i2c_ #
+#                            info\test.xcl                                     #
+#                            (-carm -V(CODE)CODE_AREA,12                       #
+#                            -V(DATA)DATA_AREA,12                              #
+#                            -Z(CODE_AREA)ELFBEGIN,DATA_ID,START,CODE,DATA_C,I #
+#                            NITTAB,DATA_Z,DATA_N,CONFIG_C=0-FFFFFFFF          #
+#                            -Z(DATA_AREA)DATA_I=0-FFFFFFFF) -ynpra            #
+#                            E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\d #
+#                            l5tpainl8n.r79                                    #
+#                            -s main                                           #
+#                                                                              #
+#                        Copyright 1987-2007 IAR Systems. All rights reserved. #
+################################################################################
+
+
+
+
+
+                ****************************************
+                *                                      *
+                *           CROSS REFERENCE            *
+                *                                      *
+                ****************************************
+
+       Program entry at : CODE_AREA 00000150  Relocatable, from module : main
+
+
+
+
+                ****************************************
+                *                                      *
+                *            RUNTIME MODEL             *
+                *                                      *
+                ****************************************
+
+  StackAlign4  = USED
+  __cpu_mode   = __pcs__interwork
+  __data_model = absolute
+  __endian     = little
+  __rt_version = 6
+
+
+
+                ****************************************
+                *                                      *
+                *              MODULE MAP              *
+                *                                      *
+                ****************************************
+
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  DEFINED ABSOLUTE ENTRIES
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\Release_NSG\Obj\func.r79
+  PROGRAM MODULE, NAME : func
+
+  SEGMENTS IN THE MODULE
+  ======================
+ELFBEGIN
+  Relative segment, address: CODE_AREA 00000000, align: 0
+  Segment part 0. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ELF_BEGIN               00000000 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000000 - 00000003 (0x4 bytes), align: 2
+  Segment part 1. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           kill_data               00000000        ElfKiller (main)
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\Release_NSG\Obj\i2c.r79
+  PROGRAM MODULE, NAME : i2c
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000004 - 0000005F (0x5c bytes), align: 2
+  Segment part 5.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           i2cr_pmu                00000004        callback (main)
+                                                   main (main)
+               stack 1 = 00000000 ( 00000028 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000060 - 00000067 (0x8 bytes), align: 2
+  Segment part 6.             Intra module refs:   i2cr_pmu
+
+    *************************************************************************
+
+  FILE NAME : E:\Users\alfinant\Documents\Siemens\alfinant\i2c_info\Release_NSG\Obj\main.r79
+  PROGRAM MODULE, NAME : main
+
+  SEGMENTS IN THE MODULE
+  ======================
+CODE
+  Relative segment, address: CODE_AREA 00000068 - 00000083 (0x1c bytes), align: 2
+  Segment part 26.            Intra module refs:   showMess
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ElfKiller               00000068 
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+DATA_Z
+  Relative segment, address: CODE_AREA 000001A4 - 000001A6 (0x3 bytes), align: 0
+  Segment part 8.             Intra module refs:   Segment part 36
+                                                   callback
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           r1                      000001A4 
+           r10                     000001A6 
+           r2                      000001A5 
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000084 - 000000DF (0x5c bytes), align: 2
+  Segment part 30.            Intra module refs:   callback
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           showMess                00000084 
+               stack 1 = 00000000 ( 0000008C )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 000000E0 - 0000014F (0x70 bytes), align: 2
+  Segment part 32.            Intra module refs:   Segment part 35
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           callback                000000E0 
+               stack 1 = 00000000 ( 00000010 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000150 - 0000016F (0x20 bytes), align: 2
+  Segment part 34.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           main                    00000150        Absolute parts (?ABS_ENTRY_MOD)
+               stack 1 = 00000000 ( 00000004 )
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000170 - 00000173 (0x4 bytes), align: 2
+  Segment part 35.            Intra module refs:   callback
+                                                   main
+    -------------------------------------------------------------------------
+CODE
+  Relative segment, address: CODE_AREA 00000174 - 00000177 (0x4 bytes), align: 2
+  Segment part 36.            Intra module refs:   main
+                                                   showMess
+    -------------------------------------------------------------------------
+INITTAB
+  Relative segment, address: CODE_AREA 00000198 - 000001A3 (0xc bytes), align: 2
+  Segment part 39. ROOT.
+           ENTRY                   ADDRESS         REF BY
+           =====                   =======         ======
+           ?init?tab?DATA_Z        00000198 
+    -------------------------------------------------------------------------
+DATA_C
+  Relative segment, address: CODE_AREA 00000178 - 00000197 (0x20 bytes), align: 2
+  Segment part 4.             Intra module refs:   showMess
+
+
+
+                ****************************************
+                *                                      *
+                *        END OF CROSS REFERENCE        *
+                *                                      *
+                ****************************************
+
+ 423 bytes of CODE memory
+
+Errors: none
+Warnings: none
+

@@ -1,0 +1,4 @@
+#define IPC_LOGSMS_NAME "LOGSMS"
+#define IPC_CHECK_DOUBLERUN 0
+
+

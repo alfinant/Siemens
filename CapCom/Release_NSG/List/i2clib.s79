@@ -1,0 +1,1464 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   07/Feb/2014  09:39:37 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\si /
+//                       emens\i2clib.c                                      /
+//    Command line    =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\si /
+//                       emens\i2clib.c -D NEWSGOLD -lCN                     /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaL /
+//                       ib\CapCom\Release_NSG\List\ -la                     /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaL /
+//                       ib\CapCom\Release_NSG\List\ -o                      /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaL /
+//                       ib\CapCom\Release_NSG\Obj\ -z9 --cpu_mode arm       /
+//                       --endian little --cpu ARM926EJ-S --stack_align 4    /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       C:\Users\alfin_000\Documents\Siemens\IAR\ARM\LIB\dl /
+//                       5tpainl8n.h -I C:\Users\alfin_000\Documents\Siemens /
+//                       \IAR\ARM\INC\ --inline_threshold=2                  /
+//    List file       =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\SeriaL /
+//                       ib\CapCom\Release_NSG\List\i2clib.s79               /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME i2clib
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+
+        EXTERN ??DiI_a
+        EXTERN ??EnI_a
+
+??DataTable0 EQU 0
+??DataTable10 EQU 0
+??DataTable11 EQU 0
+??DataTable12 EQU 0
+??DataTable13 EQU 0
+??DataTable14 EQU 0
+??DataTable15 EQU 0
+??DataTable16 EQU 0
+??DataTable17 EQU 0
+??DataTable18 EQU 0
+??DataTable19 EQU 0
+??DataTable2 EQU 0
+??DataTable20 EQU 0
+??DataTable21 EQU 0
+??DataTable4 EQU 0
+??DataTable5 EQU 0
+??DataTable6 EQU 0
+??DataTable7 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??__i2cr_fcam??rT
+        MULTWEAK ??__i2cr_fm??rT
+        MULTWEAK ??__i2cr_pmu??rT
+        MULTWEAK ??__i2cw_fm??rT
+        MULTWEAK ??__i2cw_pmu??rT
+        MULTWEAK ??disable_I2C_INT??rT
+        MULTWEAK ??enable_I2C_INT??rT
+        MULTWEAK ??i2c_check_port_1??rT
+        MULTWEAK ??i2c_check_port_2??rT
+        MULTWEAK ??i2c_clk_off??rT
+        MULTWEAK ??i2c_clk_on??rT
+        MULTWEAK ??i2c_scu_init??rT
+        MULTWEAK ??i2cr_fm??rT
+        MULTWEAK ??i2cr_pmu??rT
+        MULTWEAK ??i2crx_cam??rT
+        MULTWEAK ??i2cw_fm??rT
+        MULTWEAK ??i2cw_pmu??rT
+        MULTWEAK ??i2cwx_cam??rT
+        MULTWEAK ??rA??DiI_a
+        MULTWEAK ??rA??EnI_a
+        MULTWEAK ??setConf??rT
+        MULTWEAK ??stop??rT
+        PUBLIC __i2cr_fcam
+        FUNCTION __i2cr_fcam,0203H
+        LOCFRAME CSTACK, 24, STACK
+        PUBLIC __i2cr_fm
+        FUNCTION __i2cr_fm,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC __i2cr_pmu
+        FUNCTION __i2cr_pmu,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC __i2cw_fm
+        FUNCTION __i2cw_fm,0203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC __i2cw_pmu
+        FUNCTION __i2cw_pmu,0203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC disable_I2C_INT
+        FUNCTION disable_I2C_INT,0201H
+        PUBLIC enable_I2C_INT
+        FUNCTION enable_I2C_INT,0201H
+        PUBLIC i2c_check_port_1
+        FUNCTION i2c_check_port_1,0201H
+        PUBLIC i2c_check_port_2
+        FUNCTION i2c_check_port_2,0201H
+        PUBLIC i2c_clk_off
+        FUNCTION i2c_clk_off,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC i2c_clk_on
+        FUNCTION i2c_clk_on,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC i2c_scu_init
+        FUNCTION i2c_scu_init,0203H
+        PUBLIC i2cr_fm
+        FUNCTION i2cr_fm,080203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC i2cr_pmu
+        FUNCTION i2cr_pmu,080203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC i2crx_cam
+        FUNCTION i2crx_cam,080203H
+        LOCFRAME CSTACK, 20, STACK
+        PUBLIC i2cw_fm
+        FUNCTION i2cw_fm,080203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC i2cw_pmu
+        FUNCTION i2cw_pmu,080203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC i2cwx_cam
+        FUNCTION i2cwx_cam,080203H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC setConf
+        FUNCTION setConf,0201H
+        PUBLIC stop
+        FUNCTION stop,0201H
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+__i2cr_fcam         SYMBOL "__i2cr_fcam"
+??__i2cr_fcam??rT   SYMBOL "??rT", __i2cr_fcam
+__i2cr_fm           SYMBOL "__i2cr_fm"
+??__i2cr_fm??rT     SYMBOL "??rT", __i2cr_fm
+__i2cr_pmu          SYMBOL "__i2cr_pmu"
+??__i2cr_pmu??rT    SYMBOL "??rT", __i2cr_pmu
+__i2cw_fm           SYMBOL "__i2cw_fm"
+??__i2cw_fm??rT     SYMBOL "??rT", __i2cw_fm
+__i2cw_pmu          SYMBOL "__i2cw_pmu"
+??__i2cw_pmu??rT    SYMBOL "??rT", __i2cw_pmu
+disable_I2C_INT     SYMBOL "disable_I2C_INT"
+??disable_I2C_INT??rT SYMBOL "??rT", disable_I2C_INT
+enable_I2C_INT      SYMBOL "enable_I2C_INT"
+??enable_I2C_INT??rT SYMBOL "??rT", enable_I2C_INT
+i2c_check_port_1    SYMBOL "i2c_check_port_1"
+??i2c_check_port_1??rT SYMBOL "??rT", i2c_check_port_1
+i2c_check_port_2    SYMBOL "i2c_check_port_2"
+??i2c_check_port_2??rT SYMBOL "??rT", i2c_check_port_2
+i2c_clk_off         SYMBOL "i2c_clk_off"
+??i2c_clk_off??rT   SYMBOL "??rT", i2c_clk_off
+i2c_clk_on          SYMBOL "i2c_clk_on"
+??i2c_clk_on??rT    SYMBOL "??rT", i2c_clk_on
+i2c_scu_init        SYMBOL "i2c_scu_init"
+??i2c_scu_init??rT  SYMBOL "??rT", i2c_scu_init
+i2cr_fm             SYMBOL "i2cr_fm"
+??i2cr_fm??rT       SYMBOL "??rT", i2cr_fm
+i2cr_pmu            SYMBOL "i2cr_pmu"
+??i2cr_pmu??rT      SYMBOL "??rT", i2cr_pmu
+i2crx_cam           SYMBOL "i2crx_cam"
+??i2crx_cam??rT     SYMBOL "??rT", i2crx_cam
+i2cw_fm             SYMBOL "i2cw_fm"
+??i2cw_fm??rT       SYMBOL "??rT", i2cw_fm
+i2cw_pmu            SYMBOL "i2cw_pmu"
+??i2cw_pmu??rT      SYMBOL "??rT", i2cw_pmu
+i2cwx_cam           SYMBOL "i2cwx_cam"
+??i2cwx_cam??rT     SYMBOL "??rT", i2cwx_cam
+setConf             SYMBOL "setConf"
+??setConf??rT       SYMBOL "??rT", setConf
+stop                SYMBOL "stop"
+??stop??rT          SYMBOL "??rT", stop
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2c_check_port_1??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock0
+        REQUIRE i2c_check_port_1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon1
+        CFI Function i2c_check_port_1
+        ARM
+i2c_check_port_1:
+        LDR      R1,??DataTable1  ;; 0xfffffffff4300094
+        MOV      R0,#+17
+        ORR      R0,R0,#0x1200
+        STR      R0,[R1, #+0]
+        BIC      R1,R1,#0x4
+        STR      R0,[R1, #+0]
+        MOV      R0,#+33280
+        ORR      R1,R1,#0x60
+        STR      R0,[R1, #+0]
+        ORR      R1,R1,#0x8
+        B        ?Subroutine20
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2c_check_port_2??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE i2c_check_port_2
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon1
+        CFI Function i2c_check_port_2
+        ARM
+i2c_check_port_2:
+        LDR      R0,??Subroutine20_0  ;; 0xfffffffff43000f0
+        MOV      R1,#+34
+        ORR      R1,R1,#0x1200
+        STR      R1,[R0, #+0]
+        ORR      R0,R0,#0x8
+        ADD      R1,R1,#+34
+        STR      R1,[R0, #+0]
+        LDR      R1,??DataTable1  ;; 0xfffffffff4300094
+        MOV      R0,#+33280
+        STR      R0,[R1, #+0]
+        BIC      R1,R1,#0x4
+        CFI EndBlock cfiBlock3
+        REQUIRE ?Subroutine20
+        ;; // Fall through to label ?Subroutine20
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        ARM
+?Subroutine20:
+        STR      R0,[R1, #+0]
+        BX       LR               ;; return
+        DATA
+??Subroutine20_0:
+        DC32     0xfffffffff43000f0
+        CFI EndBlock cfiBlock4
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable1:
+        DC32     0xfffffffff4300094
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2c_clk_on??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock5
+        REQUIRE i2c_clk_on
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI Function i2c_clk_on
+        ARM
+i2c_clk_on:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        _BLF     ??DiI_a,??rA??DiI_a
+        LDR      R0,??DataTable3  ;; 0xfffffffff45000b4
+        LDR      R1,[R0, #+0]
+        BIC      R1,R1,#0x31
+        B        ?Subroutine22
+        CFI EndBlock cfiBlock6
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2c_clk_off??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock7
+        REQUIRE i2c_clk_off
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI Function i2c_clk_off
+        ARM
+i2c_clk_off:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        _BLF     ??DiI_a,??rA??DiI_a
+        LDR      R0,??DataTable3  ;; 0xfffffffff45000b4
+        LDR      R1,[R0, #+0]
+        BIC      R1,R1,#0x30
+        CFI EndBlock cfiBlock8
+        REQUIRE ?Subroutine22
+        ;; // Fall through to label ?Subroutine22
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+4
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine22:
+        STR      R1,[R0, #+0]
+        POP      {LR}             ;; Pop
+        CFI CFA R13+0
+        CFI ?RET R14
+        _BF      ??EnI_a,??rA??EnI_a
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable3:
+        DC32     0xfffffffff45000b4
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2c_scu_init??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock10
+        REQUIRE i2c_scu_init
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI Function i2c_scu_init
+        ARM
+i2c_scu_init:
+        MOV      R0,#-1073741800
+        ORR      R0,R0,#0x34400000
+        LDR      R1,[R0, #+0]
+        ORR      R1,R1,#0x8000
+        STR      R1,[R0, #+0]
+        LDR      R1,[R0, #+0]
+        BIC      R1,R1,#0x8000
+        B        ?Subroutine21
+        CFI EndBlock cfiBlock11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??setConf??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock12
+        REQUIRE setConf
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI Function setConf
+        ARM
+setConf:
+        MOV      R0,#-268435456
+        ORR      R0,R0,#0x7600000
+        MOV      R1,#+512
+        STR      R1,[R0, #+0]
+        ORR      R0,R0,#0x10
+        MOV      R1,#+0
+        STR      R1,[R0, #+0]
+        ADD      R1,R0,#+16
+        MOV      R2,#+524288
+        STR      R2,[R1, #+0]
+        ADD      R1,R0,#+24
+        MOV      R2,#+34
+        ORR      R2,R2,#0x30000
+        STR      R2,[R1, #+0]
+        ORR      R1,R0,#0x8
+        MOV      R2,#+64
+        ORR      R2,R2,#0x10000
+        STR      R2,[R1, #+0]
+        MOV      R1,#+1
+        STR      R1,[R0, #+0]
+        LDR      R1,??DataTable25  ;; 0xfffffffff760008c
+        MOV      R0,#+63
+        STR      R0,[R1], #-20
+        STR      R0,[R1, #+0]
+        BIC      R0,R1,#0x10
+        MOV      R1,#+15
+        CFI EndBlock cfiBlock13
+        REQUIRE ?Subroutine21
+        ;; // Fall through to label ?Subroutine21
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon1
+        CFI NoFunction
+        ARM
+?Subroutine21:
+        STR      R1,[R0, #+0]
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock14
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??disable_I2C_INT??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock15
+        REQUIRE disable_I2C_INT
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon1
+        CFI Function disable_I2C_INT
+        ARM
+disable_I2C_INT:
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        B        ?Subroutine21
+        CFI EndBlock cfiBlock16
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??enable_I2C_INT??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock17
+        REQUIRE enable_I2C_INT
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon1
+        CFI Function enable_I2C_INT
+        ARM
+enable_I2C_INT:
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        LDR      R1,[R0, #+0]
+        AND      R1,R1,#0x3F
+        B        ?Subroutine21
+        CFI EndBlock cfiBlock18
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??stop??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock19
+        REQUIRE stop
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon1
+        CFI Function stop
+        ARM
+stop:
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0], #-116
+        MOV      R1,#+0
+        STR      R1,[R0, #+0]
+        BIC      R0,R0,#0x10
+        MOV      R1,#+1
+        B        ?Subroutine21
+        CFI EndBlock cfiBlock20
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__i2cw_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock21
+        REQUIRE __i2cw_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon1
+        CFI Function __i2cw_pmu
+        ARM
+__i2cw_pmu:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R1
+        MOV      R6,R2
+        BL       setConf
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0], #-80
+        MOV      R1,#+3
+        STR      R1,[R0, #+0]
+??__i2cw_pmu_0:
+        LDR      R0,??DataTable23  ;; 0xfffffffff7600080
+        LDR      R0,[R0, #+0]
+        ANDS     R0,R0,#0x1
+        BEQ      ??__i2cw_pmu_0
+        LDR      R0,??DataTable24  ;; 0xfffffffff7608000
+        AND      R1,R4,#0x7F
+        ORR      R1,R1,R5, LSL #+8
+        ORR      R1,R1,R6, LSL #+16
+        STR      R1,[R0, #+0]
+        LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+        MOV      R1,#+1
+        STR      R1,[R0, #+0]
+??__i2cw_pmu_1:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_pmu_1
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_pmu_2
+        SUB      R1,R0,#+120
+        LDR      R2,[R1, #+0]
+        ORR      R2,R2,#0x2
+        STR      R2,[R1, #+0]
+        SUB      R2,R0,#+20
+        MOV      R1,#+32
+        STR      R1,[R2, #+0]
+        STR      R1,[R0, #+0]
+??__i2cw_pmu_3:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_pmu_3
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x10
+        BEQ      ??__i2cw_pmu_4
+        B        ??__i2cw_pmu_5
+??__i2cw_pmu_2:
+        TST      R1,#0x10
+        BEQ      ??__i2cw_pmu_6
+??__i2cw_pmu_5:
+        B        ?Subroutine26
+??__i2cw_pmu_4:
+        TST      R1,#0x20
+        BNE      ??__i2cw_pmu_7
+??__i2cw_pmu_6:
+        B        ?Subroutine25
+??__i2cw_pmu_7:
+        B        ?Subroutine23
+        CFI EndBlock cfiBlock22
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__i2cr_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock23
+        REQUIRE __i2cr_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon1
+        CFI Function __i2cr_pmu
+        ARM
+__i2cr_pmu:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOV      R5,R2
+        MOV      R6,R1
+        BL       setConf
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0], #-80
+        MOV      R1,#+2
+        STR      R1,[R0, #+0]
+??__i2cr_pmu_0:
+        ADD      R1,R0,#+76
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x1
+        BEQ      ??__i2cr_pmu_0
+        LDR      R1,??DataTable24  ;; 0xfffffffff7608000
+        AND      R2,R4,#0x7F
+        ORR      R2,R2,R6, LSL #+8
+        ORR      R2,R2,#0x1
+        STR      R2,[R1, #+0]
+        ADD      R2,R0,#+88
+        MOV      R3,#+1
+        STR      R3,[R2, #+0]
+??__i2cr_pmu_1:
+        ADD      R6,R0,#+76
+        LDR      R6,[R6, #+0]
+        TST      R6,#0x20
+        BEQ      ??__i2cr_pmu_1
+        ORR      R6,R0,#0x40
+        LDR      R12,[R6, #+0]
+        TST      R12,#0x20
+        BEQ      ??__i2cr_pmu_2
+        SUB      R6,R0,#+8
+        STR      R3,[R6, #+0]
+        STR      R3,[R0], #+68
+        MOV      R6,#+32
+        STR      R6,[R0, #+0]
+        STR      R6,[R2, #+0]
+??__i2cr_pmu_3:
+        ADD      R12,R0,#+8
+        LDR      R12,[R12, #+0]
+        TST      R12,#0x1
+        BEQ      ??__i2cr_pmu_3
+        AND      R4,R4,#0x7F
+        ORR      R4,R4,#0x1
+        STR      R4,[R1, #+0]
+        STR      R3,[R2, #+0]
+??__i2cr_pmu_4:
+        ADD      R1,R0,#+8
+        LDR      R1,[R1, #+0]
+        ANDS     R12,R1,#0xF
+        BEQ      ??__i2cr_pmu_4
+        LDR      R1,??DataTable26  ;; 0xfffffffff760c000
+        LDR      R1,[R1, #+0]
+        STRB     R1,[R5, #+0]
+        STR      R3,[R2, #+0]
+??__i2cr_pmu_5:
+        ADD      R1,R0,#+8
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cr_pmu_5
+        SUB      R1,R0,#+4
+        LDR      R12,[R1, #+0]
+        TST      R12,#0x60
+        BEQ      ??__i2cr_pmu_6
+        STR      R6,[R0, #+0]
+        SUB      R1,R0,#+100
+        LDR      R3,[R1, #+0]
+        ORR      R3,R3,#0x2
+        STR      R3,[R1, #+0]
+        MOV      R1,#+64
+        STR      R1,[R0, #+0]
+        STR      R6,[R2, #+0]
+??__i2cr_pmu_7:
+        ADD      R1,R0,#+8
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cr_pmu_7
+        SUB      R1,R0,#+4
+        LDR      R12,[R1, #+0]
+        TST      R12,#0x20
+        BEQ      ??__i2cr_pmu_2
+        STR      R6,[R0, #+0]
+        STR      R6,[R2, #+0]
+        B        ??Subroutine23_0
+??__i2cr_pmu_2:
+        TST      R12,#0x10
+        BEQ      ??__i2cr_pmu_8
+        B        ??__i2cr_pmu_9
+??__i2cr_pmu_6:
+        TST      R12,#0x10
+        BEQ      ??__i2cr_pmu_8
+??__i2cr_pmu_9:
+        B        ?Subroutine26
+??__i2cr_pmu_8:
+        MOV      R0,#+14
+        POP      {R4-R6,PC}
+        CFI EndBlock cfiBlock24
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+16
+        CFI R4 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine26:
+        MOV      R0,#+4
+        POP      {R4-R6,PC}
+        CFI EndBlock cfiBlock25
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__i2cr_fcam??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock26
+        REQUIRE __i2cr_fcam
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon1
+        CFI Function __i2cr_fcam
+        ARM
+__i2cr_fcam:
+        PUSH     {R4-R8,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R8 Frame(CFA, -8)
+        CFI R7 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -20)
+        CFI R4 Frame(CFA, -24)
+        CFI CFA R13+24
+        MOV      R4,R0
+        MOV      R7,R1
+        MOV      R5,R2
+        MOV      R6,R3
+        BL       setConf
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0, #+0]
+        SUB      R12,R0,#+80
+        MOV      R0,#+2
+        STR      R0,[R12, #+0]
+??__i2cr_fcam_0:
+        ADD      R0,R12,#+76
+        LDR      R0,[R0, #+0]
+        TST      R0,#0x1
+        BEQ      ??__i2cr_fcam_0
+        LDR      LR,??DataTable24  ;; 0xfffffffff7608000
+        AND      R0,R4,#0x7F
+        ORR      R0,R0,R7, LSL #+8
+        STR      R0,[LR, #+0]
+        ADD      R0,R12,#+88
+        MOV      R7,#+1
+        STR      R7,[R0, #+0]
+??__i2cr_fcam_1:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cr_fcam_1
+        SUB      R1,R0,#+24
+        LDR      R3,[R1, #+0]
+        TST      R3,#0x20
+        BEQ      ??__i2cr_fcam_2
+        SUB      R1,R0,#+20
+        MOV      R2,#+32
+        STR      R2,[R1, #+0]
+        STR      R2,[R0, #+0]
+        SUB      R3,R0,#+96
+        STR      R6,[R3, #+0]
+        STR      R7,[R12, #+0]
+??__i2cr_fcam_3:
+        BIC      R3,R0,#0xC
+        LDR      R3,[R3, #+0]
+        TST      R3,#0x1
+        BEQ      ??__i2cr_fcam_3
+        AND      R3,R4,#0x7F
+        ORR      R3,R3,#0x1
+        STR      R3,[LR, #+0]
+        STR      R7,[R0, #+0]
+        MOV      R4,#+0
+        B        ??__i2cr_fcam_4
+??__i2cr_fcam_2:
+        TST      R3,#0x10
+        BEQ      ??__i2cr_fcam_5
+        B        ??__i2cr_fcam_6
+??__i2cr_fcam_7:
+        MOV      R7,#+0
+??__i2cr_fcam_8:
+        LDR      LR,??DataTable26  ;; 0xfffffffff760c000
+        MOV      R12,#+0
+        LDR      LR,[LR, #+0]
+??__i2cr_fcam_9:
+        MOV      R8,R12
+        LSL      R8,R8,#+3
+        ASR      R8,LR,R8
+        STRB     R8,[R4, +R5]
+        ADD      R12,R12,#+1
+        ADD      R4,R4,#+1
+        CMP      R12,#+4
+        CMPLT    R4,R6
+        BLT      ??__i2cr_fcam_9
+        ADD      R7,R7,#+1
+        CMP      R7,#+4
+        CMPLT    R4,R6
+        BLT      ??__i2cr_fcam_8
+        STR      R3,[R0, #+0]
+??__i2cr_fcam_4:
+        CMP      R4,R6
+        BGE      ??__i2cr_fcam_10
+        LDR      R3,??__i2cr_fcam_11  ;; 0xfffffffff4b00010
+        MOV      R8,#+233
+        LDR      R7,[R3, #+0]
+        ORR      R8,R8,#0x300
+??__i2cr_fcam_12:
+        BIC      R3,R0,#0xC
+        LDR      R3,[R3, #+0]
+        ANDS     R3,R3,#0xF
+        BNE      ??__i2cr_fcam_7
+        LDR      R3,??__i2cr_fcam_11  ;; 0xfffffffff4b00010
+        LDR      R3,[R3, #+0]
+        SUB      R3,R3,R7
+        CMP      R3,R8
+        BCC      ??__i2cr_fcam_12
+        MOV      R0,#+13
+        POP      {R4-R8,PC}
+??__i2cr_fcam_10:
+        BIC      R3,R0,#0xC
+        LDR      R3,[R3, #+0]
+        TST      R3,#0x20
+        BEQ      ??__i2cr_fcam_10
+        SUB      R3,R0,#+24
+        LDR      R3,[R3, #+0]
+        TST      R3,#0x60
+        BEQ      ??__i2cr_fcam_13
+        STR      R2,[R1, #+0]
+        SUB      R3,R0,#+120
+        LDR      R4,[R3, #+0]
+        ORR      R4,R4,#0x2
+        STR      R4,[R3, #+0]
+        MOV      R3,#+64
+        STR      R3,[R1, #+0]
+        STR      R2,[R0, #+0]
+??__i2cr_fcam_14:
+        BIC      R3,R0,#0xC
+        LDR      R3,[R3, #+0]
+        TST      R3,#0x20
+        BEQ      ??__i2cr_fcam_14
+        SUB      R3,R0,#+24
+        LDR      R3,[R3, #+0]
+        TST      R3,#0x20
+        BEQ      ??__i2cr_fcam_2
+        STR      R2,[R1, #+0]
+        STR      R2,[R0, #+0]
+        BL       stop
+        MOV      R0,#+0
+        POP      {R4-R8,PC}
+??__i2cr_fcam_13:
+        TST      R3,#0x10
+        BEQ      ??__i2cr_fcam_5
+??__i2cr_fcam_6:
+        MOV      R0,#+4
+        POP      {R4-R8,PC}
+??__i2cr_fcam_5:
+        MOV      R0,#+14
+        POP      {R4-R8,PC}
+        DATA
+??__i2cr_fcam_11:
+        DC32     0xfffffffff4b00010
+        CFI EndBlock cfiBlock27
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__i2cw_fm??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock28
+        REQUIRE __i2cw_fm
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon1
+        CFI Function __i2cw_fm
+        ARM
+__i2cw_fm:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R1
+        MOV      R5,R2
+        MOV      R7,R0
+        BL       setConf
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R6,#+1
+        LDR      R1,[R0, #+0]
+        MOV      R2,#+192
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0], #-80
+        ADD      R1,R5,#+1
+        STR      R1,[R0, #+0]
+        AND      R0,R7,#0x7F
+??__i2cw_fm_0:
+        LDR      R1,??DataTable23  ;; 0xfffffffff7600080
+        LDR      R1,[R1, #+0]
+        ANDS     R1,R1,#0xF
+        BEQ      ??__i2cw_fm_0
+        MOV      R2,#+0
+        B        ??__i2cw_fm_1
+??__i2cw_fm_2:
+        CMP      R2,R5
+        BGE      ??__i2cw_fm_3
+        LDRB     R3,[R2, +R4]
+        MOV      R7,R6
+        LSL      R7,R7,#+3
+        ORR      R0,R0,R3, LSL R7
+        ADD      R6,R6,#+1
+        ADD      R2,R2,#+1
+        CMP      R6,#+4
+        BLT      ??__i2cw_fm_2
+??__i2cw_fm_3:
+        LDR      R3,??DataTable24  ;; 0xfffffffff7608000
+        MOV      R6,#+0
+        STR      R0,[R3, #+0]
+        MOV      R0,#+0
+??__i2cw_fm_1:
+        CMP      R2,R5
+        BLT      ??__i2cw_fm_2
+        LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+        STR      R1,[R0, #+0]
+??__i2cw_fm_4:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_fm_4
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_fm_5
+        SUB      R1,R0,#+120
+        LDR      R2,[R1, #+0]
+        ORR      R2,R2,#0x2
+        STR      R2,[R1, #+0]
+        SUB      R2,R0,#+20
+        MOV      R1,#+32
+        STR      R1,[R2, #+0]
+        STR      R1,[R0, #+0]
+??__i2cw_fm_6:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cw_fm_6
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x10
+        BEQ      ??__i2cw_fm_7
+        B        ??__i2cw_fm_8
+??__i2cw_fm_5:
+        TST      R1,#0x10
+        BEQ      ??__i2cw_fm_9
+??__i2cw_fm_8:
+        MOV      R0,#+4
+        POP      {R4-R7,PC}
+??__i2cw_fm_7:
+        TST      R1,#0x20
+        BNE      ??__i2cw_fm_10
+??__i2cw_fm_9:
+        MOV      R0,#+13
+        POP      {R4-R7,PC}
+??__i2cw_fm_10:
+        MOV      R1,#+0
+        STR      R1,[R2, #+0]
+        STR      R1,[R0, #+0]
+        BL       stop
+        MOV      R0,#+0
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??__i2cr_fm??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock30
+        REQUIRE __i2cr_fm
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock31 Using cfiCommon1
+        CFI Function __i2cr_fm
+        ARM
+__i2cr_fm:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R1
+        MOV      R5,R2
+        MOV      R6,R0
+        BL       setConf
+        LDR      R0,??DataTable22  ;; 0xfffffffff7600084
+        MOV      R2,#+192
+        LDR      R1,[R0, #+0]
+        ORR      R2,R2,#0xFF00
+        AND      R1,R2,R1
+        STR      R1,[R0], #-88
+        STR      R5,[R0], #+8
+        MOV      R1,#+1
+        STR      R1,[R0, #+0]
+??__i2cr_fm_0:
+        LDR      R0,??DataTable23  ;; 0xfffffffff7600080
+        LDR      R0,[R0, #+0]
+        AND      R2,R0,#0xF
+        CMP      R2,#+0
+        BEQ      ??__i2cr_fm_0
+        LDR      R0,??DataTable24  ;; 0xfffffffff7608000
+        AND      R2,R6,#0x7F
+        ORR      R2,R2,#0x1
+        STR      R2,[R0, #+0]
+        LDR      R0,??DataTable25  ;; 0xfffffffff760008c
+        STR      R1,[R0, #+0]
+??__i2cr_fm_1:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        ANDS     R2,R1,#0xF
+        BEQ      ??__i2cr_fm_1
+        MOV      R1,#+0
+        B        ??__i2cr_fm_2
+??__i2cr_fm_3:
+        LDR      R6,??DataTable26  ;; 0xfffffffff760c000
+        MOV      R3,#+0
+        LDR      R6,[R6, #+0]
+??__i2cr_fm_4:
+        MOV      R12,R3
+        LSL      R12,R12,#+3
+        ASR      R12,R6,R12
+        STRB     R12,[R1, +R4]
+        ADD      R3,R3,#+1
+        ADD      R1,R1,#+1
+        CMP      R3,#+4
+        CMPLT    R1,R5
+        BLT      ??__i2cr_fm_4
+??__i2cr_fm_2:
+        CMP      R1,R5
+        BLT      ??__i2cr_fm_3
+        STR      R2,[R0, #+0]
+??__i2cr_fm_5:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cr_fm_5
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x60
+        BEQ      ??__i2cr_fm_6
+        SUB      R1,R0,#+120
+        LDR      R2,[R1, #+0]
+        ORR      R2,R2,#0x2
+        STR      R2,[R1, #+0]
+        SUB      R2,R0,#+20
+        MOV      R1,#+96
+        STR      R1,[R2, #+0]
+        STR      R1,[R0, #+0]
+??__i2cr_fm_7:
+        BIC      R1,R0,#0xC
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x20
+        BEQ      ??__i2cr_fm_7
+        SUB      R1,R0,#+24
+        LDR      R1,[R1, #+0]
+        TST      R1,#0x10
+        BEQ      ??__i2cr_fm_8
+        B        ??__i2cr_fm_9
+??__i2cr_fm_6:
+        TST      R1,#0x10
+        BEQ      ??__i2cr_fm_10
+??__i2cr_fm_9:
+        B        ?Subroutine26
+??__i2cr_fm_8:
+        TST      R1,#0x20
+        BNE      ??__i2cr_fm_11
+??__i2cr_fm_10:
+        B        ?Subroutine25
+??__i2cr_fm_11:
+        B        ?Subroutine23
+        CFI EndBlock cfiBlock31
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable22:
+        DC32     0xfffffffff7600084
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable23:
+        DC32     0xfffffffff7600080
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable24:
+        DC32     0xfffffffff7608000
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable25:
+        DC32     0xfffffffff760008c
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable26:
+        DC32     0xfffffffff760c000
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock32 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+16
+        CFI R4 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine25:
+        MOV      R0,#+13
+        POP      {R4-R6,PC}
+        CFI EndBlock cfiBlock32
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock33 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+16
+        CFI R4 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine23:
+        MOV      R1,#+0
+        STR      R1,[R2, #+0]
+        STR      R1,[R0, #+0]
+??Subroutine23_0:
+        BL       stop
+        MOV      R0,#+0
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock33
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock34 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cw_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock34
+        REQUIRE i2cw_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock35 Using cfiCommon1
+        CFI Function i2cw_pmu
+        ARM
+i2cw_pmu:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOVS     R5,R1
+        MRS      R6,CPSR
+        BL       i2c_check_port_1
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+98
+        B        ?Subroutine24
+        CFI EndBlock cfiBlock35
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock36 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cr_pmu??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock36
+        REQUIRE i2cr_pmu
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock37 Using cfiCommon1
+        CFI Function i2cr_pmu
+        ARM
+i2cr_pmu:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOVS     R5,R1
+        MRS      R6,CPSR
+        BL       i2c_check_port_1
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+98
+        BL       __i2cr_pmu
+        B        ??Subroutine24_0
+        CFI EndBlock cfiBlock37
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock38 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cw_fm??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock38
+        REQUIRE i2cw_fm
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock39 Using cfiCommon1
+        CFI Function i2cw_fm
+        ARM
+i2cw_fm:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOVS     R5,R1
+        MRS      R6,CPSR
+        BL       i2c_check_port_1
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+32
+        BL       __i2cw_fm
+        B        ??Subroutine24_0
+        CFI EndBlock cfiBlock39
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock40 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cr_fm??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock40
+        REQUIRE i2cr_fm
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock41 Using cfiCommon1
+        CFI Function i2cr_fm
+        ARM
+i2cr_fm:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R1
+        MOVS     R5,R2
+        MRS      R6,CPSR
+        BL       i2c_check_port_1
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+32
+        BL       __i2cr_fm
+        B        ??Subroutine24_0
+        CFI EndBlock cfiBlock41
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock42 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2cwx_cam??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock42
+        REQUIRE i2cwx_cam
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock43 Using cfiCommon1
+        CFI Function i2cwx_cam
+        ARM
+i2cwx_cam:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        MOV      R4,R0
+        MOVS     R5,R1
+        MRS      R6,CPSR
+        BL       i2c_check_port_2
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+96
+        CFI EndBlock cfiBlock43
+        REQUIRE ?Subroutine24
+        ;; // Fall through to label ?Subroutine24
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock44 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA R13+16
+        CFI R4 Frame(CFA, -16)
+        CFI R5 Frame(CFA, -12)
+        CFI R6 Frame(CFA, -8)
+        CFI ?RET Frame(CFA, -4)
+        ARM
+?Subroutine24:
+        BL       __i2cw_pmu
+??Subroutine24_0:
+        MOV      R4,R0
+        BL       i2c_clk_off
+        MSR      CPSR,R6
+        MOV      R0,R4
+        POP      {R4-R6,PC}       ;; return
+        CFI EndBlock cfiBlock44
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock45 Using cfiCommon0
+        CFI NoFunction
+        THUMB
+??i2crx_cam??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock45
+        REQUIRE i2crx_cam
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock46 Using cfiCommon1
+        CFI Function i2crx_cam
+        ARM
+i2crx_cam:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        MOV      R4,R0
+        MOV      R5,R1
+        MOVS     R6,R2
+        MRS      R7,CPSR
+        BL       i2c_check_port_2
+        SWI 4            
+        BL       i2c_clk_on
+        MOV      R3,R6
+        MOV      R2,R5
+        MOV      R1,R4
+        MOV      R0,#+96
+        BL       __i2cr_fcam
+        MOV      R4,R0
+        BL       i2c_clk_off
+        MSR      CPSR,R7
+        MOV      R0,R4
+        POP      {R4-R7,PC}       ;; return
+        CFI EndBlock cfiBlock46
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock47 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??rA??DiI_a:
+        LDR      R12,??Subroutine27_0  ;; ??DiI_a
+        MOV      PC,R12
+        DATA
+??Subroutine27_0:
+        DC32     ??DiI_a
+        CFI EndBlock cfiBlock47
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock48 Using cfiCommon1
+        CFI NoFunction
+        ARM
+??rA??EnI_a:
+        LDR      R12,??Subroutine28_0  ;; ??EnI_a
+        MOV      PC,R12
+        DATA
+??Subroutine28_0:
+        DC32     ??EnI_a
+        CFI EndBlock cfiBlock48
+
+        END
+// 
+// 2 592 bytes in segment CODE
+// 
+// 2 488 bytes of CODE memory (+ 104 bytes shared)
+//
+//Errors: none
+//Warnings: none

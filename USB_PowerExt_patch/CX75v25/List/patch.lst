@@ -1,0 +1,78 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 18/Nov/2014  17:13:13              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\patch.asm#
+#           List file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\CX75v25\List\patch.lst#
+#           Object file   =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\CX75v25\Obj\patch.r79#
+#           Command line  =  C:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\patch.asm #
+#                            -OC:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\CX75v25\Obj\ #
+#                            -s+ -M<> -w+ -DCX75v25                           #
+#                            -LC:\Users\Инсаф\Documents\Siemens\alfinant\USB_PowerExt\CX75v25\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None -n               #
+#                            -IC:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\  #
+#                                                                             #
+###############################################################################
+
+    1    00000000              #ifdef CX75v25
+    2    00000000              #define PhyWAS_ExtPower_Process_Entry  
+                                0xA0A911B4
+    3    00000000              #define ProcSendMSG     0xA0204F40
+    4    00000000              #define Hisr_PhyWAS_ExtPower 0xA0A909CC
+    5    00000000              #endif
+    6    00000000                
+    7    00000000                   RSEG PATCH_Hisr_PhyWAS_ExtPower_Entry:DATA(
+                               2) ;PATCH_PhyWAS_ExtPower_Process_Entry:DATA(2)
+    8    00000000 ........          DCD  My_PhyWAS_ExtPower_Process_Entry
+    9    00000004                
+   10    00000004                   CODE32
+   11    00000004              
+   12    00000000                   RSEG CODE:CODE(2)
+   13    00000000              My_PhyWAS_ExtPower_Process_Entry   
+   14    00000000 11402DE9          PUSH {R0,R4,LR}
+   15    00000004 38309FE5          LDR R3, _e
+   16    00000008 33FF2FE1          BLX R3
+   17    0000000C 0100BDE8          POP {R0}
+   18    00000010              ;     LDR R0, [R0,#0]
+   19    00000010              ;     LDRH R0, [R0,#0xC]
+   20    00000010              ;     CMP R0,#8
+   21    00000010              ;    BNE _exit     
+   22    00000010 FC0DA0E3          LDR R0, =0x3F00
+   23    00000014 0B10A0E3          MOV R1, #0xB
+   24    00000018 34FF2FE1          BLX R4    
+   25    0000001C FC0DA0E3          LDR R0, =0x3F00
+   26    00000020 0A10A0E3          MOV R1, #0xA
+   27    00000024 34FF2FE1          BLX R4
+   28    00000028 1C009FE5          LDR R0, =0x6B03
+   29    0000002C 1510A0E3          MOV R1, #0x15
+   30    00000030 34FF2FE1          BLX R4
+   31    00000034 10009FE5          LDR R0, =0x6B03
+   32    00000038 1010A0E3          MOV R1, #0x10
+   33    0000003C 34FF2FE1          BLX R4    
+   34    00000040              _exit
+   35    00000040 1080BDE8          POP {R4,PC}
+   36    00000044                   DATA
+   37    00000044 CC09A9A0     _e   DCD Hisr_PhyWAS_ExtPower ;PhyWAS_ExtPower_P
+                                                             rocess_Entry
+   38    00000048 404F20A0     _f   DCD ProcSendMSG
+   39    0000004C              
+   40    0000004C              
+   41    0000004C              
+   42    0000004C              ;===============================================
+                               ================================
+   43    0000004C              
+   44    0000004C                END
+   44.1  0000004C                       TABLE
+   44.2  0000004C 036B0000             Reference on line 28,31 
+   44.3  00000050                      END (including table)
+##############################
+#          CRC:56D7          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 84          #
+##############################
+
+
+
+

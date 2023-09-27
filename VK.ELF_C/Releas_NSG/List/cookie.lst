@@ -1,0 +1,671 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    15/Mar/2023  22:35:40 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \cookie.c                                            #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \cookie.c -D NEWSGOLD -D DEBUG -lCN                  #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\ -la D:\Users\alfinant\Documents\Si #
+#                       emens\Dev\IAR\VK.ELF_C\Releas_NSG\List\ -o           #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\ -s9 --cpu_mode arm --endian little  #
+#                       --cpu ARM926EJ-S --stack_align 4 --interwork         #
+#                       --diag_suppress Pe301 -e --fpu None --dlib_config    #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5t #
+#                       painl8n.h -I D:\Users\alfinant\Documents\Siemens\IAR #
+#                       \ARM\INC\ --inline_threshold=2                       #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\List\cookie.lst                          #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C #
+#                       \Releas_NSG\Obj\cookie.r79                           #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\VK.ELF_C\cookie.c
+      1          #include "cookie.h"
+      2          #include <siemens\swilib.h>
+      3          
+      4          typedef struct {
+      5            void *next; 
+      6            char *cookie;
+      7            char domain[64];
+      8          } COOKIE_LIST;
+      9          
+
+   \                                 In segment DATA_Z, align 4, align-sorted
+     10          COOKIE_LIST *cookie_top=NULL;
+   \                     cookie_top:
+   \   00000000                      DS8 4
+     11          
+     12          extern const char APP_DIR[];
+     13          
+     14          //******************************************************************************
+     15          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     16          void *Cookies_Get()
+     17          {
+     18            return cookie_top;
+   \                     Cookies_Get:
+   \   00000000   ........           LDR      R0,??DataTable7  ;; cookie_top
+   \   00000004   000090E5           LDR      R0,[R0, #+0]
+   \   00000008   1EFF2FE1           BX       LR               ;; return
+     19          }
+     20          
+     21          //******************************************************************************
+     22          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     23          void Cookies_Free()
+     24          {
+   \                     Cookies_Free:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+     25            COOKIE_LIST* c=cookie_top;
+   \   00000004   ........           LDR      R4,??DataTable7  ;; cookie_top
+   \   00000008   005094E5           LDR      R5,[R4, #+0]
+   \   0000000C   000055E3           CMP      R5,#+0
+   \   00000010   0800000A           BEQ      ??Cookies_Free_0
+     26            
+     27            while(c)
+     28            {
+     29              if (c->cookie)
+   \                     ??Cookies_Free_1:
+   \   00000014   040095E5           LDR      R0,[R5, #+4]
+   \   00000018   000050E3           CMP      R0,#+0
+   \   0000001C   0000000A           BEQ      ??Cookies_Free_2
+     30                mfree(c->cookie); 
+   \   00000020   150000EF           SWI      +21
+     31              
+     32              void* next=c->next;
+   \                     ??Cookies_Free_2:
+   \   00000024   006095E5           LDR      R6,[R5, #+0]
+     33              mfree(c);
+   \   00000028   0500A0E1           MOV      R0,R5
+   \   0000002C   150000EF           SWI      +21
+     34              c=next;
+   \   00000030   0650B0E1           MOVS     R5,R6
+     35            }
+   \   00000034   F6FFFF1A           BNE      ??Cookies_Free_1
+     36            cookie_top=NULL;
+   \                     ??Cookies_Free_0:
+   \   00000038   0000A0E3           MOV      R0,#+0
+   \   0000003C   000084E5           STR      R0,[R4, #+0]
+     37          }
+   \   00000040   7080BDE8           POP      {R4-R6,PC}       ;; return
+     38          
+     39          //******************************************************************************
+     40          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     41          void Cookies_Save()
+     42          {
+     43            int f;
+     44            unsigned  err;
+     45            char rn[]="\r\n";
+   \                     Cookies_Save:
+   \   00000000   EC009FE5           LDR      R0,??Cookies_Save_0+0x4  ;; `?<Constant "\\r\\n">`
+   \   00000004   30402DE9           PUSH     {R4,R5,LR}
+   \   00000008   88D04DE2           SUB      SP,SP,#+136
+   \   0000000C   0020D0E5           LDRB     R2,[R0, #0]
+   \   00000010   04108DE2           ADD      R1,SP,#+4
+   \   00000014   0020C1E5           STRB     R2,[R1, #+0]
+   \   00000018   0120D0E5           LDRB     R2,[R0, #+1]
+   \   0000001C   0120C1E5           STRB     R2,[R1, #+1]
+   \   00000020   0220D0E5           LDRB     R2,[R0, #+2]
+   \   00000024   0220C1E5           STRB     R2,[R1, #+2]
+     46            char fname[128];
+     47            
+     48            COOKIE_LIST *c;
+     49            
+     50            if ((c=cookie_top)==NULL)
+   \   00000028   ........           LDR      R1,??DataTable7  ;; cookie_top
+   \   0000002C   004091E5           LDR      R4,[R1, #+0]
+   \   00000030   000054E3           CMP      R4,#+0
+   \   00000034   2B00000A           BEQ      ??Cookies_Save_1
+     51              return;
+     52            
+     53            snprintf(fname, 127, "%scookie", APP_DIR);
+   \   00000038   ........           LDR      R3,??DataTable5  ;; APP_DIR
+   \   0000003C   042080E2           ADD      R2,R0,#+4
+   \   00000040   7F10A0E3           MOV      R1,#+127
+   \   00000044   08008DE2           ADD      R0,SP,#+8
+   \   00000048   1B0100EF           SWI      +283
+     54              
+     55            if((f=fopen(fname, A_ReadWrite+A_Create+A_Truncate+A_BIN, P_WRITE+P_READ, &err))!=-1)
+   \   0000004C   0D30A0E1           MOV      R3,SP
+   \   00000050   602FA0E3           MOV      R2,#+384
+   \   00000054   0210A0E3           MOV      R1,#+2
+   \   00000058   831C81E3           ORR      R1,R1,#0x8300
+   \   0000005C   08008DE2           ADD      R0,SP,#+8
+   \   00000060   0A0000EF           SWI      +10
+   \   00000064   0050A0E1           MOV      R5,R0
+   \   00000068   010075E3           CMN      R5,#+1
+   \   0000006C   1D00000A           BEQ      ??Cookies_Save_1
+     56            {
+     57              while(c)
+     58              {
+     59                fwrite(f, c->domain, strlen(c->domain), &err);
+   \                     ??Cookies_Save_2:
+   \   00000070   080084E2           ADD      R0,R4,#+8
+   \   00000074   1B0000EF           SWI      +27
+   \   00000078   0D30A0E1           MOV      R3,SP
+   \   0000007C   0020A0E1           MOV      R2,R0
+   \   00000080   081084E2           ADD      R1,R4,#+8
+   \   00000084   0500A0E1           MOV      R0,R5
+   \   00000088   0C0000EF           SWI      +12
+     60                fwrite(f, ": ", 2, &err);
+   \   0000008C   0D30A0E1           MOV      R3,SP
+   \   00000090   0220A0E3           MOV      R2,#+2
+   \   00000094   151F8FE2           ADR      R1,??Cookies_Save_0  ;; ": "
+   \   00000098   0500A0E1           MOV      R0,R5
+   \   0000009C   0C0000EF           SWI      +12
+     61                fwrite(f, c->cookie, strlen(c->cookie), &err);
+   \   000000A0   040094E5           LDR      R0,[R4, #+4]
+   \   000000A4   1B0000EF           SWI      +27
+   \   000000A8   041094E5           LDR      R1,[R4, #+4]
+   \   000000AC   0020A0E1           MOV      R2,R0
+   \   000000B0   0D30A0E1           MOV      R3,SP
+   \   000000B4   0500A0E1           MOV      R0,R5
+   \   000000B8   0C0000EF           SWI      +12
+     62                fwrite(f, rn, 2, &err);
+   \   000000BC   0D30A0E1           MOV      R3,SP
+   \   000000C0   0220A0E3           MOV      R2,#+2
+   \   000000C4   04108DE2           ADD      R1,SP,#+4
+   \   000000C8   0500A0E1           MOV      R0,R5
+   \   000000CC   0C0000EF           SWI      +12
+     63                c=c->next;    
+   \   000000D0   004094E5           LDR      R4,[R4, #+0]
+     64              }
+   \   000000D4   000054E3           CMP      R4,#+0
+   \   000000D8   E4FFFF1A           BNE      ??Cookies_Save_2
+     65              fclose(f, &err);
+   \   000000DC   0D10A0E1           MOV      R1,SP
+   \   000000E0   0500A0E1           MOV      R0,R5
+   \   000000E4   0D0000EF           SWI      +13
+   \                     ??Cookies_Save_1:
+   \   000000E8   88D08DE2           ADD      SP,SP,#+136      ;; stack cleaning
+   \   000000EC   3080BDE8           POP      {R4,R5,PC}       ;; return
+   \                     ??Cookies_Save_0:
+   \   000000F0   3A200000           DC8      ": ",+0
+   \   000000F4   ........           DC32     `?<Constant "\\r\\n">`
+     66            }
+     67          }
+     68          
+     69          //******************************************************************************
+     70          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     71          void Cookies_SaveAndFree()
+     72          {
+   \                     Cookies_SaveAndFree:
+   \   00000000   00402DE9           PUSH     {LR}
+     73            Cookies_Save();
+   \   00000004   ........           BL       Cookies_Save
+     74            Cookies_Free();
+   \   00000008   0040BDE8           POP      {LR}             ;; Pop
+   \   0000000C   ........           B        Cookies_Free     ;; tailcall
+     75          }
+     76          
+     77          //******************************************************************************
+     78          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     79          void Cookies_Load()
+     80          {
+     81            char *buf;
+     82            char *s;
+     83            char *d;
+     84            int len=0;
+     85            char fname[128];
+     86            
+     87            FSTATS stat;
+     88            int f;
+     89            int fsize;
+     90            unsigned  err;
+     91            
+     92            if(cookie_top)
+   \                     Cookies_Load:
+   \   00000000   ........           LDR      R0,??DataTable7  ;; cookie_top
+   \   00000004   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000008   ACD04DE2           SUB      SP,SP,#+172
+   \   0000000C   000090E5           LDR      R0,[R0, #+0]
+   \   00000010   0040A0E3           MOV      R4,#+0
+   \   00000014   000050E3           CMP      R0,#+0
+   \   00000018   5C00001A           BNE      ??Cookies_Load_0
+     93              return;
+     94            
+     95            snprintf(fname, 127, "%scookie", APP_DIR);
+   \   0000001C   ........           LDR      R3,??DataTable5  ;; APP_DIR
+   \   00000020   70219FE5           LDR      R2,??Cookies_Load_1  ;; `?<Constant "\\r\\n">` + 4
+   \   00000024   7F10A0E3           MOV      R1,#+127
+   \   00000028   04008DE2           ADD      R0,SP,#+4
+   \   0000002C   1B0100EF           SWI      +283
+     96            
+     97            if (GetFileStats(fname, &stat, &err)==-1)
+   \   00000030   0460E0E1           MVN      R6,R4
+   \   00000034   0D20A0E1           MOV      R2,SP
+   \   00000038   84108DE2           ADD      R1,SP,#+132
+   \   0000003C   04008DE2           ADD      R0,SP,#+4
+   \   00000040   840000EF           SWI      +132
+   \   00000044   060050E1           CMP      R0,R6
+   \   00000048   5000000A           BEQ      ??Cookies_Load_0
+     98              return;
+     99            
+    100            if ((fsize=stat.size)<=0)
+   \   0000004C   88509DE5           LDR      R5,[SP, #+136]
+   \   00000050   010055E3           CMP      R5,#+1
+   \   00000054   4D0000BA           BLT      ??Cookies_Load_0
+    101              return; 
+    102            
+    103            if ((f=fopen(fname, A_ReadOnly+A_BIN, P_READ, &err))!= -1)
+   \   00000058   0D30A0E1           MOV      R3,SP
+   \   0000005C   8020A0E3           MOV      R2,#+128
+   \   00000060   801CA0E3           MOV      R1,#+32768
+   \   00000064   04008DE2           ADD      R0,SP,#+4
+   \   00000068   0A0000EF           SWI      +10
+   \   0000006C   0080A0E1           MOV      R8,R0
+   \   00000070   060058E1           CMP      R8,R6
+   \   00000074   4500000A           BEQ      ??Cookies_Load_0
+    104            {
+    105              buf=malloc(fsize+1);
+   \   00000078   010085E2           ADD      R0,R5,#+1
+   \   0000007C   140000EF           SWI      +20
+   \   00000080   0060A0E1           MOV      R6,R0
+    106              buf[fsize]='\0';
+   \   00000084   0070A0E3           MOV      R7,#+0
+   \   00000088   0670C5E7           STRB     R7,[R5, +R6]
+    107              fread(f, buf, fsize, &err);
+   \   0000008C   0D30A0E1           MOV      R3,SP
+   \   00000090   0520A0E1           MOV      R2,R5
+   \   00000094   0610A0E1           MOV      R1,R6
+   \   00000098   0800A0E1           MOV      R0,R8
+   \   0000009C   0B0000EF           SWI      +11
+    108              fclose(f, &err);
+   \   000000A0   0D10A0E1           MOV      R1,SP
+   \   000000A4   0800A0E1           MOV      R0,R8
+   \   000000A8   0D0000EF           SWI      +13
+    109              
+    110              s=buf;
+   \   000000AC   0680A0E1           MOV      R8,R6
+   \   000000B0   040000EA           B        ??Cookies_Load_2
+    111              
+    112              while(len < fsize)
+    113              {
+    114                for(len=0; s[len]==' ' || s[len]=='\r' || s[len]=='\n'; len++);//пропускаем
+    115                if(s[len]=='\0') break;
+    116                s+=len;
+    117                
+    118                for(len=0; !(s[len]==':' || s[len]==0); len++);//ищем разделитель после имени домена 
+    119                if(s[len]=='\0') break;
+    120                s[len]='\0';
+    121                
+    122                d=s;      
+    123                s+=len+1;
+    124          
+    125                for(len=0; s[len]==' ' || s[len]=='\r' || s[len]=='\n'; len++);//пропускаем
+    126                if(s[len]=='\0') break;
+    127                s+=len;
+    128                
+    129                for(len=0; !(s[len]==' ' || s[len]=='\r' || s[len]=='\n'|| s[len]==0); len++);//ищем конец строки
+    130                if(s[len]=='\0') break;
+    131                s[len]='\0';      
+   \                     ??Cookies_Load_3:
+   \   000000B4   0870C4E7           STRB     R7,[R4, +R8]
+    132                Cookies_Add(s, d);
+   \   000000B8   0800A0E1           MOV      R0,R8
+   \   000000BC   ........           BL       Cookies_Add
+    133                s+=len+1;     
+   \   000000C0   080084E0           ADD      R0,R4,R8
+   \   000000C4   018080E2           ADD      R8,R0,#+1
+   \                     ??Cookies_Load_2:
+   \   000000C8   050054E1           CMP      R4,R5
+   \   000000CC   2D0000AA           BGE      ??Cookies_Load_4
+   \   000000D0   0040A0E3           MOV      R4,#+0
+   \   000000D4   000000EA           B        ??Cookies_Load_5
+   \                     ??Cookies_Load_6:
+   \   000000D8   014084E2           ADD      R4,R4,#+1
+   \                     ??Cookies_Load_5:
+   \   000000DC   0800D4E7           LDRB     R0,[R4, +R8]
+   \   000000E0   200050E3           CMP      R0,#+32
+   \   000000E4   0D005013           CMPNE    R0,#+13
+   \   000000E8   0A005013           CMPNE    R0,#+10
+   \   000000EC   F9FFFF0A           BEQ      ??Cookies_Load_6
+   \   000000F0   000050E3           CMP      R0,#+0
+   \   000000F4   2300000A           BEQ      ??Cookies_Load_4
+   \   000000F8   088084E0           ADD      R8,R4,R8
+   \   000000FC   0040A0E3           MOV      R4,#+0
+   \   00000100   000000EA           B        ??Cookies_Load_7
+   \                     ??Cookies_Load_8:
+   \   00000104   014084E2           ADD      R4,R4,#+1
+   \                     ??Cookies_Load_7:
+   \   00000108   0800D4E7           LDRB     R0,[R4, +R8]
+   \   0000010C   3A0050E3           CMP      R0,#+58
+   \   00000110   00005013           CMPNE    R0,#+0
+   \   00000114   FAFFFF1A           BNE      ??Cookies_Load_8
+   \   00000118   000050E3           CMP      R0,#+0
+   \   0000011C   1900000A           BEQ      ??Cookies_Load_4
+   \   00000120   0870C4E7           STRB     R7,[R4, +R8]
+   \   00000124   0810A0E1           MOV      R1,R8
+   \   00000128   080084E0           ADD      R0,R4,R8
+   \   0000012C   018080E2           ADD      R8,R0,#+1
+   \   00000130   0040A0E3           MOV      R4,#+0
+   \   00000134   000000EA           B        ??Cookies_Load_9
+   \                     ??Cookies_Load_10:
+   \   00000138   014084E2           ADD      R4,R4,#+1
+   \                     ??Cookies_Load_9:
+   \   0000013C   0800D4E7           LDRB     R0,[R4, +R8]
+   \   00000140   200050E3           CMP      R0,#+32
+   \   00000144   0D005013           CMPNE    R0,#+13
+   \   00000148   0A005013           CMPNE    R0,#+10
+   \   0000014C   F9FFFF0A           BEQ      ??Cookies_Load_10
+   \   00000150   000050E3           CMP      R0,#+0
+   \   00000154   0B00000A           BEQ      ??Cookies_Load_4
+   \   00000158   088084E0           ADD      R8,R4,R8
+   \   0000015C   0040A0E3           MOV      R4,#+0
+   \   00000160   000000EA           B        ??Cookies_Load_11
+   \                     ??Cookies_Load_12:
+   \   00000164   014084E2           ADD      R4,R4,#+1
+   \                     ??Cookies_Load_11:
+   \   00000168   0800D4E7           LDRB     R0,[R4, +R8]
+   \   0000016C   200050E3           CMP      R0,#+32
+   \   00000170   0D005013           CMPNE    R0,#+13
+   \   00000174   0A005013           CMPNE    R0,#+10
+   \   00000178   00005013           CMPNE    R0,#+0
+   \   0000017C   F8FFFF1A           BNE      ??Cookies_Load_12
+   \   00000180   000050E3           CMP      R0,#+0
+   \   00000184   CAFFFF1A           BNE      ??Cookies_Load_3
+    134              }
+    135              mfree(buf);
+   \                     ??Cookies_Load_4:
+   \   00000188   0600A0E1           MOV      R0,R6
+   \   0000018C   150000EF           SWI      +21
+   \                     ??Cookies_Load_0:
+   \   00000190   ACD08DE2           ADD      SP,SP,#+172      ;; stack cleaning
+   \   00000194   F081BDE8           POP      {R4-R8,PC}       ;; return
+   \                     ??Cookies_Load_1:
+   \   00000198   ........           DC32     `?<Constant "\\r\\n">` + 4
+    136            }
+    137            
+    138          }
+    139          
+    140          //******************************************************************************
+    141          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    142          void Cookies_Add(char *cookie, char *domain)
+    143          {
+   \                     Cookies_Add:
+   \   00000000   F0412DE9           PUSH     {R4-R8,LR}
+    144            COOKIE_LIST* c=cookie_top;
+   \   00000004   ........           LDR      R6,??DataTable7  ;; cookie_top
+   \   00000008   0040A0E1           MOV      R4,R0
+   \   0000000C   005096E5           LDR      R5,[R6, #+0]
+   \   00000010   0170A0E1           MOV      R7,R1
+   \   00000014   000000EA           B        ??Cookies_Add_0
+    145            int len;
+    146            
+    147            while(c)
+    148            {
+    149              for(len=0; cookie[len]!='='; len++);
+    150              
+    151              if (strcmp(c->domain, domain)==0)
+    152              {
+    153                if (strncmp(c->cookie, cookie, len + 1)==0)//включая '='
+    154                {//обновляем кукис
+    155                  /*if (strncmp(c->cookie+len+1, "DELETED", 7)
+    156                  {
+    157                    if (c->cookie)
+    158                      mfree(c->cookie);
+    159                  }*/
+    160                  if (c->cookie)
+    161                    mfree(c->cookie);
+    162                  c->cookie=malloc(strlen(cookie)+1);
+    163                  strcpy(c->cookie, cookie);
+    164                  return;
+    165                }
+    166              }
+    167              c=c->next;
+   \                     ??Cookies_Add_1:
+   \   00000018   005095E5           LDR      R5,[R5, #+0]
+   \                     ??Cookies_Add_0:
+   \   0000001C   000055E3           CMP      R5,#+0
+   \   00000020   1F00000A           BEQ      ??Cookies_Add_2
+   \   00000024   0000D4E5           LDRB     R0,[R4, #+0]
+   \   00000028   0080A0E3           MOV      R8,#+0
+   \   0000002C   3D0050E3           CMP      R0,#+61
+   \   00000030   0100001A           BNE      ??Cookies_Add_3
+   \   00000034   030000EA           B        ??Cookies_Add_4
+   \                     ??Cookies_Add_5:
+   \   00000038   018088E2           ADD      R8,R8,#+1
+   \                     ??Cookies_Add_3:
+   \   0000003C   0400D8E7           LDRB     R0,[R8, +R4]
+   \   00000040   3D0050E3           CMP      R0,#+61
+   \   00000044   FBFFFF1A           BNE      ??Cookies_Add_5
+   \                     ??Cookies_Add_4:
+   \   00000048   0710A0E1           MOV      R1,R7
+   \   0000004C   080085E2           ADD      R0,R5,#+8
+   \   00000050   190000EF           SWI      +25
+   \   00000054   000050E3           CMP      R0,#+0
+   \   00000058   EEFFFF1A           BNE      ??Cookies_Add_1
+   \   0000005C   040095E5           LDR      R0,[R5, #+4]
+   \   00000060   012088E2           ADD      R2,R8,#+1
+   \   00000064   0410A0E1           MOV      R1,R4
+   \   00000068   150100EF           SWI      +277
+   \   0000006C   000050E3           CMP      R0,#+0
+   \   00000070   E8FFFF1A           BNE      ??Cookies_Add_1
+   \   00000074   040095E5           LDR      R0,[R5, #+4]
+   \   00000078   000050E3           CMP      R0,#+0
+   \   0000007C   0000000A           BEQ      ??Cookies_Add_6
+   \   00000080   150000EF           SWI      +21
+   \                     ??Cookies_Add_6:
+   \   00000084   0400A0E1           MOV      R0,R4
+   \   00000088   1B0000EF           SWI      +27
+   \   0000008C   010080E2           ADD      R0,R0,#+1
+   \   00000090   140000EF           SWI      +20
+   \   00000094   040085E5           STR      R0,[R5, #+4]
+   \   00000098   0410A0E1           MOV      R1,R4
+   \   0000009C   1A0000EF           SWI      +26
+   \   000000A0   F081BDE8           POP      {R4-R8,PC}
+    168            }
+    169            
+    170            c=malloc(sizeof(COOKIE_LIST)); 
+   \                     ??Cookies_Add_2:
+   \   000000A4   4800A0E3           MOV      R0,#+72
+   \   000000A8   140000EF           SWI      +20
+   \   000000AC   0050A0E1           MOV      R5,R0
+    171            snprintf(c->domain, 63, domain); 
+   \   000000B0   0720A0E1           MOV      R2,R7
+   \   000000B4   3F10A0E3           MOV      R1,#+63
+   \   000000B8   080085E2           ADD      R0,R5,#+8
+   \   000000BC   1B0100EF           SWI      +283
+    172            c->cookie=malloc(strlen(cookie)+1);
+   \   000000C0   0400A0E1           MOV      R0,R4
+   \   000000C4   1B0000EF           SWI      +27
+   \   000000C8   010080E2           ADD      R0,R0,#+1
+   \   000000CC   140000EF           SWI      +20
+   \   000000D0   040085E5           STR      R0,[R5, #+4]
+    173            strcpy(c->cookie, cookie);
+   \   000000D4   0410A0E1           MOV      R1,R4
+   \   000000D8   1A0000EF           SWI      +26
+    174            c->next=cookie_top;
+   \   000000DC   000096E5           LDR      R0,[R6, #+0]
+   \   000000E0   000085E5           STR      R0,[R5, #+0]
+    175            cookie_top=c; 
+   \   000000E4   005086E5           STR      R5,[R6, #+0]
+    176          }
+   \   000000E8   F081BDE8           POP      {R4-R8,PC}       ;; return
+    177          
+    178          //******************************************************************************
+    179          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    180          char* Cookies_GetByHost(char *host)
+    181          {
+    182            char *buf;
+    183            int buf_size;
+    184            char *s;  
+    185            char space[]=" ";
+   \                     Cookies_GetByHost:
+   \   00000000   D4109FE5           LDR      R1,??Cookies_GetByHost_0  ;; `?<Constant " ">`
+   \   00000004   F0412DE9           PUSH     {R4-R8,LR}
+   \   00000008   04D04DE2           SUB      SP,SP,#+4
+   \   0000000C   0020D1E5           LDRB     R2,[R1, #0]
+   \   00000010   0040A0E1           MOV      R4,R0
+   \   00000014   0D00A0E1           MOV      R0,SP
+   \   00000018   0020C0E5           STRB     R2,[R0, #+0]
+   \   0000001C   0120D1E5           LDRB     R2,[R1, #+1]
+   \   00000020   0120C0E5           STRB     R2,[R0, #+1]
+    186            
+    187            COOKIE_LIST* c=cookie_top;
+   \   00000024   ........           LDR      R0,??DataTable7  ;; cookie_top
+   \   00000028   005090E5           LDR      R5,[R0, #+0]
+    188            
+    189            if (c==NULL)
+   \   0000002C   000055E3           CMP      R5,#+0
+    190               return NULL;
+   \   00000030   0000A003           MOVEQ    R0,#+0
+   \   00000034   F281BD08           POPEQ    {R1,R4-R8,PC}
+    191            
+    192            buf=realloc(buf=NULL, buf_size=256);
+   \   00000038   406FA0E3           MOV      R6,#+256
+   \   0000003C   401FA0E3           MOV      R1,#+256
+   \   00000040   0000A0E3           MOV      R0,#+0
+   \   00000044   BA0000EF           SWI      +186
+   \   00000048   0070A0E1           MOV      R7,R0
+    193            *buf='\0';
+   \   0000004C   0000A0E3           MOV      R0,#+0
+   \   00000050   0000C7E5           STRB     R0,[R7, #+0]
+    194            
+    195            while(c)
+    196            {
+    197              s=host;
+    198              
+    199              if (*c->domain=='.')
+   \                     ??Cookies_GetByHost_1:
+   \   00000054   0810D5E5           LDRB     R1,[R5, #+8]
+   \   00000058   0400A0E1           MOV      R0,R4
+   \   0000005C   2E0051E3           CMP      R1,#+46
+   \   00000060   0000001A           BNE      ??Cookies_GetByHost_2
+    200                s=strchr(host, '.');
+   \   00000064   180000EF           SWI      +24
+    201              
+    202              if (strcmp(s, c->domain)==0)
+   \                     ??Cookies_GetByHost_2:
+   \   00000068   081085E2           ADD      R1,R5,#+8
+   \   0000006C   190000EF           SWI      +25
+   \   00000070   000050E3           CMP      R0,#+0
+   \   00000074   1300001A           BNE      ??Cookies_GetByHost_3
+    203              {  
+    204                if(strlen(buf) + strlen(c->cookie) + 2 > buf_size)
+   \   00000078   0700A0E1           MOV      R0,R7
+   \   0000007C   1B0000EF           SWI      +27
+   \   00000080   0080A0E1           MOV      R8,R0
+   \   00000084   040095E5           LDR      R0,[R5, #+4]
+   \   00000088   1B0000EF           SWI      +27
+   \   0000008C   000088E0           ADD      R0,R8,R0
+   \   00000090   020080E2           ADD      R0,R0,#+2
+   \   00000094   000056E1           CMP      R6,R0
+   \   00000098   0400002A           BCS      ??Cookies_GetByHost_4
+    205                  buf=realloc(buf, (buf_size+=256));
+   \   0000009C   406F86E2           ADD      R6,R6,#+256
+   \   000000A0   0610A0E1           MOV      R1,R6
+   \   000000A4   0700A0E1           MOV      R0,R7
+   \   000000A8   BA0000EF           SWI      +186
+   \   000000AC   0070A0E1           MOV      R7,R0
+    206                strcat(buf, space);
+   \                     ??Cookies_GetByHost_4:
+   \   000000B0   0D10A0E1           MOV      R1,SP
+   \   000000B4   0700A0E1           MOV      R0,R7
+   \   000000B8   170000EF           SWI      +23
+    207                strcat(buf, c->cookie);       
+   \   000000BC   041095E5           LDR      R1,[R5, #+4]
+   \   000000C0   0700A0E1           MOV      R0,R7
+   \   000000C4   170000EF           SWI      +23
+    208              }    
+    209              c=c->next;
+   \                     ??Cookies_GetByHost_3:
+   \   000000C8   005095E5           LDR      R5,[R5, #+0]
+    210            }
+   \   000000CC   000055E3           CMP      R5,#+0
+   \   000000D0   DFFFFF1A           BNE      ??Cookies_GetByHost_1
+    211            return buf;
+   \   000000D4   0700A0E1           MOV      R0,R7
+   \   000000D8   F281BDE8           POP      {R1,R4-R8,PC}    ;; return
+   \                     ??Cookies_GetByHost_0:
+   \   000000DC   ........           DC32     `?<Constant " ">`
+    212          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable5:
+   \   00000000   ........           DC32     APP_DIR
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ??DataTable7:
+   \   00000000   ........           DC32     cookie_top
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "\\r\\n">`:
+   \   00000000   0D0A00             DC8 "\015\012"
+   \   00000003   00                 DC8 0
+   \   00000004   2573636F6F6B       DC8 "%scookie"
+   \              696500      
+   \   0000000D   000000             DC8 0, 0, 0
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \   00000000   3A2000             DC8 ": "
+
+   \                                 In segment DATA_C, align 1, align-sorted
+   \                     `?<Constant " ">`:
+   \   00000000   2000               DC8 " "
+
+   Maximum stack usage in bytes:
+
+     Function            CSTACK
+     --------            ------
+     Cookies_Add            24
+     Cookies_Free           16
+     Cookies_Get             0
+     Cookies_GetByHost      28
+     Cookies_Load          196
+     Cookies_Save          148
+     Cookies_SaveAndFree     4
+
+
+   Segment part sizes:
+
+     Function/Label      Bytes
+     --------------      -----
+     cookie_top             4
+     Cookies_Get           12
+     Cookies_Free          68
+     Cookies_Save         248
+     Cookies_SaveAndFree   16
+     Cookies_Load         412
+     Cookies_Add          236
+     Cookies_GetByHost    224
+     ??DataTable5           4
+     ??DataTable7           4
+     ?<Constant "\r\n">    16
+     ?<Constant ": ">       3
+     ?<Constant " ">        2
+      Others               40
+
+ 
+ 1 252 bytes in segment CODE
+    21 bytes in segment DATA_C
+     4 bytes in segment DATA_Z
+    12 bytes in segment INITTAB
+ 
+ 1 224 bytes of CODE  memory (+ 40 bytes shared)
+    21 bytes of CONST memory
+     4 bytes of DATA  memory
+
+Errors: none
+Warnings: none

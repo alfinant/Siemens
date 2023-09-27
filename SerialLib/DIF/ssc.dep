@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3116373045</fileChecksum>
+  <configuration>
+    <name>Release NSG</name>
+    <outputs>
+      <file>$PROJ_DIR$\func.asm</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\ssc.asm</file>
+      <file>$PROJ_DIR$\Release NSG\Obj\func.r79</file>
+      <file>$PROJ_DIR$\ssc.h</file>
+      <file>$TOOLKIT_DIR$\INC\sha.h</file>
+      <file>$TOOLKIT_DIR$\INC\data_n.h</file>
+      <file>$TOOLKIT_DIR$\INC\pngconf.h</file>
+      <file>$PROJ_DIR$\Release NSG\Exe\ssc.elf</file>
+      <file>$TOOLKIT_DIR$\INC\zconf.h</file>
+      <file>$PROJ_DIR$\Release NSG\Obj\ssc.pbd</file>
+      <file>$PROJ_DIR$\Release NSG\List\ssc.lst</file>
+      <file>$TOOLKIT_DIR$\INC\rsa.h</file>
+      <file>$TOOLKIT_DIR$\INC\swilib.h</file>
+      <file>$TOOLKIT_DIR$\INC\md5.h</file>
+      <file>$TOOLKIT_DIR$\INC\png.h</file>
+      <file>$TOOLKIT_DIR$\INC\obs.h</file>
+      <file>$TOOLKIT_DIR$\lib\dl5tpainl8n.r79</file>
+      <file>$PROJ_DIR$\Release NSG\Obj\ssc.r79</file>
+      <file>$PROJ_DIR$\Release NSG\List\func.lst</file>
+      <file>$PROJ_DIR$\test.xcl</file>
+      <file>$TOOLKIT_DIR$\INC\crypto.h</file>
+      <file>$TOOLKIT_DIR$\INC\zlib.h</file>
+      <file>$PROJ_DIR$\Release NSG\Obj\main.r79</file>
+      <file>$PROJ_DIR$\Release NSG\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\INC\bn.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\func.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 3 19</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 23</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>ICCARM</name>
+          <file> 13 15 22 9 7 12 25 21 5 14 6 16 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ssc.asm</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 18 11</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release NSG\Exe\ssc.elf</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 20 3 23 18 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Release NSG\Obj\ssc.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 24</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

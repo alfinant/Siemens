@@ -1,0 +1,965 @@
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           /
+// IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION   06/May/2018  20:17:15 /
+// Copyright 1999-2005 IAR Systems. All rights reserved.                     /
+//                                                                           /
+//    Cpu mode        =  interwork                                           /
+//    Endian          =  little                                              /
+//    Stack alignment =  4                                                   /
+//    Source file     =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\main.c                                            /
+//    Command line    =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\main.c -D SGOLD -lCN E:\Users\alfinant\Documents\ /
+//                       Siemens\alfinant\MeasMon\Release_SGOLD\List\ -la    /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\List\ -o                            /
+//                       E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\Obj\ -z9 --cpu_mode arm --endian    /
+//                       little --cpu ARM926EJ-S --stack_align 4             /
+//                       --interwork -e --fpu None --dlib_config             /
+//                       E:\Users\alfinant\Documents\Siemens\IAR\ARM\LIB\dl5 /
+//                       tpainl8n.h -I E:\Users\alfinant\Documents\Siemens\I /
+//                       AR\ARM\INC\ --inline_threshold=2                    /
+//    List file       =  E:\Users\alfinant\Documents\Siemens\alfinant\MeasMo /
+//                       n\Release_SGOLD\List\main.s79                       /
+//                                                                           /
+//                                                                           /
+//////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "StackAlign4", "USED"
+        RTMODEL "__cpu_mode", "__pcs__interwork"
+        RTMODEL "__data_model", "absolute"
+        RTMODEL "__endian", "little"
+        RTMODEL "__rt_version", "6"
+
+        RSEG CSTACK:DATA:NOROOT(2)
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        PUBWEAK `?*?DATA_ID`
+??DataTable0 EQU 0
+??DataTable1 EQU 0
+??DataTable2 EQU 0
+??DataTable3 EQU 0
+??DataTable4 EQU 0
+??DataTable8 EQU 0
+??DataTable9 EQU 0
+        MULTWEAK ??ElfKiller??rT
+        MULTWEAK ??MEAS_Delete??rA
+        MULTWEAK ??MEAS_Init??rA
+        MULTWEAK ??MEAS_Start??rA
+        MULTWEAK ??UpdateCSMname??rT
+        MULTWEAK ??kill_data??rA
+        MULTWEAK ??main??rT
+        MULTWEAK ??meas_callback??rT
+        MULTWEAK ??patch_header??rA
+        MULTWEAK ??patch_tview??rA
+        PUBWEAK ?init?tab?DATA_I
+        PUBWEAK ?init?tab?DATA_Z
+        PUBLIC ElfKiller
+        FUNCTION ElfKiller,0603H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC UpdateCSMname
+        FUNCTION UpdateCSMname,0203H
+        LOCFRAME CSTACK, 4, STACK
+        PUBLIC VMAX
+        PUBLIC VREF
+        FUNCTION gHook,0603H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC main
+        FUNCTION main,0a03H
+        LOCFRAME CSTACK, 52, STACK
+        FUNCTION maincsm_onclose,0603H
+        LOCFRAME CSTACK, 4, STACK
+        FUNCTION maincsm_oncreate,0603H
+        LOCFRAME CSTACK, 20, STACK
+        FUNCTION maincsm_onmessage,0603H
+        PUBLIC maingui_id
+        PUBLIC meas_callback
+        FUNCTION meas_callback,0601H
+        LOCFRAME CSTACK, 12, STACK
+        FUNCTION onKey,0603H
+        PUBWEAK patch_header
+        FUNCTION patch_header,0203H
+        LOCFRAME CSTACK, 8, STACK
+        PUBWEAK patch_tview
+        FUNCTION patch_tview,0203H
+        LOCFRAME CSTACK, 12, STACK
+        FUNCTION proc3,0601H
+        FUNCTION tmr_hndl,0601H
+        LOCFRAME CSTACK, 16, STACK
+        PUBLIC tmr_id
+        PUBLIC tvgui
+        PUBLIC volt
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA R13 HUGEDATA
+        CFI Resource R0:32, R1:32, R2:32, R3:32, R4:32, R5:32, R6:32, R7:32
+        CFI Resource R8:32, R9:32, R10:32, R11:32, R12:32, CPSR:32, R13:32
+        CFI Resource R14:32, SPSR:32
+        CFI VirtualResource ?RET:32
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 4
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 2
+        CFI DataAlign 4
+        CFI ReturnAddress ?RET CODE
+        CFI CFA R13+0
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 Undefined
+        CFI CPSR SameValue
+        CFI R14 Undefined
+        CFI SPSR SameValue
+        CFI ?RET R14
+        CFI EndCommon cfiCommon1
+        
+MEAS_Delete         SYMBOL "MEAS_Delete"
+MEAS_Init           SYMBOL "MEAS_Init"
+MEAS_Start          SYMBOL "MEAS_Start"
+kill_data           SYMBOL "kill_data"
+ElfKiller           SYMBOL "ElfKiller"
+??ElfKiller??rT     SYMBOL "??rT", ElfKiller
+??MEAS_Delete??rA   SYMBOL "??rA", MEAS_Delete
+??MEAS_Init??rA     SYMBOL "??rA", MEAS_Init
+??MEAS_Start??rA    SYMBOL "??rA", MEAS_Start
+UpdateCSMname       SYMBOL "UpdateCSMname"
+??UpdateCSMname??rT SYMBOL "??rT", UpdateCSMname
+??kill_data??rA     SYMBOL "??rA", kill_data
+main                SYMBOL "main"
+??main??rT          SYMBOL "??rT", main
+meas_callback       SYMBOL "meas_callback"
+??meas_callback??rT SYMBOL "??rT", meas_callback
+patch_header        SYMBOL "patch_header"
+??patch_header??rA  SYMBOL "??rA", patch_header
+patch_tview         SYMBOL "patch_tview"
+??patch_tview??rA   SYMBOL "??rA", patch_tview
+
+        EXTERN MEAS_Delete
+        FUNCTION MEAS_Delete,0200H
+        EXTERN MEAS_Init
+        FUNCTION MEAS_Init,0202H
+        EXTERN MEAS_Start
+        FUNCTION MEAS_Start,0200H
+        EXTERN adata
+        EXTERN kill_data
+        FUNCTION kill_data,0202H
+
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function patch_header
+        ARM
+// __??Code32?? __code __interwork __atpcs void patch_header(HEADER_DESC const *)
+patch_header:
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        MOV      R4,R0
+        MOV      R0,#+0
+        STRH     R0,[R4, #+0]
+        STRH     R0,[R4, #+2]
+        SWI      +33160
+        SUB      R0,R0,#+1
+        STRH     R0,[R4, #+4]
+        SWI      +33162
+        SUB      R0,R0,#+1
+        STRH     R0,[R4, #+6]
+        POP      {R4,PC}          ;; return
+        CFI EndBlock cfiBlock0
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function patch_tview
+        ARM
+// __??Code32?? __code __interwork __atpcs void patch_tview(TVIEW_DESC const *)
+patch_tview:
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        MOV      R4,R0
+        MOV      R0,#+0
+        STRH     R0,[R4, #+24]
+        SWI      +33162
+        ADD      R0,R0,#+1
+        STRH     R0,[R4, #+26]
+        SWI      +33160
+        SUB      R0,R0,#+1
+        STRH     R0,[R4, #+28]
+        SWI      +33161
+        MOV      R5,R0
+        SWI      +33163
+        SUB      R0,R5,R0
+        SUB      R0,R0,#+1
+        STRH     R0,[R4, #+30]
+        POP      {R4,R5,PC}       ;; return
+        CFI EndBlock cfiBlock1
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock2 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??tmr_hndl??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock2
+        REQUIRE tmr_hndl
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function tmr_hndl
+        ARM
+tmr_hndl:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        LDR      R4,??DataTable7  ;; VREF
+        LDR      R5,??DataTable10  ;; adata
+        LDR      R0,[R5, #+0]
+        CMN      R0,#+1
+        BEQ      ??tmr_hndl_0
+        MOV      R0,#+80
+        SWI      +293
+        MOV      R6,R0
+        MOV      R1,#+21
+        ORR      R1,R1,#0xE000
+        SWI      +28
+        LDR      R3,[R4, #+8]
+        LDR      R2,[R5, #+0]
+        LDR      R1,??tmr_hndl_1  ;; `?<Constant "\\n\\nM2: 0x%X\\nV: %d mV">`
+        MOV      R0,R6
+        SWI      +534
+        SWI      +32789
+        MOV      R5,R0
+        SWI      +32788
+        MOV      R3,R5
+        MOV      R2,R0
+        LDR      R0,[R4, #+16]
+        MOV      R1,R6
+        SWI      +728
+        SWI      +319
+??tmr_hndl_0:
+        _BLF     MEAS_Start,??MEAS_Start??rA
+        LDR      R3,??DataTable6  ;; tmr_hndl
+        LDR      R1,[R4, #+12]
+        LDR      R0,[R4, #+16]
+        LDR      R4,??DataTable5  ;; 0xffffffffa0cc8bad
+        MOV      R2,#+1000
+        BLX      R4
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??tmr_hndl_1:
+        DC32     `?<Constant "\\n\\nM2: 0x%X\\nV: %d mV">`
+        CFI EndBlock cfiBlock3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock4 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??proc3??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock4
+        REQUIRE proc3
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function proc3
+        ARM
+proc3:
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock5
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??onKey??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock6
+        REQUIRE onKey
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function onKey
+        ARM
+onKey:
+        LDRSH    R0,[R1, #+2]
+        CMP      R0,#+1
+        BNE      ??onKey_0
+??onKey_1:
+        MOV      R0,#+0
+        BX       LR
+??onKey_0:
+        LDR      R0,[R1, #+4]
+        MOV      R2,#+147
+        LDRSH    R1,[R0, #+2]
+        ORR      R2,R2,#0x100
+        CMP      R1,R2
+        ADDNE    R2,R2,#+2
+        CMPNE    R1,R2
+        LDREQ    R0,[R0, #+4]
+        CMPEQ    R0,#+4
+        BNE      ??onKey_1
+        B        ?Subroutine11
+        CFI EndBlock cfiBlock7
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??gHook??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock8
+        REQUIRE gHook
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI Function gHook
+        ARM
+gHook:
+        PUSH     {R4-R6,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R6 Frame(CFA, -8)
+        CFI R5 Frame(CFA, -12)
+        CFI R4 Frame(CFA, -16)
+        CFI CFA R13+16
+        CMP      R1,#+2
+        BNE      ??gHook_0
+        SWI      +686
+        MOV      R4,R0
+        MOV      R0,#+32
+        SWI      +293
+        LDR      R1,??gHook_1     ;; percent_t
+        MOV      R5,R0
+        ADD      R2,R1,#+4
+        SWI      +292
+        SWI      +32789
+        MOV      R6,R0
+        SWI      +32788
+        MOV      R2,R0
+        MOV      R3,R6
+        MOV      R1,R5
+        MOV      R0,R4
+        SWI      +687
+        POP      {R4-R6,PC}
+??gHook_0:
+        CMP      R1,#+10
+        POPNE    {R4-R6,PC}
+        SWI      +383
+        POP      {R4-R6,PC}       ;; return
+        DATA
+??gHook_1:
+        DC32     percent_t
+        CFI EndBlock cfiBlock9
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock10 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??maincsm_oncreate??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock10
+        REQUIRE maincsm_oncreate
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+VREF:
+        DS8 4
+        REQUIRE `?<Initializer for VREF>`
+VMAX:
+        DS8 4
+        REQUIRE `?<Initializer for VMAX>`
+volt:
+        DS8 4
+        REQUIRE `?<Initializer for volt>`
+tmr_id:
+        DS8 4
+        REQUIRE `?<Initializer for tmr_id>`
+tvgui:
+        DS8 4
+        REQUIRE `?<Initializer for tvgui>`
+maingui_id:
+        DS8 4
+        REQUIRE `?<Initializer for maingui_id>`
+        DS8 20
+        REQUIRE `?<Initializer for hdr>`
+        DS8 52
+        REQUIRE `?<Initializer for tv_desc>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+sk:
+        DS8 24
+        REQUIRE `?<Initializer for sk>`
+
+        RSEG DATA_I:DATA:SORT:NOROOT(2)
+skt:
+        DS8 8
+        REQUIRE `?<Initializer for skt>`
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI Function maincsm_oncreate
+        ARM
+maincsm_oncreate:
+        PUSH     {R4-R7,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R7 Frame(CFA, -8)
+        CFI R6 Frame(CFA, -12)
+        CFI R5 Frame(CFA, -16)
+        CFI R4 Frame(CFA, -20)
+        CFI CFA R13+20
+        LDR      R6,??DataTable7  ;; VREF
+        MOV      R4,R0
+        MOV      R0,#+0
+        STR      R0,[R4, #+16]
+        STR      R0,[R4, #+20]
+        SWI      +32789
+        MOV      R5,R0
+        SWI      +32788
+        MOV      R1,R5
+        SWI      +726
+        STR      R0,[R6, #+16]
+        ADD      R1,R6,#+44
+        SWI      +727
+        ADD      R0,R6,#+24
+        _BLF     patch_header,??patch_header??rA
+        SWI      +32788
+        MOV      R2,R0
+        LDR      R0,[R6, #+16]
+        ADD      R1,R6,#+24
+        SWI      +678
+        ADD      R0,R6,#+24
+        _BLF     patch_header,??patch_header??rA
+        ADD      R0,R6,#+44
+        _BLF     patch_tview,??patch_tview??rA
+        MOV      R0,#+80
+        SWI      +293
+        MOV      R5,R0
+        MOV      R1,#+21
+        ORR      R1,R1,#0xE000
+        SWI      +28
+        LDR      R1,??maincsm_oncreate_0  ;; `?<Constant "\\n\\nM2: -----">`
+        MOV      R0,R5
+        SWI      +534
+        SWI      +32789
+        MOV      R7,R0
+        SWI      +32788
+        MOV      R3,R7
+        MOV      R2,R0
+        LDR      R0,[R6, #+16]
+        MOV      R1,R5
+        SWI      +728
+        LDR      R0,[R6, #+16]
+        SWI      +311
+        LDR      R1,??maincsm_oncreate_0+0x4  ;; 0xffffffffa0cc8b3b
+        STR      R0,[R6, #+20]
+        STR      R0,[R4, #+40]
+        LDR      R0,[R6, #+16]
+        LDR      R4,??DataTable5  ;; 0xffffffffa0cc8bad
+        BLX      R1
+        LDR      R3,??DataTable6  ;; tmr_hndl
+        STR      R0,[R6, #+12]
+        MOV      R2,#+0
+        MOV      R1,R0
+        LDR      R0,[R6, #+16]
+        BLX      R4
+        POP      {R4-R7,PC}       ;; return
+        DATA
+??maincsm_oncreate_0:
+        DC32     `?<Constant "\\n\\nM2: -----">`
+        DC32     0xffffffffa0cc8b3b
+        CFI EndBlock cfiBlock11
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable5:
+        DC32     0xffffffffa0cc8bad
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable6:
+        DC32     tmr_hndl
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock12 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??ElfKiller??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock12
+        REQUIRE ElfKiller
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI Function ElfKiller
+        ARM
+ElfKiller:
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        SWI      +32789
+        MOV      R1,R0
+        LDR      R0,??ElfKiller_0  ;; SFB(ELFBEGIN)
+        POP      {LR}             ;; Pop
+        CFI ?RET R14
+        CFI CFA R13+0
+        _BF      kill_data,??kill_data??rA  ;; tailcall
+        DATA
+??ElfKiller_0:
+        DC32     SFB(ELFBEGIN)
+        CFI EndBlock cfiBlock13
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock14 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??maincsm_onclose??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock14
+        REQUIRE maincsm_onclose
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI Function maincsm_onclose
+        ARM
+maincsm_onclose:
+        LDR      R0,??DataTable7  ;; VREF
+        LDR      R2,??maincsm_onclose_0  ;; 0xffffffffa0cc8c27
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        LDR      R1,[R0, #+12]
+        LDR      R0,[R0, #+16]
+        BLX      R2
+        _BLF     MEAS_Delete,??MEAS_Delete??rA
+        LDR      R0,??DataTable12  ;; ElfKiller
+        SWI      +369
+        POP      {PC}             ;; return
+        DATA
+??maincsm_onclose_0:
+        DC32     0xffffffffa0cc8c27
+        CFI EndBlock cfiBlock15
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable7:
+        DC32     VREF
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock16 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??maincsm_onmessage??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock16
+        REQUIRE maincsm_onmessage
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock17 Using cfiCommon0
+        CFI Function maincsm_onmessage
+        ARM
+maincsm_onmessage:
+        LDRSH    R2,[R1, #+2]
+        CMP      R2,#+152
+        LDREQ    R1,[R1, #+8]
+        LDREQ    R2,[R0, #+40]
+        CMPEQ    R1,R2
+        MVNEQ    R1,#+2
+        STREQ    R1,[R0, #+16]
+        CFI EndBlock cfiBlock17
+        REQUIRE ?Subroutine11
+        ;; // Fall through to label ?Subroutine11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI NoFunction
+        ARM
+?Subroutine11:
+        MOV      R0,#+1
+        BX       LR               ;; return
+        CFI EndBlock cfiBlock18
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock19 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??UpdateCSMname??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock19
+        REQUIRE UpdateCSMname
+
+        RSEG DATA_Z:DATA:SORT:NOROOT(2)
+maincsm_name_body:
+        DS8 280
+
+        RSEG DATA_C:CONST:SORT:NOROOT(0)
+`?<Constant "">`:
+        DATA
+        DC8 ""
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\302\\373\\365\\356\\344">`:
+        DATA
+        DC8 "\302\373\365\356\344"
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n\\nM2: 0x%X\\nV: %d mV">`:
+        DATA
+        DC8 "\012\012M2: 0x%X\012V: %d mV"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "\\n\\nM2: -----">`:
+        DATA
+        DC8 "\012\012M2: -----"
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+`?<Constant "Meas Monitor">`:
+        DATA
+        DC8 "Meas Monitor"
+        DC8 0, 0, 0
+        DC8 "HISR not created:("
+        DC8 0
+        DC32 maincsm_onmessage, maincsm_oncreate, maincsm_onclose, 44, 1
+        DC32 minus11, maincsm_name_body, 55AACCCCH, 3333AA55H, 0
+        DC16 139
+        DC8 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+percent_t:
+        DATA
+        DC8 "%t"
+        DC8 0
+        DC8 "MEAS Monitor"
+        DC8 0, 0, 0
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+mmenusoftkeys:
+        DATA
+        DC32 0, 1, 2
+
+        RSEG DATA_C:CONST:SORT:NOROOT(2)
+minus11:
+        DATA
+        DC32 -11
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock20 Using cfiCommon0
+        CFI Function UpdateCSMname
+        ARM
+UpdateCSMname:
+        LDR      R0,??DataTable11  ;; `?<Constant "Meas Monitor">`
+        PUSH     {LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI CFA R13+4
+        MOV      R1,R0
+        ADD      R0,R0,#+60
+        SWI      +292
+        POP      {PC}             ;; return
+        CFI EndBlock cfiBlock20
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock21 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??meas_callback??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock21
+        REQUIRE meas_callback
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock22 Using cfiCommon0
+        CFI Function meas_callback
+        ARM
+meas_callback:
+        LDR      R0,??DataTable10  ;; adata
+        PUSH     {R4,R5,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R5 Frame(CFA, -8)
+        CFI R4 Frame(CFA, -12)
+        CFI CFA R13+12
+        LDR      R0,[R0, #+0]
+        LDR      R4,??meas_callback_0  ;; VREF
+        MVN      R1,#+252
+        BIC      R1,R1,#0x700
+        ADD      R0,R1,R0
+        LDR      R1,[R4, #+0]
+        CMP      R0,#+50
+        MOVLT    R0,#+0
+        MUL      R1,R0,R1
+        MOV      R0,#+253
+        ORR      R0,R0,#0x700
+        SWI      +188
+        MOV      R5,R0
+        LDR      R0,[R4, #+4]
+        MOV      R2,#+1000
+        MUL      R1,R2,R0
+        LDR      R0,[R4, #+0]
+        SWI      +188
+        MUL      R1,R0,R5
+        MOV      R0,#+1000
+        SWI      +188
+        STR      R0,[R4, #+8]
+        POP      {R4,R5,PC}       ;; return
+        DATA
+??meas_callback_0:
+        DC32     VREF
+        CFI EndBlock cfiBlock22
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable10:
+        DC32     adata
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock23 Using cfiCommon1
+        CFI NoFunction
+        THUMB
+??main??rT:
+        BX       PC
+        Nop      
+        CFI EndBlock cfiBlock23
+        REQUIRE main
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock24 Using cfiCommon0
+        CFI Function main
+        ARM
+main:
+        LDR      R0,??main_0      ;; meas_callback
+        PUSH     {R4,LR}
+        CFI ?RET Frame(CFA, -4)
+        CFI R4 Frame(CFA, -8)
+        CFI CFA R13+8
+        LDR      R4,??DataTable11  ;; `?<Constant "Meas Monitor">`
+        SUB      SP,SP,#+44
+        CFI CFA R13+52
+        _BLF     MEAS_Init,??MEAS_Init??rA
+        CMP      R0,#+0
+        BEQ      ??main_1
+        MOV      R1,#+44
+        MOV      R0,SP
+        SWI      +285
+        BL       UpdateCSMname
+        SWI      +326
+        MOV      R2,#+0
+        MOV      R1,SP
+        ADD      R0,R4,#+36
+        SWI      +263
+        SWI      +327
+        B        ??main_2
+??main_1:
+        ADD      R1,R4,#+16
+        MOV      R0,#+1
+        SWI      +328
+        LDR      R0,??DataTable12  ;; ElfKiller
+        SWI      +369
+??main_2:
+        MOV      R0,#+0
+        ADD      SP,SP,#+44
+        CFI CFA R13+8
+        POP      {R4,PC}          ;; return
+        DATA
+??main_0:
+        DC32     meas_callback
+        CFI EndBlock cfiBlock24
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable11:
+        DC32     `?<Constant "Meas Monitor">`
+
+        RSEG CODE:CODE:NOROOT(2)
+        DATA
+??DataTable12:
+        DC32     ElfKiller
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock25 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??MEAS_Start??rA:
+        LDR      R12,??Subroutine12_0  ;; MEAS_Start
+        BX       R12
+        DATA
+??Subroutine12_0:
+        DC32     MEAS_Start
+        CFI EndBlock cfiBlock25
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock26 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??patch_header??rA:
+        LDR      R12,??Subroutine13_0  ;; patch_header
+        BX       R12
+        DATA
+??Subroutine13_0:
+        DC32     patch_header
+        CFI EndBlock cfiBlock26
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock27 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??patch_tview??rA:
+        LDR      R12,??Subroutine14_0  ;; patch_tview
+        BX       R12
+        DATA
+??Subroutine14_0:
+        DC32     patch_tview
+        CFI EndBlock cfiBlock27
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock28 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??kill_data??rA:
+        LDR      R12,??Subroutine15_0  ;; kill_data
+        BX       R12
+        DATA
+??Subroutine15_0:
+        DC32     kill_data
+        CFI EndBlock cfiBlock28
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock29 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??MEAS_Delete??rA:
+        LDR      R12,??Subroutine16_0  ;; MEAS_Delete
+        BX       R12
+        DATA
+??Subroutine16_0:
+        DC32     MEAS_Delete
+        CFI EndBlock cfiBlock29
+
+        RSEG CODE:CODE:NOROOT(2)
+        CFI Block cfiBlock30 Using cfiCommon0
+        CFI NoFunction
+        ARM
+??MEAS_Init??rA:
+        LDR      R12,??Subroutine17_0  ;; MEAS_Init
+        BX       R12
+        DATA
+??Subroutine17_0:
+        DC32     MEAS_Init
+        CFI EndBlock cfiBlock30
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for VREF>`:
+        DATA
+        DC32 1960
+`?<Initializer for VMAX>`:
+        DC32 15220
+`?<Initializer for volt>`:
+        DC32 0
+`?<Initializer for tmr_id>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for tvgui>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for maingui_id>`:
+        DC8 0, 0, 0, 0
+`?<Initializer for hdr>`:
+        DC16 0, 0, 0, 0
+        DC32 0H, 0, 32767
+`?<Initializer for tv_desc>`:
+        DC32 8, onKey, gHook, proc3, mmenusoftkeys, skt
+        DC16 0, 0, 0, 0
+        DC32 8, 100, 101, 0, 2
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for sk>`:
+        DATA
+        DC16 24, 0
+        DC32 `?<Constant "">`
+        DC16 1, 0
+        DC32 `?<Constant "\\302\\373\\365\\356\\344">`
+        DC16 0, 0
+        DC32 -1
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?<Initializer for skt>`:
+        DATA
+        DC32 sk, 0
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_Z:
+        DCD      sfe(DATA_Z) - sfb(DATA_Z), sfb(DATA_Z), sfb(DATA_Z)
+
+        RSEG DATA_ID:CONST:SORT:NOROOT(2)
+`?*?DATA_ID`:
+
+        RSEG INITTAB:CODE:ROOT(2)
+        DATA
+?init?tab?DATA_I:
+        DCD      sfe(DATA_I) - sfb(DATA_I), sfb(DATA_I), sfb(DATA_ID)
+
+        RSEG ELFBEGIN:DATA:REORDER:NOROOT(0)
+
+        END
+// 
+// 1 144 bytes in segment CODE
+//   157 bytes in segment DATA_C
+//   128 bytes in segment DATA_I
+//   128 bytes in segment DATA_ID
+//   280 bytes in segment DATA_Z
+//    24 bytes in segment INITTAB
+// 
+// 912 bytes of CODE  memory (+ 256 bytes shared)
+// 285 bytes of CONST memory
+// 408 bytes of DATA  memory
+//
+//Errors: none
+//Warnings: 4

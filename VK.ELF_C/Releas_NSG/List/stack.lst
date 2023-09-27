@@ -1,0 +1,855 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    17/Nov/2019  22:06:55 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\openssl\crypto\stack\stack.c                       #
+#    Command line    =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\openssl\crypto\stack\stack.c -D NEWSGOLD -D DEBUG  #
+#                       -lCN E:\Users\alfinant7\Documents\Siemens\alfinant\s #
+#                       rc_iar\VK.ELF_C\Releas_NSG\List\ -la                 #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\List\ -o                       #
+#                       E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\Obj\ -z9 --cpu_mode arm        #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork --diag_suppress Pe301 -e --fpu None      #
+#                       --dlib_config E:\Users\alfinant7\Documents\Siemens\I #
+#                       AR\ARM\LIB\dl5tpainl8n.h -I                          #
+#                       E:\Users\alfinant7\Documents\Siemens\IAR\ARM\INC\    #
+#                       --inline_threshold=2                                 #
+#    List file       =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\List\stack.lst                 #
+#    Object file     =  E:\Users\alfinant7\Documents\Siemens\alfinant\src_ia #
+#                       r\VK.ELF_C\Releas_NSG\Obj\stack.r79                  #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\openssl\crypto\stack\stack.c
+      1          /* crypto/stack/stack.c */
+      2          /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+      3           * All rights reserved.
+      4           *
+      5           * This package is an SSL implementation written
+      6           * by Eric Young (eay@cryptsoft.com).
+      7           * The implementation was written so as to conform with Netscapes SSL.
+      8           * 
+      9           * This library is free for commercial and non-commercial use as long as
+     10           * the following conditions are aheared to.  The following conditions
+     11           * apply to all code found in this distribution, be it the RC4, RSA,
+     12           * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+     13           * included with this distribution is covered by the same copyright terms
+     14           * except that the holder is Tim Hudson (tjh@cryptsoft.com).
+     15           * 
+     16           * Copyright remains Eric Young's, and as such any Copyright notices in
+     17           * the code are not to be removed.
+     18           * If this package is used in a product, Eric Young should be given attribution
+     19           * as the author of the parts of the library used.
+     20           * This can be in the form of a textual message at program startup or
+     21           * in documentation (online or textual) provided with the package.
+     22           * 
+     23           * Redistribution and use in source and binary forms, with or without
+     24           * modification, are permitted provided that the following conditions
+     25           * are met:
+     26           * 1. Redistributions of source code must retain the copyright
+     27           *    notice, this list of conditions and the following disclaimer.
+     28           * 2. Redistributions in binary form must reproduce the above copyright
+     29           *    notice, this list of conditions and the following disclaimer in the
+     30           *    documentation and/or other materials provided with the distribution.
+     31           * 3. All advertising materials mentioning features or use of this software
+     32           *    must display the following acknowledgement:
+     33           *    "This product includes cryptographic software written by
+     34           *     Eric Young (eay@cryptsoft.com)"
+     35           *    The word 'cryptographic' can be left out if the rouines from the library
+     36           *    being used are not cryptographic related :-).
+     37           * 4. If you include any Windows specific code (or a derivative thereof) from 
+     38           *    the apps directory (application code) you must include an acknowledgement:
+     39           *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+     40           * 
+     41           * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+     42           * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     43           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+     44           * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+     45           * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+     46           * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+     47           * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     48           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+     49           * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+     50           * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+     51           * SUCH DAMAGE.
+     52           * 
+     53           * The licence and distribution terms for any publically available version or
+     54           * derivative of this code cannot be changed.  i.e. this code cannot simply be
+     55           * copied and put under another distribution licence
+     56           * [including the GNU Public Licence.]
+     57           */
+     58          
+     59          /* Code for stacks
+     60           * Author - Eric Young v 1.0
+     61           * 1.2 eay 12-Mar-97 -	Modified sk_find so that it _DOES_ return the
+     62           *			lowest index for the searched item.
+     63           *
+     64           * 1.1 eay - Take from netdb and added to SSLeay
+     65           *
+     66           * 1.0 eay - First version 29/07/92
+     67           */
+     68          
+     69          #include <siemens/swilib.h> //#include <stdio.h>
+     70          #include <openssl/cryptlib.h>
+     71          #include <openssl/stack.h>
+     72          
+     73          #undef MIN_NODES
+     74          #define MIN_NODES	4
+     75          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     76          const char *STACK_version="Stack" OPENSSL_VERSION_PTEXT;
+   \                     STACK_version:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for STACK_version>`
+     77          
+     78          #include <errno.h>
+     79          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     80          int (*sk_set_cmp_func(STACK *sk, int (*c)(const char * const *,const char * const *)))
+     81          		(const char * const *, const char * const *)
+     82          	{
+     83          	int (*old)(const char * const *,const char * const *)=sk->comp;
+   \                     sk_set_cmp_func:
+   \   00000000   102090E5           LDR      R2,[R0, #+16]
+     84          
+     85          	if (sk->comp != c)
+   \   00000004   010052E1           CMP      R2,R1
+     86          		sk->sorted=0;
+   \   00000008   0030A013           MOVNE    R3,#+0
+   \   0000000C   08308015           STRNE    R3,[R0, #+8]
+     87          	sk->comp=c;
+   \   00000010   101080E5           STR      R1,[R0, #+16]
+     88          
+     89          	return old;
+   \   00000014   0200A0E1           MOV      R0,R2
+   \   00000018   1EFF2FE1           BX       LR               ;; return
+     90          	}
+     91          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     92          STACK *sk_dup(STACK *sk)
+     93          	{
+   \                     sk_dup:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+     94          	STACK *ret;
+     95          	char **s;
+     96          
+     97          	if ((ret=sk_new(sk->comp)) == NULL) goto err;
+   \   00000008   100094E5           LDR      R0,[R4, #+16]
+   \   0000000C   ........           BL       sk_new
+   \   00000010   0050B0E1           MOVS     R5,R0
+   \   00000014   1600000A           BEQ      ??sk_dup_0
+     98          	s=(char **)realloc((char *)ret->data,
+     99          		(unsigned int)sizeof(char *)*sk->num_alloc);
+   \   00000018   0C0094E5           LDR      R0,[R4, #+12]
+   \   0000001C   0011A0E1           LSL      R1,R0,#+2
+   \   00000020   040095E5           LDR      R0,[R5, #+4]
+   \   00000024   BA0000EF           SWI      +186
+    100          	if (s == NULL) goto err;
+   \   00000028   000050E3           CMP      R0,#+0
+   \   0000002C   0E00000A           BEQ      ??sk_dup_1
+    101          	ret->data=s;
+   \   00000030   040085E5           STR      R0,[R5, #+4]
+    102          
+    103          	ret->num=sk->num;
+   \   00000034   000094E5           LDR      R0,[R4, #+0]
+   \   00000038   000085E5           STR      R0,[R5, #+0]
+    104          	memcpy(ret->data,sk->data,sizeof(char *)*sk->num);
+   \   0000003C   000094E5           LDR      R0,[R4, #+0]
+   \   00000040   041094E5           LDR      R1,[R4, #+4]
+   \   00000044   0021A0E1           LSL      R2,R0,#+2
+   \   00000048   040095E5           LDR      R0,[R5, #+4]
+   \   0000004C   1E0100EF           SWI      +286
+    105          	ret->sorted=sk->sorted;
+   \   00000050   080094E5           LDR      R0,[R4, #+8]
+   \   00000054   080085E5           STR      R0,[R5, #+8]
+    106          	ret->num_alloc=sk->num_alloc;
+   \   00000058   0C0094E5           LDR      R0,[R4, #+12]
+   \   0000005C   0C0085E5           STR      R0,[R5, #+12]
+    107          	ret->comp=sk->comp;
+   \   00000060   100094E5           LDR      R0,[R4, #+16]
+   \   00000064   100085E5           STR      R0,[R5, #+16]
+    108          	return(ret);
+   \   00000068   ........           B        ?Subroutine21
+    109          err:
+    110          	if(ret)
+    111          		sk_free(ret);
+   \                     ??sk_dup_1:
+   \   0000006C   0500A0E1           MOV      R0,R5
+   \   00000070   ........           BL       sk_free
+    112          	return(NULL);
+   \                     ??sk_dup_0:
+   \   00000074   ........           B        ?Subroutine20
+    113          	}
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine21:
+   \   00000000   0500A0E1           MOV      R0,R5
+   \   00000004   3080BDE8           POP      {R4,R5,PC}
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine20:
+   \   00000000   0000A0E3           MOV      R0,#+0
+   \   00000004   3080BDE8           POP      {R4,R5,PC}       ;; return
+    114          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    115          STACK *sk_new_null(void)
+    116          	{
+    117          	return sk_new((int (*)(const char * const *, const char * const *))0);
+   \                     sk_new_null:
+   \   00000000   0000A0E3           MOV      R0,#+0
+   \   00000004   ........           B        sk_new           ;; tailcall
+    118          	}
+    119          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    120          STACK *sk_new(int (*c)(const char * const *, const char * const *))
+    121          	{
+   \                     sk_new:
+   \   00000000   30402DE9           PUSH     {R4,R5,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+    122          	STACK *ret;
+    123          	int i;
+    124          
+    125          	if ((ret=(STACK *)malloc(sizeof(STACK))) == NULL)
+   \   00000008   1400A0E3           MOV      R0,#+20
+   \   0000000C   140000EF           SWI      +20
+   \   00000010   0050B0E1           MOVS     R5,R0
+   \   00000014   1200000A           BEQ      ??sk_new_0
+    126          		goto err;
+    127          	if ((ret->data=(char **)malloc(sizeof(char *)*MIN_NODES)) == NULL)
+   \   00000018   1000A0E3           MOV      R0,#+16
+   \   0000001C   140000EF           SWI      +20
+   \   00000020   040085E5           STR      R0,[R5, #+4]
+   \   00000024   000050E3           CMP      R0,#+0
+   \   00000028   0B00000A           BEQ      ??sk_new_1
+    128          		goto err;
+    129          	for (i=0; i<MIN_NODES; i++)
+   \   0000002C   0010A0E3           MOV      R1,#+0
+   \   00000030   0020A0E3           MOV      R2,#+0
+    130          		ret->data[i]=NULL;
+   \                     ??sk_new_2:
+   \   00000034   012180E7           STR      R2,[R0, +R1, LSL #+2]
+   \   00000038   011081E2           ADD      R1,R1,#+1
+   \   0000003C   040051E3           CMP      R1,#+4
+   \   00000040   FBFFFFBA           BLT      ??sk_new_2
+    131          	ret->comp=c;
+   \   00000044   104085E5           STR      R4,[R5, #+16]
+    132          	ret->num_alloc=MIN_NODES;
+   \   00000048   0400A0E3           MOV      R0,#+4
+   \   0000004C   0C0085E5           STR      R0,[R5, #+12]
+    133          	ret->num=0;
+   \   00000050   002085E5           STR      R2,[R5, #+0]
+    134          	ret->sorted=0;
+   \   00000054   082085E5           STR      R2,[R5, #+8]
+    135          	return(ret);
+   \   00000058   ........           B        ?Subroutine21
+    136          err:
+    137          	if(ret)
+    138          		free(ret);
+   \                     ??sk_new_1:
+   \   0000005C   0500A0E1           MOV      R0,R5
+   \   00000060   ........           _BLF     __data_free,??__data_free??rA
+    139          	return(NULL);
+   \                     ??sk_new_0:
+   \   00000064   ........           B        ?Subroutine20
+    140          	}
+    141          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    142          int sk_insert(STACK *st, char *data, int loc)
+    143          	{
+   \                     sk_insert:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+   \   0000000C   0260A0E1           MOV      R6,R2
+    144          	char **s;
+    145          
+    146          	if(st == NULL) return 0;
+   \   00000010   000054E3           CMP      R4,#+0
+   \   00000014   0000A003           MOVEQ    R0,#+0
+   \   00000018   7080BD08           POPEQ    {R4-R6,PC}
+    147          	if (st->num_alloc <= st->num+1)
+   \   0000001C   0C0094E5           LDR      R0,[R4, #+12]
+   \   00000020   001094E5           LDR      R1,[R4, #+0]
+   \   00000024   011081E2           ADD      R1,R1,#+1
+   \   00000028   000051E1           CMP      R1,R0
+   \   0000002C   080000BA           BLT      ??sk_insert_0
+    148          		{
+    149          		s=(char **)realloc((char *)st->data,//s=(char **)OPENSSL_realloc((char *)st->data,
+    150          			(unsigned int)sizeof(char *)*st->num_alloc*2);
+   \   00000030   8011A0E1           LSL      R1,R0,#+3
+   \   00000034   040094E5           LDR      R0,[R4, #+4]
+   \   00000038   BA0000EF           SWI      +186
+    151          		if (s == NULL)
+   \   0000003C   000050E3           CMP      R0,#+0
+   \   00000040   7080BD08           POPEQ    {R4-R6,PC}
+    152          			return(0);
+    153          		st->data=s;
+   \   00000044   040084E5           STR      R0,[R4, #+4]
+    154          		st->num_alloc*=2;
+   \   00000048   0C0094E5           LDR      R0,[R4, #+12]
+   \   0000004C   8000A0E1           LSL      R0,R0,#+1
+   \   00000050   0C0084E5           STR      R0,[R4, #+12]
+    155          		}
+    156          	if ((loc >= (int)st->num) || (loc < 0))
+   \                     ??sk_insert_0:
+   \   00000054   001094E5           LDR      R1,[R4, #+0]
+   \   00000058   040094E5           LDR      R0,[R4, #+4]
+   \   0000005C   010056E1           CMP      R6,R1
+   \   00000060   010000AA           BGE      ??sk_insert_1
+   \   00000064   000056E3           CMP      R6,#+0
+   \   00000068   0100005A           BPL      ??sk_insert_2
+    157          		st->data[st->num]=data;
+   \                     ??sk_insert_1:
+   \   0000006C   015180E7           STR      R5,[R0, +R1, LSL #+2]
+   \   00000070   070000EA           B        ??sk_insert_3
+    158          	else
+    159          		{
+    160          		int i;
+    161          		char **f,**t;
+    162          
+    163          		f=(char **)st->data;
+    164          		t=(char **)&(st->data[1]);
+   \                     ??sk_insert_2:
+   \   00000074   043080E2           ADD      R3,R0,#+4
+    165          		for (i=st->num; i>=loc; i--)
+   \   00000078   01C0A0E1           MOV      R12,R1
+    166          			t[i]=f[i];
+   \                     ??sk_insert_4:
+   \   0000007C   0CE190E7           LDR      LR,[R0, +R12, LSL #+2]
+   \   00000080   0CE183E7           STR      LR,[R3, +R12, LSL #+2]
+   \   00000084   01C04CE2           SUB      R12,R12,#+1
+   \   00000088   06005CE1           CMP      R12,R6
+   \   0000008C   FAFFFFAA           BGE      ??sk_insert_4
+    167          			
+    168          #ifdef undef /* no memmove on sunos :-( */
+    169          		memmove( (char *)&(st->data[loc+1]),
+    170          			(char *)&(st->data[loc]),
+    171          			sizeof(char *)*(st->num-loc));
+    172          #endif
+    173          		st->data[loc]=data;
+   \   00000090   065180E7           STR      R5,[R0, +R6, LSL #+2]
+    174          		}
+    175          	st->num++;
+   \                     ??sk_insert_3:
+   \   00000094   010081E2           ADD      R0,R1,#+1
+   \   00000098   000084E5           STR      R0,[R4, #+0]
+    176          	st->sorted=0;
+   \   0000009C   0000A0E3           MOV      R0,#+0
+   \   000000A0   080084E5           STR      R0,[R4, #+8]
+    177          	return(st->num);
+   \   000000A4   000094E5           LDR      R0,[R4, #+0]
+   \   000000A8   7080BDE8           POP      {R4-R6,PC}       ;; return
+    178          	}
+    179          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    180          char *sk_delete_ptr(STACK *st, char *p)
+    181          	{
+    182          	int i;
+    183          
+    184          	for (i=0; i<st->num; i++)
+   \                     sk_delete_ptr:
+   \   00000000   0020A0E3           MOV      R2,#+0
+   \   00000004   000000EA           B        ??sk_delete_ptr_0
+   \                     ??sk_delete_ptr_1:
+   \   00000008   012082E2           ADD      R2,R2,#+1
+   \                     ??sk_delete_ptr_0:
+   \   0000000C   003090E5           LDR      R3,[R0, #+0]
+   \   00000010   030052E1           CMP      R2,R3
+   \   00000014   050000AA           BGE      ??sk_delete_ptr_2
+    185          		if (st->data[i] == p)
+   \   00000018   043090E5           LDR      R3,[R0, #+4]
+   \   0000001C   023193E7           LDR      R3,[R3, +R2, LSL #+2]
+   \   00000020   010053E1           CMP      R3,R1
+   \   00000024   F7FFFF1A           BNE      ??sk_delete_ptr_1
+    186          			return(sk_delete(st,i));
+   \   00000028   0210A0E1           MOV      R1,R2
+   \   0000002C   ........           B        sk_delete        ;; tailcall
+    187          	return(NULL);
+   \                     ??sk_delete_ptr_2:
+   \   00000030   0000A0E3           MOV      R0,#+0
+   \   00000034   1EFF2FE1           BX       LR
+    188          	}
+    189          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    190          char *sk_delete(STACK *st, int loc)
+    191          	{
+   \                     sk_delete:
+   \   00000000   60002DE9           PUSH     {R5,R6}
+    192          	char *ret;
+    193          	int i,j;
+    194          
+    195          	if ((st == NULL) || (st->num == 0) || (loc < 0)
+    196          					 || (loc >= st->num)) return(NULL);
+   \   00000004   000050E3           CMP      R0,#+0
+   \   00000008   1600000A           BEQ      ??sk_delete_0
+   \   0000000C   003090E5           LDR      R3,[R0, #+0]
+   \   00000010   000053E3           CMP      R3,#+0
+   \   00000014   0300000A           BEQ      ??sk_delete_1
+   \   00000018   000051E3           CMP      R1,#+0
+   \   0000001C   0100004A           BMI      ??sk_delete_1
+   \   00000020   030051E1           CMP      R1,R3
+   \   00000024   010000BA           BLT      ??sk_delete_2
+   \                     ??sk_delete_1:
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   0D0000EA           B        ??sk_delete_0
+    197          
+    198          	ret=st->data[loc];
+   \                     ??sk_delete_2:
+   \   00000030   04C090E5           LDR      R12,[R0, #+4]
+    199          	if (loc != st->num-1)
+   \   00000034   013043E2           SUB      R3,R3,#+1
+   \   00000038   01219CE7           LDR      R2,[R12, +R1, LSL #+2]
+   \   0000003C   030051E1           CMP      R1,R3
+   \   00000040   0600000A           BEQ      ??sk_delete_3
+    200          		{
+    201          		j=st->num-1;
+    202          		for (i=loc; i<j; i++)
+   \   00000044   030000EA           B        ??sk_delete_4
+    203          			st->data[i]=st->data[i+1];
+   \                     ??sk_delete_5:
+   \   00000048   01518CE0           ADD      R5,R12,R1, LSL #+2
+   \   0000004C   046095E5           LDR      R6,[R5, #+4]
+   \   00000050   011081E2           ADD      R1,R1,#+1
+   \   00000054   006085E5           STR      R6,[R5, #+0]
+   \                     ??sk_delete_4:
+   \   00000058   030051E1           CMP      R1,R3
+   \   0000005C   F9FFFFBA           BLT      ??sk_delete_5
+    204          		/* In theory memcpy is not safe for this
+    205          		 * memcpy( &(st->data[loc]),
+    206          		 *	&(st->data[loc+1]),
+    207          		 *	sizeof(char *)*(st->num-loc-1));
+    208          		 */
+    209          		}
+    210          	st->num--;
+   \                     ??sk_delete_3:
+   \   00000060   003080E5           STR      R3,[R0, #+0]
+    211          	return(ret);
+   \   00000064   0200A0E1           MOV      R0,R2
+   \                     ??sk_delete_0:
+   \   00000068   6000BDE8           POP      {R5,R6}
+   \   0000006C   1EFF2FE1           BX       LR               ;; return
+    212          	}
+    213          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    214          int sk_find(STACK *st, char *data)
+    215          	{
+   \                     sk_find:
+   \   00000000   32402DE9           PUSH     {R1,R4,R5,LR}
+   \   00000004   0040B0E1           MOVS     R4,R0
+    216          	char **r;
+    217          	int i;
+    218          	int (*comp_func)(const void *,const void *);
+    219          	if(st == NULL) return -1;
+   \   00000008   0100001A           BNE      ??sk_find_0
+   \                     ??sk_find_1:
+   \   0000000C   0000E0E3           MVN      R0,#+0
+   \   00000010   3280BDE8           POP      {R1,R4,R5,PC}    ;; return
+    220          
+    221          	if (st->comp == NULL)
+   \                     ??sk_find_0:
+   \   00000014   100094E5           LDR      R0,[R4, #+16]
+   \   00000018   000050E3           CMP      R0,#+0
+   \   0000001C   0B00001A           BNE      ??sk_find_2
+    222          		{
+    223          		for (i=0; i<st->num; i++)
+   \   00000020   0050A0E3           MOV      R5,#+0
+   \   00000024   000000EA           B        ??sk_find_3
+   \                     ??sk_find_4:
+   \   00000028   015085E2           ADD      R5,R5,#+1
+   \                     ??sk_find_3:
+   \   0000002C   000094E5           LDR      R0,[R4, #+0]
+   \   00000030   000055E1           CMP      R5,R0
+   \   00000034   F4FFFFAA           BGE      ??sk_find_1
+    224          			if (st->data[i] == data)
+   \   00000038   040094E5           LDR      R0,[R4, #+4]
+   \   0000003C   050190E7           LDR      R0,[R0, +R5, LSL #+2]
+   \   00000040   010050E1           CMP      R0,R1
+   \   00000044   F7FFFF1A           BNE      ??sk_find_4
+    225          				return(i);
+   \                     ??sk_find_5:
+   \   00000048   0500A0E1           MOV      R0,R5
+   \   0000004C   3280BDE8           POP      {R1,R4,R5,PC}
+    226          		return(-1);
+    227          		}
+    228          	sk_sort(st);
+   \                     ??sk_find_2:
+   \   00000050   0400A0E1           MOV      R0,R4
+   \   00000054   ........           BL       sk_sort
+    229          	if (data == NULL) return(-1);
+   \   00000058   00009DE5           LDR      R0,[SP, #+0]
+   \   0000005C   000050E3           CMP      R0,#+0
+   \   00000060   E9FFFF0A           BEQ      ??sk_find_1
+    230          	/* This (and the "qsort" below) are the two places in OpenSSL
+    231          	 * where we need to convert from our standard (type **,type **)
+    232          	 * compare callback type to the (void *,void *) type required by
+    233          	 * bsearch. However, the "data" it is being called(back) with are
+    234          	 * not (type *) pointers, but the *pointers* to (type *) pointers,
+    235          	 * so we get our extra level of pointer dereferencing that way. */
+    236          	comp_func=(int (*)(const void *,const void *))(st->comp);
+    237          	r=(char **)bsearch(&data,(char *)st->data,
+    238          		st->num,sizeof(char *), comp_func);
+   \   00000064   100094E5           LDR      R0,[R4, #+16]
+   \   00000068   0430A0E3           MOV      R3,#+4
+   \   0000006C   01002DE9           PUSH     {R0}
+   \   00000070   002094E5           LDR      R2,[R4, #+0]
+   \   00000074   041094E5           LDR      R1,[R4, #+4]
+   \   00000078   04008DE2           ADD      R0,SP,#+4
+   \   0000007C   ........           _BLF     bsearch,??bsearch??rA
+    239          	if (r == NULL) return(-1);
+   \   00000080   000050E3           CMP      R0,#+0
+   \   00000084   04D08DE2           ADD      SP,SP,#+4
+   \   00000088   DFFFFF0A           BEQ      ??sk_find_1
+    240          	i=(int)(r-st->data);
+   \   0000008C   041094E5           LDR      R1,[R4, #+4]
+   \   00000090   2001A0E1           LSR      R0,R0,#+2
+   \   00000094   215140E0           SUB      R5,R0,R1, LSR #+2
+    241          	for ( ; i>0; i--)
+   \                     ??sk_find_6:
+   \   00000098   010055E3           CMP      R5,#+1
+   \   0000009C   E9FFFFBA           BLT      ??sk_find_5
+    242          		/* This needs a cast because the type being pointed to from
+    243          		 * the "&" expressions are (char *) rather than (const char *).
+    244          		 * For an explanation, read:
+    245          		 * http://www.eskimo.com/~scs/C-faq/q11.10.html :-) */
+    246          		if ((*st->comp)((const char * const *)&(st->data[i-1]),
+    247          				(const char * const *)&data) < 0)
+   \   000000A0   040094E5           LDR      R0,[R4, #+4]
+   \   000000A4   102094E5           LDR      R2,[R4, #+16]
+   \   000000A8   0D10A0E1           MOV      R1,SP
+   \   000000AC   050180E0           ADD      R0,R0,R5, LSL #+2
+   \   000000B0   040040E2           SUB      R0,R0,#+4
+   \   000000B4   32FF2FE1           BLX      R2
+   \   000000B8   000050E3           CMP      R0,#+0
+   \   000000BC   E1FFFF4A           BMI      ??sk_find_5
+   \   000000C0   015045E2           SUB      R5,R5,#+1
+   \   000000C4   F3FFFFEA           B        ??sk_find_6
+    248          			break;
+    249          	return(i);
+    250          	}
+    251          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    252          int sk_push(STACK *st, char *data)
+    253          	{
+    254          	return(sk_insert(st,data,st->num));
+   \                     sk_push:
+   \   00000000   002090E5           LDR      R2,[R0, #+0]
+   \   00000004   ........           B        sk_insert        ;; tailcall
+    255          	}
+    256          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    257          int sk_unshift(STACK *st, char *data)
+    258          	{
+    259          	return(sk_insert(st,data,0));
+   \                     sk_unshift:
+   \   00000000   0020A0E3           MOV      R2,#+0
+   \   00000004   ........           B        sk_insert        ;; tailcall
+    260          	}
+    261          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    262          char *sk_shift(STACK *st)
+    263          	{
+    264          	if (st == NULL) return(NULL);
+   \                     sk_shift:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   1EFF2F01           BXEQ     LR
+    265          	if (st->num <= 0) return(NULL);
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   010051E3           CMP      R1,#+1
+   \   00000010   0000A0B3           MOVLT    R0,#+0
+   \   00000014   1EFF2FB1           BXLT     LR
+    266          	return(sk_delete(st,0));
+   \   00000018   0010A0E3           MOV      R1,#+0
+   \   0000001C   ........           B        sk_delete        ;; tailcall
+    267          	}
+    268          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    269          char *sk_pop(STACK *st)
+    270          	{
+    271          	if (st == NULL) return(NULL);
+   \                     sk_pop:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   1EFF2F01           BXEQ     LR
+    272          	if (st->num <= 0) return(NULL);
+   \   00000008   001090E5           LDR      R1,[R0, #+0]
+   \   0000000C   010051E3           CMP      R1,#+1
+   \   00000010   0000A0B3           MOVLT    R0,#+0
+   \   00000014   1EFF2FB1           BXLT     LR
+    273          	return(sk_delete(st,st->num-1));
+   \   00000018   011041E2           SUB      R1,R1,#+1
+   \   0000001C   ........           B        sk_delete        ;; tailcall
+    274          	}
+    275          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    276          void sk_zero(STACK *st)
+    277          	{
+   \                     sk_zero:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040B0E1           MOVS     R4,R0
+    278          	if (st == NULL) return;
+   \   00000008   1080BD08           POPEQ    {R4,PC}
+    279          	if (st->num <= 0) return;
+   \   0000000C   000094E5           LDR      R0,[R4, #+0]
+   \   00000010   010050E3           CMP      R0,#+1
+   \   00000014   1080BDB8           POPLT    {R4,PC}
+    280          	memset((char *)st->data,0,sizeof(st->data)*st->num);
+   \   00000018   0021A0E1           LSL      R2,R0,#+2
+   \   0000001C   040094E5           LDR      R0,[R4, #+4]
+   \   00000020   0010A0E3           MOV      R1,#+0
+   \   00000024   BB0000EF           SWI      +187
+    281          	st->num=0;
+   \   00000028   0000A0E3           MOV      R0,#+0
+   \   0000002C   000084E5           STR      R0,[R4, #+0]
+    282          	}
+   \   00000030   1080BDE8           POP      {R4,PC}          ;; return
+    283          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    284          void sk_pop_free(STACK *st, void (*func)(void *))
+    285          	{
+   \                     sk_pop_free:
+   \   00000000   70402DE9           PUSH     {R4-R6,LR}
+   \   00000004   0040A0E1           MOV      R4,R0
+   \   00000008   0150A0E1           MOV      R5,R1
+    286          	int i;
+    287          
+    288          	if (st == NULL) return;
+   \   0000000C   000054E3           CMP      R4,#+0
+   \   00000010   7080BD08           POPEQ    {R4-R6,PC}
+    289          	for (i=0; i<st->num; i++)
+   \   00000014   0060A0E3           MOV      R6,#+0
+   \   00000018   080000EA           B        ??sk_pop_free_0
+   \                     ??sk_pop_free_1:
+   \   0000001C   040094E5           LDR      R0,[R4, #+4]
+   \   00000020   060180E0           ADD      R0,R0,R6, LSL #+2
+   \   00000024   001090E5           LDR      R1,[R0, #+0]
+   \   00000028   000051E3           CMP      R1,#+0
+   \   0000002C   0200000A           BEQ      ??sk_pop_free_2
+    290          		if (st->data[i] != NULL)
+    291          			func(st->data[i]);
+   \   00000030   0100A0E1           MOV      R0,R1
+   \   00000034   0510A0E1           MOV      R1,R5
+   \   00000038   31FF2FE1           BLX      R1
+   \                     ??sk_pop_free_2:
+   \   0000003C   016086E2           ADD      R6,R6,#+1
+   \                     ??sk_pop_free_0:
+   \   00000040   000094E5           LDR      R0,[R4, #+0]
+   \   00000044   000056E1           CMP      R6,R0
+   \   00000048   F3FFFFBA           BLT      ??sk_pop_free_1
+    292          	sk_free(st);
+   \   0000004C   0400A0E1           MOV      R0,R4
+   \   00000050   ........           BL       sk_free
+    293          	}
+   \   00000054   7080BDE8           POP      {R4-R6,PC}       ;; return
+    294          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    295          void sk_free(STACK *st)
+    296          	{
+   \                     sk_free:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040B0E1           MOVS     R4,R0
+    297          	if (st == NULL) return;
+   \   00000008   1080BD08           POPEQ    {R4,PC}
+    298          	if (st->data != NULL) free(st->data);
+   \   0000000C   040094E5           LDR      R0,[R4, #+4]
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   0000000A           BEQ      ??sk_free_0
+   \   00000018   ........           _BLF     __data_free,??__data_free??rA
+    299          	free(st);
+   \                     ??sk_free_0:
+   \   0000001C   0400A0E1           MOV      R0,R4
+   \   00000020   ........           _BLF     __data_free,??__data_free??rA
+    300          	}
+   \   00000024   1080BDE8           POP      {R4,PC}          ;; return
+    301          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    302          int sk_num(const STACK *st)
+    303          {
+    304          	if(st == NULL) return -1;
+   \                     sk_num:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   0000E003           MVNEQ    R0,#+0
+   \   00000008   1EFF2F01           BXEQ     LR
+    305          	return st->num;
+   \   0000000C   000090E5           LDR      R0,[R0, #+0]
+   \   00000010   1EFF2FE1           BX       LR               ;; return
+    306          }
+    307          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    308          char *sk_value(const STACK *st, int i)
+    309          {
+    310          	if(st == NULL) return NULL;
+   \                     sk_value:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   1EFF2F01           BXEQ     LR
+    311          	return st->data[i];
+   \   00000008   ........           B        ?Subroutine19
+    312          }
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine19:
+   \   00000000   040090E5           LDR      R0,[R0, #+4]
+   \   00000004   010190E7           LDR      R0,[R0, +R1, LSL #+2]
+   \   00000008   1EFF2FE1           BX       LR               ;; return
+    313          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    314          char *sk_set(STACK *st, int i, char *value)
+    315          {
+    316          	if(st == NULL) return NULL;
+   \                     sk_set:
+   \   00000000   000050E3           CMP      R0,#+0
+   \   00000004   1EFF2F01           BXEQ     LR
+    317          	return (st->data[i] = value);
+   \   00000008   043090E5           LDR      R3,[R0, #+4]
+   \   0000000C   012183E7           STR      R2,[R3, +R1, LSL #+2]
+   \   00000010                      REQUIRE ?Subroutine19
+   \   00000010                      ;; // Fall through to label ?Subroutine19
+    318          }
+    319          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    320          void sk_sort(STACK *st)
+    321          	{
+   \                     sk_sort:
+   \   00000000   10402DE9           PUSH     {R4,LR}
+   \   00000004   0040B0E1           MOVS     R4,R0
+    322          	if (st && !st->sorted)
+   \   00000008   1080BD08           POPEQ    {R4,PC}
+   \   0000000C   080094E5           LDR      R0,[R4, #+8]
+   \   00000010   000050E3           CMP      R0,#+0
+   \   00000014   1080BD18           POPNE    {R4,PC}
+    323          		{
+    324          		int (*comp_func)(const void *,const void *);
+    325          
+    326          		/* same comment as in sk_find ... previously st->comp was declared
+    327          		 * as a (void*,void*) callback type, but this made the population
+    328          		 * of the callback pointer illogical - our callbacks compare
+    329          		 * type** with type**, so we leave the casting until absolutely
+    330          		 * necessary (ie. "now"). */
+    331          		comp_func=(int (*)(const void *,const void *))(st->comp);
+    332          		qsort(st->data,st->num,sizeof(char *), comp_func);
+   \   00000018   040094E5           LDR      R0,[R4, #+4]
+   \   0000001C   103094E5           LDR      R3,[R4, #+16]
+   \   00000020   001094E5           LDR      R1,[R4, #+0]
+   \   00000024   0420A0E3           MOV      R2,#+4
+   \   00000028   ........           _BLF     qsort,??qsort??rA
+    333          		st->sorted=1;
+   \   0000002C   0100A0E3           MOV      R0,#+1
+   \   00000030   080084E5           STR      R0,[R4, #+8]
+    334          		}
+    335          	}
+   \   00000034   1080BDE8           POP      {R4,PC}          ;; return
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for STACK_version>`:
+   \   00000000   ........           DC32 `?<Constant "Stack part of OpenSSL...">`
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "Stack part of OpenSSL...">`:
+   \   00000000   537461636B20       DC8 "Stack part of OpenSSL 0.9.5a 1 Apr 2000"
+   \              70617274206F
+   \              66204F70656E
+   \              53534C20302E
+   \              392E35612031
+   \              204170722032
+   \              30303000    
+
+   Maximum stack usage in bytes:
+
+     Function        CSTACK
+     --------        ------
+     sk_delete          12
+     sk_delete_ptr       4
+     sk_dup             12
+     sk_find            20
+     sk_free             8
+     sk_insert          16
+     sk_new             12
+     sk_new_null         4
+     sk_num              0
+     sk_pop              4
+     sk_pop_free        16
+     sk_push             4
+     sk_set              0
+     sk_set_cmp_func     0
+     sk_shift            4
+     sk_sort             8
+     sk_unshift          4
+     sk_value            0
+     sk_zero             8
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     STACK_version                     4
+     sk_set_cmp_func                  28
+     sk_dup                          120
+     ?Subroutine21                     8
+     ?Subroutine20                     8
+     sk_new_null                       8
+     sk_new                          104
+     sk_insert                       172
+     sk_delete_ptr                    56
+     sk_delete                       112
+     sk_find                         200
+     sk_push                           8
+     sk_unshift                        8
+     sk_shift                         32
+     sk_pop                           32
+     sk_zero                          52
+     sk_pop_free                      88
+     sk_free                          40
+     sk_num                           20
+     sk_value                         12
+     ?Subroutine19                    12
+     sk_set                           16
+     sk_sort                          56
+     ?<Initializer for STACK_version>
+                                       4
+     ?<Constant "Stack part of OpenSSL...">
+                                      40
+      Others                         124
+
+ 
+ 1 304 bytes in segment CODE
+    40 bytes in segment DATA_C
+     4 bytes in segment DATA_I
+     4 bytes in segment DATA_ID
+    12 bytes in segment INITTAB
+ 
+ 1 192 bytes of CODE  memory (+ 124 bytes shared)
+    44 bytes of CONST memory
+     4 bytes of DATA  memory
+
+Errors: none
+Warnings: none

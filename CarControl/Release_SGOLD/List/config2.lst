@@ -1,0 +1,130 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    12/Nov/2014  19:01:17 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl #
+#                       \config2.c                                           #
+#    Command line    =  C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl #
+#                       \config2.c -D SGOLD -lC C:\Users\Инсаф\Documents\Sie #
+#                       mens\alfinant\CarControl\Release_SGOLD\List\ -o      #
+#                       C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl #
+#                       \Release_SGOLD\Obj\ -s9 --no_unroll --cpu_mode arm   #
+#                       --endian little --cpu ARM926EJ-S --stack_align 4     #
+#                       --interwork -e --fpu None -I                         #
+#                       C:\Users\Инсаф\Documents\Siemens\IAR\ARM\INC\        #
+#                       --inline_threshold=2                                 #
+#    List file       =  C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl #
+#                       \Release_SGOLD\List\config2.lst                      #
+#    Object file     =  C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl #
+#                       \Release_SGOLD\Obj\config2.r79                       #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+C:\Users\Инсаф\Documents\Siemens\alfinant\CarControl\config2.c
+      1          #include "..\inc\cfg_items.h"
+      2          
+      3          #ifdef NEWSGOLD
+      4          #define DEFAULT_DISK "4"
+      5          #else
+      6          #define DEFAULT_DISK "0"
+      7          #endif
+      8          
+
+   \                                 In segment DATA_C, align 4, align-sorted, root
+      9            __root const CFG_HDR cfg2hdr0={CFG_LEVEL,"Key lock",1,0};
+   \                     cfg2hdr0:
+   \   00000000   09000000           DC32 9
+   \   00000004   4B6579206C6F       DC8 "Key lock"
+   \              636B00      
+   \   0000000D   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000000000  
+   \   00000024   010000000000       DC32 1, 0
+   \              0000        
+     10          
+
+   \                                 In segment DATA_C, align 4, align-sorted, root
+     11            __root const CFG_HDR cfg2hdr1={CFG_CBOX,"Key press type",0,4};
+   \                     cfg2hdr1:
+   \   00000000   05000000           DC32 5
+   \   00000004   4B6579207072       DC8 "Key press type"
+   \              657373207479
+   \              706500      
+   \   00000013   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              0000000000  
+   \   00000024   000000000400       DC32 0, 4
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted, root
+     12            __root const int keyPType = 0;
+   \                     keyPType:
+   \   00000000   00000000           DC32 0
+
+   \                                 In segment DATA_C, align 4, align-sorted, root
+     13            __root const CFG_CBOX_ITEM cfg2cbox3_2[4]={"Short","Long","DoubleShort","Long&Short"};
+   \                     cfg2cbox3_2:
+   \   00000000   53686F727400       DC8 "Short"
+   \   00000006   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000016   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              00000000    
+   \   00000020   4C6F6E6700         DC8 "Long"
+   \   00000025   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000035   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              0000000000  
+   \   00000040   446F75626C65       DC8 "DoubleShort"
+   \              53686F727400
+   \   0000004C   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              0000        
+   \   00000060   4C6F6E672653       DC8 "Long&Short"
+   \              686F727400  
+   \   0000006B   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000000000
+   \              000000      
+     14            
+
+   \                                 In segment DATA_C, align 4, align-sorted, root
+     15            __root const CFG_HDR cfg2hdr1_9={CFG_LEVEL,"",0,0};
+   \                     cfg2hdr1_9:
+   \   00000000   09000000           DC32 9
+   \   00000004   00                 DC8 ""
+   \   00000005   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              00000000    
+   \   00000015   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+   \              000000000000
+   \              000000      
+   \   00000024   000000000000       DC32 0, 0
+   \              0000        
+
+
+   Segment part sizes:
+
+     Function/Label Bytes
+     -------------- -----
+     cfg2hdr0         44
+     cfg2hdr1         44
+     keyPType          4
+     cfg2cbox3_2     128
+     cfg2hdr1_9       44
+
+ 
+ 264 bytes in segment DATA_C
+ 
+ 264 bytes of CONST memory
+
+Errors: none
+Warnings: none

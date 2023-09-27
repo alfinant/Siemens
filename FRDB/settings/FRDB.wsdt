@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>FRDB/S75v52</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>525</ColumnWidth1><ColumnWidth2>140</ColumnWidth2><ColumnWidth3>35</ColumnWidth3></Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>254</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+    </Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-26873-13233</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-4853-13236</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>FRDB</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\FRDB\patch.asm</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\FRDB\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>490</SelStart><SelEnd>490</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\Users\alfinant7\Documents\Siemens\alfinant\src_iar\FRDB\config\S75v52.xcl</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>14</SelStart><SelEnd>54</SelEnd></Tab><ActiveTab>2</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-024b2460><key>iaridepm.enu1</key></Toolbar-024b2460></Sizes></Row0></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>952</Bottom><Right>328</Right><x>-2</x><y>-2</y><xscreen>375</xscreen><yscreen>288</yscreen><sizeHorzCX>195313</sizeHorzCX><sizeHorzCY>288867</sizeHorzCY><sizeVertCX>171875</sizeVertCX><sizeVertCY>956871</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>952</Bottom><Right>729</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>91</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>91274</sizeHorzCY><sizeVertCX>380729</sizeVertCX><sizeVertCY>956871</sizeVertCY></Rect></Wnd2></Sizes></Row0></Right><Bottom><Row0><Sizes/></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

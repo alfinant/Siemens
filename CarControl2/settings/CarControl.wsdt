@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>CarControl/Release_SGOLDX75</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>126</Column0><Column1>27</Column1><Column2>27</Column2><Column3>13190992</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>980</ColumnWidth1><ColumnWidth2>261</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build>
+    </Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-25997-3341</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>CarControl</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-22359-5251</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\CarControl\config.c</Filename><XPos>0</XPos><YPos>215</YPos><SelStart>10487</SelStart><SelEnd>10487</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\CarControl\main.c</Filename><XPos>0</XPos><YPos>419</YPos><SelStart>10970</SelStart><SelEnd>10970</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\inc\swilib.h</Filename><XPos>0</XPos><YPos>147</YPos><SelStart>4208</SelStart><SelEnd>4208</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\inc\connector.h</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>506</SelStart><SelEnd>506</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\CarControl\sms.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\inc\i2c.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>110</SelStart><SelEnd>110</SelEnd></Tab><ActiveTab>5</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>C:\Users\alfinant\Documents\Siemens\alfinant\inc\i2c.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>400</SelStart><SelEnd>400</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-02652418><key>iaridepm.enu1</key></Toolbar-02652418></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>640</Bottom><Right>200</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>147877</sizeVertCX><sizeVertCY>937226</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>640</Bottom><Right>491</Right><x>-2</x><y>-2</y><xscreen>0</xscreen><yscreen>0</yscreen><sizeHorzCX>0</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>360908</sizeVertCX><sizeVertCY>937226</sizeVertCY></Rect></Wnd3></Sizes></Row0></Right><Bottom><Row0><Sizes/></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

@@ -1,0 +1,82 @@
+###############################################################################
+#                                                                             #
+#     IAR Systems ARM Assembler V4.42A/W32 06/Nov/2014  14:00:07              #
+#     Copyright 1999-2007 IAR Systems. All rights reserved.                   #
+#                                                                             #
+#           Source file   =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\patch.asm#
+#           List file     =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\CX70v56\List\patch.lst#
+#           Object file   =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\CX70v56\Obj\patch.r79#
+#           Command line  =  C:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\patch.asm #
+#                            -OC:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\CX70v56\Obj\ #
+#                            -s+ -M<> -w+                                     #
+#                            -LC:\Users\alfin_000\Documents\Siemens\IAR\ARM\alfinant\HotKeys_SGOLD\CX70v56\List\ #
+#                            -t8 --cpu ARM926EJ-S --fpu None -n               #
+#                            -IC:\Users\alfin_000\Documents\Siemens\IAR\ARM\INC\ #
+#                                                                             #
+###############################################################################
+
+    1    00000000                 EXTERN my_onmessage
+    2    00000000                 EXTERN checkFile
+    3    00000000                 EXTERN setFName
+    4    00000000                
+    5    00000000                 RSEG PATCH_MENU_ONMESSAGE:DATA(2)
+    6    00000000 ........        DCD  my_onmessage
+    7    00000004              
+    8    00000000                 RSEG PATCH_MENU_MAINCSMSIZE:DATA(2)
+    9    00000000 70040000        DCD  0x470
+   10    00000004                
+   11    00000004                 CODE16
+   12    00000004                
+   13    00000000                 RSEG PATCH_MENU_PREDIAL_ENA:CODE(1)
+   14    00000000 C046            NOP
+   15    00000002                
+   16    00000000                 RSEG PATCH_IDLE_START_XTRA_JC:CODE(1)
+   17    00000000 ........        BL  checkFile
+   18    00000004                
+   19    00000000                 RSEG PATCH_SET_FILE_NAME:CODE(1)
+   20    00000000 ........        BL  setFName
+   21    00000004              //==============================================
+                               =============
+   22    00000004              
+   23    00000000               RSEG PATCH_IDLE_INPUTDIA_ONKEY:CODE(1)
+   24    00000000 C046            NOP
+   25    00000002 C046            NOP
+   26    00000004              
+   27    00000000                 RSEG PATCH_IDLE_INPUTDIA_GHOOK:CODE(2)
+   28    00000000 004B            LDR R3, _a
+   29    00000002 1847            BX R3
+   30    00000004                 DATA
+   31    00000004 F50280A0     _a DCD  0xA08002F5
+   32    00000008              
+   33    00000008              
+   34    00000000                 RSEG CODE_ADD:CODE(2)
+   35    00000000 022D            CMP R5, #2
+   36    00000002 02D1            BNE _5 
+   37    00000004 0128            CMP R0, #1
+   38    00000006 00DC            BGT _5
+   39    00000008 0025         _0 MOV R5, #0   
+   40    0000000A 291C         _5 MOV R1, R5 
+   41    0000000C 201C            MOV R0, R4
+   42    0000000E 0122            MOV R2, #1
+   43    00000010 014B            LDR R3, _f
+   44    00000012 9847            BLX R3   
+   45    00000014 014B            LDR R3, _b
+   46    00000016 1847            BX R3
+   47    00000018                 DATA
+   48    00000018 87CCCEA0     _f DCD 0xA0CECC87  
+   49    0000001C 7BB871A1     _b DCD 0xA171B87B
+   50    00000020              
+   51    00000020              ;===============================================
+                               ================================
+   52    00000020              
+   53    00000020                END
+##############################
+#          CRC:FE06          #
+#        Errors:   0         #
+#        Warnings: 0         #
+#         Bytes: 62          #
+##############################
+
+
+
+
