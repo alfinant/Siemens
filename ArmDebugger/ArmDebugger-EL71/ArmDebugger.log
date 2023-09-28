@@ -1,0 +1,298 @@
+W  ping {
+W  } ping ok
+W  readFromRAM(addr=00089000, len=00000020) {
+W  } readFromRAM
+W  writeToRAM(addr=00089020, len=0000000C) {
+W  } writeToRAM
+W  armCall(addr=00089020, r0=0019FC34, r1=00000080, timeout=1000) {
+W  } armCall = true
+W  writeToRAM(addr=00089028, len=00000200) {
+W  } writeToRAM
+W  writeToRAM(addr=0008C400, len=00000100) {
+W  } writeToRAM
+W  writeToRAM(addr=0008C600, len=00000040) {
+W  } writeToRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=000891D8, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA00, len=00000040) {
+W  } readFromRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=000891D8, len=00000004) {
+W  } writeToRAM
+W  writeToRAM(addr=00089020, len=0000001C) {
+W  } writeToRAM
+W  armCall(addr=00089020, r0=A8D89FFE, r1=00090C00, timeout=200) {
+W  } armCall = true
+W  writeToRAM(addr=00089020, len=00000018) {
+W  } writeToRAM
+W  armCall(addr=00089020, r0=A8E00FFE, r1=A8D8A000, timeout=200) {
+W  } armCall = true
+W  writeToRAM(addr=00089020, len=0000001C) {
+W  } writeToRAM
+W  armCall(addr=00089020, r0=A8D89FFE, r1=00090800, timeout=200) {
+W  } armCall = true
+W  writeToRAM(addr=00089020, len=0000001C) {
+W  } writeToRAM
+W  armCall(addr=00089020, r0=A8D89FFE, r1=00090400, timeout=200) {
+W  } armCall = true
+W  writeToRAM(addr=0008EA00, len=00000040) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A28, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A28, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A24, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A24, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A2C, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A2C, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=000891D8, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A2C, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A2C, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A30, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A30, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=000891D8, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=000891D8, len=00000004) {
+W  } writeToRAM
+W  readFromRAM(addr=0008EA34, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090A30, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090A30, len=00000004) {
+W  } writeToRAM
+W  writeToRAM(addr=00089548, len=000004E0) {
+W  } writeToRAM
+W  readFromRAM(addr=0008C000, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=00090224, len=00000004) {
+W  } readFromRAM
+W  writeToRAM(addr=00090224, len=00000004) {
+W  } writeToRAM
+W  writeToRAM(addr=00089238, len=00000004) {
+W  } writeToRAM
+W  armCall(addr=00089568, r0=00000000, r1=00000010, timeout=250) {
+W  } armCall = true
+W  readFromRAM(addr=00000000, len=00000100) {
+W  } readFromRAM
+W  armCall(addr=00089558, r0=00089548, r1=0000002C, timeout=250) {
+W  } armCall = true
+W  armCall(addr=00089558, r0=0008954C, r1=00000030, timeout=250) {
+W  } armCall = true
+W  armCall(addr=00089558, r0=00089550, r1=00000024, timeout=250) {
+W  } armCall = true
+W  writeToRAM(addr=00089000, len=00000020) {
+W  } writeToRAM
+W  trackConnection: connected
+W  readFromRAM(addr=A8EF1E50, len=00000290) {
+W  } readFromRAM
+W  readFromRAM(addr=A8F167C0, len=00000100) {
+W  } readFromRAM
+W  readFromRAM(addr=A0A633BC, len=000000D4) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  readFromRAM(addr=0008958C, len=00000004) {
+W  } readFromRAM
+W  armCall(addr=00089564, r0=00000000, r1=00000000, timeout=1) {
+W   checkExit: 
+W   lostConnection
+W  } armCall = false
+W  lostConnection

@@ -1,0 +1,10 @@
++0074000
+
+#pragma enable old_equal_ff
+0E14: 0xA0095FDD   ; 385: GBSPROC *GBS_GetProcAddress(unsigned short cepid)
+
+#pragma disable old_equal_ff
++0
+
+
+;locale=Russian_Russia.1251

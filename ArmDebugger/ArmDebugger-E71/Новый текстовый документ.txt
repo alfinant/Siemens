@@ -1,0 +1,4 @@
+4070_SMS_L2IF_SM:
+in: 0x400A, 0x65, 0, 0              out: null                 pdu=null
+in: 0x400A, 0x68, 8, 0xAD05E2C4     out: 0x4071, 0x6c,        pdu=null
+in: 0x400A, 0x68, 8, 0xAD05E33C     out: 0x4071, 0x6c,        pdu=ok        
