@@ -198,7 +198,7 @@ int CreateLoginDialog()
   ConstructEditControl(&ec, ECT_HEADER, ECF_APPEND_EOL, &ws, 32);
   AddEditControlToEditQend(eq, &ec, ma);
   
-  wsprintf(&ws, "%s", "alfinant@gmail.com");
+  wsprintf(&ws, "%s", "");
   ConstructEditControl(&ec, ECT_NORMAL_TEXT, ECF_NORMAL_STR | ECF_APPEND_EOL, &ws, 32);
   AddEditControlToEditQend(eq, &ec, ma);
   
