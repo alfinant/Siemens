@@ -5,7 +5,7 @@ void __OpenSSLDie(const char *function,int line)
   char s[256];
   
   snprintf(s, 255, "Function:%s,Line:%d\n", function, line);
-  StoreErrString(s);
+  StoreErrString_10(s);
 
 #ifdef NEWSGOLD
   asm("SWI 4"); //Переключаемся в системный режим

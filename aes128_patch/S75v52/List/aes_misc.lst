@@ -1,0 +1,161 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    05/Oct/2023  21:05:47 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\aes\aes_misc.c                                  #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\aes\aes_misc.c -D NEWSGOLD -D S75v52 -lC        #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\ -o D:\Users\alfinant\Documents\Sie #
+#                       mens\Dev\IAR\aes128_patch\S75v52\Obj\ -z9            #
+#                       --cpu_mode thumb --endian little --cpu ARM926EJ-S    #
+#                       --stack_align 4 --interwork -e --enable_multibytes   #
+#                       --fpu None --dlib_config D:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tptinl8n.h -I                #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\aes_misc.lst                        #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\Obj\aes_misc.r79                         #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_patch\aes\aes_misc.c
+      1          /* crypto/aes/aes_misc.c -*- mode:C; c-file-style: "eay" -*- */
+      2          /* ====================================================================
+      3           * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
+      4           *
+      5           * Redistribution and use in source and binary forms, with or without
+      6           * modification, are permitted provided that the following conditions
+      7           * are met:
+      8           *
+      9           * 1. Redistributions of source code must retain the above copyright
+     10           *    notice, this list of conditions and the following disclaimer. 
+     11           *
+     12           * 2. Redistributions in binary form must reproduce the above copyright
+     13           *    notice, this list of conditions and the following disclaimer in
+     14           *    the documentation and/or other materials provided with the
+     15           *    distribution.
+     16           *
+     17           * 3. All advertising materials mentioning features or use of this
+     18           *    software must display the following acknowledgment:
+     19           *    "This product includes software developed by the OpenSSL Project
+     20           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     21           *
+     22           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     23           *    endorse or promote products derived from this software without
+     24           *    prior written permission. For written permission, please contact
+     25           *    openssl-core@openssl.org.
+     26           *
+     27           * 5. Products derived from this software may not be called "OpenSSL"
+     28           *    nor may "OpenSSL" appear in their names without prior written
+     29           *    permission of the OpenSSL Project.
+     30           *
+     31           * 6. Redistributions of any form whatsoever must retain the following
+     32           *    acknowledgment:
+     33           *    "This product includes software developed by the OpenSSL Project
+     34           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     35           *
+     36           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     37           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     38           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     39           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     40           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     41           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     42           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     43           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     44           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     45           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     46           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     47           * OF THE POSSIBILITY OF SUCH DAMAGE.
+     48           * ====================================================================
+     49           *
+     50           */
+     51          
+     52          #include <openssl/opensslv.h>
+     53          #include <openssl/aes.h>
+     54          #include "aes_locl.h"
+     55          
+
+   \                                 In segment DATA_I, align 4, align-sorted
+     56          const char *AES_version="AES" OPENSSL_VERSION_PTEXT;
+   \                     AES_version:
+   \   00000000                      DS8 4
+   \   00000004                      REQUIRE `?<Initializer for AES_version>`
+     57          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     58          const char *AES_options(void) {
+     59          #ifdef FULL_UNROLL
+     60                  return "aes(full)";
+     61          #else   
+     62                  return "aes(partial)";
+   \                     AES_options:
+   \   00000000   0048               LDR      R0,??AES_options_0  ;; `?<Constant "aes(partial)">`
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??AES_options_0:
+   \   00000004   ........           DC32     `?<Constant "aes(partial)">`
+     63          #endif
+     64          }
+
+   \                                 In segment DATA_ID, align 4, align-sorted
+   \                     `?<Initializer for AES_version>`:
+   \   00000000   ........           DC32 `?<Constant "AES part of OpenSSL 0...">`
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "AES part of OpenSSL 0...">`:
+   \   00000000   414553207061       DC8 "AES part of OpenSSL 0.9.5a 1 Apr 2000"
+   \              7274206F6620
+   \              4F70656E5353
+   \              4C20302E392E
+   \              356120312041
+   \              707220323030
+   \              3000        
+   \   00000026   0000               DC8 0, 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "aes(partial)">`:
+   \   00000000   616573287061       DC8 "aes(partial)"
+   \              727469616C29
+   \              00          
+   \   0000000D   000000             DC8 0, 0, 0
+
+   Maximum stack usage in bytes:
+
+     Function    CSTACK
+     --------    ------
+     AES_options     0
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     AES_version                       4
+     AES_options                       8
+     ?<Initializer for AES_version>    4
+     ?<Constant "AES part of OpenSSL 0...">
+                                      40
+     ?<Constant "aes(partial)">       16
+      Others                          20
+
+ 
+ 16 bytes in segment CODE
+ 56 bytes in segment DATA_C
+  4 bytes in segment DATA_I
+  4 bytes in segment DATA_ID
+ 12 bytes in segment INITTAB
+ 
+  8 bytes of CODE  memory (+ 20 bytes shared)
+ 60 bytes of CONST memory
+  4 bytes of DATA  memory
+
+Errors: none
+Warnings: none

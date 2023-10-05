@@ -294,4 +294,3 @@ int ssl_cipher_get_evp(SSL_SESSION *s, const EVP_CIPHER **enc,
 	else
 		return(0);
 	}
-

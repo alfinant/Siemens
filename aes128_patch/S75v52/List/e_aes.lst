@@ -1,0 +1,969 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    05/Oct/2023  21:05:46 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\e_aes.c                                         #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\e_aes.c -D NEWSGOLD -D S75v52 -lC               #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\ -o D:\Users\alfinant\Documents\Sie #
+#                       mens\Dev\IAR\aes128_patch\S75v52\Obj\ -z9            #
+#                       --cpu_mode thumb --endian little --cpu ARM926EJ-S    #
+#                       --stack_align 4 --interwork -e --enable_multibytes   #
+#                       --fpu None --dlib_config D:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tptinl8n.h -I                #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\e_aes.lst                           #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\Obj\e_aes.r79                            #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_patch\e_aes.c
+      1          /* ====================================================================
+      2           * Copyright (c) 2001 The OpenSSL Project.  All rights reserved.
+      3           *
+      4           * Redistribution and use in source and binary forms, with or without
+      5           * modification, are permitted provided that the following conditions
+      6           * are met:
+      7           *
+      8           * 1. Redistributions of source code must retain the above copyright
+      9           *    notice, this list of conditions and the following disclaimer. 
+     10           *
+     11           * 2. Redistributions in binary form must reproduce the above copyright
+     12           *    notice, this list of conditions and the following disclaimer in
+     13           *    the documentation and/or other materials provided with the
+     14           *    distribution.
+     15           *
+     16           * 3. All advertising materials mentioning features or use of this
+     17           *    software must display the following acknowledgment:
+     18           *    "This product includes software developed by the OpenSSL Project
+     19           *    for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+     20           *
+     21           * 4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+     22           *    endorse or promote products derived from this software without
+     23           *    prior written permission. For written permission, please contact
+     24           *    openssl-core@openssl.org.
+     25           *
+     26           * 5. Products derived from this software may not be called "OpenSSL"
+     27           *    nor may "OpenSSL" appear in their names without prior written
+     28           *    permission of the OpenSSL Project.
+     29           *
+     30           * 6. Redistributions of any form whatsoever must retain the following
+     31           *    acknowledgment:
+     32           *    "This product includes software developed by the OpenSSL Project
+     33           *    for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+     34           *
+     35           * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+     36           * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     37           * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+     38           * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+     39           * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+     40           * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+     41           * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     42           * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     43           * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     44           * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     45           * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     46           * OF THE POSSIBILITY OF SUCH DAMAGE.
+     47           * ====================================================================
+     48           *
+     49           */
+     50          
+     51          #ifndef OPENSSL_NO_AES
+     52          #include <openssl/evp.h>
+     53          #include <openssl/err.h>
+     54          #include <openssl/aes.h>
+     55          #include "evp_locl.h"
+     56          #include "defs.h"
+     57          
+     58          
+     59          static int aes_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
+     60                                  const unsigned char *iv, int enc);
+     61          
+     62          
+     63          
+     64          typedef struct
+     65          	{
+     66          	AES_KEY ks;
+     67          	} EVP_AES_KEY;
+     68          
+     69          #define data(ctx)	EVP_C_DATA(EVP_AES_KEY,ctx)
+     70          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     71          IMPLEMENT_BLOCK_CIPHER(aes_128, ks, AES, EVP_AES_KEY,
+     72          		       NID_aes_128, 16, 16, 16, 128,
+     73          		       aes_init_key, NULL, 
+     74          		       EVP_CIPHER_set_asn1_iv,
+     75          		       EVP_CIPHER_get_asn1_iv,
+     76                                 EVP_CIPH_FLAG_FIPS,
+     77          		       NULL)
+   \                     aes_128_cbc_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   ....               B.N      ?Subroutine38
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_128_cfb128_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_128_cfb128_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine39
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_128_ecb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_128_ecb_cipher:
+   \   00000000   F6B5               PUSH     {R1,R2,R4-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   2068               LDR      R0,[R4, #+0]
+   \   00000006   4568               LDR      R5,[R0, #+4]
+   \   00000008   AB42               CMP      R3,R5
+   \   0000000A   01D2               BCS      ??aes_128_ecb_cipher_0
+   \                     ??aes_128_ecb_cipher_1:
+   \   0000000C   0120               MOVS     R0,#+1
+   \   0000000E   FCBD               POP      {R2-R7,PC}       ;; return
+   \                     ??aes_128_ecb_cipher_0:
+   \   00000010   5E1B               SUBS     R6,R3,R5
+   \   00000012   0027               MOVS     R7,#+0
+   \                     ??aes_128_ecb_cipher_2:
+   \   00000014   BE42               CMP      R6,R7
+   \   00000016   F9D3               BCC      ??aes_128_ecb_cipher_1
+   \   00000018   0098               LDR      R0,[SP, #+0]
+   \   0000001A   6368               LDR      R3,[R4, #+4]
+   \   0000001C   E26D               LDR      R2,[R4, #+92]
+   \   0000001E   C119               ADDS     R1,R0,R7
+   \   00000020   0198               LDR      R0,[SP, #+4]
+   \   00000022   C019               ADDS     R0,R0,R7
+   \   00000024   ........           _BLF     AES_ecb_encrypt,??AES_ecb_encrypt??rT
+   \   00000028   7F19               ADDS     R7,R7,R5
+   \   0000002A   F3E7               B        ??aes_128_ecb_cipher_2
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_128_ofb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_128_ofb_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   ....               B.N      ?Subroutine37
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_cbc(void)
+   \                     EVP_aes_128_cbc:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_cbc_0  ;; aes_128_cbc
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_cbc_0:
+   \   00000004   ........           DC32     aes_128_cbc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_cfb128(void)
+   \                     EVP_aes_128_cfb128:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_cfb128_0  ;; aes_128_cfb128
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_cfb128_0:
+   \   00000004   ........           DC32     aes_128_cfb128
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_ofb(void)
+   \                     EVP_aes_128_ofb:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_ofb_0  ;; aes_128_ofb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_ofb_0:
+   \   00000004   ........           DC32     aes_128_ofb
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_ecb(void)
+   \                     EVP_aes_128_ecb:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_ecb_0  ;; aes_128_ecb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_ecb_0:
+   \   00000004   ........           DC32     aes_128_ecb
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine38:
+   \   00000000   0400               MOVS     R4,R0
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   6168               LDR      R1,[R4, #+4]
+   \   00000006   1C30               ADDS     R0,R0,#+28
+   \   00000008   03B4               PUSH     {R0,R1}
+   \   0000000A   1600               MOVS     R6,R2
+   \   0000000C   1A00               MOVS     R2,R3
+   \   0000000E   E36D               LDR      R3,[R4, #+92]
+   \   00000010   2900               MOVS     R1,R5
+   \   00000012   3000               MOVS     R0,R6
+   \   00000014   ........           _BLF     AES_cbc_encrypt,??AES_cbc_encrypt??rT
+   \   00000018   0120               MOVS     R0,#+1
+   \   0000001A   7CBD               POP      {R2-R6,PC}       ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine39:
+   \   00000000   0400               MOVS     R4,R0
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   1600               MOVS     R6,R2
+   \   00000006   6268               LDR      R2,[R4, #+4]
+   \   00000008   2100               MOVS     R1,R4
+   \   0000000A   4C31               ADDS     R1,R1,#+76
+   \   0000000C   1C30               ADDS     R0,R0,#+28
+   \   0000000E   07B4               PUSH     {R0-R2}
+   \   00000010   1F00               MOVS     R7,R3
+   \   00000012   E36D               LDR      R3,[R4, #+92]
+   \   00000014   2900               MOVS     R1,R5
+   \   00000016   3A00               MOVS     R2,R7
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           _BLF     AES_cfb128_encrypt,??AES_cfb128_encrypt??rT
+   \   0000001E   0120               MOVS     R0,#+1
+   \   00000020   FEBD               POP      {R1-R7,PC}       ;; return
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine37:
+   \   00000000   0400               MOVS     R4,R0
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   2100               MOVS     R1,R4
+   \   00000006   4C31               ADDS     R1,R1,#+76
+   \   00000008   1C30               ADDS     R0,R0,#+28
+   \   0000000A   03B4               PUSH     {R0,R1}
+   \   0000000C   1600               MOVS     R6,R2
+   \   0000000E   1A00               MOVS     R2,R3
+   \   00000010   E36D               LDR      R3,[R4, #+92]
+   \   00000012   2900               MOVS     R1,R5
+   \   00000014   3000               MOVS     R0,R6
+   \   00000016   ........           _BLF     AES_ofb128_encrypt,??AES_ofb128_encrypt??rT
+   \   0000001A   0120               MOVS     R0,#+1
+   \   0000001C   7CBD               POP      {R2-R6,PC}       ;; return
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_cbc
+   \                     aes_128_cbc:
+   \   00000000   A30100001000       DC32 419, 16, 16, 16, aes_init_key, aes_128_cbc_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1026, 0H, 0H
+   \              E8A002040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_cfb128
+   \                     aes_128_cfb128:
+   \   00000000   A50100000100       DC32 421, 1, 16, 16, aes_init_key, aes_128_cfb128_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_ofb
+   \                     aes_128_ofb:
+   \   00000000   A40100000100       DC32 420, 1, 16, 16, aes_init_key, aes_128_ofb_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1028, 0H, 0H
+   \              E8A004040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_ecb
+   \                     aes_128_ecb:
+   \   00000000   A20100001000       DC32 418, 16, 16, 16, aes_init_key, aes_128_ecb_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1025, 0H, 0H
+   \              E8A001040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+     78          IMPLEMENT_BLOCK_CIPHER(aes_192, ks, AES, EVP_AES_KEY,
+     79          		       NID_aes_192, 16, 24, 16, 128,
+     80          		       aes_init_key, NULL, 
+     81          		       EVP_CIPHER_set_asn1_iv,
+     82          		       EVP_CIPHER_get_asn1_iv,
+     83                                 EVP_CIPH_FLAG_FIPS,
+     84          		       NULL)
+   \                     aes_192_cbc_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   C046               Nop      
+   \   00000004                      REQUIRE ?Subroutine38
+   \   00000004                      ;; // Fall through to label ?Subroutine38
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_192_cfb128_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_192_cfb128_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   C046               Nop      
+   \   00000004                      REQUIRE ?Subroutine39
+   \   00000004                      ;; // Fall through to label ?Subroutine39
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_192_ecb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_192_ecb_cipher:
+   \   00000000   F6B5               PUSH     {R1,R2,R4-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   2068               LDR      R0,[R4, #+0]
+   \   00000006   4568               LDR      R5,[R0, #+4]
+   \   00000008   AB42               CMP      R3,R5
+   \   0000000A   01D2               BCS      ??aes_192_ecb_cipher_0
+   \                     ??aes_192_ecb_cipher_1:
+   \   0000000C   0120               MOVS     R0,#+1
+   \   0000000E   FCBD               POP      {R2-R7,PC}       ;; return
+   \                     ??aes_192_ecb_cipher_0:
+   \   00000010   5E1B               SUBS     R6,R3,R5
+   \   00000012   0027               MOVS     R7,#+0
+   \                     ??aes_192_ecb_cipher_2:
+   \   00000014   BE42               CMP      R6,R7
+   \   00000016   F9D3               BCC      ??aes_192_ecb_cipher_1
+   \   00000018   0098               LDR      R0,[SP, #+0]
+   \   0000001A   6368               LDR      R3,[R4, #+4]
+   \   0000001C   E26D               LDR      R2,[R4, #+92]
+   \   0000001E   C119               ADDS     R1,R0,R7
+   \   00000020   0198               LDR      R0,[SP, #+4]
+   \   00000022   C019               ADDS     R0,R0,R7
+   \   00000024   ........           _BLF     AES_ecb_encrypt,??AES_ecb_encrypt??rT
+   \   00000028   7F19               ADDS     R7,R7,R5
+   \   0000002A   F3E7               B        ??aes_192_ecb_cipher_2
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_192_ofb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_192_ofb_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   C046               Nop      
+   \   00000004                      REQUIRE ?Subroutine37
+   \   00000004                      ;; // Fall through to label ?Subroutine37
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_cbc(void)
+   \                     EVP_aes_192_cbc:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_cbc_0  ;; aes_192_cbc
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_cbc_0:
+   \   00000004   ........           DC32     aes_192_cbc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_cfb128(void)
+   \                     EVP_aes_192_cfb128:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_cfb128_0  ;; aes_192_cfb128
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_cfb128_0:
+   \   00000004   ........           DC32     aes_192_cfb128
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_ofb(void)
+   \                     EVP_aes_192_ofb:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_ofb_0  ;; aes_192_ofb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_ofb_0:
+   \   00000004   ........           DC32     aes_192_ofb
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_ecb(void)
+   \                     EVP_aes_192_ecb:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_ecb_0  ;; aes_192_ecb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_ecb_0:
+   \   00000004   ........           DC32     aes_192_ecb
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_cbc
+   \                     aes_192_cbc:
+   \   00000000   A70100001000       DC32 423, 16, 24, 16, aes_init_key, aes_192_cbc_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1026, 0H, 0H
+   \              E8A002040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_cfb128
+   \                     aes_192_cfb128:
+   \   00000000   A90100000100       DC32 425, 1, 24, 16, aes_init_key, aes_192_cfb128_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_ofb
+   \                     aes_192_ofb:
+   \   00000000   A80100000100       DC32 424, 1, 24, 16, aes_init_key, aes_192_ofb_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1028, 0H, 0H
+   \              E8A004040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_ecb
+   \                     aes_192_ecb:
+   \   00000000   A60100001000       DC32 422, 16, 24, 16, aes_init_key, aes_192_ecb_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1025, 0H, 0H
+   \              E8A001040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+     85          IMPLEMENT_BLOCK_CIPHER(aes_256, ks, AES, EVP_AES_KEY,
+     86          		       NID_aes_256, 16, 32, 16, 128,
+     87          		       aes_init_key, NULL, 
+     88          		       EVP_CIPHER_set_asn1_iv,
+     89          		       EVP_CIPHER_get_asn1_iv,
+     90                                 EVP_CIPH_FLAG_FIPS,
+     91          		       NULL)
+   \                     aes_256_cbc_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   ....               B.N      ?Subroutine38
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_256_cfb128_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_256_cfb128_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine39
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_256_ecb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_256_ecb_cipher:
+   \   00000000   F6B5               PUSH     {R1,R2,R4-R7,LR}
+   \   00000002   0400               MOVS     R4,R0
+   \   00000004   2068               LDR      R0,[R4, #+0]
+   \   00000006   4568               LDR      R5,[R0, #+4]
+   \   00000008   AB42               CMP      R3,R5
+   \   0000000A   01D2               BCS      ??aes_256_ecb_cipher_0
+   \                     ??aes_256_ecb_cipher_1:
+   \   0000000C   0120               MOVS     R0,#+1
+   \   0000000E   FCBD               POP      {R2-R7,PC}       ;; return
+   \                     ??aes_256_ecb_cipher_0:
+   \   00000010   5E1B               SUBS     R6,R3,R5
+   \   00000012   0027               MOVS     R7,#+0
+   \                     ??aes_256_ecb_cipher_2:
+   \   00000014   BE42               CMP      R6,R7
+   \   00000016   F9D3               BCC      ??aes_256_ecb_cipher_1
+   \   00000018   0098               LDR      R0,[SP, #+0]
+   \   0000001A   6368               LDR      R3,[R4, #+4]
+   \   0000001C   E26D               LDR      R2,[R4, #+92]
+   \   0000001E   C119               ADDS     R1,R0,R7
+   \   00000020   0198               LDR      R0,[SP, #+4]
+   \   00000022   C019               ADDS     R0,R0,R7
+   \   00000024   ........           _BLF     AES_ecb_encrypt,??AES_ecb_encrypt??rT
+   \   00000028   7F19               ADDS     R7,R7,R5
+   \   0000002A   F3E7               B        ??aes_256_ecb_cipher_2
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   static __??Code16?? __code __interwork __atpcs int aes_256_ofb_cipher(EVP_CIPHER_CTX *, unsigned char *, unsigned char const *, unsigned int)
+   \                     aes_256_ofb_cipher:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   ....               B.N      ?Subroutine37
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_cbc(void)
+   \                     EVP_aes_256_cbc:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_cbc_0  ;; aes_256_cbc
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_cbc_0:
+   \   00000004   ........           DC32     aes_256_cbc
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_cfb128(void)
+   \                     EVP_aes_256_cfb128:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_cfb128_0  ;; aes_256_cfb128
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_cfb128_0:
+   \   00000004   ........           DC32     aes_256_cfb128
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_ofb(void)
+   \                     EVP_aes_256_ofb:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_ofb_0  ;; aes_256_ofb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_ofb_0:
+   \   00000004   ........           DC32     aes_256_ofb
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_ecb(void)
+   \                     EVP_aes_256_ecb:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_ecb_0  ;; aes_256_ecb
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_ecb_0:
+   \   00000004   ........           DC32     aes_256_ecb
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_cbc
+   \                     aes_256_cbc:
+   \   00000000   AB0100001000       DC32 427, 16, 32, 16, aes_init_key, aes_256_cbc_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1026, 0H, 0H
+   \              E8A002040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_cfb128
+   \                     aes_256_cfb128:
+   \   00000000   AD0100000100       DC32 429, 1, 32, 16, aes_init_key, aes_256_cfb128_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_ofb
+   \                     aes_256_ofb:
+   \   00000000   AC0100000100       DC32 428, 1, 32, 16, aes_init_key, aes_256_ofb_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1028, 0H, 0H
+   \              E8A004040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_ecb
+   \                     aes_256_ecb:
+   \   00000000   AA0100001000       DC32 426, 16, 32, 16, aes_init_key, aes_256_ecb_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1025, 0H, 0H
+   \              E8A001040000
+   \              000000000000
+   \              0000        
+     92          
+     93          #define IMPLEMENT_AES_CFBR(ksize,cbits,flags)	IMPLEMENT_CFBR(aes,AES,EVP_AES_KEY,ks,ksize,cbits,16,flags)
+     94          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     95          IMPLEMENT_AES_CFBR(128,1,EVP_CIPH_FLAG_FIPS)
+   \                     aes_128_cfb1_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine40
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_cfb1(void)
+   \                     EVP_aes_128_cfb1:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_cfb1_0  ;; aes_128_cfb1
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_cfb1_0:
+   \   00000004   ........           DC32     aes_128_cfb1
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine40:
+   \   00000000   0400               MOVS     R4,R0
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   1600               MOVS     R6,R2
+   \   00000006   6268               LDR      R2,[R4, #+4]
+   \   00000008   2100               MOVS     R1,R4
+   \   0000000A   4C31               ADDS     R1,R1,#+76
+   \   0000000C   1C30               ADDS     R0,R0,#+28
+   \   0000000E   07B4               PUSH     {R0-R2}
+   \   00000010   1F00               MOVS     R7,R3
+   \   00000012   E36D               LDR      R3,[R4, #+92]
+   \   00000014   2900               MOVS     R1,R5
+   \   00000016   3A00               MOVS     R2,R7
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           _BLF     AES_cfb1_encrypt,??AES_cfb1_encrypt??rT
+   \   0000001E   0120               MOVS     R0,#+1
+   \   00000020   FEBD               POP      {R1-R7,PC}       ;; return
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_cfb1
+   \                     aes_128_cfb1:
+   \   00000000   8A0200000100       DC32 650, 1, 16, 16, aes_init_key, aes_128_cfb1_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+     96          IMPLEMENT_AES_CFBR(192,1,EVP_CIPH_FLAG_FIPS)
+   \                     aes_192_cfb1_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   C046               Nop      
+   \   00000004                      REQUIRE ?Subroutine40
+   \   00000004                      ;; // Fall through to label ?Subroutine40
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_cfb1(void)
+   \                     EVP_aes_192_cfb1:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_cfb1_0  ;; aes_192_cfb1
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_cfb1_0:
+   \   00000004   ........           DC32     aes_192_cfb1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_cfb1
+   \                     aes_192_cfb1:
+   \   00000000   8B0200000100       DC32 651, 1, 24, 16, aes_init_key, aes_192_cfb1_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+     97          IMPLEMENT_AES_CFBR(256,1,EVP_CIPH_FLAG_FIPS)
+   \                     aes_256_cfb1_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine40
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_cfb1(void)
+   \                     EVP_aes_256_cfb1:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_cfb1_0  ;; aes_256_cfb1
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_cfb1_0:
+   \   00000004   ........           DC32     aes_256_cfb1
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_cfb1
+   \                     aes_256_cfb1:
+   \   00000000   8C0200000100       DC32 652, 1, 32, 16, aes_init_key, aes_256_cfb1_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+     98          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     99          IMPLEMENT_AES_CFBR(128,8,EVP_CIPH_FLAG_FIPS)
+   \                     aes_128_cfb8_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine41
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_128_cfb8(void)
+   \                     EVP_aes_128_cfb8:
+   \   00000000   0048               LDR      R0,??EVP_aes_128_cfb8_0  ;; aes_128_cfb8
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_128_cfb8_0:
+   \   00000004   ........           DC32     aes_128_cfb8
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \                     ?Subroutine41:
+   \   00000000   0400               MOVS     R4,R0
+   \   00000002   0D00               MOVS     R5,R1
+   \   00000004   1600               MOVS     R6,R2
+   \   00000006   6268               LDR      R2,[R4, #+4]
+   \   00000008   2100               MOVS     R1,R4
+   \   0000000A   4C31               ADDS     R1,R1,#+76
+   \   0000000C   1C30               ADDS     R0,R0,#+28
+   \   0000000E   07B4               PUSH     {R0-R2}
+   \   00000010   1F00               MOVS     R7,R3
+   \   00000012   E36D               LDR      R3,[R4, #+92]
+   \   00000014   2900               MOVS     R1,R5
+   \   00000016   3A00               MOVS     R2,R7
+   \   00000018   3000               MOVS     R0,R6
+   \   0000001A   ........           _BLF     AES_cfb8_encrypt,??AES_cfb8_encrypt??rT
+   \   0000001E   0120               MOVS     R0,#+1
+   \   00000020   FEBD               POP      {R1-R7,PC}       ;; return
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_128_cfb8
+   \                     aes_128_cfb8:
+   \   00000000   8D0200000100       DC32 653, 1, 16, 16, aes_init_key, aes_128_cfb8_cipher, 0H, 244
+   \              000010000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+    100          IMPLEMENT_AES_CFBR(192,8,EVP_CIPH_FLAG_FIPS)
+   \                     aes_192_cfb8_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   C046               Nop      
+   \   00000004                      REQUIRE ?Subroutine41
+   \   00000004                      ;; // Fall through to label ?Subroutine41
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_192_cfb8(void)
+   \                     EVP_aes_192_cfb8:
+   \   00000000   0048               LDR      R0,??EVP_aes_192_cfb8_0  ;; aes_192_cfb8
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_192_cfb8_0:
+   \   00000004   ........           DC32     aes_192_cfb8
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_192_cfb8
+   \                     aes_192_cfb8:
+   \   00000000   8E0200000100       DC32 654, 1, 24, 16, aes_init_key, aes_192_cfb8_cipher, 0H, 244
+   \              000018000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+
+   \                                 In segment CODE, align 4, keep-with-next
+    101          IMPLEMENT_AES_CFBR(256,8,EVP_CIPH_FLAG_FIPS)
+   \                     aes_256_cfb8_cipher:
+   \   00000000   F0B5               PUSH     {R4-R7,LR}
+   \   00000002   ....               B.N      ?Subroutine41
+
+   \                                 In segment CODE, align 4, keep-with-next
+   \   __??Code16?? __code __interwork __atpcs struct evp_cipher_st const *EVP_aes_256_cfb8(void)
+   \                     EVP_aes_256_cfb8:
+   \   00000000   0048               LDR      R0,??EVP_aes_256_cfb8_0  ;; aes_256_cfb8
+   \   00000002   7047               BX       LR               ;; return
+   \                     ??EVP_aes_256_cfb8_0:
+   \   00000004   ........           DC32     aes_256_cfb8
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \   static EVP_CIPHER const __data aes_256_cfb8
+   \                     aes_256_cfb8:
+   \   00000000   8F0200000100       DC32 655, 1, 32, 16, aes_init_key, aes_256_cfb8_cipher, 0H, 244
+   \              000020000000
+   \              10000000....
+   \              ............
+   \              00000000F400
+   \              0000        
+   \   00000020   15F2E8A043F1       DC32 0A0E8F215H, 0A0E8F143H, 1027, 0H, 0H
+   \              E8A003040000
+   \              000000000000
+   \              0000        
+    102          
+
+   \                                 In segment CODE, align 4, keep-with-next
+    103          static int aes_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
+    104          		   const unsigned char *iv, int enc)
+    105          	{
+   \                     aes_init_key:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   0400               MOVS     R4,R0
+    106          	int ret;
+    107          
+    108          	if ((ctx->cipher->flags & EVP_CIPH_MODE) == EVP_CIPH_CFB_MODE
+    109          	    || (ctx->cipher->flags & EVP_CIPH_MODE) == EVP_CIPH_OFB_MODE
+    110          	    || enc) 
+   \   00000004   E26D               LDR      R2,[R4, #+92]
+   \   00000006   0800               MOVS     R0,R1
+   \   00000008   616D               LDR      R1,[R4, #+84]
+   \   0000000A   2468               LDR      R4,[R4, #+0]
+   \   0000000C   C900               LSLS     R1,R1,#+3
+   \   0000000E   A66A               LDR      R6,[R4, #+40]
+   \   00000010   0725               MOVS     R5,#+7
+   \   00000012   2E40               ANDS     R6,R6,R5
+   \   00000014   032E               CMP      R6,#+3
+   \   00000016   05D0               BEQ      ??aes_init_key_0
+   \   00000018   A46A               LDR      R4,[R4, #+40]
+   \   0000001A   2540               ANDS     R5,R5,R4
+   \   0000001C   042D               CMP      R5,#+4
+   \   0000001E   01D0               BEQ      ??aes_init_key_0
+   \   00000020   002B               CMP      R3,#+0
+   \   00000022   02D0               BEQ      ??aes_init_key_1
+    111          		ret=AES_set_encrypt_key(key, ctx->key_len * 8, ctx->cipher_data);
+   \                     ??aes_init_key_0:
+   \   00000024   ........           _BLF     AES_set_encrypt_key,??AES_set_encrypt_key??rT
+   \   00000028   01E0               B        ??aes_init_key_2
+    112          	else
+    113          		ret=AES_set_decrypt_key(key, ctx->key_len * 8, ctx->cipher_data);
+   \                     ??aes_init_key_1:
+   \   0000002A   ........           _BLF     AES_set_decrypt_key,??AES_set_decrypt_key??rT
+    114          
+    115          	if(ret < 0)
+   \                     ??aes_init_key_2:
+   \   0000002E   0028               CMP      R0,#+0
+   \   00000030   01D5               BPL      ??aes_init_key_3
+    116          		{
+    117          		//EVPerr(EVP_F_AES_INIT_KEY,EVP_R_AES_KEY_SETUP_FAILED);
+    118          		return 0;
+   \   00000032   0020               MOVS     R0,#+0
+   \   00000034   70BD               POP      {R4-R6,PC}
+    119          		}
+    120          
+    121          	return 1;
+   \                     ??aes_init_key_3:
+   \   00000036   0120               MOVS     R0,#+1
+   \   00000038   70BD               POP      {R4-R6,PC}       ;; return
+    122          	}
+    123          
+    124          #endif
+    125          
+
+   Maximum stack usage in bytes:
+
+     Function              CSTACK
+     --------              ------
+     EVP_aes_128_cbc           0
+     EVP_aes_128_cfb1          0
+     EVP_aes_128_cfb128        0
+     EVP_aes_128_cfb8          0
+     EVP_aes_128_ecb           0
+     EVP_aes_128_ofb           0
+     EVP_aes_192_cbc           0
+     EVP_aes_192_cfb1          0
+     EVP_aes_192_cfb128        0
+     EVP_aes_192_cfb8          0
+     EVP_aes_192_ecb           0
+     EVP_aes_192_ofb           0
+     EVP_aes_256_cbc           0
+     EVP_aes_256_cfb1          0
+     EVP_aes_256_cfb128        0
+     EVP_aes_256_cfb8          0
+     EVP_aes_256_ecb           0
+     EVP_aes_256_ofb           0
+     aes_128_cbc_cipher       24
+     aes_128_cfb128_cipher    32
+     aes_128_cfb1_cipher      32
+     aes_128_cfb8_cipher      32
+     aes_128_ecb_cipher       28
+     aes_128_ofb_cipher       24
+     aes_192_cbc_cipher       24
+     aes_192_cfb128_cipher    32
+     aes_192_cfb1_cipher      32
+     aes_192_cfb8_cipher      32
+     aes_192_ecb_cipher       28
+     aes_192_ofb_cipher       24
+     aes_256_cbc_cipher       24
+     aes_256_cfb128_cipher    32
+     aes_256_cfb1_cipher      32
+     aes_256_cfb8_cipher      32
+     aes_256_ecb_cipher       28
+     aes_256_ofb_cipher       24
+     aes_init_key             16
+
+
+   Segment part sizes:
+
+     Function/Label        Bytes
+     --------------        -----
+     aes_128_cbc_cipher       4
+     aes_128_cfb128_cipher    4
+     aes_128_ecb_cipher      44
+     aes_128_ofb_cipher       4
+     EVP_aes_128_cbc          8
+     EVP_aes_128_cfb128       8
+     EVP_aes_128_ofb          8
+     EVP_aes_128_ecb          8
+     ?Subroutine38           28
+     ?Subroutine39           34
+     ?Subroutine37           30
+     aes_128_cbc             52
+     aes_128_cfb128          52
+     aes_128_ofb             52
+     aes_128_ecb             52
+     aes_192_cbc_cipher       4
+     aes_192_cfb128_cipher    4
+     aes_192_ecb_cipher      44
+     aes_192_ofb_cipher       4
+     EVP_aes_192_cbc          8
+     EVP_aes_192_cfb128       8
+     EVP_aes_192_ofb          8
+     EVP_aes_192_ecb          8
+     aes_192_cbc             52
+     aes_192_cfb128          52
+     aes_192_ofb             52
+     aes_192_ecb             52
+     aes_256_cbc_cipher       4
+     aes_256_cfb128_cipher    4
+     aes_256_ecb_cipher      44
+     aes_256_ofb_cipher       4
+     EVP_aes_256_cbc          8
+     EVP_aes_256_cfb128       8
+     EVP_aes_256_ofb          8
+     EVP_aes_256_ecb          8
+     aes_256_cbc             52
+     aes_256_cfb128          52
+     aes_256_ofb             52
+     aes_256_ecb             52
+     aes_128_cfb1_cipher      4
+     EVP_aes_128_cfb1         8
+     ?Subroutine40           34
+     aes_128_cfb1            52
+     aes_192_cfb1_cipher      4
+     EVP_aes_192_cfb1         8
+     aes_192_cfb1            52
+     aes_256_cfb1_cipher      4
+     EVP_aes_256_cfb1         8
+     aes_256_cfb1            52
+     aes_128_cfb8_cipher      4
+     EVP_aes_128_cfb8         8
+     ?Subroutine41           34
+     aes_128_cfb8            52
+     aes_192_cfb8_cipher      4
+     EVP_aes_192_cfb8         8
+     aes_192_cfb8            52
+     aes_256_cfb8_cipher      4
+     EVP_aes_256_cfb8         8
+     aes_256_cfb8            52
+     aes_init_key            58
+      Others                408
+
+ 
+ 962 bytes in segment CODE
+ 936 bytes in segment DATA_C
+ 
+ 554 bytes of CODE  memory (+ 408 bytes shared)
+ 936 bytes of CONST memory
+
+Errors: none
+Warnings: none

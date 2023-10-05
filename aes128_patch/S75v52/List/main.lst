@@ -1,0 +1,205 @@
+##############################################################################
+#                                                                            #
+# IAR ARM ANSI C/C++ Compiler V4.42A/W32 EVALUATION    05/Oct/2023  21:05:47 #
+# Copyright 1999-2005 IAR Systems. All rights reserved.                      #
+#                                                                            #
+#    Cpu mode        =  interwork                                            #
+#    Endian          =  little                                               #
+#    Stack alignment =  4                                                    #
+#    Source file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\main.c                                          #
+#    Command line    =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\main.c -D NEWSGOLD -D S75v52 -lC                #
+#                       D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\ -o D:\Users\alfinant\Documents\Sie #
+#                       mens\Dev\IAR\aes128_patch\S75v52\Obj\ -z9            #
+#                       --cpu_mode thumb --endian little --cpu ARM926EJ-S    #
+#                       --stack_align 4 --interwork -e --enable_multibytes   #
+#                       --fpu None --dlib_config D:\Users\alfinant\Documents #
+#                       \Siemens\IAR\ARM\LIB\dl5tptinl8n.h -I                #
+#                       D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\     #
+#                       --inline_threshold=2                                 #
+#    List file       =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\List\main.lst                            #
+#    Object file     =  D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_p #
+#                       atch\S75v52\Obj\main.r79                             #
+#                                                                            #
+#                                                                            #
+##############################################################################
+
+D:\Users\alfinant\Documents\Siemens\Dev\IAR\aes128_patch\main.c
+      1          #include <openssl/ssl.h>
+
+  	} X509_ALGOR;
+  	  ^
+"D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\openssl\x509.h",121  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	} X509_NAME;
+  	  ^
+"D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\openssl\x509.h",167  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	} X509;
+  	  ^
+"D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\openssl\x509.h",267  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  	} X509_CRL;
+  	  ^
+"D:\Users\alfinant\Documents\Siemens\IAR\ARM\INC\openssl\x509.h",339  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+      2          #include "ssl_locl.h"
+      3          #include "defs.h"
+      4          
+
+   \                                 In segment PATCH_CIPHER_0x0B, align 4, align-sorted, root
+      5          __root const SSL_CIPHER cipher_2F @"PATCH_CIPHER_0x0B"=
+   \                     cipher_2F:
+   \   00000000   01000000....       DC32 1, `?<Constant "AES128-SHA">`, 50331695, 13631553, 384, 0, 128
+   \              ....2F000003
+   \              4100D0008001
+   \              000000000000
+   \              80000000    
+   \   0000001C   80000000FFFF       DC32 128, 10485759, 255
+   \              9F00FF000000
+      6          {
+      7            1,
+      8            TLS1_TXT_RSA_WITH_AES_128_SHA,
+      9            TLS1_CK_RSA_WITH_AES_128_SHA,
+     10            SSL_kRSA|SSL_aRSA|SSL_AES|SSL_SHA |SSL_TLSV1,
+     11            SSL_HIGH|SSL_FIPS,
+     12            0,
+     13            128,
+     14            128,
+     15            SSL_ALL_CIPHERS,
+     16            SSL_ALL_STRENGTHS,
+     17          };
+     18          
+
+   \                                 In segment SSL_CIPHER_GET_EVP__CODE_AREA, align 4, keep-with-next
+     19          void init_rc2_aes_ciphers(EVP_CIPHER *rc2) @ "SSL_CIPHER_GET_EVP__CODE_AREA"
+     20          {
+   \                     init_rc2_aes_ciphers:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+     21            EVP_add_cipher(rc2);
+     22            
+     23            EVP_CIPHER *c = malloc(sizeof(EVP_CIPHER));
+     24            memcpy(c, EVP_aes_128_cbc(), sizeof(EVP_CIPHER));
+     25            OBJ_NAME_add(SN_aes_128_cbc, 2, (char const*)c);  
+   \   00000002   0C4E               LDR      R6,??init_rc2_aes_ciphers_0  ;; `?<Constant "AES-128-CBC">`
+   \   00000004   0C4D               LDR      R5,??init_rc2_aes_ciphers_0+0x4  ;; 0xffffffffa0e8f769
+   \   00000006   ........           _BLF     -1595346247,??rT0xA0E8F2B9?SSL_CIPHER_GET_EVP__CODE_AREA
+   \   0000000A   3420               MOVS     R0,#+52
+   \   0000000C   ........           _BLF     -1610003620,??rT0xA0094B5C?SSL_CIPHER_GET_EVP__CODE_AREA
+   \   00000010   0400               MOVS     R4,R0
+   \   00000012   ........           _BLF     EVP_aes_128_cbc,??EVP_aes_128_cbc??rT?SSL_CIPHER_GET_EVP__CODE_
+   \   00000016   0100               MOVS     R1,R0
+   \   00000018   3422               MOVS     R2,#+52
+   \   0000001A   2000               MOVS     R0,R4
+   \   0000001C   ........           _BLF     -1594078704,??rT0xA0FC4A10?SSL_CIPHER_GET_EVP__CODE_AREA
+   \   00000020   2200               MOVS     R2,R4
+   \   00000022   0221               MOVS     R1,#+2
+   \   00000024   3000               MOVS     R0,R6
+   \   00000026   A847               BLX      R5
+     26            OBJ_NAME_add(LN_aes_128_cbc, 2, (char const*)c); 
+   \   00000028   2200               MOVS     R2,R4
+   \   0000002A   0221               MOVS     R1,#+2
+   \   0000002C   0C36               ADDS     R6,R6,#+12
+   \   0000002E   3000               MOVS     R0,R6
+   \   00000030   A847               BLX      R5
+     27          }
+   \   00000032   70BD               POP      {R4-R6,PC}       ;; return
+   \                     ??init_rc2_aes_ciphers_0:
+   \   00000034   ........           DC32     `?<Constant "AES-128-CBC">`
+   \   00000038   69F7E8A0           DC32     0xffffffffa0e8f769
+     28          
+     29          
+
+   \                                 In segment CODE, align 4, keep-with-next
+     30          void hook_EVP_CipherInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *data,
+     31          	     unsigned char *key, unsigned char *iv, int enc)
+     32          {
+   \                     hook_EVP_CipherInit:
+   \   00000000   70B5               PUSH     {R4-R6,LR}
+   \   00000002   049C               LDR      R4,[SP, #+16]
+     33            if (data->nid == 0x1A3)
+   \   00000004   0D68               LDR      R5,[R1, #+0]
+   \   00000006   FF26               MOVS     R6,#+255
+   \   00000008   A436               ADDS     R6,R6,#+164
+   \   0000000A   B542               CMP      R5,R6
+   \   0000000C   04D1               BNE      ??hook_EVP_CipherInit_0
+     34              EVP_CipherInit(ctx,data,key,iv,enc);
+   \   0000000E   10B4               PUSH     {R4}
+   \   00000010   ........           _BLF     EVP_CipherInit,??EVP_CipherInit??rT
+   \   00000014   01B0               ADD      SP,SP,#+4
+   \   00000016   70BD               POP      {R4-R6,PC}
+     35            else
+     36            {
+     37              if (enc)
+   \                     ??hook_EVP_CipherInit_0:
+   \   00000018   002C               CMP      R4,#+0
+   \   0000001A   02D0               BEQ      ??hook_EVP_CipherInit_1
+     38                EVP_EncryptInit(ctx,data,key,iv);
+   \   0000001C   ........           _BLF     -1595347951,??rT0xA0E8EC11
+   \   00000020   70BD               POP      {R4-R6,PC}
+     39              else	
+     40                EVP_DecryptInit(ctx,data,key,iv);
+   \                     ??hook_EVP_CipherInit_1:
+   \   00000022   ........           _BLF     -1595347985,??rT0xA0E8EBEF
+     41            }
+     42          }
+   \   00000026   70BD               POP      {R4-R6,PC}       ;; return
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "AES128-SHA">`:
+   \   00000000   414553313238       DC8 "AES128-SHA"
+   \              2D53484100  
+   \   0000000B   00                 DC8 0
+
+   \                                 In segment DATA_C, align 4, align-sorted
+   \                     `?<Constant "AES-128-CBC">`:
+   \   00000000   4145532D3132       DC8 "AES-128-CBC"
+   \              382D43424300
+   \   0000000C   6165732D3132       DC8 "aes-128-cbc"
+   \              382D63626300
+     43          
+     44          
+     45          
+     46          
+     47          
+     48          
+     49          
+     50          
+     51          
+
+   Maximum stack usage in bytes:
+
+     Function             CSTACK
+     --------             ------
+     hook_EVP_CipherInit     20
+     init_rc2_aes_ciphers    16
+
+
+   Segment part sizes:
+
+     Function/Label            Bytes
+     --------------            -----
+     cipher_2F                   40
+     init_rc2_aes_ciphers        60
+     hook_EVP_CipherInit         40
+     ?<Constant "AES128-SHA">    12
+     ?<Constant "AES-128-CBC">   24
+      Others                     88
+
+ 
+ 96 bytes in segment CODE
+ 36 bytes in segment DATA_C
+ 40 bytes in segment PATCH_CIPHER_0x0B
+ 92 bytes in segment SSL_CIPHER_GET_EVP__CODE_AREA
+ 
+ 100 bytes of CODE  memory (+ 88 bytes shared)
+  76 bytes of CONST memory
+
+Errors: none
+Warnings: 4

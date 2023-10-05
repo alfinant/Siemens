@@ -112,8 +112,7 @@
 #endif
 #include <assert.h>
 
-#include <siemens/swilib.h>
-
+#include "../defs.h"
 #include <openssl/aes.h>
 #include "aes_locl.h"
 //#include <openssl/e_os.h>
@@ -124,7 +123,7 @@
  */
 
 void AES_cfb128_encrypt(const unsigned char *in, unsigned char *out,
-	const unsigned long length, const AES_KEY *key,
+	size_t length, const AES_KEY *key,
 	unsigned char *ivec, int *num, const int enc) {
 
 	unsigned int n;
@@ -194,7 +193,7 @@ void AES_cfbr_encrypt_block(const unsigned char *in,unsigned char *out,
 
 /* N.B. This expects the input to be packed, MS bit first */
 void AES_cfb1_encrypt(const unsigned char *in, unsigned char *out,
-		      const unsigned long length, const AES_KEY *key,
+		      size_t length, const AES_KEY *key,
 		      unsigned char *ivec, int *num, const int enc)
     {
     unsigned int n;
@@ -203,7 +202,7 @@ void AES_cfb1_encrypt(const unsigned char *in, unsigned char *out,
     assert(in && out && key && ivec && num);
     assert(*num == 0);
 
-    memset(out,0,(length+7)/8);
+    ClearMemory(out, (length+7)/8); //memset(out,0,(length+7)/8);
     for(n=0 ; n < length ; ++n)
 	{
 	c[0]=(in[n/8]&(1 << (7-n%8))) ? 0x80 : 0;
@@ -213,7 +212,7 @@ void AES_cfb1_encrypt(const unsigned char *in, unsigned char *out,
     }
 
 void AES_cfb8_encrypt(const unsigned char *in, unsigned char *out,
-		      const unsigned long length, const AES_KEY *key,
+		      size_t length, const AES_KEY *key,
 		      unsigned char *ivec, int *num, const int enc)
     {
     unsigned int n;
